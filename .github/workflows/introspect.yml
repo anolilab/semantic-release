@@ -1,0 +1,39 @@
+name: "CI"
+
+on: # yamllint disable-line rule:truthy
+    push:
+        paths:
+            - ".github/workflows/**"
+        branches:
+            - "main"
+    pull_request:
+        paths:
+            - ".github/workflows/**"
+        branches:
+            - "main"
+            - "!v[0-9]*"
+
+permissions:
+    contents: "read"
+
+jobs:
+    lint-workflows:
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09" # v2.5.1
+              with:
+                  egress-policy: "audit"
+
+            - name: "Git checkout"
+              uses: "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744" # v3.6.0
+              env:
+                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
+                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
+                  EMAIL: "github-actions[bot]@users.noreply.github.com"
+
+            # From https://github.com/rhysd/actionlint/blob/main/docs/usage.md#use-actionlint-on-github-actions
+            - name: "Check workflow files"
+              run: |
+                  bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+                  ./actionlint -color -shellcheck=""

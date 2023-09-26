@@ -1,2 +1,9 @@
-/node_modules/
-/coverage/
+node_modules
+vitest.config.ts
+.prettierrc.cjs
+_meta.*.json
+
+coverage
+__fixtures__
+
+.github/ISSUE_TEMPLATE

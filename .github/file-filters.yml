@@ -1,0 +1,24 @@
+# This is used by the action https://github.com/dorny/paths-filter (which we have forked to https://github.com/getsentry/paths-filter)
+
+frontend_lintable:
+    - "**/*.[tj]{s,sx}"
+    - "pnpm-lock.yaml"
+
+markdown_lintable:
+    - "**/*.md"
+    - "**/*.mdx"
+    - "pnpm-lock.yaml"
+
+yaml_lintable:
+    - "**/*.yml"
+    - "**/*.yaml"
+    - "pnpm-lock.yaml"
+
+packages:
+    - "pnpm-lock.yaml"
+    - "lib/**"
+    - "__tests__/**"
+    - "__fixtures__/**"
+    - "bin/**"
+    - ".github/workflows/test.yml"
+    - ".github/workflows/lint.yml"
