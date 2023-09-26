@@ -1,108 +1,122 @@
 {
-	"name": "@qiwi/multi-semantic-release",
-	"author": "Dave Houlbrooke <dave@shax.com>",
-	"version": "7.0.0",
-	"license": "0BSD",
-	"engines": {
-		"node": ">=14",
-		"yarn": ">=1.0.0"
-	},
-	"type": "module",
-	"exports": {
-		".": "./lib/multiSemanticRelease.js",
-		"./*": "./*"
-	},
-	"bin": {
-		"multi-semantic-release": "./bin/cli.js"
-	},
-	"files": [
-		"README.md",
-		"CHANGELOG.md",
-		"lib",
-		"bin"
-	],
-	"scripts": {
-		"watch": "jest --watchAll",
-		"lint": "eslint ./",
-		"lint:fix": "eslint --fix ./",
-		"test": "yarn lint && yarn test:unit",
-		"test:unit": "NODE_OPTIONS=--experimental-vm-modules ./node_modules/.bin/jest --coverage",
-		"build": "echo 'There is no need for build' && exit 0",
-		"postupdate": "yarn && npx yarn-audit-fix && yarn build && yarn test",
-		"publish:beta": "npm publish --no-git-tag-version --tag beta"
-	},
-	"commitlint": {
-		"extends": [
-			"@commitlint/config-conventional"
-		]
-	},
-	"jest": {
-		"testEnvironmentOptions": {
-			"url": "http://localhost"
-		},
-		"collectCoverage": true,
-		"collectCoverageFrom": [
-			"lib/**/*.js"
-		],
-		"modulePathIgnorePatterns": [
-			"<rootDir>/test/fixtures"
-		],
-		"testTimeout": 50000
-	},
-	"dependencies": {
-		"@semrel-extra/topo": "^1.13.0",
-		"blork": "^9.3.0",
-		"cosmiconfig": "^8.2.0",
-		"debug": "^4.3.4",
-		"detect-indent": "^7.0.1",
-		"detect-newline": "^4.0.0",
-		"execa": "^7.1.1",
-		"get-stream": "^6.0.1",
-		"git-log-parser": "^1.2.0",
-		"lodash-es": "^4.17.21",
-		"meow": "^12.0.1",
-		"promise-events": "^0.2.4",
-		"resolve-from": "^5.0.0",
-		"semantic-release": "^21.0.5",
-		"semver": "^7.5.3",
-		"signale": "^1.4.0",
-		"stream-buffers": "^3.0.2"
-	},
-	"devDependencies": {
-		"@commitlint/config-conventional": "^17.6.6",
-		"@jest/globals": "^29.5.0",
-		"@semantic-release/changelog": "^6.0.3",
-		"@semantic-release/git": "^10.0.1",
-		"@semantic-release/github": "^9.0.3",
-		"@semantic-release/npm": "^10.0.4",
-		"commitlint": "^17.6.6",
-		"eslint": "^8.43.0",
-		"eslint-config-prettier": "^8.8.0",
-		"eslint-plugin-prettier": "^4.2.1",
-		"file-url": "^4.0.0",
-		"jest": "^29.5.0",
-		"prettier": "^2.8.8",
-		"tempy": "^3.0.0"
-	},
-	"release": {
-		"branch": "master",
-		"verifyConditions": [
-			"@semantic-release/changelog",
-			"@semantic-release/npm",
-			"@semantic-release/git"
-		],
-		"prepare": [
-			"@semantic-release/changelog",
-			"@semantic-release/npm",
-			"@semantic-release/git"
-		],
-		"publish": [
-			"@semantic-release/npm",
-			"@semantic-release/github"
-		]
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/qiwi/multi-semantic-release.git"
-	}
+    "name": "@anolilab/multi-semantic-release",
+    "type": "module",
+    "version": "1.0.0",
+    "author": "Dave Houlbrooke <dave@shax.com>",
+    "license": "0BSD",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/anolilab/multi-semantic-release.git"
+    },
+    "maintainers": [
+        {
+            "name": "Daniel Bannert",
+            "email": "d.bannert@anolilab.de"
+        }
+    ],
+    "exports": {
+        ".": "./lib/multiSemanticRelease.js",
+        "./*": "./*",
+        "./package.json": "./package.json"
+    },
+    "bin": {
+        "multi-semantic-release": "./bin/cli.js"
+    },
+    "files": [
+        "README.md",
+        "CHANGELOG.md",
+        "lib",
+        "bin"
+    ],
+    "engines": {
+        "node": ">=20.6.1"
+    },
+    "scripts": {
+        "build": "echo 'There is no need for build' && exit 0",
+        "preinstall": "node verify-node-version.cjs",
+        "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
+        "lint:eslint:fix": "pnpm run lint:eslint --fix",
+        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
+        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
+        "lint:staged": "lint-staged --verbose --concurrent false --debug",
+        "postinstall": "is-ci || husky install || exit 0",
+        "test": "vitest run",
+        "test:bench": "vitest bench",
+        "test:watch": "vitest"
+    },
+    "peerDependencies": {
+        "semantic-release": ">=22.0.3"
+    },
+    "dependencies": {
+        "@semrel-extra/topo": "^1.14.0",
+        "blork": "^9.3.0",
+        "cosmiconfig": "^8.3.6",
+        "debug": "^4.3.4",
+        "detect-indent": "^7.0.1",
+        "detect-newline": "^4.0.1",
+        "execa": "^8.0.1",
+        "git-log-parser": "^1.2.0",
+        "lodash-es": "^4.17.21",
+        "promise-events": "^0.2.4",
+        "resolve-from": "^5.0.0",
+        "semver": "^7.5.4",
+        "signale": "^1.4.0",
+        "stream-buffers": "^3.0.2",
+        "yargs": "^17.7.2"
+    },
+    "devDependencies": {
+        "@anolilab/eslint-config": "^14.0.8",
+        "@anolilab/lint-staged-config": "^2.0.10",
+        "@anolilab/prettier-config": "^5.0.8",
+        "@anolilab/textlint-config": "^8.0.10",
+        "@babel/core": "^7.23.0",
+        "@babel/eslint-parser": "7.22.15",
+        "@commitlint/config-conventional": "^17.7.0",
+        "@rushstack/eslint-plugin-security": "^0.7.1",
+        "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^9.1.0",
+        "@semantic-release/npm": "^11.0.0",
+        "@vitest/coverage-v8": "^0.34.5",
+        "commitizen": "^4.3.0",
+        "commitlint": "^17.7.1",
+        "cross-env": "^7.0.3",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^8.50.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-editorconfig": "^4.0.3",
+        "eslint-plugin-import": "npm:eslint-plugin-i@2.28.1",
+        "eslint-plugin-mdx": "^2.2.0",
+        "eslint-plugin-n": "^16.1.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "eslint-plugin-vitest": "^0.3.1",
+        "eslint-plugin-vitest-globals": "^1.4.0",
+        "eslint-plugin-you-dont-need-lodash-underscore": "^6.13.0",
+        "file-url": "^4.0.0",
+        "husky": "^8.0.3",
+        "is-ci": "^3.0.1",
+        "lint-staged": "^14.0.1",
+        "prettier": "^3.0.3",
+        "rimraf": "^5.0.4",
+        "secretlint": "7.0.7",
+        "semantic-release": "^22.0.5",
+        "tempy": "^3.1.0",
+        "textlint": "^13.3.3",
+        "vitest": "^0.34.5"
+    },
+    "anolilab": {
+        "eslint-config": {
+            "plugin": {},
+            "warn_on_unsupported_typescript_version": false,
+            "info_on_disabling_jsx_react_rule": false,
+            "info_on_disabling_prettier_conflict_rule": false,
+            "info_on_disabling_jsonc_sort_keys_rule": false,
+            "import_ignore_exports": [
+                "**/*.cjs",
+                "**/__tests__/**/*.js",
+                "**/verify-node-version.cjs"
+            ]
+        }
+    }
 }
