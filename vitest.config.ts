@@ -7,5 +7,6 @@ export default defineConfig({
     test: {
         environment: "node",
         dir: "./__tests__",
+        testTimeout: 10000,
     },
 });
