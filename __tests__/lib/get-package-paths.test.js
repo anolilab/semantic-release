@@ -14,7 +14,6 @@ const getPackagePaths = async (cwd, ignore = []) => {
         .sort();
 };
 
-// Tests.
 describe("getPackagePaths()", () => {
     it("yarn: Works correctly with workspaces", async () => {
         const resolved = resolve(`${fixturesPath}/yarnWorkspaces`);
