@@ -28,6 +28,7 @@ describe("getCommitsFiltered()", () => {
 
         // Filter a single directory of the repo.
         const commits = await getCommitsFiltered(cwd, "bbb/");
+
         expect(commits).toHaveLength(1);
         expect(commits[0].hash).toBe(sha2);
         expect(commits[0].subject).toBe("Commit 2");

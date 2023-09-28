@@ -17,11 +17,9 @@ import { temporaryDirectory } from "tempy";
  * @returns {void}
  */
 export function gitConfig(cwd, name, value) {
-    // Check params.
     check(cwd, "cwd: absolute");
     check(name, "name: string+");
 
-    // Run command.
     execaSync("git", ["config", "--add", name, value], { cwd });
 }
 
@@ -53,7 +51,6 @@ export function gitUser(cwd, name = "Foo Bar", email = "email@foo.bar") {
  * @return {string} String pointing to the CWD for the created Git repository.
  */
 export function gitInit(branch = "master") {
-    // Check params.
     check(branch, "branch: kebab");
 
     // Init Git in a temp directory.
@@ -94,7 +91,6 @@ export function gitInitRemote() {
  * @return {string} The SHA of the head commit.
  */
 export function gitGetHead(cwd) {
-    // Check params.
     check(cwd, "cwd: absolute");
 
     // Await command and return HEAD SHA.
@@ -110,7 +106,6 @@ export function gitGetHead(cwd) {
  * @return {string} String URL of the remote origin.
  */
 export function gitInitOrigin(cwd, releaseBranch = null) {
-    // Check params.
     check(cwd, "cwd: absolute");
 
     // Turn remote path into a file URL.
@@ -139,10 +134,8 @@ export function gitInitOrigin(cwd, releaseBranch = null) {
  * @return {void}
  */
 export function gitAdd(cwd, file = ".") {
-    // Check params.
     check(cwd, "cwd: absolute");
 
-    // Await command.
     execaSync("git", ["add", file], { cwd });
 }
 
@@ -155,11 +148,9 @@ export function gitAdd(cwd, file = ".") {
  * @returns {string} Promise that resolves to the SHA for the commit.
  */
 export function gitCommit(cwd, message) {
-    // Check params.
     check(cwd, "cwd: absolute");
     check(message, "message: string+");
 
-    // Await the command.
     execaSync("git", ["commit", "-m", message, "--no-gpg-sign"], { cwd });
 
     // Return HEAD SHA.
@@ -175,14 +166,12 @@ export function gitCommit(cwd, message) {
  * @returns {string} Promise that resolves to the SHA for the commit.
  */
 export function gitCommitAll(cwd, message) {
-    // Check params.
     check(cwd, "cwd: absolute");
     check(message, "message: string+");
 
-    // Await command.
     gitAdd(cwd);
 
-    // Await command and return the SHA hash.
+    // return the SHA hash.
     return gitCommit(cwd, message);
 }
 
@@ -196,12 +185,10 @@ export function gitCommitAll(cwd, message) {
  * @throws {Error} if the push failed.
  */
 export function gitPush(cwd, remote = "origin", branch = "master") {
-    // Check params.
     check(cwd, "cwd: absolute");
     check(remote, "remote: string");
     check(branch, "branch: lower");
 
-    // Await command.
     execaSync("git", ["push", "--tags", remote, `HEAD:${branch}`], { cwd });
 }
 
@@ -214,7 +201,6 @@ export function gitPush(cwd, remote = "origin", branch = "master") {
  * @returns {void}
  */
 export function gitTag(cwd, tagName, hash = undefined) {
-    // Check params.
     check(cwd, "cwd: absolute");
     check(tagName, "tagName: string+");
     check(hash, "hash: alphanumeric{40}?");

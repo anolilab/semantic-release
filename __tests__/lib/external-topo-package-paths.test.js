@@ -12,10 +12,13 @@ const getPackagePaths = async (cwd, ignore = []) => {
     const workspacesExtra = ignore.map((item) => `!${item}`);
     const result = await topo({ cwd, workspacesExtra });
 
-    return Object.values(result.packages)
-        .map((package_) => package_.manifestPath)
-        .map((value) => transformPath(value))
-        .sort();
+    return (
+        Object.values(result.packages)
+            .map((package_) => package_.manifestPath)
+            // This is only needed for the testing
+            .map((value) => transformPath(value))
+            .sort()
+    );
 };
 
 describe("getPackagePaths()", () => {
@@ -51,7 +54,9 @@ describe("getPackagePaths()", () => {
     it("yarn: Should ignore some packages via CLI", async () => {
         const resolved = resolve(`${fixturesPath}/yarnWorkspacesIgnore`);
 
-        await expect(getPackagePaths(resolved, ["packages/a/**", "packages/b/**"])).resolves.toStrictEqual([`${resolved}/packages/c/package.json`]);
+        await expect(getPackagePaths(resolved, ["packages/a/**", "packages/b/**"])).resolves.toStrictEqual(
+            [`${resolved}/packages/c/package.json`].map((path) => transformPath(path)),
+        );
 
         const resolvedSplit = resolve(`${fixturesPath}/yarnWorkspacesIgnoreSplit`);
 
@@ -59,18 +64,6 @@ describe("getPackagePaths()", () => {
             [`${resolvedSplit}/packages/a/package.json`, `${resolvedSplit}/packages/c/package.json`].map((path) => transformPath(path)),
         );
     });
-    // __tests__("yarn: Should throw when ignored packages from CLI and workspaces sets an empty workspace list to be processed", async () => {
-    // 	const resolved = resolve(`${__dirname}/../__fixtures__/yarnWorkspacesIgnore`);
-    // 	expect(() => await getPackagePaths(resolved, ["packages/a/**", "packages/b/**", "packages/c/**"])).toThrow(TypeError);
-    // 	expect(() => await getPackagePaths(resolved, ["packages/a/**", "packages/b/**", "packages/c/**"])).toThrow(
-    // 		"package.json: Project must contain one or more workspace-packages"
-    // 	);
-    // });
-    // __tests__("yarn: Error if no workspaces setting", async () => {
-    // 	const resolved = resolve(`${__dirname}/../__fixtures__/emptyYarnWorkspaces`);
-    // 	expect(() => await getPackagePaths(resolved)).toThrow(Error);
-    // 	expect(() => await getPackagePaths(resolved)).toThrow("contain one or more workspace-packages");
-    // });
 
     it("yarn: Works correctly with workspaces.packages", async () => {
         const resolved = resolve(`${fixturesPath}/yarnWorkspacesPackages`);
@@ -97,11 +90,6 @@ describe("getPackagePaths()", () => {
             ].map((path) => transformPath(path)),
         );
     });
-    // __tests__("pnpm: Error if no workspaces setting", async () => {
-    // 	const resolved = resolve(`${__dirname}/../__fixtures__/pnpmWorkspaceUndefined`);
-    // 	expect(() => await getPackagePaths(resolved)).toThrow(Error);
-    // 	expect(() => await getPackagePaths(resolved)).toThrow("contain one or more workspace-packages");
-    // });
 
     it("pnpm: Should ignore some packages", async () => {
         const resolved = resolve(`${fixturesPath}/pnpmWorkspaceIgnore`);
@@ -133,11 +121,6 @@ describe("getPackagePaths()", () => {
             ].map((path) => transformPath(path)),
         );
     });
-    // __tests__("bolt: Error if no workspaces setting", async () => {
-    // 	const resolved = resolve(`${__dirname}/../__fixtures__/boltWorkspacesUndefined`);
-    // 	expect(() => await getPackagePaths(resolved)).toThrow(Error);
-    // 	expect(() => await getPackagePaths(resolved)).toThrow("contain one or more workspace-packages");
-    // });
 
     it("bolt: Should ignore some packages", async () => {
         const resolved = resolve(`${fixturesPath}/boltWorkspacesIgnore`);

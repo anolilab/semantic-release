@@ -10,7 +10,6 @@ export function isDirectory(path) {
 
 // Deep copy a directory.
 export function copyDirectory(source, target) {
-    // Checks.
     if (!isDirectory(source)) {
         throw new Error("copyDirectory(): source must be an existant directory");
     }
