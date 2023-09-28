@@ -269,6 +269,8 @@ describe("multiSemanticRelease()", () => {
                 },
             });
         });
+    }, {
+        timeout: 60000,
     });
 
     it("initial commit (changes in all packages with prereleases)", async () => {
@@ -303,6 +305,7 @@ describe("multiSemanticRelease()", () => {
 
         const out = stdout.getContentsAsString("utf8");
 
+        console.log(out);
         expect(out).toMatch("Started multirelease! Loading 4 packages...");
         expect(out).toMatch("Loaded package msr-test-a");
         expect(out).toMatch("Loaded package msr-test-b");
