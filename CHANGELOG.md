@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/anolilab/multi-semantic-release/compare/v1.0.0...v1.0.1) (2023-09-28)
+
+
+### Bug Fixes
+
+* changed postinstall and preinstall to prepare ([55bd33e](https://github.com/anolilab/multi-semantic-release/commit/55bd33e0f2ac7ab73c1cd331ad1c904a1599e6b4))
+
 ## 1.0.0 (2023-09-28)
 
 
