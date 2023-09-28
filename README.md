@@ -6,7 +6,7 @@
 
 hacky [semantic-release](https://github.com/semantic-release/semantic-release) for monorepos based on [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
 
-[![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url]
+[![npm-image]][npm-url] [![license-image]][license-url]
 
 </div>
 
@@ -402,8 +402,6 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 [0BSD](./LICENSE.md)
 
-[typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
-[typescript-url]: "typescript"
 [license-image]: https://img.shields.io/npm/l/@anolilab/multi-semantic-release?color=blueviolet&style=for-the-badge
 [license-url]: LICENSE.md "license"
 [npm-image]: https://img.shields.io/npm/v/@anolilab/multi-semantic-release/latest.svg?style=for-the-badge&logo=npm
