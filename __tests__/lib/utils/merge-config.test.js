@@ -37,7 +37,7 @@ describe("mergeConfig", () => {
         const b = { bara: undefined, foo: "baz", fooa: null, qux: "quux" };
         const result = mergeConfig(a, b);
 
-        expect(result).toStrictEqual({ deps: {}, foo: "baz", ignorePackages: [], qux: "quux" });
+        expect(result).toStrictEqual({ bar: undefined, deps: {}, foo: "baz", ignorePackages: [], qux: "quux" });
     });
 
     it("should merge nested deps objects", () => {

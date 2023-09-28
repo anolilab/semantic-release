@@ -1,8 +1,10 @@
 <div align="center">
 
+<img src=".github/logo.svg" alt="Logo" width="200">
+
 <h1>Multi Semantic Release</h1>
 
-hacky [semantic-release](https://github.com/semantic-release/semantic-release) for monorepos
+hacky [semantic-release](https://github.com/semantic-release/semantic-release) for monorepos based on [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
 
 [![typescript-image]][typescript-url] [![npm-image]][npm-url] [![license-image]][license-url]
 
@@ -393,9 +395,8 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 -   [Daniel Bannert](https://github.com/prisis)
 -   [All Contributors](https://github.com/anolilab/multi-semantic-release/graphs/contributors)
--   [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
--   [eslint-config-alloy](https://github.com/AlloyTeam/eslint-config-alloy)
--   [eslint-config-canonical](https://github.com/gajus/eslint-config-canonical)
+-   [dhoub/multi-semantic-release](https://github.com/dhoulb/multi-semantic-release)
+-   [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
 
 ## License
 

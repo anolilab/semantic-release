@@ -1,0 +1,45 @@
+{
+    $schema: "https://docs.renovatebot.com/renovate-schema.json",
+    extends: ["config:base", "schedule:earlyMondays", "group:allNonMajor", ":prHourlyLimitNone", "helpers:pinGitHubActionDigests"],
+    labels: ["c: dependencies"],
+    reviewersFromCodeOwners: true,
+    rangeStrategy: "bump",
+    packageRules: [
+        {
+            groupName: "devDependencies",
+            matchDepTypes: ["devDependencies"],
+            rangeStrategy: "bump",
+        },
+        {
+            groupName: "dependencies",
+            matchDepTypes: ["dependencies"],
+            rangeStrategy: "replace",
+        },
+        {
+            groupName: "peerDependencies",
+            matchDepTypes: ["peerDependencies"],
+            rangeStrategy: "widen",
+        },
+        {
+            groupName: "engines",
+            matchDepTypes: ["engines"],
+            rangeStrategy: "replace",
+        },
+        {
+            groupName: "vitest",
+            matchPackageNames: ["@vitest/coverage-c8", "@vitest/ui", "vitest"],
+        },
+        {
+            groupName: "prettier",
+            matchPackageNames: ["@types/prettier", "prettier"],
+        },
+        {
+            groupName: "eslint",
+            matchPackageNames: ["eslint", "eslint-"],
+        },
+    ],
+    vulnerabilityAlerts: {
+        labels: ["c: security"],
+        assignees: ["team:maintainers"],
+    },
+}

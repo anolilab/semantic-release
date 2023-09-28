@@ -1,0 +1,39 @@
+name: "cleanup caches by a branch"
+
+on: # yamllint disable-line rule:truthy
+    pull_request:
+        types:
+            - "closed"
+
+jobs:
+    cleanup:
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@8ca2b8b2ece13480cda6dacd3511b49857a23c09" # v2.5.1
+              with:
+                  egress-policy: "audit"
+
+            - name: "Check out code"
+              uses: "actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744" # v3.6.0
+
+            - name: "Cleanup"
+              run: |
+                  gh extension install actions/gh-actions-cache
+
+                  REPO=${{ github.repository }}
+                  BRANCH="refs/pull/${{ github.event.pull_request.number }}/merge"
+
+                  echo "Fetching list of cache key"
+                  cacheKeysForPR=$(gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 )
+
+                  ## Setting this to not fail the workflow while deleting cache keys.
+                  set +e
+                  echo "Deleting caches..."
+                  for cacheKey in $cacheKeysForPR
+                  do
+                          gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+                  done
+                  echo "Done"
+              env:
+                  GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

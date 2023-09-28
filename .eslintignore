@@ -5,3 +5,5 @@ _meta.*.json
 
 coverage
 __fixtures__
+
+.github/ISSUE_TEMPLATE

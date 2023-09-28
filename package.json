@@ -1,5 +1,6 @@
 {
     "name": "@anolilab/multi-semantic-release",
+    "description": "A multi semantic release tool for monorepos.",
     "version": "1.0.0",
     "repository": {
         "type": "git",
@@ -39,6 +40,7 @@
         "lint:staged": "lint-staged --verbose --concurrent false --debug",
         "sort-package-json": "sort-package-json ./package.json",
         "test": "vitest run",
+        "test:coverage": "vitest run --coverage",
         "test:bench": "vitest bench",
         "test:watch": "vitest"
     },
@@ -103,10 +105,10 @@
         "vitest": "^0.34.5"
     },
     "peerDependencies": {
-        "semantic-release": "^21 || >=22.0.3"
+        "semantic-release": "^20.0 || ^21.0 || >=22.0.3"
     },
     "engines": {
-        "node": ">=20.6.1"
+        "node": ">= 18 || >=20.6.1"
     },
     "anolilab": {
         "eslint-config": {
