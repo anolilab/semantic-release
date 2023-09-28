@@ -112,6 +112,10 @@
     "engines": {
         "node": ">=18 || >=20.6.1"
     },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
     "anolilab": {
         "eslint-config": {
             "plugin": {},
