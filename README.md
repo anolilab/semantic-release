@@ -404,7 +404,7 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 [typescript-image]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]: "typescript"
-[license-image]: https://img.shields.io/npm/l/@anolilab/eslint-config?color=blueviolet&style=for-the-badge
+[license-image]: https://img.shields.io/npm/l/@anolilab/multi-semanti-release?color=blueviolet&style=for-the-badge
 [license-url]: LICENSE.md "license"
-[npm-image]: https://img.shields.io/npm/v/@anolilab/eslint-config/latest.svg?style=for-the-badge&logo=npm
-[npm-url]: https://www.npmjs.com/package/@anolilab/eslint-config/v/latest "npm"
+[npm-image]: https://img.shields.io/npm/v/@anolilab/multi-semanti-release/latest.svg?style=for-the-badge&logo=npm
+[npm-url]: https://www.npmjs.com/package/@anolilab/multi-semanti-release/v/latest "npm"
