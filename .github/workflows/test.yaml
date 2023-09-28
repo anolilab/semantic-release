@@ -53,7 +53,7 @@ jobs:
                 node_version: ["18", "20"]
                 semantic_release_version: ["^20", "^21", "^22"]
             fail-fast: false
-        name: "Test (node-${{ matrix.node_version }}, ${{ matrix.os }})"
+        name: "Test semantic-release version ${{ matrix.semantic_release_version }} on (node-${{ matrix.node_version }}, ${{ matrix.os }})"
         runs-on: "${{ matrix.os }}"
         steps:
             - name: "Harden Runner"
