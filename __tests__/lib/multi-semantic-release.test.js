@@ -1433,38 +1433,6 @@ describe("multiSemanticRelease()", () => {
         });
     });
 
-    // __tests__("ValueError if sequentialPrepare is enabled on a cyclic project", async () => {
-    // 	// Create Git repo with copy of Yarn workspaces fixture.
-    // 	const cwd = gitInit();
-    // 	copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
-    // 	const sha = gitCommitAll(cwd, "feat: Initial release");
-    // 	const url = gitInitOrigin(cwd);
-    // 	gitPush(cwd);
-    //
-    // 	// Capture output.
-    // 	const stdout = new WritableStreamBuffer();
-    // 	const stderr = new WritableStreamBuffer();
-    //
-    // 	// Call multiSemanticRelease()
-    // 	// Doesn't include plugins that actually publish.
-    // 	const result = multiSemanticRelease(
-    // 		[
-    // 			`packages/a/package.json`,
-    // 			`packages/b/package.json`,
-    // 			`packages/c/package.json`,
-    // 			`packages/d/package.json`,
-    // 		],
-    // 		{},
-    // 		{ cwd, stdout, stderr },
-    // 		{ sequentialPrepare: true, deps: {} }
-    // 	);
-    //
-    // 	await expect(result).rejects.toBeInstanceOf(ValueError);
-    // 	await expect(result).rejects.toMatchObject({
-    // 		message: expect.stringMatching("can't have cyclic with sequentialPrepare option"),
-    // 	});
-    // });
-
     it("generated tag with custom version format", async () => {
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
