@@ -175,7 +175,7 @@ describe("multiSemanticRelease()", () => {
             expect(error).toBeFalsy();
 
             const out = stdout.getContentsAsString("utf8");
-
+            console.log(out);
             expect(out).toMatch("Started multirelease! Loading 4 packages...");
             expect(out).toMatch("Loaded package msr-test-a");
             expect(out).toMatch("Loaded package msr-test-b");
@@ -305,7 +305,6 @@ describe("multiSemanticRelease()", () => {
 
         const out = stdout.getContentsAsString("utf8");
 
-        console.log(out);
         expect(out).toMatch("Started multirelease! Loading 4 packages...");
         expect(out).toMatch("Loaded package msr-test-a");
         expect(out).toMatch("Loaded package msr-test-b");
