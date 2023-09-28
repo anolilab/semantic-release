@@ -13,3 +13,12 @@ yaml_lintable:
     - "**/*.yml"
     - "**/*.yaml"
     - "pnpm-lock.yaml"
+
+packages:
+    - "pnpm-lock.yaml"
+    - "lib/**"
+    - "__tests__/**"
+    - "__fixtures__/**"
+    - "bin/**"
+    - ".github/workflows/test.yml"
+    - ".github/workflows/lint.yml"
