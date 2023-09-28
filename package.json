@@ -16,7 +16,7 @@
     ],
     "type": "module",
     "exports": {
-        ".": "./lib/multiSemanticRelease.js",
+        ".": "./lib/multi-semantic-release.js",
         "./*": "./*",
         "./package.json": "./package.json"
     },
@@ -123,6 +123,14 @@
                 "**/__tests__/**/*.js",
                 "verify-node-version.cjs"
             ]
+        }
+    },
+    "pnpm": {
+        "overrides": {
+            "got@<11.8.5": ">=11.8.5",
+            "trim@<0.0.3": ">=0.0.3",
+            "chrono-node@<2.2.4": ">=2.2.4",
+            "get-func-name@<2.0.1": ">=2.0.1"
         }
     }
 }
