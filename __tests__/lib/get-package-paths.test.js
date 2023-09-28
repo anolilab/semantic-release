@@ -14,6 +14,7 @@ const getPackagePaths = async (cwd, ignore = []) => {
 
     return Object.values(result.packages)
         .map((package_) => package_.manifestPath)
+        .map((value) => transformPath(value))
         .sort();
 };
 
