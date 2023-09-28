@@ -31,8 +31,7 @@
     ],
     "scripts": {
         "build": "echo 'There is no need for build' && exit 0",
-        "preinstall": "node verify-node-version.cjs",
-        "postinstall": "is-ci || husky install || exit 0",
+        "prepare": "is-ci || (node verify-node-version.cjs && pnpx only-allow pnpm && husky install)",
         "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
         "lint:eslint:fix": "pnpm run lint:eslint --fix",
         "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
