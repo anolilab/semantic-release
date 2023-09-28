@@ -8,7 +8,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import multiSemanticRelease from "../../lib/multi-semantic-release.js";
 import { copyDirectory, createNewTestingFiles } from "../helpers/file.js";
-import { gitAdd, gitCommit, gitCommitAll, gitGetLog, gitInit, gitInitOrigin, gitPush, gitTag } from "../helpers/git";
+import { gitAdd, gitCommit, gitCommitAll, gitGetLog, gitInit, gitInitOrigin, gitPush, gitTag } from "../helpers/git.js";
 
 const require = createRequire(import.meta.url);
 const environment = {};
@@ -987,14 +987,14 @@ describe("multiSemanticRelease()", () => {
                     {
                         // Ensure that msr-test-c is always ready before msr-test-d
                         verify: (_, { lastRelease: { name } }) =>
-                            // eslint-disable-next-line compat/compat
-                            new Promise((resolvePromise) => {
+                            // eslint-disable-next-line compat/compat,no-shadow
+                            new Promise((resolve) => {
                                 // eslint-disable-next-line vitest/no-conditional-tests,vitest/no-conditional-in-test
                                 if (name.split("@")[0] === "msr-test-c") {
-                                    resolvePromise();
+                                    resolve();
                                 }
 
-                                setTimeout(resolvePromise, 5000);
+                                setTimeout(resolve, 5000);
                             }),
                     },
                     {
@@ -1149,7 +1149,7 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease()
         // Doesn't include plugins that actually publish.
-        const result = await multiSemanticRelease(
+        await multiSemanticRelease(
             [`packages/c/package.json`, `packages/d/package.json`, `packages/b/package.json`, `packages/a/package.json`],
             {},
             { cwd, env: environment, stderr, stdout },
@@ -1203,11 +1203,12 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease()
         try {
-            const result = await multiSemanticRelease(null, {}, { cwd, env: environment, stderr, stdout });
+            await multiSemanticRelease(null, {}, { cwd, env: environment, stderr, stdout });
 
             // Not reached.
             expect(false).toBeTruthy();
         } catch (error) {
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(error.message).toBe("Cannot release msr-test-c because dependency msr-test-b has not been released yet");
         }
     });
@@ -1218,8 +1219,8 @@ describe("multiSemanticRelease()", () => {
 
         copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
 
-        const sha = gitCommitAll(cwd, "feat: Initial release");
-        const url = gitInitOrigin(cwd);
+        gitCommitAll(cwd, "feat: Initial release");
+        gitInitOrigin(cwd);
 
         gitPush(cwd);
 
@@ -1265,7 +1266,7 @@ describe("multiSemanticRelease()", () => {
         // Initial commit.
         copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
 
-        const sha1 = gitCommitAll(cwd, "feat: Initial release");
+        gitCommitAll(cwd, "feat: Initial release");
 
         gitTag(cwd, "msr-test-a@1.0.0");
         gitTag(cwd, "msr-test-b@1.0.0");
@@ -1301,7 +1302,8 @@ describe("multiSemanticRelease()", () => {
 
         const logOutput = gitGetLog(cwd, 3, "HEAD");
 
-        expect(logOutput).not.toMatch(/.*aaa.*Add missing text file.*\n.*bbb.*Add missing text file.*/);
+        // eslint-disable-next-line regexp/no-super-linear-backtracking
+        expect(logOutput).not.toMatch(/.*aaa.*Add missing text file.*\n.*bbb.*Add missing text file.*/u);
     });
 
     it("deep errors (e.g. in plugins) bubble up and out", async () => {
@@ -1310,8 +1312,8 @@ describe("multiSemanticRelease()", () => {
 
         copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
 
-        const sha = gitCommitAll(cwd, "feat: Initial release");
-        const url = gitInitOrigin(cwd);
+        gitCommitAll(cwd, "feat: Initial release");
+        gitInitOrigin(cwd);
 
         gitPush(cwd);
 
@@ -1343,7 +1345,7 @@ describe("multiSemanticRelease()", () => {
             expect(false).toBeTruthy();
         } catch (error) {
             // Error bubbles up through semantic-release and multi-semantic-release and out.
-
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(error.message).toBe("NOPE");
         }
     });
@@ -1472,6 +1474,7 @@ describe("multiSemanticRelease()", () => {
         const stdout = new WritableStreamBuffer();
         const stderr = new WritableStreamBuffer();
 
+        // eslint-disable-next-line no-template-curly-in-string
         await multiSemanticRelease([`packages/a/package.json`], {}, { cwd, env: environment, stderr, stdout }, { deps: {}, tagFormat: "${name}/${version}" });
 
         // Get stdout and stderr output.

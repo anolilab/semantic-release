@@ -23,7 +23,7 @@ function emptyStream() {
 function closedStream() {
     const stream = new Readable();
 
-    stream._read = function () {};
+    stream._read = function read() {};
 
     process.nextTick(() => {
         stream.emit("close");
@@ -41,6 +41,7 @@ describe("stream To Array", () => {
     });
 
     it("should work as a promise", () => {
+        // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(createReadStream(fixtureFile)).then((array) => {
             expect(Array.isArray(array)).toBeTruthy();
             expect(array).toHaveLength(0);
@@ -48,6 +49,7 @@ describe("stream To Array", () => {
     });
 
     it("should work as a promise with zalgo", () => {
+        // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(emptyStream()).then((array) => {
             expect(Array.isArray(array)).toBeTruthy();
             expect(array).toHaveLength(0);
@@ -55,6 +57,7 @@ describe("stream To Array", () => {
     });
 
     it("should work as a promise with chucky", () => {
+        // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(closedStream()).then((array) => {
             expect(Array.isArray(array)).toBeTruthy();
             expect(array).toHaveLength(0);

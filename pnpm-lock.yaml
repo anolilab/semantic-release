@@ -52,18 +52,21 @@ dependencies:
     version: 17.7.2
 
 devDependencies:
+  '@anolilab/commitlint-config':
+    specifier: ^4.0.3
+    version: 4.0.3
   '@anolilab/eslint-config':
-    specifier: ^14.0.8
-    version: 14.0.8(@babel/core@7.23.0)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.28.1)(eslint-plugin-n@16.1.0)(eslint-plugin-you-dont-need-lodash-underscore@6.13.0)(eslint@8.50.0)
+    specifier: ^14.0.11
+    version: 14.0.11(@babel/core@7.23.0)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.28.1)(eslint-plugin-n@16.1.0)(eslint-plugin-you-dont-need-lodash-underscore@6.13.0)(eslint@8.50.0)
   '@anolilab/lint-staged-config':
-    specifier: ^2.0.10
-    version: 2.0.10(eslint@8.50.0)(husky@8.0.3)(lint-staged@14.0.1)(prettier@3.0.3)(secretlint@7.0.7)
+    specifier: ^2.0.11
+    version: 2.0.11(eslint@8.50.0)(husky@8.0.3)(lint-staged@14.0.1)(prettier@3.0.3)(secretlint@7.0.7)
   '@anolilab/prettier-config':
-    specifier: ^5.0.8
-    version: 5.0.8(prettier@3.0.3)
+    specifier: ^5.0.9
+    version: 5.0.9(prettier@3.0.3)
   '@anolilab/textlint-config':
-    specifier: ^8.0.10
-    version: 8.0.10(textlint@13.3.3)
+    specifier: ^8.0.11
+    version: 8.0.11(textlint@13.3.3)
   '@babel/core':
     specifier: ^7.23.0
     version: 7.23.0
@@ -86,8 +89,8 @@ devDependencies:
     specifier: ^10.0.1
     version: 10.0.1(semantic-release@22.0.5)
   '@semantic-release/github':
-    specifier: ^9.1.0
-    version: 9.1.0(semantic-release@22.0.5)
+    specifier: ^9.2.0
+    version: 9.2.0(semantic-release@22.0.5)
   '@semantic-release/npm':
     specifier: ^11.0.0
     version: 11.0.0(semantic-release@22.0.5)
@@ -152,14 +155,17 @@ devDependencies:
     specifier: ^3.0.3
     version: 3.0.3
   rimraf:
-    specifier: ^5.0.4
-    version: 5.0.4
+    specifier: ^5.0.5
+    version: 5.0.5
   secretlint:
     specifier: 7.0.7
     version: 7.0.7
   semantic-release:
     specifier: ^22.0.5
     version: 22.0.5
+  sort-package-json:
+    specifier: ^2.5.1
+    version: 2.6.0
   tempy:
     specifier: ^3.1.0
     version: 3.1.0
@@ -185,8 +191,26 @@ packages:
       '@jridgewell/trace-mapping': 0.3.19
     dev: true
 
-  /@anolilab/eslint-config@14.0.8(@babel/core@7.23.0)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.28.1)(eslint-plugin-n@16.1.0)(eslint-plugin-you-dont-need-lodash-underscore@6.13.0)(eslint@8.50.0):
-    resolution: {integrity: sha512-zcRLYUWl9nryR21773PHrNt5upbsxaDb8mtG5OHpA4gplj4RSqUkAzvoqmrEKYogJgHweJvcKnICUPKECyjKxg==}
+  /@anolilab/commitlint-config@4.0.3:
+    resolution: {integrity: sha512-StmVoCsMoCChEUjvhrtzbULCQVyhFgqFN4is1SYyMcx153/QA5BGbcULLBnP6JMp7Nas26XqaBX996sqS5KdTw==}
+    engines: {node: '>=18'}
+    requiresBuild: true
+    peerDependencies:
+      '@commitlint/cli': ^17.6.5
+    dependencies:
+      '@anolilab/package-json-utils': 3.0.6
+      '@commitlint/config-conventional': 17.7.0
+      '@commitlint/core': 17.7.1
+      commitizen: 4.3.0
+      conventional-changelog-conventionalcommits: 6.1.0
+      cz-conventional-changelog: 3.3.0
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
+    dev: true
+
+  /@anolilab/eslint-config@14.0.11(@babel/core@7.23.0)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.28.1)(eslint-plugin-n@16.1.0)(eslint-plugin-you-dont-need-lodash-underscore@6.13.0)(eslint@8.50.0):
+    resolution: {integrity: sha512-8Hs1bqOZYF+d127Z/caNfFb2aAA9STLdIbUjmCRGM/8GpK1xhP/5WQVdM1xYckEWm2EEpukuJv4GuChOu6q6xA==}
     engines: {node: '>=18'}
     hasBin: true
     requiresBuild: true
@@ -289,7 +313,8 @@ packages:
       '@eslint/js': 8.50.0
       '@html-eslint/eslint-plugin': 0.19.1
       '@html-eslint/parser': 0.19.1
-      '@rushstack/eslint-patch': 1.4.0
+      '@jsenv/eslint-import-resolver': 8.0.3
+      '@rushstack/eslint-patch': 1.5.0
       '@rushstack/eslint-plugin-security': 0.7.1(eslint@8.50.0)
       '@typescript-eslint/eslint-plugin': 6.7.3(@typescript-eslint/parser@6.7.3)(eslint@8.50.0)
       '@typescript-eslint/parser': 6.7.3(eslint@8.50.0)
@@ -340,8 +365,8 @@ packages:
       - vue-eslint-parser
     dev: true
 
-  /@anolilab/lint-staged-config@2.0.10(eslint@8.50.0)(husky@8.0.3)(lint-staged@14.0.1)(prettier@3.0.3)(secretlint@7.0.7):
-    resolution: {integrity: sha512-zeM55vLCbqr1Jh6O2CnLoEs+8uLsAwU6kCX5hrD0tJmqsmRBGFedLH6K7TjWtLpYtSvOg+enBQsGq1kbNdpJTA==}
+  /@anolilab/lint-staged-config@2.0.11(eslint@8.50.0)(husky@8.0.3)(lint-staged@14.0.1)(prettier@3.0.3)(secretlint@7.0.7):
+    resolution: {integrity: sha512-GCyVv9EkmWjYlWbH7abFnYFVgEehl2Rd4sxfNOj9MGaiZ50k46YGpZAhmaic8r9qBgT6iFYv10s3AQf0q82QFw==}
     engines: {node: '>=18'}
     requiresBuild: true
     peerDependencies:
@@ -386,8 +411,8 @@ packages:
       read-pkg-up: 7.0.1
     dev: true
 
-  /@anolilab/prettier-config@5.0.8(prettier@3.0.3):
-    resolution: {integrity: sha512-JnsaA1qrVjabjPihMcJWRa7e0SGjdvHJHbWv8C67jzBwbhKOZ0s85lsrLYX4rvWtitffhxXLIoKDF2e/nBev7A==}
+  /@anolilab/prettier-config@5.0.9(prettier@3.0.3):
+    resolution: {integrity: sha512-iPdW0U/ij/Cyy1/xkdgRETcBqjiDelv3ufgHFcr7Y9q+QbnislFGa5+X7g7Q6+SXszd4MYqWW0/V4505SdU2Gg==}
     engines: {node: '>=18'}
     requiresBuild: true
     peerDependencies:
@@ -397,8 +422,8 @@ packages:
       prettier: 3.0.3
     dev: true
 
-  /@anolilab/textlint-config@8.0.10(textlint@13.3.3):
-    resolution: {integrity: sha512-il2tBvAFT3GnkHYqy5+gsZBIhKEUyOCUa2I18XGiXcXj/LGPRCnpUJdg+z0WhbbW+loZTOzfhGmhuTuSIPyzVQ==}
+  /@anolilab/textlint-config@8.0.11(textlint@13.3.3):
+    resolution: {integrity: sha512-efEKXouUSTG4tyQjSqAMF3z9KqR3xPgyFIH5W5TrJo+iTijqOhZJcK3o2ajxpmHr29Fpno2ORXDYmj62IDYuDg==}
     engines: {node: '>=18'}
     requiresBuild: true
     peerDependencies:
@@ -703,6 +728,19 @@ packages:
     dependencies:
       '@commitlint/types': 17.4.4
       ajv: 8.12.0
+    dev: true
+
+  /@commitlint/core@17.7.1:
+    resolution: {integrity: sha512-S+MA9MV8OLk2onBxi34jFnid9Ik0B4m/+rLRgMvx/NO6+i0bwUra+HEuggEl3AVDKvekV4GkRDTgYvWPkop3rw==}
+    engines: {node: '>=v14'}
+    dependencies:
+      '@commitlint/format': 17.4.4
+      '@commitlint/lint': 17.7.0
+      '@commitlint/load': 17.7.1
+      '@commitlint/read': 17.5.1
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@swc/wasm'
     dev: true
 
   /@commitlint/ensure@17.6.7:
@@ -1173,6 +1211,44 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /@jsenv/abort@4.2.4:
+    resolution: {integrity: sha512-Dew36ZfMzG/0xe/C0VLtgPrpimTkfUg2A6Snlqt3pJDNplZ3+xfKJSzYxV0fmVgs6INqt3enIjCnCbxtsRIQXQ==}
+    engines: {node: '>=16.14.0'}
+    dev: true
+
+  /@jsenv/eslint-import-resolver@8.0.3:
+    resolution: {integrity: sha512-4Gh5/pvTC/uNNsUVEc9QabWfRViH//UnvNNH7Oh/WdQR3dS5K6wmx6beqMPAvK3WF5d9oLc6yvv7Zh94bs8AFA==}
+    dependencies:
+      '@jsenv/filesystem': 4.2.6
+      '@jsenv/importmap': 1.2.1
+      '@jsenv/node-esm-resolution': 1.0.1
+    dev: true
+
+  /@jsenv/filesystem@4.2.6:
+    resolution: {integrity: sha512-YYuk3yFOHDjmNkjwP7dyXunq5N+uZ7c2TIv/uYqWW9YCdTR7wW2CccBL14BNDUPpTe3wSY8zy9k6MYxJNbtbhg==}
+    dependencies:
+      '@jsenv/abort': 4.2.4
+      '@jsenv/url-meta': 8.1.0
+      '@jsenv/urls': 2.2.1
+    dev: true
+
+  /@jsenv/importmap@1.2.1:
+    resolution: {integrity: sha512-0kz5V1s1DLJ+Z+FU/+jCjbFTTE+p/0HykgVzLU84qe5wgm1fpgFHtwVniC8Jpv1dLHhLAr5OR5XBJ7tOomUKqA==}
+    engines: {node: '>=16.13.0'}
+    dev: true
+
+  /@jsenv/node-esm-resolution@1.0.1:
+    resolution: {integrity: sha512-up2oVJzovAInG9vMr6ajxGBlOMzW1qbIWt79iDHUB8VDC6HhK7zOdmtBMOJV261yqGHELb+tA5TG61hbXLYLLg==}
+    dev: true
+
+  /@jsenv/url-meta@8.1.0:
+    resolution: {integrity: sha512-BPy0gGT9zpenNXKjjCEgJe6sDQVmbwTXk4Zjc50CBibjZ+pmkK8toJR747Q3H+8Ss5mYiFfPCm9GzvEYNqJZoA==}
+    dev: true
+
+  /@jsenv/urls@2.2.1:
+    resolution: {integrity: sha512-t27m0pcF/0/a3FxwHI244gCK6bbvv7qkSNwJV/QXUjPB4FUgrxXcN8bzdIZwap0MlhxfyS17jur4d2DM/QtByQ==}
+    dev: true
+
   /@mdn/browser-compat-data@5.3.17:
     resolution: {integrity: sha512-XoQWMIFRcg1U6ac7GDmqpWvJ1wkAKp5UwHh2rHzQgwaACVMcC4yWa4lW0HekGcNsvpD5e8OX+trAcEt8N+0Dsg==}
     dev: true
@@ -1384,8 +1460,8 @@ packages:
       config-chain: 1.1.13
     dev: true
 
-  /@rushstack/eslint-patch@1.4.0:
-    resolution: {integrity: sha512-cEjvTPU32OM9lUFegJagO0mRnIn+rbqrG89vV8/xLnLFX0DoR0r1oy5IlTga71Q7uT3Qus7qm7wgeiMT/+Irlg==}
+  /@rushstack/eslint-patch@1.5.0:
+    resolution: {integrity: sha512-EF3948ckf3f5uPgYbQ6GhyA56Dmv8yg0+ir+BroRjwdxyZJsekhZzawOecC2rOTPCz173t7ZcR1HHZu0dZgOCw==}
     dev: true
 
   /@rushstack/eslint-plugin-security@0.7.1(eslint@8.50.0):
@@ -1556,8 +1632,8 @@ packages:
       - supports-color
     dev: true
 
-  /@semantic-release/github@9.1.0(semantic-release@22.0.5):
-    resolution: {integrity: sha512-RKhS43OpNnQr9rA9Z72EbG8wM/UmWoCpop2z6G++ulRu7t8MuYS2v6TR2SoOFhcDPa2wY91v5VPouCWtDjz4+Q==}
+  /@semantic-release/github@9.2.0(semantic-release@22.0.5):
+    resolution: {integrity: sha512-Opbivp9zA2VY63OdMZEBH5vs5VawuncQZO1VW6Lffo0e/jlDi165Wi4BKN1j1Z22goqk4scBFoEjvvXoveg/Iw==}
     engines: {node: '>=18'}
     peerDependencies:
       semantic-release: '>=20.1.0'
@@ -3701,12 +3777,10 @@ packages:
   /detect-indent@7.0.1:
     resolution: {integrity: sha512-Mc7QhQ8s+cLrnUfU/Ji94vG/r8M26m8f++vyres4ZoojaRDpZ1eSIh/EpzLNwlWuvzSZ3UbDFspjFvTDXe6e/g==}
     engines: {node: '>=12.20'}
-    dev: false
 
   /detect-newline@4.0.1:
     resolution: {integrity: sha512-qE3Veg1YXzGHQhlA6jzebZN2qVf6NX+A7m7qlhCGG30dJixrAQhYOsJjsnBjJkCSmuOPpCk30145fr8FV0bzog==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: false
 
   /diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
@@ -4945,6 +5019,11 @@ packages:
     engines: {node: '>=0.12.0'}
     dev: true
 
+  /get-stdin@9.0.0:
+    resolution: {integrity: sha512-dVKBjfWisLAicarI2Sf+JuBE/DghV4UzNAVe9yhEJuzeREd3JhOTE9cUaJTeSa77fsbQUK3pcOpJfM59+VKZaA==}
+    engines: {node: '>=12'}
+    dev: true
+
   /get-stream@4.1.0:
     resolution: {integrity: sha512-GMat4EJ5161kIy2HevLlr4luNjBgvmj413KaQA7jt4V8B4RDsfpHk7WQ9GVqfYyyx8OS/L66Kox+rJRNklLK7w==}
     engines: {node: '>=6'}
@@ -4992,6 +5071,10 @@ packages:
       through2: 2.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /git-hooks-list@3.1.0:
+    resolution: {integrity: sha512-LF8VeHeR7v+wAbXqfgRlTSX/1BJR9Q1vEMR8JAz1cEg6GX07+zyj3sAdDvYjj/xnlIfVuGgj4qBei1K3hKH+PA==}
     dev: true
 
   /git-log-parser@1.2.0:
@@ -8606,8 +8689,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rimraf@5.0.4:
-    resolution: {integrity: sha512-rizQI/o/YAMM1us0Zyax0uRfIK39XR52EAjjOi0fzMolpGp0onj6CWzBAXuOx6+6Xi9Rgi0d9tUZojhJerLUmQ==}
+  /rimraf@5.0.5:
+    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -8714,7 +8797,7 @@ packages:
     dependencies:
       '@semantic-release/commit-analyzer': 11.0.0(semantic-release@22.0.5)
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 9.1.0(semantic-release@22.0.5)
+      '@semantic-release/github': 9.2.0(semantic-release@22.0.5)
       '@semantic-release/npm': 11.0.0(semantic-release@22.0.5)
       '@semantic-release/release-notes-generator': 12.0.0(semantic-release@22.0.5)
       aggregate-error: 5.0.0
@@ -8879,6 +8962,23 @@ packages:
 
   /sliced@1.0.1:
     resolution: {integrity: sha512-VZBmZP8WU3sMOZm1bdgTadsQbcscK0UM8oKxKVBs4XAhUo2Xxzm/OFMGBkPusxw9xL3Uy8LrzEqGqJhclsr0yA==}
+    dev: true
+
+  /sort-object-keys@1.1.3:
+    resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
+    dev: true
+
+  /sort-package-json@2.6.0:
+    resolution: {integrity: sha512-XSQ+lY9bAYA8ZsoChcEoPlgcSMaheziEp1beox1JVxy1SV4F2jSq9+h2rJ+3mC/Dhu9Ius1DLnInD5AWcsDXZw==}
+    hasBin: true
+    dependencies:
+      detect-indent: 7.0.1
+      detect-newline: 4.0.1
+      get-stdin: 9.0.0
+      git-hooks-list: 3.1.0
+      globby: 13.2.2
+      is-plain-obj: 4.1.0
+      sort-object-keys: 1.1.3
     dev: true
 
   /source-map-js@1.0.2:

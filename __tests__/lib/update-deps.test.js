@@ -199,7 +199,7 @@ describe("update-deps", () => {
     });
 
     describe("getNextVersion()", () => {
-        const cases = [
+        it.each([
             [undefined, "patch", "1.0.0"],
             ["1.0.0", "patch", "1.0.1"],
             ["2.0.0", undefined, "2.0.0"],
@@ -207,18 +207,13 @@ describe("update-deps", () => {
             ["1.0.0-dev.1", undefined, "1.0.0-dev.1"],
             ["1.0.0-dev.1", "minor", "1.0.0"],
             ["1.0.0-dev.1", "patch", "1.0.0"],
-        ];
-
-        cases.forEach(([lastVersion, releaseType, nextVersion, preRelease]) => {
-            it(`${lastVersion} and ${releaseType} gives ${nextVersion}`, () => {
-                expect(
-                    getNextVersion({
-                        _lastRelease: { version: lastVersion },
-                        _nextType: releaseType,
-                        _preRelease: preRelease,
-                    }),
-                ).toBe(nextVersion);
-            });
+        ])("%s and %s gives %s", (lastVersion, releaseType, nextVersion) => {
+            expect(
+                getNextVersion({
+                    _lastRelease: { version: lastVersion },
+                    _nextType: releaseType,
+                }),
+            ).toBe(nextVersion);
         });
     });
 
@@ -227,7 +222,7 @@ describe("update-deps", () => {
             vi.clearAllMocks();
         });
 
-        const cases = [
+        it.each([
             [undefined, "patch", "rc", "1.0.0-rc.1"],
             [undefined, "patch", "rc", "1.0.0-rc.1"],
             [null, "patch", "rc", "1.0.0-rc.1"],
@@ -237,36 +232,30 @@ describe("update-deps", () => {
             ["11.0.0", "major", "beta", "12.0.0-beta.1"],
             ["1.0.0", "minor", "beta", "1.1.0-beta.1"],
             ["1.0.0", "patch", "beta", "1.0.1-beta.1"],
-        ];
+        ])("%s and %s gives %s", (lastVersion, releaseType, preRelease, nextVersion) => {
+            expect(
+                getNextPreVersion({
+                    _branch: "master",
+                    _lastRelease: { version: lastVersion },
+                    _nextType: releaseType,
+                    _preRelease: preRelease,
+                    name: "testing-package",
+                }),
+            ).toBe(nextVersion);
 
-        cases.forEach(([lastVersion, releaseType, preRelease, nextVersion]) => {
-            it(`${lastVersion} and ${releaseType} gives ${nextVersion}`, () => {
-                expect(
-                    getNextPreVersion({
-                        _branch: "master",
-                        _lastRelease: { version: lastVersion },
-                        _nextType: releaseType,
-                        _preRelease: preRelease,
-                        name: "testing-package",
-                    }),
-                ).toBe(nextVersion);
-            });
-
-            it(`${lastVersion} and ${releaseType} gives ${nextVersion}`, () => {
-                expect(
-                    getNextPreVersion({
-                        _branch: "master",
-                        _lastRelease: { version: lastVersion },
-                        _nextType: releaseType,
-                        _preRelease: preRelease,
-                        name: "testing-package",
-                    }),
-                ).toBe(nextVersion);
-            });
+            expect(
+                getNextPreVersion({
+                    _branch: "master",
+                    _lastRelease: { version: lastVersion },
+                    _nextType: releaseType,
+                    _preRelease: preRelease,
+                    name: "testing-package",
+                }),
+            ).toBe(nextVersion);
         });
 
         // Simulates us not using tags as criteria
-        const noTagCases = [
+        it.each([
             // prerelease channels just bump up the pre-release
             ["1.0.0-rc.0", "minor", "rc", "1.0.0-rc.1"],
             ["1.0.0-dev.0", "major", "dev", "1.0.0-dev.1"],
@@ -276,25 +265,21 @@ describe("update-deps", () => {
             ["11.0.0", "major", "beta", "12.0.0-beta.1"],
             ["1.0.0", "minor", "beta", "1.1.0-beta.1"],
             ["1.0.0", "patch", "beta", "1.0.1-beta.1"],
-        ];
-
-        noTagCases.forEach(([lastVersion, releaseType, preRelease, nextVersion]) => {
-            it(`${lastVersion} and ${releaseType} for channel ${preRelease} gives ${nextVersion}`, () => {
-                expect(
-                    getNextPreVersion({
-                        _branch: "master",
-                        _lastRelease: { version: lastVersion },
-                        _nextType: releaseType,
-                        _preRelease: preRelease,
-                        name: "testing-package",
-                    }),
-                ).toBe(nextVersion);
-            });
+        ])("no tag: %s and %s gives %s", (lastVersion, releaseType, preRelease, nextVersion) => {
+            expect(
+                getNextPreVersion({
+                    _branch: "master",
+                    _lastRelease: { version: lastVersion },
+                    _nextType: releaseType,
+                    _preRelease: preRelease,
+                    name: "testing-package",
+                }),
+            ).toBe(nextVersion);
         });
     });
 
     describe("getPreReleaseTag()", () => {
-        const cases = [
+        it.each([
             [undefined, null],
             [null, null],
             ["1.0.0-rc.0", "rc"],
@@ -304,17 +289,13 @@ describe("update-deps", () => {
             ["11.0.0", null],
             ["11.1.0", null],
             ["11.0.1", null],
-        ];
-
-        cases.forEach(([version, preReleaseTag]) => {
-            it(`${version} gives ${preReleaseTag}`, () => {
-                expect(getPreReleaseTag(version)).toBe(preReleaseTag);
-            });
+        ])("%s gives %s", (version, preReleaseTag) => {
+            expect(getPreReleaseTag(version)).toBe(preReleaseTag);
         });
     });
 
     describe("getVersionFromTag()", () => {
-        const cases = [
+        it.each([
             [{}, undefined, null],
             [{ name: undefined }, undefined, null],
             [{}, null, null],
@@ -336,12 +317,8 @@ describe("update-deps", () => {
             [{ name: "abc" }, "1.0.x-rc.0", null],
             [{ name: "abc" }, "1.x.0-rc.0", null],
             [{ name: "abc" }, "x.1.0-rc.0", null],
-        ];
-
-        cases.forEach(([package_, tag, versionFromTag]) => {
-            it(`${JSON.stringify(package_)} pkg with tag ${tag} gives ${versionFromTag}`, () => {
-                expect(getVersionFromTag(package_, tag)).toBe(versionFromTag);
-            });
+        ])("%s pkg with tag %s gives %s", (package_, tag, versionFromTag) => {
+            expect(getVersionFromTag(package_, tag)).toBe(versionFromTag);
         });
     });
 });

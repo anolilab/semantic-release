@@ -1,19 +1,19 @@
 {
     "name": "@anolilab/multi-semantic-release",
-    "type": "module",
     "version": "1.0.0",
-    "author": "Dave Houlbrooke <dave@shax.com>",
-    "license": "0BSD",
     "repository": {
         "type": "git",
         "url": "https://github.com/anolilab/multi-semantic-release.git"
     },
+    "license": "0BSD",
+    "author": "Dave Houlbrooke <dave@shax.com>",
     "maintainers": [
         {
             "name": "Daniel Bannert",
             "email": "d.bannert@anolilab.de"
         }
     ],
+    "type": "module",
     "exports": {
         ".": "./lib/multiSemanticRelease.js",
         "./*": "./*",
@@ -28,24 +28,19 @@
         "lib",
         "bin"
     ],
-    "engines": {
-        "node": ">=20.6.1"
-    },
     "scripts": {
         "build": "echo 'There is no need for build' && exit 0",
         "preinstall": "node verify-node-version.cjs",
+        "postinstall": "is-ci || husky install || exit 0",
         "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
         "lint:eslint:fix": "pnpm run lint:eslint --fix",
         "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
         "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
         "lint:staged": "lint-staged --verbose --concurrent false --debug",
-        "postinstall": "is-ci || husky install || exit 0",
+        "sort-package-json": "sort-package-json ./package.json",
         "test": "vitest run",
         "test:bench": "vitest bench",
         "test:watch": "vitest"
-    },
-    "peerDependencies": {
-        "semantic-release": ">=22.0.3"
     },
     "dependencies": {
         "@semrel-extra/topo": "^1.14.0",
@@ -65,10 +60,11 @@
         "yargs": "^17.7.2"
     },
     "devDependencies": {
-        "@anolilab/eslint-config": "^14.0.8",
-        "@anolilab/lint-staged-config": "^2.0.10",
-        "@anolilab/prettier-config": "^5.0.8",
-        "@anolilab/textlint-config": "^8.0.10",
+        "@anolilab/commitlint-config": "^4.0.3",
+        "@anolilab/eslint-config": "^14.0.11",
+        "@anolilab/lint-staged-config": "^2.0.11",
+        "@anolilab/prettier-config": "^5.0.9",
+        "@anolilab/textlint-config": "^8.0.11",
         "@babel/core": "^7.23.0",
         "@babel/eslint-parser": "7.22.15",
         "@commitlint/config-conventional": "^17.7.0",
@@ -76,7 +72,7 @@
         "@secretlint/secretlint-rule-preset-recommend": "^7.0.7",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^9.1.0",
+        "@semantic-release/github": "^9.2.0",
         "@semantic-release/npm": "^11.0.0",
         "@vitest/coverage-v8": "^0.34.5",
         "commitizen": "^4.3.0",
@@ -98,12 +94,19 @@
         "is-ci": "^3.0.1",
         "lint-staged": "^14.0.1",
         "prettier": "^3.0.3",
-        "rimraf": "^5.0.4",
+        "rimraf": "^5.0.5",
         "secretlint": "7.0.7",
         "semantic-release": "^22.0.5",
+        "sort-package-json": "^2.5.1",
         "tempy": "^3.1.0",
         "textlint": "^13.3.3",
         "vitest": "^0.34.5"
+    },
+    "peerDependencies": {
+        "semantic-release": "^21 || >=22.0.3"
+    },
+    "engines": {
+        "node": ">=20.6.1"
     },
     "anolilab": {
         "eslint-config": {
@@ -115,7 +118,7 @@
             "import_ignore_exports": [
                 "**/*.cjs",
                 "**/__tests__/**/*.js",
-                "**/verify-node-version.cjs"
+                "verify-node-version.cjs"
             ]
         }
     }

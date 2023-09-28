@@ -1,21 +1,23 @@
 #!/usr/bin/env node
 
-import process from "node:process";
+// eslint-disable-next-line import/no-unused-modules
+import { exit } from "node:process";
 
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-import { logger } from "../lib/logger.js";
+import logger from "../lib/logger.js";
 
 const stringList = {
     array: true,
-    coerce: (values) =>
-        (values.length === 1 && values[0].trim() === "false"
-            ? []
-            : values.reduce((values, value) => values.concat(value.split(",").map((value) => value.trim())), [])),
+    coerce: function coerce(values) {
+        // eslint-disable-next-line unicorn/no-array-reduce,unicorn/prefer-spread
+        return values.length === 1 && values[0].trim() === "false" ? [] : values.reduce((v, value) => v.concat(value.split(",").map((x) => x.trim())), []);
+    },
     type: "string",
 };
 
+// eslint-disable-next-line  consistent-return
 await (async () => {
     const cli = yargs(hideBin(process.argv))
         .usage("$0 [args]")
@@ -67,6 +69,7 @@ await (async () => {
         })
         .option("tag-format", {
             describe:
+                // eslint-disable-next-line no-template-curly-in-string
                 'Format to use for creating tag names. Should include "name" and "version" vars. Default: "${name}@${version}" generates "package-name@1.0.0"',
             type: "string",
         })
@@ -85,20 +88,22 @@ await (async () => {
         const multiSemanticRelease = (await import("../lib/multi-semantic-release.js")).default;
 
         // Do multirelease (log out any errors).
+        // eslint-disable-next-line promise/catch-or-return
         multiSemanticRelease(null, {}, {}, options).then(
+            // eslint-disable-next-line promise/always-return
             () => {
                 // Success.
-                process.exit(0);
+                exit(0);
             },
             (error) => {
                 // Log out errors.
                 logger.error(`[multi-semantic-release]:`, error);
-                process.exit(1);
+                exit(1);
             },
         );
     } catch (error) {
         // Log out errors.
         logger.error(`[multi-semantic-release]:`, error);
-        process.exit(1);
+        exit(1);
     }
 })();

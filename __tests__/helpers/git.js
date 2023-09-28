@@ -227,7 +227,7 @@ export function gitTag(cwd, tagName, hash = undefined) {
  * Get the commit message log of given commit SHA or branch name.
  *
  * @param {string} cwd The CWD of the Git repository.
- * @param {integer} number Limit the number of commits to output.
+ * @param {number} number Limit the number of commits to output.
  * @param {string} hash The commit SHA or branch name.
  * @return {string} Commit log message.
  */

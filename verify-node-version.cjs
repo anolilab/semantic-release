@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-commonjs
 let requiredVersion = require("node:fs").readFileSync(".nvmrc", { encoding: "utf8" }).trim();
 
 if (!requiredVersion.includes("v")) {
