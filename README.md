@@ -249,6 +249,8 @@ You can also combine the CLI ignore options with the `!` operator at each packag
 
 We use this tool to release our JS platform code inhouse (GitHub Enterprise + JB TeamCity) and for our OSS (GitHub + Travis CI). Guaranteed working configurations available in projects.
 
+-   [anolilab/multi-semantic-release](https://github.com/anolilab/multi-semantic-release)
+-   [visulima/visulima](https://github.com/visulima/visulima)
 -   [qiwi/substrate](https://github.com/qiwi/substrate)
 -   [qiwi/json-rpc](https://github.com/qiwi/json-rpc)
 -   [qiwi/lint-config-qiwi](https://github.com/qiwi/lint-config-qiwi)
