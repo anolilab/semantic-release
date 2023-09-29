@@ -39,9 +39,6 @@ dependencies:
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
-  promise-events:
-    specifier: ^0.2.4
-    version: 0.2.4
   resolve-from:
     specifier: ^5.0.0
     version: 5.0.0
@@ -8117,11 +8114,6 @@ packages:
 
   /process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
-
-  /promise-events@0.2.4:
-    resolution: {integrity: sha512-GCM6DmJcSCC8XboZIzYJAlADwkIS1P54XFUJQYhB7dpE7rtXPzPrT13dsV4Qm0FMCKptwMTyF8ZCir803RfKzA==}
-    engines: {node: '>=8.0.0'}
-    dev: false
 
   /property-information@5.6.0:
     resolution: {integrity: sha512-YUHSPk+A30YPv+0Qf8i9Mbfe/C0hdPXk1s1jPVToV8pk8BQtpw10ct89Eo7OWkutrwqvT0eicAxlOg3dOAu8JA==}
