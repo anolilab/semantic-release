@@ -19,7 +19,7 @@ body:
                 required: true
               - label: "Check that there isn't [already an issue](https://github.com/anolilab/multi-semantic-release/issues) that reports the same bug to avoid creating a duplicate."
                 required: true
-              - label: "Make sure this is a Visulima issue and not related to a combination with another package."
+              - label: "Make sure this is a multi-semantic-release issue and not related to a combination with another package."
                 required: true
               - label: "Check that this is a concrete bug. For Q&A open a [GitHub Discussion](https://github.com/anolilab/multi-semantic-release/discussions)."
                 required: true
@@ -57,7 +57,7 @@ body:
       id: "environment-info"
       attributes:
           label: "Environment Info"
-          description: "Output of `npx envinfo --system --npmPackages '@anolilab/*' --binaries --browsers`"
+          description: "Output of `npx envinfo --system --binaries --browsers --monorepos --npmPackages '{semantic-release*,@semantic-release/*}'`"
           render: "shell"
           placeholder: |
               System:
@@ -71,7 +71,7 @@ body:
                 Yarn: _ - /usr/bin/yarn
                 npm: _ - /usr/bin/npm
               npmPackages:
-                @anolilab/*: _ => _
+                @semantic-release/*: _ => _
       validations:
           required: true
 

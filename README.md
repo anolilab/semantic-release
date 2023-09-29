@@ -397,6 +397,8 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 -   [Daniel Bannert](https://github.com/prisis)
 -   [All Contributors](https://github.com/anolilab/multi-semantic-release/graphs/contributors)
+    -   [hanseltime](https://github.com/hanseltime) -> https://github.com/qiwi/multi-semantic-release/pull/96
+    -   [lyh543](https://github.com/lyh543) -> https://github.com/dhoulb/multi-semantic-release/issues/111
 -   [dhoub/multi-semantic-release](https://github.com/dhoulb/multi-semantic-release)
 -   [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
 
