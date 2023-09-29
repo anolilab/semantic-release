@@ -20,5 +20,5 @@ packages:
     - "__tests__/**"
     - "__fixtures__/**"
     - "bin/**"
-    - ".github/workflows/test.yaml"
-    - ".github/workflows/lint.yaml"
+    - ".github/workflows/test.yml"
+    - ".github/workflows/lint.yml"
