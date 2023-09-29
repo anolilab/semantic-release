@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { getNextPreVersion, getNextVersion, getPreReleaseTag, getVersionFromTag, resolveNextVersion, resolveReleaseType } from "../../lib/update-deps.js";
+import { getNextPreVersion, getNextVersion, getPreReleaseTag, resolveNextVersion, resolveReleaseType } from "../../lib/update-deps.js";
 
 describe("update-deps", () => {
     describe("resolveNextVersion()", () => {
@@ -289,34 +289,6 @@ describe("update-deps", () => {
             ["11.0.1", null],
         ])("%s gives %s", (version, preReleaseTag) => {
             expect(getPreReleaseTag(version)).toBe(preReleaseTag);
-        });
-    });
-
-    describe("getVersionFromTag()", () => {
-        it.each([
-            [{}, undefined, null],
-            [{ name: undefined }, undefined, null],
-            [{}, null, null],
-            [{ name: null }, null, null],
-            [{ name: undefined }, "1.0.0", "1.0.0"],
-            [{ name: null }, "1.0.0", "1.0.0"],
-            [{ name: "abc" }, undefined, null],
-            [{ name: "abc" }, null, null],
-            [{ name: "abc" }, "1.0.0", "1.0.0"],
-            [{ name: "dev" }, "1.0.0-dev.1", "1.0.0-dev.1"],
-            [{ name: "app" }, "app@1.0.0-dev.1", "1.0.0-dev.1"],
-            [{ name: "app" }, "app@1.0.0-devapp@.1", null],
-            [{ name: "msr-test-a" }, "msr-test-a@1.0.0-rc.1", "1.0.0-rc.1"],
-            [{ name: "msr.test.a" }, "msr.__tests__.a@1.0.0", "1.0.0"],
-            [{ name: "msr_test_a" }, "msr_test_a@1.0.0", "1.0.0"],
-            [{ name: "msr@test@a" }, "msr@__tests__@a@1.0.0", "1.0.0"],
-            [{ name: "abc" }, "a.b.c-rc.0", null],
-            [{ name: "abc" }, "1-rc.0", null],
-            [{ name: "abc" }, "1.0.x-rc.0", null],
-            [{ name: "abc" }, "1.x.0-rc.0", null],
-            [{ name: "abc" }, "x.1.0-rc.0", null],
-        ])("%s pkg with tag %s gives %s", (package_, tag, versionFromTag) => {
-            expect(getVersionFromTag(package_, tag)).toBe(versionFromTag);
         });
     });
 });
