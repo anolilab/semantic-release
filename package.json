@@ -36,6 +36,8 @@
         "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
         "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
         "lint:staged": "lint-staged --verbose --concurrent false --debug",
+        "lint:text": "textlint ./.github/ ./README.md ./UPGRADE.md --parallel --experimental --cache --dry-run",
+        "lint:text:fix": "textlint ./.github/ ./README.md ./UPGRADE.md --parallel --experimental --fix",
         "prepare": "is-ci || (node verify-node-version.cjs && pnpx only-allow pnpm && husky install)",
         "sort-package-json": "sort-package-json ./package.json",
         "test": "vitest run",
