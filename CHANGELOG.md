@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/anolilab/multi-semantic-release/compare/v1.0.2...v1.0.3) (2023-12-03)
+
+
+### Bug Fixes
+
+* updated dev deps and cosmiconfig to v9 ([569e401](https://github.com/anolilab/multi-semantic-release/commit/569e401c41ccbfd86dc718f2a32ab717cb3c5cc4))
+
 ## [1.0.2](https://github.com/anolilab/multi-semantic-release/compare/v1.0.1...v1.0.2) (2023-09-29)
 
 

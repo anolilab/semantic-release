@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/multi-semantic-release",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A multi semantic release tool for a monorepo.",
     "repository": {
         "type": "git",
