@@ -7,3 +7,5 @@ coverage
 __fixtures__
 
 .github/ISSUE_TEMPLATE
+
+taze.config.js
