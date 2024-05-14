@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/anolilab/multi-semantic-release/compare/v1.0.3...v1.0.4) (2024-05-14)
+
+
+### Bug Fixes
+
+* updated core dep of @semrel-extra/topo, execa, semver and dev deps ([#18](https://github.com/anolilab/multi-semantic-release/issues/18)) ([50cd408](https://github.com/anolilab/multi-semantic-release/commit/50cd408ec7b126a1ff9e4aa04aa5759e8d995c30))
+
 ## [1.0.3](https://github.com/anolilab/multi-semantic-release/compare/v1.0.2...v1.0.3) (2023-12-03)
 
 
