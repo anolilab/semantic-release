@@ -35,6 +35,7 @@
         "lint:eslint:fix": "pnpm run lint:eslint --fix",
         "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
         "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
+        "lint:secrets": "secretlint **/*",
         "lint:staged": "lint-staged --verbose --concurrent false --debug",
         "lint:text": "textlint ./.github/ ./README.md ./UPGRADE.md --parallel --experimental --cache --dry-run",
         "lint:text:fix": "textlint ./.github/ ./README.md ./UPGRADE.md --parallel --experimental --fix",

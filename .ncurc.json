@@ -1,5 +1,0 @@
-{
-    "upgrade": true,
-    "mergeConfig": true,
-    "reject": ["read-pkg-up", "chalk", "@types/node", "prisma", "@prisma/client", "conventional-changelog-conventionalcommits"]
-}

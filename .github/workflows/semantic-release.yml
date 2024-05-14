@@ -55,10 +55,10 @@ jobs:
               with:
                   run_install: false
 
-            - name: "Use Node.js 20.6.1"
+            - name: "Use Node.js 20.10.0"
               uses: "actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d" # v3.8.1
               with:
-                  node-version: "20.6.1"
+                  node-version: "20.10.0"
                   cache: "pnpm"
 
             # @see: npm install -g npm@latest is necessary to make provenance available. More info: https://docs.npmjs.com/generating-provenance-statements
@@ -94,43 +94,3 @@ jobs:
                   GIT_COMMITTER_NAME: "github-actions-shell"
                   GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
               run: "pnpm exec semantic-release"
-
-    pnpm-lock-update:
-        needs: "semantic-release"
-        name: "pnpm-lock.yaml update"
-        runs-on: "ubuntu-latest"
-        permissions:
-            contents: "write" # to be able to publish
-        steps:
-            - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
-              with:
-                  egress-policy: "audit"
-
-            - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
-              with:
-                  fetch-depth: 2
-              env:
-                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
-                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
-                  EMAIL: "github-actions[bot]@users.noreply.github.com"
-
-            - uses: "pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598" # v2.4.0
-
-            - name: "Use Node.js 20.6.1"
-              uses: "actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d" # v3.8.1
-              with:
-                  node-version: "20.6.1"
-
-            - name: "Update pnpm lock"
-              run: "pnpm install --no-frozen-lockfile"
-
-            - name: "Commit modified files"
-              uses: "stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a" # v4.16.0
-              with:
-                  commit_message: "chore: updated pnpm-lock.yaml"
-                  commit_author: "prisis <d.bannert@anolilab.de>"
-                  commit_user_email: "d.bannert@anolilab.de"
-                  commit_user_name: "prisis"
-                  branch: "${{ github.head_ref }}"
