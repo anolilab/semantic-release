@@ -1,12 +1,13 @@
-.gitkeep
-.env*
-*.ico
-*.lock
-dist
-CHANGELOG.md
-coverage
-node_modules
-.eslintcache
+**/.git
+**/.svn
+**/.hg
 
-__fixtures__
+**/node_modules
+
 pnpm-lock.yaml
+pnpm-workspace.yaml
+
+**/tsconfig.json
+**/jsconfig.json
+
+/.nx/cache

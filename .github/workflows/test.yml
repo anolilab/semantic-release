@@ -3,18 +3,23 @@
 name: "Tests"
 
 on: # yamllint disable-line rule:truthy
-    push:
-        branches:
-            - "main"
     # eslint-disable-next-line yml/no-empty-mapping-value
     pull_request: # yamllint disable-line rule:empty-values
+        types: ["opened", "synchronize", "reopened"]
+    merge_group: # yamllint disable-line rule:empty-values
 
 concurrency:
-    group: "ci-tests-${{ github.ref }}-1"
+    group: "${{ github.workflow }}-${{ github.ref }}"
     cancel-in-progress: true
 
 permissions:
     contents: "read" # to fetch code (actions/checkout)
+
+env:
+    NX_BRANCH: "${{ github.event.number }}"
+    NX_RUN_GROUP: "${{ github.run_id }}"
+    HEAD_REF: "${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}"
+    HEAD_REPOSITORY: "${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name || github.repository }}"
 
 jobs:
     files-changed:
@@ -24,95 +29,128 @@ jobs:
         # Map a step output to a job output
         outputs:
             packages: "${{ steps.changes.outputs.packages }}"
+            codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Check for file changes"
-              uses: "dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50" # v2.11.1
+              uses: "dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36" # v3.0.2
               id: "changes"
               with:
                   token: "${{ github.token }}"
                   filters: ".github/file-filters.yml"
 
     test:
+        name: "Test (node-${{ matrix.node_version }}, ${{ matrix.os }})"
         if: "needs.files-changed.outputs.packages == 'true'"
         needs: "files-changed"
         strategy:
+            max-parallel: 4
             matrix:
-                os: ["ubuntu-latest", "macos-latest"]
-                node_version: ["18", "20.6.1", "latest"]
-                semantic_release_version: ["^20", "^21", "^22"]
+                os:
+                    - "ubuntu-latest"
+                node_version: ["18", "20", "21"]
+                # On the other platforms, we only test the lts node version
+                include:
+                    - os: "macos-latest"
+                      node_version: "20"
+                    - os: "windows-latest"
+                      node_version: "20.3.1" # https://github.com/nodejs/node/issues/48673
             fail-fast: false
-        name: "Test semantic-release version ${{ matrix.semantic_release_version }} on (node-${{ matrix.node_version }}, ${{ matrix.os }})"
         runs-on: "${{ matrix.os }}"
+        env:
+            NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
-            - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
-
-            - uses: "pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598" # v2.4.0
               with:
-                  run_install: false
+                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
+                  # Pulls all commits (needed for NX)
+                  fetch-depth: 0
 
-            - name: "Set node version to ${{ matrix.node_version }}"
-              uses: "actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d" # v3.8.1
+            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
+              id: "setSHAs"
+              uses: "nrwl/nx-set-shas@76907e7e5d3cd17ddb5e2b123389f054bffcdd03" # v4
+
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup/action.yml@main"
               with:
                   node-version: "${{ matrix.node_version }}"
-                  cache: "pnpm"
 
-            - name: "Check npm version"
-              run: "npm -v"
-              env:
-                  SKIP_CHECK: "true"
+            # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
+            - name: "Get changed files"
+              id: "files"
+              uses: "tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834" # v43.0.1
+              with:
+                  files_ignore: "pnpm-lock.yaml"
+                  base_sha: "${{ steps.setSHAs.outputs.base }}"
+                  separator: ","
 
-            - name: "Install packages"
-              run: "pnpm install --frozen-lockfile"
-              env:
-                  SKIP_CHECK: "true"
+            - name: "Build"
+              shell: "bash"
+              run: |
+                  files="${{ steps.files.outputs.all_changed_files }}";
+                  pnpm run build:affected:packages --files=${files//\\/\/}
 
-            - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
-              run: "pnpm i -D semantic-release@${{ matrix.semantic_release_version }}"
-              env:
-                  SKIP_CHECK: "true"
+            - name: "Run tests"
+              shell: "bash"
+              run: |
+                  files="${{ steps.files.outputs.all_changed_files }}";
 
-            - name: "Verify the integrity of provenance attestations and registry signatures for installed dependencies"
-              run: "pnpm audit signatures"
+                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 18 ]]; then
+                      pnpm run test:affected:coverage --files=${files//\\/\/}
+                  else
+                      pnpm run test:affected --files=${files//\\/\/}
+                  fi
 
-            - name: "test and coverage"
-              run: "pnpm run test:coverage"
+            - name: "Prepare nx cache"
+              shell: "bash"
+              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
+
+            - name: "Upload code coverage to codecov"
+              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 18"
+              uses: "anolilab/workflows/step/codecov/action.yml@main"
+              with:
+                  run-lint: "needs.files-changed.outputs.codecov == 'true'"
+                  codecov-token: "${{ secrets.CODECOV_TOKEN }}"
+                  use-affected: "true"
+                  affected-files: "${{ steps.files.outputs.all_changed_files }}"
+#                  exclude-affected-projects: ""
 
     # This check runs once all dependant jobs have passed
     # It symbolizes that all required Frontend checks have succesfully passed (Or skipped)
-    # This check is the only required Github check
+    # This check is the only required GitHub check
     test-required-check:
         needs: ["files-changed", "test"]
         name: "Check Test Run"
         # This is necessary since a failed/skipped dependent job would cause this job to be skipped
-        if: "always()"
+        if: "always() && (needs.test.result == 'success' || needs.test.result == 'skipped')"
         runs-on: "ubuntu-22.04"
         steps:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 

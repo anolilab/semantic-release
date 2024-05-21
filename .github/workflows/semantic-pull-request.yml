@@ -9,11 +9,13 @@ on: # yamllint disable-line rule:truthy
             - "reopened"
             - "edited"
             - "synchronize"
+    merge_group: # yamllint disable-line rule:empty-values
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
-    main:
+    semantic-pull-request:
         permissions:
             pull-requests: "write" # to analyze PRs (amannn/action-semantic-pull-request)
             statuses: "write" # to mark status of analyzed PR (amannn/action-semantic-pull-request)
@@ -21,29 +23,30 @@ jobs:
         name: "Semantic Pull Request"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
             - name: "Validate PR title"
               id: "lint_pr_title"
-              uses: "amannn/action-semantic-pull-request@47b15d52c5c30e94a17ec87eb8dd51ff5221fed9" # v5.3.0
+              uses: "amannn/action-semantic-pull-request@cfb60706e18bc85e8aec535e3c577abe8f70378e" # v5.5.2
               env:
                   GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
               with:
                   types: |
+                      build
+                      chore
+                      ci
+                      docs
                       feat
                       fix
-                      chore
-                      refactor
-                      docs
-                      test
-                      ci
-                      build
+                      perf
                       infra
+                      refactor
                       revert
+                      test
 
-            - uses: "marocchino/sticky-pull-request-comment@efaaab3fd41a9c3de579aba759d2552635e590fd" # v2.8.0
+            - uses: "marocchino/sticky-pull-request-comment@331f8f5b4215f0445d3c07b4967662a32a2d3e31" # v2.9.0
               # When the previous steps fails, the workflow would stop. By adding this
               # condition you can continue the execution with the populated error message.
               if: "always() && (steps.lint_pr_title.outputs.error_message != null)"
@@ -62,7 +65,7 @@ jobs:
 
               # Delete a previous comment when the issue has been resolved
             - if: "${{ steps.lint_pr_title.outputs.error_message == null }}"
-              uses: "marocchino/sticky-pull-request-comment@efaaab3fd41a9c3de579aba759d2552635e590fd" # v2.8.0
+              uses: "marocchino/sticky-pull-request-comment@331f8f5b4215f0445d3c07b4967662a32a2d3e31" # v2.9.0
               with:
                   header: "pr-title-lint-error"
                   message: |

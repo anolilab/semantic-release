@@ -1,0 +1,54 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "downlevelIteration": true,
+        "isolatedModules": true,
+        "lib": ["ES2023"],
+        "module": "preserve",
+        "target": "ESNext",
+        "moduleResolution": "Bundler",
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "moduleDetection": "force",
+        "verbatimModuleSyntax": true,
+
+        "noEmit": true,
+
+        "strict": true,
+        "alwaysStrict": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "stripInternal": true,
+        "strictPropertyInitialization": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUncheckedIndexedAccess": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "noFallthroughCasesInSwitch": true,
+        "exactOptionalPropertyTypes": false,
+        "useUnknownInCatchVariables": true,
+
+        "esModuleInterop": true,
+
+        "declaration": true,
+        "allowJs": true,
+        "removeComments": true,
+        "incremental": true,
+
+        "inlineSources": false,
+
+        "allowUnusedLabels": false,
+        "allowUnreachableCode": false,
+
+        "checkJs": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "exclude": ["dist/**/*", "node_modules/**/*", "build/**/*", "scripts/**/*", "verify-node-version.cjs", "examples/**", "**/coverage/**"]
+}

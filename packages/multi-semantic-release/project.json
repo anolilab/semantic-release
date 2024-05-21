@@ -1,0 +1,8 @@
+{
+    "name": "multi-semantic-release",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/multi-semantic-release/src",
+    "projectType": "library",
+    "tags": ["type:package", "multi-semantic-release"],
+    "implicitDependencies": []
+}

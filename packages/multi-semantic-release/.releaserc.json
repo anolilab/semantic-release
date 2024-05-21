@@ -27,7 +27,7 @@
             }
         ],
         "@semantic-release/changelog",
-        "@semantic-release/npm",
+        "@anolilab/semantic-release-pnpm",
         [
             "@semantic-release/github",
             {

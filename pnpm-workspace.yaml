@@ -1,0 +1,6 @@
+packages:
+    - "!**/__test__/**"
+    - "!**/__tests__/**"
+    - "!**/__fixtures__/**"
+    - "packages/**"
+    - "!packages/multi-semantic-release/__fixtures__/**"
