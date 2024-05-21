@@ -40,6 +40,8 @@
         "prepare": "is-ci || husky install || exit 0",
         "sort-package-json": "sort-package-json packages/**/package.json apps/**/package.json ./package.json",
         "test": "nx run-many --target=test --all --parallel",
+        "test:affected": "nx affected --target=test --parallel --exclude=docs,storybook --nxBail",
+        "test:affected:coverage": "nx affected --target=test:coverage --parallel --exclude=docs,storybook --nxBail",
         "test:coverage": "nx run-many --target=test:coverage --all --parallel",
         "update:deps": "taze"
     },
