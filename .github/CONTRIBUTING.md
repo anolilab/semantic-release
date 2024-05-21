@@ -29,10 +29,10 @@ Here are a few guidelines that will help you along the way.
     -   [Release process](#release process)
     -   [Join the Project Team](#join-the-project-team)
 
-## [Code of Conduct](https://github.com/anolilab/semantic-release/main/.github/CODE_OF_CONDUCT.md)
+## [Code of Conduct](https://github.com/anolilab/semantic-release/blob/main/.github/CODE_OF_CONDUCT.md)
 
 <\**ORGANIZATIONS*uppercase\*> has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it.
-Please read [the full text](https://github.com/anolilab/semantic-release/main/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
+Please read [the full text](https://github.com/anolilab/semantic-release/blob/main/.github/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ## Introduction
 
@@ -131,7 +131,7 @@ Then in your terminal:
 
 And you should be ready to go!
 
-> If you run into any issue with the setup, check first the [TROUBLESHOOT.md](https://github.com/anolilab/semantic-release/main/.github/TROUBLESHOOT.md)
+> If you run into any issue with the setup, check first the [TROUBLESHOOT.md](https://github.com/anolilab/semantic-release/blob/main/.github/TROUBLESHOOT.md)
 
 ## Contribute Documentation
 
@@ -632,7 +632,7 @@ Some notes on picking up support discussion:
 -   As much as possible, try to refer to past issues or discussion with accepted answers. Link to them from your replies with the `#123` format.
 -   Be kind and patient with users -- often, folks who have run into confusing things might be upset or impatient.
     This is ok.
-    Try to understand where they're coming from, and if you're too uncomfortable with the tone, feel free to stay away or withdraw from the issue. (note: if the user is outright hostile or is violating the CoC, [refer to the Code of Conduct](https://github.com/anolilab/semantic-release/main/.github/CODE_OF_CONDUCT.md) to resolve the conflict).
+    Try to understand where they're coming from, and if you're too uncomfortable with the tone, feel free to stay away or withdraw from the issue. (note: if the user is outright hostile or is violating the CoC, [refer to the Code of Conduct](https://github.com/anolilab/semantic-release/blob/main/.github/CODE_OF_CONDUCT.md) to resolve the conflict).
 
 ## Label Issues
 

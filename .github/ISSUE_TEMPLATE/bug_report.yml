@@ -17,9 +17,9 @@ body:
           label: "Pre-Checks"
           description: "Before submitting the issue, please make sure you do the following"
           options:
-              - label: "Follow our [Code of Conduct](https://github.com/anolilab/semantic-release/main/.github/CODE_OF_CONDUCT.md)."
+              - label: "Follow our [Code of Conduct](https://github.com/anolilab/semantic-release/blob/main/.github/CODE_OF_CONDUCT.md)."
                 required: true
-              - label: "Read the [Contributing Guidelines](https://github.com/anolilab/semantic-release/main/.github/CONTRIBUTING.md)."
+              - label: "Read the [Contributing Guidelines](https://github.com/anolilab/semantic-release/blob/main/.github/CONTRIBUTING.md)."
                 required: true
               - label: "Check that there isn't [already an issue](https://github.com/anolilab/semantic-release/issues) that reports the same bug to avoid creating a duplicate."
                 required: true
