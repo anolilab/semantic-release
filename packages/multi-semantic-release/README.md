@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=".github/logo.svg" alt="Logo" width="200">
+<img src="https://github.com/anolilab/semantic-release/blob/main/.github/logo.svg" alt="Logo" width="200">
 
 <h1>Multi Semantic Release</h1>
 
@@ -249,7 +249,7 @@ You can also combine the CLI ignore options with the `!` operator at each packag
 
 We use this tool to release our JS platform code inhouse (GitHub Enterprise + JB TeamCity) and for our OSS (GitHub + Travis CI). Guaranteed working configurations available in projects.
 
--   [anolilab/multi-semantic-release](https://github.com/anolilab/multi-semantic-release)
+-   [anolilab/multi-semantic-release](https://github.com/anolilab/semantic-release)
 -   [visulima/visulima](https://github.com/visulima/visulima)
 -   [qiwi/substrate](https://github.com/qiwi/substrate)
 -   [qiwi/json-rpc](https://github.com/qiwi/json-rpc)
@@ -389,14 +389,14 @@ post on why we think this is important](https://medium.com/the-node-js-collectio
 
 ## Contributing
 
-If you would like to help take a look at the [list of issues](https://github.com/anolilab/multi-semantic-release/issues) and check our [Contributing](.github/CONTRIBUTING.md) guild.
+If you would like to help take a look at the [list of issues](https://github.com/anolilab/semantic-release/issues) and check our [Contributing](.github/CONTRIBUTING.md) guild.
 
 > **Note:** please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
 
 ## Credits
 
 -   [Daniel Bannert](https://github.com/prisis)
--   [All Contributors](https://github.com/anolilab/multi-semantic-release/graphs/contributors)
+-   [All Contributors](https://github.com/anolilab/semantic-release/graphs/contributors)
     -   [hanseltime](https://github.com/hanseltime) -> https://github.com/qiwi/multi-semantic-release/pull/96
     -   [lyh543](https://github.com/lyh543) -> https://github.com/dhoulb/multi-semantic-release/issues/111
 -   [dhoub/multi-semantic-release](https://github.com/dhoulb/multi-semantic-release)
