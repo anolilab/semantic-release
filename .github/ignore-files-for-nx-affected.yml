@@ -1,10 +1,7 @@
-# Folder
 .github/**
 plop/**
 .husky/**
 .nx/**
-
-# Files
 .czrc
 .editorconfig
 .gitattributes
