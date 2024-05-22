@@ -10,9 +10,9 @@ const MIN_PNPM_VERSION = "8.0.0";
 export default async function verifyPnpm({ logger }: CommonContext): Promise<void> {
     logger.log(`Verify pnpm version is >= ${MIN_PNPM_VERSION}`);
 
-    const version = await getPackageManagerVersion("pnpm");
+    const version = getPackageManagerVersion("pnpm");
 
-    if (version === undefined) {
+    if (version !== "pnpm") {
         throw new AggregateError([new Error("pnpm is not installed")]);
     }
 

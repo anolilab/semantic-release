@@ -1,5 +1,5 @@
 import type SemanticReleaseError from "@semantic-release/error";
-import { ensureFile } from "@visulima/fs";
+import { ensureFileSync } from "@visulima/fs";
 import type AggregateError from "aggregate-error";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -7,7 +7,7 @@ import getNpmrcPath from "../../../src/utils/get-npmrc-path";
 
 const mocks = vi.hoisted(() => {
     return {
-        mockedEnsureFile: vi.fn(),
+        mockedEnsureFileSync: vi.fn(),
         mockedFindCacheDirectorySync: vi.fn(),
         mockedIsAccessibleSync: vi.fn(),
         mockedResolve: vi.fn(),
@@ -16,7 +16,7 @@ const mocks = vi.hoisted(() => {
 
 vi.mock("@visulima/fs", () => {
     return {
-        ensureFile: mocks.mockedEnsureFile,
+        ensureFileSync: mocks.mockedEnsureFileSync,
         isAccessibleSync: mocks.mockedIsAccessibleSync,
     };
 });
@@ -82,7 +82,7 @@ describe("getNpmrcPath", () => {
 
         expect(result).toBe(temporaryNpmrcPath);
         expect(mocks.mockedFindCacheDirectorySync).toHaveBeenCalledWith("semantic-release-pnpm", { create: true, cwd });
-        expect(ensureFile).toHaveBeenCalledWith(temporaryNpmrcPath);
+        expect(ensureFileSync).toHaveBeenCalledWith(temporaryNpmrcPath);
     });
 
     it("should throw an error if no .npmrc is found or accessible", () => {

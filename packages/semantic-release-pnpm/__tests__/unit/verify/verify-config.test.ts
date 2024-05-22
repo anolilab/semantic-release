@@ -1,3 +1,4 @@
+import type SemanticReleaseError from "@semantic-release/error";
 import { describe, expect, it } from "vitest";
 
 import type { PluginConfig } from "../../../src/definitions/plugin-config";
@@ -17,8 +18,8 @@ describe("verify-config", () => {
         const [error, ...errors] = verifyConfig({ npmPublish } as unknown as PluginConfig);
 
         expect(errors).toHaveLength(0);
-        expect(error!.name).toBe("SemanticReleaseError");
-        expect(error!.code).toBe("EINVALIDNPMPUBLISH");
+        expect((error as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error as SemanticReleaseError).code).toBe("EINVALIDNPMPUBLISH");
     });
 
     it('return SemanticReleaseError if "tarballDir" option is not a String', async () => {
@@ -29,8 +30,8 @@ describe("verify-config", () => {
         const [error, ...errors] = verifyConfig({ tarballDir } as unknown as PluginConfig);
 
         expect(errors).toHaveLength(0);
-        expect(error!.name).toBe("SemanticReleaseError");
-        expect(error!.code).toBe("EINVALIDTARBALLDIR");
+        expect((error as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error as SemanticReleaseError).code).toBe("EINVALIDTARBALLDIR");
     });
 
     it('return SemanticReleaseError if "pkgRoot" option is not a String', async () => {
@@ -40,8 +41,8 @@ describe("verify-config", () => {
         const [error, ...errors] = verifyConfig({ pkgRoot: packageRoot } as unknown as PluginConfig);
 
         expect(errors).toHaveLength(0);
-        expect(error!.name).toBe("SemanticReleaseError");
-        expect(error!.code).toBe("EINVALIDPKGROOT");
+        expect((error as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error as SemanticReleaseError).code).toBe("EINVALIDPKGROOT");
     });
 
     it('return SemanticReleaseError if "publishBranch" option is not a String', async () => {
@@ -51,8 +52,8 @@ describe("verify-config", () => {
         const [error, ...errors] = verifyConfig({ publishBranch } as unknown as PluginConfig);
 
         expect(errors).toHaveLength(0);
-        expect(error!.name).toBe("SemanticReleaseError");
-        expect(error!.code).toBe("EINVALIDPUBLISHBRANCH");
+        expect((error as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error as SemanticReleaseError).code).toBe("EINVALIDPUBLISHBRANCH");
     });
 
     it("return SemanticReleaseError Array if multiple config are invalid", async () => {
@@ -65,16 +66,16 @@ describe("verify-config", () => {
         const publishBranch = 42;
         const [error1, error2, error3, error4] = verifyConfig({ npmPublish, pkgRoot: packageRoot, publishBranch, tarballDir } as unknown as PluginConfig);
 
-        expect(error1!.name).toBe("SemanticReleaseError");
-        expect(error1!.code).toBe("EINVALIDNPMPUBLISH");
+        expect((error1 as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error1 as SemanticReleaseError).code).toBe("EINVALIDNPMPUBLISH");
 
-        expect(error2!.name).toBe("SemanticReleaseError");
-        expect(error2!.code).toBe("EINVALIDPKGROOT");
+        expect((error2 as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error2 as SemanticReleaseError).code).toBe("EINVALIDPKGROOT");
 
-        expect(error3!.name).toBe("SemanticReleaseError");
-        expect(error3!.code).toBe("EINVALIDPUBLISHBRANCH");
+        expect((error3 as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error3 as SemanticReleaseError).code).toBe("EINVALIDPUBLISHBRANCH");
 
-        expect(error4!.name).toBe("SemanticReleaseError");
-        expect(error4!.code).toBe("EINVALIDTARBALLDIR");
+        expect((error4 as SemanticReleaseError).name).toBe("SemanticReleaseError");
+        expect((error4 as SemanticReleaseError).code).toBe("EINVALIDTARBALLDIR");
     });
 });

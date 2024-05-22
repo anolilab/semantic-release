@@ -5,7 +5,7 @@ import { join } from "@visulima/path";
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import rc from "../../../src/utils/rc";
+import { rc } from "../src";
 
 // Adds extention to the last item of an array representing fs path
 const addExtensions = (sources: string[][]) =>
@@ -64,8 +64,9 @@ describe("rc", () => {
         // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
         for (const key in env) {
             if (key.startsWith("npm_")) {
+                // eslint-disable-next-line security/detect-object-injection
                 npmEnvironment[key as keyof typeof env] = env[key];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
                 delete env[key];
             }
         }
@@ -74,6 +75,7 @@ describe("rc", () => {
     afterEach(async () => {
         // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax,guard-for-in
         for (const key in npmEnvironment) {
+            // eslint-disable-next-line security/detect-object-injection
             env[key] = npmEnvironment[key];
         }
 

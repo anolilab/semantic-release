@@ -13,11 +13,12 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     let errors: Error[] = verifyConfig(pluginConfig);
 
     try {
-        verifyPnpm(context);
+        await verifyPnpm(context);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         const typedError = error as AggregateError;
 
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         errors = [...errors, ...(typedError.errors ?? [error])];
     }
 
@@ -33,6 +34,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     } catch (error: any) {
         const typedError = error as AggregateError;
 
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         errors = [...errors, ...(typedError.errors ?? [error])];
     }
 

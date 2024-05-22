@@ -19,11 +19,24 @@ export interface ErrorContext {
     version?: string;
 }
 
-export const errors = {
+export const errors: {
+    EINVALIDBRANCHES: (branches: string[]) => { details: string; message: string };
+    EINVALIDNPMPUBLISH: ({ npmPublish }: ErrorContext) => { details: string; message: string };
+    EINVALIDNPMTOKEN: ({ registry }: ErrorContext) => { details: string; message: string };
+    EINVALIDPKGROOT: ({ pkgRoot }: ErrorContext) => { details: string; message: string };
+    EINVALIDPNPM: ({ version }: ErrorContext) => { details: string; message: string };
+    EINVALIDPUBLISHBRANCH: ({ publishBranch }: ErrorContext) => { details: string; message: string };
+    EINVALIDTARBALLDIR: ({ tarballDir }: ErrorContext) => { details: string; message: string };
+    ENONPMTOKEN: ({ registry }: ErrorContext) => { details: string; message: string };
+    ENOPKG: () => { details: string; message: string };
+    ENOPKGNAME: () => { details: string; message: string };
+    ENOPNPM: () => { details: string; message: string };
+    ENOPNPMRC: () => { details: string; message: string };
+} = {
     EINVALIDBRANCHES: (branches: string[]) => {
         return {
             details: `The [branches option](${linkify("README.md#branches")}) option, if defined, must be an array of \`String\`.
-Your configuration for the \`branches\` option is \`${branches}\`.`,
+Your configuration for the \`branches\` option is \`${branches.join(",")}\`.`,
             message: "Invalid `branches` option.",
         };
     },

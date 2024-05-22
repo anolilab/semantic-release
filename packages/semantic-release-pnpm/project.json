@@ -4,5 +4,5 @@
     "sourceRoot": "packages/semantic-release-pnpm/src",
     "projectType": "library",
     "tags": ["semantic-release-pnpm", "type:package"],
-    "implicitDependencies": []
+    "implicitDependencies": ["rc"]
 }

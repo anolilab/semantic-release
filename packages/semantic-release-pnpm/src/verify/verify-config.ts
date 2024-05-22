@@ -41,6 +41,7 @@ export default (config: PluginConfig): SemanticReleaseError[] =>
             return errors;
         }
 
+        // eslint-disable-next-line security/detect-object-injection
         if (VALIDATORS[option]?.(value)) {
             return errors;
         }

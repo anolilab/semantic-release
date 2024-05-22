@@ -237,8 +237,108 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.12.12)(@vitest/ui@1.6.0)
 
+  packages/rc:
+    dependencies:
+      '@visulima/fs':
+        specifier: ^2.1.1
+        version: 2.1.1
+      ini:
+        specifier: ^4.1.3
+        version: 4.1.3
+      ts-deepmerge:
+        specifier: ^7.0.0
+        version: 7.0.0
+    devDependencies:
+      '@anolilab/eslint-config':
+        specifier: ^15.0.3
+        version: 15.0.3(@babel/core@7.24.5)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.0)(typescript@5.4.5)
+      '@anolilab/prettier-config':
+        specifier: ^5.0.14
+        version: 5.0.14(prettier@3.2.5)
+      '@anolilab/semantic-release-preset':
+        specifier: ^8.0.3
+        version: 8.0.3(semantic-release@23.1.1(typescript@5.4.5))
+      '@babel/core':
+        specifier: ^7.24.3
+        version: 7.24.5
+      '@rushstack/eslint-plugin-security':
+        specifier: ^0.8.1
+        version: 0.8.1(eslint@8.57.0)(typescript@5.4.5)
+      '@secretlint/secretlint-rule-preset-recommend':
+        specifier: ^8.1.2
+        version: 8.2.4
+      '@types/ini':
+        specifier: ^4.1.0
+        version: 4.1.0
+      '@types/node':
+        specifier: 18.18.14
+        version: 18.18.14
+      '@visulima/path':
+        specifier: ^1.0.0
+        version: 1.0.0
+      '@vitest/coverage-v8':
+        specifier: ^1.4.0
+        version: 1.6.0(vitest@1.6.0(@types/node@18.18.14)(@vitest/ui@1.6.0))
+      '@vitest/ui':
+        specifier: ^1.4.0
+        version: 1.6.0(vitest@1.6.0)
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
+      eslint-plugin-deprecation:
+        specifier: ^2.0.0
+        version: 2.0.0(eslint@8.57.0)(typescript@5.4.5)
+      eslint-plugin-etc:
+        specifier: ^2.0.3
+        version: 2.0.3(eslint@8.57.0)(typescript@5.4.5)
+      eslint-plugin-import:
+        specifier: npm:eslint-plugin-i@^2.29.1
+        version: eslint-plugin-i@2.29.1(eslint@8.57.0)
+      eslint-plugin-mdx:
+        specifier: ^3.1.5
+        version: 3.1.5(eslint@8.57.0)
+      eslint-plugin-vitest:
+        specifier: ^0.4.1
+        version: 0.4.1(eslint@8.57.0)(typescript@5.4.5)(vitest@1.6.0(@types/node@18.18.14)(@vitest/ui@1.6.0))
+      eslint-plugin-vitest-globals:
+        specifier: ^1.5.0
+        version: 1.5.0
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.7
+      secretlint:
+        specifier: 8.1.2
+        version: 8.1.2
+      semantic-release:
+        specifier: ^23.0.5
+        version: 23.1.1(typescript@5.4.5)
+      sort-package-json:
+        specifier: ^2.8.0
+        version: 2.10.0
+      tempy:
+        specifier: ^3.1.0
+        version: 3.1.0
+      tsup:
+        specifier: ^8.0.2
+        version: 8.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.18.14)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.3
+        version: 5.4.5
+      vitest:
+        specifier: ^1.4.0
+        version: 1.6.0(@types/node@18.18.14)(@vitest/ui@1.6.0)
+
   packages/semantic-release-pnpm:
     dependencies:
+      '@anolilab/rc':
+        specifier: workspace:*
+        version: link:../rc
       '@semantic-release/error':
         specifier: ^4.0.0
         version: 4.0.0
@@ -272,9 +372,6 @@ importers:
       semver:
         specifier: ^7.6.2
         version: 7.6.2
-      ts-deepmerge:
-        specifier: ^7.0.0
-        version: 7.0.0
     devDependencies:
       '@anolilab/eslint-config':
         specifier: ^15.0.3
@@ -4451,6 +4548,10 @@ packages:
 
   ini@4.1.2:
     resolution: {integrity: sha512-AMB1mvwR1pyBFY/nSevUX6y8nJWS63/SzUKD3JyQn97s4xgIdgQPT75IRouIiBAN4yLQBUShNYVW0+UG25daCw==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  ini@4.1.3:
+    resolution: {integrity: sha512-X7rqawQBvfdjS10YU1y1YVreA3SsLrW9dX2CewP2EbBJM4ypVNLDkO5y04gejPwKIY9lR+7r9gn3rFPt/kmWFg==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
   inquirer@8.2.5:
@@ -9065,7 +9166,7 @@ snapshots:
     dependencies:
       '@npmcli/map-workspaces': 3.0.4
       ci-info: 3.8.0
-      ini: 4.1.2
+      ini: 4.1.3
       nopt: 7.2.0
       proc-log: 3.0.0
       read-package-json-fast: 3.0.2
@@ -9076,7 +9177,7 @@ snapshots:
     dependencies:
       '@npmcli/map-workspaces': 3.0.4
       ci-info: 4.0.0
-      ini: 4.1.2
+      ini: 4.1.3
       nopt: 7.2.0
       proc-log: 4.2.0
       read-package-json-fast: 3.0.2
@@ -13218,6 +13319,8 @@ snapshots:
   ini@4.1.1: {}
 
   ini@4.1.2: {}
+
+  ini@4.1.3: {}
 
   inquirer@8.2.5:
     dependencies:
@@ -17638,7 +17741,7 @@ snapshots:
       execa: 8.0.1
       local-pkg: 0.5.0
       magic-string: 0.30.10
-      pathe: 1.1.1
+      pathe: 1.1.2
       picocolors: 1.0.1
       std-env: 3.7.0
       strip-literal: 2.1.0

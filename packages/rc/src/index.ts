@@ -3,14 +3,28 @@ import { cwd, env } from "node:process";
 
 import { isAccessibleSync, readFileSync } from "@visulima/fs";
 import { parseJson, stripJsonComments } from "@visulima/fs/utils";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { dirname, join } from "@visulima/path";
 import { parse } from "ini";
 import { merge } from "ts-deepmerge";
 
-import isJson from "./is-json";
+import isJson from "./utils/is-json";
 
+// eslint-disable-next-line no-secrets/no-secrets
+/**
+ * Modified copy of the env function from https://github.com/dominictarr/rc/blob/a97f6adcc37ee1cad06ab7dc9b0bd842bbc5c664/lib/utils.js#L42
+ *
+ * @license https://github.com/dominictarr/rc/blob/master/LICENSE.APACHE2
+ * @license https://github.com/dominictarr/rc/blob/master/LICENSE.BSD
+ * @license https://github.com/dominictarr/rc/blob/master/LICENSE.MIT
+ *
+ * @param {string} prefix
+ * @param {Record<string, string | undefined>} environment
+ *
+ * @returns {Record<string, any>}
+ */
 // eslint-disable-next-line sonarjs/cognitive-complexity,@typescript-eslint/no-explicit-any
-const getEnvironment = (prefix: string, environment = env): Record<string, any> => {
+const getEnvironment = (prefix: string, environment: Record<string, string | undefined> = env): Record<string, any> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const returnValue: Record<string, any> = {};
     const l = prefix.length;
@@ -42,15 +56,19 @@ const getEnvironment = (prefix: string, environment = env): Record<string, any> 
                 // Assigns actual value from env variable to final key
                 // (unless it's just an empty string- in that case use the last valid key)
                 if (index === keypath.length - 1) {
+                    // eslint-disable-next-line security/detect-object-injection
                     cursor[subkey] = environment[k];
                 }
 
                 // Build sub-object if nothing already exists at the keypath
+                // eslint-disable-next-line security/detect-object-injection
                 if (cursor[subkey] === undefined) {
+                    // eslint-disable-next-line security/detect-object-injection
                     cursor[subkey] = {};
                 }
 
                 // Increment cursor used to track the object at the current depth
+                // eslint-disable-next-line security/detect-object-injection
                 cursor = cursor[subkey];
             });
         }
@@ -149,7 +167,8 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     return [...configFiles];
 };
 
-export default (
+// eslint-disable-next-line import/prefer-default-export
+export const rc = (
     name: string,
     options: {
         config?: string;
@@ -185,6 +204,7 @@ export default (
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (environment) {
         configs.push(environment);
     }

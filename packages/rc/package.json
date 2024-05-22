@@ -1,25 +1,19 @@
 {
-    "name": "@anolilab/semantic-release-pnpm",
+    "name": "@anolilab/rc",
     "version": "0.0.0",
-    "description": "Semantic-release plugin to publish a npm package with pnpm.",
+    "description": "The runtime configuration loader.",
     "keywords": [
         "anolilab",
-        "npm",
-        "pnpm",
-        "publish",
-        "monorepo",
-        "semantic-release",
-        "semantic-release-plugin",
-        "semantic-release-pnpm"
+        "rc"
     ],
-    "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/semantic-release-pnpm",
+    "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/rc",
     "bugs": {
         "url": "https://github.com/anolilab/semantic-release/issues"
     },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/anolilab/semantic-release.git",
-        "directory": "packages/semantic-release-pnpm"
+        "directory": "packages/rc"
     },
     "funding": [
         {
@@ -38,8 +32,23 @@
     },
     "sideEffects": false,
     "type": "module",
-    "exports": "./dist/index.js",
-    "main": "dist/index.js",
+    "exports": {
+        ".": {
+            "require": {
+                "types": "./dist/index.d.cts",
+                "default": "./dist/index.cjs"
+            },
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        },
+        "./package.json": "./package.json"
+    },
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
+    "source": "src/index.ts",
+    "browser": "./dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist",
@@ -63,18 +72,9 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "@anolilab/rc": "workspace:*",
-        "@semantic-release/error": "^4.0.0",
         "@visulima/fs": "^2.1.1",
-        "@visulima/package": "1.8.1",
-        "@visulima/path": "^1.0.0",
-        "aggregate-error": "^5.0.0",
-        "execa": "^9.1.0",
-        "ini": "4.1.2",
-        "move-file": "^3.1.0",
-        "normalize-url": "^8.0.1",
-        "registry-auth-token": "^5.0.2",
-        "semver": "^7.6.2"
+        "ini": "^4.1.3",
+        "ts-deepmerge": "^7.0.0"
     },
     "devDependencies": {
         "@anolilab/eslint-config": "^15.0.3",
@@ -83,37 +83,24 @@
         "@babel/core": "^7.24.3",
         "@rushstack/eslint-plugin-security": "^0.8.1",
         "@secretlint/secretlint-rule-preset-recommend": "^8.1.2",
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^10.0.4",
-        "@types/dockerode": "^3.3.29",
         "@types/ini": "^4.1.0",
         "@types/node": "18.18.14",
-        "@types/semantic-release__error": "3.0.3",
-        "@types/semver": "7.5.8",
-        "@types/stream-buffers": "^3.0.7",
+        "@visulima/path": "^1.0.0",
         "@vitest/coverage-v8": "^1.4.0",
         "@vitest/ui": "^1.4.0",
         "cross-env": "^7.0.3",
-        "dockerode": "4.0.2",
         "eslint": "^8.57.0",
         "eslint-plugin-deprecation": "^2.0.0",
-        "eslint-plugin-editorconfig": "^4.0.3",
-        "eslint-plugin-import": "npm:eslint-plugin-i@2.29.1",
+        "eslint-plugin-etc": "^2.0.3",
+        "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
         "eslint-plugin-mdx": "^3.1.5",
-        "eslint-plugin-n": "^17.7.0",
         "eslint-plugin-vitest": "^0.4.1",
         "eslint-plugin-vitest-globals": "^1.5.0",
-        "eslint-plugin-you-dont-need-lodash-underscore": "^6.14.0",
-        "get-stream": "9.0.1",
-        "got": "^14.2.1",
-        "p-retry": "^6.2.0",
         "prettier": "^3.2.5",
         "rimraf": "^5.0.5",
         "secretlint": "8.1.2",
         "semantic-release": "^23.0.5",
         "sort-package-json": "^2.8.0",
-        "stream-buffers": "^3.0.2",
         "tempy": "^3.1.0",
         "tsup": "^8.0.2",
         "typescript": "^5.4.3",
@@ -129,16 +116,14 @@
     "anolilab": {
         "eslint-config": {
             "plugin": {
-                "etc": false,
-                "tsdoc": false
+                "tsdoc": false,
+                "etc": false
             },
             "warn_on_unsupported_typescript_version": false,
             "info_on_disabling_jsx_react_rule": false,
             "info_on_disabling_prettier_conflict_rule": false,
             "info_on_disabling_jsonc_sort_keys_rule": false,
-            "import_ignore_exports": [
-                "**/*.cjs"
-            ]
+            "info_on_disabling_etc_no_deprecated": false
         }
     }
 }
