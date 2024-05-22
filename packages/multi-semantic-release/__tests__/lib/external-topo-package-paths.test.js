@@ -23,6 +23,8 @@ const getPackagePaths = async (cwd, ignore = []) => {
 
 describe("getPackagePaths()", () => {
     it("yarn: Works correctly with workspaces", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/yarnWorkspaces`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -36,6 +38,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("yarn: Should ignore some packages", async () => {
+        expect.assertions(2);
+
         const resolved = resolve(`${fixturesPath}/yarnWorkspacesIgnore`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -52,6 +56,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("yarn: Should ignore some packages via CLI", async () => {
+        expect.assertions(2);
+
         const resolved = resolve(`${fixturesPath}/yarnWorkspacesIgnore`);
 
         await expect(getPackagePaths(resolved, ["packages/a/**", "packages/b/**"])).resolves.toStrictEqual(
@@ -66,6 +72,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("yarn: Works correctly with workspaces.packages", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/yarnWorkspacesPackages`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -79,6 +87,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("pnpm: Works correctly with workspace", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/pnpmWorkspace`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -92,6 +102,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("pnpm: Should ignore some packages", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/pnpmWorkspaceIgnore`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -102,6 +114,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("pnpm: Should ignore some packages via CLI", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/pnpmWorkspaceIgnore`);
 
         await expect(getPackagePaths(resolved, ["packages/a/**", "packages/b/**"])).resolves.toStrictEqual(
@@ -110,6 +124,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("bolt: Works correctly with workspaces", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/boltWorkspaces`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -123,6 +139,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("bolt: Should ignore some packages", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/boltWorkspacesIgnore`);
 
         await expect(getPackagePaths(resolved)).resolves.toStrictEqual(
@@ -133,6 +151,8 @@ describe("getPackagePaths()", () => {
     });
 
     it("bolt: Should ignore some packages via CLI", async () => {
+        expect.assertions(1);
+
         const resolved = resolve(`${fixturesPath}/boltWorkspacesIgnore`);
 
         await expect(getPackagePaths(resolved, ["packages/a/**", "packages/b/**"])).resolves.toStrictEqual(

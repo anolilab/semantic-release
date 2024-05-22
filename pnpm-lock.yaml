@@ -230,6 +230,9 @@ importers:
       tempy:
         specifier: ^3.1.0
         version: 3.1.0
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.12.12)(@vitest/ui@1.6.0)

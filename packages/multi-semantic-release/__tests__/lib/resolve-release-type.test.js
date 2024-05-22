@@ -4,10 +4,14 @@ import { resolveReleaseType } from "../../lib/update-deps.js";
 
 describe("resolveReleaseType()", () => {
     it("works correctly with no deps", () => {
+        expect.assertions(1);
+
         expect(resolveReleaseType({ localDeps: [] })).toBeUndefined();
     });
 
     it("works correctly with deps", () => {
+        expect.assertions(6);
+
         const package1 = { _nextType: "patch", localDeps: [] };
 
         expect(resolveReleaseType(package1)).toBe("patch");
@@ -74,6 +78,8 @@ describe("resolveReleaseType()", () => {
     });
 
     it("no infinite loops", () => {
+        expect.assertions(4);
+
         const package1 = { _nextType: "patch", localDeps: [] };
 
         package1.localDeps.push(package1);

@@ -16,6 +16,8 @@ const environment = {
 
 describe("multi-semantic-release CLI", () => {
     it("initial commit (changes in all packages)", async () => {
+        expect.assertions(3);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -25,21 +27,18 @@ describe("multi-semantic-release CLI", () => {
         gitInitOrigin(cwd);
         gitPush(cwd);
 
-        try {
-            await execa("node", [msrBin, "--no-sequential-prepare"], { cwd, env: environment, extendEnv: false });
-        } catch (error) {
-            const { exitCode, stderr, stdout } = error;
+        const { exitCode, stderr, stdout } = await execa("node", [msrBin, "--no-sequential-prepare"], { cwd, env: environment, extendEnv: false });
 
-            // eslint-disable-next-line vitest/no-conditional-expect
-            expect(stdout).toMatch("Started multirelease! Loading 4 packages...");
-            // eslint-disable-next-line vitest/no-conditional-expect
-            expect(stderr).toMatch('Error: Cyclic dependency, node was:"msr-test-c"');
-            // eslint-disable-next-line vitest/no-conditional-expect
-            expect(exitCode).toBe(1);
-        }
+        expect(stdout).toMatch("Started multirelease! Loading 4 packages...");
+
+        expect(stderr).toBe("");
+
+        expect(exitCode).toBe(0);
     });
 
     it("initial commit (changes in 2 packages, 2 filtered out)", async () => {
+        expect.assertions(2);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 

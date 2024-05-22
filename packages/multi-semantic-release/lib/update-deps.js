@@ -101,13 +101,13 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
                 const nextVersion = nextType
                     ? // Update the nextVersion only if there is a next type to be bumped
 
-                    p._preRelease
+                      p._preRelease
                         ? // eslint-disable-next-line no-use-before-define
-                        getNextPreVersion(p)
+                          getNextPreVersion(p)
                         : // eslint-disable-next-line no-use-before-define
-                        getNextVersion(p)
+                          getNextVersion(p)
                     : // Set the nextVersion fallback to the last local dependency package last version
-                    p._lastRelease && p._lastRelease.version;
+                      p._lastRelease && p._lastRelease.version;
 
                 // 3. And this change should correspond to the manifest updating rule.
                 const requireRelease = scopes

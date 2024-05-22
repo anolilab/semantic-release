@@ -12,7 +12,7 @@ on: # yamllint disable-line rule:truthy
     merge_group: # yamllint disable-line rule:empty-values
 
 permissions:
-  contents: read
+    contents: "read"
 
 jobs:
     semantic-pull-request:

@@ -59,6 +59,8 @@ describe("update-deps", () => {
             ["workspace:~1.0", "2.0.0", "ignore", "~1.0"],
             ["workspace:~2.0", "2.1.0", "ignore", "~2.0"],
         ])("%s/%s/%s gives %s", (currentVersion, nextVersion, strategy, resolvedVersion) => {
+            expect.assertions(1);
+
             expect(resolveNextVersion(currentVersion, nextVersion, strategy)).toBe(resolvedVersion);
         });
     });
@@ -164,10 +166,14 @@ describe("update-deps", () => {
                 undefined,
             ],
         ])("%s", (name, package_, bumpStrategy, releaseStrategy, result) => {
+            expect.assertions(1);
+
             expect(resolveReleaseType(package_, bumpStrategy, releaseStrategy)).toBe(result);
         });
 
         it("`override` + `prefix` injects carets to the manifest", () => {
+            expect.assertions(6);
+
             const packageB = { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], name: "b" };
             const packageC = { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], name: "c" };
             const packageD = { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], name: "d" };
@@ -206,6 +212,8 @@ describe("update-deps", () => {
             ["1.0.0-dev.1", "minor", "1.0.0"],
             ["1.0.0-dev.1", "patch", "1.0.0"],
         ])("%s and %s gives %s", (lastVersion, releaseType, nextVersion) => {
+            expect.assertions(1);
+
             expect(
                 getNextVersion({
                     _lastRelease: { version: lastVersion },
@@ -231,6 +239,8 @@ describe("update-deps", () => {
             ["1.0.0", "minor", "beta", "1.1.0-beta.1"],
             ["1.0.0", "patch", "beta", "1.0.1-beta.1"],
         ])("%s and %s gives %s", (lastVersion, releaseType, preRelease, nextVersion) => {
+            expect.assertions(2);
+
             expect(
                 getNextPreVersion({
                     _branch: "master",
@@ -264,6 +274,8 @@ describe("update-deps", () => {
             ["1.0.0", "minor", "beta", "1.1.0-beta.1"],
             ["1.0.0", "patch", "beta", "1.0.1-beta.1"],
         ])("no tag: %s and %s gives %s", (lastVersion, releaseType, preRelease, nextVersion) => {
+            expect.assertions(1);
+
             expect(
                 getNextPreVersion({
                     _branch: "master",
@@ -288,6 +300,8 @@ describe("update-deps", () => {
             ["11.1.0", null],
             ["11.0.1", null],
         ])("%s gives %s", (version, preReleaseTag) => {
+            expect.assertions(1);
+
             expect(getPreReleaseTag(version)).toBe(preReleaseTag);
         });
     });

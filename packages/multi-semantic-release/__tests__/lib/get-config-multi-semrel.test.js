@@ -11,6 +11,8 @@ const fixturesPath = resolve(dirname(fileURLToPath(import.meta.url)), "../../__f
 
 describe("getConfig()", () => {
     it("default options", async () => {
+        expect.assertions(1);
+
         const result = await getConfig(process.cwd(), {});
 
         expect(result).toMatchObject({
@@ -32,6 +34,8 @@ describe("getConfig()", () => {
     });
 
     it("only CLI flags and default options", async () => {
+        expect.assertions(1);
+
         const cliFlags = {
             debug: true,
             deps: {
@@ -62,6 +66,8 @@ describe("getConfig()", () => {
     });
 
     it("package.json config", async () => {
+        expect.assertions(1);
+
         const cwd = gitInit();
 
         copyDirectory(`${fixturesPath}/yarnWorkspacesConfig/`, cwd);
@@ -87,6 +93,8 @@ describe("getConfig()", () => {
     });
 
     it("package.json config and CLI flags", async () => {
+        expect.assertions(1);
+
         const cwd = gitInit();
         const cliFlags = {
             debug: false,
@@ -119,6 +127,8 @@ describe("getConfig()", () => {
     });
 
     it("package.json extends", async () => {
+        expect.assertions(1);
+
         const cwd = gitInit();
 
         copyDirectory(`${fixturesPath}/yarnWorkspacesConfigExtends/`, cwd);
@@ -144,6 +154,8 @@ describe("getConfig()", () => {
     });
 
     it("package.json extends and CLI flags", async () => {
+        expect.assertions(1);
+
         const cwd = gitInit();
         const cliFlags = {
             debug: false,

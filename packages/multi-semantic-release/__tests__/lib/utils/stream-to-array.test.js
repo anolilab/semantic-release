@@ -34,31 +34,39 @@ function closedStream() {
 
 describe("stream To Array", () => {
     it("should work", async () => {
+        expect.assertions(2);
+
         const result = await streamToArray(createReadStream(fixtureFile));
 
         expect(Array.isArray(result)).toBeTruthy();
         expect(result).toHaveLength(0);
     });
 
+    // eslint-disable-next-line vitest/prefer-expect-assertions
     it("should work as a promise", () => {
         // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(createReadStream(fixtureFile)).then((array) => {
+            expect.assertions(2);
             expect(Array.isArray(array)).toBeTruthy();
             expect(array).toHaveLength(0);
         });
     });
 
+    // eslint-disable-next-line vitest/prefer-expect-assertions
     it("should work as a promise with zalgo", () => {
         // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(emptyStream()).then((array) => {
+            expect.assertions(2);
             expect(Array.isArray(array)).toBeTruthy();
             expect(array).toHaveLength(0);
         });
     });
 
+    // eslint-disable-next-line vitest/prefer-expect-assertions
     it("should work as a promise with chucky", () => {
         // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(closedStream()).then((array) => {
+            expect.assertions(2);
             expect(Array.isArray(array)).toBeTruthy();
             expect(array).toHaveLength(0);
         });

@@ -21,6 +21,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("initial commit (changes in all packages)", async () => {
+        expect.assertions(39);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -149,6 +151,8 @@ describe("multiSemanticRelease()", () => {
         "with Yarn Workspace Ranges & deps.bump=%s & deps.prefix=%s",
         (strategy, prefix, packageOrder) => {
             it('should replace "workspace:" with correct version', async () => {
+                expect.assertions(37);
+
                 // Create Git repo with copy of Yarn workspaces fixture.
                 const cwd = gitInit();
 
@@ -253,13 +257,12 @@ describe("multiSemanticRelease()", () => {
                         "msr-test-b": "1.0.0",
                     },
                     devDependencies: {
-                        // eslint-disable-next-line vitest/no-conditional-tests,vitest/no-conditional-in-test
                         "msr-test-c": strategy === "override" ? `${prefix}1.0.0` : "^1.0.0",
                     },
                     name: "msr-test-a",
                     peerDependencies: {
                         "left-pad": "latest",
-                        // eslint-disable-next-line vitest/no-conditional-tests,vitest/no-conditional-in-test
+
                         "msr-test-d": strategy === "override" ? `${prefix}1.0.0` : "~1.0.0",
                     },
                     version: "1.0.0",
@@ -267,7 +270,6 @@ describe("multiSemanticRelease()", () => {
                 // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
                 expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
                     optionalDependencies: {
-                        // eslint-disable-next-line vitest/no-conditional-tests,vitest/no-conditional-in-test
                         "msr-test-d": strategy === "override" ? `${prefix}1.0.0` : "^1.0.0",
                     },
                 });
@@ -279,6 +281,8 @@ describe("multiSemanticRelease()", () => {
     );
 
     it("initial commit (changes in all packages with prereleases)", async () => {
+        expect.assertions(40);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit("master", "release");
 
@@ -406,6 +410,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("two separate releases (changes in only one package in second release with prereleases)", async () => {
+        expect.assertions(15);
+
         const packages = ["packages/c/", "packages/d/"];
 
         // Create Git repo with copy of Yarn workspaces fixture.
@@ -499,6 +505,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("two separate releases (release to prerelease)", async () => {
+        expect.assertions(19);
+
         const packages = ["packages/c/", "packages/d/"];
 
         // Create Git repo with copy of Yarn workspaces fixture.
@@ -599,6 +607,8 @@ describe("multiSemanticRelease()", () => {
     }, 10_000);
 
     it("two separate releases (changes in all packages with prereleases)", async () => {
+        expect.assertions(39);
+
         const packages = ["packages/a/", "packages/b/", "packages/c/", "packages/d/"];
 
         // Create Git repo with copy of Yarn workspaces fixture.
@@ -773,6 +783,8 @@ describe("multiSemanticRelease()", () => {
     }, 20_000);
 
     it("no changes in any packages", async () => {
+        expect.assertions(15);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -824,6 +836,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("changes in some packages", async () => {
+        expect.assertions(36);
+
         // Create Git repo.
         const cwd = gitInit();
         // Initial commit.
@@ -963,6 +977,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("changes in child packages with sequentialPrepare", async () => {
+        expect.assertions(18);
+
         const mockPrepare = vi.fn();
         // Create Git repo.
         const cwd = gitInit();
@@ -996,7 +1012,6 @@ describe("multiSemanticRelease()", () => {
                         verify: (_, { lastRelease: { name } }) =>
                             // eslint-disable-next-line compat/compat,no-shadow
                             new Promise((resolve) => {
-                                // eslint-disable-next-line vitest/no-conditional-tests,vitest/no-conditional-in-test
                                 if (name.split("@")[0] === "msr-test-c") {
                                     resolve();
                                 }
@@ -1073,6 +1088,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("changes in parent packages with sequentialPrepare", async () => {
+        expect.assertions(13);
+
         // Create Git repo.
         const cwd = gitInit();
         // Initial commit.
@@ -1097,8 +1114,11 @@ describe("multiSemanticRelease()", () => {
 
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
+
         expect(error).toBeFalsy();
+
         const out = stdout.getContentsAsString("utf8");
+
         expect(out).toMatch("Started multirelease! Loading 2 packages...");
         expect(out).toMatch("Loaded package msr-test-c");
         expect(out).toMatch("Loaded package msr-test-d");
@@ -1129,6 +1149,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("changes in some packages (sequential-init)", async () => {
+        expect.assertions(3);
+
         // Create Git repo.
         const cwd = gitInit();
 
@@ -1192,6 +1214,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("error if release's local deps have no version number", async () => {
+        expect.assertions(1);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -1221,6 +1245,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("configured plugins are called as normal", async () => {
+        expect.assertions(7);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -1268,6 +1294,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("bot commit release note should filetered", async () => {
+        expect.assertions(1);
+
         // Create Git repo.
         const cwd = gitInit();
         // Initial commit.
@@ -1314,6 +1342,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("deep errors (e.g. in plugins) bubble up and out", async () => {
+        expect.assertions(1);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -1358,12 +1388,16 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("typeError if CWD is not string", async () => {
+        expect.assertions(3);
+
         await expect(multiSemanticRelease(null, {}, { cwd: 123 })).rejects.toBeInstanceOf(TypeError);
         await expect(multiSemanticRelease(null, {}, { cwd: true })).rejects.toBeInstanceOf(TypeError);
         await expect(multiSemanticRelease(null, {}, { cwd: [] })).rejects.toBeInstanceOf(TypeError);
     });
 
     it("typeError if paths is not a list of strings", async () => {
+        expect.assertions(7);
+
         await expect(multiSemanticRelease(123)).rejects.toBeInstanceOf(TypeError);
         await expect(multiSemanticRelease("string")).rejects.toBeInstanceOf(TypeError);
         await expect(multiSemanticRelease(true)).rejects.toBeInstanceOf(TypeError);
@@ -1374,6 +1408,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("referenceError if paths points to a non-file", async () => {
+        expect.assertions(3);
+
         const stdout = new WritableStreamBuffer(); // Blackhole the output so it doesn't clutter Jest.
         const r1 = multiSemanticRelease([`${fixturesPath}/DOESNOTEXIST.json`], {}, { stdout });
 
@@ -1389,6 +1425,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("syntaxError if paths points to package.json with bad syntax", async () => {
+        expect.assertions(12);
+
         const stdout = new WritableStreamBuffer(); // Blackhole the output so it doesn't clutter Jest.
         const r1 = multiSemanticRelease([`${fixturesPath}/invalidPackage.json`], {}, { stdout });
 
@@ -1434,6 +1472,8 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("generated tag with custom version format", async () => {
+        expect.assertions(2);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 

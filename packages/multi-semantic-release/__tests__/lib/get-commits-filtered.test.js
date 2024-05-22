@@ -9,6 +9,8 @@ import { gitCommitAll, gitInit } from "../helpers/git.js";
 
 describe("getCommitsFiltered()", () => {
     it("works correctly (no lastRelease)", async () => {
+        expect.assertions(3);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -35,6 +37,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("works correctly (with lastRelease)", async () => {
+        expect.assertions(1);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -59,6 +63,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("works correctly (initial commit)", async () => {
+        expect.assertions(2);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 
@@ -78,6 +84,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("typeError if cwd is not absolute path to directory", async () => {
+        expect.assertions(6);
+
         await expect(getCommitsFiltered(123, ".")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(123, ".")).rejects.toMatchObject({
             message: expect.stringMatching("cwd: Must be directory that exists in the filesystem"),
@@ -96,6 +104,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("typeError if dir is not path to directory", async () => {
+        expect.assertions(6);
+
         const cwd = temporaryDirectory();
 
         await expect(getCommitsFiltered(cwd, 123)).rejects.toBeInstanceOf(TypeError);
@@ -113,6 +123,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("typeError if dir is equal to cwd", async () => {
+        expect.assertions(4);
+
         const cwd = temporaryDirectory();
 
         await expect(getCommitsFiltered(cwd, cwd)).rejects.toBeInstanceOf(TypeError);
@@ -126,6 +138,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("typeError if dir is not inside cwd", async () => {
+        expect.assertions(4);
+
         const cwd = temporaryDirectory();
         const direction = temporaryDirectory();
 
@@ -140,6 +154,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("typeError if lastRelease is not 40char alphanumeric Git SHA hash", async () => {
+        expect.assertions(6);
+
         const cwd = temporaryDirectory();
 
         mkdirSync(join(cwd, "dir"));
@@ -159,6 +175,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("typeError if nextRelease is not 40char alphanumeric Git SHA hash", async () => {
+        expect.assertions(6);
+
         const cwd = temporaryDirectory();
 
         mkdirSync(join(cwd, "dir"));
@@ -178,6 +196,8 @@ describe("getCommitsFiltered()", () => {
     });
 
     it("works correctly (with lastRelease and nextRelease)", async () => {
+        expect.assertions(2);
+
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
 

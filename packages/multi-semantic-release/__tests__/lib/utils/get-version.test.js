@@ -10,6 +10,8 @@ describe("getHighestVersion()", () => {
         ["1.0.0", undefined, "1.0.0"],
         [undefined, undefined, undefined],
     ])("%s/%s gives highest as %s", (version1, version2, high) => {
+        expect.assertions(1);
+
         expect(getHighestVersion(version1, version2)).toBe(high);
     });
 });
@@ -22,6 +24,8 @@ describe("getLatestVersion()", () => {
         [["1.2.3-alpha.3", "1.2.3-alpha.2"], true, "1.2.3-alpha.3"],
         [[], {}, undefined],
     ])("%s/%s gives latest as %s", (versions, withPrerelease, latest) => {
+        expect.assertions(1);
+
         expect(getLatestVersion(versions, withPrerelease)).toBe(latest);
     });
 });
