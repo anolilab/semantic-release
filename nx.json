@@ -1,0 +1,81 @@
+{
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "nx/tasks-runners/default"
+        }
+    },
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["^build", "default"],
+            "inputs": ["default", "^default"],
+            "cache": true
+        },
+        "build:prod": {
+            "dependsOn": ["^build:prod", "default"],
+            "inputs": ["default", "^default"],
+            "cache": true
+        },
+        "lint:eslint": {
+            "dependsOn": ["default"],
+            "inputs": ["default", "{workspaceRoot}/.eslintrc.cjs", "{workspaceRoot}/.eslintrc.js"],
+            "cache": true
+        },
+        "lint:eslint:fix": {
+            "dependsOn": ["default"],
+            "inputs": ["default", "{workspaceRoot}/.eslintrc.cjs", "{workspaceRoot}/.eslintrc.js"],
+            "cache": true
+        },
+        "lint:packagejson": {
+            "dependsOn": ["default"],
+            "cache": true
+        },
+        "lint:prettier": {
+            "dependsOn": ["default", "^public"],
+            "cache": true
+        },
+        "lint:prettier:fix": {
+            "dependsOn": ["default", "^public"],
+            "cache": true
+        },
+        "lint:types": {
+            "dependsOn": ["default", "^public"],
+            "cache": true
+        },
+        "test": {
+            "dependsOn": ["default", "^default", "{projectRoot}/vite.config.ts", "{projectRoot}/tools/get-vitest-config.ts"],
+            "cache": true
+        },
+        "test:coverage": {
+            "dependsOn": ["default", "^default", "{projectRoot}/vite.config.ts", "{projectRoot}/tools/get-vitest-config.ts"],
+            "cache": true
+        }
+    },
+    "namedInputs": {
+        "default": ["sharedGlobals", "{projectRoot}/**/*", "!{projectRoot}/**/*.md"],
+        "public": [
+            "default",
+            "{workspaceRoot}/dist",
+            "!{workspaceRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+            "!{workspaceRoot}/vite.config.ts",
+            "!{workspaceRoot}/.eslintrc.js",
+            "!{workspaceRoot}/.eslintrc.cjs",
+            "!{workspaceRoot}/.storybook/**/*",
+            "!{workspaceRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)"
+        ],
+        "sharedGlobals": [
+            "{workspaceRoot}/.nvmrc",
+            "{workspaceRoot}/package.json",
+            "{workspaceRoot}/tsconfig.json",
+            "{workspaceRoot}/tsconfig.base.json",
+            "{workspaceRoot}/tsconfig.eslint.json"
+        ],
+        "production": ["default"]
+    },
+    "parallel": 5,
+    "extends": "@nrwl/workspace/presets/npm.json",
+    "affected": {
+        "defaultBase": "main"
+    },
+    "defaultBase": "main",
+    "$schema": "./node_modules/nx/schemas/nx-schema.json"
+}

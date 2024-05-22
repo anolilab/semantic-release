@@ -1,144 +1,95 @@
 {
-    "name": "@anolilab/multi-semantic-release",
-    "version": "1.0.4",
-    "description": "A multi semantic release tool for a monorepo.",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/anolilab/multi-semantic-release.git"
-    },
-    "license": "0BSD",
-    "author": "Dave Houlbrooke <dave@shax.com>",
-    "maintainers": [
-        {
-            "name": "Daniel Bannert",
-            "email": "d.bannert@anolilab.de"
-        }
-    ],
+    "name": "semantic-release",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
     "type": "module",
-    "exports": {
-        ".": "./lib/multi-semantic-release.js",
-        "./*": "./*",
-        "./package.json": "./package.json"
-    },
-    "bin": {
-        "multi-semantic-release": "./bin/cli.js"
-    },
-    "files": [
-        "README.md",
-        "CHANGELOG.md",
-        "lib",
-        "bin"
+    "workspaces": [
+        "packages/*"
     ],
     "scripts": {
-        "build": "echo 'There is no need for build' && exit 0",
-        "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
-        "lint:eslint:fix": "pnpm run lint:eslint --fix",
-        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
-        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
+        "audit": "audit-ci --config ./audit-ci.jsonc",
+        "build": "nx run-many --target=build --all --parallel",
+        "build:affected:packages": "nx affected --target=build --nxBail",
+        "build:affected:packages:prod": "nx affected --target=build:prod --nxBail",
+        "build:packages": "nx run-many --target=build --parallel --projects=tag:type:package",
+        "build:packages:prod": "nx run-many --target=build:prod --parallel --projects=tag:type:package",
+        "clean": "nx run-many --target=clean --all --parallel && rimraf ./node_modules",
+        "graph": "nx dep-graph",
+        "preinstall": "node verify-node-version.cjs && npx only-allow pnpm",
+        "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
+        "lint:affected:eslint": "nx affected --target=lint:eslint --parallel --nxBail",
+        "lint:affected:eslint:fix": "nx affected --target=lint:eslint:fix --parallel --nxBail",
+        "lint:affected:package-json": "nx affected --target=lint:packagejson --parallel --nxBail",
+        "lint:affected:types": "nx affected --target=lint:types --parallel --nxBail",
+        "lint:eslint": "nx run-many --target=lint:eslint --all --parallel",
+        "lint:eslint:fix": "nx run-many --target=lint:eslint:fix --all --parallel",
+        "lint:fix": "pnpm run lint:prettier:fix && pnpm run lint:eslint:fix && pnpm run sort-package-json",
+        "lint:package-json": "nx run-many --target=lint:package-json --parallel --projects=tag:type:package",
+        "lint:prettier": "pnpm run lint:prettier:root && nx run-many --target=lint:prettier --all --parallel",
+        "lint:prettier:fix": "pnpm run lint:prettier:fix:root && nx run-many --target=lint:prettier:fix --all --parallel",
+        "lint:prettier:fix:root": "prettier --config=.prettierrc.cjs --write '*.{json,yml,yaml,js,ts}'",
+        "lint:prettier:root": "prettier --config=.prettierrc.cjs --check '*.{json,yml,yaml,js,ts}'",
         "lint:secrets": "secretlint **/*",
         "lint:staged": "lint-staged --verbose --concurrent false --debug",
-        "lint:text": "textlint ./.github/ ./README.md ./UPGRADE.md --parallel --experimental --cache --dry-run",
-        "lint:text:fix": "textlint ./.github/ ./README.md ./UPGRADE.md --parallel --experimental --fix",
-        "prepare": "is-ci || (node verify-node-version.cjs && pnpx only-allow pnpm && husky install)",
-        "sort-package-json": "sort-package-json ./package.json",
-        "test": "vitest run",
-        "test:bench": "vitest bench",
-        "test:coverage": "vitest run --coverage",
-        "test:watch": "vitest",
-        "update:deps": "taze",
-        "validate:package": "pnpx publint"
+        "lint:text": "textlint ./.github/ ./packages/** ./README.md ./UPGRADE.md --parallel --experimental --cache --dry-run",
+        "lint:text:fix": "textlint ./.github/ ./packages/** ./README.md ./UPGRADE.md --parallel --experimental --fix",
+        "lint:types": "nx run-many --target=lint:types --all --parallel",
+        "nx": "nx",
+        "plop": "plop",
+        "prepare": "is-ci || husky install || exit 0",
+        "sort-package-json": "sort-package-json packages/**/package.json apps/**/package.json ./package.json",
+        "test": "nx run-many --target=test --all --parallel",
+        "test:affected": "nx affected --target=test --parallel --nxBail",
+        "test:affected:coverage": "nx affected --target=test:coverage --parallel --nxBail",
+        "test:coverage": "nx run-many --target=test:coverage --all --parallel",
+        "update:deps": "taze"
     },
+    "browserslist": [
+        "extends browserslist-config-anolilab"
+    ],
     "dependencies": {
-        "@semrel-extra/topo": "^1.14.1",
-        "blork": "^9.3.0",
-        "cosmiconfig": "^9.0.0",
-        "debug": "^4.3.4",
-        "detect-indent": "^7.0.1",
-        "detect-newline": "^4.0.1",
-        "execa": "^9.1.0",
-        "git-log-parser": "^1.2.0",
-        "lodash-es": "^4.17.21",
-        "resolve-from": "^5.0.0",
-        "semver": "^7.6.2",
-        "signale": "^1.4.0",
-        "stream-buffers": "^3.0.2",
-        "yargs": "^17.7.2"
-    },
-    "devDependencies": {
         "@anolilab/commitlint-config": "^5.0.3",
-        "@anolilab/eslint-config": "^15.0.3",
         "@anolilab/lint-staged-config": "^2.1.7",
+        "@anolilab/multi-semantic-release": "^1.0.4",
         "@anolilab/prettier-config": "^5.0.14",
         "@anolilab/textlint-config": "^8.0.16",
         "@babel/core": "^7.24.5",
-        "@babel/eslint-parser": "7.23.3",
         "@commitlint/cli": "^19.3.0",
         "@commitlint/config-conventional": "^19.2.2",
+        "@nrwl/tao": "19.0.4",
+        "@nrwl/workspace": "19.0.4",
         "@secretlint/secretlint-rule-preset-recommend": "^8.2.4",
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^10.0.3",
-        "@semantic-release/npm": "^12.0.1",
-        "@vitest/coverage-v8": "^1.6.0",
+        "@types/node": "18.18.14",
+        "audit-ci": "^6.6.1",
+        "browserslist-config-anolilab": "^5.0.14",
         "commitizen": "^4.3.0",
-        "commitlint": "^19.3.0",
         "cross-env": "^7.0.3",
-        "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.55.0",
-        "eslint-plugin-editorconfig": "^4.0.3",
-        "eslint-plugin-import": "npm:eslint-plugin-i@2.29.0",
-        "eslint-plugin-mdx": "^3.1.5",
-        "eslint-plugin-n": "^17.7.0",
-        "eslint-plugin-vitest": "^0.3.10",
-        "eslint-plugin-vitest-globals": "^1.5.0",
-        "eslint-plugin-you-dont-need-lodash-underscore": "^6.14.0",
-        "file-url": "^4.0.0",
         "husky": "^9.0.11",
         "is-ci": "^3.0.1",
         "lint-staged": "^15.2.2",
+        "nx": "^19.0.4",
+        "plop": "^4.0.1",
         "prettier": "^3.2.5",
+        "publint": "^0.2.8",
         "rimraf": "^5.0.7",
-        "secretlint": "8.0.0",
+        "secretlint": "8.2.4",
         "semantic-release": "^23.1.1",
         "sort-package-json": "^2.10.0",
         "taze": "^0.13.8",
-        "tempy": "^3.1.0",
         "textlint": "^14.0.4",
+        "typescript": "^5.4.5",
         "vitest": "^1.6.0"
     },
-    "peerDependencies": {
-        "semantic-release": "^20.0 || ^21.0 || >=22.0.3"
-    },
-    "packageManager": "pnpm@9.1.1",
+    "packageManager": "pnpm@9.1.2",
     "engines": {
-        "node": ">=18 || >=20.6.1"
-    },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
+        "node": ">=18.17 <=21.*"
     },
     "pnpm": {
         "overrides": {
-            "chai": ">=5.1.1",
-            "chrono-node@<2.2.4": ">=2.7.5",
-            "get-func-name@<2.0.1": ">=3.0.0",
-            "got@<11.8.5": ">=14.2.1",
-            "postcss@<8.4.31": ">=8.4.38",
-            "trim@<0.0.3": ">=1.0.1"
-        }
-    },
-    "anolilab": {
-        "eslint-config": {
-            "plugin": {},
-            "warn_on_unsupported_typescript_version": false,
-            "info_on_disabling_jsx_react_rule": false,
-            "info_on_disabling_prettier_conflict_rule": false,
-            "info_on_disabling_jsonc_sort_keys_rule": false,
-            "import_ignore_exports": [
-                "**/*.cjs",
-                "**/__tests__/**/*.js",
-                "verify-node-version.cjs"
-            ]
+            "chrono-node@<2.2.4": ">=2.2.4",
+            "npm@>=7.9.0 <8.11.0": ">=8.11.0",
+            "semver@>=7.0.0 <7.5.2": ">=7.5.2"
         }
     }
 }

@@ -18,6 +18,7 @@ permissions:
 jobs:
     semantic-release:
         name: "Semantic Release"
+        if: "github.repository == 'anolilab/semantic-release'"
         runs-on: "ubuntu-latest"
         permissions:
             contents: "write" # to be able to publish a GitHub release
@@ -27,12 +28,12 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
             - name: "Wait for tests to succeed"
-              uses: "lewagon/wait-on-check-action@e106e5c43e8ca1edea6383a39a01c5ca495fd812" # v1.3.1
+              uses: "lewagon/wait-on-check-action@595dabb3acf442d47e29c9ec9ba44db0c6bdd18f" # v1.3.3
               timeout-minutes: 20
               with:
                   ref: "${{ github.event.pull_request.head.sha || github.sha }}"
@@ -42,7 +43,7 @@ jobs:
                   allowed-conclusions: "success,skipped" # all other checks must pass, being skipped or cancelled is not sufficient
 
             - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               with:
                   fetch-depth: 0
                   persist-credentials: false
@@ -51,38 +52,33 @@ jobs:
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
-            - uses: "pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598" # v2.4.0
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup@main"
               with:
-                  run_install: false
+                  node-version: "18.x"
+                  cache-prefix: "semantic-release"
 
-            - name: "Use Node.js 20.10.0"
-              uses: "actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d" # v3.8.1
-              with:
-                  node-version: "20.10.0"
-                  cache: "pnpm"
-
-            # @see: npm install -g npm@latest is necessary to make provenance available. More info: https://docs.npmjs.com/generating-provenance-statements
-            - name: "Upgrade npm to latest version"
-              run: "npm install --global npm@9.6.x"
-              env:
-                  SKIP_CHECK: "true"
-
-            - name: "Check npm version"
-              run: "npm -v"
-              env:
-                  SKIP_CHECK: "true"
-
-            - name: "Install packages"
-              run: "pnpm install --frozen-lockfile"
-
-            - name: "Verify the integrity of provenance attestations and registry signatures for installed dependencies"
-              run: "pnpm audit signatures"
+            - name: "Build Production"
+              run: "pnpm run build:prod:packages"
 
             - name: "npm v8.5+ requires workspaces-update to be set to false"
               run: "echo 'workspaces-update=false' >> .npmrc"
 
-            - name: "Validate package.json"
-              run: "pnpm run validate:package"
+            - name: "test and coverage"
+              run: "pnpm run test:coverage"
+              env:
+                  TEST_PROD_BUILD: "true"
+
+            - name: "Prepare nx cache"
+              shell: "bash"
+              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
+
+            - name: "Upload code coverage to codecov"
+              uses: "./.github/actions/codecov"
+              with:
+                  run-lint: "false"
+                  codecov-token: "${{ secrets.CODECOV_TOKEN }}"
 
             - name: "Semantic Release"
               if: "success()"
@@ -93,4 +89,4 @@ jobs:
                   GIT_AUTHOR_EMAIL: "github-actions[bot]@users.noreply.github.com"
                   GIT_COMMITTER_NAME: "github-actions-shell"
                   GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
-              run: "pnpm exec semantic-release"
+              run: "pnpm exec multi-semantic-release"

@@ -11,6 +11,7 @@ name: "Dependency Review"
 on: # yamllint disable-line rule:truthy
     # eslint-disable-next-line yml/no-empty-mapping-value
     pull_request: # yamllint disable-line rule:empty-values
+    merge_group: # yamllint disable-line rule:empty-values
 
 permissions:
     contents: "read"
@@ -20,16 +21,16 @@ jobs:
         runs-on: "ubuntu-latest"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Dependency Review"
-              uses: "actions/dependency-review-action@6c5ccdad469c9f8a2996bfecaec55a631a347034" # v3.1.0
+              uses: "actions/dependency-review-action@733dd5d4a5203f238c33806593ec0f5fc5343d8c" # v4.2.4

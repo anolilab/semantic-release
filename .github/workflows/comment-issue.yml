@@ -16,12 +16,12 @@ jobs:
             issues: "write"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
             - name: "Add Comment For User Interest"
-              uses: "actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410" # v6.4.1
+              uses: "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea" # v7.0.1
               with:
                   script: |
                       github.rest.issues.createComment({
@@ -47,17 +47,17 @@ jobs:
                           We do this because:
 
                           - There are plenty of frameworks/tools out there and we would like to ensure that every method can cover all or almost all of them.
-                          - Every feature we add to Visulima has "costs" associated to it:
+                          - Every feature we add to anolilab has "costs" associated to it:
                               - initial costs: design, implementation, reviews, documentation
                               - running costs: awareness of the feature itself, more complex module structure, increased bundle size, more work during refactors
 
                           ---
 
-                          [View more issues which are waiting for user interest](https://github.com/visulima/visulima/issues?q=is%3Aissue+is%3Aopen+label%3A%22s%3A+waiting+for+user+interest%22+)`,
+                          [View more issues which are waiting for user interest](https://github.com/anolilab/semantic-release/issues?q=is%3Aissue+is%3Aopen+label%3A%22s%3A+waiting+for+user+interest%22+)`,
                       })
 
             - name: "React to Issue"
-              uses: "actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410" # v6.4.1
+              uses: "actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea" # v7.0.1
               with:
                   script: |
                       github.rest.reactions.createForIssue({

@@ -1,0 +1,25 @@
+name: "Require 'Allow Edits'"
+
+on: ["pull_request_target", "merge_group"] # yamllint disable-line rule:truthy
+
+permissions:
+    contents: "read"
+
+jobs:
+    check_allow_edits:
+        permissions:
+            pull-requests: "read" # for ljharb/require-allow-edits to check 'allow edits' on PR
+
+        name: "Require “Allow Edits”"
+
+        runs-on: "ubuntu-latest"
+
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
+              with:
+                  egress-policy: "audit"
+
+            - uses: "ljharb/require-allow-edits@2bf6dc5607979ae0e3f8739b9f9a4018e024b9a0" # main
+              with:
+                  pull_number: "${{ github.event.pull_request.number }}"

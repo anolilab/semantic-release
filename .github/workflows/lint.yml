@@ -3,22 +3,28 @@
 name: "Lint"
 
 on: # yamllint disable-line rule:truthy
-    push:
-        branches:
-            - "main"
     # eslint-disable-next-line yml/no-empty-mapping-value
     pull_request: # yamllint disable-line rule:empty-values
+        types: ["opened", "synchronize"]
+    merge_group: # yamllint disable-line rule:empty-values
 
 concurrency:
-    group: "ci-lint-${{ github.ref }}-1"
+    group: "${{ github.workflow }}-${{ github.ref }}"
     cancel-in-progress: true
 
 permissions:
     contents: "read" # to fetch code (actions/checkout)
 
+env:
+    NX_BRANCH: "${{ github.event.number }}"
+    NX_RUN_GROUP: "${{ github.run_id }}"
+    HEAD_REF: "${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}"
+    HEAD_REPOSITORY: "${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name || github.repository }}"
+
 jobs:
     files-changed:
         name: "Detect what files changed"
+        if: "github.repository == 'anolilab/semantic-release'"
         runs-on: "ubuntu-22.04"
         timeout-minutes: 3
         # Map a step output to a job output
@@ -26,21 +32,22 @@ jobs:
             frontend_lintable: "${{ steps.changes.outputs.frontend_lintable }}"
             markdown_lintable: "${{ steps.changes.outputs.markdown_lintable }}"
             yaml_lintable: "${{ steps.changes.outputs.yaml_lintable }}"
+            package_json_lintable: "${{ steps.changes.outputs.package_json_lintable }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Check for file changes"
-              uses: "dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50" # v2.11.1
+              uses: "dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36" # v3.0.2
               id: "changes"
               with:
                   token: "${{ github.token }}"
@@ -53,37 +60,151 @@ jobs:
         runs-on: "ubuntu-latest"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
-            - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
-              with:
-                  fetch-depth: 2
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
-
-            - uses: "pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598" # v2.4.0
               with:
-                  run_install: false
+                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
+                  # Pulls all commits (needed for NX)
+                  fetch-depth: 0
 
-            - name: "Use Node.js 20.6.1"
-              uses: "actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d" # v3.8.1
+            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
+              id: "setSHAs"
+              uses: "nrwl/nx-set-shas@76907e7e5d3cd17ddb5e2b123389f054bffcdd03" # v4
+
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup@main"
               with:
-                  node-version: "20.6.1"
-                  cache: "pnpm"
+                  cache-prefix: "lint"
 
-            - name: "Install packages"
-              run: "pnpm install --frozen-lockfile"
+            # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
+            - name: "Get changed files"
+              id: "files"
+              uses: "tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834" # v43.0.1
+              with:
+                  files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
+                  base_sha: "${{ steps.setSHAs.outputs.base }}"
+                  separator: ","
 
-            - name: "Verify the integrity of provenance attestations and registry signatures for installed dependencies"
-              run: "pnpm audit signatures"
+            - name: "Build"
+              run: "pnpm run build:affected:packages --files=${{ steps.files.outputs.all_changed_files }}"
 
-            - name: "lint"
-              run: "pnpm run lint:eslint"
+            - name: "lint eslint"
+              run: "pnpm run lint:affected:eslint --files=${{ steps.files.outputs.all_changed_files }}"
+
+            - name: "Prepare nx cache"
+              shell: "bash"
+              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
+
+    package-json-lint:
+        if: "needs.files-changed.outputs.package_json_lintable == 'true'"
+        needs: "files-changed"
+        name: "Lint (package.json)"
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
+              with:
+                  egress-policy: "audit"
+
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
+              env:
+                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
+                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
+                  EMAIL: "github-actions[bot]@users.noreply.github.com"
+              with:
+                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
+                  # Pulls all commits (needed for NX)
+                  fetch-depth: 0
+
+            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
+              id: "setSHAs"
+              uses: "nrwl/nx-set-shas@76907e7e5d3cd17ddb5e2b123389f054bffcdd03" # v4
+
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup@main"
+              with:
+                  cache-prefix: "lint"
+
+            # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
+            - name: "Get changed files"
+              id: "files"
+              uses: "tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834" # v43.0.1
+              with:
+                  files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
+                  base_sha: "${{ steps.setSHAs.outputs.base }}"
+                  separator: ","
+
+            - name: "Build"
+              run: "pnpm run build:affected:packages --files=${{ steps.files.outputs.all_changed_files }}"
+
+            - name: "lint package.json"
+              run: "pnpm run lint:affected:package-json --files=${{ steps.files.outputs.all_changed_files }}"
+
+            - name: "Prepare nx cache"
+              shell: "bash"
+              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
+
+    types-lint:
+        if: "needs.files-changed.outputs.frontend_lintable == 'true'"
+        needs: "files-changed"
+        name: "Lint (Typescript types)"
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
+              with:
+                  egress-policy: "audit"
+
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
+              env:
+                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
+                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
+                  EMAIL: "github-actions[bot]@users.noreply.github.com"
+              with:
+                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
+                  # Pulls all commits (needed for NX)
+                  fetch-depth: 0
+
+            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
+              id: "setSHAs"
+              uses: "nrwl/nx-set-shas@76907e7e5d3cd17ddb5e2b123389f054bffcdd03" # v4
+
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup@main"
+              with:
+                  cache-prefix: "lint"
+
+            # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
+            - name: "Get changed files"
+              id: "files"
+              uses: "tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834" # v43.0.1
+              with:
+                  files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
+                  base_sha: "${{ steps.setSHAs.outputs.base }}"
+                  separator: ","
+
+            - name: "Build"
+              run: "pnpm run build:affected:packages --files=${{ steps.files.outputs.all_changed_files }}"
+
+            - name: "lint typescript files"
+              run: "pnpm run lint:affected:types --files=${{ steps.files.outputs.all_changed_files }}"
+
+            - name: "Prepare nx cache"
+              shell: "bash"
+              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
 
     yaml-lint:
         if: "needs.files-changed.outputs.yaml_lintable == 'true'"
@@ -92,14 +213,12 @@ jobs:
         runs-on: "ubuntu-latest"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
-            - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
-              with:
-                  fetch-depth: 2
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
@@ -112,6 +231,30 @@ jobs:
                   file_or_dir: "."
                   strict: true
 
+    lint-workflows:
+        if: "needs.files-changed.outputs.yaml_lintable == 'true'"
+        needs: "files-changed"
+        runs-on: "ubuntu-latest"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
+              with:
+                  egress-policy: "audit"
+
+            - name: "Git checkout"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
+              env:
+                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
+                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
+                  EMAIL: "github-actions[bot]@users.noreply.github.com"
+
+            # From https://github.com/rhysd/actionlint/main/docs/usage.md#use-actionlint-on-github-actions
+            - name: "Lint github workflows"
+              run: |
+                  bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+                  # The -ignore flag is used to ignore a specific error for a working solution in test.yml
+                  ./actionlint -color -shellcheck=""
+
     markdown-lint:
         if: "needs.files-changed.outputs.markdown_lintable == 'true'"
         needs: "files-changed"
@@ -119,36 +262,35 @@ jobs:
         runs-on: "ubuntu-latest"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 
-            - name: "Git checkout"
-              uses: "actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608" # v4.1.0
-              with:
-                  fetch-depth: 2
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11" # v4.1.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
-            - uses: "pnpm/action-setup@d882d12c64e032187b2edb46d3a0d003b7a43598" # v2.4.0
+            - uses: "pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d" # v3.0.0
               with:
                   run_install: false
 
-            - name: "Use Node.js 20.6.1"
-              uses: "actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d" # v3.8.1
+            - name: "Use Node.js 18.x"
+              uses: "actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8" # v4.0.2
               with:
-                  node-version: "20.6.1"
+                  node-version: "18.x"
                   cache: "pnpm"
 
-            - name: "Install packages"
-              run: "pnpm install --frozen-lockfile"
-              env:
-                  SKIP_CHECK: "true"
-
             - name: "Verify the integrity of provenance attestations and registry signatures for installed dependencies"
-              run: "pnpm audit signatures"
+              run: "pnpm dlx audit-ci@^6 --config ./audit-ci.jsonc --report-type=summary"
+
+            - name: "Install packages"
+              run: "pnpm install --frozen-lockfile --prefer-offline"
+              env:
+                  "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": 1
+                  SKIP_CHECK: "true"
 
             - name: "lint"
               run: "pnpm run lint:text"
@@ -159,9 +301,9 @@ jobs:
 
     # This check runs once all dependant jobs have passed
     # It symbolizes that all required Frontend checks have succesfully passed (Or skipped)
-    # This check is the only required Github check
+    # This check is the only required GitHub check
     test-required-check:
-        needs: ["files-changed", "eslint", "yaml-lint"] # TODO add "markdown-lint"
+        needs: ["files-changed", "eslint", "yaml-lint", "package-json-lint"] # TODO add "markdown-lint"
         name: "Check Lint Run"
         # This is necessary since a failed/skipped dependent job would cause this job to be skipped
         if: "always()"
@@ -170,7 +312,7 @@ jobs:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423" # v2.6.0
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
               with:
                   egress-policy: "audit"
 

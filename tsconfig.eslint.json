@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "."
+    },
+    "include": ["."],
+    "exclude": [
+        "dist/**/*",
+        "node_modules/**/*",
+        "build/**/*",
+        "scripts/**/*",
+        "verify-node-version.cjs",
+        "plopfile.js",
+        "plop/**",
+        "packages/**/*",
+        "examples/**/*",
+        "apps/**/*"
+    ]
+}

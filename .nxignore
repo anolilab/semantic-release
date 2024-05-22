@@ -1,0 +1,7 @@
+coverage
+__fixtures__
+node_modules
+dist
+
+**/CHANGELOG.md
+**/README.md

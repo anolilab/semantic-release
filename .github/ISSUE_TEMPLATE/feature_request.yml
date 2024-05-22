@@ -9,7 +9,7 @@ body:
       id: "feature-description"
       attributes:
           label: "Clear and concise description of the problem"
-          description: "As a developer I want [goal / wish] so that [benefit]. If you intend to submit a PR for this issue, tell us in the description. Thanks!"
+          description: "As a developer using @anolilab/* I want [goal / wish] so that [benefit]. If you intend to submit a PR for this issue, tell us in the description. Thanks!"
       validations:
           required: true
     - type: "textarea"
@@ -29,3 +29,15 @@ body:
       attributes:
           label: "Additional context"
           description: "Any other context about the feature request here."
+    - type: "checkboxes"
+      id: "checkboxes"
+      attributes:
+          label: "Validations"
+          description: "Before submitting the issue, please make sure you do the following"
+          options:
+              - label: "Follow our [Code of Conduct](https://github.com/anolilab/semantic-release/blob/main/.github/CODE_OF_CONDUCT.md)"
+                required: true
+              - label: "Read the [Contributing Guidelines](https://github.com/anolilab/semantic-release/blob/main/.github/CONTRIBUTING.md)."
+                required: true
+              - label: "Check that there isn't already an issue that request the same feature to avoid creating a duplicate."
+                required: true
