@@ -4,7 +4,8 @@
     "description": "A multi semantic release tool for a monorepo.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/anolilab/multi-semantic-release.git"
+        "url": "https://github.com/anolilab/semantic-release.git",
+        "directory": "packages/multi-semantic-release"
     },
     "license": "0BSD",
     "author": "Dave Houlbrooke <dave@shax.com>",
