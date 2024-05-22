@@ -12,12 +12,13 @@ on: # yamllint disable-line rule:truthy
     merge_group: # yamllint disable-line rule:empty-values
 
 permissions:
-    pull-requests: "write" # to analyze PRs (amannn/action-semantic-pull-request)
-    statuses: "write" # to mark status of analyzed PR (amannn/action-semantic-pull-request)
     contents: "read"
 
 jobs:
     semantic-pull-request:
         uses: "anolilab/workflows/.github/workflows/semantic-pull-request.yml@main"
+        permissions:
+            pull-requests: "write" # to analyze PRs (amannn/action-semantic-pull-request)
+            statuses: "write" # to mark status of analyzed PR (amannn/action-semantic-pull-request)
         with:
             target-repo: "anolilab/semantic-release"
