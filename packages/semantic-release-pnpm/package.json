@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-pnpm",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Semantic-release plugin to publish a npm package with pnpm.",
     "keywords": [
         "anolilab",
@@ -63,7 +63,7 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "@anolilab/rc": "workspace:*",
+        "@anolilab/rc": "1.0.0",
         "@semantic-release/error": "^4.0.0",
         "@visulima/fs": "^2.1.1",
         "@visulima/package": "1.8.1",
