@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/rc",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "The runtime configuration loader.",
     "keywords": [
         "anolilab",
