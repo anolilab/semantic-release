@@ -158,6 +158,9 @@ importers:
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.2.5)
+      '@anolilab/semantic-release-pnpm':
+        specifier: workspace:*
+        version: link:../semantic-release-pnpm
       '@anolilab/semantic-release-preset':
         specifier: ^1.2.1
         version: 1.2.1(@types/node@20.12.12)(semantic-release@23.1.1(typescript@5.4.5))(typescript@5.4.5)
