@@ -1,0 +1,8 @@
+{
+    "name": "rc",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/rc/src",
+    "projectType": "library",
+    "tags": ["rc", "type:package"],
+    "implicitDependencies": []
+}

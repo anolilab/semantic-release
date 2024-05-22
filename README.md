@@ -25,6 +25,7 @@ Check the README for each package within the `packages` directory for specific u
 | Package                                                             | Version                                                                                                                        | Description                                                                 |
 |---------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
 | [multi-semantic-release](packages/multi-semantic-release/README.md) | ![npm](https://img.shields.io/npm/v/@anolilab/multi-semantic-release?style=flat-square&labelColor=292a44&color=663399&label=v) | A hacky semantic-release for monorepos based on qiwi/multi-semantic-release |                                                                                                                                |                        |
+| [semantic-release-pnpm](packages/semantic-release-pnpm/README.md) | ![npm](https://img.shields.io/npm/v/@anolilab/semantic-release-pnpm?style=flat-square&labelColor=292a44&color=663399&label=v) | Semantic-release plugin to publish a npm package with pnpm |                                                                                                                                |                        |
 
 ## How We Version
 
