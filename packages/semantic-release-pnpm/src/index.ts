@@ -18,21 +18,20 @@ export const verifyConditions = async (pluginConfig: PluginConfig, context: Veri
      * `pkgRoot` configured, validate them now in order to prevent any release if
      * the configuration is wrong
      */
-    if (context.options?.["publish"]) {
-        const publish = Array.isArray(context.options?.["publish"]) ? context.options?.["publish"] : [context.options?.["publish"]];
+    if (context.options.publish) {
+        const publish = Array.isArray(context.options.publish) ? context.options.publish : [context.options.publish];
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         const publishPlugin = publish.find((config) => config.path && config.path === PLUGIN_NAME) || {};
 
-        // eslint-disable-next-line no-param-reassign,@typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line no-param-reassign
         pluginConfig.npmPublish = pluginConfig.npmPublish ?? publishPlugin.npmPublish;
-        // eslint-disable-next-line no-param-reassign,@typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line no-param-reassign
         pluginConfig.tarballDir = pluginConfig.tarballDir ?? publishPlugin.tarballDir;
-        // eslint-disable-next-line no-param-reassign,@typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line no-param-reassign
         pluginConfig.pkgRoot = pluginConfig.pkgRoot ?? publishPlugin.pkgRoot;
-        // eslint-disable-next-line no-param-reassign,@typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line no-param-reassign
         pluginConfig.disableScripts = pluginConfig.disableScripts ?? publishPlugin.disableScripts;
-        // eslint-disable-next-line no-param-reassign,@typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line no-param-reassign
         pluginConfig.branches = pluginConfig.branches ?? publishPlugin.branches;
     }
 
@@ -62,7 +61,7 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
         await prepareNpm(pluginConfig, context);
     }
 
-    return publishNpm(pluginConfig, packageJson, context);
+    return await publishNpm(pluginConfig, packageJson, context);
 };
 
 export const addChannel = async (pluginConfig: PluginConfig, context: AddChannelContext): Promise<ReleaseInfo | false> => {
@@ -72,5 +71,5 @@ export const addChannel = async (pluginConfig: PluginConfig, context: AddChannel
 
     const packageJson = await getPackage(pluginConfig, context);
 
-    return addChannelNpm(pluginConfig, packageJson, context);
+    return await addChannelNpm(pluginConfig, packageJson, context);
 };

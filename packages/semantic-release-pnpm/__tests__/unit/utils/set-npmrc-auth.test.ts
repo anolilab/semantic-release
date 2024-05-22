@@ -57,10 +57,8 @@ describe("set-npmrc-auth", () => {
 
         const npmrc = temporaryFile({ name: ".npmrc" });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
 
         expect(logSpy).toHaveBeenCalledWith(`Wrote NPM_TOKEN to ${npmrc}`);
@@ -74,10 +72,8 @@ describe("set-npmrc-auth", () => {
 
         const npmrc = temporaryFile({ name: ".npmrc" });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", {
             cwd,
             env: { NPM_EMAIL: "npm_email", NPM_PASSWORD: "npm_pasword", NPM_USERNAME: "npm_username" },
@@ -96,10 +92,8 @@ describe("set-npmrc-auth", () => {
 
         await writeFile(resolve(home, ".npmrc"), "home_config = test");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [resolve(home, ".npmrc")].join(", ")]);
@@ -118,10 +112,8 @@ describe("set-npmrc-auth", () => {
         await writeFile(resolve(cwd, ".npmrc"), "cwd_config = test");
         await writeFile(resolve(home, ".npmrc"), "home_config = test");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [resolve(home, ".npmrc"), resolve(cwd, ".npmrc")].join(", ")]);
@@ -140,10 +132,8 @@ describe("set-npmrc-auth", () => {
         await writeFile(resolve(cwd, ".npmrc"), `//custom.registry.com/:_authToken = \${NPM_TOKEN}`);
         await writeFile(resolve(home, ".npmrc"), "home_config = test");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: {}, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [resolve(home, ".npmrc"), resolve(cwd, ".npmrc")].join(", ")]);
@@ -160,10 +150,8 @@ describe("set-npmrc-auth", () => {
         await writeFile(resolve(cwd, ".npmrc"), `@scope:registry=http://custom.registry.com\n//custom.registry.com/:_authToken = \${NPM_TOKEN}`);
         await writeFile(resolve(home, ".npmrc"), "home_config = test");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: {}, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [resolve(home, ".npmrc"), resolve(cwd, ".npmrc")].join(", ")]);
@@ -180,10 +168,8 @@ describe("set-npmrc-auth", () => {
         const errorMessage = "No npm token specified.";
 
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
             const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: {}, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -193,7 +179,7 @@ describe("set-npmrc-auth", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain(errorMessage);
-            // eslint-disable-next-line vitest/no-conditional-expect,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.errors[0].code).toBe("ENONPMTOKEN");
         }
     });
@@ -208,10 +194,8 @@ describe("set-npmrc-auth", () => {
 
         const environment = { NPM_CONFIG_USERCONFIG: customNpmrcPath };
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://custom.registry.com", {
             cwd,
             env: environment,
@@ -231,10 +215,8 @@ describe("set-npmrc-auth", () => {
         const errorMessage = "No npm token specified.";
 
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
             const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: environment, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -244,7 +226,7 @@ describe("set-npmrc-auth", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain(errorMessage);
-            // eslint-disable-next-line vitest/no-conditional-expect,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.errors[0].code).toBe("ENONPMTOKEN");
         }
     });
@@ -258,10 +240,8 @@ describe("set-npmrc-auth", () => {
         const errorMessage = "No npm token specified.";
 
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
             const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: environment, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -271,7 +251,7 @@ describe("set-npmrc-auth", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain(errorMessage);
-            // eslint-disable-next-line vitest/no-conditional-expect,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.errors[0].code).toBe("ENONPMTOKEN");
         }
     });
@@ -285,10 +265,8 @@ describe("set-npmrc-auth", () => {
         const errorMessage = "No npm token specified.";
 
         try {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
             const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: environment, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
@@ -298,7 +276,7 @@ describe("set-npmrc-auth", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain(errorMessage);
-            // eslint-disable-next-line vitest/no-conditional-expect,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.errors[0].code).toBe("ENONPMTOKEN");
         }
     });
@@ -312,10 +290,8 @@ describe("set-npmrc-auth", () => {
 
         await writeFile(resolve(cwd, ".npmrc"), "//registry.npmjs.org/:_authToken=npmrc_npm_token");
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-return
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         await setNpmrcAuth(npmrc, "http://registry.npmjs.org", { cwd, env: environment, logger });
 
         // Assert that the token from .npmrc is used

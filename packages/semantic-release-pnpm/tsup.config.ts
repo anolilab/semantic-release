@@ -1,8 +1,6 @@
 import type { Options } from "tsup";
 import { defineConfig } from "tsup";
 
-import tsconfig from "./tsconfig.json";
-
 // @ts-ignore
 export default defineConfig((options: Options) => {
     return {
@@ -19,7 +17,7 @@ export default defineConfig((options: Options) => {
         clean: true,
         splitting: true,
         shims: true,
-        target: [tsconfig.compilerOptions.target as "es2022", "node18"],
+        target: ["es2022", "node18"],
         declaration: true,
         entry: ["src/index.ts"],
         format: ["esm"],

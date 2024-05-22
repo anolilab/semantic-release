@@ -17,7 +17,7 @@ const getEnvironment = (prefix: string, environment = env): Record<string, any> 
 
     // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
     for (const k in environment) {
-        if (k.toLowerCase().indexOf(prefix.toLowerCase()) === 0) {
+        if (k.toLowerCase().startsWith(prefix.toLowerCase())) {
             const keypath = k.slice(Math.max(0, l)).split("__");
 
             // Trim empty strings from keypath array

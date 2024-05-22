@@ -137,8 +137,7 @@
             "info_on_disabling_prettier_conflict_rule": false,
             "info_on_disabling_jsonc_sort_keys_rule": false,
             "import_ignore_exports": [
-                "**/*.cjs",
-                "verify-node-version.cjs"
+                "**/*.cjs"
             ]
         }
     }

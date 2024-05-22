@@ -37,18 +37,19 @@ describe("semantic-release-integration", () => {
 
         const { verifyConditions } = await import("../../src");
 
-        await expect(() =>
-            verifyConditions(
-                { npmPublish: false },
-                {
-                    cwd,
-                    env: { NPM_TOKEN: "wrong_token" },
-                    logger,
-                    options: {},
-                    stderr: new WritableStreamBuffer(),
-                    stdout: new WritableStreamBuffer(),
-                },
-            ),
+        await expect(
+            async () =>
+                await verifyConditions(
+                    { npmPublish: false },
+                    {
+                        cwd,
+                        env: { NPM_TOKEN: "wrong_token" },
+                        logger,
+                        options: {},
+                        stderr: new WritableStreamBuffer(),
+                        stdout: new WritableStreamBuffer(),
+                    },
+                ),
         ).rejects.not.toThrow("Invalid npm token.");
     });
 });

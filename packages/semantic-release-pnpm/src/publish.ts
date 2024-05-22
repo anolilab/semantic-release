@@ -33,7 +33,7 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
             preferLocal: true,
         });
         const publishBranches = typeof publishBranchConfig === "string" && publishBranchConfig.split("|");
-        const isPublishBranch = publishBranches && publishBranches?.includes(currentBranch);
+        const isPublishBranch = publishBranches && publishBranches.includes(currentBranch);
         const publishBranch = isPublishBranch ? currentBranch : "main";
 
         logger.log(`Publishing version ${version} on branch ${publishBranch} to npm registry on dist-tag ${distributionTag}`);
@@ -57,7 +57,6 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
             await result;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             logger.log(`Failed to publish ${package_.name}@${version} to dist-tag @${distributionTag} on ${registry}: ${error.message ?? error}`);
 
             throw new AggregateError([error]);

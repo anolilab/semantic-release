@@ -54,8 +54,8 @@ type GenerateNotesContext1 = CommonContext2 & {
 // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L140
 export type AddChannelContext = CommonContext2 & {
     commits: Commit[];
-    lastRelease: Release;
     currentRelease: Release;
+    lastRelease: Release;
     nextRelease: Release;
 };
 
@@ -67,22 +67,22 @@ type SuccessContext1 = CommonContext2 & {
 };
 
 type CommonContext3 = CommonContext2 & {
-    // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#LL150C3-L150C10
-    lastRelease: Release;
-
     // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L163
     commits: Commit[];
+
+    // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#LL150C3-L150C10
+    lastRelease: Release;
 };
 
 // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L166
 export type AnalyzeCommitsContext = CommonContext3;
 
 type CommonContext4 = CommonContext3 & {
-    // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L175
-    nextRelease: Release;
-
     // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L163
     commits: Commit[];
+
+    // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L175
+    nextRelease: Release;
 };
 
 // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L189

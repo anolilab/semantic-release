@@ -57,7 +57,7 @@ describe("get-pkg", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain("Missing `package.json` file.");
-            // eslint-disable-next-line vitest/no-conditional-expect,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.errors[0].code).toBe("ENOPKG");
         }
     });
@@ -77,7 +77,7 @@ describe("get-pkg", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain("Missing `name` property in `package.json`");
-            // eslint-disable-next-line vitest/no-conditional-expect,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.errors[0].code).toBe("ENOPKGNAME");
         }
     });

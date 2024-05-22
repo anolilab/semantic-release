@@ -10,14 +10,14 @@ const getRegistryUrl = (scope: string, npmrc: AuthOptions["npmrc"]): string => {
     let url: string = DEFAULT_NPM_REGISTRY;
 
     if (npmrc) {
-        const registryUrl = npmrc[`${scope}:registry`] ?? npmrc["registry"];
+        const registryUrl = npmrc[`${scope}:registry`] ?? npmrc.registry;
 
         if (registryUrl) {
             url = registryUrl;
         }
     }
 
-    return url.slice(-1) === "/" ? url : `${url}/`;
+    return url.endsWith("/") ? url : `${url}/`;
 };
 
 export default ({ name, publishConfig: { registry } = {} }: PackageJson, { cwd, env }: CommonContext): string =>

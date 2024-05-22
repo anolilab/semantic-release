@@ -1,15 +1,16 @@
-dist
 node_modules
-coverage
-
-__fixtures__
-__docs__
 
 vitest.config.ts
 .prettierrc.cjs
-tsup.config.ts
+_meta.*.json
 .secretlintrc.cjs
-tsconfig.eslint.json
 
-README.md
+coverage
+__fixtures__
+dist
 
+tsup.config.ts
+
+src/definitions/context.ts
+
+__tests__/intigration/semantic-release-integration.test.ts

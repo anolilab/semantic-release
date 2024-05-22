@@ -22,7 +22,6 @@ export default async ({ pkgRoot }: Options, { cwd }: { cwd: CommonContext["cwd"]
         return packageJson;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (error.code === "ENOENT") {
             throw new AggregateError([getError("ENOPKG")]);
         }

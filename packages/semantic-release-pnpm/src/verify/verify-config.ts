@@ -32,7 +32,7 @@ const VALIDATORS: Record<string, ValidatorFunction> = {
 
 export default (config: PluginConfig): SemanticReleaseError[] =>
     // eslint-disable-next-line unicorn/no-array-reduce
-    Object.entries(config).reduce((errors, [option, value]) => {
+    Object.entries(config).reduce<SemanticReleaseError[]>((errors, [option, value]) => {
         if (isNil(value)) {
             return errors;
         }
@@ -47,4 +47,4 @@ export default (config: PluginConfig): SemanticReleaseError[] =>
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return [...errors, getError(`EINVALID${option.toUpperCase()}` as any, { [option]: value })];
-    }, [] as SemanticReleaseError[]);
+    }, []);

@@ -21,7 +21,7 @@ let container: Docker.Container;
 /**
  * Download the `npm-registry-docker` Docker image, create a new container and start it.
  */
-// eslint-disable-next-line import/no-unused-modules
+
 export const start = async (): Promise<void> => {
     await getStream(await docker.pull(IMAGE));
 
@@ -37,7 +37,7 @@ export const start = async (): Promise<void> => {
 
     try {
         // Wait for the registry to be ready
-        await pRetry(() => got(`http://${REGISTRY_HOST}:${REGISTRY_PORT}/`, { cache: false }), {
+        await pRetry(async () => await got(`http://${REGISTRY_HOST}:${REGISTRY_PORT}/`, { cache: false }), {
             factor: 2,
             minTimeout: 1000,
             retries: 7,
@@ -60,10 +60,8 @@ export const start = async (): Promise<void> => {
     });
 };
 
-// eslint-disable-next-line import/no-unused-modules
 export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
 
-// eslint-disable-next-line import/no-unused-modules
 export const authEnvironment = {
     NPM_EMAIL,
     NPM_PASSWORD,
@@ -74,7 +72,7 @@ export const authEnvironment = {
 /**
  * Stop and remote the `npm-registry-docker` Docker container.
  */
-// eslint-disable-next-line import/no-unused-modules
+
 export const stop = async (): Promise<void> => {
     await container.stop();
     await container.remove();

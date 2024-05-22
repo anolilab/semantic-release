@@ -1,5 +1,5 @@
 /** @ts-check */
-// eslint-disable-next-line import/no-commonjs,import/no-unused-modules
+// eslint-disable-next-line import/no-commonjs
 const { defineConfig } = require("@anolilab/eslint-config/define-config");
 // eslint-disable-next-line import/no-commonjs
 const globals = require("@anolilab/eslint-config/globals");
@@ -35,10 +35,10 @@ module.exports = defineConfig({
             // Set parserOptions.project for the project to allow TypeScript to create the type-checker behind the scenes when we run linting
             parserOptions: {},
             rules: {
+                "@typescript-eslint/no-unsafe-argument": "off",
                 "@typescript-eslint/no-unsafe-assignment": "off",
                 "@typescript-eslint/no-unsafe-call": "off",
                 "@typescript-eslint/no-unsafe-member-access": "off",
-                "@typescript-eslint/no-unsafe-argument": "off",
                 "@typescript-eslint/no-unsafe-return": "off",
                 "prefer-template": "off",
             },
