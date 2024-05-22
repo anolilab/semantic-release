@@ -60,10 +60,7 @@ jobs:
                   cache-prefix: "semantic-release"
 
             - name: "Build Production"
-              run: "pnpm run build:prod:packages"
-
-            - name: "npm v8.5+ requires workspaces-update to be set to false"
-              run: "echo 'workspaces-update=false' >> .npmrc"
+              run: "pnpm run build:packages:prod"
 
             - name: "test and coverage"
               run: "pnpm run test:coverage"
