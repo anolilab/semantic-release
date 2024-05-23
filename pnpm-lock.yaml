@@ -8,6 +8,9 @@ overrides:
   chrono-node@<2.2.4: '>=2.7.5'
   npm@>=7.9.0 <8.11.0: '>=8.11.0'
   semver@>=7.0.0 <7.5.2: '>=7.5.2'
+  '@anolilab/multi-semantic-release': workspace:*
+  '@anolilab/rc': workspace:*
+  '@anolilab/semantic-release-pnpm': workspace:*
 
 importers:
 
@@ -20,8 +23,8 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7(eslint@8.57.0)(husky@9.0.11)(lint-staged@15.2.4)(prettier@3.2.5)(secretlint@8.2.4)
       '@anolilab/multi-semantic-release':
-        specifier: ^1.0.4
-        version: 1.0.4(semantic-release@23.1.1(typescript@5.4.5))(typescript@5.4.5)
+        specifier: workspace:*
+        version: link:packages/multi-semantic-release
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.2.5)
@@ -340,8 +343,8 @@ importers:
   packages/semantic-release-pnpm:
     dependencies:
       '@anolilab/rc':
-        specifier: 1.0.0
-        version: 1.0.0(yaml@2.4.2)
+        specifier: workspace:*
+        version: link:../rc
       '@semantic-release/error':
         specifier: ^4.0.0
         version: 4.0.0
@@ -635,13 +638,6 @@ packages:
       vite:
         optional: true
 
-  '@anolilab/multi-semantic-release@1.0.4':
-    resolution: {integrity: sha512-EAk9RTDkFMeh2giquvAGEBwYXycNJS1tO/DfOO3XOso1VR8gyujlc/FesP5lBjOPWZYssizNWSpQOO4ej4yBxA==}
-    engines: {node: '>=18 || >=20.6.1'}
-    hasBin: true
-    peerDependencies:
-      semantic-release: ^20.0 || ^21.0 || >=22.0.3
-
   '@anolilab/package-json-utils@3.0.9':
     resolution: {integrity: sha512-CYwpW2hlsOSdwtksYG5vH7Y48X7qwSnvk4yTsplce/FZFZLKRxuCbwlUqgTEYUng3nZ55A+5EC3rEttgor7e9w==}
     engines: {node: '>=18.* <=21.*'}
@@ -651,10 +647,6 @@ packages:
     engines: {node: '>=18.* <=21.*'}
     peerDependencies:
       prettier: 2.x || 3.x
-
-  '@anolilab/rc@1.0.0':
-    resolution: {integrity: sha512-p+wihFhwUc5+UzDCkqF31J6KHoLa4k/AE0+UNAVQKSUVrOO25F8/frEThJCmArPcVran3asEBO5f2XFDRNyVzw==}
-    engines: {node: '>=18.* <=21.*'}
 
   '@anolilab/semantic-release-preset@8.0.3':
     resolution: {integrity: sha512-/8ddc+6ILuL8VmxcJ6+9aGwGj/LL8CkWwbuXQcvCIjRPdSXk5anuCl2It8STa70UKBZvkvwIsttlRJzjxAqiCg==}
@@ -8054,27 +8046,6 @@ snapshots:
       prettier: 3.2.5
       secretlint: 8.2.4
 
-  '@anolilab/multi-semantic-release@1.0.4(semantic-release@23.1.1(typescript@5.4.5))(typescript@5.4.5)':
-    dependencies:
-      '@semrel-extra/topo': 1.14.1
-      blork: 9.3.0
-      cosmiconfig: 9.0.0(typescript@5.4.5)
-      debug: 4.3.4
-      detect-indent: 7.0.1
-      detect-newline: 4.0.1
-      execa: 9.1.0
-      git-log-parser: 1.2.0
-      lodash-es: 4.17.21
-      resolve-from: 5.0.0
-      semantic-release: 23.1.1(typescript@5.4.5)
-      semver: 7.6.2
-      signale: 1.4.0
-      stream-buffers: 3.0.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
   '@anolilab/package-json-utils@3.0.9':
     dependencies:
       dot-path-value: 0.0.10
@@ -8084,14 +8055,6 @@ snapshots:
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
       prettier: 3.2.5
-
-  '@anolilab/rc@1.0.0(yaml@2.4.2)':
-    dependencies:
-      '@visulima/fs': 2.1.1(yaml@2.4.2)
-      ini: 4.1.3
-      ts-deepmerge: 7.0.0
-    transitivePeerDependencies:
-      - yaml
 
   '@anolilab/semantic-release-preset@8.0.3(semantic-release@23.1.1(typescript@5.4.5))':
     dependencies:
