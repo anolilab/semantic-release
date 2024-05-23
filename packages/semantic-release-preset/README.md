@@ -210,6 +210,7 @@ No problem, just add the following to your `.releaserc.json`:
 ```
 
 Find out how to configure the plugin [here](https://github.com/ghusse/semantic-release-npm-deprecate-old-versions).
+
 </details>
 
 <details>

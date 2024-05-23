@@ -1,15 +1,15 @@
+dist
 node_modules
+coverage
+
+__fixtures__
+__docs__
 
 vitest.config.ts
-
 .prettierrc.cjs
+tsup.config.ts
 .secretlintrc.cjs
+tsconfig.eslint.json
 
-taze.config.js
+README.md
 
-_meta.*.json
-
-coverage
-__fixtures__
-
-.github/ISSUE_TEMPLATE

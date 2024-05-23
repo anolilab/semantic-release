@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-commonjs
 const { defineConfig } = require("@anolilab/eslint-config/define-config");
-// eslint-disable-next-line import/no-commonjs
+
 const globals = require("@anolilab/eslint-config/globals");
 
 /** @ts-check */
@@ -33,22 +32,7 @@ module.exports = defineConfig({
             files: ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
             // Set parserOptions.project for the project to allow TypeScript to create the type-checker behind the scenes when we run linting
             parserOptions: {},
-            rules: {
-                "security/detect-object-injection": "off",
-            },
-        },
-        {
-            files: ["**/*.test.js"],
-            rules: {
-                "security/detect-non-literal-fs-filename": "off",
-            },
-        },
-        {
-            files: ["**/*.js"],
-            rules: {
-                "func-style": "off",
-                "no-underscore-dangle": "off",
-            },
+            rules: {},
         },
         {
             files: ["**/*.mdx"],
