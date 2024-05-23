@@ -2,6 +2,6 @@
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "packages/semantic-release-preset/src",
     "projectType": "library",
-    "tags": ["semantic-release-preset"],
-    "implicitDependencies": []
+    "tags": ["semantic-release-preset", "type:package"],
+    "implicitDependencies": ["semantic-release-pnpm"]
 }
