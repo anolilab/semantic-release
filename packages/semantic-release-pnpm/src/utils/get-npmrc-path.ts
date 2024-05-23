@@ -1,6 +1,6 @@
 import { ensureFileSync, isAccessibleSync } from "@visulima/fs";
 import { findCacheDirectorySync } from "@visulima/package";
-import { resolve } from "@visulima/path";
+import { join, resolve } from "@visulima/path";
 
 import getError from "./get-error";
 
@@ -14,9 +14,11 @@ const getNpmrcPath = (cwd: string, environment: NodeJS.ProcessEnv): string => {
     } else if (isAccessibleSync(npmrcPath)) {
         npmrc = npmrcPath;
     } else {
-        const temporaryNpmrcPath = findCacheDirectorySync("semantic-release-pnpm", { create: true, cwd });
+        const cachePath = findCacheDirectorySync("semantic-release-pnpm", { create: true, cwd });
 
-        if (temporaryNpmrcPath) {
+        if (cachePath) {
+            const temporaryNpmrcPath = join(cachePath, ".npmrc");
+
             ensureFileSync(temporaryNpmrcPath);
 
             npmrc = temporaryNpmrcPath;

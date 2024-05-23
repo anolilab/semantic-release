@@ -4,6 +4,7 @@ import type AggregateError from "aggregate-error";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import getNpmrcPath from "../../../src/utils/get-npmrc-path";
+import { join } from "@visulima/path";
 
 const mocks = vi.hoisted(() => {
     return {
@@ -14,8 +15,11 @@ const mocks = vi.hoisted(() => {
     };
 });
 
-vi.mock("@visulima/fs", () => {
+vi.mock("@visulima/fs", async () => {
+    const actual = await vi.importActual("@visulima/fs");
+
     return {
+        ...actual,
         ensureFileSync: mocks.mockedEnsureFileSync,
         isAccessibleSync: mocks.mockedIsAccessibleSync,
     };
@@ -27,8 +31,11 @@ vi.mock("@visulima/package", () => {
     };
 });
 
-vi.mock("@visulima/path", () => {
+vi.mock("@visulima/path", async () => {
+    const actual = await vi.importActual("@visulima/path");
+
     return {
+        ...actual,
         resolve: mocks.mockedResolve,
     };
 });
@@ -73,10 +80,11 @@ describe("getNpmrcPath", () => {
         expect.assertions(3);
 
         const environment = {};
-        const temporaryNpmrcPath = "/temporary/directory/.npmrc";
+        const cachePath = "/temporary/directory";
+        const temporaryNpmrcPath = join(cachePath, ".npmrc");
 
         mocks.mockedIsAccessibleSync.mockReturnValue(false);
-        mocks.mockedFindCacheDirectorySync.mockReturnValue(temporaryNpmrcPath);
+        mocks.mockedFindCacheDirectorySync.mockReturnValue(cachePath);
 
         const result = getNpmrcPath(cwd, environment);
 
