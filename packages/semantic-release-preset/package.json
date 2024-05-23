@@ -1,0 +1,146 @@
+{
+    "name": "@anolilab/semantic-release-preset",
+    "version": "8.0.2",
+    "description": "Semantic-release predefined presets.",
+    "keywords": [
+        "anolilab",
+        "semantic-release",
+        "semantic-release-config",
+        "changelog",
+        "publish",
+        "release",
+        "npm",
+        "pnpm",
+        "github",
+        "git",
+        "@anolilab/semantic-release-pnpm",
+        "@semantic-release/changelog",
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/exec",
+        "@semantic-release/git",
+        "@semantic-release/github",
+        "@semantic-release/npm",
+        "@semantic-release/release-notes-generator"
+    ],
+    "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/semantic-release-preset",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/anolilab/semantic-release.git",
+        "directory": "packages/semantic-release-preset"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/prisis"
+        },
+        {
+            "type": "consulting",
+            "url": "https://anolilab.com/support"
+        }
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "Daniel Bannert",
+        "email": "d.bannert@anolilab.de"
+    },
+    "exports": {
+        ".": {
+            "require": "./config/without-npm.json",
+            "import": "./config/without-npm.json"
+        },
+        "./npm": {
+            "require": "./config/with-npm.json",
+            "import": "./config/with-npm.json"
+        },
+        "./pnpm": {
+            "require": "./config/with-pnpm.json",
+            "import": "./config/with-pnpm.json"
+        },
+        "./yarn": {
+            "require": "./config/with-yarn.json",
+            "import": "./config/with-yarn.json"
+        },
+        "./package.json": "./package.json"
+    },
+    "main": "config/without-npm.json",
+    "source": "src/postinstall.ts",
+    "files": [
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE.md",
+        "config"
+    ],
+    "scripts": {
+        "build": "echo 'There is no need for build' && exit 0",
+        "build:prod": "echo 'There is no need for build' && exit 0",
+        "clean": "rimraf node_modules dist .eslintcache",
+        "dev": "echo 'There is no need for dev' && exit 0",
+        "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
+        "lint:eslint:fix": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs --fix",
+        "lint:packagejson": "publint --strict",
+        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
+        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
+        "lint:types": "echo 'There is no need for types' && exit 0",
+        "test": "echo 'There is no need for test' && exit 0",
+        "test:coverage": "echo 'There is no need for test' && exit 0",
+        "test:ui": "echo 'There is no need for test' && exit 0",
+        "test:watch": "echo 'There is no need for test' && exit 0"
+    },
+    "dependencies": {
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/commit-analyzer": "11.1.0",
+        "@semantic-release/exec": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
+        "@semantic-release/github": "^10.0.5",
+        "@semantic-release/release-notes-generator": "12.1.0",
+        "conventional-changelog-conventionalcommits": "7.0.2"
+    },
+    "devDependencies": {
+        "@anolilab/eslint-config": "^15.0.3",
+        "@anolilab/prettier-config": "^5.0.14",
+        "@babel/core": "^7.24.5",
+        "@rushstack/eslint-plugin-security": "^0.8.1",
+        "@secretlint/secretlint-rule-preset-recommend": "^8.2.4",
+        "conventional-changelog-conventionalcommits": "7.0.2",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.57.0",
+        "eslint-plugin-deprecation": "^2.0.0",
+        "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
+        "eslint-plugin-mdx": "^3.1.5",
+        "prettier": "^3.2.5",
+        "rimraf": "^5.0.7",
+        "secretlint": "8.1.2",
+        "semantic-release": "^23.1.1",
+        "sort-package-json": "^2.10.0",
+        "typescript": "^5.4.5"
+    },
+    "peerDependencies": {
+        "@anolilab/semantic-release-pnpm": "workspace:*",
+        "@semantic-release/npm": "^11.0.2",
+        "semantic-release": "^20.0 || ^21.0 || >=22.0.3",
+        "semantic-release-yarn": "^3.0.2"
+    },
+    "peerDependenciesMeta": {
+        "@anolilab/semantic-release-pnpm": {
+            "optional": true
+        },
+        "@semantic-release/npm": {
+            "optional": true
+        },
+        "semantic-release-yarn": {
+            "optional": true
+        }
+    },
+    "engines": {
+        "node": "^18.17 || >=20.6.1"
+    },
+    "os": [
+        "darwin",
+        "linux",
+        "win32"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    }
+}
