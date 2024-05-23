@@ -1,15 +1,11 @@
-import type SemanticReleaseError from "@semantic-release/error";
 import { ensureFileSync } from "@visulima/fs";
-import type AggregateError from "aggregate-error";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import getNpmrcPath from "../../../src/utils/get-npmrc-path";
-import { join } from "@visulima/path";
 
 const mocks = vi.hoisted(() => {
     return {
         mockedEnsureFileSync: vi.fn(),
-        mockedFindCacheDirectorySync: vi.fn(),
         mockedIsAccessibleSync: vi.fn(),
         mockedResolve: vi.fn(),
     };
@@ -22,12 +18,6 @@ vi.mock("@visulima/fs", async () => {
         ...actual,
         ensureFileSync: mocks.mockedEnsureFileSync,
         isAccessibleSync: mocks.mockedIsAccessibleSync,
-    };
-});
-
-vi.mock("@visulima/package", () => {
-    return {
-        findCacheDirectorySync: mocks.mockedFindCacheDirectorySync,
     };
 });
 
@@ -76,41 +66,16 @@ describe("getNpmrcPath", () => {
         expect(mocks.mockedIsAccessibleSync).toHaveBeenCalledWith(npmrcPath);
     });
 
-    it("should create and return a temporary npmrc path if no other .npmrc is accessible", () => {
-        expect.assertions(3);
-
-        const environment = {};
-        const cachePath = "/temporary/directory";
-        const temporaryNpmrcPath = join(cachePath, ".npmrc");
-
-        mocks.mockedIsAccessibleSync.mockReturnValue(false);
-        mocks.mockedFindCacheDirectorySync.mockReturnValue(cachePath);
-
-        const result = getNpmrcPath(cwd, environment);
-
-        expect(result).toBe(temporaryNpmrcPath);
-        expect(mocks.mockedFindCacheDirectorySync).toHaveBeenCalledWith("semantic-release-pnpm", { create: true, cwd });
-        expect(ensureFileSync).toHaveBeenCalledWith(temporaryNpmrcPath);
-    });
-
-    it("should throw an error if no .npmrc is found or accessible", () => {
+    it("should create and return a npmrc path if no other .npmrc is accessible", () => {
         expect.assertions(2);
 
         const environment = {};
 
         mocks.mockedIsAccessibleSync.mockReturnValue(false);
-        mocks.mockedFindCacheDirectorySync.mockReturnValue(undefined);
 
-        try {
-            getNpmrcPath(cwd, environment);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
-            const typedError = error as AggregateError;
+        const result = getNpmrcPath(cwd, environment);
 
-            // eslint-disable-next-line vitest/no-conditional-expect
-            expect((typedError.errors[0] as SemanticReleaseError).message).toBe("Missing `.npmrc` file.");
-            // eslint-disable-next-line vitest/no-conditional-expect
-            expect((typedError.errors[0] as SemanticReleaseError).code).toBe("ENOPNPMRC");
-        }
+        expect(result).toBe(npmrcPath);
+        expect(ensureFileSync).toHaveBeenCalledWith(npmrcPath);
     });
 });
