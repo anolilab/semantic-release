@@ -12,10 +12,6 @@ export default async function verifyPnpm({ logger }: CommonContext): Promise<voi
 
     const version = getPackageManagerVersion("pnpm");
 
-    if (version !== "pnpm") {
-        throw new AggregateError([new Error("pnpm is not installed")]);
-    }
-
     if (gte(MIN_PNPM_VERSION, version)) {
         throw new AggregateError([getError("EINVALIDPNPM", { version: String(version) })]);
     }
