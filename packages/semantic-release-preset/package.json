@@ -87,7 +87,6 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "@anolilab/package-json-utils": "3.0.9",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "11.1.0",
         "@semantic-release/exec": "^6.0.3",

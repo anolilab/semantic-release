@@ -158,9 +158,6 @@ importers:
       '@anolilab/eslint-config':
         specifier: ^15.0.3
         version: 15.0.3(@babel/core@7.24.5)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.0)(typescript@5.4.5)
-      '@anolilab/package-json-utils':
-        specifier: 3.0.9
-        version: 3.0.9
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.2.5)
@@ -279,9 +276,6 @@ importers:
       '@anolilab/eslint-config':
         specifier: ^15.0.3
         version: 15.0.3(@babel/core@7.24.5)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.0)(typescript@5.4.5)
-      '@anolilab/package-json-utils':
-        specifier: 3.0.9
-        version: 3.0.9
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.2.5)
@@ -424,9 +418,6 @@ importers:
       '@anolilab/eslint-config':
         specifier: ^15.0.3
         version: 15.0.3(@babel/core@7.24.5)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.0)(typescript@5.4.5)
-      '@anolilab/package-json-utils':
-        specifier: 3.0.9
-        version: 3.0.9
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.2.5)
@@ -559,9 +550,6 @@ importers:
 
   packages/semantic-release-preset:
     dependencies:
-      '@anolilab/package-json-utils':
-        specifier: 3.0.9
-        version: 3.0.9
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@23.1.1(typescript@5.4.5))
