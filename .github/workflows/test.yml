@@ -101,8 +101,6 @@ jobs:
               uses: "tj-actions/changed-files@20576b4b9ed46d41e2d45a2256e5e2316dde6834" # v43.0.1
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
-                  files_ignore: |
-                    packages/semantic-release-preset/**
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
                   separator: ","
 
@@ -135,6 +133,7 @@ jobs:
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
                   use-affected: "true"
                   affected-files: "${{ steps.files.outputs.all_changed_files }}"
+                  exclude-affected-projects: "semantic-release-preset"
 
     # This check runs once all dependant jobs have passed
     # It symbolizes that all required Frontend checks have succesfully passed (Or skipped)
