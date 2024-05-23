@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-preset",
-    "version": "8.0.2",
+    "version": "8.0.3",
     "description": "Semantic-release predefined presets.",
     "keywords": [
         "anolilab",
