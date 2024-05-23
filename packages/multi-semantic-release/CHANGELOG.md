@@ -1,3 +1,11 @@
+## @anolilab/multi-semantic-release 1.0.0 (2024-05-23)
+
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.0.1
+
 ## [1.0.4](https://github.com/anolilab/multi-semantic-release/compare/v1.0.3...v1.0.4) (2024-05-14)
 
 
