@@ -102,7 +102,7 @@ jobs:
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   files_ignore: |
-                    semantic-release-preset/**
+                    packages/semantic-release-preset/**
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
                   separator: ","
 
