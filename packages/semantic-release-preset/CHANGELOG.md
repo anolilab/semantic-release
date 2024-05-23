@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-preset [8.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@8.0.3...@anolilab/semantic-release-preset@8.1.0) (2024-05-23)
+
+
+### Features
+
+* moved semantic-release preset, added new presets for yarn and pnpm ([#26](https://github.com/anolilab/semantic-release/issues/26)) ([7c057c4](https://github.com/anolilab/semantic-release/commit/7c057c45977c00a06c057a360a13a7f1993d808d))
+
 ## @anolilab/semantic-release-preset [8.0.3](https://github.com/anolilab/javascript-style-guide/compare/@anolilab/semantic-release-preset@8.0.2...@anolilab/semantic-release-preset@8.0.3) (2023-12-22)
 
 
