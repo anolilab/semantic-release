@@ -1,3 +1,16 @@
+## @anolilab/multi-semantic-release [1.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@1.0.4...@anolilab/multi-semantic-release@1.1.0) (2024-05-23)
+
+
+### Features
+
+* moved semantic-release preset, added new presets for yarn and pnpm ([#26](https://github.com/anolilab/semantic-release/issues/26)) ([7c057c4](https://github.com/anolilab/semantic-release/commit/7c057c45977c00a06c057a360a13a7f1993d808d))
+
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.0
+
 ## [1.0.4](https://github.com/anolilab/multi-semantic-release/compare/v1.0.3...v1.0.4) (2024-05-14)
 
 
