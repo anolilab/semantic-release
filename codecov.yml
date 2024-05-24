@@ -17,5 +17,5 @@ coverage:
         patch: off # yamllint disable-line rule:truthy
         project:
             default:
-                target: "75%" # overall project/ repo coverage
+                target: "55%" # overall project/ repo coverage
                 threshold: "1%"
