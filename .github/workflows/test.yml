@@ -51,7 +51,7 @@ jobs:
                   filters: ".github/file-filters.yml"
 
     test:
-        name: "Test (node-${{ matrix.node_version }}, ${{ matrix.os }})"
+        name: "Test semantic-release version ${{ matrix.semantic_release_version }} on (node-${{ matrix.node_version }}, ${{ matrix.os }})"
         if: "needs.files-changed.outputs.packages == 'true'"
         needs: "files-changed"
         strategy:
@@ -60,10 +60,12 @@ jobs:
                 os:
                     - "ubuntu-latest"
                 node_version: ["18", "20", "21", "22"]
+                semantic_release_version: ["^20", "^21", "^22"]
                 # On the other platforms, we only test the lts node version
                 include:
                     - os: "macos-latest"
                       node_version: "20"
+                      semantic_release_version: ["^22"]
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
@@ -94,6 +96,11 @@ jobs:
               uses: "anolilab/workflows/step/setup@main"
               with:
                   node-version: "${{ matrix.node_version }}"
+
+            - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
+              run: "pnpm i -D semantic-release@${{ matrix.semantic_release_version }}"
+              env:
+                  SKIP_CHECK: "true"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
