@@ -243,8 +243,8 @@ importers:
         specifier: ^5.0.7
         version: 5.0.7
       secretlint:
-        specifier: 8.2.3
-        version: 8.2.3
+        specifier: 8.2.4
+        version: 8.2.4
       semantic-release:
         specifier: ^23.1.1
         version: 23.1.1(typescript@5.4.5)
@@ -6750,11 +6750,6 @@ packages:
 
   secretlint@8.1.2:
     resolution: {integrity: sha512-YJf1WoIu+bevQdAwc1YnK9KdytOJ+5g9lRa90nmTyC2WlhIBK7s6CEVw46kUzxn4y+UVEF9POn7vDsyThqrQQQ==}
-    engines: {node: ^14.13.1 || >=16.0.0}
-    hasBin: true
-
-  secretlint@8.2.3:
-    resolution: {integrity: sha512-B+Qqb1GwidwDUOryXWtGO+p4FfgvzyaVApPnq7eBBggyGhb3UTSfqX4Tupn2tMaq8gowLZrY8xYixHiPvpfeVw==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
 
@@ -14784,7 +14779,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.24.2
       index-to-position: 0.1.2
-      type-fest: 4.8.3
+      type-fest: 4.18.2
 
   parse-latin@4.3.0:
     dependencies:
@@ -15493,19 +15488,6 @@ snapshots:
       regexp-ast-analysis: 0.7.1
 
   secretlint@8.1.2:
-    dependencies:
-      '@secretlint/config-creator': 8.2.4
-      '@secretlint/formatter': 8.2.4
-      '@secretlint/node': 8.2.4
-      '@secretlint/profiler': 8.2.4
-      debug: 4.3.4
-      globby: 14.0.1
-      meow: 12.1.1
-      read-pkg: 8.1.0
-    transitivePeerDependencies:
-      - supports-color
-
-  secretlint@8.2.3:
     dependencies:
       '@secretlint/config-creator': 8.2.4
       '@secretlint/formatter': 8.2.4

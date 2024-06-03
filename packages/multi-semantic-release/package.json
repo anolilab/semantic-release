@@ -92,7 +92,7 @@
         "prettier": "^3.2.5",
         "publint": "^0.2.8",
         "rimraf": "^5.0.7",
-        "secretlint": "8.2.3",
+        "secretlint": "8.2.4",
         "semantic-release": "^23.1.1",
         "sort-package-json": "^2.10.0",
         "tempy": "^3.1.0",
