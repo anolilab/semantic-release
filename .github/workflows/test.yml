@@ -65,7 +65,7 @@ jobs:
                 include:
                     - os: "macos-latest"
                       node_version: "20"
-                      semantic_release_version: ["^22"]
+                      semantic_release_version: "^22"
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
@@ -96,6 +96,7 @@ jobs:
               uses: "anolilab/workflows/step/setup@main"
               with:
                   node-version: "${{ matrix.node_version }}"
+                  enable-nx-cache: false
 
             - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
               run: |
