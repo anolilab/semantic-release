@@ -91,7 +91,7 @@
             "@anolilab/rc": "workspace:*",
             "@anolilab/semantic-release-pnpm": "workspace:*",
             "braces@<3.0.3": ">=3.0.3",
-            "chrono-node@<2.2.4": ">=2.7.5",
+            "chrono-node@<2.2.4": ">=2.7.6",
             "npm@>=7.9.0 <8.11.0": ">=8.11.0",
             "semver@>=7.0.0 <7.5.2": ">=7.5.2"
         }
