@@ -1,3 +1,10 @@
+## @anolilab/rc [1.1.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.1...@anolilab/rc@1.1.2) (2024-06-11)
+
+
+### Bug Fixes
+
+* **rc:** updated @visulima/fs dep ([781140b](https://github.com/anolilab/semantic-release/commit/781140b49a38194820ba69d0aa35a089f63e31d1))
+
 ## @anolilab/rc [1.1.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.0...@anolilab/rc@1.1.1) (2024-06-11)
 
 
