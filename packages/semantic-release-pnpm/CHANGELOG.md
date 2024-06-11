@@ -1,3 +1,16 @@
+## @anolilab/semantic-release-pnpm [1.1.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.0...@anolilab/semantic-release-pnpm@1.1.1) (2024-06-11)
+
+
+### Bug Fixes
+
+* allow node v22 ([b1df683](https://github.com/anolilab/semantic-release/commit/b1df683ebf9ff1fd687fe084e240ac0b50d37a19))
+
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 1.1.1
+
 ## @anolilab/semantic-release-pnpm [1.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.0.1...@anolilab/semantic-release-pnpm@1.1.0) (2024-05-23)
 
 
