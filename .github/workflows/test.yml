@@ -200,7 +200,7 @@ jobs:
         needs: ["files-changed", "test-multi-semantic-release", "test-packages"]
         name: "Check Test Run"
         # This is necessary since a failed/skipped dependent job would cause this job to be skipped
-        if: "always() && (needs.test.result == 'success' || needs.test.result == 'skipped')"
+        if: "always() && (needs.test-packages.result == 'success' || needs.test-packages.result == 'skipped') && (needs.test-multi-semantic-release.result == 'success' || needs.test-multi-semantic-release.result == 'skipped')"
         runs-on: "ubuntu-22.04"
         steps:
             # If any jobs we depend on fail, we will fail since this is a required check
