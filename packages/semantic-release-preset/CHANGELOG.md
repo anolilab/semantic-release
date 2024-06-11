@@ -1,3 +1,19 @@
+## @anolilab/semantic-release-preset [9.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@8.1.2...@anolilab/semantic-release-preset@9.0.0) (2024-06-11)
+
+### ⚠ BREAKING CHANGES
+
+* **semantic-release-preset:** Upgraded conventional-changelog-conventionalcommits v8, this can be only use with semantic-version 24
+
+### Bug Fixes
+
+* **semantic-release-preset:** update peer dep of @semantic-release/npm ([477839f](https://github.com/anolilab/semantic-release/commit/477839fbb5a1bbaddd344c15d540e0579f06db04))
+* **semantic-release-preset:** updated @semantic-release/commit-analyzer v13, @semantic-release/release-notes-generator v14 and conventional-changelog-conventionalcommits v8 ([f0514bd](https://github.com/anolilab/semantic-release/commit/f0514bd27a0ddcc5a965717e2982282d2f50128c))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.3
+
 ## @anolilab/semantic-release-preset [8.1.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@8.1.1...@anolilab/semantic-release-preset@8.1.2) (2024-06-11)
 
 
