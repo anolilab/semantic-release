@@ -50,7 +50,7 @@ jobs:
                   token: "${{ github.token }}"
                   filters: ".github/file-filters.yml"
 
-    test:
+    test-multi-semantic-release:
         name: "Test semantic-release version ${{ matrix.semantic_release_version }} on (node-${{ matrix.node_version }}, ${{ matrix.os }})"
         if: "needs.files-changed.outputs.packages == 'true'"
         needs: "files-changed"
@@ -60,12 +60,12 @@ jobs:
                 os:
                     - "ubuntu-latest"
                 node_version: ["18", "20", "21", "22"]
-                semantic_release_version: ["^20", "^21", "^22"]
+                semantic_release_version: ["^20", "^21", "^22", "^23", "^24"]
                 # On the other platforms, we only test the lts node version
                 include:
                     - os: "macos-latest"
                       node_version: "20"
-                      semantic_release_version: ["^22"]
+                      semantic_release_version: "^22"
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
@@ -96,11 +96,62 @@ jobs:
               uses: "anolilab/workflows/step/setup@main"
               with:
                   node-version: "${{ matrix.node_version }}"
+                  enable-nx-cache: false
 
             - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
-              run: "pnpm i -D semantic-release@${{ matrix.semantic_release_version }}"
+              run: |
+                pnpm add -D semantic-release@${{ matrix.semantic_release_version }} --filter=multi-semantic-release
               env:
                   SKIP_CHECK: "true"
+
+            - name: "Run tests"
+              shell: "bash"
+              run: "pnpm run --filter=multi-semantic-release test"
+
+    test-packages:
+        name: "Test (node-${{ matrix.node_version }}, ${{ matrix.os }})"
+        if: "needs.files-changed.outputs.packages == 'true'"
+        needs: "files-changed"
+        strategy:
+            max-parallel: 4
+            matrix:
+                os:
+                    - "ubuntu-latest"
+                node_version: ["18", "20", "21", "22"]
+                # On the other platforms, we only test the lts node version
+                include:
+                    - os: "macos-latest"
+                      node_version: "20"
+            fail-fast: false
+        runs-on: "${{ matrix.os }}"
+        env:
+            NODE: "${{ matrix.node_version }}"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142" # v2.7.0
+              with:
+                  egress-policy: "audit"
+
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29" # v4.1.6
+              env:
+                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
+                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
+                  EMAIL: "github-actions[bot]@users.noreply.github.com"
+              with:
+                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
+                  # Pulls all commits (needed for NX)
+                  fetch-depth: 0
+
+            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
+              id: "setSHAs"
+              uses: "nrwl/nx-set-shas@40f1175ceec169e68c9857c27aa7c5063692aa9a" # v4
+
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup@main"
+              with:
+                  node-version: "${{ matrix.node_version }}"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
@@ -146,10 +197,10 @@ jobs:
     # It symbolizes that all required Frontend checks have succesfully passed (Or skipped)
     # This check is the only required GitHub check
     test-required-check:
-        needs: ["files-changed", "test"]
+        needs: ["files-changed", "test-multi-semantic-release", "test-packages"]
         name: "Check Test Run"
         # This is necessary since a failed/skipped dependent job would cause this job to be skipped
-        if: "always() && (needs.test.result == 'success' || needs.test.result == 'skipped')"
+        if: "always() && (needs.test-packages.result == 'success' || needs.test-packages.result == 'skipped') && (needs.test-multi-semantic-release.result == 'success' || needs.test-multi-semantic-release.result == 'skipped')"
         runs-on: "ubuntu-22.04"
         steps:
             # If any jobs we depend on fail, we will fail since this is a required check
