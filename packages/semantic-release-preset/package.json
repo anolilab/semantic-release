@@ -117,8 +117,8 @@
     },
     "peerDependencies": {
         "@anolilab/semantic-release-pnpm": "1.1.2",
-        "@semantic-release/npm": "^11.0.2",
-        "semantic-release": "^24",
+        "@semantic-release/npm": "^12.0.1",
+        "semantic-release": "^24.0.0",
         "semantic-release-yarn": "^3.0.2"
     },
     "peerDependenciesMeta": {
