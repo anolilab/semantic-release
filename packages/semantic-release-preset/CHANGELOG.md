@@ -1,3 +1,16 @@
+## @anolilab/semantic-release-preset [8.1.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@8.1.1...@anolilab/semantic-release-preset@8.1.2) (2024-06-11)
+
+
+### Bug Fixes
+
+* **semantic-release-preset:** updated @semantic-release/github dep ([3b34099](https://github.com/anolilab/semantic-release/commit/3b34099c67909bb857ba2a7419acd30d7e8138f4))
+
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.2
+
 ## @anolilab/semantic-release-preset [8.1.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@8.1.0...@anolilab/semantic-release-preset@8.1.1) (2024-06-11)
 
 
