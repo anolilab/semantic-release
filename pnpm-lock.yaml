@@ -22,13 +22,13 @@ importers:
         version: 5.0.3(@commitlint/cli@19.3.0(@types/node@20.14.2)(typescript@5.5.2))(@types/node@20.14.2)(typescript@5.5.2)
       '@anolilab/lint-staged-config':
         specifier: ^2.1.7
-        version: 2.1.7(eslint@8.57.0)(husky@9.0.11)(lint-staged@15.2.7)(prettier@3.3.2)(secretlint@8.2.4)
+        version: 2.1.7(eslint@8.57.0)(husky@9.0.11)(lint-staged@15.2.7)(prettier@3.3.3)(secretlint@8.2.4)
       '@anolilab/multi-semantic-release':
         specifier: workspace:*
         version: link:packages/multi-semantic-release
       '@anolilab/prettier-config':
         specifier: ^5.0.14
-        version: 5.0.14(prettier@3.3.2)
+        version: 5.0.14(prettier@3.3.3)
       '@anolilab/textlint-config':
         specifier: ^8.0.16
         version: 8.0.16(textlint@14.0.4)
@@ -81,8 +81,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
+        specifier: ^3.3.3
+        version: 3.3.3
       publint:
         specifier: ^0.2.8
         version: 0.2.8
@@ -161,7 +161,7 @@ importers:
         version: 15.0.3(@babel/core@7.24.7)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.0)(typescript@5.5.2)
       '@anolilab/prettier-config':
         specifier: ^5.0.14
-        version: 5.0.14(prettier@3.3.2)
+        version: 5.0.14(prettier@3.3.3)
       '@anolilab/semantic-release-pnpm':
         specifier: workspace:*
         version: link:../semantic-release-pnpm
@@ -235,8 +235,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
+        specifier: ^3.3.3
+        version: 3.3.3
       publint:
         specifier: ^0.2.8
         version: 0.2.8
@@ -279,7 +279,7 @@ importers:
         version: 15.0.3(@babel/core@7.24.7)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.0)(typescript@5.5.2)
       '@anolilab/prettier-config':
         specifier: ^5.0.14
-        version: 5.0.14(prettier@3.3.2)
+        version: 5.0.14(prettier@3.3.3)
       '@babel/core':
         specifier: ^7.24.7
         version: 7.24.7
@@ -350,8 +350,8 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0
       prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
+        specifier: ^3.3.3
+        version: 3.3.3
       rimraf:
         specifier: ^5.0.7
         version: 5.0.7
@@ -421,7 +421,7 @@ importers:
         version: 15.0.3(@babel/core@7.24.7)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@9.5.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.5.0)(typescript@5.5.2)
       '@anolilab/prettier-config':
         specifier: ^5.0.14
-        version: 5.0.14(prettier@3.3.2)
+        version: 5.0.14(prettier@3.3.3)
       '@babel/core':
         specifier: ^7.24.7
         version: 7.24.7
@@ -519,8 +519,8 @@ importers:
         specifier: ^6.2.0
         version: 6.2.0
       prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
+        specifier: ^3.3.3
+        version: 3.3.3
       rimraf:
         specifier: ^5.0.7
         version: 5.0.7
@@ -578,7 +578,7 @@ importers:
         version: 15.0.3(@babel/core@7.24.7)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@9.5.0))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.5.0)(typescript@5.5.2)
       '@anolilab/prettier-config':
         specifier: ^5.0.14
-        version: 5.0.14(prettier@3.3.2)
+        version: 5.0.14(prettier@3.3.3)
       '@anolilab/semantic-release-pnpm':
         specifier: workspace:*
         version: link:../semantic-release-pnpm
@@ -607,8 +607,8 @@ importers:
         specifier: ^3.1.5
         version: 3.1.5(eslint@9.5.0)
       prettier:
-        specifier: ^3.3.2
-        version: 3.3.2
+        specifier: ^3.3.3
+        version: 3.3.3
       rimraf:
         specifier: ^5.0.7
         version: 5.0.7
@@ -6151,8 +6151,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.3.2:
-    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -7889,7 +7889,7 @@ snapshots:
       - svelte-eslint-parser
       - vue-eslint-parser
 
-  '@anolilab/lint-staged-config@2.1.7(eslint@8.57.0)(husky@9.0.11)(lint-staged@15.2.7)(prettier@3.3.2)(secretlint@8.2.4)':
+  '@anolilab/lint-staged-config@2.1.7(eslint@8.57.0)(husky@9.0.11)(lint-staged@15.2.7)(prettier@3.3.3)(secretlint@8.2.4)':
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
       find-up: 5.0.0
@@ -7898,7 +7898,7 @@ snapshots:
       shell-quote: 1.8.1
     optionalDependencies:
       eslint: 8.57.0
-      prettier: 3.3.2
+      prettier: 3.3.3
       secretlint: 8.2.4
 
   '@anolilab/package-json-utils@3.0.9':
@@ -7906,10 +7906,10 @@ snapshots:
       dot-path-value: 0.0.10
       read-pkg-up: 7.0.1
 
-  '@anolilab/prettier-config@5.0.14(prettier@3.3.2)':
+  '@anolilab/prettier-config@5.0.14(prettier@3.3.3)':
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
-      prettier: 3.3.2
+      prettier: 3.3.3
 
   '@anolilab/textlint-config@8.0.16(textlint@14.0.4)':
     dependencies:
@@ -15051,7 +15051,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.3.2: {}
+  prettier@3.3.3: {}
 
   pretty-format@29.7.0:
     dependencies:

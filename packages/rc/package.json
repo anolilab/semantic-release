@@ -102,7 +102,7 @@
         "eslint-plugin-mdx": "^3.1.5",
         "eslint-plugin-vitest": "^0.4.1",
         "eslint-plugin-vitest-globals": "^1.5.0",
-        "prettier": "^3.3.2",
+        "prettier": "^3.3.3",
         "rimraf": "^5.0.7",
         "secretlint": "8.2.4",
         "semantic-release": "^24.0.0",
