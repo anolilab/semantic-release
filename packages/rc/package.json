@@ -79,7 +79,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "^15.0.3",
         "@anolilab/prettier-config": "^5.0.14",
-        "@babel/core": "^7.24.7",
+        "@babel/core": "^7.24.9",
         "@rushstack/eslint-plugin-security": "^0.8.1",
         "@secretlint/secretlint-rule-preset-recommend": "^8.2.4",
         "@semantic-release/changelog": "^6.0.3",
