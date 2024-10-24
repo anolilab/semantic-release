@@ -72,7 +72,7 @@
         "production": ["default"]
     },
     "parallel": 5,
-    "extends": "@nrwl/workspace/presets/npm.json",
+    "extends": "@nx/workspace/presets/npm.json",
     "affected": {
         "defaultBase": "main"
     },
