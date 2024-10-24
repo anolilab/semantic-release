@@ -80,6 +80,58 @@ Given your application name (appname), rc will look in all the obvious places fo
 
 All configuration sources that were found will be flattened into one object, in this exact order.
 
+## Api Docs
+
+<!-- TYPEDOC -->
+
+# @anolilab/rc
+
+## Functions
+
+### rc()
+
+```ts
+function rc(name, options): object;
+```
+
+#### Parameters
+
+• **name**: `string`
+
+• **options** = `{}`
+
+• **options.config?**: `string`
+
+• **options.cwd?**: `string`
+
+• **options.defaults?**: `Record`\<`string`, `any`\>
+
+• **options.home?**: `string`
+
+• **options.stopAt?**: `string`
+
+#### Returns
+
+`object`
+
+##### config
+
+```ts
+config: Record<string, any>;
+```
+
+##### files
+
+```ts
+files: string[];
+```
+
+#### Defined in
+
+[index.ts:171](https://github.com/anolilab/multi-semantic-release/blob/50e042b932da901fedf1ab4b36375331825675c6/packages/rc/src/index.ts#L171)
+
+<!-- /TYPEDOC -->
+
 ## Related
 
 -   [rc](https://github.com/dominictarr/rc) - The non-configurable configuration loader for lazy people.

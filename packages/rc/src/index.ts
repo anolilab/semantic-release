@@ -118,8 +118,8 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
             configFiles.add(file);
         }
 
-        if (isAccessibleSync(`${file}.json`)) {
-            configFiles.add(`${file}.json`);
+        if (isAccessibleSync(`${file as string}.json`)) {
+            configFiles.add(`${file as string}.json`);
         }
     }
 
@@ -195,7 +195,7 @@ export const rc = (
 
     // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
     for (const file of configFiles) {
-        const content = readFileSync(file);
+        const content = readFileSync(file, { buffer: false });
 
         if (isJson(content)) {
             configs.push(parseJson(stripJsonComments(content)));

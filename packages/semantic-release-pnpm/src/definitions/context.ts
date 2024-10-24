@@ -1,6 +1,5 @@
 import type stream from "node:stream";
-
-import type { Commit, Options } from "semantic-release";
+import type { Options, Commit } from "./semantic-release";
 
 // @todo these types need testing
 
@@ -19,7 +18,6 @@ export interface CommonContext {
     // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L256-L260
     cwd: string;
     env: typeof process.env;
-
     // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L262
     logger: {
         // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/lib/get-logger.js#L12-L14
@@ -27,12 +25,9 @@ export interface CommonContext {
         log: (...message: string[]) => void;
         success: (...message: string[]) => void;
     };
-
     // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L267
     options: Options;
-
     stderr: stream.Writable;
-
     stdout: stream.Writable;
 }
 

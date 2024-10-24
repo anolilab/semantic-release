@@ -13,6 +13,7 @@ const addExtensions = (sources: string[][]) =>
     sources.reduce<string[][]>((accumulator, pathArray) => {
         ["", ".json"].forEach((extension) => {
             const current = [pathArray].flat();
+            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
             current[current.length - 1] += extension;
             accumulator.push(current);
         });

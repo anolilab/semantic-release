@@ -1,6 +1,7 @@
-import package_ from "../../package.json";
+import packageJson from "../../package.json";
 
-const linkify = (file: string) => `${package_.homepage}/blob/main/${file}`;
+// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+const linkify = (file: string) => packageJson.homepage + "/blob/main/" + file;
 
 interface ErrorDetails {
     details: string;
