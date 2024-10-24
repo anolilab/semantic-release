@@ -10,7 +10,7 @@ import type { ReleaseInfo } from "./utils/get-release-info";
 import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
 
-export default async (pluginConfig: PluginConfig, package_: PackageJson, context: AddChannelContext): Promise<ReleaseInfo | false> => {
+export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: AddChannelContext): Promise<ReleaseInfo | false> => {
     const {
         cwd,
         env,
@@ -20,15 +20,16 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
         stdout,
     } = context;
 
-    if (shouldPublish(pluginConfig, package_)) {
-        const registry = getRegistry(package_, context);
+    if (shouldPublish(pluginConfig, packageJson)) {
+        const registry = getRegistry(packageJson, context);
         const distributionTag = getChannel(channel);
 
         logger.log(`Adding version ${version} to npm registry on dist-tag ${distributionTag}`);
 
         const npmrc = getNpmrcPath(cwd, env);
 
-        const result = execa("pnpm", ["dist-tag", "add", `${package_.name}@${version}`, distributionTag, "--userconfig", npmrc, "--registry", registry], {
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        const result = execa("pnpm", ["dist-tag", "add", `${packageJson.name}@${version}`, distributionTag, "--userconfig", npmrc, "--registry", registry], {
             cwd,
             env,
             preferLocal: true,
@@ -39,12 +40,14 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
 
         await result;
 
-        logger.log(`Added ${package_.name}@${version} to dist-tag @${distributionTag} on ${registry}`);
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        logger.log(`Added ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}`);
 
-        return getReleaseInfo(package_, context, distributionTag, registry);
+        return getReleaseInfo(packageJson, context, distributionTag, registry);
     }
 
-    logger.log(`Skip adding to npm channel as ${reasonToNotPublish(pluginConfig, package_)}`);
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    logger.log(`Skip adding to npm channel as ${reasonToNotPublish(pluginConfig, packageJson)}`);
 
     return false;
 };

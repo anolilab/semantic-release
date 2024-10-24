@@ -59,7 +59,7 @@ describe("set-npmrc-auth", () => {
     it('should set auth with "NPM_TOKEN"', async () => {
         expect.assertions(2);
 
-        const npmrc = temporaryFile({ name: ".npmrc" });
+        const npmrc: string = temporaryFile({ name: ".npmrc" });
 
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
@@ -75,7 +75,7 @@ describe("set-npmrc-auth", () => {
     it('should set auth with "NPM_USERNAME", "NPM_PASSWORD" and "NPM_EMAIL"', async () => {
         expect.assertions(2);
 
-        const npmrc = temporaryFile({ name: ".npmrc" });
+        const npmrc: string = temporaryFile({ name: ".npmrc" });
 
         const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
 
@@ -94,7 +94,7 @@ describe("set-npmrc-auth", () => {
     it('should preserve home ".npmrc"', async () => {
         expect.assertions(3);
 
-        const npmrc = temporaryFile({ name: ".npmrc" });
+        const npmrc: string = temporaryFile({ name: ".npmrc" });
 
         await writeFile(join(home, ".npmrc"), "home_config = test");
 
@@ -114,7 +114,7 @@ describe("set-npmrc-auth", () => {
     it('should preserve home and local ".npmrc"', async () => {
         expect.assertions(3);
 
-        const npmrc = temporaryFile({ name: ".npmrc" });
+        const npmrc: string = temporaryFile({ name: ".npmrc" });
 
         await writeFile(join(cwd, ".npmrc"), "cwd_config = test");
         await writeFile(join(home, ".npmrc"), "home_config = test");

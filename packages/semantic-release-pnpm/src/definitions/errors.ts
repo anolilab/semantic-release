@@ -44,7 +44,7 @@ Your configuration for the \`branches\` option is \`${branches.join(",")}\`.`,
     EINVALIDNPMPUBLISH: ({ npmPublish }: ErrorContext) => {
         return {
             details: `The [npmPublish option](${linkify("README.md#npmpublish")}) option, if defined, must be a \`Boolean\`.
-Your configuration for the \`npmPublish\` option is \`${npmPublish}\`.`,
+Your configuration for the \`npmPublish\` option is \`${String(npmPublish)}\`.`,
             message: "Invalid `npmPublish` option.",
         };
     },
@@ -52,7 +52,7 @@ Your configuration for the \`npmPublish\` option is \`${npmPublish}\`.`,
         return {
             details: `The [npm token](${linkify(
                 "README.md#npm-registry-authentication",
-            )}) configured in the \`NPM_TOKEN\` environment variable must be a valid [token](https://docs.npmjs.com/getting-started/working_with_tokens) allowing to publish to the registry \`${registry}\`.
+            )}) configured in the \`NPM_TOKEN\` environment variable must be a valid [token](https://docs.npmjs.com/getting-started/working_with_tokens) allowing to publish to the registry \`${String(registry)}\`.
 If you are using Two Factor Authentication for your account, set its level to ["Authorization only"](https://docs.npmjs.com/getting-started/using-two-factor-authentication#levels-of-authentication) in your account settings. **semantic-release** cannot publish with the default "Authorization and writes" level.
 Please make sure to set the \`NPM_TOKEN\` environment variable in your CI with the exact value of the npm token.`,
             message: "Invalid npm token.",
@@ -61,7 +61,7 @@ Please make sure to set the \`NPM_TOKEN\` environment variable in your CI with t
     EINVALIDPKGROOT: ({ pkgRoot }: ErrorContext) => {
         return {
             details: `The [pkgRoot option](${linkify("README.md#pkgroot")}) option, if defined, must be a \`String\`.
-Your configuration for the \`pkgRoot\` option is \`${pkgRoot}\`.`,
+Your configuration for the \`pkgRoot\` option is \`${String(pkgRoot)}\`.`,
             message: "Invalid `pkgRoot` option.",
         };
     },
@@ -71,21 +71,21 @@ Your configuration for the \`pkgRoot\` option is \`${pkgRoot}\`.`,
                 "README.md#install",
             )}) to review which versions of Pnpm are currently supported
 
-Your version of Pnpm is "${version}".`,
+Your version of Pnpm is "${String(version)}".`,
             message: "Incompatible Pnpm version detected.",
         };
     },
     EINVALIDPUBLISHBRANCH: ({ publishBranch }: ErrorContext) => {
         return {
             details: `The [publishBranch option](${linkify("README.md#publishBranch")}) option, if defined, must be a \`String\`.
-Your configuration for the \`publishBranch\` option is \`${publishBranch}\`.`,
+Your configuration for the \`publishBranch\` option is \`${String(publishBranch)}\`.`,
             message: "Invalid `publishBranch` option.",
         };
     },
     EINVALIDTARBALLDIR: ({ tarballDir }: ErrorContext) => {
         return {
             details: `The [tarballDir option](${linkify("README.md#tarballdir")}) option, if defined, must be a \`String\`.
-Your configuration for the \`tarballDir\` option is \`${tarballDir}\`.`,
+Your configuration for the \`tarballDir\` option is \`${String(tarballDir)}\`.`,
             message: "Invalid `tarballDir` option.",
         };
     },
@@ -94,7 +94,7 @@ Your configuration for the \`tarballDir\` option is \`${tarballDir}\`.`,
             details: `An [npm token](${linkify(
                 "README.md#npm-registry-authentication",
             )}) must be created and set in the \`NPM_TOKEN\` environment variable on your CI environment.
-Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and to set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow to publish to the registry \`${registry}\`.`,
+Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and to set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow to publish to the registry \`${String(registry)}\`.`,
             message: "No npm token specified.",
         };
     },

@@ -18,6 +18,6 @@ export const getReleaseInfo = (
     return {
         channel: distributionTag,
         name: `pnpm package (@${distributionTag} dist-tag)`,
-        url: normalizeUrl(registry) === normalizeUrl(DEFAULT_NPM_REGISTRY) ? `https://www.npmjs.com/package/${name}/v/${version}` : undefined,
+        url: normalizeUrl(registry) === normalizeUrl(DEFAULT_NPM_REGISTRY) ? `https://www.npmjs.com/package/${name as string}/v/${version}` : undefined,
     };
 };

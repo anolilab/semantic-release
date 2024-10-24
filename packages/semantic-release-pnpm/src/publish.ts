@@ -11,7 +11,7 @@ import type { ReleaseInfo } from "./utils/get-release-info";
 import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
 
-export default async (pluginConfig: PluginConfig, package_: PackageJson, context: PublishContext): Promise<ReleaseInfo | false> => {
+export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: PublishContext): Promise<ReleaseInfo | false> => {
     const {
         cwd,
         env,
@@ -22,9 +22,9 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
     } = context;
     const { pkgRoot, publishBranch: publishBranchConfig } = pluginConfig;
 
-    if (shouldPublish(pluginConfig, package_)) {
+    if (shouldPublish(pluginConfig, packageJson)) {
         const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
-        const registry = getRegistry(package_, context);
+        const registry = getRegistry(packageJson, context);
         const distributionTag = getChannel(channel);
 
         const { stdout: currentBranch } = await execa("git", ["rev-parse", "--abbrev-ref", "HEAD"], {
@@ -36,6 +36,7 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
         const isPublishBranch = publishBranches && publishBranches.includes(currentBranch);
         const publishBranch = isPublishBranch ? currentBranch : "main";
 
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         logger.log(`Publishing version ${version} on branch ${publishBranch} to npm registry on dist-tag ${distributionTag}`);
 
         const pnpmArguments = ["publish", basePath, "--publish-branch", publishBranch, "--tag", distributionTag, "--registry", registry, "--no-git-checks"];
@@ -57,17 +58,20 @@ export default async (pluginConfig: PluginConfig, package_: PackageJson, context
             await result;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            logger.log(`Failed to publish ${package_.name}@${version} to dist-tag @${distributionTag} on ${registry}: ${error.message ?? error}`);
+            // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+            logger.log(`Failed to publish ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}: ${error.message ?? error}`);
 
             throw new AggregateError([error]);
         }
 
-        logger.log(`Published ${package_.name}@${version} to dist-tag @${distributionTag} on ${registry}`);
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        logger.log(`Published ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}`);
 
-        return getReleaseInfo(package_, context, distributionTag, registry);
+        return getReleaseInfo(packageJson, context, distributionTag, registry);
     }
 
-    logger.log(`Skip publishing to npm registry as ${reasonToNotPublish(pluginConfig, package_)}`);
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    logger.log(`Skip publishing to npm registry as ${reasonToNotPublish(pluginConfig, packageJson)}`);
 
     return false;
 };
