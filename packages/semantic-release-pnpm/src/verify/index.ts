@@ -18,7 +18,6 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     } catch (error: any) {
         const typedError = error as AggregateError;
 
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         errors = [...errors, ...(typedError.errors ?? [error])];
     }
 
@@ -34,7 +33,6 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     } catch (error: any) {
         const typedError = error as AggregateError;
 
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         errors = [...errors, ...(typedError.errors ?? [error])];
     }
 

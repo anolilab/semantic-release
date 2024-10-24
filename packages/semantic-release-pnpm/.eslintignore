@@ -9,7 +9,7 @@ coverage
 __fixtures__
 dist
 
-tsup.config.ts
+packem.config.ts
 
 src/definitions/context.ts
 
