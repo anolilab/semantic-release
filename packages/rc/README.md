@@ -128,7 +128,7 @@ files: string[];
 
 #### Defined in
 
-[index.ts:171](https://github.com/anolilab/multi-semantic-release/blob/50e042b932da901fedf1ab4b36375331825675c6/packages/rc/src/index.ts#L171)
+[index.ts:171](https://github.com/anolilab/multi-semantic-release/blob/933cf743eb516e5d03a1005124f641ba33a2f9e4/packages/rc/src/index.ts#L171)
 
 <!-- /TYPEDOC -->
 

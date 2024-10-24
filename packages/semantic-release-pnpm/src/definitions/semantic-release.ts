@@ -7,22 +7,6 @@
 
 export interface BranchObject {
     /**
-     * The name of git branch.
-     *
-     * A `name` is required for all types of branch. It can be defined as a
-     * [glob](https://github.com/micromatch/micromatch#matching-features)
-     * in which case the definition will be expanded to one per matching
-     * branch existing in the repository.
-     *
-     * If `name` doesn't match any branch existing in the repository, the
-     * definition will be ignored. For example, the default configuration
-     * includes the definition `next` and `next-major` which will become
-     * active only  when the branches `next` and/or `next-major` are
-     * created in the repository.
-     */
-    name: string;
-
-    /**
      * The distribution channel on which to publish releases from this
      * branch.
      *
@@ -46,19 +30,20 @@ export interface BranchObject {
     channel?: string | false | undefined;
 
     /**
-     * The range of [semantic versions](https://semver.org/) to support on
-     * this branch.
+     * The name of git branch.
      *
-     * A `range` only applies to maintenance branches and must be formatted
-     * like `N.N.x` or `N.x` (`N` is a number). If no range is specified
-     * but the `name` is formatted as a range, then the branch will be
-     * considered a maintenance branch and the `name` value will be used
-     * for the `range`.
+     * A `name` is required for all types of branch. It can be defined as a
+     * [glob](https://github.com/micromatch/micromatch#matching-features)
+     * in which case the definition will be expanded to one per matching
+     * branch existing in the repository.
      *
-     * Required for maintenance branches, unless `name` is formatted like
-     * `N.N.x` or `N.x` (`N` is a number).
+     * If `name` doesn't match any branch existing in the repository, the
+     * definition will be ignored. For example, the default configuration
+     * includes the definition `next` and `next-major` which will become
+     * active only  when the branches `next` and/or `next-major` are
+     * created in the repository.
      */
-    range?: string | undefined;
+    name: string;
 
     /**
      * The pre-release identifier to append to [semantic versions](https://semver.org/)
@@ -80,7 +65,22 @@ export interface BranchObject {
      *
      * Required for pre-release branches.
      */
-    prerelease?: string | boolean | undefined;
+    prerelease?: boolean | string | undefined;
+
+    /**
+     * The range of [semantic versions](https://semver.org/) to support on
+     * this branch.
+     *
+     * A `range` only applies to maintenance branches and must be formatted
+     * like `N.N.x` or `N.x` (`N` is a number). If no range is specified
+     * but the `name` is formatted as a range, then the branch will be
+     * considered a maintenance branch and the `name` value will be used
+     * for the `range`.
+     *
+     * Required for maintenance branches, unless `name` is formatted like
+     * `N.N.x` or `N.x` (`N` is a number).
+     */
+    range?: string | undefined;
 }
 
 /**
@@ -90,7 +90,7 @@ export interface BranchObject {
  * a string is a shortcut for specifying that string as the `name` field,
  * for example `"master"` expands to `{name: "master"}`.
  */
-export type BranchSpec = string | BranchObject;
+export type BranchSpec = BranchObject | string;
 
 /**
  * Specifies a plugin to use.
@@ -111,18 +111,9 @@ export type PluginSpec<T = any> = string | [string, T];
  */
 export interface Options {
     /**
-     * List of modules or file paths containing a
-     * [shareable configuration](https://semantic-release.gitbook.io/semantic-release/usage/shareable-configurations).
-     * If multiple shareable configurations are set, they will be imported
-     * in the order defined with each configuration option taking
-     * precedence over the options defined in a previous shareable
-     * configuration.
-     *
-     * **Note**: Options defined via CLI arguments or in the configuration
-     * file will take precedence over the ones defined in any shareable
-     * configuration.
+     * Any other options supported by plugins.
      */
-    extends?: ReadonlyArray<string> | string | undefined;
+    [name: string]: any;
 
     /**
      * The branches on which releases should happen. By default
@@ -156,28 +147,32 @@ export interface Options {
      * See [Workflow configuration](https://semantic-release.gitbook.io/semantic-release/usage/workflow-configuration#workflow-configuration)
      * for more details.
      */
-    branches?: ReadonlyArray<BranchSpec> | BranchSpec | undefined;
+    branches?: BranchSpec | ReadonlyArray<BranchSpec> | undefined;
 
     /**
-     * The git repository URL.
-     *
-     * Any valid git url format is supported (see
-     * [git protocols](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols))
-     *
-     * Default: `repository` property in `package.json`, or git origin url.
+     * Set to false to skip Continuous Integration environment verifications.
+     * This allows for making releases from a local machine.
      */
-    repositoryUrl?: string | undefined;
+    ci?: boolean | undefined;
 
     /**
-     * The git tag format used by **semantic-release** to identify
-     * releases. The tag name is generated with [Lodash template](https://lodash.com/docs#template)
-     * and will be compiled with the `version` variable.
-     *
-     * **Note**: The `tagFormat` must contain the `version` variable
-     * exactly once and compile to a
-     * [valid git reference](https://git-scm.com/docs/git-check-ref-format#_description).
+     * Dry-run mode, skip publishing, print next version and release notes.
      */
-    tagFormat?: string | undefined;
+    dryRun?: boolean | undefined;
+
+    /**
+     * List of modules or file paths containing a
+     * [shareable configuration](https://semantic-release.gitbook.io/semantic-release/usage/shareable-configurations).
+     * If multiple shareable configurations are set, they will be imported
+     * in the order defined with each configuration option taking
+     * precedence over the options defined in a previous shareable
+     * configuration.
+     *
+     * **Note**: Options defined via CLI arguments or in the configuration
+     * file will take precedence over the ones defined in any shareable
+     * configuration.
+     */
+    extends?: ReadonlyArray<string> | string | undefined;
 
     /**
      * Define the list of plugins to use. Plugins will run in series, in
@@ -200,23 +195,53 @@ export interface Options {
     plugins?: ReadonlyArray<PluginSpec> | undefined;
 
     /**
-     * Dry-run mode, skip publishing, print next version and release notes.
+     * The git repository URL.
+     *
+     * Any valid git url format is supported (see
+     * [git protocols](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols))
+     *
+     * Default: `repository` property in `package.json`, or git origin url.
      */
-    dryRun?: boolean | undefined;
+    repositoryUrl?: string | undefined;
 
     /**
-     * Set to false to skip Continuous Integration environment verifications.
-     * This allows for making releases from a local machine.
+     * The git tag format used by **semantic-release** to identify
+     * releases. The tag name is generated with [Lodash template](https://lodash.com/docs#template)
+     * and will be compiled with the `version` variable.
+     *
+     * **Note**: The `tagFormat` must contain the `version` variable
+     * exactly once and compile to a
+     * [valid git reference](https://git-scm.com/docs/git-check-ref-format#_description).
      */
-    ci?: boolean | undefined;
-
-    /**
-     * Any other options supported by plugins.
-     */
-    [name: string]: any;
+    tagFormat?: string | undefined;
 }
 
 export interface Commit {
+    /**
+     * The commit author information.
+     */
+    author: {
+        /**
+         * The commit author email.
+         */
+        email: string;
+
+        /**
+         * The commit author name.
+         */
+        name: string;
+
+        /**
+         * The commit author date.
+         */
+        short: string;
+    };
+
+    /**
+     * The commit body.
+     */
+    body: string;
+
     /**
      * The commit abbreviated and full hash.
      */
@@ -233,6 +258,46 @@ export interface Commit {
     };
 
     /**
+     * The committer information.
+     */
+    committer: {
+        /**
+         * The committer email.
+         */
+        email: string;
+
+        /**
+         * The committer name.
+         */
+        name: string;
+
+        /**
+         * The committer date.
+         */
+        short: string;
+    };
+
+    /**
+     * The committer date.
+     */
+    committerDate: string;
+
+    /**
+     * The commit hash.
+     */
+    hash: string;
+
+    /**
+     * The commit full message (subject and body).
+     */
+    message: string;
+
+    /**
+     * The commit subject.
+     */
+    subject: string;
+
+    /**
      * The commit abbreviated and full tree hash.
      */
     tree: {
@@ -246,69 +311,4 @@ export interface Commit {
          */
         short: string;
     };
-
-    /**
-     * The commit author information.
-     */
-    author: {
-        /**
-         * The commit author name.
-         */
-        name: string;
-
-        /**
-         * The commit author email.
-         */
-        email: string;
-
-        /**
-         * The commit author date.
-         */
-        short: string;
-    };
-
-    /**
-     * The committer information.
-     */
-    committer: {
-        /**
-         * The committer name.
-         */
-        name: string;
-
-        /**
-         * The committer email.
-         */
-        email: string;
-
-        /**
-         * The committer date.
-         */
-        short: string;
-    };
-
-    /**
-     * The commit subject.
-     */
-    subject: string;
-
-    /**
-     * The commit body.
-     */
-    body: string;
-
-    /**
-     * The commit full message (subject and body).
-     */
-    message: string;
-
-    /**
-     * The commit hash.
-     */
-    hash: string;
-
-    /**
-     * The committer date.
-     */
-    committerDate: string;
 }

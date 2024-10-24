@@ -317,8 +317,8 @@ importers:
         specifier: 18.19.59
         version: 18.19.59
       '@visulima/packem':
-        specifier: ^1.1.0
-        version: 1.1.0(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)
+        specifier: ^1.1.1
+        version: 1.1.1(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)
       '@visulima/path':
         specifier: ^1.1.1
         version: 1.1.1
@@ -487,7 +487,7 @@ importers:
         version: 3.0.7
       '@visulima/packem':
         specifier: ^1.1.1
-        version: 1.1.1(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)
+        version: 1.1.1(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)
       '@vitest/coverage-v8':
         specifier: ^2.1.3
         version: 2.1.3(vitest@2.1.3(@types/node@18.19.59)(@vitest/ui@2.1.3))
@@ -904,11 +904,6 @@ packages:
 
   '@babel/parser@7.24.7':
     resolution: {integrity: sha512-9uUYRm6OqQrCqQdG1iCBwBPZgN8ciDBro2nIOFaiRz1/BCxaI7CNvQbDHvsArAC7Tw9Hda/B3U+6ui9u4HWXPw==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
-  '@babel/parser@7.25.8':
-    resolution: {integrity: sha512-HcttkxzdPucv3nNFmfOOMfFf64KgdJVqm1KaCm25dPGMLElo9nsLvXeJECQg8UzPuBGLyTSA0ZzqCtDSzKTEoQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1794,19 +1789,9 @@ packages:
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
 
-  '@oxc-parser/binding-darwin-arm64@0.32.0':
-    resolution: {integrity: sha512-SiiPMuL5mxE/aJmpezCafrB/R0u5xdvFIvOxpg8Hdwbjx3gRSC5ys8AN2VsSU0S9wTo+SF5FCVQvU/buKTIZfA==}
-    cpu: [arm64]
-    os: [darwin]
-
   '@oxc-parser/binding-darwin-arm64@0.33.0':
     resolution: {integrity: sha512-SwF7is+HjXik4vFI3A2rLHpQuGfR2rzGtk3mRaIZBq9APT22RmxsraL1FeFHzedOYJX4VbTFT5/v2ZslVvYl6A==}
     cpu: [arm64]
-    os: [darwin]
-
-  '@oxc-parser/binding-darwin-x64@0.32.0':
-    resolution: {integrity: sha512-W0cBbkNYHqSornrfH7TOjdC5iMKhQKenkYduOIPE/WMAHkpsJWxLighD+L6XM9va38n4WmVnDPG2QhZ8v4CAaQ==}
-    cpu: [x64]
     os: [darwin]
 
   '@oxc-parser/binding-darwin-x64@0.33.0':
@@ -1814,18 +1799,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@oxc-parser/binding-linux-arm64-gnu@0.32.0':
-    resolution: {integrity: sha512-UsOdCTDNOZ1c/RQd+hUQq5KRyzJIkgxX7jWhK/jqZJZNWy8iOIxCgdIeCLQ78B15q/1R475r+TjYJzt9PcgxxA==}
-    cpu: [arm64]
-    os: [linux]
-
   '@oxc-parser/binding-linux-arm64-gnu@0.33.0':
     resolution: {integrity: sha512-b7mDHYOioevxhpWPtaAon2oCpCTGMcge7aWYN4YJ7nfl6LcPUKFbiR+4go9cC3adI8Ibni01O6RC6Grh1x1u8A==}
-    cpu: [arm64]
-    os: [linux]
-
-  '@oxc-parser/binding-linux-arm64-musl@0.32.0':
-    resolution: {integrity: sha512-G02Kmvg2IJtXLp+i0m17viLgpZi4PWxM1tRyh7golpgZg73nzsQ1MkyxaqgQlz/03LIKbXrfDekg7UJtlbUpHQ==}
     cpu: [arm64]
     os: [linux]
 
@@ -1834,18 +1809,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@oxc-parser/binding-linux-x64-gnu@0.32.0':
-    resolution: {integrity: sha512-nGe3R3954YxfX00jwL8akOD6RxByyyb5LXcdSnUClJD5cZTdpqZMQML1tC3L8NRajln8mUDVLyQItNBE11igyQ==}
-    cpu: [x64]
-    os: [linux]
-
   '@oxc-parser/binding-linux-x64-gnu@0.33.0':
     resolution: {integrity: sha512-wz2/To2zUBAnCNvjicPAuozGMMlN6itJhwQbxg9jdLJ7tOhVzTs2YCmFu2mbHwD4ileVYxK7EAv+gASFmWkGhw==}
-    cpu: [x64]
-    os: [linux]
-
-  '@oxc-parser/binding-linux-x64-musl@0.32.0':
-    resolution: {integrity: sha512-C2Y62hZBKH7V6r9fC8hAAHHlPW6ojMa7WBwbQpYv4lYF16zXHamvRjdHnucWim/V9m4AXNKWlllxr4dDDTAJTg==}
     cpu: [x64]
     os: [linux]
 
@@ -1854,19 +1819,9 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@oxc-parser/binding-win32-arm64-msvc@0.32.0':
-    resolution: {integrity: sha512-25GA8cdiLofVj537x1mnMuOSXmSZ5lhFvJnuXt0DGhP+z4wUSVWlQj8/WD7y9lcg9v4MNN/qw8TJt53jBRrrLA==}
-    cpu: [arm64]
-    os: [win32]
-
   '@oxc-parser/binding-win32-arm64-msvc@0.33.0':
     resolution: {integrity: sha512-8herpeSxRjCtGKBtLfrWp54a2KTwhJcOh/n4ub8qZiprjQ2OnF8Tji0UXjPKEXz36L9kE5vCsFT0BMl7CIIiIQ==}
     cpu: [arm64]
-    os: [win32]
-
-  '@oxc-parser/binding-win32-x64-msvc@0.32.0':
-    resolution: {integrity: sha512-OMwN3LloNVXEoSNEBO0OWaMKnxSiXWMSlJUaV0pvvRKv2j3YkW6O4LANHoyQtt3paOU0bmS4zoygdP8yHTHa6Q==}
-    cpu: [x64]
     os: [win32]
 
   '@oxc-parser/binding-win32-x64-msvc@0.33.0':
@@ -2814,40 +2769,6 @@ packages:
     resolution: {integrity: sha512-NwJaSZ0jfKc0Afdc/OD+nOH51CuEB//J/8eKgzeRxPiXmeZnlWL2TUtCCLL7p1u6TD3tgHRMbqo1K2fd2k6fdg==}
     engines: {node: '>=18.* <=22.*'}
     os: [darwin, linux, win32]
-
-  '@visulima/packem@1.1.0':
-    resolution: {integrity: sha512-DoQcQgBljPr4fvMkT2AkOSkIiyc78emC+Yi5JGYwzMbN7uXyCOTvTRBKD6k0GXhSL6nq0Hj4DIVDBmcb/sSKjQ==}
-    engines: {node: '>=18.* <=22.*'}
-    hasBin: true
-    peerDependencies:
-      '@ckeditor/typedoc-plugins': 44.0.0
-      '@swc/core': ^1.5.7
-      esbuild: ^0.20.2 || ^0.21.3
-      oxc-transform: ^0.20.0
-      sucrase: ^3.35.0
-      typedoc: 0.26.10
-      typedoc-plugin-markdown: 4.2.9
-      typedoc-plugin-rename-defaults: 0.7.1
-      typescript: ^4.5 || ^5.0
-    peerDependenciesMeta:
-      '@ckeditor/typedoc-plugins':
-        optional: true
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      oxc-transform:
-        optional: true
-      sucrase:
-        optional: true
-      typedoc:
-        optional: true
-      typedoc-plugin-markdown:
-        optional: true
-      typedoc-plugin-rename-defaults:
-        optional: true
-      typescript:
-        optional: true
 
   '@visulima/packem@1.1.1':
     resolution: {integrity: sha512-fq9DWOpf45G5Hs/jluDroIO0baKMfW6J1IMPLpkh8vR3Irrbu1b/xeS6jZeDiS6dIGLM+WOm5SqFXy7zED8Lmg==}
@@ -6624,9 +6545,6 @@ packages:
     resolution: {integrity: sha512-D2FR03Vir7FIu45XBY20mTb+/ZSWB00sjU9jdQXt83gDrI4Ztz5Fs7/yy74g2N5SVQY4xY1qDr4rNddwYRVX0g==}
     engines: {node: '>=0.10.0'}
 
-  oxc-parser@0.32.0:
-    resolution: {integrity: sha512-s/1CL9DzwMI0S90DFXSbWpuiPfjwyozhtAWeAJMZFv9/FPV9xIa9hhGFDIYnuJNlr4YS+xmxgZaJvKPbZ5MEHg==}
-
   oxc-parser@0.33.0:
     resolution: {integrity: sha512-6qW0SjR8tfJFk71hx02pcolcPpJZEGHIKSa6gYFd8+OZfsMWc0DA40YfeGKc0tBsPWFlv9P/WoFRiDosPfQO1Q==}
 
@@ -8927,10 +8845,6 @@ snapshots:
     dependencies:
       '@babel/types': 7.24.7
 
-  '@babel/parser@7.25.8':
-    dependencies:
-      '@babel/types': 7.25.9
-
   '@babel/parser@7.25.9':
     dependencies:
       '@babel/types': 7.25.9
@@ -9729,49 +9643,25 @@ snapshots:
 
   '@one-ini/wasm@0.1.1': {}
 
-  '@oxc-parser/binding-darwin-arm64@0.32.0':
-    optional: true
-
   '@oxc-parser/binding-darwin-arm64@0.33.0':
-    optional: true
-
-  '@oxc-parser/binding-darwin-x64@0.32.0':
     optional: true
 
   '@oxc-parser/binding-darwin-x64@0.33.0':
     optional: true
 
-  '@oxc-parser/binding-linux-arm64-gnu@0.32.0':
-    optional: true
-
   '@oxc-parser/binding-linux-arm64-gnu@0.33.0':
-    optional: true
-
-  '@oxc-parser/binding-linux-arm64-musl@0.32.0':
     optional: true
 
   '@oxc-parser/binding-linux-arm64-musl@0.33.0':
     optional: true
 
-  '@oxc-parser/binding-linux-x64-gnu@0.32.0':
-    optional: true
-
   '@oxc-parser/binding-linux-x64-gnu@0.33.0':
-    optional: true
-
-  '@oxc-parser/binding-linux-x64-musl@0.32.0':
     optional: true
 
   '@oxc-parser/binding-linux-x64-musl@0.33.0':
     optional: true
 
-  '@oxc-parser/binding-win32-arm64-msvc@0.32.0':
-    optional: true
-
   '@oxc-parser/binding-win32-arm64-msvc@0.33.0':
-    optional: true
-
-  '@oxc-parser/binding-win32-x64-msvc@0.32.0':
     optional: true
 
   '@oxc-parser/binding-win32-x64-msvc@0.33.0':
@@ -10972,60 +10862,7 @@ snapshots:
     transitivePeerDependencies:
       - yaml
 
-  '@visulima/packem@1.1.0(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)':
-    dependencies:
-      '@antfu/install-pkg': 0.4.1
-      '@babel/parser': 7.25.8
-      '@clack/prompts': 0.7.0
-      '@rollup/plugin-alias': 5.1.1(rollup@4.24.0)
-      '@rollup/plugin-commonjs': 28.0.1(rollup@4.24.0)
-      '@rollup/plugin-dynamic-import-vars': 2.1.5(rollup@4.24.0)
-      '@rollup/plugin-inject': 5.0.5(rollup@4.24.0)
-      '@rollup/plugin-json': 6.1.0(rollup@4.24.0)
-      '@rollup/plugin-node-resolve': 15.3.0(rollup@4.24.0)
-      '@rollup/plugin-replace': 6.0.1(rollup@4.24.0)
-      '@rollup/plugin-wasm': 6.2.2(rollup@4.24.0)
-      '@rollup/pluginutils': 5.1.2(rollup@4.24.0)
-      '@visulima/cerebro': 1.1.24(yaml@2.5.1)
-      '@visulima/colorize': 1.4.12
-      '@visulima/find-cache-dir': 1.0.14(yaml@2.5.1)
-      '@visulima/fs': 2.2.2(yaml@2.5.1)
-      '@visulima/humanizer': 1.0.14
-      '@visulima/package': 3.1.4(yaml@2.5.1)
-      '@visulima/pail': 2.1.11
-      '@visulima/path': 1.1.1
-      '@visulima/tsconfig': 1.0.16(yaml@2.5.1)
-      defu: 6.1.4
-      es-module-lexer: 1.5.4
-      fastest-levenshtein: 1.0.16
-      glob-parent: 6.0.2
-      hookable: 5.5.3
-      jiti: 2.3.3
-      magic-string: 0.30.12
-      mlly: 1.7.2
-      oxc-parser: 0.32.0
-      rollup: 4.24.0
-      rollup-plugin-dts: 6.1.1(rollup@4.24.0)(typescript@5.6.3)
-      rollup-plugin-license: 3.5.3(picomatch@4.0.2)(rollup@4.24.0)
-      rollup-plugin-polyfill-node: 0.13.0(rollup@4.24.0)
-      rollup-plugin-visualizer: 5.12.0(rollup@4.24.0)
-      semver: 7.6.3
-      tinyglobby: 0.2.9
-    optionalDependencies:
-      '@ckeditor/typedoc-plugins': 43.0.0(typedoc@0.26.10(typescript@5.6.3))
-      esbuild: 0.24.0
-      typedoc: 0.26.10(typescript@5.6.3)
-      typedoc-plugin-markdown: 4.2.9(typedoc@0.26.10(typescript@5.6.3))
-      typedoc-plugin-rename-defaults: 0.7.1(typedoc@0.26.10(typescript@5.6.3))
-      typescript: 5.6.3
-    transitivePeerDependencies:
-      - '@75lb/nature'
-      - '@visulima/redact'
-      - picomatch
-      - rotating-file-stream
-      - yaml
-
-  '@visulima/packem@1.1.1(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)':
+  '@visulima/packem@1.1.1(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)':
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@babel/parser': 7.25.9
@@ -11065,6 +10902,7 @@ snapshots:
       semver: 7.6.3
       tinyglobby: 0.2.9
     optionalDependencies:
+      '@ckeditor/typedoc-plugins': 43.0.0(typedoc@0.26.10(typescript@5.6.3))
       esbuild: 0.24.0
       typedoc: 0.26.10(typescript@5.6.3)
       typedoc-plugin-markdown: 4.2.9(typedoc@0.26.10(typescript@5.6.3))
@@ -15737,17 +15575,6 @@ snapshots:
       strip-ansi: 7.1.0
 
   os-tmpdir@1.0.2: {}
-
-  oxc-parser@0.32.0:
-    optionalDependencies:
-      '@oxc-parser/binding-darwin-arm64': 0.32.0
-      '@oxc-parser/binding-darwin-x64': 0.32.0
-      '@oxc-parser/binding-linux-arm64-gnu': 0.32.0
-      '@oxc-parser/binding-linux-arm64-musl': 0.32.0
-      '@oxc-parser/binding-linux-x64-gnu': 0.32.0
-      '@oxc-parser/binding-linux-x64-musl': 0.32.0
-      '@oxc-parser/binding-win32-arm64-msvc': 0.32.0
-      '@oxc-parser/binding-win32-x64-msvc': 0.32.0
 
   oxc-parser@0.33.0:
     optionalDependencies:

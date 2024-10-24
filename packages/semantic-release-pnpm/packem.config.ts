@@ -14,5 +14,4 @@ export default defineConfig({
     },
     transformer,
     cjsInterop: true,
-    declaration: "node16"
 });
