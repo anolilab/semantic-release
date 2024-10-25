@@ -24,7 +24,7 @@ env:
 jobs:
     files-changed:
         name: "Detect what files changed"
-        runs-on: "ubuntu-22.04"
+        runs-on: "ubuntu-24.04"
         timeout-minutes: 3
         # Map a step output to a job output
         outputs:
@@ -32,7 +32,7 @@ jobs:
             codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6" # v2.8.1
+              uses: "step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7" # v2.10.1
               with:
                   egress-policy: "audit"
 
@@ -72,7 +72,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6" # v2.8.1
+              uses: "step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7" # v2.10.1
               with:
                   egress-policy: "audit"
 
@@ -89,7 +89,7 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@40f1175ceec169e68c9857c27aa7c5063692aa9a" # v4
+              uses: "nrwl/nx-set-shas@be2a36618456ad6f3abf921eb24900817da1af6b" # v4
 
             - name: "Setup resources and environment"
               id: "setup"
@@ -128,7 +128,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6" # v2.8.1
+              uses: "step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7" # v2.10.1
               with:
                   egress-policy: "audit"
 
@@ -145,7 +145,7 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@40f1175ceec169e68c9857c27aa7c5063692aa9a" # v4
+              uses: "nrwl/nx-set-shas@be2a36618456ad6f3abf921eb24900817da1af6b" # v4
 
             - name: "Setup resources and environment"
               id: "setup"
@@ -201,12 +201,12 @@ jobs:
         name: "Check Test Run"
         # This is necessary since a failed/skipped dependent job would cause this job to be skipped
         if: "always() && (needs.test-packages.result == 'success' || needs.test-packages.result == 'skipped') && (needs.test-multi-semantic-release.result == 'success' || needs.test-multi-semantic-release.result == 'skipped')"
-        runs-on: "ubuntu-22.04"
+        runs-on: "ubuntu-24.04"
         steps:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6" # v2.8.1
+              uses: "step-security/harden-runner@91182cccc01eb5e619899d80e4e971d6181294a7" # v2.10.1
               with:
                   egress-policy: "audit"
 
