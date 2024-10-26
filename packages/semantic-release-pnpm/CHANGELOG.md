@@ -1,3 +1,17 @@
+## @anolilab/semantic-release-pnpm [1.1.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.3...@anolilab/semantic-release-pnpm@1.1.4) (2024-10-26)
+
+### Bug Fixes
+
+* removed move-file to use @visulima/fs function ([a498b0d](https://github.com/anolilab/semantic-release/commit/a498b0d9f8b2ba632eec93cdc5b3dd90085a9370))
+* **semantic-release-pnpm:** fixed exports ([ffe0eba](https://github.com/anolilab/semantic-release/commit/ffe0eba30697ac93e4e937b19049d721d9777471))
+* switched from tsup to @visulima/packem ([e35f8b4](https://github.com/anolilab/semantic-release/commit/e35f8b4713e2e020b1d99d4eb7ff0566b5d9af8f))
+* upgraded visulima packages, execa, ini and semver ([e720a24](https://github.com/anolilab/semantic-release/commit/e720a2481390d8eb66163a22c7fbe53d8b512eb3))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 1.1.3
+
 ## @anolilab/semantic-release-pnpm [1.1.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.2...@anolilab/semantic-release-pnpm@1.1.3) (2024-06-11)
 
 ### Bug Fixes
