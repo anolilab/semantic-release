@@ -1,3 +1,12 @@
+## @anolilab/rc [1.1.3](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.2...@anolilab/rc@1.1.3) (2024-10-26)
+
+### Bug Fixes
+
+* added missing @visulima/path dep ([40d3916](https://github.com/anolilab/semantic-release/commit/40d39163b9531b550bcb0d9d1fb705edcf698b9c))
+* switched from tsup to @visulima/packem ([e35f8b4](https://github.com/anolilab/semantic-release/commit/e35f8b4713e2e020b1d99d4eb7ff0566b5d9af8f))
+* updated dependencies ([aa33659](https://github.com/anolilab/semantic-release/commit/aa3365986ef9a42a80b62ed7d5e6b864f6838211))
+* upgraded @visulima/fs package, ini and ts-deepmerge ([674a28c](https://github.com/anolilab/semantic-release/commit/674a28ce5979a81bd5ea16d313a3464d0ce6114f))
+
 ## @anolilab/rc [1.1.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.1...@anolilab/rc@1.1.2) (2024-06-11)
 
 
