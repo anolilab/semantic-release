@@ -91,7 +91,7 @@ All configuration sources that were found will be flattened into one object, in 
 ### rc()
 
 ```ts
-function rc(name, options): object;
+function rc(name, options): object
 ```
 
 #### Parameters
@@ -128,7 +128,7 @@ files: string[];
 
 #### Defined in
 
-[index.ts:171](https://github.com/anolilab/multi-semantic-release/blob/a498b0d9f8b2ba632eec93cdc5b3dd90085a9370/packages/rc/src/index.ts#L171)
+[index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/9452d8553734ce85796650b17ebd167bb9723e62/packages/rc/src/index.ts#L170)
 
 <!-- /TYPEDOC -->
 
