@@ -3,7 +3,6 @@ import { cwd, env } from "node:process";
 
 import { isAccessibleSync, readFileSync } from "@visulima/fs";
 import { parseJson, stripJsonComments } from "@visulima/fs/utils";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { dirname, join } from "@visulima/path";
 import { parse } from "ini";
 import { merge } from "ts-deepmerge";
