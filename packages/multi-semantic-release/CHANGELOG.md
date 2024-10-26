@@ -1,3 +1,15 @@
+## @anolilab/multi-semantic-release [1.1.4](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@1.1.3...@anolilab/multi-semantic-release@1.1.4) (2024-10-26)
+
+### Bug Fixes
+
+* updated dependencies ([aa33659](https://github.com/anolilab/semantic-release/commit/aa3365986ef9a42a80b62ed7d5e6b864f6838211))
+* upgraded debug, execa, git-log-parser, semver, stream-buffers ([50e042b](https://github.com/anolilab/semantic-release/commit/50e042b932da901fedf1ab4b36375331825675c6))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.4
+
 ## @anolilab/multi-semantic-release [1.1.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@1.1.2...@anolilab/multi-semantic-release@1.1.3) (2024-06-11)
 
 
