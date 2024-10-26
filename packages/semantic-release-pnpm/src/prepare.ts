@@ -1,6 +1,6 @@
+import { move } from "@visulima/fs";
 import { resolve } from "@visulima/path";
 import { execa } from "execa";
-import { moveFile } from "move-file";
 
 import type { PrepareContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
@@ -37,7 +37,7 @@ export default async ({ pkgRoot, tarballDir }: PluginConfig, { cwd, env, logger,
         // Only move the tarball if we need to
         // Fixes: https://github.com/semantic-release/npm/issues/169
         if (tarballSource !== tarballDestination) {
-            await moveFile(tarballSource, tarballDestination);
+            await move(tarballSource, tarballDestination);
         }
     }
 };
