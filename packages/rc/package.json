@@ -98,7 +98,7 @@
         "@semantic-release/github": "^11.0.0",
         "@semantic-release/release-notes-generator": "14.0.1",
         "@types/ini": "^4.1.1",
-        "@types/node": "18.19.59",
+        "@types/node": "18.19.62",
         "@visulima/packem": "^1.1.1",
         "@visulima/path": "^1.1.1",
         "@vitest/coverage-v8": "^2.1.3",
