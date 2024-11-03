@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [1.1.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.4...@anolilab/semantic-release-pnpm@1.1.5) (2024-11-03)
+
+### Bug Fixes
+
+* **deps:** update minor updates ([#89](https://github.com/anolilab/semantic-release/issues/89)) ([3f1ecd1](https://github.com/anolilab/semantic-release/commit/3f1ecd1d1b9837ffaf1aaa6d53d57c89137f09d9))
+
 ## @anolilab/semantic-release-pnpm [1.1.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.3...@anolilab/semantic-release-pnpm@1.1.4) (2024-10-26)
 
 ### Bug Fixes
