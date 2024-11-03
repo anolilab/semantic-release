@@ -69,7 +69,7 @@
         "@visulima/package": "^3.1.5",
         "@visulima/path": "^1.1.1",
         "aggregate-error": "^5.0.0",
-        "execa": "^9.4.1",
+        "execa": "^9.5.1",
         "ini": "^5.0.0",
         "normalize-url": "^8.0.1",
         "registry-auth-token": "^5.0.2",
