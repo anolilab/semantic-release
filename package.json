@@ -59,7 +59,7 @@
         "@commitlint/config-conventional": "^19.5.0",
         "@nx/workspace": "20.0.6",
         "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
-        "@types/node": "18.19.59",
+        "@types/node": "18.19.62",
         "audit-ci": "^7.1.0",
         "browserslist-config-anolilab": "^5.0.14",
         "commitizen": "^4.3.1",
@@ -80,7 +80,7 @@
         "typescript": "^5.6.3",
         "vitest": "^2.1.3"
     },
-    "packageManager": "pnpm@9.12.2",
+    "packageManager": "pnpm@9.12.3",
     "engines": {
         "node": ">=18.17 <=22.*"
     },

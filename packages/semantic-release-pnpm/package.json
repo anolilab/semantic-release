@@ -90,7 +90,7 @@
         "@semantic-release/release-notes-generator": "14.0.1",
         "@types/dockerode": "^3.3.31",
         "@types/ini": "^4.1.1",
-        "@types/node": "18.19.59",
+        "@types/node": "18.19.62",
         "@types/semantic-release__error": "3.0.3",
         "@types/semver": "7.5.8",
         "@types/stream-buffers": "^3.0.7",
