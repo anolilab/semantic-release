@@ -23,10 +23,10 @@ importers:
     dependencies:
       '@anolilab/commitlint-config':
         specifier: ^5.0.3
-        version: 5.0.3(@commitlint/cli@19.5.0(@types/node@18.19.62)(typescript@5.6.3))(@types/node@18.19.62)(typescript@5.6.3)
+        version: 5.0.3(@commitlint/cli@19.5.0(@types/node@18.19.68)(typescript@5.6.3))(@types/node@18.19.68)(typescript@5.6.3)
       '@anolilab/lint-staged-config':
         specifier: ^2.1.7
-        version: 2.1.7(eslint@8.57.1)(husky@9.1.6)(lint-staged@15.2.10)(prettier@3.3.3)(secretlint@9.0.0)
+        version: 2.1.7(eslint@8.57.1)(husky@9.1.7)(lint-staged@15.2.11)(prettier@3.3.3)(secretlint@9.0.0)
       '@anolilab/multi-semantic-release':
         specifier: workspace:*
         version: link:packages/multi-semantic-release
@@ -41,7 +41,7 @@ importers:
         version: 7.26.0
       '@commitlint/cli':
         specifier: ^19.5.0
-        version: 19.5.0(@types/node@18.19.62)(typescript@5.6.3)
+        version: 19.5.0(@types/node@18.19.68)(typescript@5.6.3)
       '@commitlint/config-conventional':
         specifier: ^19.5.0
         version: 19.5.0
@@ -52,8 +52,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0
       '@types/node':
-        specifier: 18.19.62
-        version: 18.19.62
+        specifier: 18.19.68
+        version: 18.19.68
       audit-ci:
         specifier: ^7.1.0
         version: 7.1.0
@@ -62,19 +62,19 @@ importers:
         version: 5.0.14
       commitizen:
         specifier: ^4.3.1
-        version: 4.3.1(@types/node@18.19.62)(typescript@5.6.3)
+        version: 4.3.1(@types/node@18.19.68)(typescript@5.6.3)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
       husky:
-        specifier: ^9.1.6
-        version: 9.1.6
+        specifier: ^9.1.7
+        version: 9.1.7
       is-ci:
         specifier: ^3.0.1
         version: 3.0.1
       lint-staged:
-        specifier: ^15.2.10
-        version: 15.2.10
+        specifier: ^15.2.11
+        version: 15.2.11
       nx:
         specifier: ^20.0.6
         version: 20.0.6
@@ -97,8 +97,8 @@ importers:
         specifier: ^24.2.0
         version: 24.2.0(typescript@5.6.3)
       sort-package-json:
-        specifier: ^2.10.1
-        version: 2.10.1
+        specifier: ^2.10.2
+        version: 2.12.0
       taze:
         specifier: ^0.18.0
         version: 0.18.0
@@ -110,7 +110,7 @@ importers:
         version: 5.6.3
       vitest:
         specifier: ^2.1.3
-        version: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+        version: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
 
   packages/multi-semantic-release:
     dependencies:
@@ -133,8 +133,8 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       execa:
-        specifier: ^9.5.1
-        version: 9.5.1
+        specifier: ^9.5.2
+        version: 9.5.2
       git-log-parser:
         specifier: ^1.2.1
         version: 1.2.1
@@ -194,8 +194,8 @@ importers:
         specifier: 14.0.1
         version: 14.0.1(semantic-release@24.2.0(typescript@5.6.3))
       '@types/node':
-        specifier: 18.19.62
-        version: 18.19.62
+        specifier: 18.19.68
+        version: 18.19.68
       '@vitest/coverage-v8':
         specifier: ^2.1.3
         version: 2.1.3(vitest@2.1.3)
@@ -254,8 +254,8 @@ importers:
         specifier: ^24.2.0
         version: 24.2.0(typescript@5.6.3)
       sort-package-json:
-        specifier: ^2.10.1
-        version: 2.10.1
+        specifier: ^2.10.2
+        version: 2.12.0
       tempy:
         specifier: ^3.1.0
         version: 3.1.0
@@ -264,13 +264,13 @@ importers:
         version: 5.6.3
       vitest:
         specifier: ^2.1.3
-        version: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+        version: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
 
   packages/rc:
     dependencies:
       '@visulima/fs':
         specifier: ^2.3.0
-        version: 2.3.0(yaml@2.5.1)
+        version: 2.3.0(yaml@2.6.1)
       '@visulima/path':
         specifier: ^1.1.1
         version: 1.1.1
@@ -278,8 +278,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       ts-deepmerge:
-        specifier: ^7.0.1
-        version: 7.0.1
+        specifier: ^7.0.2
+        version: 7.0.2
     devDependencies:
       '@anolilab/eslint-config':
         specifier: ^15.0.3
@@ -291,8 +291,8 @@ importers:
         specifier: ^7.26.0
         version: 7.26.0
       '@ckeditor/typedoc-plugins':
-        specifier: 43.0.0
-        version: 43.0.0(typedoc@0.26.10(typescript@5.6.3))
+        specifier: 43.0.1
+        version: 43.0.1(typedoc@0.26.11(typescript@5.6.3))
       '@rushstack/eslint-plugin-security':
         specifier: ^0.8.3
         version: 0.8.3(eslint@8.57.1)(typescript@5.6.3)
@@ -321,11 +321,11 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1
       '@types/node':
-        specifier: 18.19.62
-        version: 18.19.62
+        specifier: 18.19.68
+        version: 18.19.68
       '@visulima/packem':
         specifier: ^1.1.1
-        version: 1.1.1(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)
+        version: 1.1.1(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.26.11(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.10(typedoc@0.26.11(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.26.11(typescript@5.6.3)))(typedoc@0.26.11(typescript@5.6.3))(typescript@5.6.3)(yaml@2.6.1)
       '@vitest/coverage-v8':
         specifier: ^2.1.3
         version: 2.1.3(vitest@2.1.3)
@@ -375,26 +375,26 @@ importers:
         specifier: ^24.2.0
         version: 24.2.0(typescript@5.6.3)
       sort-package-json:
-        specifier: ^2.10.1
-        version: 2.10.1
+        specifier: ^2.10.2
+        version: 2.12.0
       tempy:
         specifier: ^3.1.0
         version: 3.1.0
       typedoc:
-        specifier: 0.26.10
-        version: 0.26.10(typescript@5.6.3)
+        specifier: 0.26.11
+        version: 0.26.11(typescript@5.6.3)
       typedoc-plugin-markdown:
-        specifier: 4.2.9
-        version: 4.2.9(typedoc@0.26.10(typescript@5.6.3))
+        specifier: 4.2.10
+        version: 4.2.10(typedoc@0.26.11(typescript@5.6.3))
       typedoc-plugin-rename-defaults:
-        specifier: 0.7.1
-        version: 0.7.1(typedoc@0.26.10(typescript@5.6.3))
+        specifier: 0.7.2
+        version: 0.7.2(typedoc@0.26.11(typescript@5.6.3))
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
       vitest:
         specifier: ^2.1.3
-        version: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+        version: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
 
   packages/semantic-release-pnpm:
     dependencies:
@@ -406,10 +406,10 @@ importers:
         version: 4.0.0
       '@visulima/fs':
         specifier: ^2.3.0
-        version: 2.3.0(yaml@2.5.1)
+        version: 2.3.0(yaml@2.6.1)
       '@visulima/package':
         specifier: ^3.1.5
-        version: 3.1.5(yaml@2.5.1)
+        version: 3.1.5(yaml@2.6.1)
       '@visulima/path':
         specifier: ^1.1.1
         version: 1.1.1
@@ -417,8 +417,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       execa:
-        specifier: ^9.5.1
-        version: 9.5.1
+        specifier: ^9.5.2
+        version: 9.5.2
       ini:
         specifier: ^5.0.0
         version: 5.0.0
@@ -426,8 +426,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1
       registry-auth-token:
-        specifier: ^5.0.2
-        version: 5.0.2
+        specifier: ^5.0.3
+        version: 5.0.3
       semver:
         specifier: ^7.6.3
         version: 7.6.3
@@ -469,14 +469,14 @@ importers:
         specifier: 14.0.1
         version: 14.0.1(semantic-release@24.2.0(typescript@5.6.3))
       '@types/dockerode':
-        specifier: ^3.3.31
-        version: 3.3.31
+        specifier: ^3.3.32
+        version: 3.3.32
       '@types/ini':
         specifier: ^4.1.1
         version: 4.1.1
       '@types/node':
-        specifier: 18.19.62
-        version: 18.19.62
+        specifier: 18.19.68
+        version: 18.19.68
       '@types/semantic-release__error':
         specifier: 3.0.3
         version: 3.0.3
@@ -488,7 +488,7 @@ importers:
         version: 3.0.7
       '@visulima/packem':
         specifier: ^1.1.1
-        version: 1.1.1(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)
+        version: 1.1.1(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.26.11(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.10(typedoc@0.26.11(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.26.11(typescript@5.6.3)))(typedoc@0.26.11(typescript@5.6.3))(typescript@5.6.3)(yaml@2.6.1)
       '@vitest/coverage-v8':
         specifier: ^2.1.3
         version: 2.1.3(vitest@2.1.3)
@@ -538,11 +538,11 @@ importers:
         specifier: 9.0.1
         version: 9.0.1
       got:
-        specifier: ^14.4.3
-        version: 14.4.3
+        specifier: ^14.4.5
+        version: 14.4.5
       p-retry:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.2.1
+        version: 6.2.1
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
@@ -556,8 +556,8 @@ importers:
         specifier: ^24.2.0
         version: 24.2.0(typescript@5.6.3)
       sort-package-json:
-        specifier: ^2.10.1
-        version: 2.10.1
+        specifier: ^2.10.2
+        version: 2.12.0
       stream-buffers:
         specifier: ^3.0.3
         version: 3.0.3
@@ -569,7 +569,7 @@ importers:
         version: 5.6.3
       vitest:
         specifier: ^2.1.3
-        version: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+        version: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
 
   packages/semantic-release-preset:
     dependencies:
@@ -641,8 +641,8 @@ importers:
         specifier: ^24.2.0
         version: 24.2.0(typescript@5.6.3)
       sort-package-json:
-        specifier: ^2.10.1
-        version: 2.10.1
+        specifier: ^2.10.2
+        version: 2.12.0
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
@@ -950,8 +950,8 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
-  '@ckeditor/typedoc-plugins@43.0.0':
-    resolution: {integrity: sha512-Dgm4kqKu56M7OMspF4TQfp5P6IBU2DLMKhgLFSP3QQt+7DV6Z2Ry/bsmZKbgmpYKttambXWrVRqHh6vXnpWZaQ==}
+  '@ckeditor/typedoc-plugins@43.0.1':
+    resolution: {integrity: sha512-E+tG5SQuZFLgrTWA694x4iUGazgwVoG8l3ycwmf/eGAimWNlER7wSKiwmGJ+NmltXrm+BHdlIGEOTMvs0YOxMQ==}
     engines: {node: '>=18.0.0', npm: '>=5.7.1'}
     peerDependencies:
       typedoc: ^0.23.15
@@ -2370,8 +2370,8 @@ packages:
   '@types/docker-modem@3.0.6':
     resolution: {integrity: sha512-yKpAGEuKRSS8wwx0joknWxsmLha78wNMe9R2S3UNsVOkZded8UqOrV8KoeDXoXsjndxwyF3eIhyClGbO1SEhEg==}
 
-  '@types/dockerode@3.3.31':
-    resolution: {integrity: sha512-42R9eoVqJDSvVspV89g7RwRqfNExgievLNWoHkg7NoWIqAmavIbgQBb4oc0qRtHkxE+I3Xxvqv7qVXFABKPBTg==}
+  '@types/dockerode@3.3.32':
+    resolution: {integrity: sha512-xxcG0g5AWKtNyh7I7wswLdFvym4Mlqks5ZlKzxEUrGHS0r0PUOfxm2T0mspwu10mHQqu3Ck3MI3V2HqvLWE1fg==}
 
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
@@ -2424,8 +2424,8 @@ packages:
   '@types/nlcst@1.0.4':
     resolution: {integrity: sha512-ABoYdNQ/kBSsLvZAekMhIPMQ3YUZvavStpKYs7BjLLuKVmIMA0LUgZ7b54zzuWJRbHF80v1cNf4r90Vd6eMQDg==}
 
-  '@types/node@18.19.62':
-    resolution: {integrity: sha512-UOGhw+yZV/icyM0qohQVh3ktpY40Sp7tdTW7HxG3pTd7AiMrlFlAJNUrGK9t5mdW0+ViQcFV74zCSIx9ZJpncA==}
+  '@types/node@18.19.68':
+    resolution: {integrity: sha512-QGtpFH1vB99ZmTa63K4/FU8twThj4fuVSBkGddTp7uIL/cuoLWIUSL2RcOaigBhfR+hg5pgGkBnkoOxrTVBMKw==}
 
   '@types/node@20.14.2':
     resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
@@ -3557,6 +3557,15 @@ packages:
       supports-color:
         optional: true
 
+  debug@4.4.0:
+    resolution: {integrity: sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   decamelize-keys@1.1.1:
     resolution: {integrity: sha512-WiPxgEirIV0/eIOMcnFBA3/IJZAZqKnwAwWyvvdi4lsr1WCN22nhdf/3db3DoZcUjTV2SqfzIwNyp6y2xs3nmg==}
     engines: {node: '>=0.10.0'}
@@ -4218,8 +4227,8 @@ packages:
     resolution: {integrity: sha512-5eo/BRqZm3GYce+1jqX/tJ7duA2AnE39i88fuedNFUV8XxGxUpF3aWkBRfbUcjV49gCkvS/pzc0YrCPhaIewdg==}
     engines: {node: ^18.19.0 || >=20.5.0}
 
-  execa@9.5.1:
-    resolution: {integrity: sha512-QY5PPtSonnGwhhHDNI7+3RvY285c7iuJFFB+lU+oEzMY/gEGJ808owqJsrr8Otd1E/x07po1LkUBmdAc5duPAg==}
+  execa@9.5.2:
+    resolution: {integrity: sha512-EHlpxMCpHWSAh1dgS6bVeoLAXGnJNdR93aabr4QCGbzOM73o5XmRfM/e5FUqsw3aagP8S8XEWUWFAxnRBnAF0Q==}
     engines: {node: ^18.19.0 || >=20.5.0}
 
   execall@1.0.0:
@@ -4656,8 +4665,8 @@ packages:
     resolution: {integrity: sha512-mThBblvlAF1d4O5oqyvN+ZxLAYwIJK7bpMxgYqPD9okW0C3qm5FFn7k811QrcuEBwaogR3ngOFoCfs6mRv7teQ==}
     engines: {node: '>=14.16'}
 
-  got@14.4.3:
-    resolution: {integrity: sha512-iTC0Z87yxSijWTh/IpvGpwOhIQK7+GgWkYrMRoN/hB9qeRj9RPuLGODwevs0p5idUf7nrxCVa5IlOmK3b8z+KA==}
+  got@14.4.5:
+    resolution: {integrity: sha512-sq+uET8TnNKRNnjEOPJzMcxeI0irT8BBNmf+GtZcJpmhYsQM1DSKmCROUjPWKsXZ5HzwD5Cf5/RV+QD9BSTxJg==}
     engines: {node: '>=20'}
 
   graceful-fs@4.2.10:
@@ -4826,8 +4835,8 @@ packages:
   humannames@1.0.5:
     resolution: {integrity: sha512-FArOOhsfu1Rzc6wj8TZWTEpO/+TQOqhU0YNx+IyRaScE7HVanOwn8knN1OjjUngJOLaRqFSLjX0EzvMiNnT7zw==}
 
-  husky@9.1.6:
-    resolution: {integrity: sha512-sqbjZKK7kf44hfdE94EoX8MZNk0n7HeW37O4YrVGCF4wzgQjp+akPAkfUK5LZ6KuR/6sqeAVuXHji+RzQgOn5A==}
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5415,8 +5424,8 @@ packages:
     resolution: {integrity: sha512-rMGwYF8q7g2XhG2ulBmmJgWv25qBsqRbDn5gH0+wnuyeFt7QBJlHJmtg5qEdn4pN6WVAUMgXnIxytMFRX9c1aA==}
     engines: {node: '>=10.13.0'}
 
-  lilconfig@3.1.2:
-    resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
+  lilconfig@3.1.3:
+    resolution: {integrity: sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==}
     engines: {node: '>=14'}
 
   limit-spawn@0.0.3:
@@ -5437,8 +5446,8 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
-  lint-staged@15.2.10:
-    resolution: {integrity: sha512-5dY5t743e1byO19P9I4b3x8HJwalIznL5E1FWYnU6OWw33KxNBSLAc6Cy7F2PsFEO8FKnLwjwm5hx7aMF0jzZg==}
+  lint-staged@15.2.11:
+    resolution: {integrity: sha512-Ev6ivCTYRTGs9ychvpVw35m/bcNDuBN+mnTeObCL5h+boS5WzBEC6LHI4I9F/++sZm1m+J2LEiy0gxL/R9TBqQ==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -6580,8 +6589,8 @@ packages:
     resolution: {integrity: sha512-xsrIUgI0Kn6iyDYm9StOpOeK29XM1aboGji26+QEortiFST1hGZaUQOLhtEbqHErPpGW/aSz6allwK2qcptp0Q==}
     engines: {node: '>=12'}
 
-  p-retry@6.2.0:
-    resolution: {integrity: sha512-JA6nkq6hKyWLLasXQXUrO4z8BUZGUt/LjlJxx8Gb2+2ntodU/SS63YZ8b0LUTbQ8ZB9iwOfhEPhg4ykKnn2KsA==}
+  p-retry@6.2.1:
+    resolution: {integrity: sha512-hEt02O4hUct5wtwg4H4KcWgDdm+l1bOaEy/hWzd8xtXB9BqxTWBBhb+2ImAtH4Cv4rPjV76xN3Zumqk3k3AhhQ==}
     engines: {node: '>=16.17'}
 
   p-timeout@3.2.0:
@@ -7017,8 +7026,8 @@ packages:
     resolution: {integrity: sha512-NcDiDkTLuPR+++OCKB0nWafEmhg/Da8aUPLPMQbK+bxKKCm1/S5he+AqYa4PlMCVBalb4/yxIRub6qkEx5yJbw==}
     engines: {node: '>= 0.4'}
 
-  registry-auth-token@5.0.2:
-    resolution: {integrity: sha512-o/3ikDxtXaA59BmZuZrJZDJv8NMDGSj+6j6XaeBmHw8eY1i1qd9+6H+LjVvQXx3HN6aRCGa1cUdJ9RaJZUugnQ==}
+  registry-auth-token@5.0.3:
+    resolution: {integrity: sha512-1bpc9IyC+e+CNFRaWyn77tk4xGG4PPUyfakSmA6F6cvUDjrm58dfyJ3II+9yb10EDkHoy1LaPSmHaWLOH3m6HA==}
     engines: {node: '>=14'}
 
   registry-url@6.0.1:
@@ -7396,8 +7405,8 @@ packages:
   sort-object-keys@1.1.3:
     resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
 
-  sort-package-json@2.10.1:
-    resolution: {integrity: sha512-d76wfhgUuGypKqY72Unm5LFnMpACbdxXsLPcL27pOsSrmVqH3PztFp1uq+Z22suk15h7vXmTesuh2aEjdCqb5w==}
+  sort-package-json@2.12.0:
+    resolution: {integrity: sha512-/HrPQAeeLaa+vbAH/znjuhwUluuiM/zL5XX9kop8UpDgjtyWKt43hGDk2vd/TBdDpzIyzIHVUgmYofzYrAQjew==}
     hasBin: true
 
   source-map-js@1.2.0:
@@ -7886,8 +7895,8 @@ packages:
     peerDependencies:
       typescript: '>=4.2.0'
 
-  ts-deepmerge@7.0.1:
-    resolution: {integrity: sha512-JBFCmNenZdUCc+TRNCtXVM6N8y/nDQHAcpj5BlwXG/gnogjam1NunulB9ia68mnqYI446giMfpqeBFFkOleh+g==}
+  ts-deepmerge@7.0.2:
+    resolution: {integrity: sha512-akcpDTPuez4xzULo5NwuoKwYRtjQJ9eoNfBACiBMaXwNAx7B1PKfe5wqUFJuW5uKzQ68YjDFwPaWHDG1KnFGsA==}
     engines: {node: '>=14.13.1'}
 
   tsconfig-paths@4.2.0:
@@ -7995,19 +8004,19 @@ packages:
   typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  typedoc-plugin-markdown@4.2.9:
-    resolution: {integrity: sha512-Wqmx+7ezKFgtTklEq/iUhQ5uFeBDhAT6wiS2na9cFLidIpl9jpDHJy/COYh8jUZXgIRIZVQ/bPNjyrnPFoDwzg==}
+  typedoc-plugin-markdown@4.2.10:
+    resolution: {integrity: sha512-PLX3pc1/7z13UJm4TDE9vo9jWGcClFUErXXtd5LdnoLjV6mynPpqZLU992DwMGFSRqJFZeKbVyqlNNeNHnk2tQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.26.x
 
-  typedoc-plugin-rename-defaults@0.7.1:
-    resolution: {integrity: sha512-hgg4mAy5IumgUmPOnVVGmGywjTGtUCmRJ2jRbseqtXdlUuYKj652ODL9joUWFt5uvNu4Dr/pNILc/qsKGHJw+w==}
+  typedoc-plugin-rename-defaults@0.7.2:
+    resolution: {integrity: sha512-9oa1CsMN4p/xuVR2JW2YDD6xE7JcrIth3KAfjR8YBi6NnrDk2Q72o4lbArybLDjxKAkOzk7N1uUdGwJlooLEOg==}
     peerDependencies:
-      typedoc: '>=0.22.x <0.27.x'
+      typedoc: '>=0.22.x <0.28.x'
 
-  typedoc@0.26.10:
-    resolution: {integrity: sha512-xLmVKJ8S21t+JeuQLNueebEuTVphx6IrP06CdV7+0WVflUSW3SPmR+h1fnWVdAR/FQePEgsSWCUHXqKKjzuUAw==}
+  typedoc@0.26.11:
+    resolution: {integrity: sha512-sFEgRRtrcDl2FxVP58Ze++ZK2UQAEvtvvH8rRlig1Ja3o7dDaMHmaBfvJmdGnNEFaLTpQsN8dpvZaTqJSu/Ugw==}
     engines: {node: '>= 18'}
     hasBin: true
     peerDependencies:
@@ -8456,13 +8465,13 @@ packages:
     resolution: {integrity: sha512-4wZWvE398hCP7O8n3nXKu/vdq1HcH01ixYlCREaJL5NUMwQ0g3MaGFUBNSlmBtKmhbtVG/Cm6lyYmSVTEVil8A==}
     engines: {node: ^14.17.0 || >=16.0.0}
 
-  yaml@2.4.5:
-    resolution: {integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==}
+  yaml@2.5.1:
+    resolution: {integrity: sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==}
     engines: {node: '>= 14'}
     hasBin: true
 
-  yaml@2.5.1:
-    resolution: {integrity: sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==}
+  yaml@2.6.1:
+    resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
     engines: {node: '>= 14'}
     hasBin: true
 
@@ -8509,15 +8518,15 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@anolilab/commitlint-config@5.0.3(@commitlint/cli@19.5.0(@types/node@18.19.62)(typescript@5.6.3))(@types/node@18.19.62)(typescript@5.6.3)':
+  '@anolilab/commitlint-config@5.0.3(@commitlint/cli@19.5.0(@types/node@18.19.68)(typescript@5.6.3))(@types/node@18.19.68)(typescript@5.6.3)':
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
-      '@commitlint/cli': 19.5.0(@types/node@18.19.62)(typescript@5.6.3)
+      '@commitlint/cli': 19.5.0(@types/node@18.19.68)(typescript@5.6.3)
       '@commitlint/config-conventional': 18.6.3
-      '@commitlint/core': 18.6.1(@types/node@18.19.62)(typescript@5.6.3)
-      commitizen: 4.3.1(@types/node@18.19.62)(typescript@5.6.3)
+      '@commitlint/core': 18.6.1(@types/node@18.19.68)(typescript@5.6.3)
+      commitizen: 4.3.1(@types/node@18.19.68)(typescript@5.6.3)
       conventional-changelog-conventionalcommits: 7.0.2
-      cz-conventional-changelog: 3.3.0(@types/node@18.19.62)(typescript@5.6.3)
+      cz-conventional-changelog: 3.3.0(@types/node@18.19.68)(typescript@5.6.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -8584,12 +8593,12 @@ snapshots:
       - svelte-eslint-parser
       - vue-eslint-parser
 
-  '@anolilab/lint-staged-config@2.1.7(eslint@8.57.1)(husky@9.1.6)(lint-staged@15.2.10)(prettier@3.3.3)(secretlint@9.0.0)':
+  '@anolilab/lint-staged-config@2.1.7(eslint@8.57.1)(husky@9.1.7)(lint-staged@15.2.11)(prettier@3.3.3)(secretlint@9.0.0)':
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
       find-up: 5.0.0
-      husky: 9.1.6
-      lint-staged: 15.2.10
+      husky: 9.1.7
+      lint-staged: 15.2.11
       shell-quote: 1.8.1
     optionalDependencies:
       eslint: 8.57.1
@@ -8834,9 +8843,9 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
-  '@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3))':
+  '@ckeditor/typedoc-plugins@43.0.1(typedoc@0.26.11(typescript@5.6.3))':
     dependencies:
-      typedoc: 0.26.10(typescript@5.6.3)
+      typedoc: 0.26.11(typescript@5.6.3)
 
   '@clack/core@0.3.4':
     dependencies:
@@ -8852,11 +8861,11 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@commitlint/cli@19.5.0(@types/node@18.19.62)(typescript@5.6.3)':
+  '@commitlint/cli@19.5.0(@types/node@18.19.68)(typescript@5.6.3)':
     dependencies:
       '@commitlint/format': 19.5.0
       '@commitlint/lint': 19.5.0
-      '@commitlint/load': 19.5.0(@types/node@18.19.62)(typescript@5.6.3)
+      '@commitlint/load': 19.5.0(@types/node@18.19.68)(typescript@5.6.3)
       '@commitlint/read': 19.5.0
       '@commitlint/types': 19.5.0
       tinyexec: 0.3.1
@@ -8891,11 +8900,11 @@ snapshots:
       '@commitlint/types': 19.5.0
       ajv: 8.17.1
 
-  '@commitlint/core@18.6.1(@types/node@18.19.62)(typescript@5.6.3)':
+  '@commitlint/core@18.6.1(@types/node@18.19.68)(typescript@5.6.3)':
     dependencies:
       '@commitlint/format': 18.6.1
       '@commitlint/lint': 18.6.1
-      '@commitlint/load': 18.6.1(@types/node@18.19.62)(typescript@5.6.3)
+      '@commitlint/load': 18.6.1(@types/node@18.19.68)(typescript@5.6.3)
       '@commitlint/read': 18.6.1
     transitivePeerDependencies:
       - '@types/node'
@@ -8960,7 +8969,7 @@ snapshots:
       '@commitlint/rules': 19.5.0
       '@commitlint/types': 19.5.0
 
-  '@commitlint/load@18.6.1(@types/node@18.19.62)(typescript@5.6.3)':
+  '@commitlint/load@18.6.1(@types/node@18.19.68)(typescript@5.6.3)':
     dependencies:
       '@commitlint/config-validator': 18.6.1
       '@commitlint/execute-rule': 18.6.1
@@ -8968,7 +8977,7 @@ snapshots:
       '@commitlint/types': 18.6.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.6.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.62)(cosmiconfig@8.3.6(typescript@5.6.3))(typescript@5.6.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.68)(cosmiconfig@8.3.6(typescript@5.6.3))(typescript@5.6.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -8977,7 +8986,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@commitlint/load@19.2.0(@types/node@18.19.62)(typescript@5.6.3)':
+  '@commitlint/load@19.2.0(@types/node@18.19.68)(typescript@5.6.3)':
     dependencies:
       '@commitlint/config-validator': 19.0.3
       '@commitlint/execute-rule': 19.0.0
@@ -8985,7 +8994,7 @@ snapshots:
       '@commitlint/types': 19.0.3
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.6.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.62)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.68)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -8994,7 +9003,7 @@ snapshots:
       - typescript
     optional: true
 
-  '@commitlint/load@19.5.0(@types/node@18.19.62)(typescript@5.6.3)':
+  '@commitlint/load@19.5.0(@types/node@18.19.68)(typescript@5.6.3)':
     dependencies:
       '@commitlint/config-validator': 19.5.0
       '@commitlint/execute-rule': 19.5.0
@@ -9002,7 +9011,7 @@ snapshots:
       '@commitlint/types': 19.5.0
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.6.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.62)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@18.19.68)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -9931,7 +9940,7 @@ snapshots:
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 5.0.0
-      execa: 9.5.1
+      execa: 9.5.2
       fs-extra: 11.2.0
       lodash-es: 4.17.21
       nerf-dart: 1.0.0
@@ -9939,7 +9948,7 @@ snapshots:
       npm: 10.8.1
       rc: 1.2.8
       read-pkg: 9.0.1
-      registry-auth-token: 5.0.2
+      registry-auth-token: 5.0.3
       semantic-release: 24.2.0(typescript@5.6.3)
       semver: 7.6.3
       tempy: 3.1.0
@@ -10346,11 +10355,11 @@ snapshots:
 
   '@types/concat-stream@2.0.3':
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
 
   '@types/conventional-commits-parser@5.0.0':
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
 
   '@types/debug@4.1.12':
     dependencies:
@@ -10358,13 +10367,13 @@ snapshots:
 
   '@types/docker-modem@3.0.6':
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       '@types/ssh2': 1.15.0
 
-  '@types/dockerode@3.3.31':
+  '@types/dockerode@3.3.32':
     dependencies:
       '@types/docker-modem': 3.0.6
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       '@types/ssh2': 1.15.0
 
   '@types/estree-jsx@1.0.5':
@@ -10401,7 +10410,7 @@ snapshots:
   '@types/liftoff@4.0.3':
     dependencies:
       '@types/fined': 1.1.5
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
 
   '@types/mdast@3.0.15':
     dependencies:
@@ -10419,7 +10428,7 @@ snapshots:
     dependencies:
       '@types/unist': 2.0.10
 
-  '@types/node@18.19.62':
+  '@types/node@18.19.68':
     dependencies:
       undici-types: 5.26.5
 
@@ -10439,17 +10448,17 @@ snapshots:
 
   '@types/ssh2@1.15.0':
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
 
   '@types/stream-buffers@3.0.7':
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
 
   '@types/supports-color@8.1.3': {}
 
   '@types/through@0.0.33':
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
 
   '@types/unist@2.0.10': {}
 
@@ -10709,11 +10718,11 @@ snapshots:
 
   '@visulima/boxen@1.0.21': {}
 
-  '@visulima/cerebro@1.1.24(yaml@2.5.1)':
+  '@visulima/cerebro@1.1.24(yaml@2.6.1)':
     dependencies:
       '@visulima/boxen': 1.0.21
       '@visulima/colorize': 1.4.12
-      '@visulima/find-cache-dir': 1.0.14(yaml@2.5.1)
+      '@visulima/find-cache-dir': 1.0.14(yaml@2.6.1)
       '@visulima/pail': 2.1.11
       cli-table3: 0.6.5
       command-line-args: 6.0.0
@@ -10730,26 +10739,26 @@ snapshots:
 
   '@visulima/error@4.4.7': {}
 
-  '@visulima/find-cache-dir@1.0.14(yaml@2.5.1)':
+  '@visulima/find-cache-dir@1.0.14(yaml@2.6.1)':
     dependencies:
-      '@visulima/fs': 2.2.2(yaml@2.5.1)
+      '@visulima/fs': 2.2.2(yaml@2.6.1)
       '@visulima/path': 1.1.1
     transitivePeerDependencies:
       - yaml
 
   '@visulima/fmt@1.1.11': {}
 
-  '@visulima/fs@2.2.2(yaml@2.5.1)':
+  '@visulima/fs@2.2.2(yaml@2.6.1)':
     dependencies:
       '@visulima/path': 1.1.1
     optionalDependencies:
-      yaml: 2.5.1
+      yaml: 2.6.1
 
-  '@visulima/fs@2.3.0(yaml@2.5.1)':
+  '@visulima/fs@2.3.0(yaml@2.6.1)':
     dependencies:
       '@visulima/path': 1.1.1
     optionalDependencies:
-      yaml: 2.5.1
+      yaml: 2.6.1
 
   '@visulima/humanizer@1.0.14': {}
 
@@ -10757,23 +10766,23 @@ snapshots:
 
   '@visulima/is-ansi-color-supported@2.2.8': {}
 
-  '@visulima/package@3.1.4(yaml@2.5.1)':
+  '@visulima/package@3.1.4(yaml@2.6.1)':
     dependencies:
-      '@visulima/fs': 2.2.2(yaml@2.5.1)
+      '@visulima/fs': 2.2.2(yaml@2.6.1)
       '@visulima/path': 1.1.1
       normalize-package-data: 7.0.0
     transitivePeerDependencies:
       - yaml
 
-  '@visulima/package@3.1.5(yaml@2.5.1)':
+  '@visulima/package@3.1.5(yaml@2.6.1)':
     dependencies:
-      '@visulima/fs': 2.3.0(yaml@2.5.1)
+      '@visulima/fs': 2.3.0(yaml@2.6.1)
       '@visulima/path': 1.1.1
       normalize-package-data: 7.0.0
     transitivePeerDependencies:
       - yaml
 
-  '@visulima/packem@1.1.1(@ckeditor/typedoc-plugins@43.0.0(typedoc@0.26.10(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)))(typedoc@0.26.10(typescript@5.6.3))(typescript@5.6.3)(yaml@2.5.1)':
+  '@visulima/packem@1.1.1(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.26.11(typescript@5.6.3)))(esbuild@0.24.0)(picomatch@4.0.2)(typedoc-plugin-markdown@4.2.10(typedoc@0.26.11(typescript@5.6.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.26.11(typescript@5.6.3)))(typedoc@0.26.11(typescript@5.6.3))(typescript@5.6.3)(yaml@2.6.1)':
     dependencies:
       '@antfu/install-pkg': 0.4.1
       '@babel/parser': 7.25.9
@@ -10787,15 +10796,15 @@ snapshots:
       '@rollup/plugin-replace': 6.0.1(rollup@4.24.0)
       '@rollup/plugin-wasm': 6.2.2(rollup@4.24.0)
       '@rollup/pluginutils': 5.1.2(rollup@4.24.0)
-      '@visulima/cerebro': 1.1.24(yaml@2.5.1)
+      '@visulima/cerebro': 1.1.24(yaml@2.6.1)
       '@visulima/colorize': 1.4.12
-      '@visulima/find-cache-dir': 1.0.14(yaml@2.5.1)
-      '@visulima/fs': 2.2.2(yaml@2.5.1)
+      '@visulima/find-cache-dir': 1.0.14(yaml@2.6.1)
+      '@visulima/fs': 2.2.2(yaml@2.6.1)
       '@visulima/humanizer': 1.0.14
-      '@visulima/package': 3.1.4(yaml@2.5.1)
+      '@visulima/package': 3.1.4(yaml@2.6.1)
       '@visulima/pail': 2.1.11
       '@visulima/path': 1.1.1
-      '@visulima/tsconfig': 1.0.16(yaml@2.5.1)
+      '@visulima/tsconfig': 1.0.16(yaml@2.6.1)
       defu: 6.1.4
       es-module-lexer: 1.5.4
       fastest-levenshtein: 1.0.16
@@ -10813,11 +10822,11 @@ snapshots:
       semver: 7.6.3
       tinyglobby: 0.2.9
     optionalDependencies:
-      '@ckeditor/typedoc-plugins': 43.0.0(typedoc@0.26.10(typescript@5.6.3))
+      '@ckeditor/typedoc-plugins': 43.0.1(typedoc@0.26.11(typescript@5.6.3))
       esbuild: 0.24.0
-      typedoc: 0.26.10(typescript@5.6.3)
-      typedoc-plugin-markdown: 4.2.9(typedoc@0.26.10(typescript@5.6.3))
-      typedoc-plugin-rename-defaults: 0.7.1(typedoc@0.26.10(typescript@5.6.3))
+      typedoc: 0.26.11(typescript@5.6.3)
+      typedoc-plugin-markdown: 4.2.10(typedoc@0.26.11(typescript@5.6.3))
+      typedoc-plugin-rename-defaults: 0.7.2(typedoc@0.26.11(typescript@5.6.3))
       typescript: 5.6.3
     transitivePeerDependencies:
       - '@75lb/nature'
@@ -10836,9 +10845,9 @@ snapshots:
 
   '@visulima/path@1.1.1': {}
 
-  '@visulima/tsconfig@1.0.16(yaml@2.5.1)':
+  '@visulima/tsconfig@1.0.16(yaml@2.6.1)':
     dependencies:
-      '@visulima/fs': 2.2.2(yaml@2.5.1)
+      '@visulima/fs': 2.2.2(yaml@2.6.1)
       '@visulima/path': 1.1.1
       jsonc-parser: 3.3.1
       resolve-pkg-maps: 1.0.0
@@ -10859,7 +10868,7 @@ snapshots:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+      vitest: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -10870,13 +10879,13 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.3(vite@5.4.10(@types/node@18.19.62))':
+  '@vitest/mocker@2.1.3(vite@5.4.10(@types/node@18.19.68))':
     dependencies:
       '@vitest/spy': 2.1.3
       estree-walker: 3.0.3
       magic-string: 0.30.12
     optionalDependencies:
-      vite: 5.4.10(@types/node@18.19.62)
+      vite: 5.4.10(@types/node@18.19.68)
 
   '@vitest/pretty-format@2.1.3':
     dependencies:
@@ -10906,7 +10915,7 @@ snapshots:
       sirv: 2.0.4
       tinyglobby: 0.2.9
       tinyrainbow: 1.2.0
-      vitest: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+      vitest: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
 
   '@vitest/utils@2.1.3':
     dependencies:
@@ -11489,10 +11498,10 @@ snapshots:
 
   commenting@1.1.0: {}
 
-  commitizen@4.3.1(@types/node@18.19.62)(typescript@5.6.3):
+  commitizen@4.3.1(@types/node@18.19.68)(typescript@5.6.3):
     dependencies:
       cachedir: 2.3.0
-      cz-conventional-changelog: 3.3.0(@types/node@18.19.62)(typescript@5.6.3)
+      cz-conventional-changelog: 3.3.0(@types/node@18.19.68)(typescript@5.6.3)
       dedent: 0.7.0
       detect-indent: 6.1.0
       find-node-modules: 2.1.3
@@ -11600,16 +11609,16 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@18.19.62)(cosmiconfig@8.3.6(typescript@5.6.3))(typescript@5.6.3):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@18.19.68)(cosmiconfig@8.3.6(typescript@5.6.3))(typescript@5.6.3):
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       cosmiconfig: 8.3.6(typescript@5.6.3)
       jiti: 1.21.6
       typescript: 5.6.3
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@18.19.62)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@18.19.68)(cosmiconfig@9.0.0(typescript@5.6.3))(typescript@5.6.3):
     dependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       cosmiconfig: 9.0.0(typescript@5.6.3)
       jiti: 1.21.6
       typescript: 5.6.3
@@ -11656,16 +11665,16 @@ snapshots:
 
   cuss@2.2.0: {}
 
-  cz-conventional-changelog@3.3.0(@types/node@18.19.62)(typescript@5.6.3):
+  cz-conventional-changelog@3.3.0(@types/node@18.19.68)(typescript@5.6.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.1(@types/node@18.19.62)(typescript@5.6.3)
+      commitizen: 4.3.1(@types/node@18.19.68)(typescript@5.6.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.2.0(@types/node@18.19.62)(typescript@5.6.3)
+      '@commitlint/load': 19.2.0(@types/node@18.19.68)(typescript@5.6.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -11699,6 +11708,10 @@ snapshots:
       ms: 2.1.3
 
   debug@4.3.7:
+    dependencies:
+      ms: 2.1.3
+
+  debug@4.4.0:
     dependencies:
       ms: 2.1.3
 
@@ -12450,7 +12463,7 @@ snapshots:
       '@typescript-eslint/utils': 7.13.1(eslint@8.57.1)(typescript@5.6.3)
       eslint: 8.57.1
     optionalDependencies:
-      vitest: 2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3)
+      vitest: 2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -12632,7 +12645,7 @@ snapshots:
       strip-final-newline: 4.0.0
       yoctocolors: 2.0.2
 
-  execa@9.5.1:
+  execa@9.5.2:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       cross-spawn: 7.0.3
@@ -13134,7 +13147,7 @@ snapshots:
       p-cancelable: 3.0.0
       responselike: 3.0.0
 
-  got@14.4.3:
+  got@14.4.5:
     dependencies:
       '@sindresorhus/is': 7.0.1
       '@szmarczak/http-timer': 5.0.1
@@ -13348,7 +13361,7 @@ snapshots:
 
   humannames@1.0.5: {}
 
-  husky@9.1.6: {}
+  husky@9.1.7: {}
 
   iconv-lite@0.4.24:
     dependencies:
@@ -13882,7 +13895,7 @@ snapshots:
       rechoir: 0.8.0
       resolve: 1.22.8
 
-  lilconfig@3.1.2: {}
+  lilconfig@3.1.3: {}
 
   limit-spawn@0.0.3: {}
 
@@ -13896,18 +13909,18 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@15.2.10:
+  lint-staged@15.2.11:
     dependencies:
       chalk: 5.3.0
       commander: 12.1.0
-      debug: 4.3.7
+      debug: 4.4.0
       execa: 8.0.1
-      lilconfig: 3.1.2
+      lilconfig: 3.1.3
       listr2: 8.2.5
       micromatch: 4.0.8
       pidtree: 0.6.0
       string-argv: 0.3.2
-      yaml: 2.5.1
+      yaml: 2.6.1
     transitivePeerDependencies:
       - supports-color
 
@@ -15567,7 +15580,7 @@ snapshots:
 
   p-reduce@3.0.0: {}
 
-  p-retry@6.2.0:
+  p-retry@6.2.1:
     dependencies:
       '@types/retry': 0.12.2
       is-network-error: 1.1.0
@@ -15586,7 +15599,7 @@ snapshots:
   package-json@8.1.1:
     dependencies:
       got: 12.6.1
-      registry-auth-token: 5.0.2
+      registry-auth-token: 5.0.3
       registry-url: 6.0.1
       semver: 7.6.3
 
@@ -15678,7 +15691,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.24.7
       index-to-position: 0.1.2
-      type-fest: 4.20.1
+      type-fest: 4.26.1
 
   parse-latin@4.3.0:
     dependencies:
@@ -15978,7 +15991,7 @@ snapshots:
       '@types/normalize-package-data': 2.4.4
       normalize-package-data: 6.0.1
       parse-json: 8.1.0
-      type-fest: 4.20.1
+      type-fest: 4.26.1
       unicorn-magic: 0.1.0
 
   readable-stream@1.0.34:
@@ -16054,7 +16067,7 @@ snapshots:
       es-errors: 1.3.0
       set-function-name: 2.0.2
 
-  registry-auth-token@5.0.2:
+  registry-auth-token@5.0.3:
     dependencies:
       '@pnpm/npm-conf': 2.2.2
 
@@ -16586,16 +16599,16 @@ snapshots:
 
   sort-object-keys@1.1.3: {}
 
-  sort-package-json@2.10.1:
+  sort-package-json@2.12.0:
     dependencies:
       detect-indent: 7.0.1
       detect-newline: 4.0.1
       get-stdin: 9.0.0
       git-hooks-list: 3.1.0
-      globby: 13.2.2
       is-plain-obj: 4.1.0
       semver: 7.6.3
       sort-object-keys: 1.1.3
+      tinyglobby: 0.2.9
 
   source-map-js@1.2.0: {}
 
@@ -17158,7 +17171,7 @@ snapshots:
     dependencies:
       typescript: 5.6.3
 
-  ts-deepmerge@7.0.1: {}
+  ts-deepmerge@7.0.2: {}
 
   tsconfig-paths@4.2.0:
     dependencies:
@@ -17264,16 +17277,16 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-markdown@4.2.9(typedoc@0.26.10(typescript@5.6.3)):
+  typedoc-plugin-markdown@4.2.10(typedoc@0.26.11(typescript@5.6.3)):
     dependencies:
-      typedoc: 0.26.10(typescript@5.6.3)
+      typedoc: 0.26.11(typescript@5.6.3)
 
-  typedoc-plugin-rename-defaults@0.7.1(typedoc@0.26.10(typescript@5.6.3)):
+  typedoc-plugin-rename-defaults@0.7.2(typedoc@0.26.11(typescript@5.6.3)):
     dependencies:
       camelcase: 8.0.0
-      typedoc: 0.26.10(typescript@5.6.3)
+      typedoc: 0.26.11(typescript@5.6.3)
 
-  typedoc@0.26.10(typescript@5.6.3):
+  typedoc@0.26.11(typescript@5.6.3):
     dependencies:
       lunr: 2.3.9
       markdown-it: 14.1.0
@@ -17334,7 +17347,7 @@ snapshots:
       '@types/concat-stream': 2.0.3
       '@types/debug': 4.1.12
       '@types/is-empty': 1.2.3
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       '@types/unist': 2.0.10
       concat-stream: 2.0.0
       debug: 4.3.7
@@ -17352,7 +17365,7 @@ snapshots:
       vfile-message: 3.1.4
       vfile-reporter: 7.0.5
       vfile-statistics: 2.0.1
-      yaml: 2.4.5
+      yaml: 2.5.1
     transitivePeerDependencies:
       - supports-color
 
@@ -17378,7 +17391,7 @@ snapshots:
       vfile-message: 4.0.2
       vfile-reporter: 8.1.1
       vfile-statistics: 3.0.0
-      yaml: 2.4.5
+      yaml: 2.5.1
     transitivePeerDependencies:
       - supports-color
 
@@ -17713,12 +17726,12 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-node@2.1.3(@types/node@18.19.62):
+  vite-node@2.1.3(@types/node@18.19.68):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       pathe: 1.1.2
-      vite: 5.4.10(@types/node@18.19.62)
+      vite: 5.4.10(@types/node@18.19.68)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -17730,19 +17743,19 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.4.10(@types/node@18.19.62):
+  vite@5.4.10(@types/node@18.19.68):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.24.0
     optionalDependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       fsevents: 2.3.3
 
-  vitest@2.1.3(@types/node@18.19.62)(@vitest/ui@2.1.3):
+  vitest@2.1.3(@types/node@18.19.68)(@vitest/ui@2.1.3):
     dependencies:
       '@vitest/expect': 2.1.3
-      '@vitest/mocker': 2.1.3(vite@5.4.10(@types/node@18.19.62))
+      '@vitest/mocker': 2.1.3(vite@5.4.10(@types/node@18.19.68))
       '@vitest/pretty-format': 2.1.3
       '@vitest/runner': 2.1.3
       '@vitest/snapshot': 2.1.3
@@ -17757,11 +17770,11 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.10(@types/node@18.19.62)
-      vite-node: 2.1.3(@types/node@18.19.62)
+      vite: 5.4.10(@types/node@18.19.68)
+      vite-node: 2.1.3(@types/node@18.19.68)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 18.19.62
+      '@types/node': 18.19.68
       '@vitest/ui': 2.1.3(vitest@2.1.3)
     transitivePeerDependencies:
       - less
@@ -17893,11 +17906,11 @@ snapshots:
     dependencies:
       eslint-visitor-keys: 3.4.3
       lodash: 4.17.21
-      yaml: 2.4.5
-
-  yaml@2.4.5: {}
+      yaml: 2.5.1
 
   yaml@2.5.1: {}
+
+  yaml@2.6.1: {}
 
   yargs-parser@20.2.9: {}
 
