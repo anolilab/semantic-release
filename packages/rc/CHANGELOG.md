@@ -1,3 +1,10 @@
+## @anolilab/rc [1.1.4](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.3...@anolilab/rc@1.1.4) (2024-12-15)
+
+### Bug Fixes
+
+* allowing node v23, updated @types/node ([41e4e33](https://github.com/anolilab/semantic-release/commit/41e4e3301f1f7c9e72603f39ec70eaad2c820445))
+* updated visulima fs, path and ts-deepmerge dependencies, updated all dev deps ([3c8bcef](https://github.com/anolilab/semantic-release/commit/3c8bcef8d1a0d5b8db27ccaf71aa60e4da71b082))
+
 ## @anolilab/rc [1.1.3](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.2...@anolilab/rc@1.1.3) (2024-10-26)
 
 ### Bug Fixes
