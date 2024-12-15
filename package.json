@@ -55,7 +55,7 @@
         "@anolilab/prettier-config": "^5.0.14",
         "@anolilab/textlint-config": "^8.0.16",
         "@babel/core": "^7.26.0",
-        "@commitlint/cli": "^19.6.0",
+        "@commitlint/cli": "^19.6.1",
         "@commitlint/config-conventional": "^19.6.0",
         "@nx/workspace": "20.2.2",
         "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
@@ -80,9 +80,9 @@
         "typescript": "^5.7.2",
         "vitest": "^2.1.8"
     },
-    "packageManager": "pnpm@9.12.2",
+    "packageManager": "pnpm@9.15.0",
     "engines": {
-        "node": ">=18.17 <=22.*"
+        "node": ">=18.17 <=23.*"
     },
     "pnpm": {
         "overrides": {
@@ -90,7 +90,7 @@
             "@anolilab/rc": "workspace:*",
             "@anolilab/semantic-release-pnpm": "workspace:*",
             "braces@<3.0.3": ">=3.0.3",
-            "chrono-node@<2.2.4": ">=2.7.6",
+            "chrono-node@<2.2.4": ">=2.7.7",
             "micromatch@<4.0.8": ">=4.0.8",
             "npm@>=7.9.0 <8.11.0": ">=8.11.0",
             "rollup@>=4.0.0 <4.22.4": ">=4.22.4",

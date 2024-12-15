@@ -98,7 +98,7 @@
         "@semantic-release/github": "^11.0.1",
         "@semantic-release/release-notes-generator": "14.0.1",
         "@types/ini": "^4.1.1",
-        "@types/node": "18.19.59",
+        "@types/node": "18.19.68",
         "@visulima/packem": "^1.10.0",
         "@visulima/path": "^1.1.2",
         "@vitest/coverage-v8": "^2.1.8",
@@ -126,7 +126,7 @@
         "vitest": "^2.1.8"
     },
     "engines": {
-        "node": ">=18.* <=22.*"
+        "node": ">=18.* <=23.*"
     },
     "publishConfig": {
         "access": "public",
