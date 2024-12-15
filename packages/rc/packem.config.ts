@@ -19,8 +19,10 @@ export default defineConfig({
         typedoc: typedocBuilder,
     },
     cjsInterop: true,
-    typedoc: {
-        format: "inline",
-        readmePath: "./README.md",
-    },
+    // Disabled for now, till the ckeditor5 plugin is fixed
+    // typedoc: {
+    //     format: "inline",
+    //     readmePath: "./README.md",
+    //     githubPages: false,
+    // },
 }) as BuildConfig;
