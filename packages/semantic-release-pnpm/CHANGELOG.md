@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-pnpm [1.1.6](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.5...@anolilab/semantic-release-pnpm@1.1.6) (2024-12-15)
+
+### Bug Fixes
+
+* allowing node v23, updated @types/node ([41e4e33](https://github.com/anolilab/semantic-release/commit/41e4e3301f1f7c9e72603f39ec70eaad2c820445))
+* **semantic-release-pnpm:** updated visulima fs, visulima package, visulima path, execa and registry-auth-token dependencies, updated all dev deps ([7212e22](https://github.com/anolilab/semantic-release/commit/7212e229c02b5e650ffc398c3394417af80c61f0))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 1.1.4
+
 ## @anolilab/semantic-release-pnpm [1.1.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.4...@anolilab/semantic-release-pnpm@1.1.5) (2024-11-03)
 
 ### Bug Fixes
