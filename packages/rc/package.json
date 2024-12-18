@@ -96,7 +96,7 @@
         "@semantic-release/exec": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^11.0.1",
-        "@semantic-release/release-notes-generator": "14.0.1",
+        "@semantic-release/release-notes-generator": "14.0.2",
         "@types/ini": "^4.1.1",
         "@types/node": "18.19.68",
         "@visulima/packem": "^1.10.0",
