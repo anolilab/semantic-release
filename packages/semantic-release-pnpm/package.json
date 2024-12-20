@@ -78,7 +78,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "^15.0.3",
         "@anolilab/prettier-config": "^5.0.14",
-        "@arethetypeswrong/cli": "^0.17.1",
+        "@arethetypeswrong/cli": "^0.17.2",
         "@babel/core": "^7.26.0",
         "@rushstack/eslint-plugin-security": "^0.8.3",
         "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
@@ -100,7 +100,7 @@
         "conventional-changelog-conventionalcommits": "8.0.0",
         "cross-env": "^7.0.3",
         "dockerode": "4.0.2",
-        "esbuild": "0.24.0",
+        "esbuild": "0.24.1",
         "eslint": "^8.57.1",
         "eslint-plugin-deprecation": "^3.0.0",
         "eslint-plugin-editorconfig": "^4.0.3",
