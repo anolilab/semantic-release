@@ -229,8 +229,8 @@ importers:
         specifier: ^17.15.0
         version: 17.15.0(eslint@8.57.1)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -359,8 +359,8 @@ importers:
         specifier: ^3.1.5
         version: 3.1.5(eslint@8.57.1)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -528,8 +528,8 @@ importers:
         specifier: ^17.15.0
         version: 17.15.0(eslint@8.57.1)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -786,6 +786,7 @@ packages:
   '@anolilab/package-json-utils@3.0.9':
     resolution: {integrity: sha512-CYwpW2hlsOSdwtksYG5vH7Y48X7qwSnvk4yTsplce/FZFZLKRxuCbwlUqgTEYUng3nZ55A+5EC3rEttgor7e9w==}
     engines: {node: '>=18.* <=21.*'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@anolilab/prettier-config@5.0.14':
     resolution: {integrity: sha512-P7nVwARFM0SKQ0j8Q2y6Q3acHaPNtXOKEX9lgZcf5veFdvNjzK79iZcFdpQikyix4VQBs8x6wBPAD0yDfpC6pQ==}
@@ -4335,12 +4336,12 @@ packages:
   eslint-plugin-vitest-globals@1.5.0:
     resolution: {integrity: sha512-ZSsVOaOIig0oVLzRTyk8lUfBfqzWxr/J3/NFMfGGRIkGQPejJYmDH3gXmSJxAojts77uzAGB/UmVrwi2DC4LYA==}
 
-  eslint-plugin-vitest@0.4.1:
-    resolution: {integrity: sha512-+PnZ2u/BS+f5FiuHXz4zKsHPcMKHie+K+1Uvu/x91ovkCMEOJqEI8E9Tw1Wzx2QRz4MHOBHYf1ypO8N1K0aNAA==}
+  eslint-plugin-vitest@0.5.4:
+    resolution: {integrity: sha512-um+odCkccAHU53WdKAw39MY61+1x990uXjSPguUCq3VcEHdqJrOb8OTMrbYlY6f9jAKx7x98kLVlIe3RJeJqoQ==}
     engines: {node: ^18.0.0 || >= 20.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
-      eslint: '>=8.0.0'
+      eslint: ^8.57.0 || ^9.0.0
       vitest: '*'
     peerDependenciesMeta:
       '@typescript-eslint/eslint-plugin':
@@ -11252,7 +11253,7 @@ snapshots:
       sirv: 3.0.0
       tinyglobby: 0.2.10
       tinyrainbow: 1.2.0
-      vitest: 2.1.8(@types/node@18.19.68)(@vitest/ui@2.1.8)
+      vitest: 2.1.8(@types/node@22.10.2)(@vitest/ui@2.1.8)
 
   '@vitest/utils@2.1.8':
     dependencies:
@@ -12815,7 +12816,7 @@ snapshots:
 
   eslint-plugin-vitest-globals@1.5.0: {}
 
-  eslint-plugin-vitest@0.4.1(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8):
+  eslint-plugin-vitest@0.5.4(eslint@8.57.1)(typescript@5.7.2)(vitest@2.1.8):
     dependencies:
       '@typescript-eslint/utils': 7.13.1(eslint@8.57.1)(typescript@5.7.2)
       eslint: 8.57.1
