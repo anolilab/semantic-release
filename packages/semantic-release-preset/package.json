@@ -112,7 +112,7 @@
         "secretlint": "9.0.0",
         "semantic-release": "^24.2.0",
         "sort-package-json": "^2.12.0",
-        "typescript": "^5.7.2"
+        "typescript": "^5.7.3"
     },
     "peerDependencies": {
         "@anolilab/semantic-release-pnpm": "1.1.6",
