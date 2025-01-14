@@ -144,7 +144,6 @@ By default, these properties are preserved in `package.json`:
 
 #### [VSCode Extension Manifest](https://code.visualstudio.com/api/references/extension-manifest)
 
-- `sponsor`
 - `publisher`
 - `displayName`
 - `categories`
