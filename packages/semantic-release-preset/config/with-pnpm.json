@@ -44,6 +44,7 @@
         ],
         "@semantic-release/changelog",
         "@anolilab/semantic-release-pnpm",
+        "@anolilab/semantic-release-clean-package-json",
         [
             "@semantic-release/git",
             {

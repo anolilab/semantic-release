@@ -675,6 +675,9 @@ importers:
 
   packages/semantic-release-preset:
     dependencies:
+      '@anolilab/semantic-release-clean-package-json':
+        specifier: workspace:*
+        version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
