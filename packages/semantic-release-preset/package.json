@@ -87,11 +87,11 @@
     },
     "dependencies": {
         "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/commit-analyzer": "13.0.0",
+        "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^11.0.1",
-        "@semantic-release/release-notes-generator": "14.0.1",
+        "@semantic-release/release-notes-generator": "14.0.3",
         "conventional-changelog-conventionalcommits": "8.0.0"
     },
     "devDependencies": {
@@ -110,9 +110,9 @@
         "prettier": "^3.4.2",
         "rimraf": "^6.0.1",
         "secretlint": "9.0.0",
-        "semantic-release": "^24.2.0",
-        "sort-package-json": "^2.12.0",
-        "typescript": "^5.7.2"
+        "semantic-release": "^24.2.1",
+        "sort-package-json": "^2.13.0",
+        "typescript": "^5.7.3"
     },
     "peerDependencies": {
         "@anolilab/semantic-release-pnpm": "1.1.6",
