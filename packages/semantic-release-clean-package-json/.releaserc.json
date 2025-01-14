@@ -28,12 +28,7 @@
         ],
         "@semantic-release/changelog",
         "@anolilab/semantic-release-pnpm",
-        [
-            "./dist/index.mjs",
-            {
-                "disableScripts": true
-            }
-        ],
+        "./dist/index.mjs",
         [
             "@semantic-release/github",
             {
