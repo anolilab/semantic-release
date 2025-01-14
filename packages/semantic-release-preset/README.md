@@ -21,7 +21,7 @@ A shareable [semantic-release](https://github.com/semantic-release/semantic-rele
 
 ## Purpose
 
--   This configuration also includes a semantic-release configuration, which enables automated GitHub/NPM releases based on your commit messages.
+- This configuration also includes a semantic-release configuration, which enables automated GitHub/NPM releases based on your commit messages.
 
 ## Install
 
@@ -41,15 +41,15 @@ pnpm add -D semantic-release @anolilab/semantic-release-preset
 
 We use the following plugins within the Semantic Release ecosystem:
 
--   [@semantic-release/changelog][3]
--   [@semantic-release/commit-analyzer][1]
--   [@semantic-release/exec][5]
--   [@semantic-release/git][6]
--   [@semantic-release/github][4]
--   [@semantic-release/npm][7] (optional)
--   [@semantic-release/release-notes-generator][2]
--   [@anolilab/semantic-release-pnpm][8] (optional)
--   [semantic-release-yarn][9] (optional)
+- [@semantic-release/changelog][3]
+- [@semantic-release/commit-analyzer][1]
+- [@semantic-release/exec][5]
+- [@semantic-release/git][6]
+- [@semantic-release/github][4]
+- [@semantic-release/npm][7] (optional)
+- [@semantic-release/release-notes-generator][2]
+- [@anolilab/semantic-release-pnpm][8] (optional)
+- [semantic-release-yarn][9] (optional)
 
 ## Summary
 
@@ -259,10 +259,10 @@ Find out how to configure the plugin [here](https://www.npmjs.com/package/semant
 
 Ensure that your CI configuration has the following environment variables set:
 
--   GITHUB_TOKEN: [A GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-    -   When a new release is published, this plugin will try to commit and push into the released branch. Ensure that the user that is running the release has push rights and can bypass branch protection rules.
--   NPM_TOKEN: [A npm personal access token](https://www.npmjs.com/package/settings)
-    -   A NPM token so the package can be published to NPM (a .npmrc file with extra configuration can also be used)
+- GITHUB_TOKEN: [A GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+    - When a new release is published, this plugin will try to commit and push into the released branch. Ensure that the user that is running the release has push rights and can bypass branch protection rules.
+- NPM_TOKEN: [A npm personal access token](https://www.npmjs.com/package/settings)
+    - A NPM token so the package can be published to NPM (a .npmrc file with extra configuration can also be used)
 
 You can test your config with a dry run:
 
@@ -585,8 +585,8 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 ## Credits
 
--   [Daniel Bannert](https://github.com/prisis)
--   [All Contributors](https://github.com/anolilab/javascript-style-guide/graphs/contributors)
+- [Daniel Bannert](https://github.com/prisis)
+- [All Contributors](https://github.com/anolilab/javascript-style-guide/graphs/contributors)
 
 ## License
 

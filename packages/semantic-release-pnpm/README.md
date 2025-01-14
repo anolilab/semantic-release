@@ -135,8 +135,8 @@ The [`registry`](https://docs.npmjs.com/misc/registry) and [`dist-tag`](https://
 
 **Notes**:
 
--   The presence of an `.npmrc` file will override any specified environment variables.
--   The presence of `registry` or `dist-tag` under `publishConfig` in the `package.json` will take precedence over the configuration in `.npmrc` and `NPM_CONFIG_REGISTRY`
+- The presence of an `.npmrc` file will override any specified environment variables.
+- The presence of `registry` or `dist-tag` under `publishConfig` in the `package.json` will take precedence over the configuration in `.npmrc` and `NPM_CONFIG_REGISTRY`
 
 ### Examples
 
@@ -197,8 +197,8 @@ When publishing from a sub-directory with the `pkgRoot` option, the `package.jso
 
 ## Related
 
--   [@semantic-release/npm](https://github.com/semantic-release/npm) - 🚢 semantic-release plugin to publish a npm package
--   [semantic-release-yarn](https://github.com/hongaar/semantic-release-yarn) - 🧶 A semantic-release plugin to publish npm packages with Yarn. Comes with built-in support for monorepos.
+- [@semantic-release/npm](https://github.com/semantic-release/npm) - 🚢 semantic-release plugin to publish a npm package
+- [semantic-release-yarn](https://github.com/hongaar/semantic-release-yarn) - 🧶 A semantic-release plugin to publish npm packages with Yarn. Comes with built-in support for monorepos.
 
 ## Supported Node.js Versions
 
@@ -213,8 +213,8 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 ## Credits
 
--   [Daniel Bannert](https://github.com/prisis)
--   [All Contributors](https://github.com/anolilab/semantic-release/graphs/contributors)
+- [Daniel Bannert](https://github.com/prisis)
+- [All Contributors](https://github.com/anolilab/semantic-release/graphs/contributors)
 
 ## License
 

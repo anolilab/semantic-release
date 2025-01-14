@@ -16,7 +16,7 @@ export default defineConfig({
         packageJson: {
             // semantic-release does not support the "exports" field
             exports: false,
-        }
+        },
     },
     transformer,
     cjsInterop: true,

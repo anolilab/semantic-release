@@ -53,30 +53,30 @@ const { config, files } = rc("npm");
 
 ### Api
 
--   name (string): The application name. This is used to locate configuration files and environment variables.
--   options (object, optional): An object with the following properties:
-    -   config (string, optional): Path to a specific configuration file.
-    -   cwd (string, optional): The current working directory to start searching for configuration files. Defaults to process.cwd().
-    -   defaults (object, optional): Default configuration values.
-    -   home (string, optional): The home directory to use. Defaults to os.homedir().
-    -   stopAt (string, optional): Directory to stop searching for configuration files.
+- name (string): The application name. This is used to locate configuration files and environment variables.
+- options (object, optional): An object with the following properties:
+    - config (string, optional): Path to a specific configuration file.
+    - cwd (string, optional): The current working directory to start searching for configuration files. Defaults to process.cwd().
+    - defaults (object, optional): Default configuration values.
+    - home (string, optional): The home directory to use. Defaults to os.homedir().
+    - stopAt (string, optional): Directory to stop searching for configuration files.
 
 ## Standards
 
 Given your application name (appname), rc will look in all the obvious places for configuration.
 
--   The defaults object you passed in
--   `/etc/${appname}/config`
--   `/etc/${appname}rc`
--   `$HOME/.config/${appname}/config`
--   `$HOME/.config/${appname}`
--   `$HOME/.${appname}/config`
--   `$HOME/.${appname}rc`
--   a local `.${appname}/config` and `.${appname}rc` and all found looking in `../../../ ../../ ../ ./` etc.
--   if you passed environment variable `${appname}_config` then from that file
--   if you passed options.config variable, then from that file
--   environment variables prefixed with `${appname}_`
-    or use "\_\_" to indicate nested properties <br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
+- The defaults object you passed in
+- `/etc/${appname}/config`
+- `/etc/${appname}rc`
+- `$HOME/.config/${appname}/config`
+- `$HOME/.config/${appname}`
+- `$HOME/.${appname}/config`
+- `$HOME/.${appname}rc`
+- a local `.${appname}/config` and `.${appname}rc` and all found looking in `../../../ ../../ ../ ./` etc.
+- if you passed environment variable `${appname}_config` then from that file
+- if you passed options.config variable, then from that file
+- environment variables prefixed with `${appname}_`
+  or use "\_\_" to indicate nested properties <br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
 
 All configuration sources that were found will be flattened into one object, in this exact order.
 
@@ -91,7 +91,7 @@ All configuration sources that were found will be flattened into one object, in 
 ### rc()
 
 ```ts
-function rc(name, options): object
+function rc(name, options): object;
 ```
 
 Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/cde09c51ce155c1b6001544142ba366b7f58b996/packages/rc/src/index.ts#L170)
@@ -144,7 +144,7 @@ files: string[];
 
 ## Related
 
--   [rc](https://github.com/dominictarr/rc) - The non-configurable configuration loader for lazy people.
+- [rc](https://github.com/dominictarr/rc) - The non-configurable configuration loader for lazy people.
 
 ## Supported Node.js Versions
 
@@ -159,8 +159,8 @@ If you would like to help take a look at the [list of issues](https://github.com
 
 ## Credits
 
--   [Daniel Bannert](https://github.com/prisis)
--   [All Contributors](https://github.com/anolilab/semantic-release/graphs/contributors)
+- [Daniel Bannert](https://github.com/prisis)
+- [All Contributors](https://github.com/anolilab/semantic-release/graphs/contributors)
 
 ## License
 
