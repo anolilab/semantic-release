@@ -1,3 +1,10 @@
+## @anolilab/multi-semantic-release [1.1.7](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@1.1.6...@anolilab/multi-semantic-release@1.1.7) (2025-01-14)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.7
+
 ## @anolilab/multi-semantic-release [1.1.6](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@1.1.5...@anolilab/multi-semantic-release@1.1.6) (2024-12-15)
 
 ### Bug Fixes
