@@ -11,5 +11,8 @@ packem.config.ts
 .secretlintrc.cjs
 tsconfig.eslint.json
 
+src/definitions/semantic-release.ts
+src/definitions/context.ts
+
 README.md
 

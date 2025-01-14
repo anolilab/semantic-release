@@ -1,14 +1,15 @@
 // eslint-disable-next-line unicorn/prevent-abbreviations
+import type { FindUpOptions } from "@visulima/fs";
+import { findUp, readJson } from "@visulima/fs";
+import { NotFoundError } from "@visulima/fs/error";
 import { resolve } from "@visulima/path";
 import AggregateError from "aggregate-error";
 import type { PackageJson } from "type-fest";
 
 import type { CommonContext } from "../definitions/context";
 import getError from "./get-error";
-import { findUp, type FindUpOptions, readJson } from "@visulima/fs";
-import { NotFoundError } from "@visulima/fs/error";
 
-export const findPackageJson = async (
+const findPackageJson = async (
     cwd?: URL | string,
 ): Promise<{
     packageJson: PackageJson;
@@ -28,12 +29,10 @@ export const findPackageJson = async (
         throw new NotFoundError("No such file or directory, for package.json found.");
     }
 
-    const output = {
+    return {
         packageJson: await readJson<PackageJson>(filePath),
         path: filePath,
     };
-
-    return output;
 };
 
 export default async (

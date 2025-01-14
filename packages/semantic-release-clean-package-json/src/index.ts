@@ -29,7 +29,7 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
                     continue;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
                 delete packageJson.scripts[script];
             }
 
@@ -40,7 +40,7 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
         }
 
         context.logger.log(`Removing property "${property}"`);
-        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
         delete packageJson[property];
     }
 

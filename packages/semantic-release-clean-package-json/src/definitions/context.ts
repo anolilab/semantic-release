@@ -1,5 +1,6 @@
 import type stream from "node:stream";
-import type { Options, Commit } from "./semantic-release";
+
+import type { Commit, Options } from "./semantic-release";
 
 // @todo these types need testing
 

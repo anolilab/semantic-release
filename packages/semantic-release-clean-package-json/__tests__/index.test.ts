@@ -35,10 +35,10 @@ const context: Partial<PrepareContext> = {
         version: "1.0.0",
     },
     logger: {
-        error: console.error,
+        error: vi.fn(),
         log: vi.fn(),
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any,
+        success: vi.fn(),
+    },
     nextRelease: {
         gitHead: "foo",
         gitTag: "2.0.0",
@@ -58,7 +58,9 @@ describe("semantic-release-clean-package-json", () => {
         await rm(temporaryDirectoryPath, { recursive: true });
     });
 
-    it("removes unnecessary properties", async () => {
+    it("should removes unnecessary properties", async () => {
+        expect.assertions(1);
+
         const packageJsonPath = `${temporaryDirectoryPath}/package.json`;
 
         await writeJson(packageJsonPath, DEFAULT_PACKAGE_JSON);
@@ -76,7 +78,9 @@ describe("semantic-release-clean-package-json", () => {
         });
     });
 
-    it("keep flag", async () => {
+    it("should keep flag from given config", async () => {
+        expect.assertions(1);
+
         const packageJsonPath = `${temporaryDirectoryPath}/package.json`;
 
         await writeJson(packageJsonPath, DEFAULT_PACKAGE_JSON);
