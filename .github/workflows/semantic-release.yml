@@ -76,7 +76,7 @@ jobs:
               with:
                   run-lint: "false"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
-                  exclude-projects: "semantic-release-preset"
+                  exclude-projects: "@anolilab/semantic-release-preset"
 
             - name: "Semantic Release"
               if: "success()"

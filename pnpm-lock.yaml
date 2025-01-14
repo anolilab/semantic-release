@@ -25,7 +25,7 @@ importers:
     dependencies:
       '@anolilab/commitlint-config':
         specifier: ^5.0.3
-        version: 5.0.3(@commitlint/cli@19.6.1(@types/node@22.10.2)(typescript@5.7.3))(@types/node@22.10.2)(typescript@5.7.3)
+        version: 5.0.3(@commitlint/cli@19.6.1(@types/node@20.14.2)(typescript@5.7.3))(@types/node@20.14.2)(typescript@5.7.3)
       '@anolilab/lint-staged-config':
         specifier: ^2.1.7
         version: 2.1.7(eslint@8.57.1)(husky@9.1.7)(lint-staged@15.3.0)(prettier@3.4.2)(secretlint@9.0.0)
@@ -43,7 +43,7 @@ importers:
         version: 7.26.0
       '@commitlint/cli':
         specifier: ^19.6.1
-        version: 19.6.1(@types/node@22.10.2)(typescript@5.7.3)
+        version: 19.6.1(@types/node@20.14.2)(typescript@5.7.3)
       '@commitlint/config-conventional':
         specifier: ^19.6.0
         version: 19.6.0
@@ -61,7 +61,7 @@ importers:
         version: 5.0.14
       commitizen:
         specifier: ^4.3.1
-        version: 4.3.1(@types/node@22.10.2)(typescript@5.7.3)
+        version: 4.3.1(@types/node@20.14.2)(typescript@5.7.3)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -109,7 +109,7 @@ importers:
         version: 5.7.3
       vitest:
         specifier: ^2.1.8
-        version: 2.1.8(@types/node@22.10.2)(@vitest/ui@2.1.8)
+        version: 2.1.8(@types/node@20.14.2)(@vitest/ui@2.1.8)
 
   packages/multi-semantic-release:
     dependencies:
@@ -394,6 +394,109 @@ importers:
       vitest:
         specifier: ^2.1.8
         version: 2.1.8(@types/node@18.19.68)(@vitest/ui@2.1.8)
+
+  packages/semantic-release-clean-package-json:
+    dependencies:
+      '@semantic-release/error':
+        specifier: ^4.0.0
+        version: 4.0.0
+      '@visulima/fs':
+        specifier: ^2.3.7
+        version: 2.3.7
+      '@visulima/path':
+        specifier: ^1.3.3
+        version: 1.3.3
+      aggregate-error:
+        specifier: ^5.0.0
+        version: 5.0.0
+    devDependencies:
+      '@anolilab/eslint-config':
+        specifier: ^15.0.3
+        version: 15.0.3(@babel/core@7.26.0)(eslint-plugin-editorconfig@4.0.3)(eslint-plugin-i@2.29.1(eslint@8.57.1))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@8.57.1)(typescript@5.7.3)
+      '@anolilab/prettier-config':
+        specifier: ^5.0.14
+        version: 5.0.14(prettier@3.4.2)
+      '@anolilab/semantic-release-preset':
+        specifier: ^9.0.4
+        version: 9.0.4(@semantic-release/npm@12.0.1(semantic-release@24.2.1(typescript@5.7.3)))(semantic-release@24.2.1(typescript@5.7.3))
+      '@babel/core':
+        specifier: ^7.26.0
+        version: 7.26.0
+      '@rushstack/eslint-plugin-security':
+        specifier: ^0.8.3
+        version: 0.8.3(eslint@8.57.1)(typescript@5.7.3)
+      '@secretlint/secretlint-rule-preset-recommend':
+        specifier: ^9.0.0
+        version: 9.0.0
+      '@types/node':
+        specifier: 18.19.70
+        version: 18.19.70
+      '@types/semantic-release':
+        specifier: ^20.0.6
+        version: 20.0.6
+      '@types/semantic-release__error':
+        specifier: ^3.0.3
+        version: 3.0.3
+      '@visulima/packem':
+        specifier: ^1.11.0
+        version: 1.11.0(@types/node@18.19.70)(esbuild@0.24.2)(picomatch@4.0.2)(postcss@8.4.47)(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.7.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.27.6(typescript@5.7.3)))(typedoc@0.27.6(typescript@5.7.3))(typescript@5.7.3)
+      '@vitest/coverage-v8':
+        specifier: ^2.1.8
+        version: 2.1.8(vitest@2.1.8)
+      '@vitest/ui':
+        specifier: ^2.1.8
+        version: 2.1.8(vitest@2.1.8)
+      esbuild:
+        specifier: 0.24.2
+        version: 0.24.2
+      eslint:
+        specifier: 8.57.1
+        version: 8.57.1
+      eslint-plugin-deprecation:
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      eslint-plugin-etc:
+        specifier: ^2.0.3
+        version: 2.0.3(eslint@8.57.1)(typescript@5.7.3)
+      eslint-plugin-import:
+        specifier: npm:eslint-plugin-i@^2.29.1
+        version: eslint-plugin-i@2.29.1(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-i@2.29.1(eslint@8.57.1))(eslint@8.57.1))(eslint@8.57.1)
+      eslint-plugin-mdx:
+        specifier: ^3.1.5
+        version: 3.1.5(eslint@8.57.1)
+      eslint-plugin-vitest:
+        specifier: ^0.4.1
+        version: 0.4.1(eslint@8.57.1)(typescript@5.7.3)(vitest@2.1.8)
+      eslint-plugin-vitest-globals:
+        specifier: ^1.5.0
+        version: 1.5.0
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      rimraf:
+        specifier: ^6.0.1
+        version: 6.0.1
+      secretlint:
+        specifier: 9.0.0
+        version: 9.0.0
+      semantic-release:
+        specifier: ^24.2.1
+        version: 24.2.1(typescript@5.7.3)
+      sort-package-json:
+        specifier: ^2.13.0
+        version: 2.13.0
+      tempy:
+        specifier: ^3.1.0
+        version: 3.1.0
+      type-fest:
+        specifier: ^4.32.0
+        version: 4.32.0
+      typescript:
+        specifier: ^5.7.3
+        version: 5.7.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.8(@types/node@18.19.70)(@vitest/ui@2.1.8)
 
   packages/semantic-release-pnpm:
     dependencies:
@@ -789,6 +892,23 @@ packages:
     engines: {node: '>=18.* <=21.*'}
     peerDependencies:
       prettier: 2.x || 3.x
+
+  '@anolilab/semantic-release-preset@9.0.4':
+    resolution: {integrity: sha512-S0qfmPP09Vml7WAONjKMbwXx/K50CnNsBTuoNTeIdzcaxM8uAQu/zq9LiQDqd+rX725/54pxQ4Oefwcw5HilZg==}
+    engines: {node: ^18.17 || >=20.6.1}
+    os: [darwin, linux, win32]
+    peerDependencies:
+      '@anolilab/semantic-release-pnpm': workspace:*
+      '@semantic-release/npm': ^12.0.1
+      semantic-release: ^24.0.0
+      semantic-release-yarn: ^3.0.2
+    peerDependenciesMeta:
+      '@anolilab/semantic-release-pnpm':
+        optional: true
+      '@semantic-release/npm':
+        optional: true
+      semantic-release-yarn:
+        optional: true
 
   '@anolilab/textlint-config@8.0.16':
     resolution: {integrity: sha512-kzIOKha8sIPo4kOMCq2lcflFH4PSODEI7+TQpKcp70EmUQkOVd7+Yw1laltXKs2ItDDD4RHYKaroRz0MmnuOtg==}
@@ -2668,11 +2788,11 @@ packages:
   '@types/node@18.19.68':
     resolution: {integrity: sha512-QGtpFH1vB99ZmTa63K4/FU8twThj4fuVSBkGddTp7uIL/cuoLWIUSL2RcOaigBhfR+hg5pgGkBnkoOxrTVBMKw==}
 
+  '@types/node@18.19.70':
+    resolution: {integrity: sha512-RE+K0+KZoEpDUbGGctnGdkrLFwi1eYKTlIHNl2Um98mUkGsm1u2Ff6Ltd0e8DktTtC98uy7rSj+hO8t/QuLoVQ==}
+
   '@types/node@20.14.2':
     resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
-
-  '@types/node@22.10.2':
-    resolution: {integrity: sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -2682,6 +2802,9 @@ packages:
 
   '@types/retry@0.12.2':
     resolution: {integrity: sha512-XISRgDJ2Tc5q4TRqvgJtzsRkFYNJzZrhTdtMoGVBttwzzQJkPnS3WWTFc7kuDRoPtPakl+T+OfdEUjYJj7Jbow==}
+
+  '@types/semantic-release@20.0.6':
+    resolution: {integrity: sha512-8YJXvsT1FwMrNdZI1e6NBHPzZWendDiUsLryzxurdup+9LnV3s9fF4NgO0D3LkBfLMnocb4Ax6TQ5yFdF3dXGQ==}
 
   '@types/semantic-release__error@3.0.3':
     resolution: {integrity: sha512-zFa+QAM80q65lQc5NVnKR5BgR0ChuLnBkfRBwa9xRqzAHOJx+mozSV2g1d489mKRqYezqxYC7XI0rEVoyF1f2w==}
@@ -8296,12 +8419,8 @@ packages:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
 
-  type-fest@4.20.1:
-    resolution: {integrity: sha512-R6wDsVsoS9xYOpy8vgeBlqpdOyzJ12HNfQhC/aAKWM3YoCV9TtunJzh/QpkMgeDhkoynDcw5f1y+qF9yc/HHyg==}
-    engines: {node: '>=16'}
-
-  type-fest@4.26.1:
-    resolution: {integrity: sha512-yOGpmOAL7CkKe/91I5O3gPICmJNLJ1G4zFYVAsRHg7M64biSnPtRj0WNQt++bRkjYOqjWXrhnUw1utzmVErAdg==}
+  type-fest@4.32.0:
+    resolution: {integrity: sha512-rfgpoi08xagF3JSdtJlCwMq9DGNDE0IMh3Mkpc1wUypg9vPi786AiqeBBKcqvIkq42azsBM85N490fyZjeUftw==}
     engines: {node: '>=16'}
 
   typed-array-buffer@1.0.2:
@@ -8385,9 +8504,6 @@ packages:
 
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
-
-  undici-types@6.20.0:
-    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
 
   unherit@3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
@@ -8853,15 +8969,15 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@anolilab/commitlint-config@5.0.3(@commitlint/cli@19.6.1(@types/node@22.10.2)(typescript@5.7.3))(@types/node@22.10.2)(typescript@5.7.3)':
+  '@anolilab/commitlint-config@5.0.3(@commitlint/cli@19.6.1(@types/node@20.14.2)(typescript@5.7.3))(@types/node@20.14.2)(typescript@5.7.3)':
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
-      '@commitlint/cli': 19.6.1(@types/node@22.10.2)(typescript@5.7.3)
+      '@commitlint/cli': 19.6.1(@types/node@20.14.2)(typescript@5.7.3)
       '@commitlint/config-conventional': 18.6.3
-      '@commitlint/core': 18.6.1(@types/node@22.10.2)(typescript@5.7.3)
-      commitizen: 4.3.1(@types/node@22.10.2)(typescript@5.7.3)
+      '@commitlint/core': 18.6.1(@types/node@20.14.2)(typescript@5.7.3)
+      commitizen: 4.3.1(@types/node@20.14.2)(typescript@5.7.3)
       conventional-changelog-conventionalcommits: 7.0.2
-      cz-conventional-changelog: 3.3.0(@types/node@22.10.2)(typescript@5.7.3)
+      cz-conventional-changelog: 3.3.0(@types/node@20.14.2)(typescript@5.7.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -8949,6 +9065,21 @@ snapshots:
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
       prettier: 3.4.2
+
+  '@anolilab/semantic-release-preset@9.0.4(@semantic-release/npm@12.0.1(semantic-release@24.2.1(typescript@5.7.3)))(semantic-release@24.2.1(typescript@5.7.3))':
+    dependencies:
+      '@semantic-release/changelog': 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/commit-analyzer': 13.0.1(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/exec': 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/git': 10.0.1(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/github': 11.0.1(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/release-notes-generator': 14.0.3(semantic-release@24.2.1(typescript@5.7.3))
+      conventional-changelog-conventionalcommits: 8.0.0
+      semantic-release: 24.2.1(typescript@5.7.3)
+    optionalDependencies:
+      '@semantic-release/npm': 12.0.1(semantic-release@24.2.1(typescript@5.7.3))
+    transitivePeerDependencies:
+      - supports-color
 
   '@anolilab/textlint-config@8.0.16(textlint@14.4.2)':
     dependencies:
@@ -9172,11 +9303,11 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@commitlint/cli@19.6.1(@types/node@22.10.2)(typescript@5.7.3)':
+  '@commitlint/cli@19.6.1(@types/node@20.14.2)(typescript@5.7.3)':
     dependencies:
       '@commitlint/format': 19.5.0
       '@commitlint/lint': 19.6.0
-      '@commitlint/load': 19.6.1(@types/node@22.10.2)(typescript@5.7.3)
+      '@commitlint/load': 19.6.1(@types/node@20.14.2)(typescript@5.7.3)
       '@commitlint/read': 19.5.0
       '@commitlint/types': 19.5.0
       tinyexec: 0.3.1
@@ -9211,11 +9342,11 @@ snapshots:
       '@commitlint/types': 19.5.0
       ajv: 8.17.1
 
-  '@commitlint/core@18.6.1(@types/node@22.10.2)(typescript@5.7.3)':
+  '@commitlint/core@18.6.1(@types/node@20.14.2)(typescript@5.7.3)':
     dependencies:
       '@commitlint/format': 18.6.1
       '@commitlint/lint': 18.6.1
-      '@commitlint/load': 18.6.1(@types/node@22.10.2)(typescript@5.7.3)
+      '@commitlint/load': 18.6.1(@types/node@20.14.2)(typescript@5.7.3)
       '@commitlint/read': 18.6.1
     transitivePeerDependencies:
       - '@types/node'
@@ -9280,7 +9411,7 @@ snapshots:
       '@commitlint/rules': 19.6.0
       '@commitlint/types': 19.5.0
 
-  '@commitlint/load@18.6.1(@types/node@22.10.2)(typescript@5.7.3)':
+  '@commitlint/load@18.6.1(@types/node@20.14.2)(typescript@5.7.3)':
     dependencies:
       '@commitlint/config-validator': 18.6.1
       '@commitlint/execute-rule': 18.6.1
@@ -9288,7 +9419,7 @@ snapshots:
       '@commitlint/types': 18.6.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.7.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.10.2)(cosmiconfig@8.3.6(typescript@5.7.3))(typescript@5.7.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.14.2)(cosmiconfig@8.3.6(typescript@5.7.3))(typescript@5.7.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -9297,7 +9428,7 @@ snapshots:
       - '@types/node'
       - typescript
 
-  '@commitlint/load@19.2.0(@types/node@22.10.2)(typescript@5.7.3)':
+  '@commitlint/load@19.2.0(@types/node@20.14.2)(typescript@5.7.3)':
     dependencies:
       '@commitlint/config-validator': 19.0.3
       '@commitlint/execute-rule': 19.0.0
@@ -9305,7 +9436,7 @@ snapshots:
       '@commitlint/types': 19.5.0
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.7.3)
-      cosmiconfig-typescript-loader: 5.0.0(@types/node@22.10.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3)
+      cosmiconfig-typescript-loader: 5.0.0(@types/node@20.14.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -9314,7 +9445,7 @@ snapshots:
       - typescript
     optional: true
 
-  '@commitlint/load@19.6.1(@types/node@22.10.2)(typescript@5.7.3)':
+  '@commitlint/load@19.6.1(@types/node@20.14.2)(typescript@5.7.3)':
     dependencies:
       '@commitlint/config-validator': 19.5.0
       '@commitlint/execute-rule': 19.5.0
@@ -9322,7 +9453,7 @@ snapshots:
       '@commitlint/types': 19.5.0
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.7.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@22.10.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@20.14.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -9684,7 +9815,7 @@ snapshots:
       debug: 4.4.0
       espree: 9.6.1
       globals: 13.24.0
-      ignore: 5.3.1
+      ignore: 5.3.2
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       minimatch: 3.1.2
@@ -9738,10 +9869,30 @@ snapshots:
       '@inquirer/type': 3.0.2(@types/node@18.19.68)
       '@types/node': 18.19.68
 
+  '@inquirer/confirm@5.1.3(@types/node@18.19.70)':
+    dependencies:
+      '@inquirer/core': 10.1.4(@types/node@18.19.70)
+      '@inquirer/type': 3.0.2(@types/node@18.19.70)
+      '@types/node': 18.19.70
+
   '@inquirer/core@10.1.4(@types/node@18.19.68)':
     dependencies:
       '@inquirer/figures': 1.0.9
       '@inquirer/type': 3.0.2(@types/node@18.19.68)
+      ansi-escapes: 4.3.2
+      cli-width: 4.1.0
+      mute-stream: 2.0.0
+      signal-exit: 4.1.0
+      strip-ansi: 6.0.1
+      wrap-ansi: 6.2.0
+      yoctocolors-cjs: 2.1.2
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@inquirer/core@10.1.4(@types/node@18.19.70)':
+    dependencies:
+      '@inquirer/figures': 1.0.9
+      '@inquirer/type': 3.0.2(@types/node@18.19.70)
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
       mute-stream: 2.0.0
@@ -9759,6 +9910,10 @@ snapshots:
   '@inquirer/type@3.0.2(@types/node@18.19.68)':
     dependencies:
       '@types/node': 18.19.68
+
+  '@inquirer/type@3.0.2(@types/node@18.19.70)':
+    dependencies:
+      '@types/node': 18.19.70
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -10866,15 +11021,15 @@ snapshots:
 
   '@types/acorn@4.0.6':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
 
   '@types/concat-stream@2.0.3':
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
 
   '@types/conventional-commits-parser@5.0.0':
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
 
   '@types/debug@4.1.12':
     dependencies:
@@ -10882,13 +11037,13 @@ snapshots:
 
   '@types/docker-modem@3.0.6':
     dependencies:
-      '@types/node': 18.19.68
+      '@types/node': 18.19.70
       '@types/ssh2': 1.15.0
 
   '@types/dockerode@3.3.34':
     dependencies:
       '@types/docker-modem': 3.0.6
-      '@types/node': 18.19.68
+      '@types/node': 18.19.70
       '@types/ssh2': 1.15.0
 
   '@types/estree-jsx@1.0.5':
@@ -10925,7 +11080,7 @@ snapshots:
   '@types/liftoff@4.0.3':
     dependencies:
       '@types/fined': 1.1.5
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
 
   '@types/mdast@3.0.15':
     dependencies:
@@ -10947,13 +11102,13 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@20.14.2':
+  '@types/node@18.19.70':
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@22.10.2':
+  '@types/node@20.14.2':
     dependencies:
-      undici-types: 6.20.0
+      undici-types: 5.26.5
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -10961,23 +11116,27 @@ snapshots:
 
   '@types/retry@0.12.2': {}
 
+  '@types/semantic-release@20.0.6':
+    dependencies:
+      '@types/node': 18.19.70
+
   '@types/semantic-release__error@3.0.3': {}
 
   '@types/semver@7.5.8': {}
 
   '@types/ssh2@1.15.0':
     dependencies:
-      '@types/node': 18.19.68
+      '@types/node': 18.19.70
 
   '@types/stream-buffers@3.0.7':
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
 
   '@types/supports-color@8.1.3': {}
 
   '@types/through@0.0.33':
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
 
   '@types/unist@2.0.10': {}
 
@@ -11290,6 +11449,16 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+  '@visulima/package@3.4.3(@types/node@18.19.70)':
+    dependencies:
+      '@antfu/install-pkg': 1.0.0
+      '@inquirer/confirm': 5.1.3(@types/node@18.19.70)
+      '@visulima/fs': 2.3.6
+      '@visulima/path': 1.3.2
+      normalize-package-data: 7.0.0
+    transitivePeerDependencies:
+      - '@types/node'
+
   '@visulima/package@3.4.4(@types/node@18.19.68)':
     dependencies:
       '@antfu/install-pkg': 1.0.0
@@ -11363,6 +11532,68 @@ snapshots:
       - rolldown
       - rotating-file-stream
 
+  '@visulima/packem@1.11.0(@types/node@18.19.70)(esbuild@0.24.2)(picomatch@4.0.2)(postcss@8.4.47)(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.7.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.27.6(typescript@5.7.3)))(typedoc@0.27.6(typescript@5.7.3))(typescript@5.7.3)':
+    dependencies:
+      '@antfu/install-pkg': 1.0.0
+      '@babel/parser': 7.26.5
+      '@clack/prompts': 0.9.1
+      '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
+      '@csstools/css-tokenizer': 3.0.3
+      '@csstools/postcss-slow-plugins': 2.0.0(postcss@8.4.47)
+      '@rollup/plugin-alias': 5.1.1(rollup@4.30.1)
+      '@rollup/plugin-commonjs': 28.0.2(rollup@4.30.1)
+      '@rollup/plugin-dynamic-import-vars': 2.1.5(rollup@4.30.1)
+      '@rollup/plugin-inject': 5.0.5(rollup@4.30.1)
+      '@rollup/plugin-json': 6.1.0(rollup@4.30.1)
+      '@rollup/plugin-node-resolve': 16.0.0(rollup@4.30.1)
+      '@rollup/plugin-replace': 6.0.2(rollup@4.30.1)
+      '@rollup/plugin-wasm': 6.2.2(rollup@4.30.1)
+      '@rollup/pluginutils': 5.1.4(rollup@4.30.1)
+      '@visulima/cerebro': 1.1.32
+      '@visulima/colorize': 1.4.17
+      '@visulima/find-cache-dir': 1.0.21
+      '@visulima/fs': 2.3.6
+      '@visulima/humanizer': 1.0.19
+      '@visulima/package': 3.4.3(@types/node@18.19.70)
+      '@visulima/pail': 2.1.17
+      '@visulima/path': 1.3.2
+      '@visulima/source-map': 1.0.15
+      '@visulima/tsconfig': 1.1.7
+      browserslist: 4.24.4
+      defu: 6.1.4
+      es-module-lexer: 1.6.0
+      fastest-levenshtein: 1.0.16
+      glob-parent: 6.0.2
+      hookable: 5.5.3
+      jiti: 2.4.2
+      magic-string: 0.30.17
+      mlly: 1.7.3
+      oxc-parser: 0.45.0
+      oxc-resolver: 3.0.3
+      rollup: 4.30.1
+      rollup-plugin-dts: 6.1.1(rollup@4.30.1)(typescript@5.7.3)
+      rollup-plugin-license: 3.5.3(picomatch@4.0.2)(rollup@4.30.1)
+      rollup-plugin-polyfill-node: 0.13.0(rollup@4.30.1)
+      rollup-plugin-visualizer: 5.14.0(rollup@4.30.1)
+      semver: 7.6.3
+      source-map-js: 1.2.1
+      tinyexec: 0.3.2
+      tinyglobby: 0.2.10
+    optionalDependencies:
+      esbuild: 0.24.2
+      postcss: 8.4.47
+      typedoc: 0.27.6(typescript@5.7.3)
+      typedoc-plugin-markdown: 4.4.1(typedoc@0.27.6(typescript@5.7.3))
+      typedoc-plugin-rename-defaults: 0.7.2(typedoc@0.27.6(typescript@5.7.3))
+      typescript: 5.7.3
+    transitivePeerDependencies:
+      - '@75lb/nature'
+      - '@types/node'
+      - '@visulima/redact'
+      - picomatch
+      - rolldown
+      - rotating-file-stream
+
   '@visulima/pail@2.1.17':
     dependencies:
       '@visulima/colorize': 1.4.17
@@ -11420,13 +11651,21 @@ snapshots:
     optionalDependencies:
       vite: 5.4.10(@types/node@18.19.68)
 
-  '@vitest/mocker@2.1.8(vite@5.4.10(@types/node@22.10.2))':
+  '@vitest/mocker@2.1.8(vite@5.4.10(@types/node@18.19.70))':
     dependencies:
       '@vitest/spy': 2.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.12
     optionalDependencies:
-      vite: 5.4.10(@types/node@22.10.2)
+      vite: 5.4.10(@types/node@18.19.70)
+
+  '@vitest/mocker@2.1.8(vite@5.4.10(@types/node@20.14.2))':
+    dependencies:
+      '@vitest/spy': 2.1.8
+      estree-walker: 3.0.3
+      magic-string: 0.30.12
+    optionalDependencies:
+      vite: 5.4.10(@types/node@20.14.2)
 
   '@vitest/pretty-format@2.1.8':
     dependencies:
@@ -11713,7 +11952,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.3.0
+      chalk: 5.4.1
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -12064,10 +12303,10 @@ snapshots:
 
   commenting@1.1.0: {}
 
-  commitizen@4.3.1(@types/node@22.10.2)(typescript@5.7.3):
+  commitizen@4.3.1(@types/node@20.14.2)(typescript@5.7.3):
     dependencies:
       cachedir: 2.3.0
-      cz-conventional-changelog: 3.3.0(@types/node@22.10.2)(typescript@5.7.3)
+      cz-conventional-changelog: 3.3.0(@types/node@20.14.2)(typescript@5.7.3)
       dedent: 0.7.0
       detect-indent: 6.1.0
       find-node-modules: 2.1.3
@@ -12175,24 +12414,24 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@22.10.2)(cosmiconfig@8.3.6(typescript@5.7.3))(typescript@5.7.3):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@20.14.2)(cosmiconfig@8.3.6(typescript@5.7.3))(typescript@5.7.3):
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 20.14.2
       cosmiconfig: 8.3.6(typescript@5.7.3)
       jiti: 1.21.6
       typescript: 5.7.3
 
-  cosmiconfig-typescript-loader@5.0.0(@types/node@22.10.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3):
+  cosmiconfig-typescript-loader@5.0.0(@types/node@20.14.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3):
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 20.14.2
       cosmiconfig: 9.0.0(typescript@5.7.3)
       jiti: 1.21.6
       typescript: 5.7.3
     optional: true
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@22.10.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@20.14.2)(cosmiconfig@9.0.0(typescript@5.7.3))(typescript@5.7.3):
     dependencies:
-      '@types/node': 22.10.2
+      '@types/node': 20.14.2
       cosmiconfig: 9.0.0(typescript@5.7.3)
       jiti: 2.4.1
       typescript: 5.7.3
@@ -12239,16 +12478,16 @@ snapshots:
 
   cuss@2.2.0: {}
 
-  cz-conventional-changelog@3.3.0(@types/node@22.10.2)(typescript@5.7.3):
+  cz-conventional-changelog@3.3.0(@types/node@20.14.2)(typescript@5.7.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.1(@types/node@22.10.2)(typescript@5.7.3)
+      commitizen: 4.3.1(@types/node@20.14.2)(typescript@5.7.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 19.2.0(@types/node@22.10.2)(typescript@5.7.3)
+      '@commitlint/load': 19.2.0(@types/node@20.14.2)(typescript@5.7.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -13090,8 +13329,8 @@ snapshots:
 
   eslint@8.57.1:
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.1)
-      '@eslint-community/regexpp': 4.10.1
+      '@eslint-community/eslint-utils': 4.4.1(eslint@8.57.1)
+      '@eslint-community/regexpp': 4.12.1
       '@eslint/eslintrc': 2.1.4
       '@eslint/js': 8.57.1
       '@humanwhocodes/config-array': 0.13.0
@@ -13115,7 +13354,7 @@ snapshots:
       glob-parent: 6.0.2
       globals: 13.24.0
       graphemer: 1.4.0
-      ignore: 5.3.1
+      ignore: 5.3.2
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       is-path-inside: 3.0.3
@@ -13402,7 +13641,7 @@ snapshots:
 
   flat-cache@3.2.0:
     dependencies:
-      flatted: 3.3.1
+      flatted: 3.3.2
       keyv: 4.5.4
       rimraf: 3.0.2
 
@@ -13732,7 +13971,7 @@ snapshots:
       lowercase-keys: 3.0.0
       p-cancelable: 4.0.1
       responselike: 3.0.0
-      type-fest: 4.26.1
+      type-fest: 4.32.0
 
   graceful-fs@4.2.10: {}
 
@@ -15242,7 +15481,7 @@ snapshots:
 
   micromark-extension-mdx-expression@1.0.8:
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       micromark-factory-mdx-expression: 1.0.9
       micromark-factory-space: 1.1.0
       micromark-util-character: 1.2.0
@@ -15265,7 +15504,7 @@ snapshots:
   micromark-extension-mdx-jsx@1.0.5:
     dependencies:
       '@types/acorn': 4.0.6
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       estree-util-is-identifier-name: 2.1.0
       micromark-factory-mdx-expression: 1.0.9
       micromark-factory-space: 1.1.0
@@ -15298,7 +15537,7 @@ snapshots:
 
   micromark-extension-mdxjs-esm@1.0.5:
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       micromark-core-commonmark: 1.1.0
       micromark-util-character: 1.2.0
       micromark-util-events-to-acorn: 1.2.3
@@ -15370,7 +15609,7 @@ snapshots:
 
   micromark-factory-mdx-expression@1.0.9:
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       micromark-util-character: 1.2.0
       micromark-util-events-to-acorn: 1.2.3
       micromark-util-symbol: 1.1.0
@@ -15381,7 +15620,7 @@ snapshots:
 
   micromark-factory-mdx-expression@2.0.1:
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       devlop: 1.1.0
       micromark-util-character: 2.1.0
       micromark-util-events-to-acorn: 2.0.2
@@ -15497,7 +15736,7 @@ snapshots:
   micromark-util-events-to-acorn@1.2.3:
     dependencies:
       '@types/acorn': 4.0.6
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/unist': 2.0.10
       estree-util-visit: 1.2.1
       micromark-util-symbol: 1.1.0
@@ -15508,7 +15747,7 @@ snapshots:
   micromark-util-events-to-acorn@2.0.2:
     dependencies:
       '@types/acorn': 4.0.6
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/unist': 3.0.2
       devlop: 1.1.0
       estree-util-visit: 2.0.0
@@ -16249,7 +16488,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.26.0
       index-to-position: 0.1.2
-      type-fest: 4.26.1
+      type-fest: 4.32.0
 
   parse-latin@4.3.0:
     dependencies:
@@ -16435,7 +16674,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.19.68
+      '@types/node': 18.19.70
       long: 5.2.4
 
   proxy-from-env@1.1.0: {}
@@ -16508,7 +16747,7 @@ snapshots:
     dependencies:
       find-up-simple: 1.0.0
       read-pkg: 9.0.1
-      type-fest: 4.26.1
+      type-fest: 4.32.0
 
   read-pkg-up@3.0.0:
     dependencies:
@@ -16558,14 +16797,14 @@ snapshots:
       '@types/normalize-package-data': 2.4.4
       normalize-package-data: 6.0.1
       parse-json: 7.1.1
-      type-fest: 4.20.1
+      type-fest: 4.32.0
 
   read-pkg@9.0.1:
     dependencies:
       '@types/normalize-package-data': 2.4.4
       normalize-package-data: 6.0.1
       parse-json: 8.1.0
-      type-fest: 4.26.1
+      type-fest: 4.32.0
       unicorn-magic: 0.1.0
 
   readable-stream@1.0.34:
@@ -17816,9 +18055,7 @@ snapshots:
 
   type-fest@3.13.1: {}
 
-  type-fest@4.20.1: {}
-
-  type-fest@4.26.1: {}
+  type-fest@4.32.0: {}
 
   typed-array-buffer@1.0.2:
     dependencies:
@@ -17917,8 +18154,6 @@ snapshots:
 
   undici-types@5.26.5: {}
 
-  undici-types@6.20.0: {}
-
   unherit@3.0.1: {}
 
   unicode-emoji-modifier-base@1.0.0: {}
@@ -17939,7 +18174,7 @@ snapshots:
       '@types/concat-stream': 2.0.3
       '@types/debug': 4.1.12
       '@types/is-empty': 1.2.3
-      '@types/node': 18.19.68
+      '@types/node': 18.19.70
       '@types/unist': 2.0.10
       concat-stream: 2.0.0
       debug: 4.4.0
@@ -18340,13 +18575,31 @@ snapshots:
       - supports-color
       - terser
 
-  vite-node@2.1.8(@types/node@22.10.2):
+  vite-node@2.1.8(@types/node@18.19.70):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       es-module-lexer: 1.5.4
       pathe: 1.1.2
-      vite: 5.4.10(@types/node@22.10.2)
+      vite: 5.4.10(@types/node@18.19.70)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite-node@2.1.8(@types/node@20.14.2):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.4.0
+      es-module-lexer: 1.5.4
+      pathe: 1.1.2
+      vite: 5.4.10(@types/node@20.14.2)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -18367,13 +18620,22 @@ snapshots:
       '@types/node': 18.19.68
       fsevents: 2.3.3
 
-  vite@5.4.10(@types/node@22.10.2):
+  vite@5.4.10(@types/node@18.19.70):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47
       rollup: 4.24.0
     optionalDependencies:
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
+      fsevents: 2.3.3
+
+  vite@5.4.10(@types/node@20.14.2):
+    dependencies:
+      esbuild: 0.21.5
+      postcss: 8.4.47
+      rollup: 4.24.0
+    optionalDependencies:
+      '@types/node': 20.14.2
       fsevents: 2.3.3
 
   vitest@2.1.8(@types/node@18.19.68)(@vitest/ui@2.1.8):
@@ -18412,10 +18674,10 @@ snapshots:
       - supports-color
       - terser
 
-  vitest@2.1.8(@types/node@22.10.2)(@vitest/ui@2.1.8):
+  vitest@2.1.8(@types/node@18.19.70)(@vitest/ui@2.1.8):
     dependencies:
       '@vitest/expect': 2.1.8
-      '@vitest/mocker': 2.1.8(vite@5.4.10(@types/node@22.10.2))
+      '@vitest/mocker': 2.1.8(vite@5.4.10(@types/node@18.19.70))
       '@vitest/pretty-format': 2.1.8
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8
@@ -18431,11 +18693,47 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.4.10(@types/node@22.10.2)
-      vite-node: 2.1.8(@types/node@22.10.2)
+      vite: 5.4.10(@types/node@18.19.70)
+      vite-node: 2.1.8(@types/node@18.19.70)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.10.2
+      '@types/node': 18.19.70
+      '@vitest/ui': 2.1.8(vitest@2.1.8)
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - msw
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vitest@2.1.8(@types/node@20.14.2)(@vitest/ui@2.1.8):
+    dependencies:
+      '@vitest/expect': 2.1.8
+      '@vitest/mocker': 2.1.8(vite@5.4.10(@types/node@20.14.2))
+      '@vitest/pretty-format': 2.1.8
+      '@vitest/runner': 2.1.8
+      '@vitest/snapshot': 2.1.8
+      '@vitest/spy': 2.1.8
+      '@vitest/utils': 2.1.8
+      chai: 5.1.2
+      debug: 4.4.0
+      expect-type: 1.1.0
+      magic-string: 0.30.12
+      pathe: 1.1.2
+      std-env: 3.8.0
+      tinybench: 2.9.0
+      tinyexec: 0.3.1
+      tinypool: 1.0.1
+      tinyrainbow: 1.2.0
+      vite: 5.4.10(@types/node@20.14.2)
+      vite-node: 2.1.8(@types/node@20.14.2)
+      why-is-node-running: 2.3.0
+    optionalDependencies:
+      '@types/node': 20.14.2
       '@vitest/ui': 2.1.8(vitest@2.1.8)
     transitivePeerDependencies:
       - less
