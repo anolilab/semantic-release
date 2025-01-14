@@ -416,9 +416,6 @@ importers:
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.4.2)
-      '@anolilab/semantic-release-preset':
-        specifier: ^9.0.4
-        version: 9.0.4(@semantic-release/npm@12.0.1(semantic-release@24.2.1(typescript@5.7.3)))(semantic-release@24.2.1(typescript@5.7.3))
       '@babel/core':
         specifier: ^7.26.0
         version: 7.26.0
@@ -428,6 +425,24 @@ importers:
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: ^9.0.0
         version: 9.0.0
+      '@semantic-release/changelog':
+        specifier: ^6.0.3
+        version: 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/commit-analyzer':
+        specifier: 13.0.1
+        version: 13.0.1(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/exec':
+        specifier: ^6.0.3
+        version: 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/git':
+        specifier: ^10.0.1
+        version: 10.0.1(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/github':
+        specifier: ^11.0.1
+        version: 11.0.1(semantic-release@24.2.1(typescript@5.7.3))
+      '@semantic-release/release-notes-generator':
+        specifier: 14.0.3
+        version: 14.0.3(semantic-release@24.2.1(typescript@5.7.3))
       '@types/node':
         specifier: 18.19.70
         version: 18.19.70
@@ -895,23 +910,6 @@ packages:
     engines: {node: '>=18.* <=21.*'}
     peerDependencies:
       prettier: 2.x || 3.x
-
-  '@anolilab/semantic-release-preset@9.0.4':
-    resolution: {integrity: sha512-S0qfmPP09Vml7WAONjKMbwXx/K50CnNsBTuoNTeIdzcaxM8uAQu/zq9LiQDqd+rX725/54pxQ4Oefwcw5HilZg==}
-    engines: {node: ^18.17 || >=20.6.1}
-    os: [darwin, linux, win32]
-    peerDependencies:
-      '@anolilab/semantic-release-pnpm': workspace:*
-      '@semantic-release/npm': ^12.0.1
-      semantic-release: ^24.0.0
-      semantic-release-yarn: ^3.0.2
-    peerDependenciesMeta:
-      '@anolilab/semantic-release-pnpm':
-        optional: true
-      '@semantic-release/npm':
-        optional: true
-      semantic-release-yarn:
-        optional: true
 
   '@anolilab/textlint-config@8.0.16':
     resolution: {integrity: sha512-kzIOKha8sIPo4kOMCq2lcflFH4PSODEI7+TQpKcp70EmUQkOVd7+Yw1laltXKs2ItDDD4RHYKaroRz0MmnuOtg==}
@@ -9068,21 +9066,6 @@ snapshots:
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
       prettier: 3.4.2
-
-  '@anolilab/semantic-release-preset@9.0.4(@semantic-release/npm@12.0.1(semantic-release@24.2.1(typescript@5.7.3)))(semantic-release@24.2.1(typescript@5.7.3))':
-    dependencies:
-      '@semantic-release/changelog': 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
-      '@semantic-release/commit-analyzer': 13.0.1(semantic-release@24.2.1(typescript@5.7.3))
-      '@semantic-release/exec': 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
-      '@semantic-release/git': 10.0.1(semantic-release@24.2.1(typescript@5.7.3))
-      '@semantic-release/github': 11.0.1(semantic-release@24.2.1(typescript@5.7.3))
-      '@semantic-release/release-notes-generator': 14.0.3(semantic-release@24.2.1(typescript@5.7.3))
-      conventional-changelog-conventionalcommits: 8.0.0
-      semantic-release: 24.2.1(typescript@5.7.3)
-    optionalDependencies:
-      '@semantic-release/npm': 12.0.1(semantic-release@24.2.1(typescript@5.7.3))
-    transitivePeerDependencies:
-      - supports-color
 
   '@anolilab/textlint-config@8.0.16(textlint@14.4.2)':
     dependencies:
