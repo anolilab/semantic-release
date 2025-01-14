@@ -94,21 +94,35 @@ All configuration sources that were found will be flattened into one object, in 
 function rc(name, options): object
 ```
 
+Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/cde09c51ce155c1b6001544142ba366b7f58b996/packages/rc/src/index.ts#L170)
+
 #### Parameters
 
-• **name**: `string`
+##### name
 
-• **options** = `{}`
+`string`
 
-• **options.config?**: `string`
+##### options
 
-• **options.cwd?**: `string`
+###### config
 
-• **options.defaults?**: `Record`\<`string`, `any`\>
+`string`
 
-• **options.home?**: `string`
+###### cwd
 
-• **options.stopAt?**: `string`
+`string`
+
+###### defaults
+
+`Record`\<`string`, `any`\>
+
+###### home
+
+`string`
+
+###### stopAt
+
+`string`
 
 #### Returns
 
@@ -125,10 +139,6 @@ config: Record<string, any>;
 ```ts
 files: string[];
 ```
-
-#### Defined in
-
-[index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/9452d8553734ce85796650b17ebd167bb9723e62/packages/rc/src/index.ts#L170)
 
 <!-- /TYPEDOC -->
 
