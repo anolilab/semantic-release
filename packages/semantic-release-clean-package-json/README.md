@@ -58,7 +58,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 | Step      | Description                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------- |
-| `prepare` | Modifing the `package.json` file with the [default preserved properties](#Default-preserved-properties). |
+| `prepare` | Modifing the `package.json` file with the [default preserved properties](#default-preserved-properties). |
 
 ### Options
 

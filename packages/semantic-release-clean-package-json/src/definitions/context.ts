@@ -45,9 +45,6 @@ type CommonContext3 = CommonContext2 & {
 };
 
 type CommonContext4 = CommonContext3 & {
-    // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L163
-    commits: Commit[];
-
     // https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L175
     nextRelease: Release;
 };
