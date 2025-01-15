@@ -1,3 +1,18 @@
+## @anolilab/semantic-release-preset [10.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@9.0.4...@anolilab/semantic-release-preset@10.0.0-alpha.1) (2025-01-15)
+
+### ⚠ BREAKING CHANGES
+
+* **semantic-release-preset:** adding @anolilab/semantic-release-clean-package-json to clean up the package.json
+
+### Features
+
+* **semantic-release-preset:** added @anolilab/semantic-release-clean-package-json ([dc2529a](https://github.com/anolilab/semantic-release/commit/dc2529a069edc32ffa169c504f65f923526edeca))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 1.0.0-alpha.1
+
 ## @anolilab/semantic-release-preset [9.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@9.0.3...@anolilab/semantic-release-preset@9.0.4) (2025-01-14)
 
 ### Bug Fixes
