@@ -27,8 +27,6 @@
             }
         ],
         "@semantic-release/changelog",
-        "@anolilab/semantic-release-pnpm",
-        "./dist/index.mjs",
         [
             "@semantic-release/github",
             {
@@ -41,6 +39,8 @@
             {
                 "message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
             }
-        ]
+        ],
+        "./dist/index.mjs",
+        "@anolilab/semantic-release-pnpm"
     ]
 }
