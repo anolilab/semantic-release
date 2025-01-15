@@ -65,7 +65,7 @@ jobs:
               shell: "bash"
               run: |
                   files="${{ steps.files.outputs.all_changed_files }}";
-                  pnpm run build:affected:prod:packages --files=${files//\\/\/}
+                  pnpm run build:affected:packages:prod --files=${files//\\/\/}
 
             - name: "Prepare nx cache"
               shell: "bash"
