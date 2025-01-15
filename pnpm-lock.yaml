@@ -691,8 +691,8 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: workspace:*
-        version: link:../semantic-release-clean-package-json
+        specifier: 1.0.0-alpha.1
+        version: 1.0.0-alpha.1
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
@@ -910,6 +910,10 @@ packages:
     engines: {node: '>=18.* <=21.*'}
     peerDependencies:
       prettier: 2.x || 3.x
+
+  '@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1':
+    resolution: {integrity: sha512-ZSkmLjkXMJoW1YMqlqd2mgkFGPlDL7BP7aqWz584XqkjDcQq1G9Gi2/WD0eEQZ6keoXEOIDaReDTbRuTmW14dw==}
+    engines: {node: '>=18.0.0 <=23.x'}
 
   '@anolilab/textlint-config@8.0.16':
     resolution: {integrity: sha512-kzIOKha8sIPo4kOMCq2lcflFH4PSODEI7+TQpKcp70EmUQkOVd7+Yw1laltXKs2ItDDD4RHYKaroRz0MmnuOtg==}
@@ -9066,6 +9070,13 @@ snapshots:
     dependencies:
       '@anolilab/package-json-utils': 3.0.9
       prettier: 3.4.2
+
+  '@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1':
+    dependencies:
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 2.3.7
+      '@visulima/path': 1.3.3
+      aggregate-error: 5.0.0
 
   '@anolilab/textlint-config@8.0.16(textlint@14.4.2)':
     dependencies:
