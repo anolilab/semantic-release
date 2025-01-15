@@ -4,7 +4,11 @@
     "description": "Clean package.json before publish by removing unnecessary properties",
     "keywords": [
         "anolilab",
-        "semantic-release-clean-package-json"
+        "semantic-release-clean-package-json",
+        "semantic-release",
+        "clean",
+        "package.json",
+        "publish"
     ],
     "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/semantic-release-clean-package-json",
     "bugs": {
