@@ -43,13 +43,17 @@ pnpm add @anolilab/semantic-release-clean-package-json
 
 The plugin can be configured in the [**semantic-release** configuration file](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#configuration):
 
+> [!IMPORTANT]
+> Very important: The plugin must be placed after the `@semantic-release/github` or `@semantic-release/git` and before `@anolilab/semantic-release-pnpm` or `@semantic-release/npm` plugin otherwise the `package.json` will be cleaned and published into GitHub / Your Git Provider.
+
 ```json
 {
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
-        "@anolilab/semantic-release-pnpm",
-        "@anolilab/semantic-release-clean-package-json"
+        "@semantic-release/github",
+        "@anolilab/semantic-release-clean-package-json",
+        "@anolilab/semantic-release-pnpm"
     ]
 }
 ```
@@ -78,14 +82,14 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
-        "@anolilab/semantic-release-pnpm",
+        "@semantic-release/github",
         [
             "@anolilab/semantic-release-clean-package-json",
             {
                 "keep": ["custom filed"]
             }
         ],
-        "@semantic-release/github"
+        "@anolilab/semantic-release-pnpm"
     ]
 }
 ```
