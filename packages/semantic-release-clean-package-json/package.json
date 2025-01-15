@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-clean-package-json",
-    "version": "0.0.0",
+    "version": "1.0.0-alpha.1",
     "description": "Clean package.json before publish by removing unnecessary properties",
     "keywords": [
         "anolilab",
@@ -60,63 +60,11 @@
         "README.md",
         "CHANGELOG.md"
     ],
-    "scripts": {
-        "build": "packem build --development",
-        "build:prod": "packem build --production",
-        "clean": "rimraf node_modules dist .eslintcache",
-        "dev": "pnpm run build --watch",
-        "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
-        "lint:eslint:fix": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs --fix",
-        "lint:package-json": "publint --strict",
-        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
-        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
-        "lint:types": "tsc --noEmit",
-        "test": "vitest run",
-        "test:coverage": "vitest run --coverage",
-        "test:ui": "vitest --ui --coverage.enabled=true",
-        "test:watch": "vitest"
-    },
     "dependencies": {
         "@semantic-release/error": "^4.0.0",
         "@visulima/fs": "^2.3.7",
         "@visulima/path": "^1.3.3",
         "aggregate-error": "^5.0.0"
-    },
-    "devDependencies": {
-        "@anolilab/eslint-config": "^15.0.3",
-        "@anolilab/prettier-config": "^5.0.14",
-        "@babel/core": "^7.26.0",
-        "@rushstack/eslint-plugin-security": "^0.8.3",
-        "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
-        "@semantic-release/changelog": "^6.0.3",
-        "@semantic-release/commit-analyzer": "13.0.1",
-        "@semantic-release/exec": "^6.0.3",
-        "@semantic-release/git": "^10.0.1",
-        "@semantic-release/github": "^11.0.1",
-        "@semantic-release/release-notes-generator": "14.0.3",
-        "@types/node": "18.19.70",
-        "@types/semantic-release": "^20.0.6",
-        "@types/semantic-release__error": "^3.0.3",
-        "@visulima/packem": "^1.11.0",
-        "@vitest/coverage-v8": "^2.1.8",
-        "@vitest/ui": "^2.1.8",
-        "esbuild": "0.24.2",
-        "eslint": "8.57.1",
-        "eslint-plugin-deprecation": "^3.0.0",
-        "eslint-plugin-etc": "^2.0.3",
-        "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
-        "eslint-plugin-mdx": "^3.1.5",
-        "eslint-plugin-vitest": "^0.4.1",
-        "eslint-plugin-vitest-globals": "^1.5.0",
-        "prettier": "^3.4.2",
-        "rimraf": "^6.0.1",
-        "secretlint": "9.0.0",
-        "semantic-release": "^24.2.1",
-        "sort-package-json": "^2.13.0",
-        "tempy": "^3.1.0",
-        "type-fest": "^4.32.0",
-        "typescript": "^5.7.3",
-        "vitest": "^2.1.8"
     },
     "engines": {
         "node": ">=18.0.0 <=23.x"
@@ -124,18 +72,5 @@
     "publishConfig": {
         "access": "public",
         "provenance": true
-    },
-    "anolilab": {
-        "eslint-config": {
-            "plugin": {
-                "tsdoc": false,
-                "etc": false
-            },
-            "warn_on_unsupported_typescript_version": false,
-            "info_on_disabling_jsx_react_rule": false,
-            "info_on_disabling_prettier_conflict_rule": false,
-            "info_on_disabling_jsonc_sort_keys_rule": false,
-            "info_on_disabling_etc_no_deprecated": false
-        }
     }
 }
