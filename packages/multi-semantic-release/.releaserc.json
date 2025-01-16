@@ -27,7 +27,6 @@
             }
         ],
         "@semantic-release/changelog",
-        "@anolilab/semantic-release-pnpm",
         [
             "@semantic-release/github",
             {
@@ -35,11 +34,7 @@
                 "failComment": false
             }
         ],
-        [
-            "@semantic-release/git",
-            {
-                "message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
-            }
-        ]
+        "@anolilab/semantic-release-clean-package-json",
+        "@anolilab/semantic-release-pnpm"
     ]
 }

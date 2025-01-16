@@ -28,9 +28,9 @@
         ],
         "@semantic-release/changelog",
         [
-            "./dist/index.mjs",
+            "@semantic-release/git",
             {
-                "disableScripts": true
+                "message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
             }
         ],
         [
@@ -41,9 +41,9 @@
             }
         ],
         [
-            "@semantic-release/git",
+            "./dist/index.mjs",
             {
-                "message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
+                "disableScripts": true
             }
         ]
     ]

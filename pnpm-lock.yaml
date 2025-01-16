@@ -165,6 +165,9 @@ importers:
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.4.2)
+      '@anolilab/semantic-release-clean-package-json':
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2
       '@anolilab/semantic-release-pnpm':
         specifier: workspace:*
         version: link:../semantic-release-pnpm
@@ -419,6 +422,9 @@ importers:
       '@anolilab/prettier-config':
         specifier: ^5.0.14
         version: 5.0.14(prettier@3.4.2)
+      '@anolilab/semantic-release-pnpm':
+        specifier: workspace:*
+        version: link:../semantic-release-pnpm
       '@babel/core':
         specifier: ^7.26.0
         version: 7.26.0
@@ -694,8 +700,8 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 1.0.0-alpha.1
-        version: 1.0.0-alpha.1
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
@@ -914,8 +920,8 @@ packages:
     peerDependencies:
       prettier: 2.x || 3.x
 
-  '@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1':
-    resolution: {integrity: sha512-ZSkmLjkXMJoW1YMqlqd2mgkFGPlDL7BP7aqWz584XqkjDcQq1G9Gi2/WD0eEQZ6keoXEOIDaReDTbRuTmW14dw==}
+  '@anolilab/semantic-release-clean-package-json@1.0.0-alpha.2':
+    resolution: {integrity: sha512-XGJthFXWgAaCCJiZxOIQNUDmMqUBFbiXqRV4kmOtxdRLUohZpVk5LLZ0gYljboVxtjf0xoWckXQPfUkatuFekg==}
     engines: {node: '>=18.0.0 <=23.x'}
 
   '@anolilab/textlint-config@8.0.16':
@@ -9187,7 +9193,7 @@ snapshots:
       '@anolilab/package-json-utils': 3.0.9
       prettier: 3.4.2
 
-  '@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1':
+  '@anolilab/semantic-release-clean-package-json@1.0.0-alpha.2':
     dependencies:
       '@semantic-release/error': 4.0.0
       '@visulima/fs': 2.3.7
