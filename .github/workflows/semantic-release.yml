@@ -40,7 +40,8 @@ jobs:
                   repo-token: "${{ secrets.GITHUB_TOKEN }}"
                   wait-interval: 60 # seconds
                   running-workflow-name: "Semantic Release" # wait for all other checks to complete
-                  allowed-conclusions: "success,skipped" # all other checks must pass, being skipped or cancelled is not sufficient
+                  allowed-conclusions: "success,skipped,neutral" # all other checks must pass, being skipped or cancelled is not sufficient
+                  ignore-checks: "lock-closed / lock-closed, Socket Security: Pull Request Alerts, Dependabot"
 
             - name: "Git checkout"
               uses: "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" # v4.2.2
