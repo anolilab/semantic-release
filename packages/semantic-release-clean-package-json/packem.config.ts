@@ -13,6 +13,12 @@ export default defineConfig({
             typeScriptVersion: ">=5.0",
         },
     },
+    validation: {
+        packageJson: {
+            // semantic-release does not support the "exports" field
+            exports: false,
+        },
+    },
     transformer,
     cjsInterop: true,
 }) as BuildConfig;
