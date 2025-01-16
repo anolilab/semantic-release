@@ -3,7 +3,6 @@ import type { FindUpOptions } from "@visulima/fs";
 import { findUp, readJson } from "@visulima/fs";
 import { NotFoundError } from "@visulima/fs/error";
 import { resolve } from "@visulima/path";
-import AggregateError from "aggregate-error";
 import type { PackageJson } from "type-fest";
 
 import type { CommonContext } from "../definitions/context";
@@ -47,14 +46,18 @@ export default async (
         const { packageJson } = await findPackageJson(pkgRoot ? resolve(cwd, pkgRoot) : cwd);
 
         if (!packageJson.name) {
-            throw new AggregateError([getError("ENOPKGNAME")]);
+            const semanticError = getError("ENOPKGNAME");
+
+            throw new AggregateError([semanticError], semanticError.message);
         }
 
         return packageJson;
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         if (error.code === "ENOENT") {
-            throw new AggregateError([getError("ENOPKG")]);
+            const semanticError = getError("ENOPKG");
+
+            throw new AggregateError([semanticError], semanticError.message);
         }
 
         throw error;

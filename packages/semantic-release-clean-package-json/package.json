@@ -83,8 +83,7 @@
     "dependencies": {
         "@semantic-release/error": "^4.0.0",
         "@visulima/fs": "^2.3.7",
-        "@visulima/path": "^1.3.3",
-        "aggregate-error": "^5.0.0"
+        "@visulima/path": "^1.3.3"
     },
     "devDependencies": {
         "@anolilab/eslint-config": "^15.0.3",

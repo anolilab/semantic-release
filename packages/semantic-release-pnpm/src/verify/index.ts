@@ -1,5 +1,3 @@
-import AggregateError from "aggregate-error";
-
 import type { VerifyConditionsContext } from "../definitions/context";
 import type { PluginConfig } from "../definitions/plugin-config";
 import getNpmrcPath from "../utils/get-npmrc-path";
@@ -11,6 +9,7 @@ import verifyPnpm from "./verify-pnpm";
 
 const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsContext): Promise<void> => {
     let errors: Error[] = verifyConfig(pluginConfig);
+    let errorsMessage = "";
 
     try {
         await verifyPnpm(context);
@@ -18,6 +17,9 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     } catch (error: any) {
         const typedError = error as AggregateError;
 
+        errorsMessage += typedError.message;
+
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         errors = [...errors, ...(typedError.errors ?? [error])];
     }
 
@@ -33,11 +35,14 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     } catch (error: any) {
         const typedError = error as AggregateError;
 
+        errorsMessage += typedError.message;
+
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         errors = [...errors, ...(typedError.errors ?? [error])];
     }
 
     if (errors.length > 0) {
-        throw new AggregateError(errors);
+        throw new AggregateError(errors, errorsMessage);
     }
 };
 

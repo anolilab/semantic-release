@@ -1,7 +1,6 @@
 import { rc } from "@anolilab/rc";
 import { writeFile } from "@visulima/fs";
 import { resolve } from "@visulima/path";
-import AggregateError from "aggregate-error";
 import { stringify } from "ini";
 import type { AuthOptions } from "registry-auth-token";
 import getAuthToken from "registry-auth-token";
@@ -43,6 +42,8 @@ export default async (
 
         logger.log(`Wrote NPM_TOKEN to ${npmrc}`);
     } else {
-        throw new AggregateError([getError("ENONPMTOKEN", { registry })]);
+        const semanticError = getError("ENONPMTOKEN", { registry });
+
+        throw new AggregateError([semanticError], semanticError.message);
     }
 };

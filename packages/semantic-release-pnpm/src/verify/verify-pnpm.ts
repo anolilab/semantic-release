@@ -1,5 +1,4 @@
 import { getPackageManagerVersion } from "@visulima/package";
-import AggregateError from "aggregate-error";
 import { gte } from "semver";
 
 import type { CommonContext } from "../definitions/context";
@@ -13,6 +12,8 @@ export default async function verifyPnpm({ logger }: CommonContext): Promise<voi
     const version = getPackageManagerVersion("pnpm");
 
     if (gte(MIN_PNPM_VERSION, version)) {
-        throw new AggregateError([getError("EINVALIDPNPM", { version: String(version) })]);
+        const semanticError = getError("EINVALIDPNPM", { version: String(version) });
+
+        throw new AggregateError([semanticError], semanticError.message);
     }
 }

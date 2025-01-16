@@ -1,5 +1,4 @@
 import type { PackageJson } from "@visulima/package";
-import AggregateError from "aggregate-error";
 import { execa } from "execa";
 import normalizeUrl from "normalize-url";
 
@@ -35,7 +34,9 @@ export default async (npmrc: string, package_: PackageJson, context: CommonConte
 
             await whoamiResult;
         } catch {
-            throw new AggregateError([getError("EINVALIDNPMTOKEN", { registry })]);
+            const semanticError = getError("EINVALIDNPMTOKEN", { registry });
+
+            throw new AggregateError([semanticError], semanticError.message);
         }
     } else {
         logger.log(`Skipping authentication verification for non-default registry "${registry}"`);

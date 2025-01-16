@@ -1,6 +1,5 @@
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
-import AggregateError from "aggregate-error";
 import { execa } from "execa";
 
 import type { PublishContext } from "./definitions/context";
@@ -61,7 +60,7 @@ export default async (pluginConfig: PluginConfig, packageJson: PackageJson, cont
             // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
             logger.log(`Failed to publish ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}: ${error.message ?? error}`);
 
-            throw new AggregateError([error]);
+            throw new AggregateError([error], error.message);
         }
 
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
