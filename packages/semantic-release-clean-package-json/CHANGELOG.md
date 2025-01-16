@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-clean-package-json [1.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1...@anolilab/semantic-release-clean-package-json@1.0.0-alpha.2) (2025-01-16)
+
+### Bug Fixes
+
+* changed plugin order to not publish cleaned package.json to github ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
+
 ## @anolilab/semantic-release-clean-package-json 1.0.0-alpha.1 (2025-01-15)
 
 ### Features
