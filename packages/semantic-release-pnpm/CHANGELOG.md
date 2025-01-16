@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [1.1.8](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.7...@anolilab/semantic-release-pnpm@1.1.8) (2025-01-16)
+
+### Bug Fixes
+
+* remove usage of aggregate-error library ([e0c6e95](https://github.com/anolilab/semantic-release/commit/e0c6e95b07416d6694fa192ddca96e17a4c1c4b8))
+
 ## @anolilab/semantic-release-pnpm [1.1.7](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.6...@anolilab/semantic-release-pnpm@1.1.7) (2025-01-14)
 
 ### Bug Fixes
