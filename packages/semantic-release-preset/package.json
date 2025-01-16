@@ -86,7 +86,7 @@
         "test:watch": "echo 'There is no need for test' && exit 0"
     },
     "dependencies": {
-        "@anolilab/semantic-release-clean-package-json": "1.0.0-alpha.2",
+        "@anolilab/semantic-release-clean-package-json": "workspace:*",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^6.0.3",

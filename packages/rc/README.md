@@ -94,7 +94,7 @@ All configuration sources that were found will be flattened into one object, in 
 function rc(name, options): object
 ```
 
-Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/b048243c2d59316c25d76607d34530d771645b0f/packages/rc/src/index.ts#L170)
+Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/e0c6e95b07416d6694fa192ddca96e17a4c1c4b8/packages/rc/src/index.ts#L170)
 
 #### Parameters
 
