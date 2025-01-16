@@ -43,7 +43,6 @@
             }
         ],
         "@semantic-release/changelog",
-        "@anolilab/semantic-release-pnpm",
         [
             "@semantic-release/git",
             {
@@ -56,6 +55,8 @@
                 "successComment": false,
                 "failComment": false
             }
-        ]
+        ],
+        "@anolilab/semantic-release-clean-package-json",
+        "@anolilab/semantic-release-pnpm"
     ]
 }

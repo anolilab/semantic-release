@@ -1,0 +1,8 @@
+{
+    "name": "semantic-release-clean-package-json",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/semantic-release-clean-package-json/src",
+    "projectType": "library",
+    "tags": ["semantic-release-clean-package-json", "type:package"],
+    "implicitDependencies": []
+}

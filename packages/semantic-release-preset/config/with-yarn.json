@@ -43,7 +43,6 @@
             }
         ],
         "@semantic-release/changelog",
-        "semantic-release-yarn",
         [
             "@semantic-release/git",
             {
@@ -56,6 +55,8 @@
                 "successComment": false,
                 "failComment": false
             }
-        ]
+        ],
+        "@anolilab/semantic-release-clean-package-json",
+        "semantic-release-yarn"
     ]
 }

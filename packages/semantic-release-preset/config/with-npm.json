@@ -43,19 +43,20 @@
             }
         ],
         "@semantic-release/changelog",
-        "@semantic-release/npm",
-        [
-            "@semantic-release/git",
-            {
-                "message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
-            }
-        ],
         [
             "@semantic-release/github",
             {
                 "successComment": false,
                 "failComment": false
             }
-        ]
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "message": "chore(release): ${nextRelease.gitTag} [skip ci]\\n\\n${nextRelease.notes}"
+            }
+        ],
+        "@anolilab/semantic-release-clean-package-json",
+        "@semantic-release/npm"
     ]
 }
