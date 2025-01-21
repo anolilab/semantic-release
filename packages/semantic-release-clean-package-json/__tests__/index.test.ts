@@ -4,8 +4,8 @@ import { readJson, writeJson } from "@visulima/fs";
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { prepare } from "../src";
-import type { PrepareContext } from "../src/definitions/context";
+import { publish } from "../src";
+import type { PublishContext } from "../src/definitions/context";
 
 const DEFAULT_PACKAGE_JSON = {
     dependencies: {
@@ -24,7 +24,7 @@ const DEFAULT_PACKAGE_JSON = {
     },
 };
 
-const context: Partial<PrepareContext> = {
+const context: Partial<PublishContext> = {
     branch: {
         name: "foo",
     },
@@ -65,7 +65,7 @@ describe("semantic-release-clean-package-json", () => {
 
         await writeJson(packageJsonPath, DEFAULT_PACKAGE_JSON);
 
-        await prepare({}, { cwd: temporaryDirectoryPath, ...context } as PrepareContext);
+        await publish({}, { cwd: temporaryDirectoryPath, ...context } as PublishContext);
 
         await expect(readJson(packageJsonPath)).resolves.toStrictEqual({
             dependencies: {
@@ -85,11 +85,11 @@ describe("semantic-release-clean-package-json", () => {
 
         await writeJson(packageJsonPath, DEFAULT_PACKAGE_JSON);
 
-        await prepare(
+        await publish(
             {
                 keep: ["eslintConfig", "devDependencies"],
             },
-            { cwd: temporaryDirectoryPath, ...context } as PrepareContext,
+            { cwd: temporaryDirectoryPath, ...context } as PublishContext,
         );
 
         await expect(readJson(packageJsonPath)).resolves.toStrictEqual({

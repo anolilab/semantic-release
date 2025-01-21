@@ -16,7 +16,7 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
     await writeJson(
         join(cwd, "package.json.back"),
-        { ...packageJson },
+        packageJson,
         {
             detectIndent: true,
         },
@@ -28,8 +28,10 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
     context.logger.log(`Keeping the following properties: ${[...keepProperties].join(", ")}`);
 
+    const packageJsonCopy = { ...packageJson };
+
     // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
-    for (const property in packageJson) {
+    for (const property in packageJsonCopy) {
         if (keepProperties.has(property)) {
             // eslint-disable-next-line no-continue
             continue;
@@ -37,17 +39,17 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
         if (property === "scripts") {
             // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
-            for (const script in packageJson.scripts) {
+            for (const script in packageJsonCopy.scripts) {
                 if (keepProperties.has(`${property}.${script}`)) {
                     // eslint-disable-next-line no-continue
                     continue;
                 }
 
                 // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
-                delete packageJson.scripts[script];
+                delete packageJsonCopy.scripts[script];
             }
 
-            if (packageJson.scripts && Object.keys(packageJson.scripts).length > 0) {
+            if (packageJsonCopy.scripts && Object.keys(packageJsonCopy.scripts).length > 0) {
                 // eslint-disable-next-line no-continue
                 continue;
             }
@@ -55,10 +57,10 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
         context.logger.log(`Removing property "${property}"`);
         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
-        delete packageJson[property];
+        delete packageJsonCopy[property];
     }
 
-    await writeJson(join(cwd, "package.json"), packageJson, {
+    await writeJson(join(cwd, "package.json"), packageJsonCopy, {
         detectIndent: true,
     });
 };
