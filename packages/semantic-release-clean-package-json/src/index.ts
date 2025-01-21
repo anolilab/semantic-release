@@ -8,10 +8,10 @@ import getPackage from "./utils/get-pkg";
 import type { PackageJson } from "type-fest";
 import { rm } from "node:fs/promises";
 
-// eslint-disable-next-line sonarjs/cognitive-complexity,import/prefer-default-export
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const prepare = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
-    const cwd = pluginConfig?.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
+    const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 
     await writeJson(join(cwd, "package.json.back"), packageJson, {
         detectIndent: true,
