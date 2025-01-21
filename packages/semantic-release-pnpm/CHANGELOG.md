@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [2.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.8...@anolilab/semantic-release-pnpm@2.0.0-alpha.1) (2025-01-21)
+
+### ⚠ BREAKING CHANGES
+
+* **semantic-release-clean-package-json:** Changed plugin steps to `publish` and `success` from `prepare`
+
+### Bug Fixes
+
+* **semantic-release-clean-package-json:** reworked this plugin to use the `publish` and `success` functions, to have the correct state on git ([f994900](https://github.com/anolilab/semantic-release/commit/f99490092532e82d4cdba3603cc89a920bd27733))
+* **semantic-release-pnpm:** updated dev dependencies and @visulima/package to v3.4.5 ([967a0b4](https://github.com/anolilab/semantic-release/commit/967a0b4cd1f362bc60a4d8f301ca13f915b945ef))
+
 ## @anolilab/semantic-release-pnpm [1.1.9-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.8...@anolilab/semantic-release-pnpm@1.1.9-alpha.1) (2025-01-21)
 
 ### Bug Fixes
