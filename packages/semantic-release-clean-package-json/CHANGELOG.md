@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [1.0.1-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.1-alpha.2...@anolilab/semantic-release-clean-package-json@1.0.1-alpha.3) (2025-01-21)
+
+### Bug Fixes
+
+* fixed tests ([3efe795](https://github.com/anolilab/semantic-release/commit/3efe7952ee91a765fa281a17b17d122efc8c22a3))
+* **semantic-release-clean-package-json:** try the new backup script ([e738d31](https://github.com/anolilab/semantic-release/commit/e738d3173499e96591b5b33cc3f12b1a8fb8546f))
+
+### Reverts
+
+* Revert "chore(release): @anolilab/semantic-release-clean-package-json@1.0.1-alpha.2 [skip ci]\n\n## @anolilab/semantic-release-clean-package-json [1.0.1-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.1-alpha.1...@anolilab/semantic-release-clean-package-json@1.0.1-alpha.2) (2025-01-21)" ([81af859](https://github.com/anolilab/semantic-release/commit/81af859f7c07cb9c7344084243b0412230423ce4))
+
 ## @anolilab/semantic-release-clean-package-json [1.0.1-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.0...@anolilab/semantic-release-clean-package-json@1.0.1-alpha.1) (2025-01-21)
 
 ### Bug Fixes
