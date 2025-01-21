@@ -1,3 +1,25 @@
+## @anolilab/semantic-release-preset [10.0.1-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.1-alpha.2...@anolilab/semantic-release-preset@10.0.1-alpha.3) (2025-01-21)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 1.0.1-alpha.3
+
+## @anolilab/semantic-release-preset [10.0.1-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.1-alpha.1...@anolilab/semantic-release-preset@10.0.1-alpha.2) (2025-01-21)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 1.0.1-alpha.2
+
+## @anolilab/semantic-release-preset [10.0.1-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.0...@anolilab/semantic-release-preset@10.0.1-alpha.1) (2025-01-21)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 1.0.1-alpha.1
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.9-alpha.1
+
 ## @anolilab/semantic-release-preset [10.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@9.0.4...@anolilab/semantic-release-preset@10.0.0) (2025-01-16)
 
 ### ⚠ BREAKING CHANGES

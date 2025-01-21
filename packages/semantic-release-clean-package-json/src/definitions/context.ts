@@ -50,8 +50,8 @@ type CommonContext4 = CommonContext3 & {
     nextRelease: Release;
 };
 
-// https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L193
-export type PrepareContext = CommonContext4;
+// https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/index.js#L206
+export type PublishContext = CommonContext4;
 
 // @todo infer return type from https://github.com/semantic-release/semantic-release/blob/27b105337b16dfdffb0dfa36d1178015e7ba68a3/lib/branches/index.js#L70
 export interface BranchSpec {

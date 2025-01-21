@@ -1,7 +1,7 @@
 <div align="center">
   <h3>anolilab semantic-release-clean-package-json</h3>
   <p>
-  Clean package.json before publish by removing unnecessary properties
+  A semantic-release plugin that cleans and optimizes package.json before publishing by removing unnecessary development and build-time properties
   </p>
 </div>
 
@@ -25,6 +25,16 @@
 
 ---
 
+## Why?
+
+When publishing packages to npm, many properties in `package.json` are only needed during development and build time, but not in the published package. This plugin automatically removes unnecessary properties while preserving essential ones needed for the package to work correctly in production.
+
+Key benefits:
+- Reduces package size by removing development-only properties
+- Prevents leaking internal configuration and metadata
+- Maintains a clean and focused package.json for end users
+- Customizable property preservation through configuration
+
 ## Install
 
 ```sh
@@ -44,16 +54,16 @@ pnpm add @anolilab/semantic-release-clean-package-json
 The plugin can be configured in the [**semantic-release** configuration file](https://github.com/semantic-release/semantic-release/blob/master/docs/usage/configuration.md#configuration):
 
 > [!IMPORTANT]
-> Very important: The plugin must be placed after the `@semantic-release/github` or `@semantic-release/git` and before `@anolilab/semantic-release-pnpm` or `@semantic-release/npm` plugin otherwise the `package.json` will be cleaned and published into GitHub / Your Git Provider.
+> Very important: The plugin must be placed before the `@semantic-release/github` or `@semantic-release/git` and before `@anolilab/semantic-release-pnpm` or `@semantic-release/npm` plugin otherwise the `package.json` will be cleaned and published into GitHub / Your Git Provider.
 
 ```json
 {
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
-        "@semantic-release/github",
         "@anolilab/semantic-release-clean-package-json",
-        "@anolilab/semantic-release-pnpm"
+        "@anolilab/semantic-release-pnpm",
+        "@semantic-release/github"
     ]
 }
 ```
@@ -62,7 +72,8 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 | Step      | Description                                                                                              |
 | --------- | -------------------------------------------------------------------------------------------------------- |
-| `prepare` | Modifing the `package.json` file with the [default preserved properties](#default-preserved-properties). |
+| `publish` | - Creates a backup of the original package.json file<br>- Removes all non-preserved properties from package.json<br>- Keeps properties specified in the default list and custom `keep` option<br>- Preserves specific npm scripts if they are in the keep list<br>- Writes the cleaned package.json file |
+| `success` | - Restores the original package.json from backup<br>- Updates the version number to match the released version<br>- Removes the backup file<br>- Logs success or error messages |
 
 ### Options
 
@@ -77,6 +88,56 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 ### Examples
 
+The plugin can be configured with custom properties to keep in addition to the default preserved ones:
+
+```json
+{
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@anolilab/semantic-release-clean-package-json",
+            {
+                "keep": ["custom field"]
+            }
+        ],
+        "@anolilab/semantic-release-pnpm",
+        "@semantic-release/github"
+    ]
+}
+```
+
+#### Example: Publishing a TypeScript Package
+
+When publishing a TypeScript package, you might want to keep TypeScript-specific fields:
+
+```jsonc
+{
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@anolilab/semantic-release-clean-package-json",
+            {
+                // This are the default values, just a example
+                "keep": [
+                    "types",
+                    "typings",
+                    "typesVersions",
+                    "module"
+                ]
+            }
+        ],
+        "@anolilab/semantic-release-pnpm",
+        "@semantic-release/github"
+    ]
+}
+```
+
+#### Example: Custom Package Root
+
+If your package.json is not in the root directory:
+
 ```json
 {
     "plugins": [
@@ -86,17 +147,13 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
         [
             "@anolilab/semantic-release-clean-package-json",
             {
-                "keep": ["custom filed"]
+                "pkgRoot": "dist"
             }
         ],
         "@anolilab/semantic-release-pnpm"
     ]
 }
 ```
-
-<!-- Copied from https://github.com/privatenumber/clean-pkg-json/blob/develop/src/default-keep-properties.ts -->
-<!-- MIT License -->
-<!-- Copyright (c) Hiroki Osame <hiroki.osame@gmail.com> -->
 
 ### Default preserved properties
 
