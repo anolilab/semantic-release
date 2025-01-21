@@ -78,6 +78,7 @@ describe("semantic-release-clean-package-json", () => {
             scripts: {
                 postinstall: "echo postinstall",
             },
+            version: "1.0.0",
         });
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "devDependencies"');
@@ -112,6 +113,7 @@ describe("semantic-release-clean-package-json", () => {
             scripts: {
                 postinstall: "echo postinstall",
             },
+            version: "1.0.0",
         });
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith(
