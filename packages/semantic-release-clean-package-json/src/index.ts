@@ -1,14 +1,21 @@
-import { writeJson } from "@visulima/fs";
-import { join } from "@visulima/path";
+import { isAccessible, readJson, writeJson } from "@visulima/fs";
+import { join, resolve } from "@visulima/path";
 
 import defaultKeepProperties from "./default-keep-properties";
 import type { PrepareContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
 import getPackage from "./utils/get-pkg";
+import type { PackageJson } from "type-fest";
+import { rm } from "node:fs/promises";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity,import/prefer-default-export
 export const prepare = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
+    const cwd = pluginConfig?.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
+
+    await writeJson(join(cwd, "package.json.back"), packageJson, {
+        detectIndent: true,
+    });
 
     const keepProperties = new Set([...defaultKeepProperties, ...(pluginConfig.keep ?? [])]);
 
@@ -44,7 +51,33 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
         delete packageJson[property];
     }
 
-    await writeJson(join(context.cwd, "package.json"), packageJson, {
+    await writeJson(join(cwd, "package.json"), packageJson, {
         detectIndent: true,
     });
+};
+
+export const success = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
+    const cwd = pluginConfig?.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
+
+    const backupPackageJson = join(cwd, "package.json.back");
+
+    if (await isAccessible(backupPackageJson)) {
+        const packageJson = await getPackage(pluginConfig, context);
+
+        const backupPackageJsonContent = (await readJson(backupPackageJson)) as PackageJson;
+
+        await writeJson(
+            join(cwd, "package.json"),
+            {
+                ...backupPackageJsonContent,
+                version: packageJson.version,
+            },
+            {
+                detectIndent: true,
+                overwrite: true,
+            },
+        );
+
+        await rm(backupPackageJson);
+    }
 };
