@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-preset",
-    "version": "10.0.1-alpha.3",
+    "version": "11.0.0-alpha.1",
     "description": "Semantic-release predefined presets.",
     "keywords": [
         "anolilab",
@@ -86,7 +86,7 @@
         "test:watch": "echo 'There is no need for test' && exit 0"
     },
     "dependencies": {
-        "@anolilab/semantic-release-clean-package-json": "1.0.1-alpha.3",
+        "@anolilab/semantic-release-clean-package-json": "2.0.0-alpha.1",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^6.0.3",
@@ -98,7 +98,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "^15.0.3",
         "@anolilab/prettier-config": "^5.0.14",
-        "@anolilab/semantic-release-pnpm": "1.1.9-alpha.1",
+        "@anolilab/semantic-release-pnpm": "2.0.0-alpha.1",
         "@babel/core": "^7.26.0",
         "@rushstack/eslint-plugin-security": "^0.8.3",
         "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
@@ -116,7 +116,7 @@
         "typescript": "^5.7.3"
     },
     "peerDependencies": {
-        "@anolilab/semantic-release-pnpm": "1.1.9-alpha.1",
+        "@anolilab/semantic-release-pnpm": "2.0.0-alpha.1",
         "@semantic-release/npm": "^12.0.1",
         "semantic-release": "^24.0.0",
         "semantic-release-yarn": "^3.0.2"
