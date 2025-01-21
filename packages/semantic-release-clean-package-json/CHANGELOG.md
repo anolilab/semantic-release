@@ -6,10 +6,10 @@
 
 ### Bug Fixes
 
-* changed plugin order to not publish cleaned package.json to github ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
+* changed plugin order to not publish cleaned package.json to GitHub ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
 * remove usage of aggregate-error library ([e0c6e95](https://github.com/anolilab/semantic-release/commit/e0c6e95b07416d6694fa192ddca96e17a4c1c4b8))
 * **semantic-release-clean-package-json:** fixed circular dependency ([93b51f9](https://github.com/anolilab/semantic-release/commit/93b51f9c03503e10f0c0a23dcd55273622b40aa0))
-* **semantic-release-clean-package-json:** removed cjs exports, semantic-release dont supports both types at the same time ([48c93c0](https://github.com/anolilab/semantic-release/commit/48c93c09cd5d6429b7658bc9a4fc573ea23462e2))
+* **semantic-release-clean-package-json:** removed cjs exports, semantic-release don't support both types at the same time ([48c93c0](https://github.com/anolilab/semantic-release/commit/48c93c09cd5d6429b7658bc9a4fc573ea23462e2))
 
 
 ### Dependencies
@@ -20,7 +20,7 @@
 
 ### Bug Fixes
 
-* changed plugin order to not publish cleaned package.json to github ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
+* changed plugin order to not publish cleaned package.json to GitHub ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
 
 ## @anolilab/semantic-release-clean-package-json 1.0.0-alpha.1 (2025-01-15)
 
