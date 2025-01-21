@@ -1,15 +1,16 @@
-import { isAccessible, readJson, writeJson } from "@visulima/fs";
-import { join, resolve } from "@visulima/path";
-
-import defaultKeepProperties from "./default-keep-properties";
-import type { PrepareContext } from "./definitions/context";
-import type { PluginConfig } from "./definitions/plugin-config";
-import getPackage from "./utils/get-pkg";
-import type { PackageJson } from "type-fest";
 import { rm } from "node:fs/promises";
 
+import { isAccessible, readJson, writeJson } from "@visulima/fs";
+import { join, resolve } from "@visulima/path";
+import type { PackageJson } from "type-fest";
+
+import defaultKeepProperties from "./default-keep-properties";
+import type { CommonContext, PublishContext } from "./definitions/context";
+import type { PluginConfig } from "./definitions/plugin-config";
+import getPackage from "./utils/get-pkg";
+
 // eslint-disable-next-line sonarjs/cognitive-complexity
-export const prepare = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
+export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 
@@ -62,7 +63,7 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
     });
 };
 
-export const success = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
+export const success = async (pluginConfig: PluginConfig, context: CommonContext): Promise<void> => {
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 
     const backupPackageJson = join(cwd, "package.json.back");
