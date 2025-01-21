@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [1.0.1-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.0...@anolilab/semantic-release-clean-package-json@1.0.1-alpha.1) (2025-01-21)
+
+### Bug Fixes
+
+* **semantic-release-clean-package-json:** adding a success function to restore the old package.json with the new version ([43d1964](https://github.com/anolilab/semantic-release/commit/43d19644518642d427d82f71c3b8c052e040f24f))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.9-alpha.1
+
 ## @anolilab/semantic-release-clean-package-json 1.0.0 (2025-01-16)
 
 ### Features
