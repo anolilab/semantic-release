@@ -13,9 +13,15 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 
-    await writeJson(join(cwd, "package.json.back"), packageJson, {
-        detectIndent: true,
-    });
+    await writeJson(
+        join(cwd, "package.json.back"),
+        { ...packageJson },
+        {
+            detectIndent: true,
+        },
+    );
+
+    context.logger.log("Backup package.json created.");
 
     const keepProperties = new Set([...defaultKeepProperties, ...(pluginConfig.keep ?? [])]);
 
@@ -57,7 +63,7 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
 };
 
 export const success = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
-    const cwd = pluginConfig?.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
+    const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 
     const backupPackageJson = join(cwd, "package.json.back");
 
@@ -79,5 +85,9 @@ export const success = async (pluginConfig: PluginConfig, context: PrepareContex
         );
 
         await rm(backupPackageJson);
+
+        context.logger.log("Restored modified package.json from backup.");
+    } else {
+        context.logger.error("No backup package.json found.");
     }
 };
