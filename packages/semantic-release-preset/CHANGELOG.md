@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-preset [10.0.1-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.1-alpha.2...@anolilab/semantic-release-preset@10.0.1-alpha.3) (2025-01-21)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 1.0.1-alpha.3
+
 ## @anolilab/semantic-release-preset [10.0.1-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.1-alpha.1...@anolilab/semantic-release-preset@10.0.1-alpha.2) (2025-01-21)
 
 

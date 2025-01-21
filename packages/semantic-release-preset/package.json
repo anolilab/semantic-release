@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-preset",
-    "version": "10.0.1-alpha.2",
+    "version": "10.0.1-alpha.3",
     "description": "Semantic-release predefined presets.",
     "keywords": [
         "anolilab",
@@ -86,7 +86,7 @@
         "test:watch": "echo 'There is no need for test' && exit 0"
     },
     "dependencies": {
-        "@anolilab/semantic-release-clean-package-json": "1.0.1-alpha.2",
+        "@anolilab/semantic-release-clean-package-json": "1.0.1-alpha.3",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^6.0.3",
