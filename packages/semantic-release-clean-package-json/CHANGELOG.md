@@ -1,3 +1,18 @@
+## @anolilab/semantic-release-clean-package-json [2.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.0...@anolilab/semantic-release-clean-package-json@2.0.0) (2025-01-22)
+
+### ⚠ BREAKING CHANGES
+
+* **semantic-release-clean-package-json:** Changed plugin steps to publish and success from prepare
+
+### Bug Fixes
+
+* **semantic-release-clean-package-json:** reworked this plugin to use the `publish` and `success` functions, to have the correct state on git ([#112](https://github.com/anolilab/semantic-release/issues/112)) ([734d48a](https://github.com/anolilab/semantic-release/commit/734d48a6c5a386a7ceecef5e84d758eb63708fcc))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.9
+
 ## @anolilab/semantic-release-clean-package-json 1.0.0 (2025-01-16)
 
 ### Features
