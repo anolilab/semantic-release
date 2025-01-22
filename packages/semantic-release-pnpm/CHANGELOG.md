@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [1.1.9](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.8...@anolilab/semantic-release-pnpm@1.1.9) (2025-01-22)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** updated dev dependencies and @visulima/package to v3.4.5 ([967a0b4](https://github.com/anolilab/semantic-release/commit/967a0b4cd1f362bc60a4d8f301ca13f915b945ef))
+
 ## @anolilab/semantic-release-pnpm [1.1.8](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.7...@anolilab/semantic-release-pnpm@1.1.8) (2025-01-16)
 
 ### Bug Fixes
