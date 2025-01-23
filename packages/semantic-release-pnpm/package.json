@@ -93,7 +93,7 @@
         "@types/semantic-release__error": "3.0.3",
         "@types/semver": "7.5.8",
         "@types/stream-buffers": "^3.0.7",
-        "@visulima/packem": "^1.17.0",
+        "@visulima/packem": "^1.18.0",
         "@vitest/coverage-v8": "^3.0.3",
         "@vitest/ui": "^3.0.3",
         "conventional-changelog-conventionalcommits": "8.0.0",
