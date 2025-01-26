@@ -274,8 +274,8 @@ importers:
   packages/rc:
     dependencies:
       '@visulima/fs':
-        specifier: ^2.3.7
-        version: 2.3.7
+        specifier: ^2.3.8
+        version: 2.3.8
       '@visulima/path':
         specifier: ^1.3.3
         version: 1.3.3
@@ -407,8 +407,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       '@visulima/fs':
-        specifier: ^2.3.7
-        version: 2.3.7
+        specifier: ^2.3.8
+        version: 2.3.8
       '@visulima/path':
         specifier: ^1.3.3
         version: 1.3.3
@@ -528,11 +528,11 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       '@visulima/fs':
-        specifier: ^2.3.7
-        version: 2.3.7
+        specifier: ^2.3.8
+        version: 2.3.8
       '@visulima/package':
-        specifier: ^3.4.5
-        version: 3.4.5(@types/node@18.19.71)
+        specifier: ^3.4.6
+        version: 3.4.8(@types/node@18.19.71)(yaml@2.7.0)
       '@visulima/path':
         specifier: ^1.3.3
         version: 1.3.3
@@ -3023,6 +3023,21 @@ packages:
     engines: {node: '>=18.* <=23.*'}
     os: [darwin, linux, win32]
 
+  '@visulima/fs@2.3.8':
+    resolution: {integrity: sha512-IuMtqidiv8KBmZGLOm0FIBbYsCR4JwwnyO8bPS4wkR8oUcjlUAnhEWrxgHL5DjzpYwncS+1uZuxoJf3CkCdi0w==}
+    engines: {node: '>=18.* <=23.*'}
+    os: [darwin, linux, win32]
+
+  '@visulima/fs@3.0.1':
+    resolution: {integrity: sha512-8ThhKBcwHjxcndxMr2UadR2gyq7eYz29nCKuwbE/HsTkCTW6DE06odfyJXPdLVI84nC/aweEIVraOobzgbRPTw==}
+    engines: {node: '>=18.0.0 <=23.x'}
+    os: [darwin, linux, win32]
+    peerDependencies:
+      yaml: ^2.7.0
+    peerDependenciesMeta:
+      yaml:
+        optional: true
+
   '@visulima/humanizer@1.1.0':
     resolution: {integrity: sha512-W2LpKKN/JL4RcjZ87jM0DWlpbOe/6sU3dnIKQ31/J55aERIqyFB3nTK53hyfR2FqdVGbwWmr0lC0KlZv1abHrw==}
     engines: {node: '>=18.* <=23.*'}
@@ -3039,6 +3054,11 @@ packages:
   '@visulima/package@3.4.5':
     resolution: {integrity: sha512-A1kLtKj8kUuduv6Sf/pCjuWf2DJvzTKlX4cXReZ4bdWKWBjfFKzOes1WBzynXE/WLWtecy49JMswSZyeGH14cQ==}
     engines: {node: '>=18.* <=23.*'}
+    os: [darwin, linux, win32]
+
+  '@visulima/package@3.4.8':
+    resolution: {integrity: sha512-CluJWAUbvU8rfuEzM7p45AwLhOv3viuyhTKd9aaCYPML1pHiGVG1KHzfA4/Z/4NKDmOs1RFr+IZz3zcKwM0/OA==}
+    engines: {node: '>=18.0.0 <=23.x'}
     os: [darwin, linux, win32]
 
   '@visulima/packem@1.18.0':
@@ -3136,6 +3156,11 @@ packages:
   '@visulima/path@1.3.3':
     resolution: {integrity: sha512-fZtkhILqLAJXmMAaT5ifodd6MZ7vy77o4/cAeXyhD7vbbyjQXyntNbjEb46TpnbGr/nysc1maNPOXg78DYw7Hw==}
     engines: {node: '>=18.* <=23.*'}
+    os: [darwin, linux, win32]
+
+  '@visulima/path@1.3.4':
+    resolution: {integrity: sha512-aSSHjSMFK2/+TBbo029LpwVhi4+inZ/Q8AUiuBKE5T4vsXqQn/zQdGl2JViHBSjUWo7gEj5I1yF/iY3FdIupew==}
+    engines: {node: '>=18.0.0 <=23.x'}
     os: [darwin, linux, win32]
 
   '@visulima/source-map@1.0.16':
@@ -9079,7 +9104,7 @@ snapshots:
   '@anolilab/semantic-release-clean-package-json@2.0.0':
     dependencies:
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 2.3.7
+      '@visulima/fs': 2.3.8
       '@visulima/path': 1.3.3
 
   '@anolilab/textlint-config@8.0.16(textlint@14.4.2)':
@@ -11424,6 +11449,17 @@ snapshots:
       '@visulima/path': 1.3.3
       yaml: 2.7.0
 
+  '@visulima/fs@2.3.8':
+    dependencies:
+      '@visulima/path': 1.3.3
+      yaml: 2.7.0
+
+  '@visulima/fs@3.0.1(yaml@2.7.0)':
+    dependencies:
+      '@visulima/path': 1.3.4
+    optionalDependencies:
+      yaml: 2.7.0
+
   '@visulima/humanizer@1.1.0': {}
 
   '@visulima/inspector@1.0.18': {}
@@ -11439,6 +11475,17 @@ snapshots:
       normalize-package-data: 7.0.0
     transitivePeerDependencies:
       - '@types/node'
+
+  '@visulima/package@3.4.8(@types/node@18.19.71)(yaml@2.7.0)':
+    dependencies:
+      '@antfu/install-pkg': 1.0.0
+      '@inquirer/confirm': 5.1.3(@types/node@18.19.71)
+      '@visulima/fs': 3.0.1(yaml@2.7.0)
+      '@visulima/path': 1.3.4
+      normalize-package-data: 7.0.0
+    transitivePeerDependencies:
+      - '@types/node'
+      - yaml
 
   '@visulima/packem@1.18.0(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.27.6(typescript@5.7.3)))(@types/node@18.19.71)(esbuild@0.24.2)(postcss@8.4.47)(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.7.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.27.6(typescript@5.7.3)))(typedoc@0.27.6(typescript@5.7.3))(typescript@5.7.3)':
     dependencies:
@@ -11512,6 +11559,8 @@ snapshots:
       safe-stable-stringify: 2.5.0
 
   '@visulima/path@1.3.3': {}
+
+  '@visulima/path@1.3.4': {}
 
   '@visulima/source-map@1.0.16':
     dependencies:
@@ -18121,7 +18170,7 @@ snapshots:
       vfile-message: 3.1.4
       vfile-reporter: 7.0.5
       vfile-statistics: 2.0.1
-      yaml: 2.4.5
+      yaml: 2.7.0
     transitivePeerDependencies:
       - supports-color
 
@@ -18147,7 +18196,7 @@ snapshots:
       vfile-message: 4.0.2
       vfile-reporter: 8.1.1
       vfile-statistics: 3.0.0
-      yaml: 2.4.5
+      yaml: 2.7.0
     transitivePeerDependencies:
       - supports-color
 
