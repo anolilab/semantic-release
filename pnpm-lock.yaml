@@ -202,8 +202,8 @@ importers:
         specifier: 18.19.71
         version: 18.19.71
       '@vitest/coverage-v8':
-        specifier: ^3.0.3
-        version: 3.0.3(vitest@3.0.3)
+        specifier: ^3.0.5
+        version: 3.0.5(vitest@3.0.3)
       '@vitest/ui':
         specifier: ^3.0.3
         version: 3.0.3(vitest@3.0.3)
@@ -332,8 +332,8 @@ importers:
         specifier: ^1.18.0
         version: 1.18.0(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.27.6(typescript@5.7.3)))(@types/node@18.19.71)(esbuild@0.24.2)(postcss@8.4.47)(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.7.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.27.6(typescript@5.7.3)))(typedoc@0.27.6(typescript@5.7.3))(typescript@5.7.3)
       '@vitest/coverage-v8':
-        specifier: ^3.0.3
-        version: 3.0.3(vitest@3.0.3)
+        specifier: ^3.0.5
+        version: 3.0.5(vitest@3.0.3)
       '@vitest/ui':
         specifier: ^3.0.3
         version: 3.0.3(vitest@3.0.3)
@@ -462,8 +462,8 @@ importers:
         specifier: ^1.18.0
         version: 1.18.0(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.27.6(typescript@5.7.3)))(@types/node@18.19.71)(esbuild@0.24.2)(postcss@8.4.47)(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.7.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.27.6(typescript@5.7.3)))(typedoc@0.27.6(typescript@5.7.3))(typescript@5.7.3)
       '@vitest/coverage-v8':
-        specifier: ^3.0.3
-        version: 3.0.3(vitest@3.0.3)
+        specifier: ^3.0.5
+        version: 3.0.5(vitest@3.0.3)
       '@vitest/ui':
         specifier: ^3.0.3
         version: 3.0.3(vitest@3.0.3)
@@ -610,8 +610,8 @@ importers:
         specifier: ^1.18.0
         version: 1.18.0(@ckeditor/typedoc-plugins@43.0.1(typedoc@0.27.6(typescript@5.7.3)))(@types/node@18.19.71)(esbuild@0.24.2)(postcss@8.4.47)(typedoc-plugin-markdown@4.4.1(typedoc@0.27.6(typescript@5.7.3)))(typedoc-plugin-rename-defaults@0.7.2(typedoc@0.27.6(typescript@5.7.3)))(typedoc@0.27.6(typescript@5.7.3))(typescript@5.7.3)
       '@vitest/coverage-v8':
-        specifier: ^3.0.3
-        version: 3.0.3(vitest@3.0.3)
+        specifier: ^3.0.5
+        version: 3.0.5(vitest@3.0.3)
       '@vitest/ui':
         specifier: ^3.0.3
         version: 3.0.3(vitest@3.0.3)
@@ -3146,11 +3146,11 @@ packages:
     resolution: {integrity: sha512-QXrqIttoQhOXciTsR642OjE8BbGFtd2sgMiLmLsr9Nkt3Y1NuCT3iLQ5f22XtS8lRugwDnbyw8esdlSg4StCFg==}
     engines: {node: '>=18.* <=23.*'}
 
-  '@vitest/coverage-v8@3.0.3':
-    resolution: {integrity: sha512-uVbJ/xhImdNtzPnLyxCZJMTeTIYdgcC2nWtBBBpR1H6z0w8m7D+9/zrDIx2nNxgMg9r+X8+RY2qVpUDeW2b3nw==}
+  '@vitest/coverage-v8@3.0.5':
+    resolution: {integrity: sha512-zOOWIsj5fHh3jjGwQg+P+J1FW3s4jBu1Zqga0qW60yutsBtqEqNEJKWYh7cYn1yGD+1bdPsPdC/eL4eVK56xMg==}
     peerDependencies:
-      '@vitest/browser': 3.0.3
-      vitest: 3.0.3
+      '@vitest/browser': 3.0.5
+      vitest: 3.0.5
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -11525,7 +11525,7 @@ snapshots:
       jsonc-parser: 3.3.1
       resolve-pkg-maps: 1.0.0
 
-  '@vitest/coverage-v8@3.0.3(vitest@3.0.3)':
+  '@vitest/coverage-v8@3.0.5(vitest@3.0.3)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 1.0.2
