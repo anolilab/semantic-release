@@ -1,3 +1,9 @@
+## @anolilab/rc [1.1.6](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.5...@anolilab/rc@1.1.6) (2025-02-10)
+
+### Bug Fixes
+
+* **rc:** updated @visulima/*, and all all dev deps ([5759909](https://github.com/anolilab/semantic-release/commit/57599095f79d229408e961a903f2ce2b0ef11bfb))
+
 ## @anolilab/rc [1.1.5](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.4...@anolilab/rc@1.1.5) (2025-01-14)
 
 ### Bug Fixes
