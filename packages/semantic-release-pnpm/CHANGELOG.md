@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [1.1.10](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.9...@anolilab/semantic-release-pnpm@1.1.10) (2025-02-10)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** updated @visulima/*, registry-auth-token to v 5.1.0, semver to v7.7.1 and all all dev deps ([f1bf9d0](https://github.com/anolilab/semantic-release/commit/f1bf9d076c69a859a892819f62af94bca300457e))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 1.1.6
+
 ## @anolilab/semantic-release-pnpm [1.1.9](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.8...@anolilab/semantic-release-pnpm@1.1.9) (2025-01-22)
 
 ### Bug Fixes
