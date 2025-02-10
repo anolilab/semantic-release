@@ -136,12 +136,6 @@ For example, let's say your project has 4 packages (i.e. a, b, c and d) and you 
 
 ## Configuring Multi-Semantic-Release
 
-multi-semantic-release can be configured a number of ways:
-
-- A `.multi-releaserc` file, written in YAML or JSON, with optional extensions: `.yaml`/ `.yml`/ `.json`/ `.js`
-- A `multi-release.config.js` file that exports an object
-- A `multi-release` key in the workspace root package.json
-
 Alternatively some options may be set via CLI flags.
 
 **Note:** CLI arguments take precedence over options configured in the configuration file.
@@ -172,30 +166,6 @@ Alternatively some options may be set via CLI flags.
 | prefix  | `'^' \| '~' \| ''`                   | `--deps.prefix`  | Optional prefix to be attached to the next version if `bump` is set to `override`. Supported values: `^` \| `~` \| `''` (empty string) ; **`''` by default**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 ### Examples
-
-- Via multi-release key in the project's package.json file:
-
-```json
-{
-    "multi-release": {
-        "ignorePackages": ["!packages/b/**", "!packages/c/**"],
-        "deps": {
-            "bump": "inherit"
-        }
-    }
-}
-```
-
-- Via `.multi-releaserc` file:
-
-```json
-{
-    "ignorePackages": ["!packages/b/**", "!packages/c/**"],
-    "deps": {
-        "bump": "inherit"
-    }
-}
-```
 
 - Via CLI:
 
@@ -357,7 +327,7 @@ The integration with semantic release is pretty janky — this is a quick summar
 - If packages have local deps (e.g. `dependencies` in package.json points to an internal package) this step also does a `patch` bump if any of them did a bump.
 - This has to work recursively! See [hasChangedDeep.js](https://github.com/dhoulb/multi-semantic-release/blob/master/lib/hasChangedDeep.js)
 
-3. The configuration can be layered (i.e. global `.releaserc` and then per-directory overrides for individual packages).
+3. The configuration can be layered (i.e. global `semantic-release` cli) and then per-directory overrides for individual packages).
 
 - Had to duplicate the internal cosmiconfig setup from semantic release to get this working :(
 
