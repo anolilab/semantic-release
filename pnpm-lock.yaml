@@ -12,7 +12,7 @@ overrides:
   chrono-node@<2.2.4: '>=2.7.7'
   cross-spawn@>=7.0.0 <7.0.5: '>=7.0.5'
   micromatch@<4.0.8: '>=4.0.8'
-  nanoid@<3.3.8: '>=3.3.8'
+  nanoid@<3.3.8: '>=4.0.2'
   npm@>=7.9.0 <8.11.0: '>=8.11.0'
   rollup@>=4.0.0 <4.22.4: '>=4.22.4'
   semver@>=7.0.0 <7.5.2: '>=7.5.2'
@@ -11777,7 +11777,7 @@ snapshots:
       sirv: 3.0.0
       tinyglobby: 0.2.10
       tinyrainbow: 2.0.0
-      vitest: 3.0.5(@types/debug@4.1.12)(@types/node@18.19.71)(@vitest/ui@3.0.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)
+      vitest: 3.0.5(@types/debug@4.1.12)(@types/node@20.14.2)(@vitest/ui@3.0.5)(jiti@2.4.2)(tsx@4.19.2)(yaml@2.7.0)
 
   '@vitest/utils@3.0.5':
     dependencies:
