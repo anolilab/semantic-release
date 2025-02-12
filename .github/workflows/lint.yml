@@ -88,7 +88,7 @@ jobs:
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f" # v45.0.6
+              uses: "tj-actions/changed-files@dcc7a0cba800f454d79fff4b993e8c3555bcc0a8" # v45.0.7
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -139,7 +139,7 @@ jobs:
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f" # v45.0.6
+              uses: "tj-actions/changed-files@dcc7a0cba800f454d79fff4b993e8c3555bcc0a8" # v45.0.7
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -190,7 +190,7 @@ jobs:
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@d6e91a2266cdb9d62096cebf1e8546899c6aa18f" # v45.0.6
+              uses: "tj-actions/changed-files@dcc7a0cba800f454d79fff4b993e8c3555bcc0a8" # v45.0.7
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -273,12 +273,12 @@ jobs:
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
-            - uses: "pnpm/action-setup@fe02b34f77f8bc703788d5817da081398fad5dd2" # v4.0.0
+            - uses: "pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda" # v4.1.0
               with:
                   run_install: false
 
             - name: "Use Node.js 18.x"
-              uses: "actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af" # v4.1.0
+              uses: "actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a" # v4.2.0
               with:
                   node-version: "18.x"
                   cache: "pnpm"
