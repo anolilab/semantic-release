@@ -68,7 +68,7 @@
         "@anolilab/semantic-release-clean-package-json": "workspace:*",
         "@anolilab/semantic-release-pnpm": "1.1.9",
         "@babel/core": "^7.26.8",
-        "@rushstack/eslint-plugin-security": "^0.8.3",
+        "@rushstack/eslint-plugin-security": "^0.10.0",
         "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
@@ -96,7 +96,7 @@
         "rimraf": "^6.0.1",
         "secretlint": "9.0.0",
         "semantic-release": "^24.2.2",
-        "sort-package-json": "^2.14.0",
+        "sort-package-json": "^2.15.1",
         "tempy": "^3.1.0",
         "typescript": "^5.7.3",
         "vitest": "^3.0.5"
