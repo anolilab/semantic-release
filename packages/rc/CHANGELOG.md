@@ -1,3 +1,9 @@
+## @anolilab/rc [1.1.7](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.6...@anolilab/rc@1.1.7) (2025-05-07)
+
+### Bug Fixes
+
+* update dependencies across multiple packages, including @anolilab/* and @visulima/* to latest versions ([fc3cbd3](https://github.com/anolilab/semantic-release/commit/fc3cbd353f550d7f2de194c34416c3074ba60b11))
+
 ## @anolilab/rc [1.1.6](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.5...@anolilab/rc@1.1.6) (2025-02-10)
 
 ### Bug Fixes
