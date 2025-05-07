@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [2.0.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@2.0.1...@anolilab/semantic-release-clean-package-json@2.0.2) (2025-05-07)
+
+### Bug Fixes
+
+* update dependencies across multiple packages, including @anolilab/* and @visulima/* to latest versions ([fc3cbd3](https://github.com/anolilab/semantic-release/commit/fc3cbd353f550d7f2de194c34416c3074ba60b11))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 1.1.11
+
 ## @anolilab/semantic-release-clean-package-json [2.0.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@2.0.0...@anolilab/semantic-release-clean-package-json@2.0.1) (2025-02-10)
 
 ### Bug Fixes
