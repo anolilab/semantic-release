@@ -91,10 +91,10 @@ All configuration sources that were found will be flattened into one object, in 
 ### rc()
 
 ```ts
-function rc(name, options): object
+function rc(name, options): object;
 ```
 
-Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/197e7855df2f5b81c4b0a9256e40f0334a04f23b/packages/rc/src/index.ts#L170)
+Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/edf108ce63539668ff4b96882f43c67122ac6e7c/packages/rc/src/index.ts#L170)
 
 #### Parameters
 
@@ -104,23 +104,23 @@ Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/bl
 
 ##### options
 
-###### config
+###### config?
 
 `string`
 
-###### cwd
+###### cwd?
 
 `string`
 
-###### defaults
+###### defaults?
 
 `Record`\<`string`, `any`\>
 
-###### home
+###### home?
 
 `string`
 
-###### stopAt
+###### stopAt?
 
 `string`
 

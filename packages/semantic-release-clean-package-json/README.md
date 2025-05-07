@@ -30,6 +30,7 @@
 When publishing packages to npm, many properties in `package.json` are only needed during development and build time, but not in the published package. This plugin automatically removes unnecessary properties while preserving essential ones needed for the package to work correctly in production.
 
 Key benefits:
+
 - Reduces package size by removing development-only properties
 - Prevents leaking internal configuration and metadata
 - Maintains a clean and focused package.json for end users
@@ -70,10 +71,10 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 ## Steps that are used
 
-| Step      | Description                                                                                              |
-| --------- | -------------------------------------------------------------------------------------------------------- |
+| Step      | Description                                                                                                                                                                                                                                                                                              |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `publish` | - Creates a backup of the original package.json file<br>- Removes all non-preserved properties from package.json<br>- Keeps properties specified in the default list and custom `keep` option<br>- Preserves specific npm scripts if they are in the keep list<br>- Writes the cleaned package.json file |
-| `success` | - Restores the original package.json from backup<br>- Updates the version number to match the released version<br>- Removes the backup file<br>- Logs success or error messages |
+| `success` | - Restores the original package.json from backup<br>- Updates the version number to match the released version<br>- Removes the backup file<br>- Logs success or error messages                                                                                                                          |
 
 ### Options
 
@@ -120,17 +121,12 @@ When publishing a TypeScript package, you might want to keep TypeScript-specific
             "@anolilab/semantic-release-clean-package-json",
             {
                 // This are the default values, just a example
-                "keep": [
-                    "types",
-                    "typings",
-                    "typesVersions",
-                    "module"
-                ]
-            }
+                "keep": ["types", "typings", "typesVersions", "module"],
+            },
         ],
         "@anolilab/semantic-release-pnpm",
-        "@semantic-release/github"
-    ]
+        "@semantic-release/github",
+    ],
 }
 ```
 
