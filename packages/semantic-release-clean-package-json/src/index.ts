@@ -14,13 +14,9 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 
-    await writeJson(
-        join(cwd, "package.json.back"),
-        packageJson,
-        {
-            detectIndent: true,
-        },
-    );
+    await writeJson(join(cwd, "package.json.back"), packageJson, {
+        detectIndent: true,
+    });
 
     context.logger.log("Created a backup of the package.json file.");
 
@@ -78,14 +74,10 @@ export const success = async (pluginConfig: PluginConfig, context: CommonContext
         // Overwrite the version from the backup package.json
         backupPackageJsonContent.version = packageJson.version;
 
-        await writeJson(
-            join(cwd, "package.json"),
-            backupPackageJsonContent,
-            {
-                detectIndent: true,
-                overwrite: true,
-            },
-        );
+        await writeJson(join(cwd, "package.json"), backupPackageJsonContent, {
+            detectIndent: true,
+            overwrite: true,
+        });
 
         await rm(backupPackageJson);
 
