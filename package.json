@@ -117,6 +117,15 @@
             "vite@>=5.3.0 <=5.3.5": ">=5.3.6",
             "vite@>=5.3.0 <5.3.6": ">=5.3.6",
             "vite@>=5.0.0 <=5.4.11": ">=5.4.12"
-        }
+        },
+        "onlyBuiltDependencies": [
+            "@anolilab/commitlint-config",
+            "@anolilab/eslint-config",
+            "@anolilab/lint-staged-config",
+            "@anolilab/prettier-config",
+            "@anolilab/textlint-config",
+            "esbuild",
+            "nx"
+        ]
     }
 }
