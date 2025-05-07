@@ -712,8 +712,8 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 2.0.1
-        version: 2.0.1(yaml@2.7.1)
+        specifier: 2.0.2
+        version: 2.0.2(yaml@2.7.1)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.3(typescript@5.8.3))
@@ -932,8 +932,8 @@ packages:
     peerDependencies:
       prettier: 2.x || 3.x
 
-  '@anolilab/semantic-release-clean-package-json@2.0.1':
-    resolution: {integrity: sha512-dE0VxTC/vo+k/fHnwGJAhNQKHI/kvoKdnjQP4e+xDUYQh1jmk0gN68yh1V+pWDJeAPxvjwHBCDSOVwz/nZAlvw==}
+  '@anolilab/semantic-release-clean-package-json@2.0.2':
+    resolution: {integrity: sha512-O5RjQqSC9vwi7LnrjfdwCJ1fdrfryYnsSqMh7+6yK1H5hEgHSg2iFXaM1oAwXp4OFaBonVgQcRnpauW+jx5PfQ==}
     engines: {node: '>=18.0.0 <=23.x'}
 
   '@anolilab/textlint-config@8.0.16':
@@ -8799,7 +8799,7 @@ snapshots:
       '@anolilab/package-json-utils': 3.0.9
       prettier: 3.5.3
 
-  '@anolilab/semantic-release-clean-package-json@2.0.1(yaml@2.7.1)':
+  '@anolilab/semantic-release-clean-package-json@2.0.2(yaml@2.7.1)':
     dependencies:
       '@semantic-release/error': 4.0.0
       '@visulima/fs': 3.1.2(yaml@2.7.1)
