@@ -8,34 +8,34 @@ overrides:
   '@anolilab/multi-semantic-release': workspace:*
   '@anolilab/rc': workspace:*
   '@anolilab/semantic-release-pnpm': workspace:*
+  '@babel/helpers@<7.26.10': '>=7.26.10'
+  '@octokit/endpoint@>=9.0.5 <9.0.6': '>=9.0.6'
+  '@octokit/endpoint@>=10.0.0 <10.1.3': '>=10.1.3'
+  '@octokit/plugin-paginate-rest@>=9.3.0-beta.1 <11.4.1': '>=11.4.1'
+  '@octokit/plugin-paginate-rest@>=1.0.0 <9.2.2': '>=11.6.0'
+  '@octokit/request@>=9.0.0-beta.1 <9.2.1': '>=9.2.1'
+  '@octokit/request@>=1.0.0 <8.4.1': '>=8.4.1'
+  '@octokit/request-error@>=6.0.0 <6.1.7': '>=6.1.7'
+  '@octokit/request-error@>=1.0.0 <5.1.1': '>=5.1.1'
+  axios@>=1.0.0 <1.8.2: '>=1.8.2'
   braces@<3.0.3: '>=3.0.3'
   chrono-node@<2.2.4: '>=2.7.7'
   cross-spawn@>=7.0.0 <7.0.5: '>=7.0.5'
+  esbuild@<=0.24.2: '>=0.25.0'
   micromatch@<4.0.8: '>=4.0.8'
   nanoid@<3.3.8: '>=3.3.8'
   npm@>=7.9.0 <8.11.0: '>=8.11.0'
   rollup@>=4.0.0 <4.22.4: '>=4.22.4'
   semver@>=7.0.0 <7.5.2: '>=7.5.2'
+  tar-fs@>=2.0.0 <2.1.2: '>=2.1.2'
+  vite@>=6.1.0 <6.1.5: '>=6.1.5'
+  vite@>=6.1.0 <6.1.4: '>=6.1.4'
+  vite@>=6.1.0 <6.1.3: '>=6.1.3'
+  vite@>=6.1.0 <6.1.2: '>=6.1.2'
+  vite@>=6.0.0 <=6.1.5: '>=6.1.6'
   vite@>=5.3.0 <=5.3.5: '>=5.3.6'
   vite@>=5.3.0 <5.3.6: '>=5.3.6'
   vite@>=5.0.0 <=5.4.11: '>=5.4.12'
-  '@octokit/request-error@>=6.0.0 <6.1.7': '>=6.1.7'
-  '@octokit/request-error@>=1.0.0 <5.1.1': '>=5.1.1'
-  '@octokit/endpoint@>=10.0.0 <10.1.3': '>=10.1.3'
-  '@octokit/endpoint@>=9.0.5 <9.0.6': '>=9.0.6'
-  esbuild@<=0.24.2: '>=0.25.0'
-  '@octokit/request@>=1.0.0 <8.4.1': '>=8.4.1'
-  '@octokit/request@>=9.0.0-beta.1 <9.2.1': '>=9.2.1'
-  '@octokit/plugin-paginate-rest@>=1.0.0 <9.2.2': '>=9.2.2'
-  '@octokit/plugin-paginate-rest@>=9.3.0-beta.1 <11.4.1': '>=11.4.1'
-  vite@>=6.1.0 <6.1.2: '>=6.1.2'
-  tar-fs@>=2.0.0 <2.1.2: '>=2.1.2'
-  axios@>=1.0.0 <1.8.2: '>=1.8.2'
-  vite@>=6.1.0 <6.1.3: '>=6.1.3'
-  vite@>=6.1.0 <6.1.5: '>=6.1.5'
-  '@babel/helpers@<7.26.10': '>=7.26.10'
-  vite@>=6.0.0 <=6.1.5: '>=6.1.6'
-  vite@>=6.1.0 <6.1.4: '>=6.1.4'
 
 importers:
 
@@ -925,6 +925,7 @@ packages:
   '@anolilab/package-json-utils@3.0.9':
     resolution: {integrity: sha512-CYwpW2hlsOSdwtksYG5vH7Y48X7qwSnvk4yTsplce/FZFZLKRxuCbwlUqgTEYUng3nZ55A+5EC3rEttgor7e9w==}
     engines: {node: '>=18.* <=21.*'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@anolilab/prettier-config@5.0.14':
     resolution: {integrity: sha512-P7nVwARFM0SKQ0j8Q2y6Q3acHaPNtXOKEX9lgZcf5veFdvNjzK79iZcFdpQikyix4VQBs8x6wBPAD0yDfpC6pQ==}
