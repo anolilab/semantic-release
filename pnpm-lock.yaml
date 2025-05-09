@@ -17,16 +17,16 @@ overrides:
   '@octokit/request@>=1.0.0 <8.4.1': '>=8.4.1'
   '@octokit/request-error@>=6.0.0 <6.1.7': '>=6.1.7'
   '@octokit/request-error@>=1.0.0 <5.1.1': '>=5.1.1'
-  axios@>=1.0.0 <1.8.2: '>=1.8.2'
+  axios@>=1.0.0 <1.8.2: '>=1.9.0'
   braces@<3.0.3: '>=3.0.3'
-  chrono-node@<2.2.4: '>=2.7.7'
+  chrono-node@<2.2.4: '>=2.8.0'
   cross-spawn@>=7.0.0 <7.0.5: '>=7.0.5'
   esbuild@<=0.24.2: '>=0.25.0'
   micromatch@<4.0.8: '>=4.0.8'
   nanoid@<3.3.8: '>=3.3.8'
-  npm@>=7.9.0 <8.11.0: '>=8.11.0'
+  npm@>=7.9.0 <8.11.0: '>=8.19.4'
   rollup@>=4.0.0 <4.22.4: '>=4.22.4'
-  semver@>=7.0.0 <7.5.2: '>=7.5.2'
+  semver@>=7.0.0 <7.5.2: '>=7.7.1'
   tar-fs@>=2.0.0 <2.1.2: '>=2.1.2'
   vite@>=6.1.0 <6.1.5: '>=6.1.5'
   vite@>=6.1.0 <6.1.4: '>=6.1.4'
@@ -3406,8 +3406,8 @@ packages:
   chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
-  chrono-node@2.7.7:
-    resolution: {integrity: sha512-p3S7gotuTPu5oqhRL2p1fLwQXGgdQaRTtWR3e8Di9P1Pa9mzkK5DWR5AWBieMUh2ZdOnPgrK+zCrbbtyuA+D/Q==}
+  chrono-node@2.8.0:
+    resolution: {integrity: sha512-//a/HhnCQ4zFHxRfi1m+jQwr8o0Gxsg0GUjZ39O6ud9lkhrnuLGX1oOKjGsivm9AVMS79cn0PmTa6JCRlzgfWA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   ci-info@3.9.0:
@@ -11626,7 +11626,7 @@ snapshots:
 
   chownr@1.1.4: {}
 
-  chrono-node@2.7.7:
+  chrono-node@2.8.0:
     dependencies:
       dayjs: 1.11.11
 
@@ -17155,7 +17155,7 @@ snapshots:
 
   textlint-rule-date-weekday-mismatch@1.0.6:
     dependencies:
-      chrono-node: 2.7.7
+      chrono-node: 2.8.0
       moment: 2.30.1
       textlint-tester: 12.6.1
     transitivePeerDependencies:
