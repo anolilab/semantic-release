@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-preset [10.0.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.4...@anolilab/semantic-release-preset@10.0.5) (2025-05-13)
+
+### Bug Fixes
+
+* **deps:** update dependency semantic-release to ^24.2.3 ([#148](https://github.com/anolilab/semantic-release/issues/148)) ([803cd12](https://github.com/anolilab/semantic-release/commit/803cd120a7ea83656152283b34c22a364aa81d1b))
+
 ## @anolilab/semantic-release-preset [10.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.3...@anolilab/semantic-release-preset@10.0.4) (2025-05-07)
 
 ### Bug Fixes
