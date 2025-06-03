@@ -97,7 +97,7 @@
             "@octokit/request@>=9.0.0-beta.1 <9.2.1": ">=9.2.1",
             "@octokit/request@>=1.0.0 <8.4.1": ">=8.4.1",
             "@octokit/request-error@>=6.0.0 <6.1.7": ">=6.1.7",
-            "@octokit/request-error@>=1.0.0 <5.1.1": ">=5.1.1",
+            "@octokit/request-error@>=1.0.0 <5.1.1": ">=6.1.8",
             "axios@>=1.0.0 <1.8.2": ">=1.9.0",
             "braces@<3.0.3": ">=3.0.3",
             "chrono-node@<2.2.4": ">=2.8.1",
