@@ -78,7 +78,7 @@
         "@anolilab/eslint-config": "^15.0.3",
         "@anolilab/prettier-config": "^5.0.14",
         "@arethetypeswrong/cli": "^0.18.1",
-        "@babel/core": "^7.27.1",
+        "@babel/core": "^7.27.4",
         "@rushstack/eslint-plugin-security": "^0.10.0",
         "@secretlint/secretlint-rule-preset-recommend": "^9.3.2",
         "@semantic-release/changelog": "^6.0.3",
