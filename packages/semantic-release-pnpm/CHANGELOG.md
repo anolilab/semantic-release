@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-pnpm [1.1.12](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.11...@anolilab/semantic-release-pnpm@1.1.12) (2025-06-05)
+
+### Bug Fixes
+
+* all packages now allow node 24, update all dependencies ([dfc2518](https://github.com/anolilab/semantic-release/commit/dfc2518344702271582f6d60c44778aefc66ce14))
+* **deps:** update patch updates ([#154](https://github.com/anolilab/semantic-release/issues/154)) ([26462d4](https://github.com/anolilab/semantic-release/commit/26462d456c3e1d471c360e97c38b5f0668e984fe))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 1.1.8
+
 ## @anolilab/semantic-release-pnpm [1.1.11](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.10...@anolilab/semantic-release-pnpm@1.1.11) (2025-05-07)
 
 ### Bug Fixes
