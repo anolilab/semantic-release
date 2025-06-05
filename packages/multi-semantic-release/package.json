@@ -60,7 +60,7 @@
         "semver": "^7.7.2",
         "signale": "^1.4.0",
         "stream-buffers": "^3.0.3",
-        "yargs": "^18.0.0"
+        "yargs": "17.7.2"
     },
     "devDependencies": {
         "@anolilab/eslint-config": "^15.0.3",
