@@ -225,8 +225,8 @@ importers:
         specifier: ^17.19.0
         version: 17.19.0(eslint@8.57.1)(typescript@5.8.3)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -355,8 +355,8 @@ importers:
         specifier: ^3.4.2
         version: 3.4.2(eslint@8.57.1)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -479,8 +479,8 @@ importers:
         specifier: ^3.4.2
         version: 3.4.2(eslint@8.57.1)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -639,8 +639,8 @@ importers:
         specifier: ^17.19.0
         version: 17.19.0(eslint@8.57.1)(typescript@5.8.3)
       eslint-plugin-vitest:
-        specifier: ^0.4.1
-        version: 0.4.1(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
+        specifier: ^0.5.4
+        version: 0.5.4(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2)
       eslint-plugin-vitest-globals:
         specifier: ^1.5.0
         version: 1.5.0
@@ -4382,12 +4382,12 @@ packages:
   eslint-plugin-vitest-globals@1.5.0:
     resolution: {integrity: sha512-ZSsVOaOIig0oVLzRTyk8lUfBfqzWxr/J3/NFMfGGRIkGQPejJYmDH3gXmSJxAojts77uzAGB/UmVrwi2DC4LYA==}
 
-  eslint-plugin-vitest@0.4.1:
-    resolution: {integrity: sha512-+PnZ2u/BS+f5FiuHXz4zKsHPcMKHie+K+1Uvu/x91ovkCMEOJqEI8E9Tw1Wzx2QRz4MHOBHYf1ypO8N1K0aNAA==}
+  eslint-plugin-vitest@0.5.4:
+    resolution: {integrity: sha512-um+odCkccAHU53WdKAw39MY61+1x990uXjSPguUCq3VcEHdqJrOb8OTMrbYlY6f9jAKx7x98kLVlIe3RJeJqoQ==}
     engines: {node: ^18.0.0 || >= 20.0.0}
     peerDependencies:
       '@typescript-eslint/eslint-plugin': '*'
-      eslint: '>=8.0.0'
+      eslint: ^8.57.0 || ^9.0.0
       vitest: '*'
     peerDependenciesMeta:
       '@typescript-eslint/eslint-plugin':
@@ -12851,7 +12851,7 @@ snapshots:
 
   eslint-plugin-vitest-globals@1.5.0: {}
 
-  eslint-plugin-vitest@0.4.1(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2):
+  eslint-plugin-vitest@0.5.4(eslint@8.57.1)(typescript@5.8.3)(vitest@3.2.2):
     dependencies:
       '@typescript-eslint/utils': 7.13.1(eslint@8.57.1)(typescript@5.8.3)
       eslint: 8.57.1
