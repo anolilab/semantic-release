@@ -8,8 +8,8 @@ overrides:
   '@anolilab/multi-semantic-release': workspace:*
   '@anolilab/rc': workspace:*
   '@anolilab/semantic-release-pnpm': workspace:*
-  chrono-node@<2.2.4: '>=2.2.4'
-  undici@>=6.0.0 <6.21.2: '>=6.21.2'
+  chrono-node@<2.2.4: '>=2.2.7'
+  undici@>=6.0.0 <6.21.2: '>=6.21.3'
   tar-fs@>=2.0.0 <2.1.3: '>=2.1.3'
 
 importers:
@@ -20,8 +20,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(@commitlint/cli@19.8.1(@types/node@22.15.30)(typescript@5.8.3))(@types/node@22.15.30)(typescript@5.8.3)
       '@anolilab/lint-staged-config':
-        specifier: ^3.0.16
-        version: 3.0.16(@types/node@22.15.30)(husky@9.1.7)(lint-staged@16.1.0)(prettier@3.5.3)(secretlint@9.3.4)(vitest@3.2.2)(yaml@2.8.0)
+        specifier: ^3.0.17
+        version: 3.0.17(@types/node@22.15.30)(husky@9.1.7)(lint-staged@16.1.0)(prettier@3.5.3)(secretlint@9.3.4)(vitest@3.2.2)(yaml@2.8.0)
       '@anolilab/multi-semantic-release':
         specifier: workspace:*
         version: link:packages/multi-semantic-release
@@ -536,8 +536,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       normalize-url:
-        specifier: ^8.0.1
-        version: 8.0.1
+        specifier: ^8.0.2
+        version: 8.0.2
       registry-auth-token:
         specifier: ^5.1.0
         version: 5.1.0
@@ -552,8 +552,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(prettier@3.5.3)
       '@arethetypeswrong/cli':
-        specifier: ^0.18.1
-        version: 0.18.1
+        specifier: ^0.18.2
+        version: 0.18.2
       '@babel/core':
         specifier: ^7.27.4
         version: 7.27.4
@@ -615,8 +615,8 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       dockerode:
-        specifier: 4.0.6
-        version: 4.0.6
+        specifier: 4.0.7
+        version: 4.0.7
       esbuild:
         specifier: 0.25.5
         version: 0.25.5
@@ -872,8 +872,8 @@ packages:
       typescript:
         optional: true
 
-  '@anolilab/lint-staged-config@3.0.16':
-    resolution: {integrity: sha512-EAX+xyTR9hC4Dn07xMMvo6ldj2gpECwDxzu9KpXR6EHfeIDuLZ5tO44y5GUzdJdJWzdmARTCbABzrRqUqeqquw==}
+  '@anolilab/lint-staged-config@3.0.17':
+    resolution: {integrity: sha512-nt59OWI5PFMEpzhcRiT25eYRcQgXK5SsYPA9V2ZE/glEPtjbqt3iXfwXUFf06KexMen9ahZnuZo2Kc/A2c+2gg==}
     engines: {node: '>=20.18.* <=24.*'}
     hasBin: true
     peerDependencies:
@@ -934,13 +934,13 @@ packages:
     resolution: {integrity: sha512-wBSav4mBxvHEW9RbdSo1SWLQ6MAlT0Dc423weC58yOWqW4OcMvtnNDdDrxOZeJ88fEIyPK93gDUWIelBxzSf8g==}
     hasBin: true
 
-  '@arethetypeswrong/cli@0.18.1':
-    resolution: {integrity: sha512-SS1Z5gRSvbP4tl98KlNygSUp3Yfenktt782MQKEbYm6GFPowztnnvdEUhQGm2uVDIH4YkU6av+n8Lm6OEOigqA==}
+  '@arethetypeswrong/cli@0.18.2':
+    resolution: {integrity: sha512-PcFM20JNlevEDKBg4Re29Rtv2xvjvQZzg7ENnrWFSS0PHgdP2njibVFw+dRUhNkPgNfac9iUqO0ohAXqQL4hbw==}
     engines: {node: '>=20'}
     hasBin: true
 
-  '@arethetypeswrong/core@0.18.1':
-    resolution: {integrity: sha512-uUw47cLgB6zYOpAxFp94NG/J9ev0wcOC+UOmTCFEWtbDEn4vpR0ScoPxD7LCGcPczOd7bDJSJL/gMSz3BknYcw==}
+  '@arethetypeswrong/core@0.18.2':
+    resolution: {integrity: sha512-GiwTmBFOU1/+UVNqqCGzFJYfBXEytUkiI+iRZ6Qx7KmUVtLm00sYySkfe203C9QtPG11yOz1ZaMek8dT/xnlgg==}
     engines: {node: '>=20'}
 
   '@azu/format-text@1.0.2':
@@ -3958,8 +3958,8 @@ packages:
     resolution: {integrity: sha512-ens7BiayssQz/uAxGzH8zGXCtiV24rRWXdjNha5V4zSOcxmAZsfGVm/PPFbwQdqEkDnhG+SyR9E3zSHUbOKXBQ==}
     engines: {node: '>= 8.0'}
 
-  dockerode@4.0.6:
-    resolution: {integrity: sha512-FbVf3Z8fY/kALB9s+P9epCpWhfi/r0N2DgYYcYpsAUlaTxPjdsitsFobnltb+lyCgAIvf9C+4PSWlTnHlJMf1w==}
+  dockerode@4.0.7:
+    resolution: {integrity: sha512-R+rgrSRTRdU5mH14PZTCPZtW/zw3HDWNTS/1ZAQpL/5Upe/ye5K9WQkIysu4wBoiMwKynsz0a8qWuGsHgEvSAA==}
     engines: {node: '>= 8.0'}
 
   doctrine@3.0.0:
@@ -5899,12 +5899,6 @@ packages:
   markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
 
-  marked-terminal@7.1.0:
-    resolution: {integrity: sha512-+pvwa14KZL74MVXjYdPR3nSInhGhNvPce/3mqLVZT2oUvt654sL1XImFuLZ1pkA866IYZ3ikDTOFUIC7XzpZZg==}
-    engines: {node: '>=16.0.0'}
-    peerDependencies:
-      marked: '>=1 <14'
-
   marked-terminal@7.3.0:
     resolution: {integrity: sha512-t4rBvPsHc57uE/2nJOLmMbZCQ4tgAccAED3ngXQqW6g+TxA488JzJ+FK3lQkzBQOI1mRV/r/Kq+1ZlJ4D0owQw==}
     engines: {node: '>=16.0.0'}
@@ -6469,10 +6463,6 @@ packages:
     resolution: {integrity: sha512-3yZ1vfGKOcv0dyyhUeqA0Qa6RsQ4SfUnL6o2IWR4sVg8kdnJo48XTWbMLdtnfiZTbCUdsMttNwyJcihEdGCZBw==}
     engines: {node: '>=16', npm: '>=8'}
 
-  node-emoji@2.1.3:
-    resolution: {integrity: sha512-E2WEOVsgs7O16zsURJ/eH8BqhF029wGpEOnv7Urwdo2wmQanOACwJQh0devF9D9RhoZru0+9JXIS0dBXIAz+lA==}
-    engines: {node: '>=18'}
-
   node-emoji@2.2.0:
     resolution: {integrity: sha512-Z3lTE9pLaJF47NyMhd4ww1yFTAP8YhYI8SleJiHzM46Fgpm5cnNzSl9XfzFNqbaz+VlJrIj3fXQ4DeN1Rjm6cw==}
     engines: {node: '>=18'}
@@ -6523,8 +6513,8 @@ packages:
     resolution: {integrity: sha512-k6U0gKRIuNCTkwHGZqblCfLfBRh+w1vI6tBo+IeJwq2M8FUiOqhX7GH+GArQGScA7azd1WfyRCvxoXDO3hQDIA==}
     engines: {node: ^18.17.0 || >=20.5.0}
 
-  normalize-url@8.0.1:
-    resolution: {integrity: sha512-IO9QvjUMWxPQQhs60oOu10CRkWCiZzSUkzbXGGV9pviYl1fXYcvkzQ5jV9z8Y6un8ARoVRl4EtC6v6jNqbaJ/w==}
+  normalize-url@8.0.2:
+    resolution: {integrity: sha512-Ee/R3SyN4BuynXcnTaekmaVdbDAEiNrHqjQIA37mHU8G9pf7aaAD4ZX3XjBLo6rsdcxA/gtkcNYZLt30ACgynw==}
     engines: {node: '>=14.16'}
 
   npm-normalize-package-bin@3.0.1:
@@ -7867,10 +7857,6 @@ packages:
     resolution: {integrity: sha512-RpsAZlpWcDwOPQA22aCH4J0t7L8JmAvsCxfOSEwm7cQs3LshN36QaTkwd70DnBOXDWGssw2eUoc8CaRWT0XunA==}
     engines: {node: '>=8'}
 
-  supports-hyperlinks@3.0.0:
-    resolution: {integrity: sha512-QBDPHyPQDRTy9ku4URNGY5Lah8PAaXs6tAAwp55sL5WCsSW7GIfdf6W5ixfziW+t7wh3GVvHyHHyQ1ESsoRvaA==}
-    engines: {node: '>=14.18'}
-
   supports-hyperlinks@3.2.0:
     resolution: {integrity: sha512-zFObLMyZeEwzAoKCyu1B91U79K2t7ApXuQfo8OuxwXLDgcKxuwM+YvcbIhm6QWqz7mHUH1TVytR1PwVVjEuMig==}
     engines: {node: '>=14.18'}
@@ -8879,7 +8865,7 @@ snapshots:
       - svelte-eslint-parser
       - vue-eslint-parser
 
-  '@anolilab/lint-staged-config@3.0.16(@types/node@22.15.30)(husky@9.1.7)(lint-staged@16.1.0)(prettier@3.5.3)(secretlint@9.3.4)(vitest@3.2.2)(yaml@2.8.0)':
+  '@anolilab/lint-staged-config@3.0.17(@types/node@22.15.30)(husky@9.1.7)(lint-staged@16.1.0)(prettier@3.5.3)(secretlint@9.3.4)(vitest@3.2.2)(yaml@2.8.0)':
     dependencies:
       '@visulima/fs': 3.1.3(yaml@2.8.0)
       '@visulima/package': 3.5.8(@types/node@22.15.30)(yaml@2.8.0)
@@ -8951,17 +8937,17 @@ snapshots:
       package-manager-detector: 1.3.0
       tinyexec: 1.0.1
 
-  '@arethetypeswrong/cli@0.18.1':
+  '@arethetypeswrong/cli@0.18.2':
     dependencies:
-      '@arethetypeswrong/core': 0.18.1
+      '@arethetypeswrong/core': 0.18.2
       chalk: 4.1.2
       cli-table3: 0.6.5
       commander: 10.0.1
       marked: 9.1.6
-      marked-terminal: 7.1.0(marked@9.1.6)
+      marked-terminal: 7.3.0(marked@9.1.6)
       semver: 7.7.2
 
-  '@arethetypeswrong/core@0.18.1':
+  '@arethetypeswrong/core@0.18.2':
     dependencies:
       '@andrewbranch/untar.js': 1.0.3
       '@loaderkit/resolve': 1.0.4
@@ -10337,7 +10323,7 @@ snapshots:
       fs-extra: 11.2.0
       lodash-es: 4.17.21
       nerf-dart: 1.0.0
-      normalize-url: 8.0.1
+      normalize-url: 8.0.2
       npm: 10.8.1
       rc: 1.2.8
       read-pkg: 9.0.1
@@ -11700,7 +11686,7 @@ snapshots:
       http-cache-semantics: 4.1.1
       keyv: 4.5.4
       mimic-response: 4.0.0
-      normalize-url: 8.0.1
+      normalize-url: 8.0.2
       responselike: 3.0.0
 
   cacheable-request@12.0.1:
@@ -11710,7 +11696,7 @@ snapshots:
       http-cache-semantics: 4.1.1
       keyv: 4.5.4
       mimic-response: 4.0.0
-      normalize-url: 8.0.1
+      normalize-url: 8.0.2
       responselike: 3.0.0
 
   cacheable@1.8.7:
@@ -12253,7 +12239,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  dockerode@4.0.6:
+  dockerode@4.0.7:
     dependencies:
       '@balena/dockerignore': 1.0.2
       '@grpc/grpc-js': 1.12.5
@@ -14442,16 +14428,6 @@ snapshots:
 
   markdown-table@3.0.3: {}
 
-  marked-terminal@7.1.0(marked@9.1.6):
-    dependencies:
-      ansi-escapes: 7.0.0
-      chalk: 5.4.1
-      cli-highlight: 2.1.11
-      cli-table3: 0.6.5
-      marked: 9.1.6
-      node-emoji: 2.1.3
-      supports-hyperlinks: 3.0.0
-
   marked-terminal@7.3.0(marked@15.0.12):
     dependencies:
       ansi-escapes: 7.0.0
@@ -14460,6 +14436,17 @@ snapshots:
       cli-highlight: 2.1.11
       cli-table3: 0.6.5
       marked: 15.0.12
+      node-emoji: 2.2.0
+      supports-hyperlinks: 3.2.0
+
+  marked-terminal@7.3.0(marked@9.1.6):
+    dependencies:
+      ansi-escapes: 7.0.0
+      ansi-regex: 6.1.0
+      chalk: 5.4.1
+      cli-highlight: 2.1.11
+      cli-table3: 0.6.5
+      marked: 9.1.6
       node-emoji: 2.2.0
       supports-hyperlinks: 3.2.0
 
@@ -15517,13 +15504,6 @@ snapshots:
 
   no-cliches@0.3.6: {}
 
-  node-emoji@2.1.3:
-    dependencies:
-      '@sindresorhus/is': 4.6.0
-      char-regex: 1.0.2
-      emojilib: 2.4.0
-      skin-tone: 2.0.0
-
   node-emoji@2.2.0:
     dependencies:
       '@sindresorhus/is': 4.6.0
@@ -15595,7 +15575,7 @@ snapshots:
       semver: 7.7.2
       validate-npm-package-license: 3.0.4
 
-  normalize-url@8.0.1: {}
+  normalize-url@8.0.2: {}
 
   npm-normalize-package-bin@3.0.1: {}
 
@@ -17201,11 +17181,6 @@ snapshots:
   supports-color@9.4.0: {}
 
   supports-hyperlinks@2.3.0:
-    dependencies:
-      has-flag: 4.0.0
-      supports-color: 7.2.0
-
-  supports-hyperlinks@3.0.0:
     dependencies:
       has-flag: 4.0.0
       supports-color: 7.2.0
