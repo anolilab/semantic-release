@@ -101,7 +101,7 @@
         "@anolilab/semantic-release-pnpm": "1.1.12",
         "@babel/core": "^7.27.4",
         "@rushstack/eslint-plugin-security": "^0.10.0",
-        "@secretlint/secretlint-rule-preset-recommend": "^9.3.4",
+        "@secretlint/secretlint-rule-preset-recommend": "^10.1.0",
         "conventional-changelog-conventionalcommits": "9.0.0",
         "cross-env": "^7.0.3",
         "eslint": "^8.57.1",
@@ -110,7 +110,7 @@
         "eslint-plugin-mdx": "^3.4.2",
         "prettier": "^3.5.3",
         "rimraf": "^6.0.1",
-        "secretlint": "9.3.4",
+        "secretlint": "10.1.0",
         "semantic-release": "^24.2.5",
         "sort-package-json": "^3.2.1",
         "typescript": "^5.8.3"
