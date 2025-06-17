@@ -1,3 +1,19 @@
+## @anolilab/semantic-release-preset [11.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.6...@anolilab/semantic-release-preset@11.0.0) (2025-06-17)
+
+### ⚠ BREAKING CHANGES
+
+* Changed supported Node version to >=20.8.1
+
+### Features
+
+* update Node.js version across configurations and package files ([186dc8c](https://github.com/anolilab/semantic-release/commit/186dc8c409881b8be619735cdc14a0c25f794ffc))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 3.0.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 2.0.0
+
 ## @anolilab/semantic-release-preset [10.0.6](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@10.0.5...@anolilab/semantic-release-preset@10.0.6) (2025-06-05)
 
 ### Bug Fixes
