@@ -1,3 +1,18 @@
+## @anolilab/semantic-release-pnpm [2.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.12...@anolilab/semantic-release-pnpm@2.0.0) (2025-06-17)
+
+### ⚠ BREAKING CHANGES
+
+* Changed supported Node version to >=20.8.1
+
+### Features
+
+* update Node.js version across configurations and package files ([186dc8c](https://github.com/anolilab/semantic-release/commit/186dc8c409881b8be619735cdc14a0c25f794ffc))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 2.0.0
+
 ## @anolilab/semantic-release-pnpm [1.1.12](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@1.1.11...@anolilab/semantic-release-pnpm@1.1.12) (2025-06-05)
 
 ### Bug Fixes
