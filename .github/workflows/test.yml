@@ -59,8 +59,8 @@ jobs:
             matrix:
                 os:
                     - "ubuntu-latest"
-                node_version: ["18", "20", "21", "22", "23", "24"]
-                semantic_release_version: ["^20", "^21", "^22", "^23", "^24"]
+                node_version: ["20", "21", "22", "23", "24"]
+                semantic_release_version: ["^22", "^23", "^24"]
                 # On the other platforms, we only test the lts node version
                 include:
                     - os: "macos-latest"
@@ -117,7 +117,7 @@ jobs:
             matrix:
                 os:
                     - "ubuntu-latest"
-                node_version: ["18", "20", "21", "22"]
+                node_version: ["20", "21", "22"]
                 # On the other platforms, we only test the lts node version
                 include:
                     - os: "macos-latest"
@@ -173,7 +173,7 @@ jobs:
               run: |
                   files="${{ steps.files.outputs.all_changed_files }}";
 
-                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 18 ]]; then
+                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 20 ]]; then
                       pnpm run test:affected:coverage --files=${files//\\/\/}
                   else
                       pnpm run test:affected --files=${files//\\/\/}
@@ -184,7 +184,7 @@ jobs:
               run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
 
             - name: "Upload code coverage to codecov"
-              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 18"
+              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 20"
               uses: "anolilab/workflows/step/codecov@main"
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"

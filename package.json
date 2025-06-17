@@ -82,7 +82,7 @@
     },
     "packageManager": "pnpm@10.12.1",
     "engines": {
-        "node": ">=18.17 <=23.*"
+        "node": ">=20.8.1"
     },
     "pnpm": {
         "onlyBuiltDependencies": [
