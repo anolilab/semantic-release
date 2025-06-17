@@ -1,3 +1,13 @@
+## @anolilab/rc [2.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.8...@anolilab/rc@2.0.0) (2025-06-17)
+
+### ⚠ BREAKING CHANGES
+
+* Changed supported Node version to >=20.8.1
+
+### Features
+
+* update Node.js version across configurations and package files ([186dc8c](https://github.com/anolilab/semantic-release/commit/186dc8c409881b8be619735cdc14a0c25f794ffc))
+
 ## @anolilab/rc [1.1.8](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@1.1.7...@anolilab/rc@1.1.8) (2025-06-05)
 
 ### Bug Fixes
