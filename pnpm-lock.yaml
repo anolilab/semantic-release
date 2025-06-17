@@ -287,6 +287,9 @@ importers:
       '@anolilab/prettier-config':
         specifier: ^6.0.1
         version: 6.0.1(prettier@3.5.3)
+      '@anolilab/semantic-release-clean-package-json':
+        specifier: workspace:*
+        version: link:../semantic-release-clean-package-json
       '@babel/core':
         specifier: ^7.27.4
         version: 7.27.4
@@ -538,7 +541,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       normalize-url:
-        specifier: ^8.0.1
+        specifier: ^8.0.2
         version: 8.0.2
       registry-auth-token:
         specifier: ^5.1.0
@@ -553,6 +556,9 @@ importers:
       '@anolilab/prettier-config':
         specifier: ^6.0.1
         version: 6.0.1(prettier@3.5.3)
+      '@anolilab/semantic-release-clean-package-json':
+        specifier: workspace:*
+        version: link:../semantic-release-clean-package-json
       '@arethetypeswrong/cli':
         specifier: ^0.18.2
         version: 0.18.2
@@ -689,8 +695,8 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 2.0.3
-        version: 2.0.3(yaml@2.8.0)
+        specifier: 3.0.0
+        version: 3.0.0(yaml@2.8.0)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.5(typescript@5.8.3))
@@ -918,9 +924,9 @@ packages:
     peerDependencies:
       prettier: 3.0.3
 
-  '@anolilab/semantic-release-clean-package-json@2.0.3':
-    resolution: {integrity: sha512-OYFne2ZyQ4q6k7az/yG0XLDgA3wePbROgj1qoEpIm0/F09ZG7pFLb6ITxBx58i+o1XToKsP8KFd7ARNx+8DScQ==}
-    engines: {node: '>=18.17 <=24.*'}
+  '@anolilab/semantic-release-clean-package-json@3.0.0':
+    resolution: {integrity: sha512-Zhyx4zMt/OJtJmA4lChA0+jICl4bxDn9m05hGaS/s88v52Q8z6d6RmgaAA2TnIqC5PdO9SWYf9CnQsYViU8dFQ==}
+    engines: {node: '>=20.8.1'}
 
   '@anolilab/textlint-config@9.0.1':
     resolution: {integrity: sha512-is6ZQzIYn+/v9x8LkFPXg+o9bjBATtExdoFDqrt5mbM7fSfsYCGhoVhXADsTYW+e/js32X4Z+xZIRNTXC2x7sA==}
@@ -9046,7 +9052,7 @@ snapshots:
     dependencies:
       prettier: 3.5.3
 
-  '@anolilab/semantic-release-clean-package-json@2.0.3(yaml@2.8.0)':
+  '@anolilab/semantic-release-clean-package-json@3.0.0(yaml@2.8.0)':
     dependencies:
       '@semantic-release/error': 4.0.0
       '@visulima/fs': 3.1.5(yaml@2.8.0)
