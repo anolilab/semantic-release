@@ -101,7 +101,7 @@
         "cross-env": "^7.0.3",
         "dockerode": "4.0.7",
         "esbuild": "0.25.5",
-        "eslint": "^8.57.1",
+        "eslint": "^9.29.0",
         "eslint-plugin-deprecation": "^3.0.0",
         "eslint-plugin-editorconfig": "^4.0.3",
         "eslint-plugin-import": "npm:eslint-plugin-i@2.29.1",
