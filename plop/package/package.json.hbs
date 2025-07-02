@@ -58,8 +58,8 @@
         "build:prod": "packem build --production",
         "clean": "rimraf node_modules dist .eslintcache",
         "dev": "pnpm run build --watch",
-        "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
-        "lint:eslint:fix": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs --fix",
+        "lint:eslint": "eslint .",
+        "lint:eslint:fix": "eslint . --fix",
         "lint:package-json": "publint --strict",
         "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
         "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
@@ -70,7 +70,7 @@
         "test:watch": "vitest"
     },
     "engines": {
-        "node": ">=18.* <=23.*"
+        "node": ">=20.* <=24.*"
     },
     "publishConfig": {
         "access": "public",
@@ -80,8 +80,6 @@
         "@anolilab/eslint-config": "^15.0.3",
         "@anolilab/prettier-config": "^5.0.14",
         "@anolilab/semantic-release-preset": "^9.0.3",
-        "@babel/core": "^7.26.0",
-        "@rushstack/eslint-plugin-security": "^0.8.3",
         "@secretlint/secretlint-rule-preset-recommend": "^9.0.0",
         "@types/node": "18.19.70",
         "@visulima/packem": "^1.11.0",
@@ -89,13 +87,6 @@
         "@vitest/ui": "^2.1.8",
         "esbuild": "0.24.2",
         "eslint": "8.57.1",
-        "eslint-plugin-deprecation": "^3.0.0",
-        "eslint-plugin-etc": "^2.0.3",
-        "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
-        "eslint-plugin-mdx": "^3.1.5",
-        "eslint-plugin-vitest": "^0.4.1",
-        "eslint-plugin-vitest-globals": "^1.5.0",
-        "prettier": "^3.4.2",
         "rimraf": "^6.0.1",
         "secretlint": "9.0.0",
         "semantic-release": "^24.2.1",
@@ -103,18 +94,5 @@
         "type-fest": "^4.32.0",
         "typescript": "^5.7.3",
         "vitest": "^2.1.8"
-    },
-    "anolilab": {
-        "eslint-config": {
-            "plugin": {
-                "tsdoc": false,
-                "etc": false
-            },
-            "warn_on_unsupported_typescript_version": false,
-            "info_on_disabling_jsx_react_rule": false,
-            "info_on_disabling_prettier_conflict_rule": false,
-            "info_on_disabling_jsonc_sort_keys_rule": false,
-            "info_on_disabling_etc_no_deprecated": false
-        }
     }
 }

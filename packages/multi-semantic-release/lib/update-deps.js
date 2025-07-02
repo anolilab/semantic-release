@@ -12,7 +12,6 @@ const { debug } = logger.withScope("msr:updateDeps");
 
 /**
  * Resolve next prerelease comparing bumped tags versions with last version.
- *
  * @param {string|null} latestTag Last released tag from branch or null if non-existent.
  * @param {string} lastVersion Last version released.
  * @param {string} packagePreRelease Prerelease tag from package to-be-released.
@@ -28,7 +27,6 @@ const _nextPreHighestVersion = (latestTag, lastVersion, packagePreRelease) => {
 
 /**
  * Resolve next prerelease special cases: highest version from tags or major/minor/patch.#
- *
  * @param {Array<string>} tags - if non-empty, we will use these tags as part fo the comparison
  * @param {string} lastVersionForCurrentMultiRelease Last package version released from multi-semantic-release
  * @param {string} packageNextType Next type evaluated for the next package type.
@@ -52,7 +50,6 @@ const _nextPreVersionCases = (tags, lastVersionForCurrentMultiRelease, packageNe
 
 /**
  * Get dependent release type by recursive scanning and updating pkg deps.
- *
  * @param {Package} package_ The package with local deps to check.
  * @param {string} bumpStrategy Dependency resolution strategy: override, satisfy, inherit.
  * @param {string} releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit.
@@ -101,13 +98,13 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
                 const nextVersion = nextType
                     ? // Update the nextVersion only if there is a next type to be bumped
 
-                      p._preRelease
+                    p._preRelease
                         ? // eslint-disable-next-line no-use-before-define
-                          getNextPreVersion(p)
+                        getNextPreVersion(p)
                         : // eslint-disable-next-line no-use-before-define
-                          getNextVersion(p)
+                        getNextVersion(p)
                     : // Set the nextVersion fallback to the last local dependency package last version
-                      p._lastRelease && p._lastRelease.version;
+                    p._lastRelease && p._lastRelease.version;
 
                 // 3. And this change should correspond to the manifest updating rule.
                 const requireRelease = scopes
@@ -124,7 +121,6 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
  * See:
  * {@link https://yarnpkg.com/features/workspaces#publishing-workspaces}
  * {@link https://pnpm.io/workspaces#publishing-workspace-packages}
- *
  * @param {string} currentVersion Current version, may start with "workspace:"
  * @param {string} nextVersion Next version
  * @returns {string} current version without "workspace:"
@@ -134,7 +130,7 @@ const substituteWorkspaceVersion = (currentVersion, nextVersion) => {
         // eslint-disable-next-line regexp/optimal-quantifier-concatenation
         const [, range, caret] = /^workspace:(([\^~*])?.*)$/u.exec(currentVersion);
 
-        return caret === range ? (caret === "*" ? nextVersion : caret + nextVersion) : range;
+        return caret === range ? caret === "*" ? nextVersion : caret + nextVersion : range;
     }
 
     return currentVersion;
@@ -190,7 +186,6 @@ const auditManifestChanges = (actualManifest, path) => {
 
 /**
  * Resolve next package version.
- *
  * @param {Package} package_ Package object.
  * @returns {string|undefined} Next pkg version.
  * @internal
@@ -203,7 +198,6 @@ export const getNextVersion = (package_) => {
 
 /**
  * Parse the prerelease tag from a semver version.
- *
  * @param {string} version Semver version in a string format.
  * @returns {string|null} preReleaseTag Version prerelease tag or null.
  * @internal
@@ -225,10 +219,8 @@ export const getPreReleaseTag = (version) => {
  *
  * 1. The last release for the package during this multi-release cycle
  * 2. (if tag options provided):
- *   a. the highest increment of the tags array provided
- *   b. the highest increment of the gitTags for the prerelease
- *
- *
+ * a. the highest increment of the tags array provided
+ * b. the highest increment of the gitTags for the prerelease
  * @param {Package} package_ Package object.
  * @returns {string|undefined} Next pkg version.
  * @internal
@@ -247,7 +239,6 @@ export const getNextPreVersion = (package_) => {
 
 /**
  * Resolve package release type taking into account the cascading dependency update.
- *
  * @param {Package} package_ Package object.
  * @param {string|undefined} bumpStrategy Dependency resolution strategy: override, satisfy, inherit.
  * @param {string|undefined} releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit.
@@ -282,7 +273,6 @@ export const resolveReleaseType = (package_, bumpStrategy = "override", releaseS
 
 /**
  * Resolve next version of dependency.
- *
  * @param {string} currentVersion Current dep version
  * @param {string} nextVersion Next release type: patch, minor, major
  * @param {string|undefined} bumpStrategy Resolution strategy: inherit, override, satisfy
@@ -332,7 +322,6 @@ export const resolveNextVersion = (currentVersion, nextVersion, bumpStrategy = "
 
 /**
  * Update pkg deps.
- *
  * @param {Package} package_ The package this function is being called on.
  * @returns {void}
  * @internal

@@ -16,13 +16,12 @@ const { debug } = logger.withScope("msr:commitsFilter");
  * Commits are filtered to only return those that corresponding to the package directory.
  *
  * This is achieved by using "-- my/dir/path" with `git log` — passing this into gitLogParser() with
- *
  * @param {string} cwd Absolute path of the working directory the Git repo is in.
  * @param {string} direction Path to the target directory to filter by. Either absolute, or relative to cwd param.
  * @param {string|void} lastRelease The SHA of the previous release (default to start of all commits if undefined)
  * @param {string|void} nextRelease The SHA of the next release (default to HEAD if undefined)
  * @param {string|void} firstParentBranch first-parent to determine which merges went into master
- * @return {Promise<Array<Commit>>} The list of commits on the branch `branch` since the last release.
+ * @returns {Promise<Array<Commit>>} The list of commits on the branch `branch` since the last release.
  */
 async function getCommitsFiltered(cwd, direction, lastRelease, nextRelease, firstParentBranch) {
     // Clean paths and make sure directories exist.

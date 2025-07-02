@@ -10,7 +10,6 @@ import { temporaryDirectory } from "tempy";
 
 /**
  * Add a Git config setting.
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {string} name Config name.
  * @param {any} value Config value.
@@ -25,7 +24,6 @@ export function gitConfig(cwd, name, value) {
 
 /**
  * Sets git user data.
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {string} name Committer name.
  * @param {string} email Committer email.
@@ -37,7 +35,7 @@ export function gitUser(cwd, name = "Foo Bar", email = "email@foo.bar") {
 }
 
 /**
- * @typedef {Object} Commit
+ * @typedef {object} Commit
  * @property {string} branch The commit branch.
  * @property {string} hash The commit hash.
  * @property {string} message The commit message.
@@ -46,9 +44,9 @@ export function gitUser(cwd, name = "Foo Bar", email = "email@foo.bar") {
 /**
  * Create a Git repository.
  * _Created in a temp folder._
- *
  * @param {string} branch="master" The branch to initialize the repository to.
- * @return {string} String pointing to the CWD for the created Git repository.
+ * @param branch
+ * @returns {string} String pointing to the CWD for the created Git repository.
  */
 export function gitInit(branch = "master") {
     check(branch, "branch: kebab");
@@ -70,8 +68,7 @@ export function gitInit(branch = "master") {
 /**
  * Create a remote Git repository.
  * _Created in a temp folder._
- *
- * @return {string} String URL of the remote origin.
+ * @returns {string} String URL of the remote origin.
  */
 export function gitInitRemote() {
     // Init bare Git repository in a temp directory.
@@ -86,9 +83,8 @@ export function gitInitRemote() {
 
 /**
  * Get the current HEAD SHA in a local Git repository.
- *
  * @param {string} cwd The CWD of the Git repository.
- * @return {string} The SHA of the head commit.
+ * @returns {string} The SHA of the head commit.
  */
 export function gitGetHead(cwd) {
     check(cwd, "cwd: absolute");
@@ -100,10 +96,10 @@ export function gitGetHead(cwd) {
 /**
  * Create a remote Git repository and set it as the origin for a Git repository.
  * _Created in a temp folder._
- *
  * @param {string} cwd The cwd to create and set the origin for.
  * @param {string|null} releaseBranch="null" Optional branch to be added in case of prerelease is activated for a branch.
- * @return {string} String URL of the remote origin.
+ * @param releaseBranch
+ * @returns {string} String URL of the remote origin.
  */
 export function gitInitOrigin(cwd, releaseBranch = null) {
     check(cwd, "cwd: absolute");
@@ -128,10 +124,10 @@ export function gitInitOrigin(cwd, releaseBranch = null) {
 
 /**
  * Add files to staged commit in a Git repository.
- *
  * @param {string} cwd The cwd to create and set the origin for.
  * @param {string} file="." The file to add, defaulting to "." (all files).
- * @return {void}
+ * @param file
+ * @returns {void}
  */
 export function gitAdd(cwd, file = ".") {
     check(cwd, "cwd: absolute");
@@ -142,7 +138,6 @@ export function gitAdd(cwd, file = ".") {
 /**
  * Create commit on a Git repository.
  * _Allows empty commits without any files added._
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {string} message Commit message.
  * @returns {string} Promise that resolves to the SHA for the commit.
@@ -160,7 +155,6 @@ export function gitCommit(cwd, message) {
 /**
  * `git add .` followed by `git commit`
  * _Allows empty commits without any files added._
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {string} message Commit message.
  * @returns {string} Promise that resolves to the SHA for the commit.
@@ -177,7 +171,6 @@ export function gitCommitAll(cwd, message) {
 
 /**
  * Push to a remote Git repository.
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {string} remote The remote repository URL or name.
  * @param {string} branch The branch to push.
@@ -194,10 +187,10 @@ export function gitPush(cwd, remote = "origin", branch = "master") {
 
 /**
  * Create a tag on the HEAD commit in a local Git repository.
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {string} tagName The tag name to create.
  * @param {string} hash=false SHA for the commit on which to create the tag. If falsy the tag is created on the latest commit.
+ * @param hash
  * @returns {void}
  */
 export function gitTag(cwd, tagName, hash = undefined) {
@@ -211,11 +204,10 @@ export function gitTag(cwd, tagName, hash = undefined) {
 
 /**
  * Get the commit message log of given commit SHA or branch name.
- *
  * @param {string} cwd The CWD of the Git repository.
  * @param {number} number Limit the number of commits to output.
  * @param {string} hash The commit SHA or branch name.
- * @return {string} Commit log message.
+ * @returns {string} Commit log message.
  */
 export function gitGetLog(cwd, number, hash) {
     check(cwd, "cwd: absolute");

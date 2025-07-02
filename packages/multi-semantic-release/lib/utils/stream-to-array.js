@@ -1,8 +1,7 @@
 /**
  * Converts a stream to an array
- *
  * @param {ReadStream} stream
- * @returns {Promise<array>}
+ * @returns {Promise<Array>}
  */
 export default function streamToArray(stream) {
     if (!stream.readable) {
@@ -20,6 +19,9 @@ export default function streamToArray(stream) {
 
         let array = [];
 
+        /**
+         *
+         */
         function cleanup() {
             array = null;
 
@@ -33,20 +35,34 @@ export default function streamToArray(stream) {
             stream.removeListener("close", onClose);
         }
 
+        /**
+         *
+         * @param document_
+         */
         function onData(document_) {
             array.push(document_);
         }
 
+        /**
+         *
+         */
         function onEnd() {
             resolve(array);
             cleanup();
         }
 
+        /**
+         *
+         * @param error
+         */
         function onError(error) {
             reject(error);
             cleanup();
         }
 
+        /**
+         *
+         */
         function onClose() {
             resolve(array);
             cleanup();

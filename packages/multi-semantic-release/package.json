@@ -25,21 +25,19 @@
         "multi-semantic-release": "./bin/cli.js"
     },
     "files": [
-        "README.md",
         "CHANGELOG.md",
-        "lib",
-        "bin"
+        "README.md",
+        "bin",
+        "lib"
     ],
     "scripts": {
         "build": "echo 'There is no need for build' && exit 0",
         "build:prod": "echo 'There is no need for build' && exit 0",
         "clean": "rimraf node_modules dist .eslintcache",
         "dev": "echo 'There is no need for dev' && exit 0",
-        "lint:eslint": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs",
-        "lint:eslint:fix": "eslint . --ext js,cjs,mjs,jsx,ts,tsx,json,yaml,yml,md,mdx --max-warnings=0 --config .eslintrc.cjs --fix",
+        "lint:eslint": "eslint .",
+        "lint:eslint:fix": "eslint . --fix",
         "lint:packagejson": "publint --strict",
-        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
-        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
         "lint:types": "tsc --noEmit || exit 0",
         "test": "vitest run",
         "test:coverage": "vitest run --coverage",
@@ -60,46 +58,34 @@
         "semver": "^7.7.2",
         "signale": "^1.4.0",
         "stream-buffers": "^3.0.3",
-        "yargs": "17.7.2"
+        "yargs": "18.0.0"
     },
     "devDependencies": {
-        "@anolilab/eslint-config": "^15.0.3",
-        "@anolilab/prettier-config": "^6.0.1",
+        "@anolilab/eslint-config": "^16.2.15",
         "@anolilab/semantic-release-clean-package-json": "workspace:*",
         "@anolilab/semantic-release-pnpm": "2.0.0",
-        "@babel/core": "^7.27.4",
-        "@rushstack/eslint-plugin-security": "^0.10.0",
-        "@secretlint/secretlint-rule-preset-recommend": "^10.1.0",
+        "@secretlint/secretlint-rule-preset-recommend": "^10.1.1",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^7.1.0",
         "@semantic-release/git": "^10.0.1",
         "@semantic-release/github": "^11.0.3",
         "@semantic-release/release-notes-generator": "14.0.3",
-        "@types/node": "24.0.3",
-        "@vitest/coverage-v8": "^3.2.3",
-        "@vitest/ui": "^3.2.3",
+        "@types/node": "24.0.10",
+        "@vitest/coverage-v8": "^3.2.4",
+        "@vitest/ui": "^3.2.4",
         "conventional-changelog-conventionalcommits": "9.0.0",
         "cross-env": "^7.0.3",
-        "eslint": "^8.57.1",
-        "eslint-plugin-deprecation": "^3.0.0",
-        "eslint-plugin-etc": "^2.0.3",
-        "eslint-plugin-import": "npm:eslint-plugin-i@^2.29.1",
-        "eslint-plugin-mdx": "^3.4.2",
-        "eslint-plugin-n": "^17.19.0",
-        "eslint-plugin-vitest": "^0.4.1",
-        "eslint-plugin-vitest-globals": "^1.5.0",
-        "eslint-plugin-you-dont-need-lodash-underscore": "^6.14.0",
+        "eslint": "^9.30.1",
+        "eslint-plugin-you-dont-need-lodash-underscore": "6.14.0",
         "file-url": "^4.0.0",
-        "prettier": "^3.5.3",
         "publint": "^0.3.12",
         "rimraf": "^6.0.1",
-        "secretlint": "10.1.0",
-        "semantic-release": "^24.2.5",
-        "sort-package-json": "^3.2.1",
+        "secretlint": "10.1.1",
+        "semantic-release": "^24.2.6",
         "tempy": "^3.1.0",
         "typescript": "^5.8.3",
-        "vitest": "^3.2.3"
+        "vitest": "^3.2.4"
     },
     "peerDependencies": {
         "semantic-release": ">=22.0.3"
@@ -115,18 +101,5 @@
     "publishConfig": {
         "access": "public",
         "provenance": true
-    },
-    "anolilab": {
-        "eslint-config": {
-            "plugin": {},
-            "warn_on_unsupported_typescript_version": false,
-            "info_on_disabling_jsx_react_rule": false,
-            "info_on_disabling_prettier_conflict_rule": false,
-            "info_on_disabling_jsonc_sort_keys_rule": false,
-            "import_ignore_exports": [
-                "**/*.cjs",
-                "**/__tests__/**/*.js"
-            ]
-        }
     }
 }

@@ -48,7 +48,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 
@@ -150,7 +150,7 @@ describe("multiSemanticRelease()", () => {
     ])(
         "with Yarn Workspace Ranges & deps.bump=%s & deps.prefix=%s",
         (strategy, prefix, packageOrder) => {
-            it('should replace "workspace:" with correct version', async () => {
+            it("should replace \"workspace:\" with correct version", async () => {
                 expect.assertions(37);
 
                 // Create Git repo with copy of Yarn workspaces fixture.
@@ -179,7 +179,7 @@ describe("multiSemanticRelease()", () => {
                 // Get stdout and stderr output.
                 const error = stderr.getContentsAsString("utf8");
 
-                expect(error).toBeFalsy();
+                expect(error).toBe(false);
 
                 const out = stdout.getContentsAsString("utf8");
 
@@ -310,7 +310,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 
@@ -461,7 +461,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 
@@ -557,7 +557,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 
@@ -658,7 +658,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 
@@ -815,8 +815,11 @@ describe("multiSemanticRelease()", () => {
 
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
-        expect(error).toBeFalsy();
+
+        expect(error).toBe(false);
+
         const out = stdout.getContentsAsString("utf8");
+
         expect(out).toMatch("Started multirelease! Loading 4 packages...");
         expect(out).toMatch("Loaded package msr-test-a");
         expect(out).toMatch("Loaded package msr-test-b");
@@ -828,10 +831,10 @@ describe("multiSemanticRelease()", () => {
         expect(out).toMatch("Released 0 of 4 packages, semantically!");
 
         // Results.
-        expect(result[0].result).toBeFalsy();
-        expect(result[1].result).toBeFalsy();
-        expect(result[2].result).toBeFalsy();
-        expect(result[3].result).toBeFalsy();
+        expect(result[0].result).toBe(false);
+        expect(result[1].result).toBe(false);
+        expect(result[2].result).toBe(false);
+        expect(result[3].result).toBe(false);
         expect(result).toHaveLength(4);
     });
 
@@ -840,6 +843,7 @@ describe("multiSemanticRelease()", () => {
 
         // Create Git repo.
         const cwd = gitInit();
+
         // Initial commit.
         copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
 
@@ -872,8 +876,11 @@ describe("multiSemanticRelease()", () => {
 
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
-        expect(error).toBeFalsy();
+
+        expect(error).toBe(false);
+
         const out = stdout.getContentsAsString("utf8");
+
         expect(out).toMatch("Started multirelease! Loading 4 packages...");
         expect(out).toMatch("Loaded package msr-test-a");
         expect(out).toMatch("Loaded package msr-test-b");
@@ -945,7 +952,7 @@ describe("multiSemanticRelease()", () => {
 
         // D.
         expect(result[1].name).toBe("msr-test-d");
-        expect(result[1].result).toBeFalsy();
+        expect(result[1].result).toBe(false);
 
         // ONLY four times.
         expect(result[4]).toBeUndefined();
@@ -982,6 +989,7 @@ describe("multiSemanticRelease()", () => {
         const mockPrepare = vi.fn();
         // Create Git repo.
         const cwd = gitInit();
+
         // Initial commit.
         copyDirectory(`${fixturesPath}/yarnWorkspaces2Packages/`, cwd);
 
@@ -1035,8 +1043,11 @@ describe("multiSemanticRelease()", () => {
 
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
-        expect(error).toBeFalsy();
+
+        expect(error).toBe(false);
+
         const out = stdout.getContentsAsString("utf8");
+
         expect(out).toMatch("Started multirelease! Loading 2 packages...");
         expect(out).toMatch("Loaded package msr-test-c");
         expect(out).toMatch("Loaded package msr-test-d");
@@ -1092,9 +1103,11 @@ describe("multiSemanticRelease()", () => {
 
         // Create Git repo.
         const cwd = gitInit();
+
         // Initial commit.
         copyDirectory(`${fixturesPath}/yarnWorkspaces2Packages/`, cwd);
         const sha1 = gitCommitAll(cwd, "feat: Initial release");
+
         gitTag(cwd, "msr-test-c@1.0.0");
         gitTag(cwd, "msr-test-d@1.0.0");
         // Second commit.
@@ -1115,7 +1128,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 
@@ -1237,7 +1250,7 @@ describe("multiSemanticRelease()", () => {
             await multiSemanticRelease(null, {}, { cwd, env: environment, stderr, stdout });
 
             // Not reached.
-            expect(false).toBeTruthy();
+            expect(false).toBe(true);
         } catch (error) {
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(error.message).toBe("Cannot release msr-test-c because dependency msr-test-b has not been released yet");
@@ -1298,6 +1311,7 @@ describe("multiSemanticRelease()", () => {
 
         // Create Git repo.
         const cwd = gitInit();
+
         // Initial commit.
         copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
 
@@ -1379,7 +1393,7 @@ describe("multiSemanticRelease()", () => {
             );
 
             // Not reached.
-            expect(false).toBeTruthy();
+            expect(false).toBe(true);
         } catch (error) {
             // Error bubbles up through semantic-release and multi-semantic-release and out.
             // eslint-disable-next-line vitest/no-conditional-expect
@@ -1495,7 +1509,7 @@ describe("multiSemanticRelease()", () => {
         // Get stdout and stderr output.
         const error = stderr.getContentsAsString("utf8");
 
-        expect(error).toBeFalsy();
+        expect(error).toBe(false);
 
         const out = stdout.getContentsAsString("utf8");
 

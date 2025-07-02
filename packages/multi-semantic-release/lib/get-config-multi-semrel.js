@@ -22,15 +22,13 @@ const CONFIG_FILES = [
 
 /**
  * Get the multi semantic release configuration options for a given directory.
- *
  * @param {string} cwd The directory to search.
- * @param {Object} cliOptions cli supplied options.
- * @returns {Object} The found configuration option
- *
+ * @param {object} cliOptions cli supplied options.
+ * @returns {object} The found configuration option
  * @internal
  */
 export default async function getConfig(cwd, cliOptions) {
-    const { config } = (await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd)) || {};
+    const { config } = await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd) || {};
     const { extends: extendPaths, ...rest } = { ...config };
 
     let options = rest;

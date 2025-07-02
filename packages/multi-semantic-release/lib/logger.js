@@ -21,12 +21,15 @@ const logger = {
             if (!l) {
                 return;
             }
+
             if (assertLevel(l, "debug")) {
                 dbg.enable("msr:");
             }
+
             if (assertLevel(l, "trace")) {
                 dbg.enable("semantic-release:");
             }
+
             this._level = l;
         },
         get level() {
@@ -69,6 +72,7 @@ const logger = {
                 (this.config._signale[l] || console[l] || (() => {}))(this.prefix, ...arguments_);
             }
         };
+
         return m;
     }, {}),
     debug: dbg("msr:"),

@@ -2,6 +2,10 @@ import { copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync, writeFileS
 import { join } from "node:path";
 
 // Is given path a directory?
+/**
+ *
+ * @param path
+ */
 export function isDirectory(path) {
     // String path that exists and is a directory.
     // eslint-disable-next-line security/detect-non-literal-fs-filename
@@ -9,6 +13,11 @@ export function isDirectory(path) {
 }
 
 // Deep copy a directory.
+/**
+ *
+ * @param source
+ * @param target
+ */
 export function copyDirectory(source, target) {
     if (!isDirectory(source)) {
         throw new Error("copyDirectory(): source must be an existant directory");
@@ -18,6 +27,7 @@ export function copyDirectory(source, target) {
         // Try making it now (Tempy doesn't actually make the dir, just generates the path).
         // eslint-disable-next-line security/detect-non-literal-fs-filename
         mkdirSync(target);
+
         // If it doesn't exist after that there's an issue.
         if (!isDirectory(target)) {
             throw new Error("copyDirectory(): target must be an existant directory");
@@ -39,6 +49,7 @@ export function copyDirectory(source, target) {
                 // eslint-disable-next-line security/detect-non-literal-fs-filename
                 mkdirSync(targetFile);
             }
+
             // Recursive copy directory.
             copyDirectory(sourceFile, targetFile);
         } else {
@@ -49,6 +60,11 @@ export function copyDirectory(source, target) {
 }
 
 // Creates testing files on all specified folders.
+/**
+ *
+ * @param folders
+ * @param cwd
+ */
 export function createNewTestingFiles(folders, cwd) {
     folders.forEach((fld) => {
         // eslint-disable-next-line security/detect-non-literal-fs-filename

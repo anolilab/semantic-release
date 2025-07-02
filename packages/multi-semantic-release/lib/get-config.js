@@ -17,10 +17,8 @@ const CONFIG_FILES = [
 /**
  * Get the release configuration options for a given directory.
  * Unfortunately we've had to copy this over from semantic-release, creating unnecessary duplication.
- *
  * @param {string} cwd The directory to search.
- * @returns {Object} The found configuration option
- *
+ * @returns {object} The found configuration option
  * @internal
  */
 export default async function getConfig(cwd) {

@@ -17,6 +17,7 @@ const _selectVersionBy = (predicate, version1, version2) => {
     if (predicate && version1 && version2) {
         return predicate(version1, version2) ? version1 : version2;
     }
+
     return version1 || version2;
 };
 
@@ -27,7 +28,7 @@ export const getHighestVersion = _selectVersionBy.bind(null, gt);
 
 /**
  * Retrieve the latest version from a list of versions.
- * @param {array} versions Versions as string list.
+ * @param {Array} versions Versions as string list.
  * @param {boolean|undefined} withPrerelease Prerelease flag.
  * @returns {string|undefined} Latest version.
  * @internal

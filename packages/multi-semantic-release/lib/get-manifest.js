@@ -2,10 +2,8 @@ import { existsSync, lstatSync, readFileSync } from "node:fs";
 
 /**
  * Read the content of target package.json if exists.
- *
  * @param {string} path file path
  * @returns {string} file content
- *
  * @internal
  */
 function readManifest(path) {
@@ -43,10 +41,8 @@ function readManifest(path) {
 
 /**
  * Get the parsed contents of a package.json manifest file.
- *
  * @param {string} path The path to the package.json manifest file.
  * @returns {object} The manifest file's contents.
- *
  * @internal
  */
 export default function getManifest(path) {
@@ -55,6 +51,7 @@ export default function getManifest(path) {
 
     // Parse the file.
     let manifest;
+
     try {
         manifest = JSON.parse(contents);
     } catch {

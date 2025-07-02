@@ -18,12 +18,16 @@ import cleanPath from "./utils/clean-path.js";
 
 /**
  * Load details about a package.
- *
  * @param {string} path The path to load details about.
- * @param {Object} allOptions Options that apply to all packages.
+ * @param {object} allOptions Options that apply to all packages.
  * @param {MultiContext} multiContext Context object for the multirelease.
+ * @param allOptions.cwd
+ * @param allOptions.env
+ * @param allOptions.globalOptions
+ * @param allOptions.inputOptions
+ * @param allOptions.stderr
+ * @param allOptions.stdout
  * @returns {Promise<Package|void>} A package object, or void if the package was skipped.
- *
  * @internal
  */
 async function getPackage(path, { cwd, env, globalOptions, inputOptions, stderr, stdout }) {
@@ -65,13 +69,12 @@ async function getPackage(path, { cwd, env, globalOptions, inputOptions, stderr,
 
 /**
  * Release an individual package.
- *
  * @param {Package} pkg The specific package.
+ * @param package_
  * @param {Function} createInlinePlugin A function that creates an inline plugin.
  * @param {MultiContext} multiContext Context object for the multirelease.
- * @param {Object} flags Argv flags.
+ * @param {object} flags Argv flags.
  * @returns {Promise<void>} Promise that resolves when done.
- *
  * @internal
  */
 async function releasePackage(package_, createInlinePlugin, multiContext, flags) {
@@ -136,7 +139,7 @@ async function releasePackage(package_, createInlinePlugin, multiContext, flags)
  * @param {Package[]} packages Array of all packages in this multirelease.
  * @param {Package[]} releasing Array of packages that will release.
  * @param {string} cwd The current working directory.
- * @param {Object} env The environment variables.
+ * @param {object} env The environment variables.
  * @param {Logger} logger The logger for the multirelease.
  * @param {Stream} stdout The output stream for this multirelease.
  * @param {Stream} stderr The error stream for this multirelease.
@@ -152,20 +155,34 @@ async function releasePackage(package_, createInlinePlugin, multiContext, flags)
  * @param {Package[]} localDeps Array of local dependencies this package relies on.
  * @param {context|void} context The semantic-release context for this package's release (filled in once semantic-release runs).
  * @param {undefined|Result|false} result The result of semantic-release (object with lastRelease, nextRelease, commits, releases), false if this package was skipped (no changes or similar), or undefined if the package's release hasn't completed yet.
- * @param {Object} _lastRelease The last release object for the package before its current release (set during anaylze-commit)
- * @param {Object} _nextRelease The next release object (the release the package is releasing for this cycle) (set during generateNotes)
+ * @param {object} _lastRelease The last release object for the package before its current release (set during anaylze-commit)
+ * @param {object} _nextRelease The next release object (the release the package is releasing for this cycle) (set during generateNotes)
  */
 
 /**
  * Perform a multirelease.
- *
  * @param {string[]} paths An array of paths to package.json files.
- * @param {Object} inputOptions An object containing semantic-release options.
- * @param {Object} settings An object containing: cwd, env, stdout, stderr (mainly for configuring tests).
- * @param {Object} _flags Argv flags.
+ * @param {object} inputOptions An object containing semantic-release options.
+ * @param {object} settings An object containing: cwd, env, stdout, stderr (mainly for configuring tests).
+ * @param settings.cwd
+ * @param settings.env
+ * @param {object} _flags Argv flags.
+ * @param settings.stderr
+ * @param settings.stdout
  * @returns {Promise<Package[]>} Promise that resolves to a list of package objects with `result` property describing whether it released or not.
  */
-// eslint-disable-next-line sonarjs/cognitive-complexity
+
+/**
+ *
+ * @param paths
+ * @param inputOptions
+ * @param root0
+ * @param root0.cwd
+ * @param root0.env
+ * @param root0.stderr
+ * @param root0.stdout
+ * @param _flags
+ */
 async function multiSemanticRelease(
     paths,
     inputOptions = {},
@@ -186,7 +203,7 @@ async function multiSemanticRelease(
 
     const flags = {
         deps: {},
-        ...(await getConfigMultiSemrel(cwd, _flags)),
+        ...await getConfigMultiSemrel(cwd, _flags),
     };
 
     const require = createRequire(import.meta.url);

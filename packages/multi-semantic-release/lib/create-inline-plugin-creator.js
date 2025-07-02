@@ -9,12 +9,10 @@ const { debug } = logger.withScope("msr:inlinePlugin");
 /**
  * Create an inline plugin creator for a multirelease.
  * This is caused once per multirelease and returns a function which should be called once per package within the release.
- *
  * @param {Package[]} packages The multi-semantic-release context.
  * @param {MultiContext} multiContext The multi-semantic-release context.
- * @param {Object} flags argv options
+ * @param {object} flags argv options
  * @returns {Function} A function that creates an inline package.
- *
  * @internal
  */
 function createInlinePluginCreator(packages, multiContext, flags) {
@@ -24,13 +22,15 @@ function createInlinePluginCreator(packages, multiContext, flags) {
     /**
      * Create an inline plugin for an individual package in a multirelease.
      * This is called once per package and returns the inline plugin used for semanticRelease()
-     *
      * @param {Package} package_ The package this function is being called on.
-     * @returns {Object} A semantic-release inline plugin containing plugin step functions.
-     *
+     * @returns {object} A semantic-release inline plugin containing plugin step functions.
      * @internal
      */
-    // eslint-disable-next-line sonarjs/cognitive-complexity
+
+    /**
+     *
+     * @param package_
+     */
     function createInlinePlugin(package_) {
         // Vars.
         const { dir, name, plugins } = package_;
@@ -50,6 +50,7 @@ function createInlinePluginCreator(packages, multiContext, flags) {
             Object.assign(package_.fakeLogger, context.logger);
 
             const result = await plugins.verifyConditions(context);
+
             // eslint-disable-next-line no-param-reassign
             package_._ready = true;
 
@@ -64,11 +65,9 @@ function createInlinePluginCreator(packages, multiContext, flags) {
          *
          * In multirelease: Returns "patch" if the package contains references to other local packages that have changed, or null if this package references no local packages or they have not changed.
          * Also updates the `context.commits` setting with one returned from `getCommitsFiltered()` (which is filtered by package directory).
-         *
          * @param {object} pluginOptions Options to configure this plugin.
          * @param {object} context The semantic-release context.
          * @returns {Promise<void>} Promise that resolves when done.
-         *
          * @internal
          */
         const analyzeCommits = async (pluginOptions, context) => {
@@ -121,21 +120,19 @@ function createInlinePluginCreator(packages, multiContext, flags) {
          *
          * Should look like:
          *
-         *     ## my-amazing-package [9.2.1](github.com/etc) 2018-12-01
+         * ## my-amazing-package [9.2.1](github.com/etc) 2018-12-01
          *
-         *     ### Features
+         * ### Features
          *
-         *     * etc
+         * etc
          *
-         *     ### Dependencies
+         * ### Dependencies
          *
-         *     * **my-amazing-plugin:** upgraded to 1.2.3
-         *     * **my-other-plugin:** upgraded to 4.9.6
-         *
+         * **my-amazing-plugin:** upgraded to 1.2.3
+         * **my-other-plugin:** upgraded to 4.9.6
          * @param {object} pluginOptions Options to configure this plugin.
          * @param {object} context The semantic-release context.
          * @returns {Promise<void>} Promise that resolves to the string
-         *
          * @internal
          */
         const generateNotes = async (pluginOptions, context) => {
@@ -151,9 +148,9 @@ function createInlinePluginCreator(packages, multiContext, flags) {
 
             // get SHA of lastRelease if not already there (should have been done by Semantic Release...)
             if (
-                context.lastRelease &&
-                context.lastRelease.gitTag &&
-                (!context.lastRelease.gitHead || context.lastRelease.gitHead === context.lastRelease.gitTag)
+                context.lastRelease
+                && context.lastRelease.gitTag
+                && (!context.lastRelease.gitHead || context.lastRelease.gitHead === context.lastRelease.gitTag)
             ) {
                 context.lastRelease.gitHead = getTagHead(context.lastRelease.gitTag, {
                     cwd: context.cwd,
@@ -177,6 +174,7 @@ function createInlinePluginCreator(packages, multiContext, flags) {
             // Get subnotes and add to list.
             // Inject pkg name into title if it matches e.g. `# 1.0.0` or `## [1.0.1]` (as generate-release-notes does).
             const subs = await plugins.generateNotes(context);
+
             // istanbul ignore else (unnecessary to __tests__)
             if (subs) {
                 notes.push(subs.replace(/^(#+) (\[?\d+\.\d+\.\d+\]?)/u, `$1 ${name} $2`));

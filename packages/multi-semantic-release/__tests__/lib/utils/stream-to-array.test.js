@@ -10,6 +10,9 @@ import streamToArray from "../../../lib/utils/stream-to-array.js";
 
 const fixtureFile = resolve(dirname(fileURLToPath(import.meta.url)), "../../__fixtures__/badDepsPackage.json");
 
+/**
+ *
+ */
 function emptyStream() {
     const stream = new PassThrough();
 
@@ -20,6 +23,9 @@ function emptyStream() {
     return stream;
 }
 
+/**
+ *
+ */
 function closedStream() {
     const stream = new Readable();
 
@@ -38,7 +44,7 @@ describe("stream To Array", () => {
 
         const result = await streamToArray(createReadStream(fixtureFile));
 
-        expect(Array.isArray(result)).toBeTruthy();
+        expect(Array.isArray(result)).toBe(true);
         expect(result).toHaveLength(0);
     });
 
@@ -47,7 +53,7 @@ describe("stream To Array", () => {
         // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(createReadStream(fixtureFile)).then((array) => {
             expect.assertions(2);
-            expect(Array.isArray(array)).toBeTruthy();
+            expect(Array.isArray(array)).toBe(true);
             expect(array).toHaveLength(0);
         });
     });
@@ -57,7 +63,7 @@ describe("stream To Array", () => {
         // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(emptyStream()).then((array) => {
             expect.assertions(2);
-            expect(Array.isArray(array)).toBeTruthy();
+            expect(Array.isArray(array)).toBe(true);
             expect(array).toHaveLength(0);
         });
     });
@@ -67,7 +73,7 @@ describe("stream To Array", () => {
         // eslint-disable-next-line promise/catch-or-return,promise/always-return
         streamToArray(closedStream()).then((array) => {
             expect.assertions(2);
-            expect(Array.isArray(array)).toBeTruthy();
+            expect(Array.isArray(array)).toBe(true);
             expect(array).toHaveLength(0);
         });
     });

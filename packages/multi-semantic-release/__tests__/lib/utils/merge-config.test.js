@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import mergeConfig from "../../../lib/utils/merge-config.js";
 
-describe("mergeConfig", () => {
+describe(mergeConfig, () => {
     it("should return default values for empty configs", () => {
         expect.assertions(1);
 
