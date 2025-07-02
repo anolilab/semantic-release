@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-preset [11.0.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@11.0.1...@anolilab/semantic-release-preset@11.0.2) (2025-07-02)
+
+### Bug Fixes
+
+* add channel configuration for prereleases in multiple .releaserc.json files ([8aa95b8](https://github.com/anolilab/semantic-release/commit/8aa95b82e6b1e92dab49fe1cde6cf894eb105c0f))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 3.0.2
+* **@anolilab/semantic-release-pnpm:** upgraded to 2.0.2
+
 ## @anolilab/semantic-release-preset [11.0.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@11.0.0...@anolilab/semantic-release-preset@11.0.1) (2025-07-02)
 
 ### Bug Fixes
