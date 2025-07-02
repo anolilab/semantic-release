@@ -10,6 +10,20 @@ import type { ReleaseInfo } from "./utils/get-release-info";
 import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
 
+/**
+ * After a successful publish this step adds the newly released version to another npm distribution
+ * tag (also known as a "channel") using `pnpm dist-tag add`.
+ *
+ * Typical use-case: publish a version on `next` first and, after manual verification, promote the
+ * same version to the `latest` channel in a follow-up release.
+ *
+ * @param {PluginConfig}     pluginConfig – Plugin configuration object.
+ * @param {PackageJson}      packageJson  – The package manifest that has just been published.
+ * @param {AddChannelContext} context      – Semantic-release addChannel context.
+ *
+ * @returns {Promise<ReleaseInfo | false>} A release info object when the dist-tag was added or
+ *                                        `false` when the operation was skipped.
+ */
 export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: AddChannelContext): Promise<ReleaseInfo | false> => {
     const {
         cwd,

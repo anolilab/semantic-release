@@ -166,6 +166,29 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     return [...configFiles];
 };
 
+/**
+ * Aggregates configuration from multiple sources (defaults, configuration files, and environment variables)
+ * into a single object, following the same resolution logic as the original `rc` npm package.
+ *
+ * The resolution order is (highest precedence last):
+ * 1. `options.defaults` – default values supplied by the caller
+ * 2. Configuration files discovered by {@link getConfigFiles}
+ * 3. Environment variables that start with `${name}_` (nested via `__`)
+ *
+ * The function also returns the list of configuration file paths that were read while resolving the
+ * configuration. No mutation is performed on any of the discovered files – they are only read.
+ *
+ * @param {string} name               The base name of the application (used to derive env-var prefix and file names).
+ * @param {object} [options]          Optional behaviour switches.
+ * @param {string} [options.config]   Explicit path to a configuration file that should be merged last.
+ * @param {string} [options.cwd]      Working directory to start searching for local configuration files.
+ * @param {object} [options.defaults] Default configuration values that act as the lowest precedence.
+ * @param {string} [options.home]     Home directory to look for user-level configuration files. Defaults to the current user home directory.
+ * @param {string} [options.stopAt]   Absolute path that acts as a boundary when traversing up the directory tree.
+ *
+ * @returns {{ config: Record<string, any>, files: string[] }}
+ * An object containing the final merged `config` and the ordered list of `files` that were considered.
+ */
 // eslint-disable-next-line import/prefer-default-export
 export const rc = (
     name: string,

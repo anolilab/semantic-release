@@ -9,7 +9,18 @@ import type { CommonContext, PublishContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
 import getPackage from "./utils/get-pkg";
 
-// eslint-disable-next-line sonarjs/cognitive-complexity
+/**
+ * Clean the `package.json` that will be published by removing properties that are not relevant for the
+ * published artifact. All properties defined in `defaultKeepProperties` plus any properties provided
+ * via the `pluginConfig.keep` option are preserved. The original `package.json` is backed-up to
+ * `package.json.back` before the clean-up starts so that it can be restored later in the `success`
+ * step.
+ *
+ * @param {PluginConfig} pluginConfig Configuration object passed to the plugin.
+ * @param {PublishContext} context     Semantic-release publish context.
+ *
+ * @returns {Promise<void>} Resolves once the cleaned `package.json` has been written to disk.
+ */
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
@@ -61,6 +72,16 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
     });
 };
 
+/**
+ * Restore the original `package.json` after a successful release. The backed-up version is read from
+ * `package.json.back`, its version is replaced with the version that was just released and finally it
+ * is written back to `package.json` (overwriting the temporary, cleaned version).
+ *
+ * @param {PluginConfig} pluginConfig Configuration object passed to the plugin.
+ * @param {CommonContext} context     Semantic-release success context.
+ *
+ * @returns {Promise<void>} Resolves once the original `package.json` has been restored.
+ */
 export const success = async (pluginConfig: PluginConfig, context: CommonContext): Promise<void> => {
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
 

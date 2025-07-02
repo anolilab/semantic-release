@@ -10,6 +10,23 @@ import type { ReleaseInfo } from "./utils/get-release-info";
 import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
 
+/**
+ * Publish the package to the npm registry using `pnpm publish` when the plugin configuration and
+ * package manifest indicate that publishing should occur.
+ *
+ * The function calculates the correct distribution tag, resolves the registry URL, ensures the
+ * package manager operates in the correct `pkgRoot` (if any) and finally executes the `pnpm` CLI.
+ * It mirrors the behaviour of the official `@semantic-release/npm` plugin but utilises the `pnpm`
+ * ecosystem.
+ *
+ * @param {PluginConfig}   pluginConfig – Plugin configuration for the semantic-release run.
+ * @param {PackageJson}    packageJson  – Parsed `package.json` of the project.
+ * @param {PublishContext} context      – Semantic-release publish context.
+ *
+ * @returns {Promise<ReleaseInfo | false>} Information about the published release (name, channel,
+ *                                        url) or `false` if the package was not published for any
+ *                                        reason (e.g. `npmPublish: false`).
+ */
 export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: PublishContext): Promise<ReleaseInfo | false> => {
     const {
         cwd,

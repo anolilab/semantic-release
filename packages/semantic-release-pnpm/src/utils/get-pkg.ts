@@ -10,6 +10,16 @@ interface Options {
     pkgRoot?: string;
 }
 
+/**
+ * Locate and read the `package.json` for the current project (or the sub-directory specified by
+ * `pkgRoot`). Ensures that the manifest contains a `name` field and throws semantic-release style
+ * errors otherwise (for better aggregation in the caller).
+ *
+ * @param {{ pkgRoot?: string }} options  – Options object containing an optional `pkgRoot` path.
+ * @param {{ cwd: string }}       context  – Semantic-release context limited to the `cwd` property.
+ *
+ * @returns {Promise<PackageJson>} The parsed `package.json` object.
+ */
 export default async ({ pkgRoot }: Options, { cwd }: { cwd: CommonContext["cwd"] }): Promise<PackageJson> => {
     try {
         const { packageJson } = await findPackageJson(pkgRoot ? resolve(cwd, pkgRoot) : cwd);
