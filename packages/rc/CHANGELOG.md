@@ -1,3 +1,9 @@
+## @anolilab/rc [2.0.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.1...@anolilab/rc@2.0.2) (2025-07-02)
+
+### Bug Fixes
+
+* add channel configuration for prereleases in multiple .releaserc.json files ([8aa95b8](https://github.com/anolilab/semantic-release/commit/8aa95b82e6b1e92dab49fe1cde6cf894eb105c0f))
+
 ## @anolilab/rc [2.0.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.0...@anolilab/rc@2.0.1) (2025-07-02)
 
 ### Bug Fixes
