@@ -7,6 +7,20 @@ import getError from "../utils/get-error";
 import getRegistry from "../utils/get-registry";
 import setNpmrcAuth from "../utils/set-npmrc-auth";
 
+/**
+ * Verify that the provided npm credentials grant access to the target registry.
+ *
+ * The helper first ensures that `npmrc` contains valid authentication data by delegating to
+ * {@link setNpmrcAuth}. When the registry equals the default public npm registry the function runs
+ * `pnpm whoami` to perform an online verification of the credentials. For custom registries the
+ * online check is skipped because it might not be supported.
+ *
+ * @param {string}        npmrc     – Path to the `.npmrc` that contains (or will receive) credentials.
+ * @param {PackageJson}   package_  – The package manifest (used to derive the registry when `publishConfig.registry` is set).
+ * @param {CommonContext} context   – semantic-release context providing env, logger, streams, etc.
+ *
+ * @returns {Promise<void>} Resolves when authentication has been verified.
+ */
 export default async (npmrc: string, package_: PackageJson, context: CommonContext): Promise<void> => {
     const {
         cwd,

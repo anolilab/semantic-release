@@ -30,6 +30,22 @@ const VALIDATORS: Record<string, ValidatorFunction> = {
     tarballDir: isNonEmptyString,
 };
 
+/**
+ * Validate user-supplied plugin options and return an array of {@link SemanticReleaseError}s for
+ * every option that fails its type/format constraint. The function is intentionally side-effect
+ * free so that each error can later be aggregated by the caller.
+ *
+ * Currently validated options:
+ * • branches – must be an array of branch definitions.
+ * • npmPublish – must be a boolean.
+ * • pkgRoot, publishBranch, tarballDir – must be non-empty strings.
+ *
+ * Options that are `null` or `undefined` are ignored (treated as not provided).
+ *
+ * @param {PluginConfig} config – Plugin configuration object to validate.
+ *
+ * @returns {SemanticReleaseError[]} An array of validation errors (empty when the configuration is valid).
+ */
 export default (config: PluginConfig): SemanticReleaseError[] =>
     // eslint-disable-next-line unicorn/no-array-reduce
     Object.entries(config).reduce<SemanticReleaseError[]>((errors, [option, value]) => {

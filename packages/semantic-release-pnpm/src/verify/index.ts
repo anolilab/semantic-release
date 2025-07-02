@@ -7,6 +7,24 @@ import verifyAuth from "./verify-auth";
 import verifyConfig from "./verify-config";
 import verifyPnpm from "./verify-pnpm";
 
+/**
+ * Aggregate all verification steps required by the plugin during the `verifyConditions` life-cycle
+ * and throw a single `AggregateError` containing all individual errors.
+ *
+ * The verification flow consists of three independent parts:
+ * 1. Validate the user-supplied plugin configuration (`verify-config`).
+ * 2. Check that the required `pnpm` version is available on the system (`verify-pnpm`).
+ * 3. If the package is going to be published, verify registry authentication (`verify-auth`).
+ *
+ * Any errors coming from the individual verifiers are collected and only thrown at the very end so
+ * that users can fix multiple issues in a single iteration.
+ *
+ * @param {PluginConfig}            pluginConfig – Resolved configuration object for the plugin.
+ * @param {VerifyConditionsContext} context       – semantic-release context for the verify phase.
+ *
+ * @returns {Promise<void>} Resolves when all verifiers succeed, otherwise rejects with an
+ *                         `AggregateError`.
+ */
 const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsContext): Promise<void> => {
     let errors: Error[] = verifyConfig(pluginConfig);
     let errorsMessage = "";
