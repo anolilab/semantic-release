@@ -10,6 +10,25 @@ import type { CommonContext } from "../definitions/context";
 import getError from "./get-error";
 import nerfDart from "./nerf-dart";
 
+/**
+ * Ensure that the `.npmrc` file referenced by `npmrc` contains valid authentication credentials for
+ * the given registry. Existing config entries are preserved and only modified when credentials are
+ * missing.
+ *
+ * The function supports three authentication strategies (checked in this order):
+ * 1. A valid auth token already present in one of the resolved npmrc files.
+ * 2. Username / password / email triplet provided via environment variables.
+ * 3. A one-time auth token provided via the `NPM_TOKEN` environment variable.
+ *
+ * If none of the above strategies results in credentials being written, a semantic-release error with
+ * code `ENONPMTOKEN` is thrown.
+ *
+ * @param {string}       npmrc     – Path to the `.npmrc` that should receive credentials when needed.
+ * @param {string}       registry  – Registry URL for which credentials are required.
+ * @param {CommonContext} context   – Semantic-release context (provides env, cwd and logger).
+ *
+ * @returns {Promise<void>} Resolves once credentials are verified or have been written.
+ */
 export default async (
     npmrc: string,
     registry: string,
