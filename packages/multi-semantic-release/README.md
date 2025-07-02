@@ -159,11 +159,12 @@ Alternatively some options may be set via CLI flags.
 
 ### `deps` Options
 
-| Option  | Type                                 | CLI Flag         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------- | ------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| bump    | `override \| satisfy \| inherit`     | `--deps.bump`    | Define deps version update rule. <ul><li>`override` — replace any prev version with the next one</li><li>`satisfy` — check the next pkg version against its current references. If it matches (`*` matches to any, `1.1.0` matches `1.1.x`, `1.5.0` matches to `^1.0.0` and so on) release will not be triggered, if not `override` strategy will be applied instead; `inherit` will try to follow the current declaration version/range. `~1.0.0` + `minor` turns into `~1.1.0`, `1.x` + `major` gives `2.x`, but `1.x` + `minor` gives `1.x` so there will be no release, etc. +;</li><li>`ignore` prevent dependencies from being bumped by MSR</li></ul> |
-| release | `patch \| minor \| major \| inherit` | `--deps.release` | Define release type for dependent package if any of its deps changes. <ul><li>`patch`, `minor`, `major` — strictly declare the release type that occurs when any dependency is updated;</li><li> `inherit` — applies the "highest" release of updated deps to the package. <br/> _For example, if any dep has a breaking change, `major` release will be applied to the all dependants up the chain._</li></ul>                                                                                                                                                                                                                                              |
-| prefix  | `'^' \| '~' \| ''`                   | `--deps.prefix`  | Optional prefix to be attached to the next version if `bump` is set to `override`. Supported values: `^` \| `~` \| `''` (empty string) ; **`''` by default**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Option      | Type                                 | CLI Flag             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ----------- | ------------------------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| bump        | `override \| satisfy \| inherit`     | `--deps.bump`        | Define deps version update rule. <ul><li>`override` — replace any prev version with the next one</li><li>`satisfy` — check the next pkg version against its current references. If it matches (`*` matches to any, `1.1.0` matches `1.1.x`, `1.5.0` matches to `^1.0.0` and so on) release will not be triggered, if not `override` strategy will be applied instead; `inherit` will try to follow the current declaration version/range. `~1.0.0` + `minor` turns into `~1.1.0`, `1.x` + `major` gives `2.x`, but `1.x` + `minor` gives `1.x` so there will be no release, etc. +;</li><li>`ignore` prevent dependencies from being bumped by MSR</li></ul> |
+| release     | `patch \| minor \| major \| inherit` | `--deps.release`     | Define release type for dependent package if any of its deps changes. <ul><li>`patch`, `minor`, `major` — strictly declare the release type that occurs when any dependency is updated;</li><li> `inherit` — applies the "highest" release of updated deps to the package. <br/> _For example, if any dep has a breaking change, `major` release will be applied to the all dependants up the chain._</li></ul>                                                                                                                                                                                                                                              |
+| prefix      | `'^' \| '~' \| ''`                   | `--deps.prefix`      | Optional prefix to be attached to the next version if `bump` is set to `override`. Supported values: `^` \| `~` \| `''` (empty string) ; **`''` by default**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| excludeDependencies| `String \| Array`                    | `--deps.excludeDependencies`| Array of package names to exclude from dependency bumping. Useful for breaking circular dependencies or preventing certain packages from triggering releases. If using the CLI flag, supply a comma seperated list of strings.                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 ### Examples
 
@@ -171,6 +172,23 @@ Alternatively some options may be set via CLI flags.
 
 ```sh
 $ multi-semantic-release --ignore-packages=packages/a/**,packages/b/** --deps.bump=inherit
+```
+
+- With excludeDependencies to break circular dependencies:
+
+```sh
+$ multi-semantic-release --deps.excludeDependencies=@visulima/packem,my-circular-package
+```
+
+- Via configuration file:
+
+```json
+{
+  "deps": {
+    "bump": "inherit",
+    "excludeDependencies": ["@visulima/packem", "my-circular-package"]
+  }
+}
 ```
 
 ## Configuring Semantic-Release
@@ -354,7 +372,7 @@ To make the `tagFormat` option work as intended the following would need to happ
 ## Supported Node.js Versions
 
 Libraries in this ecosystem make the best effort to track
-[Node.js’ release schedule](https://nodejs.org/en/about/releases/). Here’s [a
+[Node.js' release schedule](https://nodejs.org/en/about/releases/). Here's [a
 post on why we think this is important](https://medium.com/the-node-js-collection/maintainers-should-consider-following-node-js-release-schedule-ab08ed4de71a).
 
 ## Contributing

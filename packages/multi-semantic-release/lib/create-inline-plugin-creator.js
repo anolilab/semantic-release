@@ -102,7 +102,7 @@ function createInlinePluginCreator(packages, multiContext, flags) {
 
             // Make sure type is "patch" if the package has any deps that have been changed.
             // eslint-disable-next-line no-param-reassign
-            package_._nextType = resolveReleaseType(package_, flags.deps.bump, flags.deps.release, [], flags.deps.prefix);
+                                package_._nextType = resolveReleaseType(package_, flags.deps.bump, flags.deps.release, [], flags.deps.prefix, flags.deps.excludeDependencies);
 
             debug(debugPrefix, "commits analyzed");
             debug(debugPrefix, `release type: ${package_._nextType}`);

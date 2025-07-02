@@ -16,6 +16,8 @@ import RescopedStream from "./rescoped-stream.js";
 import { check } from "./utils/blork.js";
 import cleanPath from "./utils/clean-path.js";
 
+const require = createRequire(import.meta.url);
+
 /**
  * Load details about a package.
  * @param {string} path The path to load details about.
@@ -206,7 +208,6 @@ async function multiSemanticRelease(
         ...await getConfigMultiSemrel(cwd, _flags),
     };
 
-    const require = createRequire(import.meta.url);
     const multisemrelPackageJson = require("../package.json");
     const semrelPkgJson = require("semantic-release/package.json");
 

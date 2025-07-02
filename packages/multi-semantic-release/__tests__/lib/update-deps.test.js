@@ -200,6 +200,99 @@ describe("update-deps", () => {
             expect(packageA.manifest.dependencies.c).toBe("^1.1.0");
             expect(packageA.manifest.dependencies.d).toBe("^1.0.1");
         });
+
+        it("excludeDependencies prevents dependency from causing release", () => {
+            expect.assertions(2);
+
+            const packageB = { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], name: "b" };
+            const packageA = {
+                _nextType: false,
+                localDeps: [packageB],
+                manifest: { dependencies: { b: "1.0.0" } },
+                name: "a",
+            };
+            const package_ = {
+                _nextType: undefined,
+                localDeps: [packageA],
+                manifest: { dependencies: { a: "1.0.0" } },
+                name: "root",
+            };
+
+            // Without excludeDependencies, it should trigger a release
+            const typeWithoutSkip = resolveReleaseType(package_, "override", "patch", [], "", []);
+            expect(typeWithoutSkip).toBe("patch");
+
+            // Reset state for next test
+            package_._nextType = undefined;
+            packageA._nextType = false;
+            package_.manifest.dependencies.a = "1.0.0";
+            packageA.manifest.dependencies.b = "1.0.0";
+
+            // With excludeDependencies, it should not trigger a release
+            const typeWithSkip = resolveReleaseType(package_, "override", "patch", [], "", ["b"]);
+            expect(typeWithSkip).toBeUndefined();
+        });
+
+        it("excludeDependencies prevents version bump in manifest", () => {
+            expect.assertions(4);
+
+            const packageB = { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], name: "b" };
+            const packageA = {
+                _nextType: false,
+                localDeps: [packageB],
+                manifest: { dependencies: { b: "1.0.0" } },
+                name: "a",
+            };
+
+            // Without excludeDependencies, version should be updated
+            resolveReleaseType(packageA, "override", "patch", [], "", []);
+            expect(packageA.manifest.dependencies.b).toBe("1.0.1");
+
+            // Reset for next test
+            packageA.manifest.dependencies.b = "1.0.0";
+
+            // With excludeDependencies, version should not be updated
+            resolveReleaseType(packageA, "override", "patch", [], "", ["b"]);
+            expect(packageA.manifest.dependencies.b).toBe("1.0.0");
+
+            // Verify it still works for non-skipped dependencies
+            const packageC = { _lastRelease: { version: "2.0.0" }, _nextType: "minor", localDeps: [], name: "c" };
+            packageA.localDeps.push(packageC);
+            packageA.manifest.dependencies.c = "2.0.0";
+
+            resolveReleaseType(packageA, "override", "patch", [], "", ["b"]);
+            expect(packageA.manifest.dependencies.b).toBe("1.0.0"); // Still not updated
+            expect(packageA.manifest.dependencies.c).toBe("2.1.0"); // Updated
+        });
+
+        it("excludeDependencies works with circular dependencies", () => {
+            expect.assertions(2);
+
+            const packageA = {
+                _nextType: "patch",
+                localDeps: [],
+                manifest: { dependencies: {} },
+                name: "a",
+            };
+            const packageB = {
+                _nextType: false,
+                localDeps: [packageA],
+                manifest: { dependencies: { a: "1.0.0" } },
+                name: "b",
+            };
+
+            // Create circular dependency
+            packageA.localDeps.push(packageB);
+            packageA.manifest.dependencies.b = "1.0.0";
+
+            // Without excludeDependencies, this would create infinite recursion or issues
+            // With excludeDependencies, it should handle the circular dependency gracefully
+            const typeA = resolveReleaseType(packageA, "override", "patch", [], "", ["b"]);
+            const typeB = resolveReleaseType(packageB, "override", "patch", [], "", ["a"]);
+
+            expect(typeA).toBe("patch");
+            expect(typeB).toBeUndefined();
+        });
     });
 
     describe("getNextVersion()", () => {

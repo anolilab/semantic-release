@@ -57,6 +57,7 @@ export default async function getConfig(cwd, cliOptions) {
                 bump: "override",
                 prefix: "",
                 release: "patch",
+                excludeDependencies: [],
             },
             dryRun: undefined,
             firstParent: false,

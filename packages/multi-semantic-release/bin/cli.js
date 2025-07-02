@@ -51,6 +51,10 @@ await (async () => {
             describe: "Define release type for dependent package if any of its deps changes. Supported values: patch, minor, major, inherit.",
             type: "string",
         })
+        .option("deps.excludeDependencies", {
+            describe: "List of package names to exclude from dependency bumping (useful for circular dependencies).",
+            ...stringList,
+        })
         .option("deps.prefix", {
             describe:
                 "Optional prefix to be attached to the next dep version if '--deps.bump' set to 'override'. Supported values: '^' | '~' | '' (empty string as default).",

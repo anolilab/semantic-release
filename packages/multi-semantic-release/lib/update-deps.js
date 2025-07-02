@@ -55,16 +55,22 @@ const _nextPreVersionCases = (tags, lastVersionForCurrentMultiRelease, packageNe
  * @param {string} releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit.
  * @param {Package[]} ignore Packages to ignore (to prevent infinite loops).
  * @param {string} prefix Dependency version prefix to be attached if `bumpStrategy='override'`. ^ | ~ | '' (defaults to empty string)
+ * @param {string[]} excludeDependencies Array of package names to exclude from dependency bumping.
  * @returns {string|undefined} Returns the highest release type if found, undefined otherwise
  * @internal
  */
-const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, prefix) => {
+const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, prefix, excludeDependencies = []) => {
     const severityOrder = ["patch", "minor", "major"];
     const { localDeps, manifest = {} } = package_;
     const lastVersion = package_._lastRelease && package_._lastRelease.version;
     const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
     const scopes = [dependencies, devDependencies, peerDependencies, optionalDependencies];
     const bumpDependency = (scope, name, nextVersion) => {
+        // Skip dependency bump if package is in excludeDependencies list
+        if (excludeDependencies.includes(name)) {
+            return false;
+        }
+
         // eslint-disable-next-line security/detect-object-injection
         const currentVersion = scope[name];
 
@@ -90,11 +96,16 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
             .filter((p) => !ignore.includes(p))
             // eslint-disable-next-line unicorn/no-array-reduce
             .reduce((releaseType, p) => {
+                // Skip if this dependency package is in excludeDependencies list
+                if (excludeDependencies.includes(p.name)) {
+                    return releaseType;
+                }
+
                 // Has changed if...
                 // 1. Any local dep package itself has changed
                 // 2. Any local dep package has local deps that have changed.
                 // eslint-disable-next-line no-use-before-define
-                const nextType = resolveReleaseType(p, bumpStrategy, releaseStrategy, [...ignore, package_], prefix);
+                const nextType = resolveReleaseType(p, bumpStrategy, releaseStrategy, [...ignore, package_], prefix, excludeDependencies);
                 const nextVersion = nextType
                     ? // Update the nextVersion only if there is a next type to be bumped
 
@@ -111,7 +122,11 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
                     // eslint-disable-next-line unicorn/no-array-reduce
                     .reduce((result, scope) => bumpDependency(scope, p.name, nextVersion) || result, !lastVersion);
 
-                return requireRelease && severityOrder.indexOf(nextType) > severityOrder.indexOf(releaseType) ? nextType : releaseType;
+                // If the dependency package itself is skipped, don't let it trigger a release
+                // even if it would normally require one
+                const shouldTriggerRelease = requireRelease && !excludeDependencies.includes(p.name);
+
+                return shouldTriggerRelease && severityOrder.indexOf(nextType) > severityOrder.indexOf(releaseType) ? nextType : releaseType;
             }, undefined)
     );
 };
@@ -244,12 +259,13 @@ export const getNextPreVersion = (package_) => {
  * @param {string|undefined} releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit.
  * @param {Package[]} ignore Packages to ignore (to prevent infinite loops).
  * @param {string} prefix Dependency version prefix to be attached if `bumpStrategy='override'`. ^ | ~ | '' (defaults to empty string)
+ * @param {string[]} excludeDependencies Array of package names to exclude from dependency bumping.
  * @returns {string|undefined} Resolved release type.
  * @internal
  */
-export const resolveReleaseType = (package_, bumpStrategy = "override", releaseStrategy = "patch", ignore = [], prefix = "") => {
+export const resolveReleaseType = (package_, bumpStrategy = "override", releaseStrategy = "patch", ignore = [], prefix = "", excludeDependencies = []) => {
     // NOTE This fn also updates pkg deps, so it must be invoked anyway.
-    const dependentReleaseType = getDependentRelease(package_, bumpStrategy, releaseStrategy, ignore, prefix);
+    const dependentReleaseType = getDependentRelease(package_, bumpStrategy, releaseStrategy, ignore, prefix, excludeDependencies);
 
     // Release type found by commitAnalyzer.
     if (package_._nextType) {
