@@ -103,7 +103,7 @@
             "@anolilab/rc": "workspace:*",
             "@anolilab/semantic-release-pnpm": "workspace:*",
             "chrono-node@<2.2.4": ">=2.2.4",
-            "undici@>=6.0.0 <6.21.2": ">=6.21.2",
+            "undici@>=6.0.0 <6.21.2": ">=7.11.0",
             "tar-fs@>=2.0.0 <2.1.3": ">=2.1.3"
         }
     }
