@@ -94,7 +94,7 @@
         "conventional-changelog-conventionalcommits": "9.0.0"
     },
     "devDependencies": {
-        "@anolilab/eslint-config": "^16.2.15",
+        "@anolilab/eslint-config": "^16.2.19",
         "@anolilab/semantic-release-pnpm": "2.0.2",
         "@secretlint/secretlint-rule-preset-recommend": "^10.1.1",
         "conventional-changelog-conventionalcommits": "9.0.0",
