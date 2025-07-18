@@ -101,7 +101,7 @@
         "p-retry": "^6.2.1",
         "rimraf": "^6.0.1",
         "secretlint": "10.1.1",
-        "semantic-release": "^24.2.6",
+        "semantic-release": "^24.2.7",
         "stream-buffers": "^3.0.3",
         "tempy": "^3.1.0",
         "typescript": "^5.8.3",
