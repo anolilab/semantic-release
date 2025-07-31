@@ -91,10 +91,21 @@ All configuration sources that were found will be flattened into one object, in 
 ### rc()
 
 ```ts
-function rc(name, options): object;
+function rc(name, options?): object;
 ```
 
-Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/blob/e025cffb7d3bb9e2f3c00bd6a2847b0e93354f6d/packages/rc/src/index.ts#L170)
+Defined in: [index.ts:193](https://github.com/anolilab/multi-semantic-release/blob/589293f977a51773a6380f8abdc37be2f9e43372/packages/rc/src/index.ts#L193)
+
+Aggregates configuration from multiple sources (defaults, configuration files, and environment variables)
+into a single object, following the same resolution logic as the original `rc` npm package.
+
+The resolution order is (highest precedence last):
+1. `options.defaults` – default values supplied by the caller
+2. Configuration files discovered by getConfigFiles
+3. Environment variables that start with `${name}_` (nested via `__`)
+
+The function also returns the list of configuration file paths that were read while resolving the
+configuration. No mutation is performed on any of the discovered files – they are only read.
 
 #### Parameters
 
@@ -102,31 +113,47 @@ Defined in: [index.ts:170](https://github.com/anolilab/multi-semantic-release/bl
 
 `string`
 
-##### options
+The base name of the application (used to derive env-var prefix and file names).
+
+##### options?
+
+Optional behaviour switches.
 
 ###### config?
 
 `string`
 
+Explicit path to a configuration file that should be merged last.
+
 ###### cwd?
 
 `string`
+
+Working directory to start searching for local configuration files.
 
 ###### defaults?
 
 `Record`\<`string`, `any`\>
 
+Default configuration values that act as the lowest precedence.
+
 ###### home?
 
 `string`
+
+Home directory to look for user-level configuration files. Defaults to the current user home directory.
 
 ###### stopAt?
 
 `string`
 
+Absolute path that acts as a boundary when traversing up the directory tree.
+
 #### Returns
 
 `object`
+
+An object containing the final merged `config` and the ordered list of `files` that were considered.
 
 ##### config
 
