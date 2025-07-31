@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-clean-package-json",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Clean package.json before publish by removing unnecessary properties",
     "keywords": [
         "anolilab",
@@ -64,7 +64,7 @@
     },
     "devDependencies": {
         "@anolilab/eslint-config": "^16.2.22",
-        "@anolilab/semantic-release-pnpm": "2.0.2",
+        "@anolilab/semantic-release-pnpm": "2.0.3",
         "@secretlint/secretlint-rule-preset-recommend": "^10.2.1",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",

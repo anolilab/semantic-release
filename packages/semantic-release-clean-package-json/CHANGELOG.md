@@ -1,3 +1,18 @@
+## @anolilab/semantic-release-clean-package-json [3.0.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.2...@anolilab/semantic-release-clean-package-json@3.0.3) (2025-07-31)
+
+### Bug Fixes
+
+* update dependencies and improve configuration ([91c8546](https://github.com/anolilab/semantic-release/commit/91c8546aaa2f093f0f36b407b1bd4e4be34decbc))
+
+### Documentation
+
+* add or update JSDoc comments ([#172](https://github.com/anolilab/semantic-release/issues/172)) ([d392c82](https://github.com/anolilab/semantic-release/commit/d392c8249ed88538f18cbbd9a337730e703cf5f8))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 2.0.3
+
 ## @anolilab/semantic-release-clean-package-json [3.0.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.1...@anolilab/semantic-release-clean-package-json@3.0.2) (2025-07-02)
 
 ### Bug Fixes
