@@ -1,3 +1,15 @@
+## @anolilab/multi-semantic-release [2.0.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.2...@anolilab/multi-semantic-release@2.0.3) (2025-07-31)
+
+### Bug Fixes
+
+* update dependencies and improve configuration ([91c8546](https://github.com/anolilab/semantic-release/commit/91c8546aaa2f093f0f36b407b1bd4e4be34decbc))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 3.0.3
+* **@anolilab/semantic-release-pnpm:** upgraded to 2.0.3
+
 ## @anolilab/multi-semantic-release [2.0.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.1...@anolilab/multi-semantic-release@2.0.2) (2025-07-02)
 
 ### Bug Fixes
