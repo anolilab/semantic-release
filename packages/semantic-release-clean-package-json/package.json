@@ -63,7 +63,7 @@
         "@visulima/path": "^1.4.0"
     },
     "devDependencies": {
-        "@anolilab/eslint-config": "^16.2.22",
+        "@anolilab/eslint-config": "^16.2.23",
         "@anolilab/semantic-release-pnpm": "2.0.3",
         "@secretlint/secretlint-rule-preset-recommend": "^10.2.1",
         "@semantic-release/changelog": "^6.0.3",
