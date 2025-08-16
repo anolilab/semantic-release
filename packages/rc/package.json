@@ -105,7 +105,7 @@
         "secretlint": "10.2.1",
         "semantic-release": "^24.2.7",
         "tempy": "^3.1.0",
-        "typedoc": "0.28.8",
+        "typedoc": "0.28.10",
         "typedoc-plugin-markdown": "4.8.0",
         "typedoc-plugin-rename-defaults": "0.7.3",
         "typescript": "^5.8.3",
