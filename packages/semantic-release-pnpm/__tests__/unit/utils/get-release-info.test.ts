@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import type { PublishContext } from "../../../src/definitions/context";
 import { getReleaseInfo } from "../../../src/utils/get-release-info";
 
-describe("getReleaseInfo", () => {
+describe(getReleaseInfo, () => {
     it("default registry and scoped module", async () => {
         expect.assertions(1);
 

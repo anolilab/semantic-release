@@ -18,11 +18,9 @@ let prepared: boolean;
  *
  * The function delegates the heavy lifting to the local `verify` helper and caches the verification
  * result so that subsequent life-cycle steps can skip running the checks again.
- *
- * @param {PluginConfig}          pluginConfig Plugin configuration object.
- * @param {VerifyConditionsContext} context     Semantic-release provided context.
- *
- * @returns {Promise<void>} Resolves once verification has finished.
+ * @param pluginConfig Plugin configuration object.
+ * @param context Semantic-release provided context.
+ * @returns Resolves once verification has finished.
  */
 export const verifyConditions = async (pluginConfig: PluginConfig, context: VerifyConditionsContext): Promise<void> => {
     /**
@@ -55,11 +53,9 @@ export const verifyConditions = async (pluginConfig: PluginConfig, context: Veri
 /**
  * Prepare the package for publication. On success the information is cached so that it is not
  * executed again during `publish` when running the single-package plugin flow.
- *
- * @param {PluginConfig}     pluginConfig Plugin configuration object.
- * @param {PrepareContext}   context      Semantic-release provided context.
- *
- * @returns {Promise<void>} Resolves when preparation steps have completed.
+ * @param pluginConfig Plugin configuration object.
+ * @param context Semantic-release provided context.
+ * @returns Resolves when preparation steps have completed.
  */
 export const prepare = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
     if (!verified) {
@@ -74,12 +70,10 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
 /**
  * Publish the package to the npm registry using `pnpm publish` if the plugin decides that the package
  * should indeed be published.
- *
- * @param {PluginConfig}    pluginConfig Plugin configuration object.
- * @param {PublishContext}  context      Semantic-release provided context containing the upcoming release.
- *
- * @returns {Promise<ReleaseInfo | false>} Information about the published release or `false` when the
- *                                        package was not published.
+ * @param pluginConfig Plugin configuration object.
+ * @param context Semantic-release provided context containing the upcoming release.
+ * @returns Information about the published release or `false` when the
+ * package was not published.
  */
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<ReleaseInfo | false> => {
     const packageJson = await getPackage(pluginConfig, context);
@@ -98,12 +92,10 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 /**
  * Add the freshly published version to an additional npm distribution tag ("channel"). This step is
  * executed in the `addChannel` lifecycle phase.
- *
- * @param {PluginConfig}    pluginConfig Plugin configuration object.
- * @param {AddChannelContext} context    Semantic-release provided context containing the upcoming release.
- *
- * @returns {Promise<ReleaseInfo | false>} Information about the operation or `false` when nothing was
- *                                        done.
+ * @param pluginConfig Plugin configuration object.
+ * @param context Semantic-release provided context containing the upcoming release.
+ * @returns Information about the operation or `false` when nothing was
+ * done.
  */
 export const addChannel = async (pluginConfig: PluginConfig, context: AddChannelContext): Promise<ReleaseInfo | false> => {
     if (!verified) {

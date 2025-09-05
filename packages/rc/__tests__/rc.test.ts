@@ -13,7 +13,7 @@ const addExtensions = (sources: string[][]) =>
     sources.reduce<string[][]>((accumulator, pathArray) => {
         ["", ".json"].forEach((extension) => {
             const current = [pathArray].flat();
-            // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+
             current[current.length - 1] += extension;
             accumulator.push(current);
         });
@@ -50,7 +50,7 @@ vi.mock("node:process", async () => {
     };
 });
 
-describe("rc", () => {
+describe(rc, () => {
     let cwdPath: string;
     let homePath: string;
     const npmEnvironment: Record<keyof typeof env, string | undefined> = {};
@@ -180,8 +180,8 @@ describe("rc", () => {
             return "";
         });
 
-        env[name + "_test"] = "1";
-        env[name + "_something__subtest"] = "1";
+        env[`${name}_test`] = "1";
+        env[`${name}_something__subtest`] = "1";
 
         expect(rc(name)).toStrictEqual({
             config: {
@@ -194,9 +194,9 @@ describe("rc", () => {
         });
 
         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-        delete env[name + "_test"];
+        delete env[`${name}_test`];
         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-        delete env[name + "_something__subtest"];
+        delete env[`${name}_something__subtest`];
     });
 
     it("should find config in current folder", () => {
@@ -227,7 +227,7 @@ describe("rc", () => {
         const files = [".bem/config", ".bem/config.json", ".bemrc", ".bemrc.json"];
 
         mocks.mockedIsAccessibleSync.mockImplementation((file) => {
-            // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+            // eslint-disable-next-line no-loops/no-loops
             for (const path of files) {
                 if (file === join(cwdPath, path)) {
                     return true;
@@ -318,9 +318,9 @@ describe("rc", () => {
         expect.assertions(1);
 
         const files = {
-            "1": join(cwdPath, "grandparent", "parent", "cwd", ".bemrc"),
-            "2": join(cwdPath, "grandparent", "parent", ".bemrc"),
-            "3": join(cwdPath, "grandparent", ".bemrc"),
+            1: join(cwdPath, "grandparent", "parent", "cwd", ".bemrc"),
+            2: join(cwdPath, "grandparent", "parent", ".bemrc"),
+            3: join(cwdPath, "grandparent", ".bemrc"),
             config: "/config/testfile",
             env_config: "/env/config/.bemrc",
             etc: "/etc/bemrc",
@@ -330,7 +330,7 @@ describe("rc", () => {
 
         mocks.mockedCwd.mockReturnValue(join(cwdPath, "grandparent", "parent", "cwd"));
         mocks.mockedIsAccessibleSync.mockImplementation((file) => {
-            // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+            // eslint-disable-next-line no-loops/no-loops
             for (const path of Object.values(files)) {
                 if (file === path) {
                     return true;
@@ -367,7 +367,7 @@ describe("rc", () => {
          * 9 if you passed environment variable `${appname}_config` then from that file
          * 10 if you passed options.config variable, then from that file
          * 11 environment variables prefixed with `${appname}_`
-         *   or use "\_\_" to indicate nested properties <br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
+         *   or use "\_\_" to indicate nested properties &lt;br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
          */
         expect(rc("bem", { config: "/config/testfile", defaults: { default: "default" } })).toStrictEqual({
             config: {

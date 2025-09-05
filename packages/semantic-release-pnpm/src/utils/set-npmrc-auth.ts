@@ -22,12 +22,10 @@ import nerfDart from "./nerf-dart";
  *
  * If none of the above strategies results in credentials being written, a semantic-release error with
  * code `ENONPMTOKEN` is thrown.
- *
- * @param {string}       npmrc     – Path to the `.npmrc` that should receive credentials when needed.
- * @param {string}       registry  – Registry URL for which credentials are required.
- * @param {CommonContext} context   – Semantic-release context (provides env, cwd and logger).
- *
- * @returns {Promise<void>} Resolves once credentials are verified or have been written.
+ * @param npmrc – Path to the `.npmrc` that should receive credentials when needed.
+ * @param registry – Registry URL for which credentials are required.
+ * @param context – Semantic-release context (provides env, cwd and logger).
+ * @returns Resolves once credentials are verified or have been written.
  */
 export default async (
     npmrc: string,

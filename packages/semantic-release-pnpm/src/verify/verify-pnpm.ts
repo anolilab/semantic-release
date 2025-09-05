@@ -13,10 +13,8 @@ const MIN_PNPM_VERSION = "8.0.0";
  *
  * When the version is lower than {@link MIN_PNPM_VERSION} a semantic-release error `EINVALIDPNPM` is
  * thrown so that the release process aborts with a clear message.
- *
- * @param {CommonContext} context – semantic-release context providing a logger instance.
- *
- * @returns {Promise<void>} Resolves when the installed pnpm version is acceptable.
+ * @param context – semantic-release context providing a logger instance.
+ * @returns Resolves when the installed pnpm version is acceptable.
  */
 export default async function verifyPnpm({ logger }: CommonContext): Promise<void> {
     logger.log(`Verify pnpm version is >= ${MIN_PNPM_VERSION}`);

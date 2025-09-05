@@ -23,6 +23,7 @@ describe("get-pkg", () => {
         expect.assertions(2);
 
         const packageJson = { name: "package", version: "0.0.0" };
+
         await writeJson(resolve(cwd, "package.json"), packageJson);
 
         const result = await getPackage({}, { cwd });
@@ -36,6 +37,7 @@ describe("get-pkg", () => {
 
         const packageRoot = "dist";
         const packageJson = { name: "package", version: "0.0.0" };
+
         await writeJson(resolve(cwd, packageRoot, "package.json"), packageJson);
 
         const result = await getPackage({ pkgRoot: packageRoot }, { cwd });

@@ -9,20 +9,16 @@ import { merge } from "ts-deepmerge";
 
 import isJson from "./utils/is-json";
 
-// eslint-disable-next-line no-secrets/no-secrets
 /**
  * Modified copy of the env function from https://github.com/dominictarr/rc/blob/a97f6adcc37ee1cad06ab7dc9b0bd842bbc5c664/lib/utils.js#L42
- *
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.APACHE2
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.BSD
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.MIT
- *
- * @param {string} prefix
- * @param {Record<string, string | undefined>} environment
- *
- * @returns {Record<string, any>}
+ * @param prefix
+ * @param environment
+ * @returns
  */
-// eslint-disable-next-line sonarjs/cognitive-complexity,@typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getEnvironment = (prefix: string, environment: Record<string, string | undefined> = env): Record<string, any> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const returnValue: Record<string, any> = {};
@@ -90,28 +86,27 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
  * - if you passed environment variable `${appname}_config` then from that file
  * - if you passed options.config variable, then from that file
  * - environment variables prefixed with `${appname}_`
- *   or use "\_\_" to indicate nested properties <br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
- *
- * @param {string} name
- * @param {string} home
- * @param {string} internalCwd
- * @param {string | undefined} stopAt
- * @param {string | undefined} environmentConfig
- * @param {string | undefined} optionConfig
- * @returns {Array<string>}
+ * or use "\_\_" to indicate nested properties &lt;br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
+ * @param name
+ * @param home
+ * @param internalCwd
+ * @param stopAt
+ * @param environmentConfig
+ * @param optionConfig
+ * @returns
  */
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?: string, environmentConfig?: string, optionConfig?: string): string[] => {
     const configFiles = new Set<string>();
 
-    // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+    // eslint-disable-next-line no-loops/no-loops
     for (const file of [`/etc/${name}/config`, `/etc/${name}rc`]) {
         if (isAccessibleSync(file)) {
             configFiles.add(file);
         }
     }
 
-    // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+    // eslint-disable-next-line no-loops/no-loops
     for (const file of [join(home, ".config", name, "config"), join(home, ".config", name), join(home, `.${name}`, "config"), join(home, `.${name}rc`)]) {
         if (isAccessibleSync(file)) {
             configFiles.add(file);
@@ -125,13 +120,13 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     let start = internalCwd;
     let endOfLoop = false;
 
-    const files = [join("." + name, "config.json"), join("." + name, "config"), join("." + name + "rc.json"), join("." + name + "rc")];
+    const files = [join(`.${name}`, "config.json"), join(`.${name}`, "config"), join(`.${name}rc.json`), join(`.${name}rc`)];
 
     const traversedFiles: string[] = [];
 
     // eslint-disable-next-line no-loops/no-loops
     do {
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+        // eslint-disable-next-line no-loops/no-loops
         for (const file of files) {
             const traverseFile = join(start, file);
 
@@ -150,7 +145,7 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     } while (stopAt ? start === stopAt : true); // root
 
     // reverse the traversedFiles so its starts with root
-    // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+    // eslint-disable-next-line no-loops/no-loops
     for (const file of traversedFiles.reverse()) {
         configFiles.add(file);
     }
@@ -177,16 +172,14 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
  *
  * The function also returns the list of configuration file paths that were read while resolving the
  * configuration. No mutation is performed on any of the discovered files – they are only read.
- *
- * @param {string} name               The base name of the application (used to derive env-var prefix and file names).
- * @param {object} [options]          Optional behaviour switches.
- * @param {string} [options.config]   Explicit path to a configuration file that should be merged last.
- * @param {string} [options.cwd]      Working directory to start searching for local configuration files.
- * @param {object} [options.defaults] Default configuration values that act as the lowest precedence.
- * @param {string} [options.home]     Home directory to look for user-level configuration files. Defaults to the current user home directory.
- * @param {string} [options.stopAt]   Absolute path that acts as a boundary when traversing up the directory tree.
- *
- * @returns {{ config: Record<string, any>, files: string[] }}
+ * @param name The base name of the application (used to derive env-var prefix and file names).
+ * @param [options] Optional behaviour switches.
+ * @param [options.config] Explicit path to a configuration file that should be merged last.
+ * @param [options.cwd] Working directory to start searching for local configuration files.
+ * @param [options.defaults] Default configuration values that act as the lowest precedence.
+ * @param [options.home] Home directory to look for user-level configuration files. Defaults to the current user home directory.
+ * @param [options.stopAt] Absolute path that acts as a boundary when traversing up the directory tree.
+ * @returns
  * An object containing the final merged `config` and the ordered list of `files` that were considered.
  */
 // eslint-disable-next-line import/prefer-default-export
@@ -215,7 +208,7 @@ export const rc = (
 
     const configs: object[] = [];
 
-    // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+    // eslint-disable-next-line no-loops/no-loops
     for (const file of configFiles) {
         const content = readFileSync(file, { buffer: false });
 
@@ -226,7 +219,6 @@ export const rc = (
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (environment) {
         configs.push(environment);
     }

@@ -30,7 +30,7 @@ vi.mock("@visulima/path", async () => {
     };
 });
 
-describe("getNpmrcPath", () => {
+describe(getNpmrcPath, () => {
     const cwd = "/test/directory";
     const npmrcPath = "/test/directory/.npmrc";
 

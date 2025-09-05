@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import getChannel from "../../../src/utils/get-channel";
 
-describe("getChannel", () => {
+describe(getChannel, () => {
     it("get default channel", () => {
         expect.assertions(1);
 
@@ -15,7 +15,7 @@ describe("getChannel", () => {
         expect(getChannel("next")).toBe("next");
     });
 
-    it('prefix channel with "release-" if invalid', () => {
+    it("prefix channel with \"release-\" if invalid", () => {
         expect.assertions(2);
 
         expect(getChannel("1.x")).toBe("release-1.x");

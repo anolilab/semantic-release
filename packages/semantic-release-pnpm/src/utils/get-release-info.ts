@@ -19,13 +19,11 @@ export interface ReleaseInfo {
  * When the publish happened on the default npm registry, a direct URL to the version on npmjs.com is
  * included to make the release notes more useful. For custom registries the URL is omitted because a
  * standard pattern cannot be guaranteed.
- *
- * @param {PackageJson}    pkg            – The package manifest (used for the package name).
- * @param {PublishContext} context        – Semantic-release publish context (provides version & env).
- * @param {string}         distributionTag – The dist-tag that was used (e.g. `latest`, `next`).
- * @param {string}         registry       – The registry URL to which the package was published.
- *
- * @returns {ReleaseInfo} Populated release information object consumed by semantic-release.
+ * @param pkg – The package manifest (used for the package name).
+ * @param context – Semantic-release publish context (provides version & env).
+ * @param distributionTag – The dist-tag that was used (e.g. `latest`, `next`).
+ * @param registry – The registry URL to which the package was published.
+ * @returns Populated release information object consumed by semantic-release.
  */
 export const getReleaseInfo = (
     { name }: PackageJson,

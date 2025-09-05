@@ -41,10 +41,8 @@ const VALIDATORS: Record<string, ValidatorFunction> = {
  * • pkgRoot, publishBranch, tarballDir – must be non-empty strings.
  *
  * Options that are `null` or `undefined` are ignored (treated as not provided).
- *
- * @param {PluginConfig} config – Plugin configuration object to validate.
- *
- * @returns {SemanticReleaseError[]} An array of validation errors (empty when the configuration is valid).
+ * @param config – Plugin configuration object to validate.
+ * @returns An array of validation errors (empty when the configuration is valid).
  */
 export default (config: PluginConfig): SemanticReleaseError[] =>
     // eslint-disable-next-line unicorn/no-array-reduce

@@ -16,13 +16,11 @@ import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
  *
  * Typical use-case: publish a version on `next` first and, after manual verification, promote the
  * same version to the `latest` channel in a follow-up release.
- *
- * @param {PluginConfig}     pluginConfig – Plugin configuration object.
- * @param {PackageJson}      packageJson  – The package manifest that has just been published.
- * @param {AddChannelContext} context      – Semantic-release addChannel context.
- *
- * @returns {Promise<ReleaseInfo | false>} A release info object when the dist-tag was added or
- *                                        `false` when the operation was skipped.
+ * @param pluginConfig – Plugin configuration object.
+ * @param packageJson – The package manifest that has just been published.
+ * @param context – Semantic-release addChannel context.
+ * @returns A release info object when the dist-tag was added or
+ * `false` when the operation was skipped.
  */
 export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: AddChannelContext): Promise<ReleaseInfo | false> => {
     const {
@@ -42,7 +40,6 @@ export default async (pluginConfig: PluginConfig, packageJson: PackageJson, cont
 
         const npmrc = getNpmrcPath(cwd, env);
 
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         const result = execa("pnpm", ["dist-tag", "add", `${packageJson.name}@${version}`, distributionTag, "--userconfig", npmrc, "--registry", registry], {
             cwd,
             env,
@@ -54,13 +51,11 @@ export default async (pluginConfig: PluginConfig, packageJson: PackageJson, cont
 
         await result;
 
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         logger.log(`Added ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}`);
 
         return getReleaseInfo(packageJson, context, distributionTag, registry);
     }
 
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     logger.log(`Skip adding to npm channel as ${reasonToNotPublish(pluginConfig, packageJson)}`);
 
     return false;

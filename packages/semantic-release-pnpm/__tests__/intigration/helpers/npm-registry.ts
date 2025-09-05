@@ -63,10 +63,10 @@ export const start = async (): Promise<void> => {
 export const url = `http://${REGISTRY_HOST}:${REGISTRY_PORT}/`;
 
 export const authEnvironment = {
+    npm_config_registry: url,
     NPM_EMAIL,
     NPM_PASSWORD,
     NPM_USERNAME,
-    npm_config_registry: url,
 };
 
 /**

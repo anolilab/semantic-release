@@ -3,10 +3,9 @@
  *
  * MIT License
  *
- * Copyright (c) Hiroki Osame <hiroki.osame@gmail.com>
+ * Copyright (c) Hiroki Osame &lt;hiroki.osame@gmail.com>
  *
  * Default properties to keep in package.json.
- *
  * @type {string[]}
  */
 const defaultKeepProperties = [

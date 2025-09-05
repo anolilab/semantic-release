@@ -3,13 +3,11 @@ import packageJson from "../../package.json";
 /**
  * Build an absolute URL to a file within the repository based on the `homepage` field of the plugin
  * package.json (which points to the GitHub repository).
- *
  * @param {string} file – Relative path within the repository.
- *
  * @returns {string} GitHub URL to the requested file on the `main` branch.
  */
-// eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-const linkify = (file: string) => packageJson.homepage + "/blob/main/" + file;
+
+const linkify = (file: string) => `${packageJson.homepage}/blob/main/${file}`;
 
 interface ErrorDetails {
     details: string;

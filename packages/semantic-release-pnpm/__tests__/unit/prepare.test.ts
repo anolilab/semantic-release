@@ -14,7 +14,7 @@ import prepare from "../../src/prepare";
 const logSpy = vi.fn();
 const logger = { error: vi.fn(), log: logSpy, success: vi.fn() };
 
-describe("prepare", () => {
+describe(prepare, () => {
     let cwd: string;
 
     beforeEach(async () => {
@@ -78,6 +78,7 @@ describe("prepare", () => {
         expect.assertions(2);
 
         const packagePath = join(cwd, "package.json");
+
         await writeFile(packagePath, `{\r\n        "name": "package-name",\r\n        "version": "0.0.0-dev"\r\n}\r\n`);
 
         await prepare({}, {
@@ -95,7 +96,7 @@ describe("prepare", () => {
         await expect(readFile(packagePath)).resolves.toStrictEqual(expectedContent);
     });
 
-    it('should create the package in the "tarballDir" directory', async () => {
+    it("should create the package in the \"tarballDir\" directory", async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");
@@ -117,10 +118,10 @@ describe("prepare", () => {
 
         expect(logSpy).toHaveBeenCalledWith("Write version %s to package.json in %s", "1.0.0", cwd);
         expect(packageJson.version).toBe("1.0.0");
-        await expect(isAccessible(tarballPath)).resolves.toBeTruthy();
+        await expect(isAccessible(tarballPath)).resolves.toBe(true);
     });
 
-    it('should only move the created tarball if the "tarballDir" directory is not the CWD', async () => {
+    it("should only move the created tarball if the \"tarballDir\" directory is not the CWD", async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");
@@ -142,6 +143,6 @@ describe("prepare", () => {
 
         expect(logSpy).toHaveBeenCalledWith("Write version %s to package.json in %s", "1.0.0", cwd);
         expect(packageJson.version).toBe("1.0.0");
-        await expect(isAccessible(tarballPath)).resolves.toBeTruthy();
+        await expect(isAccessible(tarballPath)).resolves.toBe(true);
     });
 });

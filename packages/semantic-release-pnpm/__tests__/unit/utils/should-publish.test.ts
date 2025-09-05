@@ -4,8 +4,8 @@ import { describe, expect, it } from "vitest";
 import type { PluginConfig } from "../../../src/definitions/plugin-config";
 import { reasonToNotPublish, shouldPublish } from "../../../src/utils/should-publish";
 
-describe("reasonToNotPublish", () => {
-    it('should return "npmPublish plugin option is false" when npmPublish is false', () => {
+describe(reasonToNotPublish, () => {
+    it("should return \"npmPublish plugin option is false\" when npmPublish is false", () => {
         expect.assertions(1);
 
         const pluginConfig: PluginConfig = { npmPublish: false };
@@ -16,7 +16,7 @@ describe("reasonToNotPublish", () => {
         expect(result).toBe("npmPublish plugin option is false");
     });
 
-    it('should return "package is private and has no workspaces" when package is private and has no workspaces', () => {
+    it("should return \"package is private and has no workspaces\" when package is private and has no workspaces", () => {
         expect.assertions(1);
 
         const pluginConfig: PluginConfig = { npmPublish: true };
@@ -50,7 +50,7 @@ describe("reasonToNotPublish", () => {
     });
 });
 
-describe("shouldPublish", () => {
+describe(shouldPublish, () => {
     it("should return false when npmPublish is false", () => {
         expect.assertions(1);
 
@@ -59,7 +59,7 @@ describe("shouldPublish", () => {
 
         const result = shouldPublish(pluginConfig, packageJson);
 
-        expect(result).toBeFalsy();
+        expect(result).toBe(false);
     });
 
     it("should return false when package is private and has no workspaces", () => {
@@ -70,7 +70,7 @@ describe("shouldPublish", () => {
 
         const result = shouldPublish(pluginConfig, packageJson);
 
-        expect(result).toBeFalsy();
+        expect(result).toBe(false);
     });
 
     it("should return true when npmPublish is true, package is not private, and has no workspaces", () => {
@@ -81,7 +81,7 @@ describe("shouldPublish", () => {
 
         const result = shouldPublish(pluginConfig, packageJson);
 
-        expect(result).toBeTruthy();
+        expect(result).toBe(true);
     });
 
     it("should return true when package is private but has workspaces", () => {
@@ -92,6 +92,6 @@ describe("shouldPublish", () => {
 
         const result = shouldPublish(pluginConfig, packageJson);
 
-        expect(result).toBeTruthy();
+        expect(result).toBe(true);
     });
 });

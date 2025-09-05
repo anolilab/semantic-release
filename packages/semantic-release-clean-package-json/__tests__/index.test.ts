@@ -81,8 +81,8 @@ describe("semantic-release-clean-package-json", () => {
             version: "1.0.0",
         });
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "devDependencies"');
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "eslintConfig"');
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"devDependencies\"");
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"eslintConfig\"");
     });
 
     it("should keep flag from given config", async () => {
@@ -121,7 +121,7 @@ describe("semantic-release-clean-package-json", () => {
         );
     });
 
-    describe("success", () => {
+    describe(success, () => {
         it("should restore package.json from backup and update version", async () => {
             expect.assertions(3);
 
@@ -173,6 +173,7 @@ describe("semantic-release-clean-package-json", () => {
 
             // Verify the restored package.json
             const restoredPackageJson = await readJson(packageJsonPath);
+
             expect(restoredPackageJson).toStrictEqual(DEFAULT_PACKAGE_JSON); // This is just mocked without the pnpm or npm semantic-release plugin
 
             expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Restored modified package.json from backup.");

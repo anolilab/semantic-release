@@ -14,12 +14,10 @@ import setNpmrcAuth from "../utils/set-npmrc-auth";
  * {@link setNpmrcAuth}. When the registry equals the default public npm registry the function runs
  * `pnpm whoami` to perform an online verification of the credentials. For custom registries the
  * online check is skipped because it might not be supported.
- *
- * @param {string}        npmrc     – Path to the `.npmrc` that contains (or will receive) credentials.
- * @param {PackageJson}   package_  – The package manifest (used to derive the registry when `publishConfig.registry` is set).
- * @param {CommonContext} context   – semantic-release context providing env, logger, streams, etc.
- *
- * @returns {Promise<void>} Resolves when authentication has been verified.
+ * @param npmrc – Path to the `.npmrc` that contains (or will receive) credentials.
+ * @param package_ – The package manifest (used to derive the registry when `publishConfig.registry` is set).
+ * @param context – semantic-release context providing env, logger, streams, etc.
+ * @returns Resolves when authentication has been verified.
  */
 export default async (npmrc: string, package_: PackageJson, context: CommonContext): Promise<void> => {
     const {

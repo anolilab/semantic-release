@@ -18,12 +18,10 @@ import verifyPnpm from "./verify-pnpm";
  *
  * Any errors coming from the individual verifiers are collected and only thrown at the very end so
  * that users can fix multiple issues in a single iteration.
- *
- * @param {PluginConfig}            pluginConfig – Resolved configuration object for the plugin.
- * @param {VerifyConditionsContext} context       – semantic-release context for the verify phase.
- *
- * @returns {Promise<void>} Resolves when all verifiers succeed, otherwise rejects with an
- *                         `AggregateError`.
+ * @param pluginConfig – Resolved configuration object for the plugin.
+ * @param context – semantic-release context for the verify phase.
+ * @returns Resolves when all verifiers succeed, otherwise rejects with an
+ * `AggregateError`.
  */
 const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsContext): Promise<void> => {
     let errors: Error[] = verifyConfig(pluginConfig);
@@ -37,8 +35,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        errors = [...errors, ...(typedError.errors ?? [error])];
+        errors = [...errors, ...typedError.errors ?? [error]];
     }
 
     try {
@@ -55,8 +52,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        errors = [...errors, ...(typedError.errors ?? [error])];
+        errors = [...errors, ...typedError.errors ?? [error]];
     }
 
     if (errors.length > 0) {

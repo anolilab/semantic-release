@@ -30,7 +30,7 @@ describe("semantic-release-integration", () => {
     });
 
     // eslint-disable-next-line vitest/no-disabled-tests
-    it.skip('should skip npm auth verification if "npmPublish" is false', async () => {
+    it.skip("should skip npm auth verification if \"npmPublish\" is false", async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), { name: "published", publishConfig: { registry: npmRegistryUrl }, version: "1.0.0" });

@@ -7,10 +7,8 @@ import { URL } from "node:url";
  * Copyright (c) npm, Inc.
  *
  * Name courtesy schiffertronix media LLC, a New Jersey corporation
- *
- * @param {String} url The URL to be nerfed.
- *
- * @returns {String} A nerfed URL.
+ * @param url The URL to be nerfed.
+ * @returns A nerfed URL.
  */
 const nerfDart = (url: string): string => {
     const parsed = new URL(url);

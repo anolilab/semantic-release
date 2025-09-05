@@ -15,11 +15,9 @@ import getPackage from "./utils/get-pkg";
  * via the `pluginConfig.keep` option are preserved. The original `package.json` is backed-up to
  * `package.json.back` before the clean-up starts so that it can be restored later in the `success`
  * step.
- *
- * @param {PluginConfig} pluginConfig Configuration object passed to the plugin.
- * @param {PublishContext} context     Semantic-release publish context.
- *
- * @returns {Promise<void>} Resolves once the cleaned `package.json` has been written to disk.
+ * @param pluginConfig Configuration object passed to the plugin.
+ * @param context Semantic-release publish context.
+ * @returns Resolves once the cleaned `package.json` has been written to disk.
  */
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
@@ -31,7 +29,7 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
     context.logger.log("Created a backup of the package.json file.");
 
-    const keepProperties = new Set([...defaultKeepProperties, ...(pluginConfig.keep ?? [])]);
+    const keepProperties = new Set([...defaultKeepProperties, ...pluginConfig.keep ?? []]);
 
     context.logger.log(`Keeping the following properties: ${[...keepProperties].join(", ")}`);
 
@@ -40,7 +38,6 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
     // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
     for (const property in packageJsonCopy) {
         if (keepProperties.has(property)) {
-            // eslint-disable-next-line no-continue
             continue;
         }
 
@@ -48,7 +45,6 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
             // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
             for (const script in packageJsonCopy.scripts) {
                 if (keepProperties.has(`${property}.${script}`)) {
-                    // eslint-disable-next-line no-continue
                     continue;
                 }
 
@@ -57,7 +53,6 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
             }
 
             if (packageJsonCopy.scripts && Object.keys(packageJsonCopy.scripts).length > 0) {
-                // eslint-disable-next-line no-continue
                 continue;
             }
         }
@@ -76,11 +71,9 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
  * Restore the original `package.json` after a successful release. The backed-up version is read from
  * `package.json.back`, its version is replaced with the version that was just released and finally it
  * is written back to `package.json` (overwriting the temporary, cleaned version).
- *
- * @param {PluginConfig} pluginConfig Configuration object passed to the plugin.
- * @param {CommonContext} context     Semantic-release success context.
- *
- * @returns {Promise<void>} Resolves once the original `package.json` has been restored.
+ * @param pluginConfig Configuration object passed to the plugin.
+ * @param context Semantic-release success context.
+ * @returns Resolves once the original `package.json` has been restored.
  */
 export const success = async (pluginConfig: PluginConfig, context: CommonContext): Promise<void> => {
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
