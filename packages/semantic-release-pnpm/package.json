@@ -75,7 +75,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "^16.2.25",
         "@arethetypeswrong/cli": "^0.18.2",
-        "@secretlint/secretlint-rule-preset-recommend": "^11.2.0",
+        "@secretlint/secretlint-rule-preset-recommend": "^11.2.3",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^7.1.0",
@@ -100,7 +100,7 @@
         "got": "^14.4.8",
         "p-retry": "^7.0.0",
         "rimraf": "^6.0.1",
-        "secretlint": "11.2.0",
+        "secretlint": "11.2.3",
         "semantic-release": "^24.2.7",
         "stream-buffers": "^3.0.3",
         "tempy": "^3.1.0",

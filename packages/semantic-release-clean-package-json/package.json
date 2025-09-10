@@ -65,7 +65,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "^16.2.25",
         "@anolilab/semantic-release-pnpm": "2.0.3",
-        "@secretlint/secretlint-rule-preset-recommend": "^11.2.0",
+        "@secretlint/secretlint-rule-preset-recommend": "^11.2.3",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/commit-analyzer": "13.0.1",
         "@semantic-release/exec": "^7.1.0",
@@ -81,7 +81,7 @@
         "esbuild": "0.25.9",
         "eslint": "9.35.0",
         "rimraf": "^6.0.1",
-        "secretlint": "11.2.0",
+        "secretlint": "11.2.3",
         "semantic-release": "^24.2.7",
         "tempy": "^3.1.0",
         "type-fest": "^4.41.0",
