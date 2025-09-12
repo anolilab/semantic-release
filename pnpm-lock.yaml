@@ -8,7 +8,7 @@ overrides:
   '@anolilab/multi-semantic-release': workspace:*
   '@anolilab/rc': workspace:*
   '@anolilab/semantic-release-pnpm': workspace:*
-  chrono-node@<2.2.4: '>=2.2.4'
+  chrono-node@<2.2.4: '>=2.8.4'
   undici@>=6.0.0 <6.21.2: '>=6.21.2'
   tar-fs@>=2.0.0 <2.1.3: '>=2.1.3'
   form-data@>=4.0.0 <4.0.4: '>=4.0.4'
@@ -98,8 +98,8 @@ importers:
         specifier: ^3.4.0
         version: 3.4.0
       taze:
-        specifier: ^19.5.0
-        version: 19.5.0
+        specifier: ^19.6.0
+        version: 19.6.0
       textlint:
         specifier: ^15.2.2
         version: 15.2.2
@@ -3362,8 +3362,8 @@ packages:
     resolution: {integrity: sha512-OAlb+T7V4Op9OwdkjmguYRqncdlx5JiofwOAUkmTF+jNdHwzTaTs4sRAGpzLF3oOz5xAyDGrPgeIDFQmDOTiJw==}
     engines: {node: '>= 16'}
 
-  chrono-node@2.8.2:
-    resolution: {integrity: sha512-7BJ6TRHs4sFtOSsTISWXGKjg7C70wD+NU+44uA6euGnbvZnECvgzUv+5TS9sICta2sBQWej4UYy8XAg4W9E7rQ==}
+  chrono-node@2.8.4:
+    resolution: {integrity: sha512-F+Rq88qF3H2dwjnFrl3TZrn5v4ZO57XxeQ+AhuL1C685So1hdUV/hT/q8Ja5UbmPYEZfx8VrxFDa72Dgldcxpg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   ci-info@3.9.0:
@@ -7664,8 +7664,8 @@ packages:
   tar-stream@3.1.7:
     resolution: {integrity: sha512-qJj60CXt7IU1Ffyc3NJMjh6EkuCFej46zUqJ4J7pqYlThyd9bO0XBTmcOIhSzZJVWfsLks0+nle/j538YAW9RQ==}
 
-  taze@19.5.0:
-    resolution: {integrity: sha512-4Rjy23i2bcFWM74rIW1KtsIul57XchYy3U7SXf6JUIveqcllI4tS3cgPwQKnq8X7as0Up9TWBDpD/sBhfB8vSg==}
+  taze@19.6.0:
+    resolution: {integrity: sha512-hQGQH4WVtV9BqsZbrGzOmOP4NdWqie948BnqtH+NPwdVt5mI+qALVRDvgzgdf+neN7bcrVVpV4ToyFkxg0U0xQ==}
     hasBin: true
 
   temp-dir@3.0.0:
@@ -11441,7 +11441,7 @@ snapshots:
 
   check-error@2.1.1: {}
 
-  chrono-node@2.8.2:
+  chrono-node@2.8.4:
     dependencies:
       dayjs: 1.11.11
 
@@ -16766,7 +16766,7 @@ snapshots:
       fast-fifo: 1.3.2
       streamx: 2.22.1
 
-  taze@19.5.0:
+  taze@19.6.0:
     dependencies:
       '@antfu/ni': 25.0.0
       cac: 6.7.14
@@ -16837,7 +16837,7 @@ snapshots:
 
   textlint-rule-date-weekday-mismatch@1.1.1:
     dependencies:
-      chrono-node: 2.8.2
+      chrono-node: 2.8.4
       moment: 2.30.1
       textlint-tester: 12.6.1
     transitivePeerDependencies:
