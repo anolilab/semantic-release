@@ -13,6 +13,7 @@ ignore: |
     *workspace.yaml
     chromatic.yml
     __fixtures__/
+    packages/semantic-release-pnpm/__tests__/intigration/helpers/config.yaml
 
 rules:
     braces:
