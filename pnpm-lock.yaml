@@ -256,7 +256,7 @@ importers:
         version: 6.0.4(prettier@3.6.2)
       '@ckeditor/typedoc-plugins':
         specifier: 43.1.0
-        version: 43.1.0(typedoc@0.28.12(typescript@5.9.2))
+        version: 43.1.0(typedoc@0.28.13(typescript@5.9.2))
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: ^11.2.4
         version: 11.2.4
@@ -286,7 +286,7 @@ importers:
         version: 24.3.1
       '@visulima/packem':
         specifier: 2.0.0-alpha.19
-        version: 2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.12(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.12(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.12(typescript@5.9.2)))(typedoc@0.28.12(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)
+        version: 2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.13(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.2)))(typedoc@0.28.13(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4)
@@ -318,14 +318,14 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
       typedoc:
-        specifier: 0.28.12
-        version: 0.28.12(typescript@5.9.2)
+        specifier: 0.28.13
+        version: 0.28.13(typescript@5.9.2)
       typedoc-plugin-markdown:
         specifier: 4.8.1
-        version: 4.8.1(typedoc@0.28.12(typescript@5.9.2))
+        version: 4.8.1(typedoc@0.28.13(typescript@5.9.2))
       typedoc-plugin-rename-defaults:
         specifier: 0.7.3
-        version: 0.7.3(typedoc@0.28.12(typescript@5.9.2))
+        version: 0.7.3(typedoc@0.28.13(typescript@5.9.2))
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
@@ -383,7 +383,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: 2.0.0-alpha.19
-        version: 2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.12(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.12(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.12(typescript@5.9.2)))(typedoc@0.28.12(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)
+        version: 2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.13(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.2)))(typedoc@0.28.13(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4)
@@ -498,7 +498,7 @@ importers:
         version: 3.0.7
       '@visulima/packem':
         specifier: 2.0.0-alpha.19
-        version: 2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.12(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.12(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.12(typescript@5.9.2)))(typedoc@0.28.12(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)
+        version: 2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.13(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.2)))(typedoc@0.28.13(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4)
@@ -8006,8 +8006,8 @@ packages:
     peerDependencies:
       typedoc: '>=0.22.x <0.29.x'
 
-  typedoc@0.28.12:
-    resolution: {integrity: sha512-H5ODu4f7N+myG4MfuSp2Vh6wV+WLoZaEYxKPt2y8hmmqNEMVrH69DAjjdmYivF4tP/C2jrIZCZhPalZlTU/ipA==}
+  typedoc@0.28.13:
+    resolution: {integrity: sha512-dNWY8msnYB2a+7Audha+aTF1Pu3euiE7ySp53w8kEsXoYw7dMouV5A1UsTUY345aB152RHnmRMDiovuBi7BD+w==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -8827,9 +8827,9 @@ snapshots:
 
   '@braidai/lang@1.1.1': {}
 
-  '@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.12(typescript@5.9.2))':
+  '@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.2))':
     dependencies:
-      typedoc: 0.28.12(typescript@5.9.2)
+      typedoc: 0.28.13(typescript@5.9.2)
 
   '@clack/core@0.5.0':
     dependencies:
@@ -10821,7 +10821,7 @@ snapshots:
       - '@types/node'
       - yaml
 
-  '@visulima/packem@2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.12(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.12(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.12(typescript@5.9.2)))(typedoc@0.28.12(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)':
+  '@visulima/packem@2.0.0-alpha.19(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.2)))(@types/node@24.3.1)(esbuild@0.25.9)(postcss@8.5.6)(typedoc-plugin-markdown@4.8.1(typedoc@0.28.13(typescript@5.9.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.2)))(typedoc@0.28.13(typescript@5.9.2))(typescript@5.9.2)(yaml@2.8.1)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -10852,12 +10852,12 @@ snapshots:
       tinyexec: 1.0.1
       tinyglobby: 0.2.14
     optionalDependencies:
-      '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.12(typescript@5.9.2))
+      '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.13(typescript@5.9.2))
       esbuild: 0.25.9
       postcss: 8.5.6
-      typedoc: 0.28.12(typescript@5.9.2)
-      typedoc-plugin-markdown: 4.8.1(typedoc@0.28.12(typescript@5.9.2))
-      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.12(typescript@5.9.2))
+      typedoc: 0.28.13(typescript@5.9.2)
+      typedoc-plugin-markdown: 4.8.1(typedoc@0.28.13(typescript@5.9.2))
+      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.13(typescript@5.9.2))
       typescript: 5.9.2
     transitivePeerDependencies:
       - '@75lb/nature'
@@ -17170,16 +17170,16 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-markdown@4.8.1(typedoc@0.28.12(typescript@5.9.2)):
+  typedoc-plugin-markdown@4.8.1(typedoc@0.28.13(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.12(typescript@5.9.2)
+      typedoc: 0.28.13(typescript@5.9.2)
 
-  typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.12(typescript@5.9.2)):
+  typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.2)):
     dependencies:
       camelcase: 8.0.0
-      typedoc: 0.28.12(typescript@5.9.2)
+      typedoc: 0.28.13(typescript@5.9.2)
 
-  typedoc@0.28.12(typescript@5.9.2):
+  typedoc@0.28.13(typescript@5.9.2):
     dependencies:
       '@gerrit0/mini-shiki': 3.12.2
       lunr: 2.3.9
