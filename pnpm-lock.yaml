@@ -14,7 +14,7 @@ overrides:
   form-data@>=4.0.0 <4.0.4: '>=4.0.4'
   '@eslint/plugin-kit@<0.3.4': '>=0.3.4'
   tmp@<=0.2.3: '>=0.2.4'
-  vite@>=6.0.0 <=6.3.5: '>=6.3.6'
+  vite@>=6.0.0 <=6.3.5: '>=7.1.5'
   axios@<1.12.0: '>=1.12.0'
 
 importers:
@@ -2858,7 +2858,7 @@ packages:
     resolution: {integrity: sha512-46ryTE9RZO/rfDd7pEqFl7etuyzekzEhUbTW3BvmeO/BcCMEgq59BKhek3dXDWgAj4oMK6OZi+vRr1wPW6qjEQ==}
     peerDependencies:
       msw: ^2.4.9
-      vite: '>=6.3.6'
+      vite: '>=7.1.5'
     peerDependenciesMeta:
       msw:
         optional: true
