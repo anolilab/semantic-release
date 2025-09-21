@@ -1,4 +1,3 @@
-// eslint-disable-next-line unicorn/prevent-abbreviations
 import type { FindUpOptions } from "@visulima/fs";
 import { findUp, readJson } from "@visulima/fs";
 import { NotFoundError } from "@visulima/fs/error";
@@ -49,10 +48,12 @@ const findPackageJson = async (
  * missing or it does not contain a `name` field.
  * @param options Plugin options containing an optional `pkgRoot` that
  * points to the publish sub-directory.
+ * @param options.pkgRoot The publish sub-directory.
  * @param context Semantic-release context providing the base cwd.
+ * @param context.cwd The base cwd.
  * @returns The parsed package.json object.
  */
-export default async (
+const getPackage = async (
     {
         pkgRoot,
     }: {
@@ -81,3 +82,5 @@ export default async (
         throw error;
     }
 };
+
+export default getPackage;

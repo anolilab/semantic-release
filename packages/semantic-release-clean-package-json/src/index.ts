@@ -7,7 +7,7 @@ import type { PackageJson } from "type-fest";
 import defaultKeepProperties from "./default-keep-properties";
 import type { CommonContext, PublishContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
-import getPackage from "./utils/get-pkg";
+import getPackage from "./utils/get-package";
 
 /**
  * Clean the `package.json` that will be published by removing properties that are not relevant for the
@@ -19,6 +19,7 @@ import getPackage from "./utils/get-pkg";
  * @param context Semantic-release publish context.
  * @returns Resolves once the cleaned `package.json` has been written to disk.
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
@@ -29,26 +30,26 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
     context.logger.log("Created a backup of the package.json file.");
 
-    const keepProperties = new Set([...defaultKeepProperties, ...pluginConfig.keep ?? []]);
+    const keepProperties = new Set([...defaultKeepProperties, ...(pluginConfig.keep ?? [])]);
 
     context.logger.log(`Keeping the following properties: ${[...keepProperties].join(", ")}`);
 
     const packageJsonCopy = { ...packageJson };
 
-    // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+    // eslint-disable-next-line no-restricted-syntax
     for (const property in packageJsonCopy) {
         if (keepProperties.has(property)) {
             continue;
         }
 
         if (property === "scripts") {
-            // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+            // eslint-disable-next-line no-restricted-syntax
             for (const script in packageJsonCopy.scripts) {
                 if (keepProperties.has(`${property}.${script}`)) {
                     continue;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete packageJsonCopy.scripts[script];
             }
 
@@ -58,7 +59,7 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
         }
 
         context.logger.log(`Removing property "${property}"`);
-        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete packageJsonCopy[property];
     }
 

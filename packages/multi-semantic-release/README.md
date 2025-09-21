@@ -147,72 +147,78 @@ Multi-semantic-release can be configured using a configuration file in any of th
 ### Configuration File Formats
 
 1. **`package.json`** (under the `"multi-release"` key):
-   ```json
-   {
-     "name": "my-monorepo",
-     "version": "1.0.0",
-     "multi-release": {
-       "deps": {
-         "bump": "inherit",
-       },
-       "ignorePackages": ["packages/legacy/**"],
-       "tagFormat": "${name}@${version}"
-     }
-   }
-   ```
+
+    ```json
+    {
+        "name": "my-monorepo",
+        "version": "1.0.0",
+        "multi-release": {
+            "deps": {
+                "bump": "inherit"
+            },
+            "ignorePackages": ["packages/legacy/**"],
+            "tagFormat": "${name}@${version}"
+        }
+    }
+    ```
 
 2. **`.multi-releaserc`** (JSON format):
-   ```json
-   {
-     "deps": {
-       "bump": "inherit",
-     },
-     "ignorePackages": ["packages/legacy/**"],
-     "tagFormat": "${name}@${version}"
-   }
-   ```
+
+    ```json
+    {
+        "deps": {
+            "bump": "inherit"
+        },
+        "ignorePackages": ["packages/legacy/**"],
+        "tagFormat": "${name}@${version}"
+    }
+    ```
 
 3. **`.multi-releaserc.json`**:
-   ```json
-   {
-     "deps": {
-       "bump": "inherit",
-     }
-   }
-   ```
+
+    ```json
+    {
+        "deps": {
+            "bump": "inherit"
+        }
+    }
+    ```
 
 4. **`.multi-releaserc.js`** (CommonJS module):
-   ```javascript
-   module.exports = {
-     deps: {
-       bump: "inherit",
-     },
-     ignorePackages: ["packages/legacy/**"]
-   };
-   ```
+
+    ```javascript
+    module.exports = {
+        deps: {
+            bump: "inherit",
+        },
+        ignorePackages: ["packages/legacy/**"],
+    };
+    ```
 
 5. **`.multi-releaserc.cjs`** (CommonJS module):
-   ```javascript
-   module.exports = {
-     deps: {
-       bump: "inherit",
-       excludeDependencies: ["@visulima/packem", "my-circular-package"]
-     }
-   };
-   ```
+
+    ```javascript
+    module.exports = {
+        deps: {
+            bump: "inherit",
+            excludeDependencies: ["@visulima/packem", "my-circular-package"],
+        },
+    };
+    ```
 
 6. **`multi-release.config.js`** (ES module):
-   ```javascript
-   export default {
-     deps: {
-       bump: "inherit",
-     }
-   };
-   ```
+    ```javascript
+    export default {
+        deps: {
+            bump: "inherit",
+        },
+    };
+    ```
 
 ### Configuration Search
 
 Multi-semantic-release will search for configuration files in the following order:
+
 1. `package.json` (under `"multi-release"` property)
 2. `.multi-releaserc`
 3. `.multi-releaserc.json`

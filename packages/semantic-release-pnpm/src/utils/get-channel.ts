@@ -11,4 +11,4 @@ import { validRange } from "semver";
  * @param channel – The channel coming from `context.nextRelease.channel`.
  * @returns The npm dist-tag that should be used for the publish operation.
  */
-export default (channel: string | null | undefined): string => (channel ? (validRange(channel) ? `release-${channel}` : channel) : "latest");
+export default (channel: string | null | undefined): string => (channel ? validRange(channel) ? `release-${channel}` : channel : "latest");

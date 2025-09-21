@@ -70,7 +70,7 @@ export default function getManifest(path) {
 
     // Check dependencies.
     const checkDeps = (scope) => {
-        // eslint-disable-next-line no-prototype-builtins,security/detect-object-injection
+        // eslint-disable-next-line no-prototype-builtins
         if (manifest.hasOwnProperty(scope) && typeof manifest[scope] !== "object") {
             throw new SyntaxError(`Package ${scope} must be object: "${path}"`);
         }

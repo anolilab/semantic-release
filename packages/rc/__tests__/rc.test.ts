@@ -22,6 +22,7 @@ const addExtensions = (sources: string[][]) =>
     }, []);
 
 const mocks = vi.hoisted(() => {
+    // eslint-disable-next-line vitest/require-mock-type-parameters
     return { mockedCwd: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 
@@ -62,21 +63,19 @@ describe(rc, () => {
         mocks.mockedCwd.mockReturnValue(cwdPath);
         mocks.mockedHomeDir.mockReturnValue(homePath);
 
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+        // eslint-disable-next-line no-restricted-syntax
         for (const key in env) {
             if (key.startsWith("npm_")) {
-                // eslint-disable-next-line security/detect-object-injection
                 npmEnvironment[key as keyof typeof env] = env[key];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete env[key];
             }
         }
     });
 
     afterEach(async () => {
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax,guard-for-in
+        // eslint-disable-next-line no-restricted-syntax,guard-for-in
         for (const key in npmEnvironment) {
-            // eslint-disable-next-line security/detect-object-injection
             env[key] = npmEnvironment[key];
         }
 
@@ -227,7 +226,6 @@ describe(rc, () => {
         const files = [".bem/config", ".bem/config.json", ".bemrc", ".bemrc.json"];
 
         mocks.mockedIsAccessibleSync.mockImplementation((file) => {
-            // eslint-disable-next-line no-loops/no-loops
             for (const path of files) {
                 if (file === join(cwdPath, path)) {
                     return true;
@@ -330,7 +328,6 @@ describe(rc, () => {
 
         mocks.mockedCwd.mockReturnValue(join(cwdPath, "grandparent", "parent", "cwd"));
         mocks.mockedIsAccessibleSync.mockImplementation((file) => {
-            // eslint-disable-next-line no-loops/no-loops
             for (const path of Object.values(files)) {
                 if (file === path) {
                     return true;
@@ -367,7 +364,7 @@ describe(rc, () => {
          * 9 if you passed environment variable `${appname}_config` then from that file
          * 10 if you passed options.config variable, then from that file
          * 11 environment variables prefixed with `${appname}_`
-         *   or use "\_\_" to indicate nested properties &lt;br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
+         * or use "\_\_" to indicate nested properties &lt;br/> _(e.g. `appname_foo__bar__baz` => `foo.bar.baz`)_
          */
         expect(rc("bem", { config: "/config/testfile", defaults: { default: "default" } })).toStrictEqual({
             config: {

@@ -100,6 +100,7 @@ Aggregates configuration from multiple sources (defaults, configuration files, a
 into a single object, following the same resolution logic as the original `rc` npm package.
 
 The resolution order is (highest precedence last):
+
 1. `options.defaults` – default values supplied by the caller
 2. Configuration files discovered by getConfigFiles
 3. Environment variables that start with `${name}_` (nested via `__`)

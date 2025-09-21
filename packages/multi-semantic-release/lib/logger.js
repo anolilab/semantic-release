@@ -64,11 +64,10 @@ const logger = {
     },
     // eslint-disable-next-line unicorn/no-array-reduce
     ...[...severityOrder, ...Object.keys(aliases)].reduce((m, l) => {
-        // eslint-disable-next-line no-param-reassign,security/detect-object-injection,func-names
+        // eslint-disable-next-line no-param-reassign,func-names
         m[l] = function (...arguments_) {
-            // eslint-disable-next-line security/detect-object-injection
             if (assertLevel(aliases[l] || l, this.config.level)) {
-                // eslint-disable-next-line no-console,security/detect-object-injection
+                // eslint-disable-next-line no-console
                 (this.config._signale[l] || console[l] || (() => {}))(this.prefix, ...arguments_);
             }
         };

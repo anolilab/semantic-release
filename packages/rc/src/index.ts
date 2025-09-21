@@ -1,3 +1,6 @@
+/* eslint-disable jsdoc/match-description */
+/* eslint-disable jsdoc/check-values */
+/* eslint-disable no-secrets/no-secrets */
 import { homedir } from "node:os";
 import { cwd, env } from "node:process";
 
@@ -10,7 +13,7 @@ import { merge } from "ts-deepmerge";
 import isJson from "./utils/is-json";
 
 /**
- * Modified copy of the env function from https://github.com/dominictarr/rc/blob/a97f6adcc37ee1cad06ab7dc9b0bd842bbc5c664/lib/utils.js#L42
+ * Modified copy of the env function from https://github.com/dominictarr/rc/blob/a97f6adcc37ee1cad06ab7dc9b0bd842bbc5c664/lib/utils.js#L42.
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.APACHE2
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.BSD
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.MIT
@@ -24,7 +27,7 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
     const returnValue: Record<string, any> = {};
     const l = prefix.length;
 
-    // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+    // eslint-disable-next-line no-restricted-syntax
     for (const k in environment) {
         if (k.toLowerCase().startsWith(prefix.toLowerCase())) {
             const keypath = k.slice(Math.max(0, l)).split("__");
@@ -32,7 +35,7 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
             // Trim empty strings from keypath array
             let emptyStringIndex;
 
-            // eslint-disable-next-line no-loops/no-loops,no-cond-assign
+            // eslint-disable-next-line no-cond-assign
             while ((emptyStringIndex = keypath.indexOf("")) > -1) {
                 keypath.splice(emptyStringIndex, 1);
             }
@@ -51,19 +54,15 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
                 // Assigns actual value from env variable to final key
                 // (unless it's just an empty string- in that case use the last valid key)
                 if (index === keypath.length - 1) {
-                    // eslint-disable-next-line security/detect-object-injection
                     cursor[subkey] = environment[k];
                 }
 
                 // Build sub-object if nothing already exists at the keypath
-                // eslint-disable-next-line security/detect-object-injection
                 if (cursor[subkey] === undefined) {
-                    // eslint-disable-next-line security/detect-object-injection
                     cursor[subkey] = {};
                 }
 
                 // Increment cursor used to track the object at the current depth
-                // eslint-disable-next-line security/detect-object-injection
                 cursor = cursor[subkey];
             });
         }
@@ -99,14 +98,12 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
 const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?: string, environmentConfig?: string, optionConfig?: string): string[] => {
     const configFiles = new Set<string>();
 
-    // eslint-disable-next-line no-loops/no-loops
     for (const file of [`/etc/${name}/config`, `/etc/${name}rc`]) {
         if (isAccessibleSync(file)) {
             configFiles.add(file);
         }
     }
 
-    // eslint-disable-next-line no-loops/no-loops
     for (const file of [join(home, ".config", name, "config"), join(home, ".config", name), join(home, `.${name}`, "config"), join(home, `.${name}rc`)]) {
         if (isAccessibleSync(file)) {
             configFiles.add(file);
@@ -124,9 +121,7 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
 
     const traversedFiles: string[] = [];
 
-    // eslint-disable-next-line no-loops/no-loops
     do {
-        // eslint-disable-next-line no-loops/no-loops
         for (const file of files) {
             const traverseFile = join(start, file);
 
@@ -145,8 +140,8 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     } while (stopAt ? start === stopAt : true); // root
 
     // reverse the traversedFiles so its starts with root
-    // eslint-disable-next-line no-loops/no-loops
-    for (const file of traversedFiles.reverse()) {
+
+    for (const file of traversedFiles.toReversed()) {
         configFiles.add(file);
     }
 
@@ -202,13 +197,13 @@ export const rc = (
         ...options,
     };
 
-    const { config: environmentConfig, ...environment } = getEnvironment(`${name}_`);
+    // eslint-disable-next-line @typescript-eslint/naming-convention, sonarjs/no-unused-vars
+    const { config: _, ...environment } = getEnvironment(`${name}_`);
 
     const configFiles = getConfigFiles(name, options.home as string, options.cwd as string, options.stopAt, env[`${name}_config`], options.config);
 
     const configs: object[] = [];
 
-    // eslint-disable-next-line no-loops/no-loops
     for (const file of configFiles) {
         const content = readFileSync(file, { buffer: false });
 

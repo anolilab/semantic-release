@@ -13,7 +13,6 @@ import { errors } from "../definitions/errors";
  * @returns Fully initialised semantic-release error instance.
  */
 export default <T extends keyof typeof errors>(code: T, context: ErrorContext = {}): SemanticReleaseError => {
-    // eslint-disable-next-line security/detect-object-injection
     const { details, message }: { details?: string; message: string } = (errors[code] as ErrorDefinition)(context);
 
     return new SemanticReleaseError(message, code, details);

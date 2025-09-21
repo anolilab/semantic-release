@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/informative-docs */
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import { execa } from "execa";
@@ -18,14 +19,24 @@ import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
  * package manager operates in the correct `pkgRoot` (if any) and finally executes the `pnpm` CLI.
  * It mirrors the behaviour of the official `@semantic-release/npm` plugin but utilises the `pnpm`
  * ecosystem.
- * @param pluginConfig – Plugin configuration for the semantic-release run.
- * @param packageJson – Parsed `package.json` of the project.
- * @param context – Semantic-release publish context.
+ * @param pluginConfig Plugin configuration for the semantic-release run.
+ * @param pluginConfig.pkgRoot The root directory of the package.
+ * @param pluginConfig.publishBranch The branch to publish to.
+ * @param packageJson Parsed `package.json` of the project.
+ * @param context Semantic-release publish context.
+ * @param context.cwd The current working directory.
+ * @param context.env The environment variables.
+ * @param context.logger The logger.
+ * @param context.nextRelease The next release.
+ * @param context.nextRelease.channel The channel to publish to.
+ * @param context.nextRelease.version The version of the next release.
+ * @param context.stderr The standard error stream.
+ * @param context.stdout The standard output stream.
  * @returns Information about the published release (name, channel,
  * url) or `false` if the package was not published for any
  * reason (e.g. `npmPublish: false`).
  */
-export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: PublishContext): Promise<ReleaseInfo | false> => {
+const publish = async (pluginConfig: PluginConfig, packageJson: PackageJson, context: PublishContext): Promise<ReleaseInfo | false> => {
     const {
         cwd,
         env,
@@ -85,3 +96,5 @@ export default async (pluginConfig: PluginConfig, packageJson: PackageJson, cont
 
     return false;
 };
+
+export default publish;

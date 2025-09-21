@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/informative-docs */
 import { move } from "@visulima/fs";
 import { resolve } from "@visulima/path";
 import { execa } from "execa";
@@ -13,14 +14,23 @@ import type { PluginConfig } from "./definitions/plugin-config";
  *
  * The function mirrors the behaviour of the official semantic-release `@semantic-release/npm` plugin
  * while using the `pnpm` CLI instead of `npm`.
- * @param pluginConfig – Plugin configuration. Only `pkgRoot` and `tarballDir` are
+ * @param pluginConfig Plugin configuration. Only `pkgRoot` and `tarballDir` are
  * relevant for this function.
- * @param context – Semantic-release prepare context containing IO streams,
+ * @param pluginConfig.pkgRoot The root directory of the package.
+ * @param pluginConfig.tarballDir The directory to move the tarball to.
+ * @param context Semantic-release prepare context containing IO streams,
+ * @param context.cwd The current working directory.
+ * @param context.env The environment variables.
+ * @param context.logger The logger.
+ * @param context.nextRelease The next release.
+ * @param context.nextRelease.version The version of the next release.
+ * @param context.stderr The standard error stream.
+ * @param context.stdout The standard output stream.
  * logger, environment variables and release information.
  * @returns A promise that resolves once the version has been written and the optional
  * tarball has been created (and moved).
  */
-export default async ({ pkgRoot, tarballDir }: PluginConfig, { cwd, env, logger, nextRelease: { version }, stderr, stdout }: PrepareContext): Promise<void> => {
+const prepare = async ({ pkgRoot, tarballDir }: PluginConfig, { cwd, env, logger, nextRelease: { version }, stderr, stdout }: PrepareContext): Promise<void> => {
     const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
 
     logger.log("Write version %s to package.json in %s", version, basePath);
@@ -56,3 +66,5 @@ export default async ({ pkgRoot, tarballDir }: PluginConfig, { cwd, env, logger,
         }
     }
 };
+
+export default prepare;

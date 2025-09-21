@@ -35,9 +35,9 @@ describe("set-npmrc-auth", () => {
         // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
         for (const key in env) {
             if (key.startsWith("npm_")) {
-                // eslint-disable-next-line security/detect-object-injection
+                // eslint-disable-next-line security/-object-injection
                 npmEnvironment[key as keyof typeof env] = env[key];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete env[key];
             }
         }
@@ -48,7 +48,6 @@ describe("set-npmrc-auth", () => {
 
         // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax,guard-for-in
         for (const key in npmEnvironment) {
-            // eslint-disable-next-line security/detect-object-injection
             env[key] = npmEnvironment[key];
         }
 

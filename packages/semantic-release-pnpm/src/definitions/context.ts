@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/redundant-type-aliases, import/exports-last, no-secrets/no-secrets */
 import type stream from "node:stream";
 
 import type { Commit, Options } from "./semantic-release";

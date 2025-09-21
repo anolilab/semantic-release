@@ -36,8 +36,11 @@ const context: Partial<PublishContext> = {
         version: "1.0.0",
     },
     logger: {
+        // eslint-disable-next-line vitest/require-mock-type-parameters
         error: vi.fn(),
+        // eslint-disable-next-line vitest/require-mock-type-parameters
         log: vi.fn(),
+        // eslint-disable-next-line vitest/require-mock-type-parameters
         success: vi.fn(),
     },
     nextRelease: {
@@ -81,8 +84,8 @@ describe("semantic-release-clean-package-json", () => {
             version: "1.0.0",
         });
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"devDependencies\"");
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"eslintConfig\"");
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "devDependencies"');
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "eslintConfig"');
     });
 
     it("should keep flag from given config", async () => {

@@ -65,7 +65,6 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
     const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
     const scopes = [dependencies, devDependencies, peerDependencies, optionalDependencies];
     const bumpDependency = (scope, name, nextVersion) => {
-        // eslint-disable-next-line security/detect-object-injection
         const currentVersion = scope[name];
 
         if (!nextVersion || !currentVersion) {
@@ -76,7 +75,7 @@ const getDependentRelease = (package_, bumpStrategy, releaseStrategy, ignore, pr
         const resolvedVersion = resolveNextVersion(currentVersion, nextVersion, bumpStrategy, prefix);
 
         if (currentVersion !== resolvedVersion) {
-            // eslint-disable-next-line no-param-reassign,security/detect-object-injection
+            // eslint-disable-next-line no-param-reassign
             scope[name] = resolvedVersion;
 
             return true;
@@ -140,9 +139,8 @@ const substituteWorkspaceVersion = (currentVersion, nextVersion) => {
 // https://gist.github.com/Yimiprod/7ee176597fef230d1451
 const difference = (object, base) =>
     transform(object, (result, value, key) => {
-        // eslint-disable-next-line security/detect-object-injection
         if (!isEqual(value, base[key])) {
-            // eslint-disable-next-line security/detect-object-injection,no-param-reassign
+            // eslint-disable-next-line no-param-reassign
             result[key] = isObject(value) && isObject(base[key]) ? difference(value, base[key]) : `${base[key]} → ${value}`;
         }
     });
@@ -160,11 +158,10 @@ const auditManifestChanges = (actualManifest, path) => {
     const depScopes = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"];
     // eslint-disable-next-line unicorn/no-array-reduce
     const changes = depScopes.reduce((result, scope) => {
-        // eslint-disable-next-line security/detect-object-injection
         const diff = difference(actualManifest[scope], oldManifest[scope]);
 
         if (Object.keys(diff).length > 0) {
-            // eslint-disable-next-line security/detect-object-injection,no-param-reassign
+            // eslint-disable-next-line no-param-reassign
             result[scope] = diff;
         }
 
@@ -309,7 +306,6 @@ export const resolveNextVersion = (currentVersion, nextVersion, bumpStrategy = "
         const separator = ".";
         const nextChunks = nextVersion.split(separator);
         const currentChunks = currentVersion.split(separator);
-        // eslint-disable-next-line security/detect-object-injection
         const resolvedChunks = currentChunks.map((chunk, index) => (nextChunks[index] ? chunk.replace(/\d+/u, nextChunks[index]) : chunk));
 
         return resolvedChunks.join(separator);

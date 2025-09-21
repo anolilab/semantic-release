@@ -9,6 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { rc } from "../src";
 
 const mocks = vi.hoisted(() => {
+    // eslint-disable-next-line vitest/require-mock-type-parameters
     return { mockedCwd: vi.fn(), mockedFindUpSync: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 
@@ -40,21 +41,19 @@ describe("rc-unmocked", () => {
         mocks.mockedCwd.mockReturnValue(cwdPath);
         mocks.mockedHomeDir.mockReturnValue(homePath);
 
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+        // eslint-disable-next-line no-restricted-syntax
         for (const key in env) {
             if (key.startsWith("npm_")) {
-                // eslint-disable-next-line security/detect-object-injection
                 npmEnvironment[key as keyof typeof env] = env[key];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete,security/detect-object-injection
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete env[key];
             }
         }
     });
 
     afterEach(async () => {
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax,guard-for-in
+        // eslint-disable-next-line no-restricted-syntax,guard-for-in
         for (const key in npmEnvironment) {
-            // eslint-disable-next-line security/detect-object-injection
             env[key] = npmEnvironment[key];
         }
 
@@ -77,7 +76,7 @@ describe("rc-unmocked", () => {
             config: {
                 test: 0,
             },
-            files: files.map((file) => join(cwdPath, file)).reverse(),
+            files: files.map((file) => join(cwdPath, file)).toReversed(),
         });
     });
 
@@ -98,7 +97,7 @@ describe("rc-unmocked", () => {
             config: {
                 test: 0,
             },
-            files: files.map((file) => join(cwdPath, file)).reverse(),
+            files: files.map((file) => join(cwdPath, file)).toReversed(),
         });
     });
 });

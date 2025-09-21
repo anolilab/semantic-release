@@ -8,7 +8,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { start, stop, url as npmRegistryUrl } from "./helpers/npm-registry";
 
+// eslint-disable-next-line vitest/require-mock-type-parameters
 const logSpy = vi.fn();
+// eslint-disable-next-line vitest/require-mock-type-parameters
 const logger = { error: vi.fn(), log: logSpy, success: vi.fn() };
 
 // @TODO: port all test and try to run them

@@ -248,7 +248,6 @@ function createInlinePluginCreator(packages, multiContext, flags) {
 
         // Add labels for logs.
         Object.keys(inlinePlugin).forEach((type) =>
-            // eslint-disable-next-line security/detect-object-injection
             Reflect.defineProperty(inlinePlugin[type], "pluginName", {
                 enumerable: true,
                 value: "Inline plugin",

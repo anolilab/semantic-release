@@ -10,9 +10,9 @@ import type { PluginConfig } from "../definitions/plugin-config";
 export const reasonToNotPublish = (pluginConfig: PluginConfig, package_: PackageJson): string | null =>
     (pluginConfig.npmPublish === false
         ? "npmPublish plugin option is false"
-        : (package_.private === true && package_.workspaces === undefined
+        : package_.private === true && package_.workspaces === undefined
             ? "package is private and has no workspaces"
-            : null));
+            : null);
 
 /**
  * Convenience wrapper that returns a boolean instead of a textual reason. It simply negates the
