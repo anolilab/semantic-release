@@ -1,109 +1,109 @@
 {
-  "name": "@anolilab/multi-semantic-release",
-  "version": "2.0.3",
-  "description": "A multi semantic release tool for a monorepo.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/anolilab/semantic-release.git",
-    "directory": "packages/multi-semantic-release"
-  },
-  "license": "0BSD",
-  "author": "Dave Houlbrooke <dave@shax.com>",
-  "maintainers": [
-    {
-      "name": "Daniel Bannert",
-      "email": "d.bannert@anolilab.de"
+    "name": "@anolilab/multi-semantic-release",
+    "version": "2.0.3",
+    "description": "A multi semantic release tool for a monorepo.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/anolilab/semantic-release.git",
+        "directory": "packages/multi-semantic-release"
+    },
+    "license": "0BSD",
+    "author": "Dave Houlbrooke <dave@shax.com>",
+    "maintainers": [
+        {
+            "name": "Daniel Bannert",
+            "email": "d.bannert@anolilab.de"
+        }
+    ],
+    "type": "module",
+    "exports": {
+        ".": "./lib/multi-semantic-release.js",
+        "./*": "./*",
+        "./package.json": "./package.json"
+    },
+    "bin": {
+        "multi-semantic-release": "./bin/cli.js"
+    },
+    "files": [
+        "CHANGELOG.md",
+        "README.md",
+        "bin",
+        "lib"
+    ],
+    "scripts": {
+        "build": "echo 'There is no need for build' && exit 0",
+        "build:prod": "echo 'There is no need for build' && exit 0",
+        "clean": "rimraf node_modules dist .eslintcache",
+        "dev": "echo 'There is no need for dev' && exit 0",
+        "lint:eslint": "eslint .",
+        "lint:eslint:fix": "eslint . --fix",
+        "lint:packagejson": "publint --strict",
+        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
+        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
+        "lint:types": "tsc --noEmit || exit 0",
+        "test": "vitest run",
+        "test:coverage": "vitest run --coverage",
+        "test:ui": "vitest --ui --coverage.enabled=true",
+        "test:watch": "vitest"
+    },
+    "dependencies": {
+        "@semrel-extra/topo": "catalog:prod",
+        "blork": "catalog:prod",
+        "cosmiconfig": "catalog:icons",
+        "debug": "catalog:prod",
+        "detect-indent": "catalog:prod",
+        "detect-newline": "catalog:prod",
+        "execa": "catalog:node",
+        "git-log-parser": "catalog:prod",
+        "lodash-es": "catalog:utils",
+        "resolve-from": "catalog:node",
+        "semver": "catalog:utils",
+        "signale": "catalog:prod",
+        "stream-buffers": "catalog:prod",
+        "yargs": "catalog:prod"
+    },
+    "devDependencies": {
+        "@anolilab/eslint-config": "catalog:lint",
+        "@anolilab/prettier-config": "catalog:lint",
+        "@anolilab/semantic-release-clean-package-json": "catalog:cli",
+        "@anolilab/semantic-release-pnpm": "catalog:cli",
+        "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
+        "@semantic-release/changelog": "catalog:cli",
+        "@semantic-release/commit-analyzer": "catalog:cli",
+        "@semantic-release/exec": "catalog:cli",
+        "@semantic-release/git": "catalog:cli",
+        "@semantic-release/github": "catalog:cli",
+        "@semantic-release/release-notes-generator": "catalog:cli",
+        "@types/node": "catalog:types",
+        "@vitest/coverage-v8": "catalog:test",
+        "@vitest/ui": "catalog:test",
+        "conventional-changelog-conventionalcommits": "catalog:dev",
+        "cross-env": "catalog:node",
+        "eslint": "catalog:lint",
+        "eslint-plugin-you-dont-need-lodash-underscore": "catalog:lint",
+        "file-url": "catalog:dev",
+        "prettier": "catalog:lint",
+        "publint": "catalog:lint",
+        "rimraf": "catalog:node",
+        "secretlint": "catalog:lint",
+        "semantic-release": "catalog:cli",
+        "tempy": "catalog:dev",
+        "typescript": "catalog:tsc",
+        "vitest": "catalog:test"
+    },
+    "peerDependencies": {
+        "semantic-release": ">=22.0.3"
+    },
+    "engines": {
+        "node": ">=20.8.1"
+    },
+    "os": [
+        "darwin",
+        "linux",
+        "win32"
+    ],
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
     }
-  ],
-  "type": "module",
-  "exports": {
-    ".": "./lib/multi-semantic-release.js",
-    "./*": "./*",
-    "./package.json": "./package.json"
-  },
-  "bin": {
-    "multi-semantic-release": "./bin/cli.js"
-  },
-  "files": [
-    "CHANGELOG.md",
-    "README.md",
-    "bin",
-    "lib"
-  ],
-  "scripts": {
-    "build": "echo 'There is no need for build' && exit 0",
-    "build:prod": "echo 'There is no need for build' && exit 0",
-    "clean": "rimraf node_modules dist .eslintcache",
-    "dev": "echo 'There is no need for dev' && exit 0",
-    "lint:eslint": "eslint .",
-    "lint:eslint:fix": "eslint . --fix",
-    "lint:packagejson": "publint --strict",
-    "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
-    "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
-    "lint:types": "tsc --noEmit || exit 0",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui --coverage.enabled=true",
-    "test:watch": "vitest"
-  },
-  "dependencies": {
-    "@semrel-extra/topo": "catalog:prod",
-    "blork": "catalog:prod",
-    "cosmiconfig": "catalog:icons",
-    "debug": "catalog:prod",
-    "detect-indent": "catalog:prod",
-    "detect-newline": "catalog:prod",
-    "execa": "catalog:node",
-    "git-log-parser": "catalog:prod",
-    "lodash-es": "catalog:utils",
-    "resolve-from": "catalog:node",
-    "semver": "catalog:utils",
-    "signale": "catalog:prod",
-    "stream-buffers": "catalog:prod",
-    "yargs": "catalog:prod"
-  },
-  "devDependencies": {
-    "@anolilab/eslint-config": "catalog:lint",
-    "@anolilab/prettier-config": "catalog:lint",
-    "@anolilab/semantic-release-clean-package-json": "catalog:cli",
-    "@anolilab/semantic-release-pnpm": "catalog:cli",
-    "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
-    "@semantic-release/changelog": "catalog:cli",
-    "@semantic-release/commit-analyzer": "catalog:cli",
-    "@semantic-release/exec": "catalog:cli",
-    "@semantic-release/git": "catalog:cli",
-    "@semantic-release/github": "catalog:cli",
-    "@semantic-release/release-notes-generator": "catalog:cli",
-    "@types/node": "catalog:types",
-    "@vitest/coverage-v8": "catalog:test",
-    "@vitest/ui": "catalog:test",
-    "conventional-changelog-conventionalcommits": "catalog:dev",
-    "cross-env": "catalog:node",
-    "eslint": "catalog:lint",
-    "eslint-plugin-you-dont-need-lodash-underscore": "catalog:lint",
-    "file-url": "catalog:dev",
-    "prettier": "catalog:lint",
-    "publint": "catalog:lint",
-    "rimraf": "catalog:node",
-    "secretlint": "catalog:lint",
-    "semantic-release": "catalog:cli",
-    "tempy": "catalog:dev",
-    "typescript": "catalog:tsc",
-    "vitest": "catalog:test"
-  },
-  "peerDependencies": {
-    "semantic-release": ">=22.0.3"
-  },
-  "engines": {
-    "node": ">=20.8.1"
-  },
-  "os": [
-    "darwin",
-    "linux",
-    "win32"
-  ],
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  }
 }

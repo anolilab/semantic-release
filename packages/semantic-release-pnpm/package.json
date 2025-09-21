@@ -1,121 +1,121 @@
 {
-  "name": "@anolilab/semantic-release-pnpm",
-  "version": "2.0.3",
-  "description": "Semantic-release plugin to publish a npm package with pnpm.",
-  "keywords": [
-    "anolilab",
-    "npm",
-    "pnpm",
-    "publish",
-    "monorepo",
-    "semantic-release",
-    "semantic-release-plugin",
-    "semantic-release-pnpm"
-  ],
-  "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/semantic-release-pnpm",
-  "bugs": {
-    "url": "https://github.com/anolilab/semantic-release/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anolilab/semantic-release.git",
-    "directory": "packages/semantic-release-pnpm"
-  },
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/prisis"
+    "name": "@anolilab/semantic-release-pnpm",
+    "version": "2.0.3",
+    "description": "Semantic-release plugin to publish a npm package with pnpm.",
+    "keywords": [
+        "anolilab",
+        "npm",
+        "pnpm",
+        "publish",
+        "monorepo",
+        "semantic-release",
+        "semantic-release-plugin",
+        "semantic-release-pnpm"
+    ],
+    "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/semantic-release-pnpm",
+    "bugs": {
+        "url": "https://github.com/anolilab/semantic-release/issues"
     },
-    {
-      "type": "consulting",
-      "url": "https://anolilab.com/support"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/anolilab/semantic-release.git",
+        "directory": "packages/semantic-release-pnpm"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/prisis"
+        },
+        {
+            "type": "consulting",
+            "url": "https://anolilab.com/support"
+        }
+    ],
+    "license": "MIT",
+    "author": {
+        "name": "Daniel Bannert",
+        "email": "d.bannert@anolilab.de"
+    },
+    "sideEffects": false,
+    "type": "module",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "files": [
+        "CHANGELOG.md",
+        "README.md",
+        "dist"
+    ],
+    "scripts": {
+        "build": "cross-env NODE_ENV=development packem build",
+        "build:prod": "cross-env NODE_ENV=production packem build",
+        "clean": "rimraf node_modules dist .eslintcache",
+        "dev": "pnpm run build --watch",
+        "lint:attw": "attw --pack",
+        "lint:eslint": "eslint .",
+        "lint:eslint:fix": "eslint . --fix",
+        "lint:package-json": "publint --strict",
+        "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
+        "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
+        "lint:types": "tsc --noEmit",
+        "test": "vitest run",
+        "test:coverage": "vitest run --coverage",
+        "test:ui": "vitest --ui --coverage.enabled=true",
+        "test:watch": "vitest"
+    },
+    "dependencies": {
+        "@anolilab/rc": "catalog:prod",
+        "@semantic-release/error": "catalog:cli",
+        "@visulima/fs": "catalog:prod",
+        "@visulima/package": "catalog:prod",
+        "@visulima/path": "catalog:node",
+        "execa": "catalog:node",
+        "ini": "catalog:prod",
+        "normalize-url": "catalog:database",
+        "registry-auth-token": "catalog:prod",
+        "semver": "catalog:utils"
+    },
+    "devDependencies": {
+        "@anolilab/eslint-config": "catalog:lint",
+        "@anolilab/prettier-config": "catalog:lint",
+        "@arethetypeswrong/cli": "catalog:dev",
+        "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
+        "@semantic-release/changelog": "catalog:cli",
+        "@semantic-release/commit-analyzer": "catalog:cli",
+        "@semantic-release/exec": "catalog:cli",
+        "@semantic-release/git": "catalog:cli",
+        "@semantic-release/github": "catalog:cli",
+        "@semantic-release/release-notes-generator": "catalog:cli",
+        "@types/dockerode": "catalog:types",
+        "@types/ini": "catalog:types",
+        "@types/node": "catalog:types",
+        "@types/semantic-release__error": "catalog:types",
+        "@types/semver": "catalog:types",
+        "@types/stream-buffers": "catalog:types",
+        "@visulima/packem": "catalog:dev",
+        "@vitest/coverage-v8": "catalog:test",
+        "@vitest/ui": "catalog:test",
+        "conventional-changelog-conventionalcommits": "catalog:dev",
+        "cross-env": "catalog:node",
+        "dockerode": "catalog:dev",
+        "esbuild": "catalog:build",
+        "eslint": "catalog:lint",
+        "get-stream": "catalog:dev",
+        "got": "catalog:dev",
+        "p-retry": "catalog:dev",
+        "prettier": "catalog:lint",
+        "rimraf": "catalog:node",
+        "secretlint": "catalog:lint",
+        "semantic-release": "catalog:cli",
+        "stream-buffers": "catalog:dev",
+        "tempy": "catalog:dev",
+        "typescript": "catalog:tsc",
+        "vitest": "catalog:test"
+    },
+    "engines": {
+        "node": ">=20.8.1"
+    },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
     }
-  ],
-  "license": "MIT",
-  "author": {
-    "name": "Daniel Bannert",
-    "email": "d.bannert@anolilab.de"
-  },
-  "sideEffects": false,
-  "type": "module",
-  "main": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
-  "files": [
-    "CHANGELOG.md",
-    "README.md",
-    "dist"
-  ],
-  "scripts": {
-    "build": "cross-env NODE_ENV=development packem build",
-    "build:prod": "cross-env NODE_ENV=production packem build",
-    "clean": "rimraf node_modules dist .eslintcache",
-    "dev": "pnpm run build --watch",
-    "lint:attw": "attw --pack",
-    "lint:eslint": "eslint .",
-    "lint:eslint:fix": "eslint . --fix",
-    "lint:package-json": "publint --strict",
-    "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
-    "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
-    "lint:types": "tsc --noEmit",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "vitest --ui --coverage.enabled=true",
-    "test:watch": "vitest"
-  },
-  "dependencies": {
-    "@anolilab/rc": "catalog:prod",
-    "@semantic-release/error": "catalog:cli",
-    "@visulima/fs": "catalog:prod",
-    "@visulima/package": "catalog:prod",
-    "@visulima/path": "catalog:node",
-    "execa": "catalog:node",
-    "ini": "catalog:prod",
-    "normalize-url": "catalog:database",
-    "registry-auth-token": "catalog:prod",
-    "semver": "catalog:utils"
-  },
-  "devDependencies": {
-    "@anolilab/eslint-config": "catalog:lint",
-    "@anolilab/prettier-config": "catalog:lint",
-    "@arethetypeswrong/cli": "catalog:dev",
-    "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
-    "@semantic-release/changelog": "catalog:cli",
-    "@semantic-release/commit-analyzer": "catalog:cli",
-    "@semantic-release/exec": "catalog:cli",
-    "@semantic-release/git": "catalog:cli",
-    "@semantic-release/github": "catalog:cli",
-    "@semantic-release/release-notes-generator": "catalog:cli",
-    "@types/dockerode": "catalog:types",
-    "@types/ini": "catalog:types",
-    "@types/node": "catalog:types",
-    "@types/semantic-release__error": "catalog:types",
-    "@types/semver": "catalog:types",
-    "@types/stream-buffers": "catalog:types",
-    "@visulima/packem": "catalog:dev",
-    "@vitest/coverage-v8": "catalog:test",
-    "@vitest/ui": "catalog:test",
-    "conventional-changelog-conventionalcommits": "catalog:dev",
-    "cross-env": "catalog:node",
-    "dockerode": "catalog:dev",
-    "esbuild": "catalog:build",
-    "eslint": "catalog:lint",
-    "get-stream": "catalog:dev",
-    "got": "catalog:dev",
-    "p-retry": "catalog:dev",
-    "prettier": "catalog:lint",
-    "rimraf": "catalog:node",
-    "secretlint": "catalog:lint",
-    "semantic-release": "catalog:cli",
-    "stream-buffers": "catalog:dev",
-    "tempy": "catalog:dev",
-    "typescript": "catalog:tsc",
-    "vitest": "catalog:test"
-  },
-  "engines": {
-    "node": ">=20.8.1"
-  },
-  "publishConfig": {
-    "access": "public",
-    "provenance": true
-  }
 }

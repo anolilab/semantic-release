@@ -5,15 +5,6 @@ packages:
   - packages/**
   - '!packages/multi-semantic-release/__fixtures__/**'
 
-onlyBuiltDependencies:
-  - cpu-features
-  - esbuild
-  - nx
-  - oxc-resolver
-  - protobufjs
-  - rs-module-lexer
-  - ssh2
-  - unrs-resolver
 catalogs:
   build:
     esbuild: 0.25.10
@@ -125,3 +116,17 @@ catalogs:
     lodash-es: ^4.17.21
     semver: ^7.7.2
     ts-deepmerge: ^7.0.3
+
+onlyBuiltDependencies:
+  - cpu-features
+  - esbuild
+  - nx
+  - oxc-resolver
+  - protobufjs
+  - rs-module-lexer
+  - ssh2
+  - unrs-resolver
+
+overrides:
+  chrono-node@<2.2.4: '>=2.2.4'
+  tmp@<=0.2.3: '>=0.2.4'

@@ -30,7 +30,10 @@ import type { PluginConfig } from "./definitions/plugin-config";
  * @returns A promise that resolves once the version has been written and the optional
  * tarball has been created (and moved).
  */
-const prepare = async ({ pkgRoot, tarballDir }: PluginConfig, { cwd, env, logger, nextRelease: { version }, stderr, stdout }: PrepareContext): Promise<void> => {
+const prepare = async (
+    { pkgRoot, tarballDir }: PluginConfig,
+    { cwd, env, logger, nextRelease: { version }, stderr, stdout }: PrepareContext,
+): Promise<void> => {
     const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
 
     logger.log("Write version %s to package.json in %s", version, basePath);
