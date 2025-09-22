@@ -1,3 +1,22 @@
+## @anolilab/semantic-release-clean-package-json [3.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.3...@anolilab/semantic-release-clean-package-json@3.0.4) (2025-09-22)
+
+### Bug Fixes
+
+* **deps:** update dependencies across multiple packages ([150593f](https://github.com/anolilab/semantic-release/commit/150593fec51e1646e8bc5d8aa9db76a8370d42c1))
+* update dependencies and configuration across multiple packages ([9c9b4cb](https://github.com/anolilab/semantic-release/commit/9c9b4cb5b1f9e172f2e1ce509491b950ae448c09))
+* update dependencies and improve configuration ([de0cf70](https://github.com/anolilab/semantic-release/commit/de0cf702c2c5217203409b475f96061702806475))
+* update Nx version and adjust package configurations ([d39ef78](https://github.com/anolilab/semantic-release/commit/d39ef78b608486214ca3a73c5903c00798e7c456))
+* update package dependencies and configurations ([8241a76](https://github.com/anolilab/semantic-release/commit/8241a762582a25742d385d8cf113851ac8b9b801))
+
+### Code Refactoring
+
+* simplify packem configuration and improve comments ([592de5b](https://github.com/anolilab/semantic-release/commit/592de5b367a448974fc41fd7336e01ba4865a4cf))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 2.0.4
+
 ## @anolilab/semantic-release-clean-package-json [3.0.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.2...@anolilab/semantic-release-clean-package-json@3.0.3) (2025-07-31)
 
 ### Bug Fixes
