@@ -2,11 +2,6 @@ import { defineConfig } from "@visulima/packem/config";
 import transformer from "@visulima/packem/transformer/esbuild";
 
 export default defineConfig({
-    cjsInterop: true,
-    node10Compatibility: {
-        typeScriptVersion: ">=5.0",
-        writeToPackageJson: true,
-    },
     rollup: {
         license: {
             path: "./LICENSE.md",
@@ -17,10 +12,12 @@ export default defineConfig({
         packageJson: {
             // semantic-release does not support the "exports" field
             exports: false,
+            // TODO: Remove this once packem fixed cache handling
+            typesVersions: false,
         },
         // @TODO: Remove this once packem fixed cache handling
         unused: {
-            exclude: ["@anolilab/rc", "@semantic-release/error", "@visulima/package", "ini", "normalize-url", "registry-auth-token", "semver"],
+            exclude: ["@anolilab/rc, @semantic-release/error, @visulima/fs, @visulima/package, @visulima/path, execa, ini, normalize-url, registry-auth-token, semver"],
         },
     },
 });
