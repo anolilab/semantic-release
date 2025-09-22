@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/informative-docs */
+/* eslint-disable no-secrets/no-secrets */
 import type { PackageJson } from "@visulima/package";
 import normalizeUrl from "normalize-url";
 
@@ -20,9 +22,14 @@ export interface ReleaseInfo {
  * included to make the release notes more useful. For custom registries the URL is omitted because a
  * standard pattern cannot be guaranteed.
  * @param pkg – The package manifest (used for the package name).
- * @param context – Semantic-release publish context (provides version & env).
- * @param distributionTag – The dist-tag that was used (e.g. `latest`, `next`).
- * @param registry – The registry URL to which the package was published.
+ * @param pkg.name The name of the package.
+ * @param context Semantic-release publish context (provides version & env).
+ * @param context.env The environment variables.
+ * @param context.env.DEFAULT_NPM_REGISTRY The default npm registry.
+ * @param context.nextRelease The next release.
+ * @param context.nextRelease.version The version of the next release.
+ * @param distributionTag The dist-tag that was used (e.g. `latest`, `next`).
+ * @param registry The registry URL to which the package was published.
  * @returns Populated release information object consumed by semantic-release.
  */
 export const getReleaseInfo = (

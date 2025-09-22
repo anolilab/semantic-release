@@ -1,3 +1,5 @@
+/* eslint-disable sonarjs/no-hardcoded-passwords */
+/* eslint-disable sonarjs/no-clear-text-protocols */
 import { rm } from "node:fs/promises";
 import { env } from "node:process";
 
@@ -8,15 +10,20 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const setNpmrcAuthFilePath = "../../../src/utils/set-npmrc-auth";
 
+// eslint-disable-next-line vitest/require-mock-type-parameters
 const logSpy = vi.fn();
 const logger = { log: logSpy };
 
+// eslint-disable-next-line vitest/require-mock-type-parameters
 const mockedHomedir = vi.fn();
 
-// This is needed for @anolilab/rc
-vi.mock("os", () => {
+vi.mock("@anolilab/rc", async () => {
+    const actual = await vi.importActual<typeof import("@anolilab/rc")>("@anolilab/rc");
+
     return {
-        homedir: mockedHomedir,
+        ...actual,
+        // eslint-disable-next-line unicorn/prevent-abbreviations, @typescript-eslint/no-explicit-any
+        rc: (name: string, opts: any) => actual.rc(name, { home: mockedHomedir(), ...opts }),
     };
 });
 
@@ -32,10 +39,9 @@ describe("set-npmrc-auth", () => {
 
         mockedHomedir.mockReturnValue(home);
 
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax
+        // eslint-disable-next-line no-restricted-syntax
         for (const key in env) {
             if (key.startsWith("npm_")) {
-                // eslint-disable-next-line security/-object-injection
                 npmEnvironment[key as keyof typeof env] = env[key];
                 // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
                 delete env[key];
@@ -46,7 +52,7 @@ describe("set-npmrc-auth", () => {
     afterEach(async () => {
         vi.resetAllMocks();
 
-        // eslint-disable-next-line no-loops/no-loops,no-restricted-syntax,guard-for-in
+        // eslint-disable-next-line no-restricted-syntax,guard-for-in
         for (const key in npmEnvironment) {
             env[key] = npmEnvironment[key];
         }
@@ -80,7 +86,7 @@ describe("set-npmrc-auth", () => {
 
         await setNpmrcAuth(npmrc, "http://custom.registry.com", {
             cwd,
-            env: { NPM_EMAIL: "npm_email", NPM_PASSWORD: "npm_pasword", NPM_USERNAME: "npm_username" },
+            env: { NPM_EMAIL: "npm_email", NPM_PASSWORD: "npm_password", NPM_USERNAME: "npm_username" },
             logger,
         });
 
@@ -315,7 +321,6 @@ describe("set-npmrc-auth", () => {
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", join(cwd, ".npmrc")]);
 
         // Assert that NPM_TOKEN is not written
-        // eslint-disable-next-line no-loops/no-loops
         for (const log of logSpy.mock.calls) {
             expect(log).not.toStrictEqual(expect.stringContaining("Wrote NPM_TOKEN"));
         }

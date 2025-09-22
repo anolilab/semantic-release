@@ -6,7 +6,7 @@ import { resolve } from "@visulima/path";
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-import getPackage from "../../../src/utils/get-pkg";
+import getPackage from "../../../src/utils/get-package";
 
 describe("get-pkg", () => {
     let cwd: string;

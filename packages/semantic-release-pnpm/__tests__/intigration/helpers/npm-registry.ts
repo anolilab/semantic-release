@@ -11,6 +11,7 @@ const IMAGE = "verdaccio/verdaccio:4";
 const REGISTRY_PORT = 4873;
 const REGISTRY_HOST = "localhost";
 const NPM_USERNAME = "integration";
+// eslint-disable-next-line sonarjs/no-hardcoded-passwords
 const NPM_PASSWORD = "suchsecure";
 const NPM_EMAIL = "integration@test.com";
 
@@ -28,7 +29,7 @@ export const start = async (): Promise<void> => {
     container = await docker.createContainer({
         Binds: [`${join(dirname(fileURLToPath(import.meta.url)), "config.yaml")}:/verdaccio/conf/config.yaml`],
         Image: IMAGE,
-        PortBindings: { [`${REGISTRY_PORT}/tcp`]: [{ HostPort: `${REGISTRY_PORT}` }] },
+        PortBindings: { [`${REGISTRY_PORT}/tcp`]: [{ HostPort: REGISTRY_PORT.toString() }] },
         Tty: true,
     });
 

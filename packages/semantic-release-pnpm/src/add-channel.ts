@@ -22,7 +22,7 @@ import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
  * @returns A release info object when the dist-tag was added or
  * `false` when the operation was skipped.
  */
-export default async (pluginConfig: PluginConfig, packageJson: PackageJson, context: AddChannelContext): Promise<ReleaseInfo | false> => {
+const addChannel = async (pluginConfig: PluginConfig, packageJson: PackageJson, context: AddChannelContext): Promise<ReleaseInfo | false> => {
     const {
         cwd,
         env,
@@ -60,3 +60,5 @@ export default async (pluginConfig: PluginConfig, packageJson: PackageJson, cont
 
     return false;
 };
+
+export default addChannel;

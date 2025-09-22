@@ -19,7 +19,7 @@ import setNpmrcAuth from "../utils/set-npmrc-auth";
  * @param context – semantic-release context providing env, logger, streams, etc.
  * @returns Resolves when authentication has been verified.
  */
-export default async (npmrc: string, package_: PackageJson, context: CommonContext): Promise<void> => {
+const verifyAuth = async (npmrc: string, package_: PackageJson, context: CommonContext): Promise<void> => {
     const {
         cwd,
         env: { DEFAULT_NPM_REGISTRY = "https://registry.npmjs.org/", ...environment },
@@ -54,3 +54,5 @@ export default async (npmrc: string, package_: PackageJson, context: CommonConte
         logger.log(`Skipping authentication verification for non-default registry "${registry}"`);
     }
 };
+
+export default verifyAuth;

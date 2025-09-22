@@ -1,11 +1,11 @@
 /// <reference types="vitest" />
-import type { UserConfig } from "vitest/config";
+import type { ViteUserConfig } from "vitest/config";
 import { defineConfig, configDefaults, coverageConfigDefaults } from "vitest/config";
 
-// https://vitejs.dev/config/
-export const getVitestConfig = (options: UserConfig = {}) => {
-    const VITEST_SEQUENCE_SEED = Date.now();
+const VITEST_SEQUENCE_SEED = Date.now();
 
+// https://vitejs.dev/config/
+export const getVitestConfig = (options: ViteUserConfig = {}) => {
     console.log("VITEST_SEQUENCE_SEED", VITEST_SEQUENCE_SEED);
 
     return defineConfig({
@@ -15,12 +15,12 @@ export const getVitestConfig = (options: UserConfig = {}) => {
             coverage: {
                 ...coverageConfigDefaults,
                 provider: "v8",
-                reporter: ["clover", "cobertura", "lcov", "text"],
+                reporter: ["clover", "cobertura", "lcov", "text", "html"],
                 include: ["src"],
-                exclude: ["__fixtures__/**", "__bench__/**", "scripts/**"],
+                exclude: ["__fixtures__/**", "__bench__/**", "scripts/**", "src/**/types.ts", "src/module.d.ts", "src/reset.d.ts", "e2e"],
             },
             environment: "node",
-            reporters: process.env.CI_PREFLIGHT ? ["basic", "github-actions"] : ["basic"],
+            reporters: process.env.CI_PREFLIGHT ? ["default", "github-actions"] : ["default"],
             sequence: {
                 seed: VITEST_SEQUENCE_SEED,
             },

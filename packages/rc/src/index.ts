@@ -140,7 +140,6 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     } while (stopAt ? start === stopAt : true); // root
 
     // reverse the traversedFiles so its starts with root
-
     for (const file of traversedFiles.toReversed()) {
         configFiles.add(file);
     }

@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/check-indentation */
+
 /**
  * Copied from semantic-release package, as a workaround for https://github.com/Swatinem/rollup-plugin-dts/issues/162
  *
@@ -100,6 +102,7 @@ export type BranchSpec = BranchObject | string;
  * To pass options to a plugin, specify an array containing the plugin module
  * name and an options object.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type PluginSpec<T = any> = string | [string, T];
 
 /**
@@ -113,6 +116,7 @@ export interface Options {
     /**
      * Any other options supported by plugins.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [name: string]: any;
 
     /**

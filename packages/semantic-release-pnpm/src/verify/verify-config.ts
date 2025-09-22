@@ -44,7 +44,7 @@ const VALIDATORS: Record<string, ValidatorFunction> = {
  * @param config – Plugin configuration object to validate.
  * @returns An array of validation errors (empty when the configuration is valid).
  */
-export default (config: PluginConfig): SemanticReleaseError[] =>
+const verifyConfig = (config: PluginConfig): SemanticReleaseError[] =>
     // eslint-disable-next-line unicorn/no-array-reduce
     Object.entries(config).reduce<SemanticReleaseError[]>((errors, [option, value]) => {
         if (isNil(value)) {
@@ -62,3 +62,5 @@ export default (config: PluginConfig): SemanticReleaseError[] =>
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return [...errors, getError(`EINVALID${option.toUpperCase()}` as any, { [option]: value })];
     }, []);
+
+export default verifyConfig;

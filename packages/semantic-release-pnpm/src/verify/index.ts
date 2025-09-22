@@ -1,7 +1,7 @@
 import type { VerifyConditionsContext } from "../definitions/context";
 import type { PluginConfig } from "../definitions/plugin-config";
 import getNpmrcPath from "../utils/get-npmrc-path";
-import getPackage from "../utils/get-pkg";
+import getPackage from "../utils/get-package";
 import { shouldPublish } from "../utils/should-publish";
 import verifyAuth from "./verify-auth";
 import verifyConfig from "./verify-config";

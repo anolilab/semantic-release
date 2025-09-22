@@ -7,12 +7,18 @@ import type { PluginConfig } from "../definitions/plugin-config";
  * `true` or `pkg.workspaces` is not `undefined`.
  * Returns reason otherwise.
  */
-export const reasonToNotPublish = (pluginConfig: PluginConfig, package_: PackageJson): string | null =>
-    (pluginConfig.npmPublish === false
-        ? "npmPublish plugin option is false"
-        : package_.private === true && package_.workspaces === undefined
-            ? "package is private and has no workspaces"
-            : null);
+export const reasonToNotPublish = (pluginConfig: PluginConfig, package_: PackageJson): string | null => {
+    if (pluginConfig.npmPublish === false) {
+        return "npmPublish plugin option is false";
+    }
+
+    if (package_.private === true && package_.workspaces === undefined) {
+        return "package is private and has no workspaces";
+    }
+
+    // eslint-disable-next-line unicorn/no-null
+    return null;
+};
 
 /**
  * Convenience wrapper that returns a boolean instead of a textual reason. It simply negates the

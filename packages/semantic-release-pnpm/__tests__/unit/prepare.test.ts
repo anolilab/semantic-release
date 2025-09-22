@@ -11,7 +11,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { PrepareContext } from "../../src/definitions/context";
 import prepare from "../../src/prepare";
 
+// eslint-disable-next-line vitest/require-mock-type-parameters
 const logSpy = vi.fn();
+// eslint-disable-next-line vitest/require-mock-type-parameters
 const logger = { error: vi.fn(), log: logSpy, success: vi.fn() };
 
 describe(prepare, () => {

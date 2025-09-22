@@ -3,7 +3,7 @@ import type { AddChannelContext, PrepareContext, PublishContext, VerifyCondition
 import type { PluginConfig } from "./definitions/plugin-config";
 import prepareNpm from "./prepare";
 import publishNpm from "./publish";
-import getPackage from "./utils/get-pkg";
+import getPackage from "./utils/get-package";
 import type { ReleaseInfo } from "./utils/get-release-info";
 import verify from "./verify";
 

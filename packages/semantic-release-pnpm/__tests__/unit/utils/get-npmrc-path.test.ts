@@ -5,8 +5,11 @@ import getNpmrcPath from "../../../src/utils/get-npmrc-path";
 
 const mocks = vi.hoisted(() => {
     return {
+        // eslint-disable-next-line vitest/require-mock-type-parameters
         mockedEnsureFileSync: vi.fn(),
+        // eslint-disable-next-line vitest/require-mock-type-parameters
         mockedIsAccessibleSync: vi.fn(),
+        // eslint-disable-next-line vitest/require-mock-type-parameters
         mockedResolve: vi.fn(),
     };
 });

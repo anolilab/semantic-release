@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/match-description */
 import { URL } from "node:url";
 
 /**

@@ -5,7 +5,8 @@ import transformer from "@visulima/packem/transformer/esbuild";
 
 export default defineConfig({
     builder: {
-        typedoc: typedocBuilder,
+        // @TODO: Enable this once typedoc builder is fixed
+        // typedoc: typedocBuilder,
     },
     cjsInterop: true,
     node10Compatibility: {
@@ -21,5 +22,13 @@ export default defineConfig({
     typedoc: {
         format: "inline",
         readmePath: "./README.md",
+    },
+    validation: {
+        dependencies: {
+            // @TODO: Remove this once packem fixed cache handling
+            unused: {
+                exclude: ["@visulima/fs", "@visulima/path", "ini", "ts-deepmerge"],
+            },
+        },
     },
 }) as BuildConfig;

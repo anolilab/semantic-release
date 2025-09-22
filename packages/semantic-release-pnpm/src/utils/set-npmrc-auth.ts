@@ -1,3 +1,5 @@
+/* eslint-disable no-secrets/no-secrets */
+/* eslint-disable no-irregular-whitespace */
 import { rc } from "@anolilab/rc";
 import { writeFile } from "@visulima/fs";
 import { resolve } from "@visulima/path";
@@ -25,9 +27,17 @@ import nerfDart from "./nerf-dart";
  * @param npmrc – Path to the `.npmrc` that should receive credentials when needed.
  * @param registry – Registry URL for which credentials are required.
  * @param context – Semantic-release context (provides env, cwd and logger).
+ * @param context.cwd The base cwd.
+ * @param context.env The environment variables.
+ * @param context.env.NPM_CONFIG_USERCONFIG The path to the `.npmrc` file.
+ * @param context.env.NPM_EMAIL The email address.
+ * @param context.env.NPM_PASSWORD The password.
+ * @param context.env.NPM_TOKEN The token.
+ * @param context.env.NPM_USERNAME The username.
+ * @param context.logger The logger instance.
  * @returns Resolves once credentials are verified or have been written.
  */
-export default async (
+const setNpmrcAuth = async (
     npmrc: string,
     registry: string,
     { cwd, env: { NPM_CONFIG_USERCONFIG, NPM_EMAIL, NPM_PASSWORD, NPM_TOKEN, NPM_USERNAME }, logger }: CommonContext,
@@ -64,3 +74,5 @@ export default async (
         throw new AggregateError([semanticError], semanticError.message);
     }
 };
+
+export default setNpmrcAuth;

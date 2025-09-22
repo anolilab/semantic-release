@@ -1,4 +1,3 @@
-// eslint-disable-next-line unicorn/prevent-abbreviations
 import type { PackageJson } from "@visulima/package";
 import { findPackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
@@ -15,10 +14,12 @@ interface Options {
  * `pkgRoot`). Ensures that the manifest contains a `name` field and throws semantic-release style
  * errors otherwise (for better aggregation in the caller).
  * @param options – Options object containing an optional `pkgRoot` path.
+ * @param options.pkgRoot The publish sub-directory.
  * @param context – Semantic-release context limited to the `cwd` property.
+ * @param context.cwd The base cwd.
  * @returns The parsed `package.json` object.
  */
-export default async ({ pkgRoot }: Options, { cwd }: { cwd: CommonContext["cwd"] }): Promise<PackageJson> => {
+const getPackage = async ({ pkgRoot }: Options, { cwd }: { cwd: CommonContext["cwd"] }): Promise<PackageJson> => {
     try {
         const { packageJson } = await findPackageJson(pkgRoot ? resolve(cwd, pkgRoot) : cwd);
 
@@ -40,3 +41,5 @@ export default async ({ pkgRoot }: Options, { cwd }: { cwd: CommonContext["cwd"]
         throw error;
     }
 };
+
+export default getPackage;
