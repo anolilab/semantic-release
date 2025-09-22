@@ -36,8 +36,8 @@
     },
     "sideEffects": false,
     "type": "module",
-    "main": "./dist/index.mjs",
-    "types": "./dist/index.d.mts",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "files": [
         "CHANGELOG.md",
         "README.md",

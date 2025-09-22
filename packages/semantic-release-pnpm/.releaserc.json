@@ -47,7 +47,7 @@
         "@semantic-release/changelog",
         "@anolilab/semantic-release-clean-package-json",
         [
-            "./dist/index.mjs",
+            "./dist/index.js",
             {
                 "disableScripts": true
             }

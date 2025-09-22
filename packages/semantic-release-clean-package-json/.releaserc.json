@@ -46,7 +46,7 @@
         ],
         "@semantic-release/changelog",
         [
-            "./dist/index.mjs",
+            "./dist/index.js",
             {
                 "disableScripts": true
             }
