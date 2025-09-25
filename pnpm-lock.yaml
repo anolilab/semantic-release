@@ -11,8 +11,8 @@ catalogs:
       version: 0.25.10
   cli:
     '@anolilab/multi-semantic-release':
-      specifier: ^2.0.3
-      version: 2.0.3
+      specifier: ^2.0.4
+      version: 2.0.4
     '@semantic-release/changelog':
       specifier: ^6.0.3
       version: 6.0.3
@@ -298,7 +298,7 @@ importers:
         version: 3.0.31(@types/node@24.5.2)(eslint@9.36.0(jiti@2.5.1))(husky@9.1.7)(lint-staged@16.1.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)
       '@anolilab/multi-semantic-release':
         specifier: catalog:cli
-        version: 2.0.3(semantic-release@24.2.9(typescript@5.9.2))(typescript@5.9.2)
+        version: 2.0.4(semantic-release@24.2.9(typescript@5.9.2))(typescript@5.9.2)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.4(prettier@3.6.2)
@@ -1044,8 +1044,8 @@ packages:
       vitest:
         optional: true
 
-  '@anolilab/multi-semantic-release@2.0.3':
-    resolution: {integrity: sha512-q3TcbbDBBq6n3xr2w2A+YI6tAQFx8rCxK67DA+qJG1XhwkpH1trrEkdpqEPM/TRx3/W0S154k655AuFfIoSwAw==}
+  '@anolilab/multi-semantic-release@2.0.4':
+    resolution: {integrity: sha512-sdg79WAWwtAucj6EvCKuzrZeTiicwd6Qnr+2mJ6zZTrBYqBpkmWos8bHL6SEAg8T3H8RANAENwNspiN7+SbdTA==}
     engines: {node: '>=20.8.1'}
     os: [darwin, linux, win32]
     hasBin: true
@@ -9169,7 +9169,7 @@ snapshots:
       - '@types/node'
       - yaml
 
-  '@anolilab/multi-semantic-release@2.0.3(semantic-release@24.2.9(typescript@5.9.2))(typescript@5.9.2)':
+  '@anolilab/multi-semantic-release@2.0.4(semantic-release@24.2.9(typescript@5.9.2))(typescript@5.9.2)':
     dependencies:
       '@semrel-extra/topo': 1.14.1
       blork: 9.3.0
