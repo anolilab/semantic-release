@@ -92,7 +92,7 @@
         "vitest": "catalog:test"
     },
     "peerDependencies": {
-        "semantic-release": ">=22.0.3"
+        "semantic-release": ">=22.0.12"
     },
     "engines": {
         "node": ">=20.8.1"
