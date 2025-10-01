@@ -80,7 +80,7 @@
         "typescript": "catalog:tsc",
         "vitest": "catalog:test"
     },
-    "packageManager": "pnpm@10.17.0",
+    "packageManager": "pnpm@10.17.1",
     "engines": {
         "node": ">=20.8.1"
     }
