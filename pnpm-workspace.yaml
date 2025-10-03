@@ -70,7 +70,7 @@ catalogs:
     browserslist-config-anolilab: ^6.0.3
   node:
     '@visulima/path': ^1.4.0
-    cross-env: ^10.0.0
+    cross-env: ^10.1.0
     execa: ^9.6.0
     pkg-pr-new: ^0.0.60
     resolve-from: ^5.0.0
