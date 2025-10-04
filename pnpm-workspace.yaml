@@ -103,7 +103,7 @@ catalogs:
     '@vitest/ui': ^3.2.4
     vitest: ^3.2.4
   tsc:
-    typescript: ^5.9.2
+    typescript: ^5.9.3
   types:
     '@types/dockerode': ^3.3.44
     '@types/ini': ^4.1.1
