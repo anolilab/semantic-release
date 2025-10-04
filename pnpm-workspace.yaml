@@ -82,7 +82,7 @@ catalogs:
     '@babel/core': ^7.28.4
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^3.1.8
-    '@visulima/package': ^3.5.11
+    '@visulima/package': ^3.6.0
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 9.1.0
