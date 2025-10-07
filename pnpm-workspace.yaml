@@ -107,7 +107,7 @@ catalogs:
   types:
     '@types/dockerode': ^3.3.44
     '@types/ini': ^4.1.1
-    '@types/node': 24.6.1
+    '@types/node': 24.6.2
     '@types/semantic-release': ^21.1.0
     '@types/semantic-release__error': 3.0.3
     '@types/semver': 7.7.1
