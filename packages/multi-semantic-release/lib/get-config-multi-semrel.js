@@ -16,8 +16,10 @@ const CONFIG_FILES = [
     `.${CONFIG_NAME}rc.yml`,
     `.${CONFIG_NAME}rc.js`,
     `.${CONFIG_NAME}rc.cjs`,
+    `.${CONFIG_NAME}rc.mjs`,
     `${CONFIG_NAME}.config.js`,
     `${CONFIG_NAME}.config.cjs`,
+    `${CONFIG_NAME}.config.mjs`,
 ];
 
 /**

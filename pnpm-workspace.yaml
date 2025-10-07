@@ -9,7 +9,7 @@ catalogs:
   build:
     esbuild: 0.25.10
   cli:
-    '@anolilab/multi-semantic-release': ^2.0.4
+    '@anolilab/multi-semantic-release': ^2.0.5
     '@anolilab/semantic-release-clean-package-json': 3.0.4
     '@anolilab/semantic-release-pnpm': 2.0.4
     '@semantic-release/changelog': ^6.0.3
@@ -45,32 +45,32 @@ catalogs:
   icons:
     cosmiconfig: ^9.0.0
   lint:
-    '@anolilab/commitlint-config': ^6.0.3
-    '@anolilab/eslint-config': ^16.3.0
-    '@anolilab/lint-staged-config': ^3.0.31
-    '@anolilab/prettier-config': ^6.0.4
-    '@anolilab/textlint-config': ^9.0.5
-    '@commitlint/cli': ^20.0.0
+    '@anolilab/commitlint-config': ^6.0.5
+    '@anolilab/eslint-config': ^16.3.3
+    '@anolilab/lint-staged-config': ^3.0.34
+    '@anolilab/prettier-config': ^6.0.6
+    '@anolilab/textlint-config': ^9.0.7
+    '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@secretlint/secretlint-rule-preset-recommend': ^11.2.4
     eslint: 9.36.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
-    lint-staged: ^16.2.1
+    lint-staged: ^16.2.3
     prettier: ^3.6.2
-    publint: ^0.3.13
+    publint: ^0.3.14
     secretlint: 11.2.4
     textlint: ^15.2.2
   markdown:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
     '@nx/workspace': 21.5.3
-    nx: ^21.5.3
+    nx: ^21.6.3
   network:
-    browserslist-config-anolilab: ^6.0.3
+    browserslist-config-anolilab: ^6.0.5
   node:
     '@visulima/path': ^1.4.0
-    cross-env: ^10.0.0
+    cross-env: ^10.1.0
     execa: ^9.6.0
     pkg-pr-new: ^0.0.60
     resolve-from: ^5.0.0
@@ -81,8 +81,8 @@ catalogs:
     '@anolilab/rc': 2.0.4
     '@babel/core': ^7.28.4
     '@semrel-extra/topo': ^1.14.1
-    '@visulima/fs': ^3.1.8
-    '@visulima/package': ^3.5.11
+    '@visulima/fs': ^3.1.9
+    '@visulima/package': ^4.0.2
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 9.1.0
@@ -103,7 +103,7 @@ catalogs:
     '@vitest/ui': ^3.2.4
     vitest: ^3.2.4
   tsc:
-    typescript: ^5.9.2
+    typescript: ^5.9.3
   types:
     '@types/dockerode': ^3.3.44
     '@types/ini': ^4.1.1
@@ -128,5 +128,6 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
-  chrono-node@<2.2.4: '>=2.2.4'
-  tmp@<=0.2.3: '>=0.2.4'
+  chrono-node@<2.2.4: '>=2.9.0'
+  tar-fs@>=2.0.0 <2.1.4: '>=2.1.4'
+  tmp@<=0.2.3: '>=0.2.5'
