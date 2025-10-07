@@ -1,3 +1,9 @@
+## @anolilab/multi-semantic-release [2.0.6](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.5...@anolilab/multi-semantic-release@2.0.6) (2025-10-07)
+
+### Bug Fixes
+
+* Add support for .mjs configuration files in multi-semantic-release package ([9c6e87e](https://github.com/anolilab/semantic-release/commit/9c6e87e01d7df815767468dfbdc87de072065d45))
+
 ## @anolilab/multi-semantic-release [2.0.5](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.4...@anolilab/multi-semantic-release@2.0.5) (2025-10-01)
 
 ### Bug Fixes
