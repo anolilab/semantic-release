@@ -9,7 +9,7 @@ catalogs:
   build:
     esbuild: 0.25.10
   cli:
-    '@anolilab/multi-semantic-release': ^2.0.5
+    '@anolilab/multi-semantic-release': ^2.0.6
     '@anolilab/semantic-release-clean-package-json': 3.0.4
     '@anolilab/semantic-release-pnpm': 2.0.4
     '@semantic-release/changelog': ^6.0.3
@@ -18,7 +18,7 @@ catalogs:
     '@semantic-release/exec': ^7.1.0
     '@semantic-release/git': ^10.0.1
     '@semantic-release/github': ^11.0.6
-    '@semantic-release/npm': ^12.0.2
+    '@semantic-release/npm': ^13.0.0
     '@semantic-release/release-notes-generator': 14.1.0
     commitizen: ^4.3.1
     semantic-release: ^24.2.9
@@ -34,12 +34,12 @@ catalogs:
     dockerode: 4.0.8
     file-url: ^4.0.0
     get-stream: 9.0.1
-    got: ^14.4.9
+    got: ^14.5.0
     left-pad: latest
-    p-retry: ^7.0.0
+    p-retry: ^7.1.0
     stream-buffers: ^3.0.3
     tempy: ^3.1.0
-    type-fest: ^5.0.1
+    type-fest: ^5.1.0
     typedoc: 0.28.13
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
@@ -52,20 +52,20 @@ catalogs:
     '@anolilab/textlint-config': ^9.0.7
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
-    '@secretlint/secretlint-rule-preset-recommend': ^11.2.4
+    '@secretlint/secretlint-rule-preset-recommend': ^11.2.5
     eslint: 9.36.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
-    lint-staged: ^16.2.3
+    lint-staged: ^16.2.4
     prettier: ^3.6.2
     publint: ^0.3.14
     secretlint: 11.2.4
-    textlint: ^15.2.2
+    textlint: ^15.2.3
   markdown:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
     '@nx/workspace': 21.5.3
-    nx: ^21.6.3
+    nx: ^21.6.4
   network:
     browserslist-config-anolilab: ^6.0.5
   node:
@@ -114,7 +114,7 @@ catalogs:
     '@types/stream-buffers': ^3.0.7
   utils:
     lodash-es: ^4.17.21
-    semver: ^7.7.2
+    semver: ^7.7.3
     ts-deepmerge: ^7.0.3
 
 onlyBuiltDependencies:
@@ -129,5 +129,5 @@ onlyBuiltDependencies:
 
 overrides:
   chrono-node@<2.2.4: '>=2.9.0'
-  tar-fs@>=2.0.0 <2.1.4: '>=2.1.4'
+  tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
   tmp@<=0.2.3: '>=0.2.5'

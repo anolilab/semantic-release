@@ -4,9 +4,6 @@ export default defineConfig({
     // ignore packages from bumping
     exclude: [
         "@types/node",
-        // eslint v9 is not supported on every plugin
-        "eslint",
-        "eslint-plugin-vitest",
     ],
     // write to package.json
     write: true,

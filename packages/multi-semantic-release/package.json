@@ -92,10 +92,10 @@
         "vitest": "catalog:test"
     },
     "peerDependencies": {
-        "semantic-release": ">=22.0.12"
+        "semantic-release": ">=24"
     },
     "engines": {
-        "node": ">=20.8.1"
+        "node": "^22.14.0 || >=24.10.0"
     },
     "os": [
         "darwin",
