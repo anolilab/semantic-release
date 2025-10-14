@@ -29,7 +29,7 @@ catalogs:
   dev:
     '@arethetypeswrong/cli': ^0.18.2
     '@ckeditor/typedoc-plugins': 43.1.0
-    '@visulima/packem': 2.0.0-alpha.20
+    '@visulima/packem': 2.0.0-alpha.29
     conventional-changelog-conventionalcommits: 9.1.0
     dockerode: 4.0.8
     file-url: ^4.0.0
