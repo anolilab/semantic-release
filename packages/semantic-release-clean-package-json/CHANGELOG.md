@@ -1,3 +1,20 @@
+## @anolilab/semantic-release-clean-package-json [4.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.4...@anolilab/semantic-release-clean-package-json@4.0.0-alpha.1) (2025-10-14)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Bug Fixes
+
+* update dependencies and configurations across multiple packages ([62c36cd](https://github.com/anolilab/semantic-release/commit/62c36cd7eb77324e2e60ba6d0f9137e4b9b2c86d))
+* update dependencies and node version across multiple packages ([3cea078](https://github.com/anolilab/semantic-release/commit/3cea078f8aa27d0873e082bc54c4c5117e5105bf))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.1
+
 ## @anolilab/semantic-release-clean-package-json [3.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.3...@anolilab/semantic-release-clean-package-json@3.0.4) (2025-09-22)
 
 ### Bug Fixes
