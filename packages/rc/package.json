@@ -115,23 +115,10 @@
         "vitest": "catalog:test"
     },
     "engines": {
-        "node": ">=20.8.1"
+        "node": "^22.14.0 || >=24.10.0"
     },
     "publishConfig": {
         "access": "public",
         "provenance": true
-    },
-    "anolilab": {
-        "eslint-config": {
-            "plugin": {
-                "tsdoc": false,
-                "etc": false
-            },
-            "warn_on_unsupported_typescript_version": false,
-            "info_on_disabling_jsx_react_rule": false,
-            "info_on_disabling_prettier_conflict_rule": false,
-            "info_on_disabling_jsonc_sort_keys_rule": false,
-            "info_on_disabling_etc_no_deprecated": false
-        }
     }
 }

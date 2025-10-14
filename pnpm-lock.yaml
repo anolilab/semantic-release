@@ -13,6 +13,18 @@ catalogs:
     '@anolilab/multi-semantic-release':
       specifier: ^2.0.6
       version: 2.0.6
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    '@anolilab/semantic-release-clean-package-json':
+      specifier: 3.0.4
+      version: 3.0.4
+    '@anolilab/semantic-release-pnpm':
+      specifier: 2.0.4
+      version: 2.0.4
+=======
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
+>>>>>>> f63ab92 (fix: update dependencies and node version across multiple packages)
     '@semantic-release/changelog':
       specifier: ^6.0.3
       version: 6.0.3
@@ -70,8 +82,13 @@ catalogs:
       specifier: 9.0.1
       version: 9.0.1
     got:
+<<<<<<< HEAD
       specifier: ^14.6.1
       version: 14.6.1
+=======
+      specifier: ^14.5.0
+      version: 14.5.0
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     p-retry:
       specifier: ^7.1.0
       version: 7.1.0
@@ -129,8 +146,13 @@ catalogs:
       specifier: ^9.1.7
       version: 9.1.7
     lint-staged:
+<<<<<<< HEAD
       specifier: ^16.2.6
       version: 16.2.6
+=======
+      specifier: ^16.2.4
+      version: 16.2.4
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     prettier:
       specifier: ^3.6.2
       version: 3.6.2
@@ -152,8 +174,13 @@ catalogs:
       specifier: 21.5.3
       version: 21.5.3
     nx:
+<<<<<<< HEAD
       specifier: ^22.0.2
       version: 22.0.2
+=======
+      specifier: ^21.6.4
+      version: 21.6.4
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
   network:
     browserslist-config-anolilab:
       specifier: ^6.0.6
@@ -259,9 +286,6 @@ catalogs:
     '@types/node':
       specifier: 24.6.2
       version: 24.6.2
-    '@types/semantic-release':
-      specifier: ^21.1.0
-      version: 21.1.0
     '@types/semantic-release__error':
       specifier: 3.0.3
       version: 3.0.3
@@ -297,7 +321,11 @@ importers:
         version: 6.0.6(@commitlint/cli@20.1.0(@types/node@24.6.2)(typescript@5.9.3))(@types/node@24.6.2)(typescript@5.9.3)
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 3.0.37(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)
+=======
+        version: 3.0.34(@types/node@24.6.2)(eslint@9.36.0(jiti@2.5.1))(husky@9.1.7)(lint-staged@16.2.4)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       '@anolilab/multi-semantic-release':
         specifier: catalog:cli
         version: 2.0.6(semantic-release@24.2.9(typescript@5.9.3))(typescript@5.9.3)
@@ -306,7 +334,11 @@ importers:
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/textlint-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 9.0.8(textlint@15.2.3)
+=======
+        version: 9.0.7(textlint@15.2.3)
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       '@babel/core':
         specifier: catalog:prod
         version: 7.28.5
@@ -342,10 +374,17 @@ importers:
         version: 4.1.0
       lint-staged:
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 16.2.6
       nx:
         specifier: catalog:monorepo
         version: 22.0.2
+=======
+        version: 16.2.4
+      nx:
+        specifier: catalog:monorepo
+        version: 21.6.4
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       pkg-pr-new:
         specifier: catalog:node
         version: 0.0.60
@@ -658,9 +697,6 @@ importers:
       '@types/node':
         specifier: catalog:types
         version: 24.6.2
-      '@types/semantic-release':
-        specifier: catalog:types
-        version: 21.1.0(typescript@5.9.3)
       '@types/semantic-release__error':
         specifier: catalog:types
         version: 3.0.3
@@ -814,7 +850,11 @@ importers:
         version: 9.0.1
       got:
         specifier: catalog:dev
+<<<<<<< HEAD
         version: 14.6.1
+=======
+        version: 14.5.0
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       p-retry:
         specifier: catalog:dev
         version: 7.1.0
@@ -1672,8 +1712,13 @@ packages:
   '@mdn/browser-compat-data@5.7.6':
     resolution: {integrity: sha512-7xdrMX0Wk7grrTZQwAoy1GkvPMFoizStUoL+VmtUkAxegbCCec+3FKwOM6yc/uGU5+BEczQHXAlWiqvM8JeENg==}
 
+<<<<<<< HEAD
   '@modelcontextprotocol/sdk@1.20.2':
     resolution: {integrity: sha512-6rqTdFt67AAAzln3NOKsXRmv5ZzPkgbfaebKBqUbts7vK1GZudqnrun5a8d3M/h955cam9RHZ6Jb4Y1XhnmFPg==}
+=======
+  '@modelcontextprotocol/sdk@1.20.0':
+    resolution: {integrity: sha512-kOQ4+fHuT4KbR2iq2IjeV32HiihueuOf1vJkq18z08CLZ1UQrTc8BXJpVfxZkq45+inLLD+D4xx4nBjUelJa4Q==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     engines: {node: '>=18'}
 
   '@napi-rs/wasm-runtime@0.2.11':
@@ -1719,8 +1764,13 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
+<<<<<<< HEAD
   '@nx/nx-darwin-arm64@22.0.2':
     resolution: {integrity: sha512-2xrjMN4oJcZg8D3yzM3UGENBqelyMvmLjfHZgwXwyp2j6WexYaU0UusS2EmVTOCi9q7k3knQCWuSa2Y9uk2sTQ==}
+=======
+  '@nx/nx-darwin-arm64@21.6.4':
+    resolution: {integrity: sha512-Ra24qHf55i9ogJ8wDymRzQL0kLK8uEXjntwKHD0stZtyiYO1tCKLgvxn5oOhiyn1sAk7aKT238s2y9zJ5bYPnQ==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [arm64]
     os: [darwin]
 
@@ -1729,8 +1779,13 @@ packages:
     cpu: [x64]
     os: [darwin]
 
+<<<<<<< HEAD
   '@nx/nx-darwin-x64@22.0.2':
     resolution: {integrity: sha512-pxfvnZLwfDk0Q9emDLNCyu0lOSMg8+4IUdIpfaNjBjYRV+042zLSzAMJ1n6Tn9p/QhM9nipVwXW0IhH5kf7kyg==}
+=======
+  '@nx/nx-darwin-x64@21.6.4':
+    resolution: {integrity: sha512-4tzVVu+2arCpu7RGqdb4JR3fvKyTrHUn0fX33kMtds2TGvzERbfgBPzEzrqbLiflpYdxqCZX8l0yPRsvjuCojA==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [x64]
     os: [darwin]
 
@@ -1739,8 +1794,13 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
+<<<<<<< HEAD
   '@nx/nx-freebsd-x64@22.0.2':
     resolution: {integrity: sha512-wwfl4e2GzCENhYoJMEUmQaurRxyGiJH8x0IRI5YbLWzgj88hQGRkzUjUhxPkXHDn4/YtOq/rWViN5j2j1oAB2A==}
+=======
+  '@nx/nx-freebsd-x64@21.6.4':
+    resolution: {integrity: sha512-DqeQn//aHLdvqkd5uTpAm6/TGW54XBg3UEfvCD5LFLMXWVdToi6CbIFnRIhufdFLEboQH0Nm22fdJnGwAPV+Xw==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [x64]
     os: [freebsd]
 
@@ -1749,8 +1809,13 @@ packages:
     cpu: [arm]
     os: [linux]
 
+<<<<<<< HEAD
   '@nx/nx-linux-arm-gnueabihf@22.0.2':
     resolution: {integrity: sha512-OKo3hVRRYUdMBTdUFxmFxz2Bto7iAZtnrszwm7NKgeqOetm37s1f+tZ1Q1s7WwZjjPm/B5vZ83TUXJcwMh+ieg==}
+=======
+  '@nx/nx-linux-arm-gnueabihf@21.6.4':
+    resolution: {integrity: sha512-6m82VzjrVVvwZtS5rFj0j7CcDrYaSkZ4yk0lf1NIvRqWjgnTnfaG58XQQxLo8wxH8mKiPDQzlDuer9HNNIxKCw==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [arm]
     os: [linux]
 
@@ -1759,8 +1824,13 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+<<<<<<< HEAD
   '@nx/nx-linux-arm64-gnu@22.0.2':
     resolution: {integrity: sha512-aaWUYXFaB9ztrICg0WHuz0tzoil+OkSpWi+wtM9PsV+vNQTYWIPclO+OpSp4am68/bdtuMuITOH99EvEIfv7ZA==}
+=======
+  '@nx/nx-linux-arm64-gnu@21.6.4':
+    resolution: {integrity: sha512-Ohlh3YdzbmWnXjlDZd6yw20mNMWvZ1CGW/iQ5suerfyJZGjO+ToPjw3Mp8HgBoesHaWPGi81GhjAEyiZmEAHug==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [arm64]
     os: [linux]
 
@@ -1769,8 +1839,13 @@ packages:
     cpu: [arm64]
     os: [linux]
 
+<<<<<<< HEAD
   '@nx/nx-linux-arm64-musl@22.0.2':
     resolution: {integrity: sha512-ylT5GBJCUpTXp5ud8f/uRyW9OA2KR65nuFQ5iXNf1KXwfjGuinFDvZEDDj0zGQ4E/PwLrInqBkkSH25Ry99lOQ==}
+=======
+  '@nx/nx-linux-arm64-musl@21.6.4':
+    resolution: {integrity: sha512-OLvEpJYo7n8nHGaBSl7Fb+Oz68wmPfRP+i6voQbM8qV/g5No9vE/QtAdSTlyFXOCGwSekCGpc2Ef2KOvpmYUTg==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [arm64]
     os: [linux]
 
@@ -1779,8 +1854,13 @@ packages:
     cpu: [x64]
     os: [linux]
 
+<<<<<<< HEAD
   '@nx/nx-linux-x64-gnu@22.0.2':
     resolution: {integrity: sha512-N8beYlkdKbAC5CA3i5WoqUUbbsSO/0cQk3gMW7c41bouqdMWDUKG6m50d4yHk8V7RFC+sqY59tso3rYmXW3big==}
+=======
+  '@nx/nx-linux-x64-gnu@21.6.4':
+    resolution: {integrity: sha512-TYC5a5VnXhEGGVAtPVwdG5qLzf9p7SZyOrOdQMZlAZCchFpL37gmV1OMH1Eb5eM32o+mGF/DDIgbyNXAErTN5g==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [x64]
     os: [linux]
 
@@ -1789,8 +1869,13 @@ packages:
     cpu: [x64]
     os: [linux]
 
+<<<<<<< HEAD
   '@nx/nx-linux-x64-musl@22.0.2':
     resolution: {integrity: sha512-Q0joIxZHs9JVr/+6x1bee7z+7Z4SoO0mbhADuugjxly50O44Igg+rx78Iou00VrtSR+Ht5NlpILxOe4GhpFCpA==}
+=======
+  '@nx/nx-linux-x64-musl@21.6.4':
+    resolution: {integrity: sha512-2ZG3DUadDpP79oW5DIYMZPKFMCGSRbqLKeHlW8miYORbPJ6VinUp6wTVDx6cAoL2IhP9biD6dItc9Dcfn5Hj2g==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [x64]
     os: [linux]
 
@@ -1799,8 +1884,13 @@ packages:
     cpu: [arm64]
     os: [win32]
 
+<<<<<<< HEAD
   '@nx/nx-win32-arm64-msvc@22.0.2':
     resolution: {integrity: sha512-/4FXsBh+SB6fKFeVBFptPPWJIeFPQWmK29Q+XLrjYW/31bOs1k2uwn+7QYX0D+Z4HiME3iiRdAInFD9pVlyZbQ==}
+=======
+  '@nx/nx-win32-arm64-msvc@21.6.4':
+    resolution: {integrity: sha512-o64p5hVavJhD+ISxCfwCKhKccgXalEnvfXfqXBV6yZiud6kDnYphPp2SPzyf9NgZyuFJdeFRvJ1XtuEzW3VcXg==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [arm64]
     os: [win32]
 
@@ -1809,8 +1899,13 @@ packages:
     cpu: [x64]
     os: [win32]
 
+<<<<<<< HEAD
   '@nx/nx-win32-x64-msvc@22.0.2':
     resolution: {integrity: sha512-Hp0z4h7kIo9XLVkGbyIZmgWOKIhSo2xs9pNT1TgZz/AmesnI/DdqRbazitnhXMhlvSWUOxdP/7I8xEZYG9zyNA==}
+=======
+  '@nx/nx-win32-x64-msvc@21.6.4':
+    resolution: {integrity: sha512-g+YwOFd9sjTjf6LCaN8hq6plvNo4BfwmTurnKBzJ/Q/hCbxffYpo1Vdos+OfHBuMsJN2yIMX97LwB0d9w2I8Ag==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     cpu: [x64]
     os: [win32]
 
@@ -2782,10 +2877,6 @@ packages:
 
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
-
-  '@types/semantic-release@21.1.0':
-    resolution: {integrity: sha512-9eGzz0L35u5W7B67x4OpCYfmWUqEre/pqW7PY389vbSFZigBc/Rr9uNNWIkMuy+q6QvfU+nknvXtiwFccDx4+g==}
-    deprecated: This is a stub types definition. semantic-release provides its own type definitions, so you do not need this installed.
 
   '@types/semantic-release__error@3.0.3':
     resolution: {integrity: sha512-zFa+QAM80q65lQc5NVnKR5BgR0ChuLnBkfRBwa9xRqzAHOJx+mozSV2g1d489mKRqYezqxYC7XI0rEVoyF1f2w==}
@@ -3764,8 +3855,13 @@ packages:
     resolution: {integrity: sha512-zkDT5WAF4hSSoUgyfg5tFIxz8XQK+25W/TLVojJTMKBaxevLBBtLxgqguAuVQB8PVW79FVjHcU+GJ9tVbDZ9mQ==}
     engines: {node: '>=14.16'}
 
+<<<<<<< HEAD
   cacheable-request@13.0.13:
     resolution: {integrity: sha512-/5/6xDTN/AZHOn93MNaU7HUSzOL/YJWOwa5hV84ib1mPUtQB/ZTg5bn57UGfdNwXGhgQfcPpJDy+eGiNgGJI1w==}
+=======
+  cacheable-request@13.0.12:
+    resolution: {integrity: sha512-qqK/etGeI/9DV5yRkO50ApDTjip9UXPml1NHYJksUAw15yMLOf8VUO1/8bu4P8birOCqR+hYQ/nh1Lezc8sZrA==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     engines: {node: '>=18'}
 
   cacheable@1.10.4:
@@ -5279,8 +5375,13 @@ packages:
     resolution: {integrity: sha512-mThBblvlAF1d4O5oqyvN+ZxLAYwIJK7bpMxgYqPD9okW0C3qm5FFn7k811QrcuEBwaogR3ngOFoCfs6mRv7teQ==}
     engines: {node: '>=14.16'}
 
+<<<<<<< HEAD
   got@14.6.1:
     resolution: {integrity: sha512-56lZOw904LHKr6KdKN0Zbgz9Lw6cpEAAqZcS+0iY4D27caHoLiFT0EGCbrX9ZKYvt+I2lGl3a8eeDNSbmhyjkQ==}
+=======
+  got@14.5.0:
+    resolution: {integrity: sha512-rZ8+ZMYz9yeTFmFtOiwf/Trcli8gdqgqAz0kmkEOWcT7C3BFG3Z+dLQu0y8je7RogG7Wp1obnu5GerwCaccftw==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     engines: {node: '>=20'}
 
   graceful-fs@4.2.10:
@@ -6067,8 +6168,13 @@ packages:
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
+<<<<<<< HEAD
   lint-staged@16.2.6:
     resolution: {integrity: sha512-s1gphtDbV4bmW1eylXpVMk2u7is7YsrLl8hzrtvC70h4ByhcMLZFY01Fx05ZUDNuv1H8HO4E+e2zgejV1jVwNw==}
+=======
+  lint-staged@16.2.4:
+    resolution: {integrity: sha512-Pkyr/wd90oAyXk98i/2KwfkIhoYQUMtss769FIT9hFM5ogYZwrk+GRE46yKXSg2ZGhcJ1p38Gf5gmI5Ohjg2yg==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -6992,8 +7098,13 @@ packages:
       '@swc/core':
         optional: true
 
+<<<<<<< HEAD
   nx@22.0.2:
     resolution: {integrity: sha512-cQD3QqZDPJMnvE4UGmVwCc6l7ll+u8a93brIAOujOxocyMNARXzyVub8Uxqy0QSr2ayFGmEINb6BJvY+EooT5Q==}
+=======
+  nx@21.6.4:
+    resolution: {integrity: sha512-RVQ7x/bTfJmGWS1rnGMpLDeaW7MnM8eja0qfSbZooP55GWPE6g4uwMKqfX+uqU/dV9GBNOBn77y8h0dEIZtMhg==}
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     hasBin: true
     peerDependencies:
       '@swc-node/register': ^1.8.0
@@ -9192,7 +9303,11 @@ snapshots:
       - vitest
       - yaml
 
+<<<<<<< HEAD
   '@anolilab/lint-staged-config@3.0.37(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)':
+=======
+  '@anolilab/lint-staged-config@3.0.34(@types/node@24.6.2)(eslint@9.36.0(jiti@2.5.1))(husky@9.1.7)(lint-staged@16.2.4)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       '@visulima/fs': 3.1.9(yaml@2.8.1)
       '@visulima/package': 4.1.2(@types/node@24.6.2)
@@ -9200,8 +9315,13 @@ snapshots:
       shell-quote: 1.8.3
       type-fest: 5.1.0
     optionalDependencies:
+<<<<<<< HEAD
       eslint: 9.36.0(jiti@2.6.0)
       lint-staged: 16.2.6
+=======
+      eslint: 9.36.0(jiti@2.5.1)
+      lint-staged: 16.2.4
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       prettier: 3.6.2
       secretlint: 11.2.4
       vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
@@ -9267,7 +9387,11 @@ snapshots:
       - '@types/node'
       - yaml
 
+<<<<<<< HEAD
   '@anolilab/textlint-config@9.0.8(textlint@15.2.3)':
+=======
+  '@anolilab/textlint-config@9.0.7(textlint@15.2.3)':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
@@ -9945,7 +10069,11 @@ snapshots:
 
   '@mdn/browser-compat-data@5.7.6': {}
 
+<<<<<<< HEAD
   '@modelcontextprotocol/sdk@1.20.2':
+=======
+  '@modelcontextprotocol/sdk@1.20.0':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       ajv: 6.12.6
       content-type: 1.0.5
@@ -10029,61 +10157,101 @@ snapshots:
   '@nx/nx-darwin-arm64@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-darwin-arm64@22.0.2':
+=======
+  '@nx/nx-darwin-arm64@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-darwin-x64@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-darwin-x64@22.0.2':
+=======
+  '@nx/nx-darwin-x64@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-freebsd-x64@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-freebsd-x64@22.0.2':
+=======
+  '@nx/nx-freebsd-x64@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-linux-arm-gnueabihf@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-linux-arm-gnueabihf@22.0.2':
+=======
+  '@nx/nx-linux-arm-gnueabihf@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-linux-arm64-gnu@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-linux-arm64-gnu@22.0.2':
+=======
+  '@nx/nx-linux-arm64-gnu@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-linux-arm64-musl@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-linux-arm64-musl@22.0.2':
+=======
+  '@nx/nx-linux-arm64-musl@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-linux-x64-gnu@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-linux-x64-gnu@22.0.2':
+=======
+  '@nx/nx-linux-x64-gnu@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-linux-x64-musl@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-linux-x64-musl@22.0.2':
+=======
+  '@nx/nx-linux-x64-musl@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-win32-arm64-msvc@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-win32-arm64-msvc@22.0.2':
+=======
+  '@nx/nx-win32-arm64-msvc@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/nx-win32-x64-msvc@21.5.3':
     optional: true
 
+<<<<<<< HEAD
   '@nx/nx-win32-x64-msvc@22.0.2':
+=======
+  '@nx/nx-win32-x64-msvc@21.6.4':
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     optional: true
 
   '@nx/workspace@21.5.3':
@@ -11228,13 +11396,6 @@ snapshots:
 
   '@types/resolve@1.20.2': {}
 
-  '@types/semantic-release@21.1.0(typescript@5.9.3)':
-    dependencies:
-      semantic-release: 24.2.9(typescript@5.9.3)
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
   '@types/semantic-release__error@3.0.3': {}
 
   '@types/semver@7.7.1': {}
@@ -12144,7 +12305,11 @@ snapshots:
       normalize-url: 8.1.0
       responselike: 3.0.0
 
+<<<<<<< HEAD
   cacheable-request@13.0.13:
+=======
+  cacheable-request@13.0.12:
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       '@types/http-cache-semantics': 4.0.4
       get-stream: 9.0.1
@@ -12979,12 +13144,20 @@ snapshots:
 
   eslint-compat-utils@0.5.1(eslint@9.36.0(jiti@2.6.0)):
     dependencies:
+<<<<<<< HEAD
       eslint: 9.36.0(jiti@2.6.0)
+=======
+      eslint: 9.36.0(jiti@2.5.1)
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       semver: 7.7.3
 
   eslint-compat-utils@0.6.5(eslint@9.36.0(jiti@2.6.0)):
     dependencies:
+<<<<<<< HEAD
       eslint: 9.36.0(jiti@2.6.0)
+=======
+      eslint: 9.36.0(jiti@2.5.1)
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       semver: 7.7.3
 
   eslint-config-flat-gitignore@2.1.0(eslint@9.36.0(jiti@2.6.0)):
@@ -13924,13 +14097,22 @@ snapshots:
       p-cancelable: 3.0.0
       responselike: 3.0.0
 
+<<<<<<< HEAD
   got@14.6.1:
+=======
+  got@14.5.0:
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       '@sindresorhus/is': 7.0.1
       '@szmarczak/http-timer': 5.0.1
       cacheable-lookup: 7.0.0
+<<<<<<< HEAD
       cacheable-request: 13.0.13
       decompress-response: 10.0.0
+=======
+      cacheable-request: 13.0.12
+      decompress-response: 6.0.0
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       form-data-encoder: 4.0.2
       http2-wrapper: 2.2.1
       keyv: 5.5.3
@@ -14701,7 +14883,11 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
+<<<<<<< HEAD
   lint-staged@16.2.6:
+=======
+  lint-staged@16.2.4:
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       commander: 14.0.1
       listr2: 9.0.5
@@ -16099,7 +16285,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+<<<<<<< HEAD
   nx@22.0.2:
+=======
+  nx@21.6.4:
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     dependencies:
       '@napi-rs/wasm-runtime': 0.2.4
       '@yarnpkg/lockfile': 1.1.0
@@ -16137,6 +16327,7 @@ snapshots:
       yargs: 17.7.2
       yargs-parser: 21.1.1
     optionalDependencies:
+<<<<<<< HEAD
       '@nx/nx-darwin-arm64': 22.0.2
       '@nx/nx-darwin-x64': 22.0.2
       '@nx/nx-freebsd-x64': 22.0.2
@@ -16147,6 +16338,18 @@ snapshots:
       '@nx/nx-linux-x64-musl': 22.0.2
       '@nx/nx-win32-arm64-msvc': 22.0.2
       '@nx/nx-win32-x64-msvc': 22.0.2
+=======
+      '@nx/nx-darwin-arm64': 21.6.4
+      '@nx/nx-darwin-x64': 21.6.4
+      '@nx/nx-freebsd-x64': 21.6.4
+      '@nx/nx-linux-arm-gnueabihf': 21.6.4
+      '@nx/nx-linux-arm64-gnu': 21.6.4
+      '@nx/nx-linux-arm64-musl': 21.6.4
+      '@nx/nx-linux-x64-gnu': 21.6.4
+      '@nx/nx-linux-x64-musl': 21.6.4
+      '@nx/nx-win32-arm64-msvc': 21.6.4
+      '@nx/nx-win32-x64-msvc': 21.6.4
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
     transitivePeerDependencies:
       - debug
 
@@ -17876,7 +18079,11 @@ snapshots:
 
   textlint@15.2.3:
     dependencies:
+<<<<<<< HEAD
       '@modelcontextprotocol/sdk': 1.20.2
+=======
+      '@modelcontextprotocol/sdk': 1.20.0
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       '@textlint/ast-node-types': 15.2.3
       '@textlint/ast-traverse': 15.2.3
       '@textlint/config-loader': 15.2.3
