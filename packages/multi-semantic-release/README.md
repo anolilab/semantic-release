@@ -67,7 +67,7 @@ multi-semantic-release
 
 ## Requirements
 
-- Node.js >= 20.6.1
+- Node.js ^22.14.0 || >=24.10.0
 - [git-notes enabled](https://github.com/semantic-release/semantic-release/blob/2e4b901c4f412980a425469fae49cfaef500d47a/docs/support/troubleshooting.md#release-not-found-release-branch-after-git-push---force)
 
 ### yarn / npm (v7+)
