@@ -53,10 +53,8 @@ catalogs:
     got: ^14.5.0
     left-pad: latest
     p-retry: ^7.1.0
-    p-retry: ^7.1.0
     stream-buffers: ^3.0.3
     tempy: ^3.1.0
-    type-fest: ^5.1.0
     type-fest: ^5.1.0
     typedoc: 0.28.13
     typedoc-plugin-rename-defaults: 0.7.3
@@ -71,7 +69,6 @@ catalogs:
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
     '@secretlint/secretlint-rule-preset-recommend': ^11.2.5
-    '@secretlint/secretlint-rule-preset-recommend': ^11.2.5
     eslint: 9.36.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
@@ -79,7 +76,6 @@ catalogs:
     prettier: ^3.6.2
     publint: ^0.3.15
     secretlint: 11.2.4
-    textlint: ^15.2.3
     textlint: ^15.2.3
   markdown:
     typedoc-plugin-markdown: 4.9.0

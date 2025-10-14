@@ -67,8 +67,13 @@ catalogs:
       specifier: 43.1.0
       version: 43.1.0
     '@visulima/packem':
+<<<<<<< HEAD
       specifier: 2.0.0-alpha.32
       version: 2.0.0-alpha.32
+=======
+      specifier: 2.0.0-alpha.29
+      version: 2.0.0-alpha.29
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     conventional-changelog-conventionalcommits:
       specifier: 9.1.0
       version: 9.1.0
@@ -322,10 +327,14 @@ importers:
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 3.0.37(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)
 =======
         version: 3.0.34(@types/node@24.6.2)(eslint@9.36.0(jiti@2.5.1))(husky@9.1.7)(lint-staged@16.2.4)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)
 >>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
+=======
+        version: 3.0.34(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.4)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@anolilab/multi-semantic-release':
         specifier: catalog:cli
         version: 2.0.6(semantic-release@24.2.9(typescript@5.9.3))(typescript@5.9.3)
@@ -420,7 +429,11 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
+<<<<<<< HEAD
         version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   packages/multi-semantic-release:
     dependencies:
@@ -469,7 +482,11 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+=======
+        version: 16.3.3(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -547,7 +564,11 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
+<<<<<<< HEAD
         version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   packages/rc:
     dependencies:
@@ -566,7 +587,11 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+=======
+        version: 16.3.3(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -602,7 +627,11 @@ importers:
         version: 24.6.2
       '@visulima/packem':
         specifier: catalog:dev
+<<<<<<< HEAD
         version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+=======
+        version: 2.0.0-alpha.29(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.3.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -650,7 +679,11 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
+<<<<<<< HEAD
         version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   packages/semantic-release-clean-package-json:
     dependencies:
@@ -673,7 +706,11 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+=======
+        version: 16.3.3(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -709,7 +746,11 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
+<<<<<<< HEAD
         version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+=======
+        version: 2.0.0-alpha.29(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.3.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -742,7 +783,11 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
+<<<<<<< HEAD
         version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   packages/semantic-release-pnpm:
     dependencies:
@@ -779,7 +824,11 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+=======
+        version: 16.3.3(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -827,7 +876,11 @@ importers:
         version: 3.0.8
       '@visulima/packem':
         specifier: catalog:dev
+<<<<<<< HEAD
         version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+=======
+        version: 2.0.0-alpha.29(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.3.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -885,7 +938,11 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
+<<<<<<< HEAD
         version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+        version: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   packages/semantic-release-preset:
     dependencies:
@@ -916,7 +973,11 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
+<<<<<<< HEAD
         version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+=======
+        version: 16.3.3(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@3.2.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -2029,9 +2090,12 @@ packages:
   '@octokit/types@14.1.0':
     resolution: {integrity: sha512-1y6DgTy8Jomcpu33N+p5w58l6xyt55Ar2I91RPiIA0xCJBXyUAhXCcmZaDWSANiha7R9a6qJJ2CRomGPZ6f46g==}
 
+<<<<<<< HEAD
   '@octokit/types@16.0.0':
     resolution: {integrity: sha512-sKq+9r1Mm4efXW1FCk7hFSeJo4QKreL/tTbR0rz/qx/r1Oa2VV83LTA/H/MuCOX7uCIJmQVRKBcbmWoySjAnSg==}
 
+=======
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
   '@oxc-parser/binding-android-arm64@0.93.0':
     resolution: {integrity: sha512-hTxegqGaVA5py2XCNV3Ry6e0tJNl32ZlB5TNOL9YuxvzTY3y3ySJovhufaubtOr/qW/FYmA5l+UC78gbtRTLEw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -2356,6 +2420,7 @@ packages:
       rollup:
         optional: true
 
+<<<<<<< HEAD
   '@rollup/rollup-android-arm-eabi@4.52.5':
     resolution: {integrity: sha512-8c1vW4ocv3UOMp9K+gToY5zL2XiiVw3k7f1ksf4yO1FlDFQ1C2u72iACFnSOceJFsWskc2WZNqeRhFRPzv+wtQ==}
     cpu: [arm]
@@ -2463,6 +2528,115 @@ packages:
 
   '@rollup/rollup-win32-x64-msvc@4.52.5':
     resolution: {integrity: sha512-TAcgQh2sSkykPRWLrdyy2AiceMckNf5loITqXxFI5VuQjS5tSuw3WlwdN8qv8vzjLAUTvYaH/mVjSFpbkFbpTg==}
+=======
+  '@rollup/rollup-android-arm-eabi@4.52.4':
+    resolution: {integrity: sha512-BTm2qKNnWIQ5auf4deoetINJm2JzvihvGb9R6K/ETwKLql/Bb3Eg2H1FBp1gUb4YGbydMA3jcmQTR73q7J+GAA==}
+    cpu: [arm]
+    os: [android]
+
+  '@rollup/rollup-android-arm64@4.52.4':
+    resolution: {integrity: sha512-P9LDQiC5vpgGFgz7GSM6dKPCiqR3XYN1WwJKA4/BUVDjHpYsf3iBEmVz62uyq20NGYbiGPR5cNHI7T1HqxNs2w==}
+    cpu: [arm64]
+    os: [android]
+
+  '@rollup/rollup-darwin-arm64@4.52.4':
+    resolution: {integrity: sha512-QRWSW+bVccAvZF6cbNZBJwAehmvG9NwfWHwMy4GbWi/BQIA/laTIktebT2ipVjNncqE6GLPxOok5hsECgAxGZg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@rollup/rollup-darwin-x64@4.52.4':
+    resolution: {integrity: sha512-hZgP05pResAkRJxL1b+7yxCnXPGsXU0fG9Yfd6dUaoGk+FhdPKCJ5L1Sumyxn8kvw8Qi5PvQ8ulenUbRjzeCTw==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@rollup/rollup-freebsd-arm64@4.52.4':
+    resolution: {integrity: sha512-xmc30VshuBNUd58Xk4TKAEcRZHaXlV+tCxIXELiE9sQuK3kG8ZFgSPi57UBJt8/ogfhAF5Oz4ZSUBN77weM+mQ==}
+    cpu: [arm64]
+    os: [freebsd]
+
+  '@rollup/rollup-freebsd-x64@4.52.4':
+    resolution: {integrity: sha512-WdSLpZFjOEqNZGmHflxyifolwAiZmDQzuOzIq9L27ButpCVpD7KzTRtEG1I0wMPFyiyUdOO+4t8GvrnBLQSwpw==}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@rollup/rollup-linux-arm-gnueabihf@4.52.4':
+    resolution: {integrity: sha512-xRiOu9Of1FZ4SxVbB0iEDXc4ddIcjCv2aj03dmW8UrZIW7aIQ9jVJdLBIhxBI+MaTnGAKyvMwPwQnoOEvP7FgQ==}
+    cpu: [arm]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm-musleabihf@4.52.4':
+    resolution: {integrity: sha512-FbhM2p9TJAmEIEhIgzR4soUcsW49e9veAQCziwbR+XWB2zqJ12b4i/+hel9yLiD8pLncDH4fKIPIbt5238341Q==}
+    cpu: [arm]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm64-gnu@4.52.4':
+    resolution: {integrity: sha512-4n4gVwhPHR9q/g8lKCyz0yuaD0MvDf7dV4f9tHt0C73Mp8h38UCtSCSE6R9iBlTbXlmA8CjpsZoujhszefqueg==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rollup/rollup-linux-arm64-musl@4.52.4':
+    resolution: {integrity: sha512-u0n17nGA0nvi/11gcZKsjkLj1QIpAuPFQbR48Subo7SmZJnGxDpspyw2kbpuoQnyK+9pwf3pAoEXerJs/8Mi9g==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@rollup/rollup-linux-loong64-gnu@4.52.4':
+    resolution: {integrity: sha512-0G2c2lpYtbTuXo8KEJkDkClE/+/2AFPdPAbmaHoE870foRFs4pBrDehilMcrSScrN/fB/1HTaWO4bqw+ewBzMQ==}
+    cpu: [loong64]
+    os: [linux]
+
+  '@rollup/rollup-linux-ppc64-gnu@4.52.4':
+    resolution: {integrity: sha512-teSACug1GyZHmPDv14VNbvZFX779UqWTsd7KtTM9JIZRDI5NUwYSIS30kzI8m06gOPB//jtpqlhmraQ68b5X2g==}
+    cpu: [ppc64]
+    os: [linux]
+
+  '@rollup/rollup-linux-riscv64-gnu@4.52.4':
+    resolution: {integrity: sha512-/MOEW3aHjjs1p4Pw1Xk4+3egRevx8Ji9N6HUIA1Ifh8Q+cg9dremvFCUbOX2Zebz80BwJIgCBUemjqhU5XI5Eg==}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@rollup/rollup-linux-riscv64-musl@4.52.4':
+    resolution: {integrity: sha512-1HHmsRyh845QDpEWzOFtMCph5Ts+9+yllCrREuBR/vg2RogAQGGBRC8lDPrPOMnrdOJ+mt1WLMOC2Kao/UwcvA==}
+    cpu: [riscv64]
+    os: [linux]
+
+  '@rollup/rollup-linux-s390x-gnu@4.52.4':
+    resolution: {integrity: sha512-seoeZp4L/6D1MUyjWkOMRU6/iLmCU2EjbMTyAG4oIOs1/I82Y5lTeaxW0KBfkUdHAWN7j25bpkt0rjnOgAcQcA==}
+    cpu: [s390x]
+    os: [linux]
+
+  '@rollup/rollup-linux-x64-gnu@4.52.4':
+    resolution: {integrity: sha512-Wi6AXf0k0L7E2gteNsNHUs7UMwCIhsCTs6+tqQ5GPwVRWMaflqGec4Sd8n6+FNFDw9vGcReqk2KzBDhCa1DLYg==}
+    cpu: [x64]
+    os: [linux]
+
+  '@rollup/rollup-linux-x64-musl@4.52.4':
+    resolution: {integrity: sha512-dtBZYjDmCQ9hW+WgEkaffvRRCKm767wWhxsFW3Lw86VXz/uJRuD438/XvbZT//B96Vs8oTA8Q4A0AfHbrxP9zw==}
+    cpu: [x64]
+    os: [linux]
+
+  '@rollup/rollup-openharmony-arm64@4.52.4':
+    resolution: {integrity: sha512-1ox+GqgRWqaB1RnyZXL8PD6E5f7YyRUJYnCqKpNzxzP0TkaUh112NDrR9Tt+C8rJ4x5G9Mk8PQR3o7Ku2RKqKA==}
+    cpu: [arm64]
+    os: [openharmony]
+
+  '@rollup/rollup-win32-arm64-msvc@4.52.4':
+    resolution: {integrity: sha512-8GKr640PdFNXwzIE0IrkMWUNUomILLkfeHjXBi/nUvFlpZP+FA8BKGKpacjW6OUUHaNI6sUURxR2U2g78FOHWQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@rollup/rollup-win32-ia32-msvc@4.52.4':
+    resolution: {integrity: sha512-AIy/jdJ7WtJ/F6EcfOb2GjR9UweO0n43jNObQMb6oGxkYTfLcnN7vYYpG+CN3lLxrQkzWnMOoNSHTW54pgbVxw==}
+    cpu: [ia32]
+    os: [win32]
+
+  '@rollup/rollup-win32-x64-gnu@4.52.4':
+    resolution: {integrity: sha512-UF9KfsH9yEam0UjTwAgdK0anlQ7c8/pWPU2yVjyWcF1I1thABt6WXE47cI71pGiZ8wGvxohBoLnxM04L/wj8mQ==}
+    cpu: [x64]
+    os: [win32]
+
+  '@rollup/rollup-win32-x64-msvc@4.52.4':
+    resolution: {integrity: sha512-bf9PtUa0u8IXDVxzRToFQKsNCRz9qLYfR/MpECxl4mRoWYjAeFjgxj1XdZr2M/GNVpT05p+LgQOHopYDlUu6/w==}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     cpu: [x64]
     os: [win32]
 
@@ -3139,6 +3313,7 @@ packages:
 
   '@visulima/package@4.0.0':
     resolution: {integrity: sha512-atuJR3Y3bdZMhjw334cuTcgzPxnjhzjFx54rhqnkp9Yhqi2o2GB5lAKe8yr2Ht8YAHBV9RKaB0FDcp+lm+RDbA==}
+<<<<<<< HEAD
     engines: {node: '>=20.19 <=24.*'}
     os: [darwin, linux, win32]
 
@@ -3150,6 +3325,19 @@ packages:
   '@visulima/packem-rollup@1.0.0-alpha.25':
     resolution: {integrity: sha512-Zrj+eaXxWkYJScu2Z51YN7FE9c5Wr7a2IGJM2hKZ4DAO0Onjtwzzn7RCDmX39L7t2Jas6t9d62c5KoggAPcUbQ==}
     engines: {node: '>=20.19.* <=25.*'}
+=======
+    engines: {node: '>=20.19 <=24.*'}
+    os: [darwin, linux, win32]
+
+  '@visulima/package@4.0.2':
+    resolution: {integrity: sha512-BLeO94f9GbGZ7Jkb/pb6Aur/7+MCkgCjFS46DkHjfO1Dlf634eJXDSHW5MmykJtImKH1NV2LYn6EZp22A05TWg==}
+    engines: {node: '>=20.19 <=24.*'}
+    os: [darwin, linux, win32]
+
+  '@visulima/packem-rollup@1.0.0-alpha.22':
+    resolution: {integrity: sha512-Kfywcz1k/c7PCa3YMkUSfGbTES2DUBZXoPQTB2WKCuD6CnRAtsdIhHN+m4wFHRr1rZ9pZ+S8ZhZs1UEyoV9W/g==}
+    engines: {node: '>=18.* <=24.*'}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     peerDependencies:
       '@swc/core': '*'
       esbuild: '*'
@@ -3178,23 +3366,38 @@ packages:
     peerDependencies:
       rollup: ^4.52.4
 
+<<<<<<< HEAD
   '@visulima/packem@2.0.0-alpha.32':
     resolution: {integrity: sha512-FZSV0wDydxUKoiH95XX3dB+Kl84Kq8epF7AjEArvy6Ep20gUeLXY5Ci/q8rEoqeaqudQPdCovwFZTrrO/jNGlA==}
     engines: {node: '>=20.19 <=25.*'}
+=======
+  '@visulima/packem@2.0.0-alpha.29':
+    resolution: {integrity: sha512-qwmHIhgJH5B79luXyWHZq3gJ4DHEFv9/UKjM2hUF+kq+JWIuEyeBqJKRawtFn2WMqk6y/jHQADbd9ZYyHXse+w==}
+    engines: {node: '>=20.19 <=24.*'}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     hasBin: true
     peerDependencies:
       '@arethetypeswrong/core': '>=0.18.2'
       '@ckeditor/typedoc-plugins': '*'
       '@swc/core': '>=1.11.29'
+<<<<<<< HEAD
       '@tailwindcss/node': ^4.1.16
       '@tailwindcss/oxide': ^4.1.16
+=======
+      '@tailwindcss/node': ^4.1.14
+      '@tailwindcss/oxide': ^4.1.14
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       cssnano: '>=7.0.6'
       esbuild: '>=0.20.2'
       icss-utils: '>=5.1.0'
       less: '>=4.2.0'
       lightningcss: '>=1.27.0'
       oxc-transform: '>=0.20.0'
+<<<<<<< HEAD
       package-manager-detector: ^1.5.0
+=======
+      package-manager-detector: ^1.4.0
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       postcss: '>=8.4.47'
       postcss-load-config: '>=6.0.1'
       postcss-modules-extract-imports: '>=3.1.0'
@@ -3285,11 +3488,14 @@ packages:
     engines: {node: '>=18.0.0 <=23.x'}
     os: [darwin, linux, win32]
 
+<<<<<<< HEAD
   '@visulima/path@2.0.1':
     resolution: {integrity: sha512-IRBzE7Vf55R2BBxebxjcgUrC2owbuLYs7afhMYymFfS9DNJ5esoABlhu+nQxcn3a0NeVXHNOeL+j52eV7k4jmA==}
     engines: {node: '>=20.19 <=25.x'}
     os: [darwin, linux, win32]
 
+=======
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
   '@visulima/rollup-plugin-css@1.0.0-alpha.7':
     resolution: {integrity: sha512-7kUmT8Odf8h5rYj0rNrGgRz+4sECSoX9SP5BGglbyWIMgq5Kh4gWBbos6G7wO9/t388OQ9N+mWdMyohp6H221A==}
     engines: {node: '>=20.* <=24.*'}
@@ -3380,9 +3586,15 @@ packages:
     resolution: {integrity: sha512-7sdq1fBTJr2Hut6MOUHkLzmFhuem7S5UZGu2DvNqhTtSEHkXXz1D6/Mny/gYf39FZ/B19QW5y0QVAgw7cLLB/w==}
     engines: {node: '>=18.0.0 <=23.x'}
 
+<<<<<<< HEAD
   '@visulima/tabular@2.0.2':
     resolution: {integrity: sha512-cWNikaoyUcEuDGx+CLPSo7KleiPgw/Tq3lkidpXNtWQ1+HJx1XJNbfmicPpxvlbwgXLuzv28cz3Uo8XYokJe6g==}
     engines: {node: '>=20.19 <=25.x'}
+=======
+  '@visulima/tabular@1.0.11':
+    resolution: {integrity: sha512-y9ZK8O3O4TtIlmWXnFxgFO8FY3Dqe8q+JzN5mlnjpSPam7b2ZApKXtEcsB/fPWN80z5Sa+ZkIkYZ431bQr22/w==}
+    engines: {node: '>=18.0.0 <=24.x'}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   '@visulima/tsconfig@1.1.22':
     resolution: {integrity: sha512-3y+Oa/pjKW9gLYbS2EJ0OKOwbPIaPdgSn+E1p06YHz0df3COzDwugJhB8+JpPEkoTCyf9w30e527RC6CFSmI0w==}
@@ -5519,8 +5731,13 @@ packages:
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
 
+<<<<<<< HEAD
   html-minifier-next@3.2.1:
     resolution: {integrity: sha512-p/pCrGxbU2/Sw25EwXHtKZxd37/++Y3w76H3Z94BOhtVhQXDqHYIS+tpTwKMfuHOAoxnhn7f8mjp7AJkNkMVyg==}
+=======
+  html-minifier-next@2.1.7:
+    resolution: {integrity: sha512-ORX2kXeGlfLHhkmS2Bol8m0j6/NOjH2gnLqYXN4jjkdwt8HWvNzSIkqitAxoL7ST8W+ZISW6fC4OWYmXLU/gXg==}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     hasBin: true
 
   htmlparser2@10.0.0:
@@ -6288,6 +6505,9 @@ packages:
   longest@2.0.1:
     resolution: {integrity: sha512-Ajzxb8CM6WAnFjgiloPsI3bF+WCxcvhdIG3KNA2KN962+tdBsHcuQ4k4qX/EcS/2CRkcc0iAkR956Nib6aXU/Q==}
     engines: {node: '>=0.10.0'}
+
+  lower-case@2.0.2:
+    resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
 
   lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -7876,8 +8096,13 @@ packages:
       rollup:
         optional: true
 
+<<<<<<< HEAD
   rollup@4.52.5:
     resolution: {integrity: sha512-3GuObel8h7Kqdjt0gxkEzaifHTqLVW56Y/bjN7PSQtkKr0w3V/QYSdt6QWYtd7A1xUtYQigtdUfgj1RvWVtorw==}
+=======
+  rollup@4.52.4:
+    resolution: {integrity: sha512-CLEVl+MnPAiKh5pl4dEWSyMTpuflgNQiLGhMv8ezD5W/qP8AKvmYpCOKRRNOh7oRKnauBZ4SyeYkMS+1VSyKwQ==}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -8382,6 +8607,13 @@ packages:
     resolution: {integrity: sha512-nIVck8DK+GM/0Frwd+nIhZ84pR/BX7rmXMfYwyg+Sri5oGVE99/E3KvXqpC2xHFxyqXyGHTKBSioxxplrO4I4w==}
     engines: {node: '>=10'}
     hasBin: true
+<<<<<<< HEAD
+=======
+
+  test-exclude@7.0.1:
+    resolution: {integrity: sha512-pFYqmTw68LXVjeWJMST4+borgQP2AyMNbg1BpZh9LbyhUeNkeaPF9gzfPGUAnSMV3qPYdWUwDIjjCLiSDOl7vg==}
+    engines: {node: '>=18'}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   text-decoder@1.2.3:
     resolution: {integrity: sha512-3/o9z3X0X0fTupwsYvR03pJ/DjWuqqrfwBgTQzdWDiQSm9KitAyz/9WqsT2JQW7KV2m+bC2ol/zqpW37NHxLaA==}
@@ -9241,26 +9473,43 @@ snapshots:
       - '@types/node'
       - typescript
 
+<<<<<<< HEAD
   '@anolilab/eslint-config@16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.36.0(jiti@2.6.0))
       '@eslint/compat': 1.4.0(eslint@9.36.0(jiti@2.6.0))
       '@eslint/js': 9.39.0
+=======
+  '@anolilab/eslint-config@16.3.3(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@3.2.4)(yaml@2.8.1)':
+    dependencies:
+      '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.36.0(jiti@2.6.0))
+      '@eslint/compat': 1.4.0(eslint@9.36.0(jiti@2.6.0))
+      '@eslint/js': 9.36.0
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@eslint/markdown': 7.4.0
       '@html-eslint/eslint-plugin': 0.47.0(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)
       '@html-eslint/parser': 0.47.0(jiti@2.6.0)
       '@stylistic/eslint-plugin': 5.4.0(eslint@9.36.0(jiti@2.6.0))
       '@stylistic/eslint-plugin-ts': 4.4.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+<<<<<<< HEAD
       '@typescript-eslint/parser': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/types': 8.46.2
       '@visulima/package': 4.1.2(@types/node@24.6.2)
       '@visulima/tsconfig': 1.2.0(yaml@2.8.1)
       '@vitest/eslint-plugin': 1.4.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)(vitest@4.0.6)
+=======
+      '@typescript-eslint/parser': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/types': 8.46.0
+      '@visulima/package': 4.0.2(@types/node@24.6.2)
+      '@visulima/tsconfig': 1.2.0(yaml@2.8.1)
+      '@vitest/eslint-plugin': 1.3.16(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)(vitest@3.2.4)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       confusing-browser-globals: 1.0.11
       eslint: 9.36.0(jiti@2.6.0)
       eslint-config-flat-gitignore: 2.1.0(eslint@9.36.0(jiti@2.6.0))
       eslint-flat-config-utils: 2.1.4
       eslint-import-resolver-node: 0.3.9
+<<<<<<< HEAD
       eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0)))(eslint@9.36.0(jiti@2.6.0))
       eslint-merge-processors: 2.0.0(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-antfu: 3.1.1(eslint@9.36.0(jiti@2.6.0))
@@ -9277,6 +9526,24 @@ snapshots:
       eslint-plugin-no-secrets: 2.2.1(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-no-unsanitized: 4.1.4(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-perfectionist: 4.15.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+      eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0)))(eslint@9.36.0(jiti@2.6.0))
+      eslint-merge-processors: 2.0.0(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-antfu: 3.1.1(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-compat: 6.0.2(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-erasable-syntax-only: 0.3.1(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      eslint-plugin-es-x: 9.1.0(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-html: 8.1.3
+      eslint-plugin-import-x: 4.16.1(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-jsdoc: 60.8.3(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-jsonc: 2.20.1(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-n: 17.23.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      eslint-plugin-no-for-of-array: 0.1.0(eslint@9.36.0(jiti@2.6.0))(typescript-eslint@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(typescript@5.9.3)
+      eslint-plugin-no-only-tests: 3.3.0
+      eslint-plugin-no-secrets: 2.2.1(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-no-unsanitized: 4.1.4(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-perfectionist: 4.15.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint-plugin-promise: 7.2.1(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-regexp: 2.10.0(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-security: 3.0.1
@@ -9284,14 +9551,23 @@ snapshots:
       eslint-plugin-sonarjs: 3.0.5(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-toml: 0.12.0(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-unicorn: 61.0.2(eslint@9.36.0(jiti@2.6.0))
+<<<<<<< HEAD
       eslint-plugin-unused-imports: 4.2.0(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))
       eslint-plugin-yml: 1.19.0(eslint@9.36.0(jiti@2.6.0))
+=======
+      eslint-plugin-unused-imports: 4.2.0(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))
+      eslint-plugin-yml: 1.18.0(eslint@9.36.0(jiti@2.6.0))
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       globals: 16.4.0
       jsonc-eslint-parser: 2.4.1
       parse-gitignore: 2.0.0
       semver: 7.7.3
       toml-eslint-parser: 0.10.0
+<<<<<<< HEAD
       typescript-eslint: 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+      typescript-eslint: 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       yaml-eslint-parser: 1.3.0
     optionalDependencies:
       eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
@@ -9308,10 +9584,14 @@ snapshots:
       - yaml
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@anolilab/lint-staged-config@3.0.37(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)':
 =======
   '@anolilab/lint-staged-config@3.0.34(@types/node@24.6.2)(eslint@9.36.0(jiti@2.5.1))(husky@9.1.7)(lint-staged@16.2.4)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)':
 >>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
+=======
+  '@anolilab/lint-staged-config@3.0.34(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.4)(prettier@3.6.2)(secretlint@11.2.4)(vitest@3.2.4)(yaml@2.8.1)':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@visulima/fs': 3.1.9(yaml@2.8.1)
       '@visulima/package': 4.1.2(@types/node@24.6.2)
@@ -9320,15 +9600,23 @@ snapshots:
       type-fest: 5.1.0
     optionalDependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
       eslint: 9.36.0(jiti@2.6.0)
       lint-staged: 16.2.6
 =======
       eslint: 9.36.0(jiti@2.5.1)
+=======
+      eslint: 9.36.0(jiti@2.6.0)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       lint-staged: 16.2.4
 >>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
       prettier: 3.6.2
       secretlint: 11.2.4
+<<<<<<< HEAD
       vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     transitivePeerDependencies:
       - '@types/node'
       - yaml
@@ -10047,7 +10335,11 @@ snapshots:
   '@jridgewell/source-map@0.3.11':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.12
+<<<<<<< HEAD
       '@jridgewell/trace-mapping': 0.3.31
+=======
+      '@jridgewell/trace-mapping': 0.3.29
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
@@ -10412,10 +10704,13 @@ snapshots:
     dependencies:
       '@octokit/openapi-types': 25.1.0
 
+<<<<<<< HEAD
   '@octokit/types@16.0.0':
     dependencies:
       '@octokit/openapi-types': 27.0.0
 
+=======
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
   '@oxc-parser/binding-android-arm64@0.93.0':
     optional: true
 
@@ -10570,6 +10865,7 @@ snapshots:
     dependencies:
       quansync: 0.2.11
 
+<<<<<<< HEAD
   '@rollup/plugin-alias@5.1.1(rollup@4.52.5)':
     optionalDependencies:
       rollup: 4.52.5
@@ -10577,6 +10873,15 @@ snapshots:
   '@rollup/plugin-commonjs@28.0.6(rollup@4.52.5)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
+=======
+  '@rollup/plugin-alias@5.1.1(rollup@4.52.4)':
+    optionalDependencies:
+      rollup: 4.52.4
+
+  '@rollup/plugin-commonjs@28.0.6(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       commondir: 1.0.1
       estree-walker: 2.0.2
       fdir: 6.5.0(picomatch@4.0.3)
@@ -10584,16 +10889,25 @@ snapshots:
       magic-string: 0.30.19
       picomatch: 4.0.3
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.52.5
 
   '@rollup/plugin-dynamic-import-vars@2.1.5(rollup@4.52.5)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
+=======
+      rollup: 4.52.4
+
+  '@rollup/plugin-dynamic-import-vars@2.1.5(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       astring: 1.9.0
       estree-walker: 2.0.2
       fast-glob: 3.3.3
       magic-string: 0.30.19
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.52.5
 
   '@rollup/plugin-inject@5.0.5(rollup@4.52.5)':
@@ -10613,11 +10927,33 @@ snapshots:
   '@rollup/plugin-node-resolve@16.0.1(rollup@4.52.5)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
+=======
+      rollup: 4.52.4
+
+  '@rollup/plugin-inject@5.0.5(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+      estree-walker: 2.0.2
+      magic-string: 0.30.19
+    optionalDependencies:
+      rollup: 4.52.4
+
+  '@rollup/plugin-json@6.1.0(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+    optionalDependencies:
+      rollup: 4.52.4
+
+  '@rollup/plugin-node-resolve@16.0.1(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-module: 1.0.0
       resolve: 1.22.10
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.52.5
 
   '@rollup/plugin-replace@6.0.2(rollup@4.52.5)':
@@ -10634,11 +10970,30 @@ snapshots:
       rollup: 4.52.5
 
   '@rollup/pluginutils@5.3.0(rollup@4.52.5)':
+=======
+      rollup: 4.52.4
+
+  '@rollup/plugin-replace@6.0.2(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+      magic-string: 0.30.19
+    optionalDependencies:
+      rollup: 4.52.4
+
+  '@rollup/plugin-wasm@6.2.2(rollup@4.52.4)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+    optionalDependencies:
+      rollup: 4.52.4
+
+  '@rollup/pluginutils@5.3.0(rollup@4.52.4)':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
       picomatch: 4.0.3
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.52.5
 
   '@rollup/rollup-android-arm-eabi@4.52.5':
@@ -10705,6 +11060,74 @@ snapshots:
     optional: true
 
   '@rollup/rollup-win32-x64-msvc@4.52.5':
+=======
+      rollup: 4.52.4
+
+  '@rollup/rollup-android-arm-eabi@4.52.4':
+    optional: true
+
+  '@rollup/rollup-android-arm64@4.52.4':
+    optional: true
+
+  '@rollup/rollup-darwin-arm64@4.52.4':
+    optional: true
+
+  '@rollup/rollup-darwin-x64@4.52.4':
+    optional: true
+
+  '@rollup/rollup-freebsd-arm64@4.52.4':
+    optional: true
+
+  '@rollup/rollup-freebsd-x64@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-arm-gnueabihf@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-arm-musleabihf@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-arm64-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-arm64-musl@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-loong64-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-ppc64-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-riscv64-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-riscv64-musl@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-s390x-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-x64-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-linux-x64-musl@4.52.4':
+    optional: true
+
+  '@rollup/rollup-openharmony-arm64@4.52.4':
+    optional: true
+
+  '@rollup/rollup-win32-arm64-msvc@4.52.4':
+    optional: true
+
+  '@rollup/rollup-win32-ia32-msvc@4.52.4':
+    optional: true
+
+  '@rollup/rollup-win32-x64-gnu@4.52.4':
+    optional: true
+
+  '@rollup/rollup-win32-x64-msvc@4.52.4':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     optional: true
 
   '@sec-ant/readable-stream@0.4.1': {}
@@ -10944,11 +11367,17 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
+<<<<<<< HEAD
   '@standard-schema/spec@1.0.0': {}
 
   '@stylistic/eslint-plugin-ts@4.4.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+  '@stylistic/eslint-plugin-ts@4.4.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
+    dependencies:
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
@@ -10959,7 +11388,11 @@ snapshots:
   '@stylistic/eslint-plugin@5.4.0(eslint@9.36.0(jiti@2.6.0))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
+<<<<<<< HEAD
       '@typescript-eslint/types': 8.46.2
+=======
+      '@typescript-eslint/types': 8.46.0
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       eslint-visitor-keys: 4.2.1
       espree: 10.4.0
@@ -11422,6 +11855,7 @@ snapshots:
 
   '@types/unist@3.0.2': {}
 
+<<<<<<< HEAD
   '@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.1
@@ -11430,6 +11864,16 @@ snapshots:
       '@typescript-eslint/type-utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/visitor-keys': 8.46.2
+=======
+  '@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
+    dependencies:
+      '@eslint-community/regexpp': 4.12.1
+      '@typescript-eslint/parser': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/scope-manager': 8.46.0
+      '@typescript-eslint/type-utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/visitor-keys': 8.46.0
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       graphemer: 1.4.0
       ignore: 7.0.5
@@ -11439,7 +11883,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
+=======
+  '@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@typescript-eslint/scope-manager': 8.46.2
       '@typescript-eslint/types': 8.46.2
@@ -11469,11 +11917,19 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
+<<<<<<< HEAD
   '@typescript-eslint/type-utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/types': 8.46.2
       '@typescript-eslint/typescript-estree': 8.46.2(typescript@5.9.3)
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+  '@typescript-eslint/type-utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
+    dependencies:
+      '@typescript-eslint/types': 8.46.0
+      '@typescript-eslint/typescript-estree': 8.46.0(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       debug: 4.4.3
       eslint: 9.36.0(jiti@2.6.0)
       ts-api-utils: 2.1.0(typescript@5.9.3)
@@ -11499,12 +11955,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
       '@typescript-eslint/scope-manager': 8.46.2
       '@typescript-eslint/types': 8.46.2
       '@typescript-eslint/typescript-estree': 8.46.2(typescript@5.9.3)
+=======
+  '@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
+      '@typescript-eslint/scope-manager': 8.46.0
+      '@typescript-eslint/types': 8.46.0
+      '@typescript-eslint/typescript-estree': 8.46.0(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -11633,6 +12098,20 @@ snapshots:
   '@visulima/is-ansi-color-supported@2.2.14': {}
 
   '@visulima/package@4.0.0(@types/node@24.6.2)':
+<<<<<<< HEAD
+=======
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@inquirer/confirm': 5.1.18(@types/node@24.6.2)
+      '@visulima/fs': 3.1.9(yaml@2.8.1)
+      '@visulima/path': 1.4.0
+      normalize-package-data: 8.0.0
+      yaml: 2.8.1
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@visulima/package@4.0.2(@types/node@24.6.2)':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@inquirer/confirm': 5.1.19(@types/node@24.6.2)
@@ -11643,6 +12122,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
+<<<<<<< HEAD
   '@visulima/package@4.1.2(@types/node@24.6.2)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
@@ -11672,22 +12152,53 @@ snapshots:
       '@visulima/fs': 3.1.8(yaml@2.8.1)
       '@visulima/package': 4.0.0(@types/node@24.6.2)
       '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)
+=======
+  '@visulima/packem-rollup@1.0.0-alpha.22(@types/node@24.6.2)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1)':
+    dependencies:
+      '@babel/parser': 7.28.4
+      '@rollup/plugin-alias': 5.1.1(rollup@4.52.4)
+      '@rollup/plugin-commonjs': 28.0.6(rollup@4.52.4)
+      '@rollup/plugin-dynamic-import-vars': 2.1.5(rollup@4.52.4)
+      '@rollup/plugin-inject': 5.0.5(rollup@4.52.4)
+      '@rollup/plugin-json': 6.1.0(rollup@4.52.4)
+      '@rollup/plugin-node-resolve': 16.0.1(rollup@4.52.4)
+      '@rollup/plugin-replace': 6.0.2(rollup@4.52.4)
+      '@rollup/plugin-wasm': 6.2.2(rollup@4.52.4)
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+      '@visulima/find-cache-dir': 1.0.34(yaml@2.8.1)
+      '@visulima/fs': 3.1.8(yaml@2.8.1)
+      '@visulima/package': 4.0.0(@types/node@24.6.2)
+      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@visulima/path': 1.4.0
       '@visulima/source-map': 1.0.20
       cjs-module-lexer: 2.1.0
       clean-css: 5.3.3
       glob-parent: 6.0.2
+<<<<<<< HEAD
       html-minifier-next: 3.2.1
+=======
+      html-minifier-next: 2.1.7
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       magic-string: 0.30.19
       mlly: 1.8.0
       oxc-parser: 0.93.0
       oxc-resolver: 11.8.2
+<<<<<<< HEAD
       rollup: 4.52.5
       rollup-plugin-dts: 6.2.3(rollup@4.52.5)(typescript@5.9.3)
       rollup-plugin-license: 3.6.0(picomatch@4.0.3)(rollup@4.52.5)
       rollup-plugin-polyfill-node: 0.13.0(rollup@4.52.5)
       rollup-plugin-pure: 0.4.0(rollup@4.52.5)
       rollup-plugin-visualizer: 6.0.3(rollup@4.52.5)
+=======
+      rollup: 4.52.4
+      rollup-plugin-dts: 6.2.3(rollup@4.52.4)(typescript@5.9.3)
+      rollup-plugin-license: 3.6.0(picomatch@4.0.3)(rollup@4.52.4)
+      rollup-plugin-polyfill-node: 0.13.0(rollup@4.52.4)
+      rollup-plugin-pure: 0.4.0(rollup@4.52.4)
+      rollup-plugin-visualizer: 6.0.3(rollup@4.52.4)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       rs-module-lexer: 2.6.0
       semver: 7.7.2
       tinyglobby: 0.2.15
@@ -11700,28 +12211,45 @@ snapshots:
       - rolldown
       - yaml
 
+<<<<<<< HEAD
   '@visulima/packem-share@1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)':
+=======
+  '@visulima/packem-share@1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.4)(yaml@2.8.1)':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@visulima/colorize': 1.4.23
       '@visulima/fs': 3.1.8(yaml@2.8.1)
       '@visulima/package': 4.0.0(@types/node@24.6.2)
       '@visulima/path': 1.4.0
+<<<<<<< HEAD
       rollup: 4.52.5
+=======
+      rollup: 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     transitivePeerDependencies:
       - '@types/node'
       - yaml
 
+<<<<<<< HEAD
   '@visulima/packem@2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
+=======
+  '@visulima/packem@2.0.0-alpha.29(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.3.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@clack/prompts': 0.11.0
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@visulima/cerebro': 1.1.50(yaml@2.8.1)
       '@visulima/colorize': 1.4.23
       '@visulima/find-cache-dir': 1.0.34(yaml@2.8.1)
       '@visulima/fs': 3.1.8(yaml@2.8.1)
       '@visulima/humanizer': 1.2.2
       '@visulima/package': 4.0.0(@types/node@24.6.2)
+<<<<<<< HEAD
       '@visulima/packem-rollup': 1.0.0-alpha.25(@types/node@24.6.2)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)
       '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)
       '@visulima/pail': 2.1.28
@@ -11729,6 +12257,15 @@ snapshots:
       '@visulima/rollup-plugin-css': 1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.5)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@visulima/source-map': 1.0.20
       '@visulima/tabular': 2.0.2
+=======
+      '@visulima/packem-rollup': 1.0.0-alpha.22(@types/node@24.6.2)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.4)(typescript@5.9.3)(yaml@2.8.1)
+      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.4)(yaml@2.8.1)
+      '@visulima/pail': 2.1.28
+      '@visulima/path': 1.4.0
+      '@visulima/rollup-plugin-css': 1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.4)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+      '@visulima/source-map': 1.0.20
+      '@visulima/tabular': 1.0.11
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@visulima/tsconfig': 1.1.22(yaml@2.8.1)
       browserslist: 4.26.2
       cjs-module-lexer: 2.1.0
@@ -11736,6 +12273,7 @@ snapshots:
       defu: 6.1.4
       fastest-levenshtein: 1.0.16
       hookable: 5.5.3
+<<<<<<< HEAD
       html-minifier-next: 3.2.1
       jiti: 2.6.0
       magic-string: 0.30.19
@@ -11743,6 +12281,15 @@ snapshots:
       package-manager-detector: 1.5.0
       picomatch: 4.0.3
       rollup: 4.52.5
+=======
+      html-minifier-next: 2.1.7
+      jiti: 2.6.0
+      magic-string: 0.30.19
+      mlly: 1.8.0
+      package-manager-detector: 1.3.0
+      picomatch: 4.0.3
+      rollup: 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       semver: 7.7.2
       tinyexec: 1.0.1
       tinyglobby: 0.2.15
@@ -11781,6 +12328,7 @@ snapshots:
 
   '@visulima/path@1.4.0': {}
 
+<<<<<<< HEAD
   '@visulima/path@2.0.1': {}
 
   '@visulima/rollup-plugin-css@1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.5)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
@@ -11789,11 +12337,23 @@ snapshots:
       '@visulima/fs': 3.1.8(yaml@2.8.1)
       '@visulima/package': 4.0.0(@types/node@24.6.2)
       '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)
+=======
+  '@visulima/rollup-plugin-css@1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.4)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
+    dependencies:
+      '@rollup/pluginutils': 5.3.0(rollup@4.52.4)
+      '@visulima/fs': 3.1.8(yaml@2.8.1)
+      '@visulima/package': 4.0.0(@types/node@24.6.2)
+      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.4)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@visulima/path': 1.4.0
       mlly: 1.8.0
       oxc-resolver: 11.8.2
       p-queue: 9.0.0
+<<<<<<< HEAD
       rollup: 4.52.5
+=======
+      rollup: 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       source-map-js: 1.2.1
     optionalDependencies:
       '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.13(typescript@5.9.3))
@@ -11812,7 +12372,11 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.31
       '@visulima/path': 1.4.0
 
+<<<<<<< HEAD
   '@visulima/tabular@2.0.2': {}
+=======
+  '@visulima/tabular@1.0.11': {}
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   '@visulima/tsconfig@1.1.22(yaml@2.8.1)':
     dependencies:
@@ -11844,6 +12408,7 @@ snapshots:
       istanbul-reports: 3.2.0
       magicast: 0.3.5
       std-env: 3.9.0
+<<<<<<< HEAD
       tinyrainbow: 3.0.3
       vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
     transitivePeerDependencies:
@@ -11857,6 +12422,22 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.3
       vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+      test-exclude: 7.0.1
+      tinyrainbow: 2.0.0
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@vitest/eslint-plugin@1.3.16(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)(vitest@3.2.4)':
+    dependencies:
+      '@typescript-eslint/scope-manager': 8.46.0
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      eslint: 9.36.0(jiti@2.6.0)
+    optionalDependencies:
+      typescript: 5.9.3
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     transitivePeerDependencies:
       - supports-color
 
@@ -11869,13 +12450,21 @@ snapshots:
       chai: 6.2.0
       tinyrainbow: 3.0.3
 
+<<<<<<< HEAD
   '@vitest/mocker@4.0.6(vite@7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))':
+=======
+  '@vitest/mocker@3.2.4(vite@7.1.5(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))':
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@vitest/spy': 4.0.6
       estree-walker: 3.0.3
       magic-string: 0.30.19
     optionalDependencies:
+<<<<<<< HEAD
       vite: 7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+      vite: 7.1.5(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   '@vitest/pretty-format@4.0.6':
     dependencies:
@@ -11902,8 +12491,13 @@ snapshots:
       pathe: 2.0.3
       sirv: 3.0.2
       tinyglobby: 0.2.15
+<<<<<<< HEAD
       tinyrainbow: 3.0.3
       vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+      tinyrainbow: 2.0.0
+      vitest: 3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
 
   '@vitest/utils@4.0.6':
     dependencies:
@@ -13149,19 +13743,27 @@ snapshots:
   eslint-compat-utils@0.5.1(eslint@9.36.0(jiti@2.6.0)):
     dependencies:
 <<<<<<< HEAD
-      eslint: 9.36.0(jiti@2.6.0)
-=======
-      eslint: 9.36.0(jiti@2.5.1)
->>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
-      semver: 7.7.3
-
-  eslint-compat-utils@0.6.5(eslint@9.36.0(jiti@2.6.0)):
-    dependencies:
 <<<<<<< HEAD
       eslint: 9.36.0(jiti@2.6.0)
 =======
       eslint: 9.36.0(jiti@2.5.1)
 >>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
+=======
+      eslint: 9.36.0(jiti@2.6.0)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
+      semver: 7.7.3
+
+  eslint-compat-utils@0.6.5(eslint@9.36.0(jiti@2.6.0)):
+    dependencies:
+<<<<<<< HEAD
+<<<<<<< HEAD
+      eslint: 9.36.0(jiti@2.6.0)
+=======
+      eslint: 9.36.0(jiti@2.5.1)
+>>>>>>> 3cea078 (fix: update dependencies and node version across multiple packages)
+=======
+      eslint: 9.36.0(jiti@2.6.0)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       semver: 7.7.3
 
   eslint-config-flat-gitignore@2.1.0(eslint@9.36.0(jiti@2.6.0)):
@@ -13188,7 +13790,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   eslint-import-resolver-typescript@4.4.4(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0)))(eslint@9.36.0(jiti@2.6.0)):
+=======
+  eslint-import-resolver-typescript@4.4.4(eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0)))(eslint@9.36.0(jiti@2.6.0)):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       debug: 4.4.3
       eslint: 9.36.0(jiti@2.6.0)
@@ -13199,7 +13805,11 @@ snapshots:
       tinyglobby: 0.2.15
       unrs-resolver: 1.9.2
     optionalDependencies:
+<<<<<<< HEAD
       eslint-plugin-import-x: 4.16.1(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0))
+=======
+      eslint-plugin-import-x: 4.16.1(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0))
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     transitivePeerDependencies:
       - supports-color
 
@@ -13229,10 +13839,17 @@ snapshots:
       lodash.memoize: 4.1.2
       semver: 7.7.3
 
+<<<<<<< HEAD
   eslint-plugin-erasable-syntax-only@0.3.1(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/parser': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+  eslint-plugin-erasable-syntax-only@0.3.1(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3):
+    dependencies:
+      '@typescript-eslint/parser': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       cached-factory: 0.1.0
       eslint: 9.36.0(jiti@2.6.0)
       typescript: 5.9.3
@@ -13246,7 +13863,11 @@ snapshots:
       eslint: 9.36.0(jiti@2.6.0)
       eslint-compat-utils: 0.5.1(eslint@9.36.0(jiti@2.6.0))
 
+<<<<<<< HEAD
   eslint-plugin-es-x@9.1.2(eslint@9.36.0(jiti@2.6.0)):
+=======
+  eslint-plugin-es-x@9.1.0(eslint@9.36.0(jiti@2.6.0)):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
       '@eslint-community/regexpp': 4.12.1
@@ -13257,7 +13878,11 @@ snapshots:
     dependencies:
       htmlparser2: 10.0.0
 
+<<<<<<< HEAD
   eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0)):
+=======
+  eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.36.0(jiti@2.6.0)):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@typescript-eslint/types': 8.46.2
       comment-parser: 1.4.1
@@ -13270,12 +13895,20 @@ snapshots:
       stable-hash-x: 0.2.0
       unrs-resolver: 1.9.2
     optionalDependencies:
+<<<<<<< HEAD
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint-import-resolver-node: 0.3.9
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   eslint-plugin-jsdoc@61.1.11(eslint@9.36.0(jiti@2.6.0)):
+=======
+  eslint-plugin-jsdoc@60.8.3(eslint@9.36.0(jiti@2.6.0)):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@es-joy/jsdoccomment': 0.76.0
       '@es-joy/resolve.exports': 1.2.0
@@ -13295,10 +13928,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   eslint-plugin-jsonc@2.21.0(eslint@9.36.0(jiti@2.6.0)):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
       diff-sequences: 27.5.1
+=======
+  eslint-plugin-jsonc@2.20.1(eslint@9.36.0(jiti@2.6.0)):
+    dependencies:
+      '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       eslint-compat-utils: 0.6.5(eslint@9.36.0(jiti@2.6.0))
       eslint-json-compat-utils: 0.2.1(eslint@9.36.0(jiti@2.6.0))(jsonc-eslint-parser@2.4.1)
@@ -13325,12 +13964,21 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+<<<<<<< HEAD
   eslint-plugin-no-for-of-array@0.1.0(eslint@9.36.0(jiti@2.6.0))(typescript-eslint@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       eslint: 9.36.0(jiti@2.6.0)
       typescript: 5.9.3
       typescript-eslint: 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+  eslint-plugin-no-for-of-array@0.1.0(eslint@9.36.0(jiti@2.6.0))(typescript-eslint@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(typescript@5.9.3):
+    dependencies:
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      eslint: 9.36.0(jiti@2.6.0)
+      typescript: 5.9.3
+      typescript-eslint: 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     transitivePeerDependencies:
       - supports-color
 
@@ -13344,10 +13992,17 @@ snapshots:
     dependencies:
       eslint: 9.36.0(jiti@2.6.0)
 
+<<<<<<< HEAD
   eslint-plugin-perfectionist@4.15.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/types': 8.46.2
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+  eslint-plugin-perfectionist@4.15.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3):
+    dependencies:
+      '@typescript-eslint/types': 8.46.0
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       natural-orderby: 5.0.0
     transitivePeerDependencies:
@@ -13404,7 +14059,11 @@ snapshots:
 
   eslint-plugin-unicorn@61.0.2(eslint@9.36.0(jiti@2.6.0)):
     dependencies:
+<<<<<<< HEAD
       '@babel/helper-validator-identifier': 7.28.5
+=======
+      '@babel/helper-validator-identifier': 7.27.1
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.36.0(jiti@2.6.0))
       '@eslint/plugin-kit': 0.3.5
       change-case: 5.4.4
@@ -13424,6 +14083,7 @@ snapshots:
       semver: 7.7.3
       strip-indent: 4.0.0
 
+<<<<<<< HEAD
   eslint-plugin-unused-imports@4.2.0(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0)):
     dependencies:
       eslint: 9.36.0(jiti@2.6.0)
@@ -13431,6 +14091,15 @@ snapshots:
       '@typescript-eslint/eslint-plugin': 8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
 
   eslint-plugin-yml@1.19.0(eslint@9.36.0(jiti@2.6.0)):
+=======
+  eslint-plugin-unused-imports@4.2.0(@typescript-eslint/eslint-plugin@8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0)):
+    dependencies:
+      eslint: 9.36.0(jiti@2.6.0)
+    optionalDependencies:
+      '@typescript-eslint/eslint-plugin': 8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+
+  eslint-plugin-yml@1.18.0(eslint@9.36.0(jiti@2.6.0)):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       debug: 4.4.3
       diff-sequences: 27.5.1
@@ -14277,7 +14946,11 @@ snapshots:
 
   html-escaper@2.0.2: {}
 
+<<<<<<< HEAD
   html-minifier-next@3.2.1:
+=======
+  html-minifier-next@2.1.7:
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       change-case: 4.1.2
       clean-css: 5.3.3
@@ -14997,6 +15670,10 @@ snapshots:
   longest-streak@3.1.0: {}
 
   longest@2.0.1: {}
+
+  lower-case@2.0.2:
+    dependencies:
+      tslib: 2.8.1
 
   lower-case@2.0.2:
     dependencies:
@@ -17253,15 +17930,26 @@ snapshots:
       glob: 11.0.3
       package-json-from-dist: 1.0.1
 
+<<<<<<< HEAD
   rollup-plugin-dts@6.2.3(rollup@4.52.5)(typescript@5.9.3):
     dependencies:
       magic-string: 0.30.19
       rollup: 4.52.5
+=======
+  rollup-plugin-dts@6.2.3(rollup@4.52.4)(typescript@5.9.3):
+    dependencies:
+      magic-string: 0.30.19
+      rollup: 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       typescript: 5.9.3
     optionalDependencies:
       '@babel/code-frame': 7.27.1
 
+<<<<<<< HEAD
   rollup-plugin-license@3.6.0(picomatch@4.0.3)(rollup@4.52.5):
+=======
+  rollup-plugin-license@3.6.0(picomatch@4.0.3)(rollup@4.52.4):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       commenting: 1.1.0
       fdir: 6.5.0(picomatch@4.0.3)
@@ -17269,12 +17957,17 @@ snapshots:
       magic-string: 0.30.19
       moment: 2.30.1
       package-name-regex: 2.0.6
+<<<<<<< HEAD
       rollup: 4.52.5
+=======
+      rollup: 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       spdx-expression-validate: 2.0.0
       spdx-satisfies: 5.0.1
     transitivePeerDependencies:
       - picomatch
 
+<<<<<<< HEAD
   rollup-plugin-polyfill-node@0.13.0(rollup@4.52.5):
     dependencies:
       '@rollup/plugin-inject': 5.0.5(rollup@4.52.5)
@@ -17288,12 +17981,28 @@ snapshots:
       unplugin-utils: 0.2.4
 
   rollup-plugin-visualizer@6.0.3(rollup@4.52.5):
+=======
+  rollup-plugin-polyfill-node@0.13.0(rollup@4.52.4):
+    dependencies:
+      '@rollup/plugin-inject': 5.0.5(rollup@4.52.4)
+      rollup: 4.52.4
+
+  rollup-plugin-pure@0.4.0(rollup@4.52.4):
+    dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.30.19
+      rollup: 4.52.4
+      unplugin-utils: 0.2.4
+
+  rollup-plugin-visualizer@6.0.3(rollup@4.52.4):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       open: 8.4.2
       picomatch: 4.0.3
       source-map: 0.7.4
       yargs: 17.7.2
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.52.5
 
   rollup@4.52.5:
@@ -17322,6 +18031,36 @@ snapshots:
       '@rollup/rollup-win32-ia32-msvc': 4.52.5
       '@rollup/rollup-win32-x64-gnu': 4.52.5
       '@rollup/rollup-win32-x64-msvc': 4.52.5
+=======
+      rollup: 4.52.4
+
+  rollup@4.52.4:
+    dependencies:
+      '@types/estree': 1.0.8
+    optionalDependencies:
+      '@rollup/rollup-android-arm-eabi': 4.52.4
+      '@rollup/rollup-android-arm64': 4.52.4
+      '@rollup/rollup-darwin-arm64': 4.52.4
+      '@rollup/rollup-darwin-x64': 4.52.4
+      '@rollup/rollup-freebsd-arm64': 4.52.4
+      '@rollup/rollup-freebsd-x64': 4.52.4
+      '@rollup/rollup-linux-arm-gnueabihf': 4.52.4
+      '@rollup/rollup-linux-arm-musleabihf': 4.52.4
+      '@rollup/rollup-linux-arm64-gnu': 4.52.4
+      '@rollup/rollup-linux-arm64-musl': 4.52.4
+      '@rollup/rollup-linux-loong64-gnu': 4.52.4
+      '@rollup/rollup-linux-ppc64-gnu': 4.52.4
+      '@rollup/rollup-linux-riscv64-gnu': 4.52.4
+      '@rollup/rollup-linux-riscv64-musl': 4.52.4
+      '@rollup/rollup-linux-s390x-gnu': 4.52.4
+      '@rollup/rollup-linux-x64-gnu': 4.52.4
+      '@rollup/rollup-linux-x64-musl': 4.52.4
+      '@rollup/rollup-openharmony-arm64': 4.52.4
+      '@rollup/rollup-win32-arm64-msvc': 4.52.4
+      '@rollup/rollup-win32-ia32-msvc': 4.52.4
+      '@rollup/rollup-win32-x64-gnu': 4.52.4
+      '@rollup/rollup-win32-x64-msvc': 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       fsevents: 2.3.3
 
   router@2.2.0:
@@ -17960,6 +18699,16 @@ snapshots:
       supports-hyperlinks: 3.2.0
 
   terser@5.44.0:
+<<<<<<< HEAD
+=======
+    dependencies:
+      '@jridgewell/source-map': 0.3.11
+      acorn: 8.15.0
+      commander: 2.20.3
+      source-map-support: 0.5.21
+
+  test-exclude@7.0.1:
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       '@jridgewell/source-map': 0.3.11
       acorn: 8.15.0
@@ -18330,12 +19079,21 @@ snapshots:
       typescript: 5.9.3
       yaml: 2.8.1
 
+<<<<<<< HEAD
   typescript-eslint@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/eslint-plugin': 8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/parser': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/typescript-estree': 8.46.2(typescript@5.9.3)
       '@typescript-eslint/utils': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+=======
+  typescript-eslint@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3):
+    dependencies:
+      '@typescript-eslint/eslint-plugin': 8.46.0(@typescript-eslint/parser@8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.46.0(typescript@5.9.3)
+      '@typescript-eslint/utils': 8.46.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       eslint: 9.36.0(jiti@2.6.0)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -18723,13 +19481,42 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
+<<<<<<< HEAD
   vite@7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
+=======
+  vite-node@3.2.4(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.4.3
+      es-module-lexer: 1.7.0
+      pathe: 2.0.3
+      vite: 7.1.5(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+    transitivePeerDependencies:
+      - '@types/node'
+      - jiti
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
+
+  vite@7.1.5(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
     dependencies:
       esbuild: 0.25.10
       fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
       postcss: 8.5.6
+<<<<<<< HEAD
       rollup: 4.52.5
+=======
+      rollup: 4.52.4
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 24.6.2
@@ -18738,6 +19525,7 @@ snapshots:
       terser: 5.44.0
       yaml: 2.8.1
 
+<<<<<<< HEAD
   vitest@4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
     dependencies:
       '@vitest/expect': 4.0.6
@@ -18747,6 +19535,19 @@ snapshots:
       '@vitest/snapshot': 4.0.6
       '@vitest/spy': 4.0.6
       '@vitest/utils': 4.0.6
+=======
+  vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@3.2.4)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
+    dependencies:
+      '@types/chai': 5.2.2
+      '@vitest/expect': 3.2.4
+      '@vitest/mocker': 3.2.4(vite@7.1.5(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))
+      '@vitest/pretty-format': 3.2.4
+      '@vitest/runner': 3.2.4
+      '@vitest/snapshot': 3.2.4
+      '@vitest/spy': 3.2.4
+      '@vitest/utils': 3.2.4
+      chai: 5.2.0
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       debug: 4.4.3
       es-module-lexer: 1.7.0
       expect-type: 1.2.2
@@ -18757,8 +19558,15 @@ snapshots:
       tinybench: 2.9.0
       tinyexec: 0.3.2
       tinyglobby: 0.2.15
+<<<<<<< HEAD
       tinyrainbow: 3.0.3
       vite: 7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+=======
+      tinypool: 1.1.1
+      tinyrainbow: 2.0.0
+      vite: 7.1.5(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vite-node: 3.2.4(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+>>>>>>> 62c36cd (fix: update dependencies and configurations across multiple packages)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/debug': 4.1.12
