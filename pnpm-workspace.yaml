@@ -52,14 +52,14 @@ catalogs:
     '@anolilab/textlint-config': ^9.0.7
     '@commitlint/cli': ^20.1.0
     '@commitlint/config-conventional': ^20.0.0
-    '@secretlint/secretlint-rule-preset-recommend': ^11.2.4
+    '@secretlint/secretlint-rule-preset-recommend': ^11.2.5
     eslint: 9.36.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: ^16.2.3
     prettier: ^3.6.2
     publint: ^0.3.14
-    secretlint: 11.2.4
+    secretlint: 11.2.5
     textlint: ^15.2.2
   markdown:
     typedoc-plugin-markdown: 4.9.0
