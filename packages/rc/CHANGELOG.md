@@ -1,3 +1,9 @@
+## @anolilab/rc [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.0.0-alpha.1...@anolilab/rc@3.0.0-alpha.2) (2025-10-21)
+
+### Bug Fixes
+
+* update package manager and dependencies across multiple configurations ([07a4e0b](https://github.com/anolilab/semantic-release/commit/07a4e0be0c8ba0b8fc79f5d922bb62f60db38350))
+
 ## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.4...@anolilab/rc@3.0.0-alpha.1) (2025-10-14)
 
 ### ⚠ BREAKING CHANGES
