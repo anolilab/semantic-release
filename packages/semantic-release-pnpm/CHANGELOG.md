@@ -1,3 +1,19 @@
+## @anolilab/semantic-release-pnpm [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0-alpha.1...@anolilab/semantic-release-pnpm@3.0.0-alpha.2) (2025-10-21)
+
+### Features
+
+* enhance npm authentication and trusted publishing support ([ccd056a](https://github.com/anolilab/semantic-release/commit/ccd056a02432b988fdcc79401d71182a433c4e97))
+* update dependencies in pnpm-lock.yaml and pnpm-workspace.yaml ([001fd47](https://github.com/anolilab/semantic-release/commit/001fd4722fa6ba02c4d9479522ee2cb6f3d4067e))
+
+### Bug Fixes
+
+* update package manager and dependencies across multiple configurations ([07a4e0b](https://github.com/anolilab/semantic-release/commit/07a4e0be0c8ba0b8fc79f5d922bb62f60db38350))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.0.0-alpha.2
+
 ## @anolilab/semantic-release-pnpm [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@2.0.4...@anolilab/semantic-release-pnpm@3.0.0-alpha.1) (2025-10-14)
 
 ### ⚠ BREAKING CHANGES
