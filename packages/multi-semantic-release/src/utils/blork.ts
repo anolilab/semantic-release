@@ -8,7 +8,6 @@ import { WritableStreamBuffer } from "stream-buffers";
 const isAbsolute = checker("absolute");
 
 // Add a directory checker.
-// eslint-disable-next-line security/detect-non-literal-fs-filename
 add("directory", (v: string) => isAbsolute(v) && existsSync(v) && lstatSync(v).isDirectory(), "directory that exists in the filesystem");
 
 // Add a writable stream checker.

@@ -1,11 +1,12 @@
-import { createRequire } from "node:module";
 import { dirname } from "node:path";
 
 import { topo } from "@semrel-extra/topo";
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
 import { castArray, sortBy, template } from "lodash-es";
 import semanticRelease from "semantic-release";
+import semrelPkgJson from "semantic-release/package.json" with { type: "json" };
 
+import multisemrelPackageJson from "../package.json";
 import createInlinePluginCreator from "./create-inline-plugin-creator";
 import getConfig from "./get-config";
 import getConfigMultiSemrel from "./get-config-multi-semrel";
@@ -237,10 +238,6 @@ const multiSemanticRelease = async (
         deps: {},
         ...await getConfigMultiSemrel(cwd, _flags),
     };
-
-    const require = createRequire(import.meta.url);
-    const multisemrelPackageJson: { version: string } = require("../package.json");
-    const semrelPkgJson: { version: string } = require("semantic-release/package.json");
 
     // Setup logger.
     logger.config.stdio = [stderr, stdout];

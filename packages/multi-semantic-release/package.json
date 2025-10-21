@@ -85,6 +85,7 @@
         "@types/semver": "catalog:types",
         "@types/signale": "catalog:types",
         "@types/stream-buffers": "catalog:types",
+        "@types/yargs": "17.0.33",
         "@visulima/packem": "catalog:dev",
         "@vitest/coverage-v8": "catalog:test",
         "@vitest/ui": "catalog:test",
