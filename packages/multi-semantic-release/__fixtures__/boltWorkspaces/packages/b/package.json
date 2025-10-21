@@ -1,11 +1,11 @@
 {
-    "name": "msr-test-b",
-    "version": "0.0.0",
-    "dependencies": {
-        "msr-test-a": "*"
-    },
-    "devDependencies": {
-        "left-pad": "latest",
-        "msr-test-d": "*"
-    }
+  "name": "msr-test-b",
+  "version": "0.0.0",
+  "dependencies": {
+    "msr-test-a": "*"
+  },
+  "devDependencies": {
+    "left-pad": "catalog:dev",
+    "msr-test-d": "*"
+  }
 }

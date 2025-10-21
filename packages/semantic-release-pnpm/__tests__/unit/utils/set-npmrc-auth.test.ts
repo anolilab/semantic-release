@@ -17,7 +17,7 @@ const logger = { log: logSpy };
 // eslint-disable-next-line vitest/require-mock-type-parameters
 const mockedHomedir = vi.fn();
 
-vi.mock("@anolilab/rc", async () => {
+vi.mock(import("@anolilab/rc"), async () => {
     const actual = await vi.importActual<typeof import("@anolilab/rc")>("@anolilab/rc");
 
     return {

@@ -31,6 +31,8 @@
         "exactOptionalPropertyTypes": false,
         "useUnknownInCatchVariables": true,
 
+        "rewriteRelativeImportExtensions": true,
+
         "esModuleInterop": true,
 
         "declaration": true,
