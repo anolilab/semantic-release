@@ -5,6 +5,7 @@ import { resolve } from "@visulima/path";
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
+import { OFFICIAL_REGISTRY } from "../../../src/definitions/constants";
 import getRegistry from "../../../src/utils/get-registry";
 
 describe(getRegistry, () => {
@@ -22,9 +23,9 @@ describe(getRegistry, () => {
         expect.assertions(2);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        expect(getRegistry({ name: "package-name" }, { cwd, env: {} } as any)).toBe("https://registry.npmjs.org/");
+        expect(getRegistry({ name: "package-name" }, { cwd, env: {} } as any)).toBe(OFFICIAL_REGISTRY);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        expect(getRegistry({ name: "package-name", publishConfig: {} }, { cwd, env: {} } as any)).toBe("https://registry.npmjs.org/");
+        expect(getRegistry({ name: "package-name", publishConfig: {} }, { cwd, env: {} } as any)).toBe(OFFICIAL_REGISTRY);
     });
 
     it("get the registry configured in \".npmrc\" and normalize trailing slash", async () => {

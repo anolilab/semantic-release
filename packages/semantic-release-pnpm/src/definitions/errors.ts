@@ -28,6 +28,7 @@ export interface ErrorContext {
 
 export const errors: {
     EINVALIDBRANCHES: (branches: string[]) => { details: string; message: string };
+    EINVALIDNPMAUTH: ({ registry }: ErrorContext) => { details: string; message: string };
     EINVALIDNPMPUBLISH: ({ npmPublish }: ErrorContext) => { details: string; message: string };
     EINVALIDNPMTOKEN: ({ registry }: ErrorContext) => { details: string; message: string };
     EINVALIDPKGROOT: ({ pkgRoot }: ErrorContext) => { details: string; message: string };
@@ -47,6 +48,15 @@ Your configuration for the \`branches\` option is \`${branches.join(",")}\`.`,
             message: "Invalid `branches` option.",
         };
     },
+    EINVALIDNPMAUTH: ({ registry }: ErrorContext) => {
+        return {
+            details: `The [authentication required to publish](${linkify(
+                "README.md#npm-registry-authentication",
+            )}) configured in the \`NPM_TOKEN\` environment variable must be a valid [token](https://docs.npmjs.com/getting-started/working_with_tokens) allowed to publish to the registry \`${String(registry)}\`.
+Please make sure to set the \`NPM_TOKEN\` environment variable in your CI with the exact value of the npm token.`,
+            message: "Invalid npm authentication.",
+        };
+    },
     EINVALIDNPMPUBLISH: ({ npmPublish }: ErrorContext) => {
         return {
             details: `The [npmPublish option](${linkify("README.md#npmpublish")}) option, if defined, must be a \`Boolean\`.
@@ -59,8 +69,7 @@ Your configuration for the \`npmPublish\` option is \`${String(npmPublish)}\`.`,
             details: `The [npm token](${linkify(
                 "README.md#npm-registry-authentication",
             )}) configured in the \`NPM_TOKEN\` environment variable must be a valid [token](https://docs.npmjs.com/getting-started/working_with_tokens) allowing to publish to the registry \`${String(registry)}\`.
-If you are using Two Factor Authentication for your account, set its level to ["Authorization only"](https://docs.npmjs.com/getting-started/using-two-factor-authentication#levels-of-authentication) in your account settings. **semantic-release** cannot publish with the default "Authorization and writes" level.
-Please make sure to set the \`NPM_TOKEN\` environment variable in your CI with the exact value of the npm token.`,
+Please verify your authentication configuration.`,
             message: "Invalid npm token.",
         };
     },
@@ -97,10 +106,10 @@ Your configuration for the \`tarballDir\` option is \`${String(tarballDir)}\`.`,
     },
     ENONPMTOKEN: ({ registry }: ErrorContext) => {
         return {
-            details: `An [npm token](${linkify(
+            details: `When not publishing through [trusted publishing](https://docs.npmjs.com/trusted-publishers), an [npm token](${linkify(
                 "README.md#npm-registry-authentication",
             )}) must be created and set in the \`NPM_TOKEN\` environment variable on your CI environment.
-Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and to set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow to publish to the registry \`${String(registry)}\`.`,
+Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow publishing to the registry \`${registry}\`.`,
             message: "No npm token specified.",
         };
     },
