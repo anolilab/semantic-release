@@ -63,11 +63,12 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "@anolilab/rc": "2.0.5",
+        "@anolilab/rc": "catalog:prod",
         "@semantic-release/error": "catalog:cli",
         "@visulima/fs": "catalog:prod",
         "@visulima/package": "catalog:prod",
         "@visulima/path": "catalog:node",
+        "env-ci": "catalog:prod",
         "execa": "catalog:node",
         "ini": "catalog:prod",
         "normalize-url": "catalog:database",

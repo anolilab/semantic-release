@@ -10,11 +10,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const setNpmrcAuthFilePath = "../../../src/utils/set-npmrc-auth";
 
-// eslint-disable-next-line vitest/require-mock-type-parameters
 const logSpy = vi.fn();
 const logger = { log: logSpy };
 
-// eslint-disable-next-line vitest/require-mock-type-parameters
 const mockedHomedir = vi.fn();
 
 vi.mock(import("@anolilab/rc"), async () => {

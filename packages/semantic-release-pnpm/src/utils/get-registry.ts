@@ -5,18 +5,18 @@ import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import type { AuthOptions } from "registry-auth-token";
 
-import { DEFAULT_NPM_REGISTRY } from "../definitions/constants";
+import { DEFAULT_NPM_REGISTRY, OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
 
 /**
  * Derive the registry URL for a given npm scope from a parsed npm configuration object (`npmrc`).
- * Falls back to {@link DEFAULT_NPM_REGISTRY} when no registry is configured.
+ * Falls back to {@link OFFICIAL_REGISTRY} when no registry is configured.
  * @param scope – The npm scope (e.g., `@my-org`).
  * @param npmrc – Parsed npm configuration returned by `rc`.
  * @returns A registry URL guaranteed to end with a trailing slash.
  */
 const getRegistryUrl = (scope: string, npmrc: AuthOptions["npmrc"]): string => {
-    let url: string = DEFAULT_NPM_REGISTRY;
+    let url: string = OFFICIAL_REGISTRY;
 
     if (npmrc) {
         const registryUrl = npmrc[`${scope}:registry`] ?? npmrc.registry;
@@ -54,7 +54,7 @@ const getRegistry = ({ name, publishConfig: { registry } = {} }: PackageJson, { 
         rc("npm", {
             config: env.NPM_CONFIG_USERCONFIG ?? resolve(cwd, ".npmrc"),
             cwd,
-            defaults: { registry: "https://registry.npmjs.org/" },
+            defaults: { registry: OFFICIAL_REGISTRY },
         }).config as AuthOptions["npmrc"],
     );
 
