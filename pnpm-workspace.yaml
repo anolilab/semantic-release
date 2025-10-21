@@ -25,7 +25,6 @@ catalogs:
     esbuild: 0.25.10
   cli:
     '@anolilab/multi-semantic-release': ^2.0.6
-    '@anolilab/multi-semantic-release': ^2.0.6
     '@anolilab/semantic-release-clean-package-json': 3.0.4
     '@anolilab/semantic-release-pnpm': 2.0.4
     '@semantic-release/changelog': ^6.0.3
@@ -33,8 +32,8 @@ catalogs:
     '@semantic-release/error': ^4.0.0
     '@semantic-release/exec': ^7.1.0
     '@semantic-release/git': ^10.0.1
-    '@semantic-release/github': ^11.0.6
-    '@semantic-release/npm': ^13.0.0
+    '@semantic-release/github': ^12.0.0
+    '@semantic-release/npm': ^13.1.1
     '@semantic-release/release-notes-generator': 14.1.0
     commitizen: ^4.3.1
     semantic-release: ^24.2.9
@@ -50,7 +49,7 @@ catalogs:
     dockerode: 4.0.8
     file-url: ^4.0.0
     get-stream: 9.0.1
-    got: ^14.5.0
+    got: ^14.6.0
     left-pad: latest
     p-retry: ^7.1.0
     stream-buffers: ^3.0.3
@@ -72,7 +71,7 @@ catalogs:
     eslint: 9.36.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
-    lint-staged: ^16.2.4
+    lint-staged: ^16.2.5
     prettier: ^3.6.2
     publint: ^0.3.15
     secretlint: 11.2.4
@@ -81,7 +80,7 @@ catalogs:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
     '@nx/workspace': 21.5.3
-    nx: ^21.6.4
+    nx: ^21.6.5
   network:
     browserslist-config-anolilab: ^6.0.6
   node:
@@ -121,30 +120,18 @@ catalogs:
   tsc:
     typescript: ^5.9.3
   types:
-    '@types/dockerode': ^3.3.45
+    '@types/debug': 4.1.12
+    '@types/dockerode': ^3.3.44
+    '@types/git-log-parser': 1.2.3
     '@types/ini': ^4.1.1
+    '@types/lodash-es': 4.17.12
     '@types/node': 24.6.2
-    '@types/semantic-release': ^21.1.0
     '@types/semantic-release__error': 3.0.3
     '@types/semver': 7.7.1
-    '@types/stream-buffers': ^3.0.8
+    '@types/signale': 1.4.7
+    '@types/stream-buffers': 3.0.7
   utils:
     lodash-es: ^4.17.21
     semver: ^7.7.3
     semver: ^7.7.3
     ts-deepmerge: ^7.0.3
-
-onlyBuiltDependencies:
-  - cpu-features
-  - esbuild
-  - nx
-  - oxc-resolver
-  - protobufjs
-  - rs-module-lexer
-  - ssh2
-  - unrs-resolver
-
-overrides:
-  chrono-node@<2.2.4: '>=2.9.0'
-  tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
-  tmp@<=0.2.3: '>=0.2.5'
