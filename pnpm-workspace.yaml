@@ -78,6 +78,7 @@ catalogs:
   peer:
     left-pad: latest
   prod:
+    '@actions/core': ^1.11.1
     '@anolilab/rc': 2.0.4
     '@babel/core': ^7.28.5
     '@semrel-extra/topo': ^1.14.1
@@ -89,6 +90,7 @@ catalogs:
     debug: ^4.4.3
     detect-indent: ^7.0.2
     detect-newline: ^4.0.1
+    env-ci: ^11.2.0
     git-log-parser: ^1.2.1
     ini: ^6.0.0
     is-ci: ^4.1.0

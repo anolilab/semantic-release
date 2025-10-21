@@ -247,6 +247,15 @@ catalogs:
       specifier: ^6.1.0
       version: 6.1.0
   prod:
+<<<<<<< HEAD
+=======
+    '@actions/core':
+      specifier: ^1.11.1
+      version: 1.11.1
+    '@anolilab/rc':
+      specifier: 2.0.4
+      version: 2.0.4
+>>>>>>> f0c2371 (feat: update dependencies in pnpm-lock.yaml and pnpm-workspace.yaml)
     '@babel/core':
       specifier: ^7.28.5
       version: 7.28.5
@@ -277,6 +286,9 @@ catalogs:
     detect-newline:
       specifier: ^4.0.1
       version: 4.0.1
+    env-ci:
+      specifier: ^11.2.0
+      version: 11.2.0
     git-log-parser:
       specifier: ^1.2.1
       version: 1.2.1
@@ -929,6 +941,9 @@ importers:
 
   packages/semantic-release-pnpm:
     dependencies:
+      '@actions/core':
+        specifier: catalog:prod
+        version: 1.11.1
       '@anolilab/rc':
         specifier: 2.0.5
         version: 2.0.5(yaml@2.8.1)
@@ -944,6 +959,9 @@ importers:
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.1
+      env-ci:
+        specifier: catalog:prod
+        version: 11.2.0
       execa:
         specifier: catalog:node
         version: 9.6.0
@@ -5080,8 +5098,8 @@ packages:
     resolution: {integrity: sha512-FDWG5cmEYf2Z00IkYRhbFrwIwvdFKH07uV8dvNy0omp/Qb1xcyCWp2UDtcwJF4QZZvk0sLudP6/hAu42TaqVhQ==}
     engines: {node: '>=0.12'}
 
-  env-ci@11.0.0:
-    resolution: {integrity: sha512-apikxMgkipkgTvMdRT9MNqWx5VLOci79F4VBd7Op/7OPjjoanjdAvn6fglMCCEf/1bAh8eOiuEVCUs4V3qP3nQ==}
+  env-ci@11.2.0:
+    resolution: {integrity: sha512-D5kWfzkmaOQDioPmiviWAVtKmpPT4/iJmMVQxWxMPJTFyTkdc5JQUfc5iXEeWxcOdsYTKSAiA/Age4NUOqKsRA==}
     engines: {node: ^18.17 || >=20.6.1}
 
   env-paths@2.2.1:
@@ -14195,7 +14213,7 @@ snapshots:
 
   entities@7.0.0: {}
 
-  env-ci@11.0.0:
+  env-ci@11.2.0:
     dependencies:
       execa: 8.0.1
       java-properties: 1.0.2
@@ -18865,7 +18883,7 @@ snapshots:
       aggregate-error: 5.0.0
       cosmiconfig: 9.0.0(typescript@5.9.3)
       debug: 4.4.3
-      env-ci: 11.0.0
+      env-ci: 11.2.0
       execa: 9.6.0
       figures: 6.1.0
       find-versions: 6.0.0

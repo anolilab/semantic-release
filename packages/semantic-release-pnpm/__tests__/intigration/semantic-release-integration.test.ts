@@ -140,7 +140,7 @@ describe("semantic-release-integration", () => {
                     stdout: new WritableStreamBuffer(),
                 },
             ),
-        ).rejects.toThrow();
+        ).rejects.toThrow("Invalid npm authentication");
     });
 
     it.skip("should throw error if NPM token is not provided when targeting the default registry", async () => {
@@ -166,7 +166,7 @@ describe("semantic-release-integration", () => {
                     stdout: new WritableStreamBuffer(),
                 },
             ),
-        ).rejects.toThrow();
+        ).rejects.toThrow("No npm token specified");
     });
 
     it("should verify npm auth and package", async () => {
