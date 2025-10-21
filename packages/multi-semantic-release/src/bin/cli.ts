@@ -1,3 +1,5 @@
+import "../utils/blork"; // Register custom blork checkers
+
 import { exit } from "node:process";
 
 import yargs from "yargs";
@@ -9,9 +11,9 @@ import multiSemanticRelease from "../multi-semantic-release";
 const stringList = {
     array: true,
     coerce: (values: string[]): string[] =>
-        (values.length === 1 && values[0].trim() === "false"
+        values.length === 1 && values[0].trim() === "false"
             ? []
-            : values.reduce((v: string[], value: string) => v.concat(value.split(",").map((x: string) => x.trim())), [])),
+            : values.reduce((v: string[], value: string) => v.concat(value.split(",").map((x: string) => x.trim())), []),
     type: "string",
 };
 

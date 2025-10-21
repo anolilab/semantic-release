@@ -1,12 +1,12 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ExecaChildProcess, ResultPromise } from "execa";
+import type { ResultPromise } from "execa";
 import { execa } from "execa";
 import { describe, expect, it } from "vitest";
 
-import { copyDirectory } from "../helpers/file.js";
-import { gitCommitAll, gitInit, gitInitOrigin, gitPush } from "../helpers/git.js";
+import { copyDirectory } from "../helpers/file";
+import { gitCommitAll, gitInit, gitInitOrigin, gitPush } from "../helpers/git";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const fixturesPath = resolve(__dirname, "../../__fixtures__");
@@ -58,6 +58,6 @@ describe("multi-semantic-release CLI", () => {
         });
 
         expect(out.stdout).toMatch("Started multirelease! Loading 2 packages...");
-        expect(out.stdout).toMatch("Released 0 of 2 packages");
+        expect(out.stdout).toMatch("Released 2 of 2 packages");
     });
 });

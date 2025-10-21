@@ -15,12 +15,12 @@ import { temporaryDirectory } from "tempy";
  * @param value Config value.
  * @returns
  */
-export function gitConfig(cwd: string, name: string, value: string): void {
+export const gitConfig = (cwd: string, name: string, value: string): void => {
     check(cwd, "cwd: absolute");
     check(name, "name: string+");
 
     execaSync("git", ["config", "--add", name, value], { cwd });
-}
+};
 
 /**
  * Sets git user data.
@@ -29,10 +29,10 @@ export function gitConfig(cwd: string, name: string, value: string): void {
  * @param email Committer email.
  * @returns Return void.
  */
-export function gitUser(cwd: string, name: string = "Foo Bar", email: string = "email@foo.bar"): void {
+export const gitUser = (cwd: string, name: string = "Foo Bar", email: string = "email@foo.bar"): void => {
     execaSync("git", ["config", "--local", "user.email", email], { cwd });
     execaSync("git", ["config", "--local", "user.name", name], { cwd });
-}
+};
 
 /**
  * @typedef {object} Commit
@@ -48,7 +48,7 @@ export function gitUser(cwd: string, name: string = "Foo Bar", email: string = "
  * @param branch
  * @returns String pointing to the CWD for the created Git repository.
  */
-export function gitInit(branch: string = "master"): string {
+export const gitInit = (branch: string = "master"): string => {
     check(branch, "branch: kebab");
 
     // Init Git in a temp directory.
@@ -63,14 +63,14 @@ export function gitInit(branch: string = "master"): string {
 
     // Return directory.
     return cwd;
-}
+};
 
 /**
  * Create a remote Git repository.
  * _Created in a temp folder._
  * @returns String URL of the remote origin.
  */
-export function gitInitRemote(): string {
+export const gitInitRemote = (): string => {
     // Init bare Git repository in a temp directory.
     const cwd = temporaryDirectory();
 
@@ -79,19 +79,19 @@ export function gitInitRemote(): string {
     // Turn remote path into a file URL.
     // Return URL for remote.
     return fileUrl(cwd);
-}
+};
 
 /**
  * Get the current HEAD SHA in a local Git repository.
  * @param cwd The CWD of the Git repository.
  * @returns The SHA of the head commit.
  */
-export function gitGetHead(cwd: string): string {
+export const gitGetHead = (cwd: string): string => {
     check(cwd, "cwd: absolute");
 
     // Await command and return HEAD SHA.
     return execaSync("git", ["rev-parse", "HEAD"], { cwd }).stdout;
-}
+};
 
 /**
  * Create a remote Git repository and set it as the origin for a Git repository.
@@ -101,7 +101,7 @@ export function gitGetHead(cwd: string): string {
  * @param releaseBranch
  * @returns String URL of the remote origin.
  */
-export function gitInitOrigin(cwd: string, releaseBranch: string | null = null): string {
+export const gitInitOrigin = (cwd: string, releaseBranch: string | null = null): string => {
     check(cwd, "cwd: absolute");
 
     // Turn remote path into a file URL.
@@ -120,7 +120,7 @@ export function gitInitOrigin(cwd: string, releaseBranch: string | null = null):
 
     // Return URL for remote.
     return url;
-}
+};
 
 /**
  * Add files to staged commit in a Git repository.
@@ -129,11 +129,11 @@ export function gitInitOrigin(cwd: string, releaseBranch: string | null = null):
  * @param file
  * @returns
  */
-export function gitAdd(cwd: string, file: string = "."): void {
+export const gitAdd = (cwd: string, file: string = "."): void => {
     check(cwd, "cwd: absolute");
 
     execaSync("git", ["add", file], { cwd });
-}
+};
 
 /**
  * Create commit on a Git repository.
@@ -142,7 +142,7 @@ export function gitAdd(cwd: string, file: string = "."): void {
  * @param message Commit message.
  * @returns Promise that resolves to the SHA for the commit.
  */
-export function gitCommit(cwd: string, message: string): string {
+export const gitCommit = (cwd: string, message: string): string => {
     check(cwd, "cwd: absolute");
     check(message, "message: string+");
 
@@ -150,7 +150,7 @@ export function gitCommit(cwd: string, message: string): string {
 
     // Return HEAD SHA.
     return gitGetHead(cwd);
-}
+};
 
 /**
  * `git add .` followed by `git commit`
@@ -159,7 +159,7 @@ export function gitCommit(cwd: string, message: string): string {
  * @param message Commit message.
  * @returns Promise that resolves to the SHA for the commit.
  */
-export function gitCommitAll(cwd: string, message: string): string {
+export const gitCommitAll = (cwd: string, message: string): string => {
     check(cwd, "cwd: absolute");
     check(message, "message: string+");
 
@@ -167,7 +167,7 @@ export function gitCommitAll(cwd: string, message: string): string {
 
     // return the SHA hash.
     return gitCommit(cwd, message);
-}
+};
 
 /**
  * Push to a remote Git repository.
@@ -177,13 +177,13 @@ export function gitCommitAll(cwd: string, message: string): string {
  * @returns
  * @throws {Error} if the push failed.
  */
-export function gitPush(cwd: string, remote: string = "origin", branch: string = "master"): void {
+export const gitPush = (cwd: string, remote: string = "origin", branch: string = "master"): void => {
     check(cwd, "cwd: absolute");
     check(remote, "remote: string");
     check(branch, "branch: lower");
 
     execaSync("git", ["push", "--tags", remote, `HEAD:${branch}`], { cwd });
-}
+};
 
 /**
  * Create a tag on the HEAD commit in a local Git repository.
@@ -193,14 +193,14 @@ export function gitPush(cwd: string, remote: string = "origin", branch: string =
  * @param hash
  * @returns
  */
-export function gitTag(cwd: string, tagName: string, hash?: string): void {
+export const gitTag = (cwd: string, tagName: string, hash?: string): void => {
     check(cwd, "cwd: absolute");
     check(tagName, "tagName: string+");
     check(hash, "hash: alphanumeric{40}?");
 
     // Run command.
     execaSync("git", hash ? ["tag", "-f", tagName, hash] : ["tag", tagName], { cwd });
-}
+};
 
 /**
  * Get the commit message log of given commit SHA or branch name.
@@ -209,11 +209,11 @@ export function gitTag(cwd: string, tagName: string, hash?: string): void {
  * @param hash The commit SHA or branch name.
  * @returns Commit log message.
  */
-export function gitGetLog(cwd: string, number: number, hash: string): string {
+export const gitGetLog = (cwd: string, number: number, hash: string): string => {
     check(cwd, "cwd: absolute");
     check(number, "number: integer");
     check(hash, "hash: string+");
 
     // Run command.
     return execaSync("git", ["log", `-${number}`, hash], { cwd }).stdout;
-}
+};

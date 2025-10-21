@@ -11,6 +11,7 @@ export default defineConfig({
             builtinNodeModules: true,
         },
     },
+    runtime: "node",
     transformer,
     validation: {
         dependencies: {
