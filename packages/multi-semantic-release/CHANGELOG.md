@@ -1,3 +1,9 @@
+## @anolilab/multi-semantic-release [3.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0-alpha.2...@anolilab/multi-semantic-release@3.0.0-alpha.3) (2025-10-22)
+
+### Bug Fixes
+
+* dryRun flag support in multiSemanticRelease ([3262190](https://github.com/anolilab/semantic-release/commit/3262190273db749884e03a5821177ecd25bacef6))
+
 ## @anolilab/multi-semantic-release [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0-alpha.1...@anolilab/multi-semantic-release@3.0.0-alpha.2) (2025-10-21)
 
 ### Features
