@@ -234,9 +234,11 @@ const multiSemanticRelease = async (
     // eslint-disable-next-line no-param-reassign
     cwd = cleanPath(cwd);
 
+    const configMultiSemrel = await getConfigMultiSemrel(cwd, _flags);
+
     const flags: Flags = {
         deps: {},
-        ...await getConfigMultiSemrel(cwd, _flags),
+        ...configMultiSemrel,
     };
 
     // Setup logger.

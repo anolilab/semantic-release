@@ -2,8 +2,8 @@ import semanticGetConfig from "semantic-release/lib/get-config.js";
 import signale from "signale";
 import { WritableStreamBuffer } from "stream-buffers";
 
-import logger from "./logger.js";
-import type { WritableStreamBuffer } from "./types.js";
+import logger from "./logger";
+import type { WritableStreamBuffer } from "./types";
 
 const { Signale } = signale;
 

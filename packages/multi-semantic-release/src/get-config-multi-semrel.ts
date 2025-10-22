@@ -5,8 +5,8 @@ import { cosmiconfig } from "cosmiconfig";
 import { castArray } from "lodash-es";
 import resolveFrom from "resolve-from";
 
-import type { Flags, MultiReleaseConfig } from "./types.js";
-import mergeConfig from "./utils/merge-config.js";
+import type { Flags, MultiReleaseConfig } from "./types";
+import mergeConfig from "./utils/merge-config";
 
 const CONFIG_NAME = "multi-release";
 const CONFIG_FILES = [
@@ -41,7 +41,7 @@ export default async (cwd: string, cliOptions: Flags): Promise<MultiReleaseConfi
         // If `extends` is defined, load and merge each shareable config
         // eslint-disable-next-line unicorn/no-array-reduce
         const extendedOptions: MultiReleaseConfig = castArray(extendPaths).reduce((result: MultiReleaseConfig, extendPath: string) => {
-            // eslint-disable-next-line import/no-dynamic-require,security/detect-non-literal-require
+            // eslint-disable-next-line import/no-dynamic-require
             const extendsOptions: MultiReleaseConfig = require(resolveFrom(cwd, extendPath));
 
             return mergeConfig(result, extendsOptions);

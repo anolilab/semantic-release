@@ -1,9 +1,9 @@
 import { getTagHead } from "semantic-release/lib/git.js";
 
-import getCommitsFiltered from "./get-commits-filtered.js";
-import logger from "./logger.js";
-import type { Flags, MultiContext, Package, PluginFunctions, SemanticReleaseContext } from "./types.js";
-import { resolveReleaseType, updateManifestDeps } from "./update-deps.js";
+import getCommitsFiltered from "./get-commits-filtered";
+import logger from "./logger";
+import type { Flags, MultiContext, Package, PluginFunctions, SemanticReleaseContext } from "./types";
+import { resolveReleaseType, updateManifestDeps } from "./update-deps";
 
 const { debug } = logger.withScope("msr:inlinePlugin");
 
@@ -16,24 +16,24 @@ const { debug } = logger.withScope("msr:inlinePlugin");
  * @returns A function that creates an inline package.
  * @internal
  */
-const createInlinePluginCreator = (packages: Package[], multiContext: MultiContext, flags: Flags): (package_: Package) => PluginFunctions => {
+const createInlinePluginCreator = (packages: Package[], multiContext: MultiContext, flags: Flags): (npmPackage: Package) => PluginFunctions => {
     // Vars.
     const { cwd } = multiContext;
 
     /**
      * Create an inline plugin for an individual package in a multirelease.
      * This is called once per package and returns the inline plugin used for semanticRelease()
-     * @param package_ The package this function is being called on.
+     * @param npmPackage The package this function is being called on.
      * @returns A semantic-release inline plugin containing plugin step functions.
      * @internal
      */
 
     /**
-     * @param package_
+     * @param npmPackage
      */
-    const createInlinePlugin = (package_: Package): PluginFunctions => {
+    const createInlinePlugin = (npmPackage: Package): PluginFunctions => {
         // Vars.
-        const { dir, name, plugins } = package_;
+        const { dir, name, plugins } = npmPackage;
         const debugPrefix = `[${name}]`;
 
         /**
@@ -47,12 +47,12 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             Object.assign(context.options, context.options._pkgOptions);
 
             // And bind the actual logger.
-            Object.assign(package_.fakeLogger, context.logger);
+            Object.assign(npmPackage.fakeLogger, context.logger);
 
             const result = await plugins.verifyConditions(context);
 
             // eslint-disable-next-line no-param-reassign
-            package_._ready = true;
+            npmPackage._ready = true;
 
             debug(debugPrefix, "verified conditions");
 
@@ -72,9 +72,9 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          */
         const analyzeCommits = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<string | null> => {
             // eslint-disable-next-line no-param-reassign
-            package_._preRelease = context.branch.prerelease || null;
+            npmPackage._preRelease = context.branch.prerelease || null;
             // eslint-disable-next-line no-param-reassign
-            package_._branch = context.branch.name;
+            npmPackage._branch = context.branch.name;
 
             // Filter commits by directory.
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
@@ -91,24 +91,24 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
             // Set lastRelease for package from context.
             // eslint-disable-next-line no-param-reassign
-            package_._lastRelease = context.lastRelease;
+            npmPackage._lastRelease = context.lastRelease;
 
             // Set nextType for package from plugins.
             // eslint-disable-next-line no-param-reassign
-            package_._nextType = await plugins.analyzeCommits(context);
+            npmPackage._nextType = await plugins.analyzeCommits(context);
 
             // eslint-disable-next-line no-param-reassign
-            package_._analyzed = true;
+            npmPackage._analyzed = true;
 
             // Make sure type is "patch" if the package has any deps that have been changed.
             // eslint-disable-next-line no-param-reassign
-            package_._nextType = resolveReleaseType(package_, flags.deps.bump, flags.deps.release, [], flags.deps.prefix);
+            npmPackage._nextType = resolveReleaseType(npmPackage, flags.deps.bump, flags.deps.release, [], flags.deps.prefix);
 
             debug(debugPrefix, "commits analyzed");
-            debug(debugPrefix, `release type: ${package_._nextType}`);
+            debug(debugPrefix, `release type: ${npmPackage._nextType}`);
 
             // Return type.
-            return package_._nextType;
+            return npmPackage._nextType;
         };
 
         /**
@@ -138,7 +138,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
         const generateNotes = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<string> => {
             // Set nextRelease for package.
             // eslint-disable-next-line no-param-reassign
-            package_._nextRelease = context.nextRelease;
+            npmPackage._nextRelease = context.nextRelease;
 
             // Wait until all todo packages are ready to generate notes.
             // await waitForAll("_nextRelease", (p) => p._nextType);
@@ -181,7 +181,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             }
 
             // If it has upgrades add an upgrades section.
-            const upgrades = package_.localDeps.filter((d: Package) => d._nextRelease);
+            const upgrades = npmPackage.localDeps.filter((d: Package) => d._nextRelease);
 
             if (upgrades.length > 0) {
                 notes.push(`### Dependencies`);
@@ -198,10 +198,17 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
         };
 
         const prepare = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<void> => {
-            updateManifestDeps(package_);
+            // Skip all operations in dry-run mode
+            if (flags.dryRun) {
+                debug(debugPrefix, "skipping prepare in dry-run mode");
+
+                return;
+            }
+
+            updateManifestDeps(npmPackage);
 
             // eslint-disable-next-line no-param-reassign
-            package_._depsUpdated = true;
+            npmPackage._depsUpdated = true;
 
             // Filter commits by directory.
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
@@ -219,7 +226,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             const result = await plugins.prepare(context);
 
             // eslint-disable-next-line no-param-reassign
-            package_._prepared = true;
+            npmPackage._prepared = true;
 
             debug(debugPrefix, "prepared");
 
@@ -227,10 +234,17 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
         };
 
         const publish = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<unknown> => {
+            // Skip all operations in dry-run mode
+            if (flags.dryRun) {
+                debug(debugPrefix, "skipping publish in dry-run mode");
+
+                return [];
+            }
+
             const result = await plugins.publish(context);
 
             // eslint-disable-next-line no-param-reassign
-            package_._published = true;
+            npmPackage._published = true;
 
             debug(debugPrefix, "published");
 

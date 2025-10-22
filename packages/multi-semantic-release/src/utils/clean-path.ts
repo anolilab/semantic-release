@@ -1,6 +1,6 @@
 import { isAbsolute, join, normalize } from "node:path";
 
-import { check } from "./blork.js";
+import { check } from "./blork";
 
 /**
  * Normalize and make a path absolute, optionally using a custom CWD.
