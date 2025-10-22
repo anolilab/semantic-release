@@ -13,12 +13,6 @@ catalogs:
     '@anolilab/multi-semantic-release':
       specifier: ^2.0.6
       version: 2.0.6
-    '@anolilab/semantic-release-clean-package-json':
-      specifier: 3.0.4
-      version: 3.0.4
-    '@anolilab/semantic-release-pnpm':
-      specifier: 2.0.4
-      version: 2.0.4
     '@semantic-release/changelog':
       specifier: ^6.0.3
       version: 6.0.3
@@ -187,9 +181,6 @@ catalogs:
     '@actions/core':
       specifier: ^1.11.1
       version: 1.11.1
-    '@anolilab/rc':
-      specifier: 2.0.4
-      version: 2.0.4
     '@babel/core':
       specifier: ^7.28.4
       version: 7.28.4
@@ -459,11 +450,11 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-clean-package-json':
-        specifier: catalog:cli
-        version: 3.0.4(yaml@2.8.1)
+        specifier: 4.0.0-alpha.2
+        version: 4.0.0-alpha.2(yaml@2.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: catalog:cli
-        version: 2.0.4(@types/node@24.6.2)(yaml@2.8.1)
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -686,8 +677,8 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
-        specifier: catalog:cli
-        version: 2.0.4(@types/node@24.6.2)(yaml@2.8.1)
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -758,8 +749,8 @@ importers:
         specifier: catalog:prod
         version: 1.11.1
       '@anolilab/rc':
-        specifier: catalog:prod
-        version: 2.0.4(yaml@2.8.1)
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(yaml@2.8.1)
       '@semantic-release/error':
         specifier: catalog:cli
         version: 4.0.0
@@ -900,8 +891,8 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: catalog:cli
-        version: 3.0.4(yaml@2.8.1)
+        specifier: 4.0.0-alpha.2
+        version: 4.0.0-alpha.2(yaml@2.8.1)
       '@semantic-release/changelog':
         specifier: catalog:cli
         version: 6.0.3(semantic-release@24.2.9(typescript@5.9.3))
@@ -931,8 +922,8 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
-        specifier: catalog:cli
-        version: 2.0.4(@types/node@24.6.2)(yaml@2.8.1)
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -1115,17 +1106,17 @@ packages:
     peerDependencies:
       prettier: ^3.6.2
 
-  '@anolilab/rc@2.0.4':
-    resolution: {integrity: sha512-vMEW4bXMy6Sumol/MKbWRHuOy38mCr1KxV4yUNrv7GGuYgYAOn1naqL/Krgb0BLcZxXOmquFWAzK58AK1SX+4g==}
-    engines: {node: '>=20.8.1'}
+  '@anolilab/rc@3.0.0-alpha.2':
+    resolution: {integrity: sha512-GpmjTxjIuZd/VGLYqF7f07Ayz+TH+heN+hKpg0kff8g7RXiMf4jd0OZXCek6GFuOpq2DwYMXEgt9Sz24HZPmCw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
-  '@anolilab/semantic-release-clean-package-json@3.0.4':
-    resolution: {integrity: sha512-O8nJAXTpIR0Mx7mq86TPDeV+xvH29DYyh4gYHSVsT+FaFSDwCC5hFZ1ZSDk8jvPDJ4YGZYb5ing9UPL4WRHDcA==}
-    engines: {node: '>=20.8.1'}
+  '@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2':
+    resolution: {integrity: sha512-5mjRLFNGKkcQhlf7jtwCvmZVLI5dxm3UjWks9bdRMn+9kaDY30upNmXTxi3cHGiTzrHiR66pp4gKP61thXBmdg==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
-  '@anolilab/semantic-release-pnpm@2.0.4':
-    resolution: {integrity: sha512-d3AaL9A8FYA34NoWmm44K6tIuUm02UPq7G4R1+hY3HlN8qX3cmforhK978irK7PigAzjP7UdM88hhf6tF1ls2A==}
-    engines: {node: '>=20.8.1'}
+  '@anolilab/semantic-release-pnpm@3.0.0-alpha.2':
+    resolution: {integrity: sha512-nLWHPGUZ2ypP3ghQfcARGo6mBH4vEOPF2NT0wK17QAPLk2+58f2H2LctCfL01jjNWYm0HgGTFXkqX84HcG7eGQ==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@anolilab/textlint-config@9.0.8':
     resolution: {integrity: sha512-+3jPKmXAugCCvoGnQocQhkeTAF3I8oegGmedMHDwxjD2focZqxal4BvzrCO+JCYOnvBgByYlbaO562h3Arv9HQ==}
@@ -3091,11 +3082,6 @@ packages:
 
   '@visulima/is-ansi-color-supported@2.2.14':
     resolution: {integrity: sha512-5Z3V97wvXl+0b4uykb0jKG7nPhLfXG0pl5mdyAhIuUzCNRqwk6Tn7Upb16WyWafeKd7kTHY9nr78uTiPtOYuXg==}
-    engines: {node: '>=18.0.0 <=23.x'}
-    os: [darwin, linux, win32]
-
-  '@visulima/package@3.5.11':
-    resolution: {integrity: sha512-qU4ydLlGgIXjp8MbkwXMhgwmTB5uhPej+zDogtybIE5MG4hYilvnC9mYKL+i0gaqLkdqsEv4umJCy/Cx1aaiaQ==}
     engines: {node: '>=18.0.0 <=23.x'}
     os: [darwin, linux, win32]
 
@@ -6953,10 +6939,6 @@ packages:
     resolution: {integrity: sha512-6rvCfeRW+OEZagAB4lMLSNuTNYZWLVtKccK79VSTf//yTY5VOCgcpH80O+bZK8Neps7pUnd5G+QlMg1yV/2iZQ==}
     engines: {node: ^16.14.0 || >=18.0.0}
 
-  normalize-package-data@7.0.0:
-    resolution: {integrity: sha512-k6U0gKRIuNCTkwHGZqblCfLfBRh+w1vI6tBo+IeJwq2M8FUiOqhX7GH+GArQGScA7azd1WfyRCvxoXDO3hQDIA==}
-    engines: {node: ^18.17.0 || >=20.5.0}
-
   normalize-package-data@8.0.0:
     resolution: {integrity: sha512-RWk+PI433eESQ7ounYxIp67CYuVsS1uYSonX3kA6ps/3LWfjVQa/ptEg6Y3T6uAMq1mWpX9PQ+qx+QaHpsc7gQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
@@ -9336,30 +9318,33 @@ snapshots:
     dependencies:
       prettier: 3.6.2
 
-  '@anolilab/rc@2.0.4(yaml@2.8.1)':
+  '@anolilab/rc@3.0.0-alpha.2(yaml@2.8.1)':
     dependencies:
-      '@visulima/fs': 3.1.9(yaml@2.8.1)
-      '@visulima/path': 1.4.0
+      '@visulima/fs': 4.0.2(yaml@2.8.1)
+      '@visulima/path': 2.0.1
       ini: 5.0.0
       ts-deepmerge: 7.0.3
     transitivePeerDependencies:
       - yaml
 
-  '@anolilab/semantic-release-clean-package-json@3.0.4(yaml@2.8.1)':
+  '@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2(yaml@2.8.1)':
     dependencies:
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 3.1.9(yaml@2.8.1)
-      '@visulima/path': 1.4.0
+      '@visulima/fs': 4.0.2(yaml@2.8.1)
+      '@visulima/path': 2.0.1
+      type-fest: 5.1.0
     transitivePeerDependencies:
       - yaml
 
-  '@anolilab/semantic-release-pnpm@2.0.4(@types/node@24.6.2)(yaml@2.8.1)':
+  '@anolilab/semantic-release-pnpm@3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)':
     dependencies:
-      '@anolilab/rc': 2.0.4(yaml@2.8.1)
+      '@actions/core': 1.11.1
+      '@anolilab/rc': 3.0.0-alpha.2(yaml@2.8.1)
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 3.1.9(yaml@2.8.1)
-      '@visulima/package': 3.5.11(@types/node@24.6.2)(yaml@2.8.1)
-      '@visulima/path': 1.4.0
+      '@visulima/fs': 4.0.2(yaml@2.8.1)
+      '@visulima/package': 4.1.2(@types/node@24.6.2)
+      '@visulima/path': 2.0.1
+      env-ci: 11.2.0
       execa: 9.6.0
       ini: 5.0.0
       normalize-url: 8.1.0
@@ -11564,16 +11549,6 @@ snapshots:
   '@visulima/inspector@1.0.24': {}
 
   '@visulima/is-ansi-color-supported@2.2.14': {}
-
-  '@visulima/package@3.5.11(@types/node@24.6.2)(yaml@2.8.1)':
-    dependencies:
-      '@inquirer/confirm': 5.1.19(@types/node@24.6.2)
-      '@visulima/fs': 3.1.8(yaml@2.8.1)
-      '@visulima/path': 1.4.0
-      normalize-package-data: 7.0.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - yaml
 
   '@visulima/package@4.0.0(@types/node@24.6.2)':
     dependencies:
@@ -16146,12 +16121,6 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.2
       is-core-module: 2.16.1
-      semver: 7.7.3
-      validate-npm-package-license: 3.0.4
-
-  normalize-package-data@7.0.0:
-    dependencies:
-      hosted-git-info: 8.0.0
       semver: 7.7.3
       validate-npm-package-license: 3.0.4
 
