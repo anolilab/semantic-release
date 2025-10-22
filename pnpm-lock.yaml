@@ -15,6 +15,7 @@ catalogs:
       version: 2.0.6
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -36,7 +37,12 @@ catalogs:
 =======
 =======
 >>>>>>> 07a4e0b (fix: update package manager and dependencies across multiple configurations)
+<<<<<<< HEAD
 >>>>>>> 7286a13 (fix: update package manager and dependencies across multiple configurations)
+=======
+=======
+>>>>>>> e857a6b (chore: update dependencies in pnpm-lock.yaml)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
     '@semantic-release/changelog':
       specifier: ^6.0.3
       version: 6.0.3
@@ -252,10 +258,13 @@ catalogs:
     '@actions/core':
       specifier: ^1.11.1
       version: 1.11.1
+<<<<<<< HEAD
     '@anolilab/rc':
       specifier: 2.0.4
       version: 2.0.4
 >>>>>>> f0c2371 (feat: update dependencies in pnpm-lock.yaml and pnpm-workspace.yaml)
+=======
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
     '@babel/core':
       specifier: ^7.28.5
       version: 7.28.5
@@ -585,11 +594,19 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-clean-package-json':
+<<<<<<< HEAD
         specifier: 3.0.5
         version: 3.0.5(yaml@2.8.1)
       '@anolilab/semantic-release-pnpm':
         specifier: 2.0.5
         version: 2.0.5(@types/node@24.6.2)(yaml@2.8.1)
+=======
+        specifier: 4.0.0-alpha.2
+        version: 4.0.0-alpha.2(yaml@2.8.1)
+      '@anolilab/semantic-release-pnpm':
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -860,8 +877,13 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
+<<<<<<< HEAD
         specifier: 2.0.5
         version: 2.0.5(@types/node@24.6.2)(yaml@2.8.1)
+=======
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -948,8 +970,13 @@ importers:
         specifier: catalog:prod
         version: 1.11.1
       '@anolilab/rc':
+<<<<<<< HEAD
         specifier: 2.0.5
         version: 2.0.5(yaml@2.8.1)
+=======
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(yaml@2.8.1)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       '@semantic-release/error':
         specifier: catalog:cli
         version: 4.0.0
@@ -1122,8 +1149,13 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
+<<<<<<< HEAD
         specifier: 3.0.5
         version: 3.0.5(yaml@2.8.1)
+=======
+        specifier: 4.0.0-alpha.2
+        version: 4.0.0-alpha.2(yaml@2.8.1)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       '@semantic-release/changelog':
         specifier: catalog:cli
         version: 6.0.3(semantic-release@24.2.9(typescript@5.9.3))
@@ -1165,8 +1197,13 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
+<<<<<<< HEAD
         specifier: 2.0.5
         version: 2.0.5(@types/node@24.6.2)(yaml@2.8.1)
+=======
+        specifier: 3.0.0-alpha.2
+        version: 3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -1345,6 +1382,7 @@ packages:
     peerDependencies:
       prettier: ^3.6.2
 
+<<<<<<< HEAD
   '@anolilab/rc@2.0.5':
     resolution: {integrity: sha512-z/a2M30+Cc1o3lazbBjV9gB52VLvEierUIEVys+DzDwpcYOskijfTzsjn6afr1dY36Pb+EtnibmWx0EoGdnvRA==}
     engines: {node: '>=20.8.1'}
@@ -1356,6 +1394,19 @@ packages:
   '@anolilab/semantic-release-pnpm@2.0.5':
     resolution: {integrity: sha512-ylCOlITY6A7lsLB7FyRPN0kNZIf3ZsyxliPLEtcqTe1baZjUgjfdBHyfmcAhVSOyGE1O0JYR1WMuIVZ6ppueLA==}
     engines: {node: '>=20.8.1'}
+=======
+  '@anolilab/rc@3.0.0-alpha.2':
+    resolution: {integrity: sha512-GpmjTxjIuZd/VGLYqF7f07Ayz+TH+heN+hKpg0kff8g7RXiMf4jd0OZXCek6GFuOpq2DwYMXEgt9Sz24HZPmCw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2':
+    resolution: {integrity: sha512-5mjRLFNGKkcQhlf7jtwCvmZVLI5dxm3UjWks9bdRMn+9kaDY30upNmXTxi3cHGiTzrHiR66pp4gKP61thXBmdg==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-pnpm@3.0.0-alpha.2':
+    resolution: {integrity: sha512-nLWHPGUZ2ypP3ghQfcARGo6mBH4vEOPF2NT0wK17QAPLk2+58f2H2LctCfL01jjNWYm0HgGTFXkqX84HcG7eGQ==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
 
   '@anolilab/textlint-config@9.0.8':
     resolution: {integrity: sha512-+3jPKmXAugCCvoGnQocQhkeTAF3I8oegGmedMHDwxjD2focZqxal4BvzrCO+JCYOnvBgByYlbaO562h3Arv9HQ==}
@@ -10079,30 +10130,57 @@ snapshots:
     dependencies:
       prettier: 3.6.2
 
+<<<<<<< HEAD
   '@anolilab/rc@2.0.5(yaml@2.8.1)':
     dependencies:
       '@visulima/fs': 4.0.2(yaml@2.8.1)
       '@visulima/path': 2.0.1
       ini: 6.0.0
+=======
+  '@anolilab/rc@3.0.0-alpha.2(yaml@2.8.1)':
+    dependencies:
+      '@visulima/fs': 4.0.2(yaml@2.8.1)
+      '@visulima/path': 2.0.1
+      ini: 5.0.0
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       ts-deepmerge: 7.0.3
     transitivePeerDependencies:
       - yaml
 
+<<<<<<< HEAD
   '@anolilab/semantic-release-clean-package-json@3.0.5(yaml@2.8.1)':
+=======
+  '@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2(yaml@2.8.1)':
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
     dependencies:
       '@semantic-release/error': 4.0.0
       '@visulima/fs': 4.0.2(yaml@2.8.1)
       '@visulima/path': 2.0.1
+<<<<<<< HEAD
     transitivePeerDependencies:
       - yaml
 
   '@anolilab/semantic-release-pnpm@2.0.5(@types/node@24.6.2)(yaml@2.8.1)':
     dependencies:
       '@anolilab/rc': 2.0.5(yaml@2.8.1)
+=======
+      type-fest: 5.1.0
+    transitivePeerDependencies:
+      - yaml
+
+  '@anolilab/semantic-release-pnpm@3.0.0-alpha.2(@types/node@24.6.2)(yaml@2.8.1)':
+    dependencies:
+      '@actions/core': 1.11.1
+      '@anolilab/rc': 3.0.0-alpha.2(yaml@2.8.1)
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       '@semantic-release/error': 4.0.0
       '@visulima/fs': 4.0.2(yaml@2.8.1)
       '@visulima/package': 4.1.2(@types/node@24.6.2)
       '@visulima/path': 2.0.1
+<<<<<<< HEAD
+=======
+      env-ci: 11.2.0
+>>>>>>> 6178b93 (chore: update dependencies in pnpm-lock.yaml)
       execa: 9.6.0
       ini: 6.0.0
       normalize-url: 8.1.0
