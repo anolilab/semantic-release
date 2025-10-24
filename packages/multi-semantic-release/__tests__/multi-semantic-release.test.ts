@@ -1610,4 +1610,77 @@ describe("multiSemanticRelease()", () => {
         expect(result).toBeDefined();
         expect(result).toBeInstanceOf(Array);
     });
+
+
+    it("plugins receive correct cwd for each package", async () => {
+        expect.assertions(10);
+
+        // Create Git repo with copy of Yarn workspaces fixture.
+        const cwd = gitInit();
+
+        copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
+
+        gitCommitAll(cwd, "feat: Initial release");
+        gitInitOrigin(cwd);
+        gitPush(cwd);
+
+        // Track the cwd values received by plugins for each package
+        const cwdValues = {
+            verifyConditions: [],
+            verifyRelease: [],
+            generateNotes: [],
+            prepare: [],
+            publish: [],
+        };
+
+        // Make an inline plugin that captures context.cwd
+        const plugin = {
+            verifyConditions: vi.fn((pluginConfig, context) => {
+                cwdValues.verifyConditions.push(context.cwd);
+            }),
+            verifyRelease: vi.fn((pluginConfig, context) => {
+                cwdValues.verifyRelease.push(context.cwd);
+            }),
+            generateNotes: vi.fn((pluginConfig, context) => {
+                cwdValues.generateNotes.push(context.cwd);
+                return "";
+            }),
+            prepare: vi.fn((pluginConfig, context) => {
+                cwdValues.prepare.push(context.cwd);
+            }),
+            publish: vi.fn((pluginConfig, context) => {
+                cwdValues.publish.push(context.cwd);
+                return {};
+            }),
+        };
+
+        // Capture output.
+        const stdout = new WritableStreamBuffer();
+        const stderr = new WritableStreamBuffer();
+
+        // Call multiSemanticRelease() with two packages
+        await multiSemanticRelease(
+            [`packages/a/package.json`, `packages/b/package.json`],
+            {
+                analyzeCommits: ["@semantic-release/commit-analyzer"],
+                plugins: ["@semantic-release/release-notes-generator", plugin],
+            },
+            { cwd, env: environment, stderr, stdout },
+        );
+
+        // Verify that each plugin hook was called
+        expect(plugin.verifyConditions).toHaveBeenCalledTimes(2);
+        expect(plugin.verifyRelease).toHaveBeenCalledTimes(2);
+        expect(plugin.generateNotes).toHaveBeenCalledTimes(2);
+        expect(plugin.prepare).toHaveBeenCalledTimes(2);
+        expect(plugin.publish).toHaveBeenCalledTimes(2);
+
+        // Verify that each hook received the correct package-specific cwd
+        // Package a should have cwd ending in packages/a
+        expect(cwdValues.verifyConditions[0]).toMatch(/packages\/a$/u);
+        expect(cwdValues.verifyRelease[0]).toMatch(/packages\/a$/u);
+        expect(cwdValues.generateNotes[0]).toMatch(/packages\/a$/u);
+        expect(cwdValues.prepare[0]).toMatch(/packages\/a$/u);
+        expect(cwdValues.publish[0]).toMatch(/packages\/a$/u);
+    });
 });
