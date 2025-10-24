@@ -15,7 +15,6 @@ class RescopedStream extends Writable {
 
     private _scope: string;
 
-    // Constructor.
     constructor(stream: NodeJS.WritableStream, scope: string) {
         super();
         check(scope, "scope: string");
@@ -24,7 +23,6 @@ class RescopedStream extends Writable {
         this._scope = scope;
     }
 
-    // Custom write method.
     write(message: string): void {
         check(message, "msg: string");
         this._stream.write(message.replace("[semantic-release]", `[${this._scope}]`));
