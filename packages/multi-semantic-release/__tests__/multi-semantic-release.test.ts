@@ -1608,7 +1608,7 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("plugins receive correct cwd for each package", async () => {
-        expect.assertions(10);
+        expect.assertions(15);
 
         // Create Git repo with copy of Yarn workspaces fixture.
         const cwd = gitInit();
@@ -1679,5 +1679,12 @@ describe("multiSemanticRelease()", () => {
         expect(cwdValues.generateNotes[0]).toMatch(/packages\/a$/u);
         expect(cwdValues.prepare[0]).toMatch(/packages\/a$/u);
         expect(cwdValues.publish[0]).toMatch(/packages\/a$/u);
+
+        // Package b should have cwd ending in packages/b
+        expect(cwdValues.verifyConditions[1]).toMatch(/packages\/b$/u);
+        expect(cwdValues.verifyRelease[1]).toMatch(/packages\/b$/u);
+        expect(cwdValues.generateNotes[1]).toMatch(/packages\/b$/u);
+        expect(cwdValues.prepare[1]).toMatch(/packages\/b$/u);
+        expect(cwdValues.publish[1]).toMatch(/packages\/b$/u);
     });
 });

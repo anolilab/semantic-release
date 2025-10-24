@@ -32,7 +32,6 @@ const getCommitsFiltered = async (
     nextRelease?: string,
     firstParentBranch?: string,
 ): Promise<Commit[]> => {
-    // Clean paths and make sure directories exist.
     check(cwd, "cwd: directory");
 
     if (!existsSync(cwd) || !lstatSync(cwd).isDirectory()) {
@@ -57,7 +56,6 @@ const getCommitsFiltered = async (
     check(lastRelease, "lastRelease: alphanumeric{40}?");
     check(nextRelease, "nextRelease: alphanumeric{40}?");
 
-    // target must be inside and different than cwd.
     if (direction.indexOf(cwd) !== 0) {
         throw new ValueError("dir: Must be inside cwd", direction);
     }
@@ -66,10 +64,8 @@ const getCommitsFiltered = async (
         throw new ValueError("dir: Must not be equal to cwd", direction);
     }
 
-    // Get top-level Git directory as it might be higher up the tree than cwd.
     const root = await execa("git", ["rev-parse", "--show-toplevel"], { cwd });
 
-    // Add correct fields to gitLogParser.
     Object.assign(gitLogParser.fields, {
         committerDate: { key: "ci", type: Date },
         gitTags: "d",
@@ -77,7 +73,6 @@ const getCommitsFiltered = async (
         message: "B",
     });
 
-    // Use git-log-parser to get the commits.
     const relpath = relative(root.stdout, direction);
     const firstParentBranchFilter = firstParentBranch ? ["--first-parent", firstParentBranch] : [];
     const range = (lastRelease ? `${lastRelease}..` : "") + (nextRelease || "HEAD");
@@ -86,7 +81,6 @@ const getCommitsFiltered = async (
 
     const commits = await streamToArray(stream);
 
-    // Trim message and tags.
     commits.forEach((commit: Commit) => {
         // eslint-disable-next-line no-param-reassign
         commit.message = commit.message.trim();
@@ -97,9 +91,7 @@ const getCommitsFiltered = async (
     debug("git log filter query: %o", gitLogFilterQuery);
     debug("filtered commits: %O", commits);
 
-    // Return the commits.
     return commits;
 };
 
-// Exports.
 export default getCommitsFiltered;

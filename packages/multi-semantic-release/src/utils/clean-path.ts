@@ -14,9 +14,7 @@ const cleanPath = (path: string, cwd: string = process.cwd()): string => {
     check(path, "path: path");
     check(cwd, "cwd: absolute");
 
-    // Normalize, absolutify, and trim trailing slashes from the path.
     return normalize(isAbsolute(path) ? path : join(cwd, path)).replace(/[/\\]+$/u, "");
 };
 
-// Exports.
 export default cleanPath;

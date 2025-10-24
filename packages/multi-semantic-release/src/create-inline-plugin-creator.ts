@@ -49,9 +49,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             // And bind the actual logger.
             Object.assign(npmPackage.fakeLogger, context.logger);
 
-            // Ensure context.cwd is set to the package directory
-            // This is critical for plugins that need to access package-specific files
-
+            // eslint-disable-next-line no-param-reassign
             context.cwd = dir;
 
             const result = await plugins.verifyConditions(context);
@@ -81,8 +79,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             // eslint-disable-next-line no-param-reassign
             npmPackage._branch = context.branch.name;
 
-            // Ensure context.cwd is set to the package directory
-
+            // eslint-disable-next-line no-param-reassign
             context.cwd = dir;
 
             // Filter commits by directory.
@@ -219,8 +216,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             // eslint-disable-next-line no-param-reassign
             npmPackage._depsUpdated = true;
 
-            // Ensure context.cwd is set to the package directory
-
+            // eslint-disable-next-line no-param-reassign
             context.cwd = dir;
 
             // Filter commits by directory.
@@ -254,8 +250,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
                 return [];
             }
 
-            // Ensure context.cwd is set to the package directory
-
+            // eslint-disable-next-line no-param-reassign
             context.cwd = dir;
 
             const result = await plugins.publish(context);
@@ -269,12 +264,34 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             return result.length > 0 ? result[0] : {};
         };
 
+        /**
+         * Verify release step.
+         * Responsible for verifying the release that was just published. If multiple plugins with a verifyRelease step are defined, all must pass.
+         *
+         * In multirelease: Ensures context.cwd is set to the package directory so plugins can verify package-specific artifacts.
+         * @param pluginOptions Options to configure this plugin.
+         * @param context The semantic-release context.
+         * @returns Promise that resolves when done.
+         * @internal
+         */
+        const verifyRelease = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<void> => {
+            // eslint-disable-next-line no-param-reassign
+            context.cwd = dir;
+
+            const result = await plugins.verifyRelease(context);
+
+            debug(debugPrefix, "release verified");
+
+            return result;
+        };
+
         const inlinePlugin = {
             analyzeCommits,
             generateNotes,
             prepare,
             publish,
             verifyConditions,
+            verifyRelease,
         };
 
         // Add labels for logs.
