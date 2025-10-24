@@ -51,7 +51,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
             // Ensure context.cwd is set to the package directory
             // This is critical for plugins that need to access package-specific files
-            // eslint-disable-next-line no-param-reassign
+
             context.cwd = dir;
 
             const result = await plugins.verifyConditions(context);
@@ -82,7 +82,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             npmPackage._branch = context.branch.name;
 
             // Ensure context.cwd is set to the package directory
-            // eslint-disable-next-line no-param-reassign
+
             context.cwd = dir;
 
             // Filter commits by directory.
@@ -220,7 +220,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             npmPackage._depsUpdated = true;
 
             // Ensure context.cwd is set to the package directory
-            // eslint-disable-next-line no-param-reassign
+
             context.cwd = dir;
 
             // Filter commits by directory.
@@ -255,7 +255,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             }
 
             // Ensure context.cwd is set to the package directory
-            // eslint-disable-next-line no-param-reassign
+
             context.cwd = dir;
 
             const result = await plugins.publish(context);
@@ -291,9 +291,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
         return inlinePlugin;
     };
 
-    // Return creator function.
     return createInlinePlugin;
 };
 
-// Exports.
 export default createInlinePluginCreator;
