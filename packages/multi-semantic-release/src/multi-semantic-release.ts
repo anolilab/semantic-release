@@ -3,6 +3,7 @@ import { dirname } from "node:path";
 import { topo } from "@semrel-extra/topo";
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
 import { castArray, sortBy, template } from "lodash-es";
+import type { Options } from "semantic-release";
 import semanticRelease from "semantic-release";
 import semrelPkgJson from "semantic-release/package.json" with { type: "json" };
 
@@ -115,7 +116,7 @@ const releasePackage = async (
     // This consists of:
     // - The global options (e.g. from the top level package.json)
     // - The package options (e.g. from the specific package's package.json)
-    const options: Record<string, unknown> = { ...packageOptions, ...inlinePlugin };
+    const options: Options = { ...packageOptions, ...inlinePlugin };
 
     // Add the package name into tagFormat.
     // Thought about doing a single release for the tag (merging several packages), but it's impossible to prevent Github releasing while allowing NPM to continue.
@@ -243,7 +244,7 @@ const multiSemanticRelease = async (
 
     // Setup logger.
     logger.config.stdio = [stderr, stdout];
-    logger.config.level = flags.logLevel;
+    logger.config.level = flags.logLevel as string;
 
     if (flags.silent) {
         logger.config.level = "silent";
@@ -278,7 +279,6 @@ const multiSemanticRelease = async (
     logger.complete(`Started multirelease! Loading ${paths.length} packages...`);
 
     // Load packages from paths.
-    // eslint-disable-next-line compat/compat
     const packages: Package[] = await Promise.all(paths.map((path: string) => getPackage(path, multiContext)));
 
     packages.forEach((package_: Package) => {
@@ -309,7 +309,6 @@ const multiSemanticRelease = async (
         }
 
         return m;
-        // eslint-disable-next-line compat/compat
     }, Promise.resolve(0));
 
     // Return packages list.
