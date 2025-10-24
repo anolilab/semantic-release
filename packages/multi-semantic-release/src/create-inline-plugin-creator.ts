@@ -49,6 +49,11 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             // And bind the actual logger.
             Object.assign(npmPackage.fakeLogger, context.logger);
 
+            // Ensure context.cwd is set to the package directory
+            // This is critical for plugins that need to access package-specific files
+            // eslint-disable-next-line no-param-reassign
+            context.cwd = dir;
+
             const result = await plugins.verifyConditions(context);
 
             // eslint-disable-next-line no-param-reassign
@@ -75,6 +80,10 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             npmPackage._preRelease = context.branch.prerelease || null;
             // eslint-disable-next-line no-param-reassign
             npmPackage._branch = context.branch.name;
+
+            // Ensure context.cwd is set to the package directory
+            // eslint-disable-next-line no-param-reassign
+            context.cwd = dir;
 
             // Filter commits by directory.
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
@@ -210,6 +219,10 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             // eslint-disable-next-line no-param-reassign
             npmPackage._depsUpdated = true;
 
+            // Ensure context.cwd is set to the package directory
+            // eslint-disable-next-line no-param-reassign
+            context.cwd = dir;
+
             // Filter commits by directory.
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
 
@@ -240,6 +253,10 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
                 return [];
             }
+
+            // Ensure context.cwd is set to the package directory
+            // eslint-disable-next-line no-param-reassign
+            context.cwd = dir;
 
             const result = await plugins.publish(context);
 
