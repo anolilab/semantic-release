@@ -5,7 +5,6 @@ import getNpmrcPath from "../../../src/utils/get-npmrc-path";
 
 const mocks = vi.hoisted(() => {
     return {
-
         mockedEnsureFileSync: vi.fn(),
 
         mockedIsAccessibleSync: vi.fn(),
