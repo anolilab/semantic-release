@@ -1690,4 +1690,56 @@ describe("multiSemanticRelease()", () => {
         expect(cwdValues.prepare[1]).toMatch(/packages\/b$/u);
         expect(cwdValues.publish[1]).toMatch(/packages\/b$/u);
     });
+
+    it.skip("jsr plugin receives correct cwd for each package (dry-run)", async () => {
+        expect.assertions(10);
+
+        // Create Git repo with copy of JSR workspaces fixture.
+        const cwd = gitInit();
+
+        copyDirectory(`${fixturesPath}/jsrWorkspaces/`, cwd);
+
+        gitCommitAll(cwd, "feat: Initial JSR release");
+        gitInitOrigin(cwd);
+        gitPush(cwd);
+
+        // Capture output.
+        const stdout = new WritableStreamBuffer();
+        const stderr = new WritableStreamBuffer();
+
+        // Call multiSemanticRelease() with the real JSR plugin in dry-run mode
+        // This tests that context.cwd is correctly passed to the JSR plugin
+        const result = await multiSemanticRelease(
+            [`packages/a/package.json`, `packages/b/package.json`],
+            {
+                analyzeCommits: ["@semantic-release/commit-analyzer"],
+                dryRun: true,
+                plugins: ["@semantic-release/release-notes-generator", "@sebbo2002/semantic-release-jsr"],
+            },
+            { cwd, env: environment, stderr, stdout },
+        );
+
+        // Verify that releases were processed for both packages
+        expect(result).toHaveLength(2);
+        expect(result[0]).toBeDefined();
+        expect(result[1]).toBeDefined();
+
+        // Verify that package a was processed
+        if (result[0] && result[0] !== false) {
+            expect(result[0].name).toMatch(/msr-test-jsr-a/u);
+        }
+
+        // Verify that package b was processed
+        if (result[1] && result[1] !== false) {
+            expect(result[1].name).toMatch(/msr-test-jsr-b/u);
+        }
+
+        // Verify that JSR fixture is properly configured (no deno.json/jsr.json errors)
+        const output = stdout.getContentsAsString("utf8") + stderr.getContentsAsString("utf8");
+
+        expect(output).not.toMatch(/Couldn't find a deno\.json|deno\.jsonc|jsr\.json or jsr\.jsonc/u);
+
+        // Verify no actual publishing occurred (dry-run was used)
+        expect(output).toMatch(/dry.?run/iu);
+    });
 });

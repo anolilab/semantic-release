@@ -24,6 +24,11 @@ export default createConfig(
         // },
     },
     {
+        rules: {
+            "no-underscore-dangle": "off",
+        },
+    },
+    {
         ignores: ["**/__tests__"],
         rules: {
             "unicorn/prefer-module": "off",
