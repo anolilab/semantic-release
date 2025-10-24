@@ -48,7 +48,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
             // And bind the actual logger.
             Object.assign(npmPackage.fakeLogger, context.logger);
-
+            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
             const result = await plugins.verifyConditions(context);
@@ -141,6 +141,9 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          * @internal
          */
         const generateNotes = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<string> => {
+            // Set package-specific cwd early so it's available to plugins
+            context.cwd = dir;
+
             // Set nextRelease for package.
             // eslint-disable-next-line no-param-reassign
             npmPackage._nextRelease = context.nextRelease;
@@ -214,7 +217,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._depsUpdated = true;
-
+            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
             // Filter commits by directory.
@@ -248,6 +251,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
                 return [];
             }
 
+            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
             const result = await plugins.publish(context);
@@ -272,6 +276,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          * @internal
          */
         const verifyRelease = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<void> => {
+            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
             const result = await plugins.verifyRelease(context);
