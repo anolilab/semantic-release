@@ -60,7 +60,7 @@ jobs:
                 os:
                     - "ubuntu-latest"
                 node_version: ["22", "24"]
-                semantic_release_version: ["^24", "^25.0.0-beta.10"]
+                semantic_release_version: ["^24", "^25"]
                 # On the other platforms, we only test the lts node version
                 include:
                     - os: "macos-latest"
@@ -103,6 +103,10 @@ jobs:
                 pnpm add -D semantic-release@${{ matrix.semantic_release_version }} --filter=multi-semantic-release
               env:
                   SKIP_CHECK: "true"
+
+            - name: "Build"
+              shell: "bash"
+              run: "pnpm run --filter=multi-semantic-release build"
 
             - name: "Run tests"
               shell: "bash"
