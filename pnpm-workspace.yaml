@@ -5,13 +5,29 @@ packages:
   - packages/**
   - '!packages/multi-semantic-release/__fixtures__/**'
 
+onlyBuiltDependencies:
+  - cpu-features
+  - esbuild
+  - nx
+  - oxc-resolver
+  - protobufjs
+  - rs-module-lexer
+  - ssh2
+  - unrs-resolver
+
+overrides:
+  chrono-node@<2.2.4: '>=2.9.0'
+  tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
+  tmp@<=0.2.3: '>=0.2.5'
+  vite@>=7.1.0 <=7.1.10: '>=7.1.11'
 catalogs:
   build:
     esbuild: 0.25.10
   cli:
     '@anolilab/multi-semantic-release': ^2.0.6
-    '@anolilab/semantic-release-clean-package-json': 3.0.4
-    '@anolilab/semantic-release-pnpm': 2.0.4
+    '@anolilab/semantic-release-clean-package-json': 4.0.0-alpha.2
+    '@anolilab/semantic-release-pnpm': 3.0.0-alpha.2
+    '@sebbo2002/semantic-release-jsr': ^3.0.1
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
     '@semantic-release/error': ^4.0.0
@@ -79,7 +95,7 @@ catalogs:
     left-pad: latest
   prod:
     '@actions/core': ^1.11.1
-    '@anolilab/rc': 2.0.4
+    '@anolilab/rc': 3.0.0-alpha.2
     '@babel/core': ^7.28.5
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^4.0.2
@@ -117,24 +133,8 @@ catalogs:
     '@types/semver': 7.7.1
     '@types/signale': 1.4.7
     '@types/stream-buffers': 3.0.7
+    '@types/yargs': 17.0.34
   utils:
     lodash-es: ^4.17.21
     semver: ^7.7.3
-    semver: ^7.7.3
     ts-deepmerge: ^7.0.3
-
-onlyBuiltDependencies:
-  - cpu-features
-  - esbuild
-  - nx
-  - oxc-resolver
-  - protobufjs
-  - rs-module-lexer
-  - ssh2
-  - unrs-resolver
-
-overrides:
-  chrono-node@<2.2.4: '>=2.9.0'
-  tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
-  tmp@<=0.2.3: '>=0.2.5'
-  vite@>=7.1.0 <=7.1.10: '>=7.1.11'

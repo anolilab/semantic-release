@@ -45,8 +45,9 @@ const _nextPreVersionCases = (
     if (!semver.prerelease(lastVersionForCurrentMultiRelease)) {
         const parsed = semver.parse(lastVersionForCurrentMultiRelease);
 
-        if (!parsed)
+        if (!parsed) {
             return undefined;
+        }
 
         const { major, minor, patch } = parsed;
 

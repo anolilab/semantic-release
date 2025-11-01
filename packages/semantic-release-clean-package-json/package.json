@@ -68,7 +68,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
-        "@anolilab/semantic-release-pnpm": "3.0.0-alpha.2",
+        "@anolilab/semantic-release-pnpm": "catalog:cli",
         "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
         "@semantic-release/changelog": "catalog:cli",
         "@semantic-release/commit-analyzer": "catalog:cli",
