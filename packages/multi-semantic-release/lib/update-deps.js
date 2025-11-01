@@ -306,7 +306,7 @@ export const resolveNextVersion = (currentVersion, nextVersion, bumpStrategy = "
         const separator = ".";
         const nextChunks = nextVersion.split(separator);
         const currentChunks = currentVersion.split(separator);
-        const resolvedChunks = currentChunks.map((chunk, index) => (nextChunks[index] ? chunk.replace(/\d+/u, nextChunks[index]) : chunk));
+        const resolvedChunks = currentChunks.map((chunk, index) => nextChunks[index] ? chunk.replace(/\d+/u, nextChunks[index]) : chunk);
 
         return resolvedChunks.join(separator);
     }

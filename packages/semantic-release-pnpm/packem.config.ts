@@ -17,7 +17,9 @@ export default defineConfig({
         },
         // @TODO: Remove this once packem fixed cache handling
         unused: {
-            exclude: ["@anolilab/rc, @semantic-release/error, @visulima/fs, @visulima/package, @visulima/path, execa, ini, normalize-url, registry-auth-token, semver"],
+            exclude: [
+                "@anolilab/rc, @semantic-release/error, @visulima/fs, @visulima/package, @visulima/path, execa, ini, normalize-url, registry-auth-token, semver",
+            ],
         },
     },
 });

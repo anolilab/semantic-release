@@ -26,7 +26,7 @@ const mocks = vi.hoisted(() => {
     return { mockedCwd: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 
-vi.mock("@visulima/fs", async () => {
+vi.mock(import("@visulima/fs"), async () => {
     const actual = await vi.importActual("@visulima/fs");
 
     return {
@@ -36,13 +36,13 @@ vi.mock("@visulima/fs", async () => {
     };
 });
 
-vi.mock("node:os", () => {
+vi.mock(import("node:os"), () => {
     return {
         homedir: mocks.mockedHomeDir,
     };
 });
 
-vi.mock("node:process", async () => {
+vi.mock(import("node:process"), async () => {
     const actual = await vi.importActual("node:process");
 
     return {

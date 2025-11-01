@@ -1,4 +1,3 @@
-// eslint-disable-next-line unicorn/prevent-abbreviations
 import { rm } from "node:fs/promises";
 
 import { writeFile, writeJson } from "@visulima/fs";

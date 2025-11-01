@@ -14,7 +14,7 @@ const mocks = vi.hoisted(() => {
     };
 });
 
-vi.mock("@visulima/fs", async () => {
+vi.mock(import("@visulima/fs"), async () => {
     const actual = await vi.importActual("@visulima/fs");
 
     return {
@@ -24,7 +24,7 @@ vi.mock("@visulima/fs", async () => {
     };
 });
 
-vi.mock("@visulima/path", async () => {
+vi.mock(import("@visulima/path"), async () => {
     const actual = await vi.importActual("@visulima/path");
 
     return {

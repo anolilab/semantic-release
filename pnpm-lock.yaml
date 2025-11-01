@@ -13,6 +13,12 @@ catalogs:
     '@anolilab/multi-semantic-release':
       specifier: ^2.0.6
       version: 2.0.6
+    '@anolilab/semantic-release-clean-package-json':
+      specifier: 3.0.4
+      version: 3.0.4
+    '@anolilab/semantic-release-pnpm':
+      specifier: 2.0.4
+      version: 2.0.4
     '@semantic-release/changelog':
       specifier: ^6.0.3
       version: 6.0.3
@@ -178,6 +184,9 @@ catalogs:
       specifier: ^6.1.0
       version: 6.1.0
   prod:
+    '@anolilab/rc':
+      specifier: 2.0.4
+      version: 2.0.4
     '@babel/core':
       specifier: ^7.28.5
       version: 7.28.5
@@ -435,10 +444,10 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 3.0.4
+        specifier: catalog:cli
         version: 3.0.4(yaml@2.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 2.0.4
+        specifier: catalog:cli
         version: 2.0.4(@types/node@24.6.2)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -632,7 +641,7 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
-        specifier: 2.0.4
+        specifier: catalog:cli
         version: 2.0.4(@types/node@24.6.2)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -707,7 +716,7 @@ importers:
   packages/semantic-release-pnpm:
     dependencies:
       '@anolilab/rc':
-        specifier: 2.0.4
+        specifier: catalog:prod
         version: 2.0.4(yaml@2.8.1)
       '@semantic-release/error':
         specifier: catalog:cli
@@ -846,7 +855,7 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 3.0.4
+        specifier: catalog:cli
         version: 3.0.4(yaml@2.8.1)
       '@semantic-release/changelog':
         specifier: catalog:cli
@@ -877,7 +886,7 @@ importers:
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
-        specifier: 2.0.4
+        specifier: catalog:cli
         version: 2.0.4(@types/node@24.6.2)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
