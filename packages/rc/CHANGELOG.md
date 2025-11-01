@@ -1,3 +1,9 @@
+## @anolilab/rc [2.0.5](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.4...@anolilab/rc@2.0.5) (2025-11-01)
+
+### Bug Fixes
+
+* update package dependencies and configurations ([d94ebd8](https://github.com/anolilab/semantic-release/commit/d94ebd8869c34106aa0c11beb0f7410bbc86367f))
+
 ## @anolilab/rc [2.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.3...@anolilab/rc@2.0.4) (2025-09-22)
 
 ### Bug Fixes
