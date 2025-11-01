@@ -119,13 +119,13 @@ describe("multiSemanticRelease()", () => {
         expect(result).toHaveLength(4);
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/a/package.json`)).toMatchObject({
             peerDependencies: {
                 "left-pad": "latest",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-a": "1.0.0",
@@ -135,7 +135,7 @@ describe("multiSemanticRelease()", () => {
                 "msr-test-d": "1.0.0",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
                 "msr-test-d": "1.0.0",
@@ -251,7 +251,7 @@ describe("multiSemanticRelease()", () => {
                 expect(result).toHaveLength(4);
 
                 // Check manifests.
-                // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+                // eslint-disable-next-line import/no-dynamic-require
                 expect(require(`${cwd}/packages/a/package.json`)).toMatchObject({
                     dependencies: {
                         "msr-test-b": "1.0.0",
@@ -267,16 +267,13 @@ describe("multiSemanticRelease()", () => {
                     },
                     version: "1.0.0",
                 });
-                // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+                // eslint-disable-next-line import/no-dynamic-require
                 expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
                     optionalDependencies: {
                         "msr-test-d": strategy === "override" ? `${prefix}1.0.0` : "^1.0.0",
                     },
                 });
             });
-        },
-        {
-            timeout: 60_000,
         },
     );
 
@@ -384,13 +381,13 @@ describe("multiSemanticRelease()", () => {
         expect(result).toHaveLength(4);
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/a/package.json`)).toMatchObject({
             peerDependencies: {
                 "left-pad": "latest",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-a": "1.0.0-dev.1",
@@ -400,7 +397,7 @@ describe("multiSemanticRelease()", () => {
                 "msr-test-d": "1.0.0-dev.1",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
                 "msr-test-b": "1.0.0-dev.1",
@@ -496,7 +493,7 @@ describe("multiSemanticRelease()", () => {
         expect(result).toHaveLength(2);
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-d": "1.0.0-dev.1",
@@ -598,7 +595,7 @@ describe("multiSemanticRelease()", () => {
         expect(result).toHaveLength(2);
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-d": "2.0.0-beta.1",
@@ -757,13 +754,13 @@ describe("multiSemanticRelease()", () => {
         expect(result).toHaveLength(4);
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/a/package.json`)).toMatchObject({
             peerDependencies: {
                 "left-pad": "latest",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-a": "1.0.0-dev.2",
@@ -773,7 +770,7 @@ describe("multiSemanticRelease()", () => {
                 "msr-test-d": "1.0.0-dev.2",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
                 "msr-test-b": "1.0.0-dev.2",
@@ -958,13 +955,13 @@ describe("multiSemanticRelease()", () => {
         expect(result[4]).toBeUndefined();
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/a/package.json`)).toMatchObject({
             peerDependencies: {
                 "left-pad": "latest",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-a": "1.1.0",
@@ -974,7 +971,7 @@ describe("multiSemanticRelease()", () => {
                 "msr-test-d": "1.0.0",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
                 "msr-test-b": "1.0.1",
@@ -1090,7 +1087,7 @@ describe("multiSemanticRelease()", () => {
         expect(result[2]).toBeUndefined();
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-d": "1.1.0",
@@ -1199,13 +1196,13 @@ describe("multiSemanticRelease()", () => {
         );
 
         // Check manifests.
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/a/package.json`)).toMatchObject({
             peerDependencies: {
                 "left-pad": "latest",
             },
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/b/package.json`)).toMatchObject({
             dependencies: {
                 "msr-test-a": "1.1.0",
@@ -1216,7 +1213,7 @@ describe("multiSemanticRelease()", () => {
             },
             version: "1.0.1",
         });
-        // eslint-disable-next-line security/detect-non-literal-require,import/no-dynamic-require
+        // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
                 "msr-test-b": "1.0.1",
