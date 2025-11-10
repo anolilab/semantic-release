@@ -48,6 +48,7 @@ async function getCommitsFiltered(cwd, direction, lastRelease, nextRelease, firs
 
     // Get top-level Git directory as it might be higher up the tree than cwd.
     const root = await execa("git", ["rev-parse", "--show-toplevel"], { cwd });
+    const gitRoot = cleanPath(root.stdout);
 
     // Add correct fields to gitLogParser.
     Object.assign(gitLogParser.fields, {
@@ -58,11 +59,11 @@ async function getCommitsFiltered(cwd, direction, lastRelease, nextRelease, firs
     });
 
     // Use git-log-parser to get the commits.
-    const relpath = relative(root.stdout, direction);
+    const relpath = relative(gitRoot, direction);
     const firstParentBranchFilter = firstParentBranch ? ["--first-parent", firstParentBranch] : [];
     const range = (lastRelease ? `${lastRelease}..` : "") + (nextRelease || "HEAD");
     const gitLogFilterQuery = [...firstParentBranchFilter, range, "--", relpath];
-    const stream = gitLogParser.parse({ _: gitLogFilterQuery }, { cwd, env: process.env });
+    const stream = gitLogParser.parse({ _: gitLogFilterQuery }, { cwd: gitRoot, env: process.env });
 
     const commits = await streamToArray(stream);
 
