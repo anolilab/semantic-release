@@ -3,7 +3,6 @@ import signale from "signale";
 import { WritableStreamBuffer } from "stream-buffers";
 
 import logger from "./logger";
-import type { WritableStreamBuffer } from "./types";
 
 const { Signale } = signale;
 

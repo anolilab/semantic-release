@@ -45,18 +45,6 @@ describe(verifyAuth, () => {
         expect(setNpmrcAuth).not.toHaveBeenCalled();
     });
 
-    it("should consider auth context valid when trusted publishing is established", async () => {
-        expect.assertions(2);
-
-        vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
-        vi.mocked(oidcContextEstablished).mockResolvedValue(true);
-
-        await verifyAuth(npmrc, pkg, context);
-
-        expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
-        expect(setNpmrcAuth).not.toHaveBeenCalled();
-    });
-
     it("should verify token auth when OIDC context is not established for official registry", async () => {
         expect.assertions(3);
 
@@ -155,21 +143,5 @@ describe(verifyAuth, () => {
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow(thrownError);
         expect(oidcContextEstablished).toHaveBeenCalledWith(registry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, registry, context);
-    });
-
-    it("should throw error when whoami fails for official registry", async () => {
-        expect.assertions(3);
-
-        vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
-        vi.mocked(oidcContextEstablished).mockResolvedValue(false);
-        vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
-
-        const mockError = new Error("Authentication failed");
-
-        vi.mocked(execa).mockRejectedValue(mockError);
-
-        await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
-        expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
-        expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
 });

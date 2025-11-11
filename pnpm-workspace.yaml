@@ -43,7 +43,6 @@ catalogs:
   database:
     normalize-url: ^8.1.0
   dev:
-    '@actions/core': ^1.11.1
     '@arethetypeswrong/cli': ^0.18.2
     '@ckeditor/typedoc-plugins': 43.1.0
     '@visulima/packem': 2.0.0-alpha.35
@@ -95,6 +94,7 @@ catalogs:
   peer:
     left-pad: latest
   prod:
+    '@actions/core': ^1.11.1
     '@anolilab/rc': 3.0.0-alpha.2
     '@babel/core': ^7.28.5
     '@semrel-extra/topo': ^1.14.1

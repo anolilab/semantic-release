@@ -16,7 +16,7 @@
         }
     ],
     "sideEffects": [
-        "src/utils/blork.ts"
+        "./dist/utils/blork.js"
     ],
     "type": "module",
     "exports": {

@@ -57,9 +57,6 @@ catalogs:
       specifier: ^8.1.0
       version: 8.1.0
   dev:
-    '@actions/core':
-      specifier: ^1.11.1
-      version: 1.11.1
     '@arethetypeswrong/cli':
       specifier: ^0.18.2
       version: 0.18.2
@@ -190,6 +187,9 @@ catalogs:
       specifier: ^6.1.0
       version: 6.1.0
   prod:
+    '@actions/core':
+      specifier: ^1.11.1
+      version: 1.11.1
     '@anolilab/rc':
       specifier: 3.0.0-alpha.2
       version: 3.0.0-alpha.2
@@ -764,7 +764,7 @@ importers:
   packages/semantic-release-pnpm:
     dependencies:
       '@actions/core':
-        specifier: catalog:dev
+        specifier: catalog:prod
         version: 1.11.1
       '@anolilab/rc':
         specifier: catalog:prod
