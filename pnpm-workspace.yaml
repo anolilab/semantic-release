@@ -114,7 +114,7 @@ catalogs:
     stream-buffers: ^3.0.3
     yargs: 18.0.0
   test:
-    '@vitest/coverage-v8': ^4.0.6
+    '@vitest/coverage-v8': ^4.0.8
     '@vitest/ui': ^4.0.6
     vitest: ^4.0.6
   tsc:
