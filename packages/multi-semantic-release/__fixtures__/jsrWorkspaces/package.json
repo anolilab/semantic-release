@@ -1,0 +1,24 @@
+{
+    "name": "msr-test-jsr",
+    "version": "0.0.0-semantically-released",
+    "private": true,
+    "author": "Test Author <test@example.com>",
+    "license": "0BSD",
+    "engines": {
+        "node": ">=20.0.0"
+    },
+    "workspaces": [
+        "packages/*"
+    ],
+    "devDependencies": {
+        "@sebbo2002/semantic-release-jsr": "^3.0.1"
+    },
+    "release": {
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator",
+            "@sebbo2002/semantic-release-jsr"
+        ],
+        "noCi": true
+    }
+}

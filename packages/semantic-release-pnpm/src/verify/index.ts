@@ -44,7 +44,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
         if (shouldPublish(pluginConfig, packageJson)) {
             const npmrc = getNpmrcPath(context.cwd, context.env);
 
-            await verifyAuth(npmrc, packageJson, context);
+            await verifyAuth(npmrc, packageJson, context, pluginConfig.pkgRoot);
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

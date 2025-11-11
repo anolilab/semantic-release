@@ -1,3 +1,43 @@
+## @anolilab/multi-semantic-release [3.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0-alpha.2...@anolilab/multi-semantic-release@3.0.0-alpha.3) (2025-10-22)
+
+### Bug Fixes
+
+* dryRun flag support in multiSemanticRelease ([3262190](https://github.com/anolilab/semantic-release/commit/3262190273db749884e03a5821177ecd25bacef6))
+
+## @anolilab/multi-semantic-release [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0-alpha.1...@anolilab/multi-semantic-release@3.0.0-alpha.2) (2025-10-21)
+
+### Features
+
+* add yargs types and update multi-semantic-release configurations ([263f552](https://github.com/anolilab/semantic-release/commit/263f5528b88c34f02cd8f4c8cf435bc617b106f1))
+
+### Bug Fixes
+
+* update package manager and dependencies across multiple configurations ([07a4e0b](https://github.com/anolilab/semantic-release/commit/07a4e0be0c8ba0b8fc79f5d922bb62f60db38350))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.0.0-alpha.2
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.2
+
+## @anolilab/multi-semantic-release [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.6...@anolilab/multi-semantic-release@3.0.0-alpha.1) (2025-10-14)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Bug Fixes
+
+* update dependencies and node version across multiple packages ([3cea078](https://github.com/anolilab/semantic-release/commit/3cea078f8aa27d0873e082bc54c4c5117e5105bf))
+* update Node.js version and dependencies across workflows and lock files ([4871a7d](https://github.com/anolilab/semantic-release/commit/4871a7d7282d69e5612ab4d01ef9696dd94cab85))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.0.0-alpha.1
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.1
+
 ## @anolilab/multi-semantic-release [2.0.9](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.8...@anolilab/multi-semantic-release@2.0.9) (2025-11-10)
 
 ### Bug Fixes

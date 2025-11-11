@@ -1,8 +1,9 @@
-/* eslint-disable jsdoc/informative-docs */
-/* eslint-disable no-secrets/no-secrets */
+/* eslint-disable no-secrets/no-secrets, jsdoc/informative-docs */
+
 import type { PackageJson } from "@visulima/package";
 import normalizeUrl from "normalize-url";
 
+import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { PublishContext } from "../definitions/context";
 
 /**
@@ -18,7 +19,7 @@ export interface ReleaseInfo {
 /**
  * Build a {@link ReleaseInfo} object for a published package or newly added dist-tag.
  *
- * When the publish happened on the default npm registry, a direct URL to the version on npmjs.com is
+ * When the publish happened on the official npm registry, a direct URL to the version on npmjs.com is
  * included to make the release notes more useful. For custom registries the URL is omitted because a
  * standard pattern cannot be guaranteed.
  * @param pkg – The package manifest (used for the package name).
@@ -34,7 +35,7 @@ export interface ReleaseInfo {
  */
 export const getReleaseInfo = (
     { name }: PackageJson,
-    { env: { DEFAULT_NPM_REGISTRY = "https://registry.npmjs.org/" }, nextRelease: { version } }: PublishContext,
+    { env: { DEFAULT_NPM_REGISTRY = OFFICIAL_REGISTRY }, nextRelease: { version } }: PublishContext,
     distributionTag: string,
     registry: string,
 ): ReleaseInfo => {

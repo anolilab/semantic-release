@@ -1,0 +1,9 @@
+{
+    "name": "@msr-test/jsr-a",
+    "version": "0.0.0",
+    "exports": "./src/index.ts",
+    "license": "MIT",
+    "publish": {
+        "include": ["src/", "README.md", "LICENSE"]
+    }
+}

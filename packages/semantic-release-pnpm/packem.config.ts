@@ -6,20 +6,15 @@ export default defineConfig({
         license: {
             path: "./LICENSE.md",
         },
+        requireCJS: {
+            builtinNodeModules: true,
+        },
     },
     transformer,
     validation: {
         packageJson: {
             // semantic-release does not support the "exports" field
             exports: false,
-            // TODO: Remove this once packem fixed cache handling
-            typesVersions: false,
-        },
-        // @TODO: Remove this once packem fixed cache handling
-        unused: {
-            exclude: [
-                "@anolilab/rc, @semantic-release/error, @visulima/fs, @visulima/package, @visulima/path, execa, ini, normalize-url, registry-auth-token, semver",
-            ],
         },
     },
 });

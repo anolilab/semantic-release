@@ -24,9 +24,16 @@ export default createConfig(
         // },
     },
     {
+        rules: {
+            "no-underscore-dangle": "off",
+        },
+    },
+    {
         ignores: ["**/__tests__"],
         rules: {
+            "unicorn/no-null": "off",
             "unicorn/prefer-module": "off",
+            "vitest/require-mock-type-parameters": "off",
         },
     },
 );

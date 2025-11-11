@@ -28,6 +28,7 @@ export default createConfig(
         ignores: ["**/__tests__"],
         rules: {
             "unicorn/prefer-module": "off",
+            "vitest/require-mock-type-parameters": "off",
         },
     },
 );

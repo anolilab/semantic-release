@@ -7,14 +7,20 @@ export default defineConfig({
         license: {
             path: "./LICENSE.md",
         },
+        requireCJS: {
+            builtinNodeModules: true,
+        },
     },
     transformer,
     validation: {
         packageJson: {
             // semantic-release does not support the "exports" field
             exports: false,
-            // TODO: Remove this once packem fixed cache handling
-            typesVersions: false,
+        },
+        dependencies: {
+            unused: {
+                exclude: ["type-fest"],
+            },
         },
     },
 }) as BuildConfig;
