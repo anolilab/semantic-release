@@ -1,3 +1,9 @@
+## @anolilab/multi-semantic-release [2.0.9](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.8...@anolilab/multi-semantic-release@2.0.9) (2025-11-10)
+
+### Bug Fixes
+
+* run commit filtering from git root ([#230](https://github.com/anolilab/semantic-release/issues/230)) ([ee0b3d8](https://github.com/anolilab/semantic-release/commit/ee0b3d8211a364eecfa0fd29bcf1947c1e663345))
+
 ## @anolilab/multi-semantic-release [2.0.8](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.7...@anolilab/multi-semantic-release@2.0.8) (2025-11-01)
 
 ### Bug Fixes
