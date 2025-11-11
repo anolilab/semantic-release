@@ -63,6 +63,7 @@
         "test:watch": "vitest"
     },
     "dependencies": {
+        "@actions/core": "catalog:dev",
         "@anolilab/rc": "catalog:prod",
         "@semantic-release/error": "catalog:cli",
         "@visulima/fs": "catalog:prod",
@@ -76,7 +77,6 @@
         "semver": "catalog:utils"
     },
     "devDependencies": {
-        "@actions/core": "catalog:dev",
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
         "@arethetypeswrong/cli": "catalog:dev",
@@ -112,14 +112,6 @@
         "tempy": "catalog:dev",
         "typescript": "catalog:tsc",
         "vitest": "catalog:test"
-    },
-    "peerDependencies": {
-        "@actions/core": ">=1.11.1"
-    },
-    "peerDependenciesMeta": {
-        "@actions/core": {
-            "optional": true
-        }
     },
     "engines": {
         "node": "^22.14.0 || >=24.10.0"
