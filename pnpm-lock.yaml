@@ -827,6 +827,9 @@ importers:
       '@types/dockerode':
         specifier: catalog:types
         version: 3.3.45
+      '@types/env-ci':
+        specifier: 3.1.4
+        version: 3.1.4
       '@types/ini':
         specifier: catalog:types
         version: 4.1.1
@@ -2780,6 +2783,9 @@ packages:
 
   '@types/dockerode@3.3.45':
     resolution: {integrity: sha512-iYpZF+xr5QLpIICejLdUF2r5gh8IXY1Gw3WLmt41dUbS3Vn/3hVgL+6lJBVbmrhYBWfbWPPstdr6+A0s95DTWA==}
+
+  '@types/env-ci@3.1.4':
+    resolution: {integrity: sha512-WwSUcrqHNzRz+3nIZYO+p1OxJ/yDNSKFTpor06W+L2ie/K76a/Wb49LxHHiJMH44UeK7GM2kyWpL++e09v4qkA==}
 
   '@types/estree-jsx@1.0.5':
     resolution: {integrity: sha512-52CcUVNFyfb1A2ALocQw/Dd1BQFNmSdkuC3BkZ6iqhdMfQz7JWOFRuJFloOzjk+6WijU56m9oKXFAXc7o3Towg==}
@@ -11350,6 +11356,8 @@ snapshots:
       '@types/docker-modem': 3.0.6
       '@types/node': 24.6.2
       '@types/ssh2': 1.15.0
+
+  '@types/env-ci@3.1.4': {}
 
   '@types/estree-jsx@1.0.5':
     dependencies:

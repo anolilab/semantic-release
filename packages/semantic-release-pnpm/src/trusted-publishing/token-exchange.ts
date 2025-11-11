@@ -15,7 +15,7 @@ const exchangeIdToken = async (idToken: string, packageName: string, logger: { l
         headers: { Authorization: `Bearer ${idToken}` },
         method: "POST",
     });
-    const responseBody = await response.json();
+    const responseBody = (await response.json()) as { token: string, message: string };
 
     if (response.ok) {
         logger.log("OIDC token exchange with the npm registry succeeded");
@@ -88,7 +88,7 @@ const exchangeGitlabPipelinesToken = async (packageName: string, logger: { log: 
  * @returns A promise that resolves to the npm token or undefined if no supported CI provider is detected.
  */
 const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (message: string) => void } }): Promise<string | undefined> => {
-    const { name: ciProviderName } = envCi();
+    const { name: ciProviderName } = envCi() as { name: string };
 
     if (GITHUB_ACTIONS_PROVIDER_NAME === ciProviderName) {
         return exchangeGithubActionsToken(pkg.name, logger);

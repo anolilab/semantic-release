@@ -1,5 +1,4 @@
 import type { PackageJson } from "@visulima/package";
-import { resolve } from "@visulima/path";
 import { execa } from "execa";
 import normalizeUrl from "normalize-url";
 
@@ -50,59 +49,6 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
 };
 
 /**
- * Attempt a dry-run publish to verify authentication for custom registries.
- * @param npmrc Path to the .npmrc file.
- * @param registry The registry URL.
- * @param context The semantic-release context.
- * @param pkgRoot Optional package root directory.
- */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const attemptPublishDryRun = async (npmrc: string, registry: string, context: CommonContext, pkgRoot?: string): Promise<void> => {
-    const {
-        cwd,
-        env: { ...environment },
-        logger,
-        stderr,
-        stdout,
-    } = context;
-    const basePath = pkgRoot ? resolve(cwd, pkgRoot) : cwd;
-
-    logger.log(`Running "pnpm publish --dry-run" to verify authentication on registry "${registry}"`);
-
-    try {
-        const result = await execa(
-            "pnpm",
-            ["publish", basePath, "--dry-run", "--tag=semantic-release-auth-check", "--userconfig", npmrc, "--registry", registry],
-            { cwd, env: environment, lines: true, preferLocal: true },
-        );
-
-        // Log the output
-        if (result.stdout) {
-            stdout.write(result.stdout);
-        }
-
-        if (result.stderr) {
-            stderr.write(result.stderr);
-        }
-
-        // Check for authentication errors in stderr
-        if (result.stderr && result.stderr.includes("This command requires you to be logged in to")) {
-            const semanticError = getError("EINVALIDNPMAUTH", { registry });
-
-            throw new AggregateError([semanticError], semanticError.message);
-        }
-    } catch (error) {
-        // If it's already an AggregateError with our custom error, re-throw it
-        if (error instanceof AggregateError && error.errors[0]?.code === "EINVALIDNPMAUTH") {
-            throw error;
-        }
-
-        // For other errors, still throw but with the original error
-        throw error;
-    }
-};
-
-/**
  * Verify that the provided npm credentials grant access to the target registry.
  *
  * The helper first checks if an OIDC context is established for trusted publishing.
@@ -120,8 +66,6 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
     npmrc: string,
     package_: PackageJson,
     context: CommonContext,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    pkgRoot?: string,
 ): Promise<void> => {
     const registry = getRegistry(package_, context);
 
@@ -139,9 +83,6 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
     // Verify authentication based on registry type
     if (normalizeUrl(registry) === normalizeUrl(DEFAULT_NPM_REGISTRY)) {
         await verifyAuthContextAgainstRegistry(npmrc, registry, context);
-    } else {
-        // TODO: Enabale this maybe again
-        // await attemptPublishDryRun(npmrc, registry, context, pkgRoot)
     }
 };
 
