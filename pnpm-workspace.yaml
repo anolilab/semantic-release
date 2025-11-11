@@ -74,7 +74,7 @@ catalogs:
     lint-staged: ^16.2.6
     prettier: ^3.6.2
     publint: ^0.3.15
-    secretlint: 11.2.4
+    secretlint: 11.2.5
     textlint: ^15.2.3
   markdown:
     typedoc-plugin-markdown: 4.9.0
