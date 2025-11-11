@@ -1,6 +1,6 @@
 import { isAbsolute, join, normalize } from "node:path";
 
-import { check } from "./blork";
+import { validate } from "./validate";
 
 /**
  * Normalize and make a path absolute, optionally using a custom CWD.
@@ -11,8 +11,8 @@ import { check } from "./blork";
  * @internal
  */
 const cleanPath = (path: string, cwd: string = process.cwd()): string => {
-    check(path, "path: path");
-    check(cwd, "cwd: absolute");
+    validate(path, "path: path");
+    validate(cwd, "cwd: absolute");
 
     return normalize(isAbsolute(path) ? path : join(cwd, path)).replace(/[/\\]+$/u, "");
 };

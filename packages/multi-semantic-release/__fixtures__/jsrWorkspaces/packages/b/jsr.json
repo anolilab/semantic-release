@@ -2,6 +2,7 @@
     "name": "@msr-test/jsr-b",
     "version": "0.0.0",
     "exports": "./src/index.ts",
+    "license": "MIT",
     "publish": {
         "include": ["src/", "README.md", "LICENSE"]
     }

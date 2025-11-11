@@ -31,18 +31,17 @@ const getConfigSemantic = async (
 ): Promise<{ options: Record<string, unknown>; plugins: Record<string, unknown> }> => {
     try {
         // Blackhole logger (so we don't clutter output with "loaded plugin" messages).
+        // eslint-disable-next-line sonarjs/confidential-information-logging
         const blackhole = new Signale({ stream: new WritableStreamBuffer() });
 
         // Return semantic-release's getConfig script.
         return await semanticGetConfig({ cwd, env, logger: blackhole, stderr, stdout }, options);
     } catch (error: unknown) {
         // Log error and rethrow it.
-        // istanbul ignore next (not important)
         logger.failure(`Error in semantic-release getConfig(): %0`, error);
-        // istanbul ignore next (not important)
+
         throw error;
     }
 };
 
-// Exports.
 export default getConfigSemantic;

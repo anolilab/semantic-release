@@ -2,18 +2,6 @@ import { describe, expect, it } from "vitest";
 
 import { resolveReleaseType } from "../src/update-deps";
 
-type Package = {
-    _lastRelease?: {
-        version: string;
-    };
-    _nextType?: string | false;
-    localDeps: Package[];
-    manifest?: {
-        dependencies?: Record<string, string>;
-    };
-    name?: string;
-};
-
 describe("resolveReleaseType()", () => {
     it("works correctly with no deps", () => {
         expect.assertions(1);

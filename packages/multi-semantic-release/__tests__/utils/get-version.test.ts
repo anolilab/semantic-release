@@ -2,8 +2,6 @@ import { describe, expect, it } from "vitest";
 
 import { getHighestVersion, getLatestVersion } from "../../src/utils/get-version";
 
-type Version = string | null | undefined;
-
 describe("getHighestVersion()", () => {
     it.each([
         ["1.0.0", "2.0.0", "2.0.0"],

@@ -17,7 +17,7 @@ const getPackagePaths = async (cwd: string, ignore: string[] = []): Promise<stri
             .map((package_) => package_.manifestPath)
             // This is only needed for the testing
             .map((value) => transformPath(value))
-            .sort()
+            .toSorted()
     );
 };
 

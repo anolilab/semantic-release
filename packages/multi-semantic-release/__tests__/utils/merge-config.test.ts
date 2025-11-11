@@ -2,12 +2,6 @@ import { describe, expect, it } from "vitest";
 
 import mergeConfig from "../../src/utils/merge-config";
 
-type Config = {
-    [key: string]: unknown;
-    deps?: Record<string, string>;
-    ignorePackages?: string[];
-};
-
 describe(mergeConfig, () => {
     it("should return default values for empty configs", () => {
         expect.assertions(1);

@@ -3,10 +3,11 @@
  * https://github.com/semantic-release/semantic-release/blob/master/test/helpers/git-utils.js
  */
 
-import { check } from "blork";
 import { execaSync } from "execa";
 import fileUrl from "file-url";
 import { temporaryDirectory } from "tempy";
+
+import { validate } from "../../src/utils/validate";
 
 /**
  * Add a Git config setting.
@@ -16,8 +17,8 @@ import { temporaryDirectory } from "tempy";
  * @returns
  */
 export const gitConfig = (cwd: string, name: string, value: string): void => {
-    check(cwd, "cwd: absolute");
-    check(name, "name: string+");
+    validate(cwd, "cwd: absolute");
+    validate(name, "name: string+");
 
     execaSync("git", ["config", "--add", name, value], { cwd });
 };
@@ -49,7 +50,7 @@ export const gitUser = (cwd: string, name: string = "Foo Bar", email: string = "
  * @returns String pointing to the CWD for the created Git repository.
  */
 export const gitInit = (branch: string = "master"): string => {
-    check(branch, "branch: kebab");
+    validate(branch, "branch: kebab");
 
     // Init Git in a temp directory.
     const cwd = temporaryDirectory();
@@ -87,7 +88,7 @@ export const gitInitRemote = (): string => {
  * @returns The SHA of the head commit.
  */
 export const gitGetHead = (cwd: string): string => {
-    check(cwd, "cwd: absolute");
+    validate(cwd, "cwd: absolute");
 
     // Await command and return HEAD SHA.
     return execaSync("git", ["rev-parse", "HEAD"], { cwd }).stdout;
@@ -102,7 +103,7 @@ export const gitGetHead = (cwd: string): string => {
  * @returns String URL of the remote origin.
  */
 export const gitInitOrigin = (cwd: string, releaseBranch: string | null = null): string => {
-    check(cwd, "cwd: absolute");
+    validate(cwd, "cwd: absolute");
 
     // Turn remote path into a file URL.
     const url = gitInitRemote();
@@ -130,7 +131,7 @@ export const gitInitOrigin = (cwd: string, releaseBranch: string | null = null):
  * @returns
  */
 export const gitAdd = (cwd: string, file: string = "."): void => {
-    check(cwd, "cwd: absolute");
+    validate(cwd, "cwd: absolute");
 
     execaSync("git", ["add", file], { cwd });
 };
@@ -143,8 +144,8 @@ export const gitAdd = (cwd: string, file: string = "."): void => {
  * @returns Promise that resolves to the SHA for the commit.
  */
 export const gitCommit = (cwd: string, message: string): string => {
-    check(cwd, "cwd: absolute");
-    check(message, "message: string+");
+    validate(cwd, "cwd: absolute");
+    validate(message, "message: string+");
 
     execaSync("git", ["commit", "-m", message, "--no-gpg-sign"], { cwd });
 
@@ -160,8 +161,8 @@ export const gitCommit = (cwd: string, message: string): string => {
  * @returns Promise that resolves to the SHA for the commit.
  */
 export const gitCommitAll = (cwd: string, message: string): string => {
-    check(cwd, "cwd: absolute");
-    check(message, "message: string+");
+    validate(cwd, "cwd: absolute");
+    validate(message, "message: string+");
 
     gitAdd(cwd);
 
@@ -178,9 +179,9 @@ export const gitCommitAll = (cwd: string, message: string): string => {
  * @throws {Error} if the push failed.
  */
 export const gitPush = (cwd: string, remote: string = "origin", branch: string = "master"): void => {
-    check(cwd, "cwd: absolute");
-    check(remote, "remote: string");
-    check(branch, "branch: lower");
+    validate(cwd, "cwd: absolute");
+    validate(remote, "remote: string");
+    validate(branch, "branch: lower");
 
     execaSync("git", ["push", "--tags", remote, `HEAD:${branch}`], { cwd });
 };
@@ -194,9 +195,9 @@ export const gitPush = (cwd: string, remote: string = "origin", branch: string =
  * @returns
  */
 export const gitTag = (cwd: string, tagName: string, hash?: string): void => {
-    check(cwd, "cwd: absolute");
-    check(tagName, "tagName: string+");
-    check(hash, "hash: alphanumeric{40}?");
+    validate(cwd, "cwd: absolute");
+    validate(tagName, "tagName: string+");
+    validate(hash, "hash: alphanumeric{40}?");
 
     // Run command.
     execaSync("git", hash ? ["tag", "-f", tagName, hash] : ["tag", tagName], { cwd });
@@ -210,9 +211,9 @@ export const gitTag = (cwd: string, tagName: string, hash?: string): void => {
  * @returns Commit log message.
  */
 export const gitGetLog = (cwd: string, number: number, hash: string): string => {
-    check(cwd, "cwd: absolute");
-    check(number, "number: integer");
-    check(hash, "hash: string+");
+    validate(cwd, "cwd: absolute");
+    validate(number, "number: integer");
+    validate(hash, "hash: string+");
 
     // Run command.
     return execaSync("git", ["log", `-${number}`, hash], { cwd }).stdout;

@@ -112,7 +112,6 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             debug(debugPrefix, "commits analyzed");
             debug(debugPrefix, `release type: ${npmPackage._nextType}`);
 
-            // Return type.
             return npmPackage._nextType;
         };
 
@@ -201,7 +200,6 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
             debug(debugPrefix, "notes generated");
 
-            // Return the notes.
             return notes.join("\n\n");
         };
 

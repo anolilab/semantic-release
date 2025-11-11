@@ -16,8 +16,8 @@ import getManifest from "./get-manifest";
 import logger from "./logger";
 import RescopedStream from "./rescoped-stream";
 import type { Flags, GlobalOptions, InputOptions, MultiContext, Package } from "./types";
-import { check } from "./utils/blork";
 import cleanPath from "./utils/clean-path";
+import { validate } from "./utils/validate";
 
 /**
  * Load details about a package.
@@ -83,7 +83,6 @@ const getPackage = async (
     // We need this so we can call e.g. plugins.analyzeCommit() to be able to affect the input and output of the whole set of plugins.
     const { options, plugins } = await getConfigSemantic({ cwd: directory, env, stderr, stdout }, finalOptions);
 
-    // Return package object.
     return { deps, dir: directory, fakeLogger, manifest, name, options, path, plugins } as Package;
 };
 
@@ -224,13 +223,13 @@ const multiSemanticRelease = async (
     _flags: Flags = {},
 ): Promise<Package[]> => {
     if (paths) {
-        check(paths, "paths: string[]");
+        validate(paths, "paths: string[]");
     }
 
-    check(cwd, "cwd: directory");
-    check(environment, "env: objectlike");
-    check(stdout, "stdout: stream");
-    check(stderr, "stderr: stream");
+    validate(cwd, "cwd: directory");
+    validate(environment, "env: objectlike");
+    validate(stdout, "stdout: stream");
+    validate(stderr, "stderr: stream");
 
     // eslint-disable-next-line no-param-reassign
     cwd = cleanPath(cwd);
@@ -311,11 +310,9 @@ const multiSemanticRelease = async (
         return m;
     }, Promise.resolve(0));
 
-    // Return packages list.
     logger.complete(`Released ${released} of ${queue.length} packages, semantically!`);
 
     return sortBy(packages, ({ name }: Package) => queue.indexOf(name));
 };
 
-// Exports.
 export default multiSemanticRelease;

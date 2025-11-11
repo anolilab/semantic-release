@@ -368,6 +368,5 @@ export const updateManifestDeps = (package_: Package): void => {
     }
 
     // Write package.json back out.
-    // eslint-disable-next-line security/detect-non-literal-fs-filename
     writeFileSync(path, JSON.stringify(manifest, null, indent) + trailingWhitespace);
 };

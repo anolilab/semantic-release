@@ -208,9 +208,6 @@ catalogs:
     audit-ci:
       specifier: ^7.1.0
       version: 7.1.0
-    blork:
-      specifier: ^9.3.0
-      version: 9.3.0
     conventional-changelog-conventionalcommits:
       specifier: 9.1.0
       version: 9.1.0
@@ -418,9 +415,6 @@ importers:
       '@semrel-extra/topo':
         specifier: catalog:prod
         version: 1.14.1
-      blork:
-        specifier: catalog:prod
-        version: 9.3.0
       cosmiconfig:
         specifier: catalog:icons
         version: 9.0.0(typescript@5.9.3)

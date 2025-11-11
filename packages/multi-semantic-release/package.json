@@ -15,9 +15,7 @@
             "email": "d.bannert@anolilab.de"
         }
     ],
-    "sideEffects": [
-        "./dist/utils/blork.js"
-    ],
+    "sideEffects": [],
     "type": "module",
     "exports": {
         ".": {
@@ -52,7 +50,6 @@
     },
     "dependencies": {
         "@semrel-extra/topo": "catalog:prod",
-        "blork": "catalog:prod",
         "cosmiconfig": "catalog:icons",
         "debug": "catalog:prod",
         "detect-indent": "catalog:prod",

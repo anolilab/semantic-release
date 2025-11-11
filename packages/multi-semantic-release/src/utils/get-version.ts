@@ -34,4 +34,4 @@ export const getHighestVersion = _selectVersionBy.bind(null, gt);
  * @internal
  */
 export const getLatestVersion = (versions: string[], withPrerelease?: boolean): string | undefined =>
-    versions.filter((version: string) => withPrerelease || !prerelease(version)).sort(rcompare)[0];
+    versions.filter((version: string) => withPrerelease || !prerelease(version)).toSorted(rcompare)[0];

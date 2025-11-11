@@ -158,9 +158,9 @@ export interface FileFormat {
     trailingWhitespace: string;
 }
 
-// Error class from blork
+// Error class for validation errors
 export class ValueError extends Error {
-    constructor(message: string, value?: unknown) {
+    public constructor(message: string) {
         super(message);
         this.name = "ValueError";
     }

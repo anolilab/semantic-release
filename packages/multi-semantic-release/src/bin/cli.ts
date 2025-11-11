@@ -1,5 +1,3 @@
-import "../utils/blork"; // Register custom blork checkers
-
 import { exit } from "node:process";
 
 import yargs from "yargs";

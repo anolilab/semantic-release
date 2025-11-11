@@ -1,6 +1,6 @@
 import { Writable } from "node:stream";
 
-import { check } from "./utils/blork";
+import { validate } from "./utils/validate";
 
 /**
  * Create a stream that passes messages through while rewriting scope.
@@ -15,19 +15,18 @@ class RescopedStream extends Writable {
 
     private _scope: string;
 
-    constructor(stream: NodeJS.WritableStream, scope: string) {
+    public constructor(stream: NodeJS.WritableStream, scope: string) {
         super();
-        check(scope, "scope: string");
-        check(stream, "stream: stream");
+        validate(scope, "scope: string");
+        validate(stream, "stream: stream");
         this._stream = stream;
         this._scope = scope;
     }
 
-    write(message: string): void {
-        check(message, "msg: string");
+    public write(message: string): void {
+        validate(message, "msg: string");
         this._stream.write(message.replace("[semantic-release]", `[${this._scope}]`));
     }
 }
 
-// Exports.
 export default RescopedStream;

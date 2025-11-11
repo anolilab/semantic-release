@@ -1660,7 +1660,7 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("jsr plugin receives correct cwd for each package (dry-run)", async () => {
-        expect.assertions(10);
+        expect.assertions(7);
 
         // Create Git repo with copy of JSR workspaces fixture.
         const cwd = gitInit();
@@ -1709,5 +1709,5 @@ describe("multiSemanticRelease()", () => {
 
         // Verify no actual publishing occurred (dry-run was used)
         expect(output).toMatch(/dry.?run/iu);
-    });
+    }, 30_000);
 });

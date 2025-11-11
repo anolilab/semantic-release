@@ -22,5 +22,4 @@ const recognizeFormat = (contents: string): FileFormat => {
     };
 };
 
-// Exports.
 export default recognizeFormat;

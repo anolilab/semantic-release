@@ -3,11 +3,6 @@ import { describe, expect, it } from "vitest";
 import cleanPath from "../../src/utils/clean-path";
 import transformPath from "../helpers/transform-path";
 
-type CleanPathResult = {
-    indent: string;
-    trailingWhitespace: string;
-};
-
 describe("cleanPath()", () => {
     it("relative without CWD", () => {
         expect.assertions(2);

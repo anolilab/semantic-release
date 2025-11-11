@@ -9,7 +9,6 @@ import type { PackageManifest } from "./types";
  * @internal
  */
 const readManifest = (path: string): string => {
-    // eslint-disable-next-line security/detect-non-literal-fs-filename
     if (!existsSync(path)) {
         throw new ReferenceError(`package.json file not found: "${path}"`);
     }
@@ -17,7 +16,6 @@ const readManifest = (path: string): string => {
     let stat: ReturnType<typeof lstatSync>;
 
     try {
-        // eslint-disable-next-line security/detect-non-literal-fs-filename
         stat = lstatSync(path);
     } catch {
         // istanbul ignore next (hard to __tests__ — happens if no read access etc).
@@ -29,7 +27,6 @@ const readManifest = (path: string): string => {
     }
 
     try {
-        // eslint-disable-next-line security/detect-non-literal-fs-filename
         return readFileSync(path, "utf8");
     } catch {
         // istanbul ignore next (hard to __tests__ — happens if no read access etc).

@@ -27,7 +27,6 @@ export default async (cwd: string): Promise<Record<string, unknown>> => {
     // Call cosmiconfig.
     const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
 
-    // Return the found config or empty object.
     // istanbul ignore next (not important).
     return config?.config ?? {};
 };
