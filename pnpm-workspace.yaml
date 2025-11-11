@@ -19,21 +19,21 @@ overrides:
   chrono-node@<2.2.4: '>=2.9.0'
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
   tmp@<=0.2.3: '>=0.2.5'
-  vite@>=7.1.0 <=7.1.10: '>=7.1.11'
+  vite@>=7.1.0 <=7.1.10: '>=7.2.2'
 catalogs:
   build:
     esbuild: 0.25.10
   cli:
-    '@anolilab/multi-semantic-release': ^2.0.6
+    '@anolilab/multi-semantic-release': ^2.0.9
     '@anolilab/semantic-release-clean-package-json': 4.0.0-alpha.2
     '@anolilab/semantic-release-pnpm': 3.0.0-alpha.2
-    '@sebbo2002/semantic-release-jsr': ^3.0.1
+    '@sebbo2002/semantic-release-jsr': ^3.1.0
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
     '@semantic-release/error': ^4.0.0
     '@semantic-release/exec': ^7.1.0
     '@semantic-release/git': ^10.0.1
-    '@semantic-release/github': ^12.0.0
+    '@semantic-release/github': ^12.0.2
     '@semantic-release/npm': ^13.1.1
     '@semantic-release/release-notes-generator': 14.1.0
     commitizen: ^4.3.1
@@ -43,19 +43,20 @@ catalogs:
   database:
     normalize-url: ^8.1.0
   dev:
+    '@actions/core': ^1.11.1
     '@arethetypeswrong/cli': ^0.18.2
     '@ckeditor/typedoc-plugins': 43.1.0
-    '@visulima/packem': 2.0.0-alpha.32
+    '@visulima/packem': 2.0.0-alpha.35
     conventional-changelog-conventionalcommits: 9.1.0
     dockerode: 4.0.8
     file-url: ^4.0.0
     get-stream: 9.0.1
-    got: ^14.6.0
+    got: ^14.6.3
     left-pad: latest
     p-retry: ^7.1.0
     stream-buffers: ^3.0.3
     tempy: ^3.1.0
-    type-fest: ^5.1.0
+    type-fest: ^5.2.0
     typedoc: 0.28.13
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
@@ -72,20 +73,20 @@ catalogs:
     eslint: 9.36.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
-    lint-staged: ^16.2.5
+    lint-staged: ^16.2.6
     prettier: ^3.6.2
     publint: ^0.3.15
     secretlint: 11.2.4
-    textlint: ^15.2.3
+    textlint: ^15.3.0
   markdown:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
     '@nx/workspace': 21.5.3
-    nx: ^21.6.5
+    nx: ^22.0.3
   network:
     browserslist-config-anolilab: ^6.0.6
   node:
-    '@visulima/path': ^2.0.1
+    '@visulima/path': ^2.0.3
     cross-env: ^10.1.0
     execa: ^9.6.0
     pkg-pr-new: ^0.0.60
@@ -94,12 +95,11 @@ catalogs:
   peer:
     left-pad: latest
   prod:
-    '@actions/core': ^1.11.1
     '@anolilab/rc': 3.0.0-alpha.2
     '@babel/core': ^7.28.5
     '@semrel-extra/topo': ^1.14.1
-    '@visulima/fs': ^4.0.2
-    '@visulima/package': ^4.1.2
+    '@visulima/fs': ^4.0.4
+    '@visulima/package': ^4.1.4
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 9.1.0
@@ -117,14 +117,14 @@ catalogs:
     stream-buffers: ^3.0.3
     yargs: 18.0.0
   test:
-    '@vitest/coverage-v8': ^4.0.6
-    '@vitest/ui': ^4.0.6
-    vitest: ^4.0.6
+    '@vitest/coverage-v8': ^4.0.8
+    '@vitest/ui': ^4.0.8
+    vitest: ^4.0.8
   tsc:
     typescript: ^5.9.3
   types:
     '@types/debug': 4.1.12
-    '@types/dockerode': ^3.3.44
+    '@types/dockerode': ^3.3.45
     '@types/git-log-parser': 1.2.3
     '@types/ini': ^4.1.1
     '@types/lodash-es': 4.17.12
