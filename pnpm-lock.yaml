@@ -82,8 +82,8 @@ catalogs:
       specifier: ^3.1.0
       version: 3.1.0
     type-fest:
-      specifier: ^5.1.0
-      version: 5.1.0
+      specifier: ^5.2.0
+      version: 5.2.0
     typedoc:
       specifier: 0.28.13
       version: 0.28.13
@@ -257,8 +257,8 @@ catalogs:
       specifier: ^4.1.1
       version: 4.1.1
     '@types/node':
-      specifier: 24.6.2
-      version: 24.6.2
+      specifier: 24.10.1
+      version: 24.10.1
     '@types/semantic-release':
       specifier: ^21.1.0
       version: 21.1.0
@@ -294,10 +294,10 @@ importers:
     dependencies:
       '@anolilab/commitlint-config':
         specifier: catalog:lint
-        version: 6.0.6(@commitlint/cli@20.1.0(@types/node@24.6.2)(typescript@5.9.3))(@types/node@24.6.2)(typescript@5.9.3)
+        version: 6.0.6(@commitlint/cli@20.1.0(@types/node@24.10.1)(typescript@5.9.3))(@types/node@24.10.1)(typescript@5.9.3)
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
-        version: 3.0.37(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)
+        version: 3.0.37(@types/node@24.10.1)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)
       '@anolilab/multi-semantic-release':
         specifier: catalog:cli
         version: 2.0.6(semantic-release@24.2.9(typescript@5.9.3))(typescript@5.9.3)
@@ -312,7 +312,7 @@ importers:
         version: 7.28.5
       '@commitlint/cli':
         specifier: catalog:lint
-        version: 20.1.0(@types/node@24.6.2)(typescript@5.9.3)
+        version: 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/config-conventional':
         specifier: catalog:lint
         version: 20.0.0
@@ -330,7 +330,7 @@ importers:
         version: 6.0.6
       commitizen:
         specifier: catalog:cli
-        version: 4.3.1(@types/node@24.6.2)(typescript@5.9.3)
+        version: 4.3.1(@types/node@24.10.1)(typescript@5.9.3)
       cross-env:
         specifier: catalog:node
         version: 10.1.0
@@ -351,7 +351,7 @@ importers:
         version: 0.0.60
       plop:
         specifier: catalog:prod
-        version: 4.0.4(@types/node@24.6.2)
+        version: 4.0.4(@types/node@24.10.1)
       prettier:
         specifier: catalog:lint
         version: 3.6.2
@@ -381,7 +381,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
-        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   packages/multi-semantic-release:
     dependencies:
@@ -430,7 +430,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+        version: 16.4.2(@types/node@24.10.1)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -439,7 +439,7 @@ importers:
         version: 3.0.5(yaml@2.8.1)
       '@anolilab/semantic-release-pnpm':
         specifier: 2.0.5
-        version: 2.0.5(@types/node@24.6.2)(yaml@2.8.1)
+        version: 2.0.5(@types/node@24.10.1)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -463,7 +463,7 @@ importers:
         version: 14.1.0(semantic-release@24.2.9(typescript@5.9.3))
       '@types/node':
         specifier: catalog:types
-        version: 24.6.2
+        version: 24.10.1
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -508,7 +508,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
-        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   packages/rc:
     dependencies:
@@ -527,7 +527,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+        version: 16.4.2(@types/node@24.10.1)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -560,10 +560,10 @@ importers:
         version: 4.1.1
       '@types/node':
         specifier: catalog:types
-        version: 24.6.2
+        version: 24.10.1
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+        version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -611,7 +611,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
-        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   packages/semantic-release-clean-package-json:
     dependencies:
@@ -627,13 +627,13 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+        version: 16.4.2(@types/node@24.10.1)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
         specifier: 2.0.5
-        version: 2.0.5(@types/node@24.6.2)(yaml@2.8.1)
+        version: 2.0.5(@types/node@24.10.1)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -657,7 +657,7 @@ importers:
         version: 14.1.0(semantic-release@24.2.9(typescript@5.9.3))
       '@types/node':
         specifier: catalog:types
-        version: 24.6.2
+        version: 24.10.1
       '@types/semantic-release':
         specifier: catalog:types
         version: 21.1.0(typescript@5.9.3)
@@ -666,7 +666,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+        version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -696,13 +696,13 @@ importers:
         version: 3.1.0
       type-fest:
         specifier: catalog:dev
-        version: 5.1.0
+        version: 5.2.0
       typescript:
         specifier: catalog:tsc
         version: 5.9.3
       vitest:
         specifier: catalog:test
-        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   packages/semantic-release-pnpm:
     dependencies:
@@ -717,7 +717,7 @@ importers:
         version: 4.0.2(yaml@2.8.1)
       '@visulima/package':
         specifier: catalog:prod
-        version: 4.1.2(@types/node@24.6.2)
+        version: 4.1.2(@types/node@24.10.1)
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.1
@@ -739,7 +739,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+        version: 16.4.2(@types/node@24.10.1)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
@@ -775,7 +775,7 @@ importers:
         version: 4.1.1
       '@types/node':
         specifier: catalog:types
-        version: 24.6.2
+        version: 24.10.1
       '@types/semantic-release__error':
         specifier: catalog:types
         version: 3.0.3
@@ -787,7 +787,7 @@ importers:
         version: 3.0.8
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+        version: 2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.6(vitest@4.0.6)
@@ -841,7 +841,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:test
-        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+        version: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   packages/semantic-release-preset:
     dependencies:
@@ -872,13 +872,13 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
+        version: 16.4.2(@types/node@24.10.1)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 6.0.7(prettier@3.6.2)
       '@anolilab/semantic-release-pnpm':
         specifier: 2.0.5
-        version: 2.0.5(@types/node@24.6.2)(yaml@2.8.1)
+        version: 2.0.5(@types/node@24.10.1)(yaml@2.8.1)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -2770,6 +2770,9 @@ packages:
 
   '@types/node@18.19.71':
     resolution: {integrity: sha512-evXpcgtZm8FY4jqBSN8+DmOTcVkkvTmAayeo4Wf3m1xAruyVGzGuDh/Fb/WWX2yLItUiho42ozyJjB0dw//Tkw==}
+
+  '@types/node@24.10.1':
+    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
   '@types/node@24.6.2':
     resolution: {integrity: sha512-d2L25Y4j+W3ZlNAeMKcy7yDsK425ibcAOO2t7aPTz6gNMH0z2GThtwENCDc0d/Pw9wgyRqE5Px1wkV7naz8ang==}
@@ -8529,6 +8532,10 @@ packages:
     resolution: {integrity: sha512-wQ531tuWvB6oK+pchHIu5lHe5f5wpSCqB8Kf4dWQRbOYc9HTge7JL0G4Qd44bh6QuJCccIzL3bugb8GI0MwHrg==}
     engines: {node: '>=20'}
 
+  type-fest@5.2.0:
+    resolution: {integrity: sha512-xxCJm+Bckc6kQBknN7i9fnP/xobQRsRQxR01CztFkp/h++yfVxUUcmMgfR2HttJx/dpWjS9ubVuyspJv24Q9DA==}
+    engines: {node: '>=20'}
+
   type-is@2.0.1:
     resolution: {integrity: sha512-OZs6gsjF4vMp32qrCbiVSkrFmXtG/AZhY3t0iAMrMBiAZyV9oALtXO8hsrHbMXF9x6L3grlFuwW2oAz7cav+Gw==}
     engines: {node: '>= 0.6'}
@@ -8625,6 +8632,9 @@ packages:
 
   undici-types@7.13.0:
     resolution: {integrity: sha512-Ov2Rr9Sx+fRgagJ5AX0qvItZG/JKKoBRAVITs1zk7IqZGTJUwgUr7qoYBpWwakpWilTZFM98rG/AFRocu10iIQ==}
+
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   undici@5.29.0:
     resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
@@ -9114,19 +9124,19 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@anolilab/commitlint-config@6.0.6(@commitlint/cli@20.1.0(@types/node@24.6.2)(typescript@5.9.3))(@types/node@24.6.2)(typescript@5.9.3)':
+  '@anolilab/commitlint-config@6.0.6(@commitlint/cli@20.1.0(@types/node@24.10.1)(typescript@5.9.3))(@types/node@24.10.1)(typescript@5.9.3)':
     dependencies:
-      '@commitlint/cli': 20.1.0(@types/node@24.6.2)(typescript@5.9.3)
+      '@commitlint/cli': 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/config-conventional': 20.0.0
-      '@commitlint/core': 20.1.0(@types/node@24.6.2)(typescript@5.9.3)
-      commitizen: 4.3.1(@types/node@24.6.2)(typescript@5.9.3)
+      '@commitlint/core': 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
+      commitizen: 4.3.1(@types/node@24.10.1)(typescript@5.9.3)
       conventional-changelog-conventionalcommits: 9.1.0
-      cz-conventional-changelog: 3.3.0(@types/node@24.6.2)(typescript@5.9.3)
+      cz-conventional-changelog: 3.3.0(@types/node@24.10.1)(typescript@5.9.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
 
-  '@anolilab/eslint-config@16.4.2(@types/node@24.6.2)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)':
+  '@anolilab/eslint-config@16.4.2(@types/node@24.10.1)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(@typescript-eslint/utils@8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@9.36.0(jiti@2.6.0))(jiti@2.6.0)(typescript@5.9.3)(vitest@4.0.6)(yaml@2.8.1)':
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.36.0(jiti@2.6.0))
       '@eslint/compat': 1.4.0(eslint@9.36.0(jiti@2.6.0))
@@ -9138,7 +9148,7 @@ snapshots:
       '@stylistic/eslint-plugin-ts': 4.4.1(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/parser': 8.46.2(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
       '@typescript-eslint/types': 8.46.2
-      '@visulima/package': 4.1.2(@types/node@24.6.2)
+      '@visulima/package': 4.1.2(@types/node@24.10.1)
       '@visulima/tsconfig': 1.2.0(yaml@2.8.1)
       '@vitest/eslint-plugin': 1.4.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)(vitest@4.0.6)
       confusing-browser-globals: 1.0.11
@@ -9192,10 +9202,10 @@ snapshots:
       - vitest
       - yaml
 
-  '@anolilab/lint-staged-config@3.0.37(@types/node@24.6.2)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)':
+  '@anolilab/lint-staged-config@3.0.37(@types/node@24.10.1)(eslint@9.36.0(jiti@2.6.0))(husky@9.1.7)(lint-staged@16.2.6)(prettier@3.6.2)(secretlint@11.2.4)(vitest@4.0.6)(yaml@2.8.1)':
     dependencies:
       '@visulima/fs': 3.1.9(yaml@2.8.1)
-      '@visulima/package': 4.1.2(@types/node@24.6.2)
+      '@visulima/package': 4.1.2(@types/node@24.10.1)
       husky: 9.1.7
       shell-quote: 1.8.3
       type-fest: 5.1.0
@@ -9204,7 +9214,7 @@ snapshots:
       lint-staged: 16.2.6
       prettier: 3.6.2
       secretlint: 11.2.4
-      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
     transitivePeerDependencies:
       - '@types/node'
       - yaml
@@ -9251,12 +9261,12 @@ snapshots:
     transitivePeerDependencies:
       - yaml
 
-  '@anolilab/semantic-release-pnpm@2.0.5(@types/node@24.6.2)(yaml@2.8.1)':
+  '@anolilab/semantic-release-pnpm@2.0.5(@types/node@24.10.1)(yaml@2.8.1)':
     dependencies:
       '@anolilab/rc': 2.0.5(yaml@2.8.1)
       '@semantic-release/error': 4.0.0
       '@visulima/fs': 4.0.2(yaml@2.8.1)
-      '@visulima/package': 4.1.2(@types/node@24.6.2)
+      '@visulima/package': 4.1.2(@types/node@24.10.1)
       '@visulima/path': 2.0.1
       execa: 9.6.0
       ini: 6.0.0
@@ -9462,11 +9472,11 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@commitlint/cli@20.1.0(@types/node@24.6.2)(typescript@5.9.3)':
+  '@commitlint/cli@20.1.0(@types/node@24.10.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/format': 20.0.0
       '@commitlint/lint': 20.0.0
-      '@commitlint/load': 20.1.0(@types/node@24.6.2)(typescript@5.9.3)
+      '@commitlint/load': 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/read': 20.0.0
       '@commitlint/types': 20.0.0
       tinyexec: 1.0.1
@@ -9485,11 +9495,11 @@ snapshots:
       '@commitlint/types': 20.0.0
       ajv: 8.17.1
 
-  '@commitlint/core@20.1.0(@types/node@24.6.2)(typescript@5.9.3)':
+  '@commitlint/core@20.1.0(@types/node@24.10.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/format': 20.0.0
       '@commitlint/lint': 20.0.0
-      '@commitlint/load': 20.1.0(@types/node@24.6.2)(typescript@5.9.3)
+      '@commitlint/load': 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/read': 20.0.0
     transitivePeerDependencies:
       - '@types/node'
@@ -9523,7 +9533,7 @@ snapshots:
       '@commitlint/rules': 20.0.0
       '@commitlint/types': 20.0.0
 
-  '@commitlint/load@20.1.0(@types/node@24.6.2)(typescript@5.9.3)':
+  '@commitlint/load@20.1.0(@types/node@24.10.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/config-validator': 20.0.0
       '@commitlint/execute-rule': 20.0.0
@@ -9531,7 +9541,7 @@ snapshots:
       '@commitlint/types': 20.0.0
       chalk: 5.6.0
       cosmiconfig: 9.0.0(typescript@5.9.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.6.2)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.10.1)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -9848,38 +9858,38 @@ snapshots:
 
   '@inquirer/ansi@1.0.1': {}
 
-  '@inquirer/confirm@5.1.19(@types/node@24.6.2)':
+  '@inquirer/confirm@5.1.19(@types/node@24.10.1)':
     dependencies:
-      '@inquirer/core': 10.3.0(@types/node@24.6.2)
-      '@inquirer/type': 3.0.9(@types/node@24.6.2)
+      '@inquirer/core': 10.3.0(@types/node@24.10.1)
+      '@inquirer/type': 3.0.9(@types/node@24.10.1)
     optionalDependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
 
-  '@inquirer/core@10.3.0(@types/node@24.6.2)':
+  '@inquirer/core@10.3.0(@types/node@24.10.1)':
     dependencies:
       '@inquirer/ansi': 1.0.1
       '@inquirer/figures': 1.0.14
-      '@inquirer/type': 3.0.9(@types/node@24.6.2)
+      '@inquirer/type': 3.0.9(@types/node@24.10.1)
       cli-width: 4.1.0
       mute-stream: 2.0.0
       signal-exit: 4.1.0
       wrap-ansi: 6.2.0
       yoctocolors-cjs: 2.1.2
     optionalDependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
 
-  '@inquirer/external-editor@1.0.2(@types/node@24.6.2)':
+  '@inquirer/external-editor@1.0.2(@types/node@24.10.1)':
     dependencies:
       chardet: 2.1.0
       iconv-lite: 0.7.0
     optionalDependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
 
   '@inquirer/figures@1.0.14': {}
 
-  '@inquirer/type@3.0.9(@types/node@24.6.2)':
+  '@inquirer/type@3.0.9(@types/node@24.10.1)':
     optionalDependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
 
   '@isaacs/balanced-match@4.0.1': {}
 
@@ -11155,13 +11165,13 @@ snapshots:
 
   '@types/docker-modem@3.0.6':
     dependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
       '@types/ssh2': 1.15.0
 
   '@types/dockerode@3.3.45':
     dependencies:
       '@types/docker-modem': 3.0.6
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
       '@types/ssh2': 1.15.0
 
   '@types/estree-jsx@1.0.5':
@@ -11218,6 +11228,10 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
+  '@types/node@24.10.1':
+    dependencies:
+      undici-types: 7.16.0
+
   '@types/node@24.6.2':
     dependencies:
       undici-types: 7.13.0
@@ -11245,7 +11259,7 @@ snapshots:
 
   '@types/stream-buffers@3.0.8':
     dependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
 
   '@types/supports-color@8.1.3': {}
 
@@ -11467,10 +11481,10 @@ snapshots:
 
   '@visulima/is-ansi-color-supported@2.2.14': {}
 
-  '@visulima/package@4.0.0(@types/node@24.6.2)':
+  '@visulima/package@4.0.0(@types/node@24.10.1)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
-      '@inquirer/confirm': 5.1.19(@types/node@24.6.2)
+      '@inquirer/confirm': 5.1.19(@types/node@24.10.1)
       '@visulima/fs': 3.1.9(yaml@2.8.1)
       '@visulima/path': 1.4.0
       normalize-package-data: 8.0.0
@@ -11478,10 +11492,10 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@visulima/package@4.1.2(@types/node@24.6.2)':
+  '@visulima/package@4.1.2(@types/node@24.10.1)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
-      '@inquirer/confirm': 5.1.19(@types/node@24.6.2)
+      '@inquirer/confirm': 5.1.19(@types/node@24.10.1)
       '@visulima/fs': 4.0.2(yaml@2.8.1)
       '@visulima/path': 2.0.1
       json5: 2.2.3
@@ -11491,7 +11505,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@visulima/packem-rollup@1.0.0-alpha.25(@types/node@24.6.2)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)':
+  '@visulima/packem-rollup@1.0.0-alpha.25(@types/node@24.10.1)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)':
     dependencies:
       '@babel/parser': 7.28.4
       '@rollup/plugin-alias': 5.1.1(rollup@4.52.5)
@@ -11505,8 +11519,8 @@ snapshots:
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
       '@visulima/find-cache-dir': 1.0.34(yaml@2.8.1)
       '@visulima/fs': 3.1.8(yaml@2.8.1)
-      '@visulima/package': 4.0.0(@types/node@24.6.2)
-      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)
+      '@visulima/package': 4.0.0(@types/node@24.10.1)
+      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.10.1)(rollup@4.52.5)(yaml@2.8.1)
       '@visulima/path': 1.4.0
       '@visulima/source-map': 1.0.20
       cjs-module-lexer: 2.1.0
@@ -11535,18 +11549,18 @@ snapshots:
       - rolldown
       - yaml
 
-  '@visulima/packem-share@1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)':
+  '@visulima/packem-share@1.0.0-alpha.13(@types/node@24.10.1)(rollup@4.52.5)(yaml@2.8.1)':
     dependencies:
       '@visulima/colorize': 1.4.23
       '@visulima/fs': 3.1.8(yaml@2.8.1)
-      '@visulima/package': 4.0.0(@types/node@24.6.2)
+      '@visulima/package': 4.0.0(@types/node@24.10.1)
       '@visulima/path': 1.4.0
       rollup: 4.52.5
     transitivePeerDependencies:
       - '@types/node'
       - yaml
 
-  '@visulima/packem@2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
+  '@visulima/packem@2.0.0-alpha.32(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.25.10)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -11556,12 +11570,12 @@ snapshots:
       '@visulima/find-cache-dir': 1.0.34(yaml@2.8.1)
       '@visulima/fs': 3.1.8(yaml@2.8.1)
       '@visulima/humanizer': 1.2.2
-      '@visulima/package': 4.0.0(@types/node@24.6.2)
-      '@visulima/packem-rollup': 1.0.0-alpha.25(@types/node@24.6.2)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)
-      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)
+      '@visulima/package': 4.0.0(@types/node@24.10.1)
+      '@visulima/packem-rollup': 1.0.0-alpha.25(@types/node@24.10.1)(esbuild@0.25.10)(picomatch@4.0.3)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)
+      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.10.1)(rollup@4.52.5)(yaml@2.8.1)
       '@visulima/pail': 2.1.28
       '@visulima/path': 1.4.0
-      '@visulima/rollup-plugin-css': 1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.5)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
+      '@visulima/rollup-plugin-css': 1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.5)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@visulima/source-map': 1.0.20
       '@visulima/tabular': 2.0.2
       '@visulima/tsconfig': 1.1.22(yaml@2.8.1)
@@ -11618,12 +11632,12 @@ snapshots:
 
   '@visulima/path@2.0.1': {}
 
-  '@visulima/rollup-plugin-css@1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.5)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
+  '@visulima/rollup-plugin-css@1.0.0-alpha.7(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.25.10)(postcss@8.5.6)(rollup@4.52.5)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.52.5)
       '@visulima/fs': 3.1.8(yaml@2.8.1)
-      '@visulima/package': 4.0.0(@types/node@24.6.2)
-      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.6.2)(rollup@4.52.5)(yaml@2.8.1)
+      '@visulima/package': 4.0.0(@types/node@24.10.1)
+      '@visulima/packem-share': 1.0.0-alpha.13(@types/node@24.10.1)(rollup@4.52.5)(yaml@2.8.1)
       '@visulima/path': 1.4.0
       mlly: 1.8.0
       oxc-resolver: 11.8.2
@@ -11680,7 +11694,7 @@ snapshots:
       magicast: 0.3.5
       std-env: 3.9.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -11691,7 +11705,7 @@ snapshots:
       eslint: 9.36.0(jiti@2.6.0)
     optionalDependencies:
       typescript: 5.9.3
-      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -11704,13 +11718,13 @@ snapshots:
       chai: 6.2.0
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.6(vite@7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))':
+  '@vitest/mocker@4.0.6(vite@7.1.12(@types/node@24.10.1)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))':
     dependencies:
       '@vitest/spy': 4.0.6
       estree-walker: 3.0.3
       magic-string: 0.30.19
     optionalDependencies:
-      vite: 7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vite: 7.1.12(@types/node@24.10.1)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   '@vitest/pretty-format@4.0.6':
     dependencies:
@@ -11738,7 +11752,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vitest: 4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
 
   '@vitest/utils@4.0.6':
     dependencies:
@@ -12391,10 +12405,10 @@ snapshots:
 
   commenting@1.1.0: {}
 
-  commitizen@4.3.1(@types/node@24.6.2)(typescript@5.9.3):
+  commitizen@4.3.1(@types/node@24.10.1)(typescript@5.9.3):
     dependencies:
       cachedir: 2.3.0
-      cz-conventional-changelog: 3.3.0(@types/node@24.6.2)(typescript@5.9.3)
+      cz-conventional-changelog: 3.3.0(@types/node@24.10.1)(typescript@5.9.3)
       dedent: 0.7.0
       detect-indent: 6.1.0
       find-node-modules: 2.1.3
@@ -12521,9 +12535,9 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@24.6.2)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@24.10.1)(cosmiconfig@9.0.0(typescript@5.9.3))(typescript@5.9.3):
     dependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
       cosmiconfig: 9.0.0(typescript@5.9.3)
       jiti: 2.6.0
       typescript: 5.9.3
@@ -12562,16 +12576,16 @@ snapshots:
 
   cuss@2.2.0: {}
 
-  cz-conventional-changelog@3.3.0(@types/node@24.6.2)(typescript@5.9.3):
+  cz-conventional-changelog@3.3.0(@types/node@24.10.1)(typescript@5.9.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.1(@types/node@24.6.2)(typescript@5.9.3)
+      commitizen: 4.3.1(@types/node@24.10.1)(typescript@5.9.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
       word-wrap: 1.2.5
     optionalDependencies:
-      '@commitlint/load': 20.1.0(@types/node@24.6.2)(typescript@5.9.3)
+      '@commitlint/load': 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -14225,9 +14239,9 @@ snapshots:
       through: 2.3.8
       wrap-ansi: 7.0.0
 
-  inquirer@9.3.8(@types/node@24.6.2):
+  inquirer@9.3.8(@types/node@24.10.1):
     dependencies:
-      '@inquirer/external-editor': 1.0.2(@types/node@24.6.2)
+      '@inquirer/external-editor': 1.0.2(@types/node@24.10.1)
       '@inquirer/figures': 1.0.14
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
@@ -15981,14 +15995,14 @@ snapshots:
 
   node-machine-id@1.1.12: {}
 
-  node-plop@0.32.3(@types/node@24.6.2):
+  node-plop@0.32.3(@types/node@24.10.1):
     dependencies:
       '@types/inquirer': 9.0.9
       '@types/picomatch': 4.0.2
       change-case: 5.4.4
       dlv: 1.1.3
       handlebars: 4.7.8
-      inquirer: 9.3.8(@types/node@24.6.2)
+      inquirer: 9.3.8(@types/node@24.10.1)
       isbinaryfile: 5.0.6
       resolve: 1.22.10
       tinyglobby: 0.2.15
@@ -16581,14 +16595,14 @@ snapshots:
       mlly: 1.8.0
       pathe: 2.0.3
 
-  plop@4.0.4(@types/node@24.6.2):
+  plop@4.0.4(@types/node@24.10.1):
     dependencies:
       '@types/liftoff': 4.0.3
       interpret: 3.1.1
       liftoff: 5.0.1
       minimist: 1.2.8
       nanospinner: 1.2.2
-      node-plop: 0.32.3(@types/node@24.6.2)
+      node-plop: 0.32.3(@types/node@24.10.1)
       picocolors: 1.1.1
       v8flags: 4.0.1
     transitivePeerDependencies:
@@ -16646,7 +16660,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
       long: 5.2.4
 
   proxy-addr@2.0.7:
@@ -18047,6 +18061,10 @@ snapshots:
     dependencies:
       tagged-tag: 1.0.0
 
+  type-fest@5.2.0:
+    dependencies:
+      tagged-tag: 1.0.0
+
   type-is@2.0.1:
     dependencies:
       content-type: 1.0.5
@@ -18162,6 +18180,8 @@ snapshots:
   undici-types@5.26.5: {}
 
   undici-types@7.13.0: {}
+
+  undici-types@7.16.0: {}
 
   undici@5.29.0:
     dependencies:
@@ -18512,7 +18532,7 @@ snapshots:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  vite@7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
+  vite@7.1.12(@types/node@24.10.1)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.10
       fdir: 6.5.0(picomatch@4.0.3)
@@ -18521,16 +18541,16 @@ snapshots:
       rollup: 4.52.5
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
       fsevents: 2.3.3
       jiti: 2.6.0
       terser: 5.44.0
       yaml: 2.8.1
 
-  vitest@4.0.6(@types/debug@4.1.12)(@types/node@24.6.2)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
+  vitest@4.0.6(@types/debug@4.1.12)(@types/node@24.10.1)(@vitest/ui@4.0.6)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1):
     dependencies:
       '@vitest/expect': 4.0.6
-      '@vitest/mocker': 4.0.6(vite@7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))
+      '@vitest/mocker': 4.0.6(vite@7.1.12(@types/node@24.10.1)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1))
       '@vitest/pretty-format': 4.0.6
       '@vitest/runner': 4.0.6
       '@vitest/snapshot': 4.0.6
@@ -18547,11 +18567,11 @@ snapshots:
       tinyexec: 0.3.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.1.12(@types/node@24.6.2)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
+      vite: 7.1.12(@types/node@24.10.1)(jiti@2.6.0)(terser@5.44.0)(yaml@2.8.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/debug': 4.1.12
-      '@types/node': 24.6.2
+      '@types/node': 24.10.1
       '@vitest/ui': 4.0.6(vitest@4.0.6)
     transitivePeerDependencies:
       - jiti
