@@ -1,3 +1,28 @@
+## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.5...@anolilab/rc@3.0.0-alpha.1) (2025-11-19)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Features
+
+* add debug logging for branch and release channel information in create-inline-plugin-creator.ts ([c67aa85](https://github.com/anolilab/semantic-release/commit/c67aa85c612b4e5525b95ca9249ffc74f03570f3))
+
+### Bug Fixes
+
+* update dependencies and configurations across multiple packages ([c37a51f](https://github.com/anolilab/semantic-release/commit/c37a51f53899c7088140d398867ed9ab7b291acf))
+* update dependencies and node version across multiple packages ([cbfde4b](https://github.com/anolilab/semantic-release/commit/cbfde4b18e22a3994c70f145e9a9a6c71f4539c8))
+
+### Miscellaneous Chores
+
+* **release:** @anolilab/rc@3.0.0-alpha.1 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.4...@anolilab/rc@3.0.0-alpha.1) (2025-10-14) ([2af7f08](https://github.com/anolilab/semantic-release/commit/2af7f08c7e83f22d17362fec57e1158f2f691ab5))
+* **release:** @anolilab/rc@3.0.0-alpha.1 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.5...@anolilab/rc@3.0.0-alpha.1) (2025-11-19) ([7df77e5](https://github.com/anolilab/semantic-release/commit/7df77e5c50b94ebd6af44d5e63d3f77952eec626))
+* **release:** @anolilab/rc@3.0.0-alpha.1 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.5...@anolilab/rc@3.0.0-alpha.1) (2025-11-19) ([482413c](https://github.com/anolilab/semantic-release/commit/482413cf41de8665f92a97a7e814cc882ef6246b))
+* **release:** @anolilab/rc@3.0.0-alpha.1 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.5...@anolilab/rc@3.0.0-alpha.1) (2025-11-19) ([e30894f](https://github.com/anolilab/semantic-release/commit/e30894f5e9b08cccb3f0785486d7c4306a820813))
+* **release:** @anolilab/rc@3.0.0-alpha.2 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.0.0-alpha.1...@anolilab/rc@3.0.0-alpha.2) (2025-10-21) ([bcb8d04](https://github.com/anolilab/semantic-release/commit/bcb8d047c0378d5dc479b84947de3ad13820133c))
+* **release:** update changelogs for multi-semantic-release, rc, clean-package-json, and preset packages ([a0073c4](https://github.com/anolilab/semantic-release/commit/a0073c4ef4c582dc3514afc42b4ffbd07bf07761))
+
 ## @anolilab/rc [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.0.0-alpha.1...@anolilab/rc@3.0.0-alpha.2) (2025-10-21)
 
 ### Bug Fixes
