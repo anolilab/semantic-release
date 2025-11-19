@@ -45,6 +45,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 context.options = {};
             }
 
+            Object.assign(context.options, npmPackage.options);
             Object.assign(context.options, context.options._pkgOptions || {});
             Object.assign(npmPackage.fakeLogger, context.logger || {});
             context.cwd = dir;
@@ -82,6 +83,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             Object.assign(context.options, npmPackage.options);
+            Object.assign(context.options, context.options._pkgOptions || {});
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._preRelease = context.branch.prerelease || null;
@@ -159,6 +161,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             Object.assign(context.options, npmPackage.options);
+            Object.assign(context.options, context.options._pkgOptions || {});
 
             context.cwd = dir;
 
@@ -234,6 +237,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             Object.assign(context.options, npmPackage.options);
+            Object.assign(context.options, context.options._pkgOptions || {});
 
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping prepare in dry-run mode");
@@ -277,6 +281,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             Object.assign(context.options, npmPackage.options);
+            Object.assign(context.options, context.options._pkgOptions || {});
 
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping publish in dry-run mode");
@@ -319,6 +324,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             Object.assign(context.options, npmPackage.options);
+            Object.assign(context.options, context.options._pkgOptions || {});
             context.cwd = dir;
 
             await plugins?.verifyRelease?.(context);
