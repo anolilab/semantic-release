@@ -55,6 +55,7 @@ const logger: Logger = {
         set stdio([stderr, stdout]: [NodeJS.WriteStream, NodeJS.WriteStream]) {
             this._stdout = stdout;
             this._stderr = stderr;
+            // eslint-disable-next-line sonarjs/confidential-information-logging
             this._signale = new Signale({
                 config: { displayLabel: false, displayTimestamp: true },
                 // scope: "multirelease",
@@ -86,7 +87,9 @@ const logger: Logger = {
             m[l] = function (...arguments_: unknown[]) {
                 if (assertLevel(aliases[l as keyof typeof aliases] || l, this.config.level)) {
                     // eslint-disable-next-line no-console
-                    (this.config._signale[l] || console[l as keyof Console] || (() => {}))(this.prefix, ...arguments_);
+                    const logFunction = this.config._signale[l] || console[l as keyof Console] || (() => {});
+
+                    logFunction(this.prefix, ...arguments_);
                 }
             };
 

@@ -30,7 +30,7 @@ const CONFIG_FILES = [
  * @returns The found configuration option
  * @internal
  */
-export default async (cwd: string, cliOptions: Flags): Promise<MultiReleaseConfig> => {
+const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<MultiReleaseConfig> => {
     const { config } = await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd) || {};
     const { extends: extendPaths, ...rest } = { ...config };
 
@@ -77,3 +77,5 @@ export default async (cwd: string, cliOptions: Flags): Promise<MultiReleaseConfi
     // Finally merge CLI options last so they always win
     return mergeConfig(options, cliOptions);
 };
+
+export default getConfigMultiSemrel;

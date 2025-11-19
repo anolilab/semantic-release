@@ -13,7 +13,7 @@ import { gt, prerelease, rcompare } from "semver";
  * @returns Highest or lowest version.
  * @internal
  */
-const _selectVersionBy = (predicate: (a: string, b: string) => boolean, version1: string | undefined, version2: string | undefined): string | undefined => {
+const selectVersionBy = (predicate: (a: string, b: string) => boolean, version1: string | undefined, version2: string | undefined): string | undefined => {
     if (predicate && version1 && version2) {
         return predicate(version1, version2) ? version1 : version2;
     }
@@ -24,13 +24,13 @@ const _selectVersionBy = (predicate: (a: string, b: string) => boolean, version1
 /**
  * Gets highest semver function binding gt to the HOC selectVersionBy.
  */
-export const getHighestVersion = _selectVersionBy.bind(null, gt);
+export const getHighestVersion = selectVersionBy.bind(null, gt);
 
 /**
  * Retrieve the latest version from a list of versions.
- * @param versions Versions as string list.
- * @param withPrerelease Prerelease flag.
- * @returns Latest version.
+ * @param versions Array of version strings to search through.
+ * @param withPrerelease Flag indicating whether to include prerelease versions in the search.
+ * @returns Latest version string from the list.
  * @internal
  */
 export const getLatestVersion = (versions: string[], withPrerelease?: boolean): string | undefined =>

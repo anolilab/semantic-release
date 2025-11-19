@@ -2,16 +2,6 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { getNextPreVersion, getNextVersion, getPreReleaseTag, resolveNextVersion, resolveReleaseType } from "../src/update-deps";
 
-type Package = {
-    _branch?: string;
-    _lastRelease?: {
-        version: string;
-    };
-    _nextType?: string | false;
-    _preRelease?: string;
-    name?: string;
-};
-
 describe("update-deps", () => {
     describe("resolveNextVersion()", () => {
         it.each([
@@ -175,10 +165,10 @@ describe("update-deps", () => {
                 undefined,
                 undefined,
             ],
-        ])("%s", (name, package_, bumpStrategy, releaseStrategy, result) => {
+        ])("%s", (name, packageJson, bumpStrategy, releaseStrategy, result) => {
             expect.assertions(1);
 
-            expect(resolveReleaseType(package_, bumpStrategy, releaseStrategy)).toBe(result);
+            expect(resolveReleaseType(packageJson, bumpStrategy, releaseStrategy)).toBe(result);
         });
 
         it("`override` + `prefix` injects carets to the manifest", () => {
@@ -193,19 +183,19 @@ describe("update-deps", () => {
                 manifest: { dependencies: { b: "1.0.0", c: "1.0.0", d: "1.0.0" } },
                 name: "a",
             };
-            const package_ = {
+            const packageJson = {
                 _nextType: undefined,
                 localDeps: [packageA],
                 manifest: { dependencies: { a: "1.0.0" } },
                 name: "root",
             };
 
-            const type = resolveReleaseType(package_, "override", "patch", [], "^");
+            const type = resolveReleaseType(packageJson, "override", "patch", [], "^");
 
             expect(type).toBe("patch");
-            expect(package_._nextType).toBe("patch");
+            expect(packageJson._nextType).toBe("patch");
 
-            expect(package_.manifest.dependencies.a).toBe("1.0.0");
+            expect(packageJson.manifest.dependencies.a).toBe("1.0.0");
             expect(packageA.manifest.dependencies.b).toBe("1.0.0");
             expect(packageA.manifest.dependencies.c).toBe("^1.1.0");
             expect(packageA.manifest.dependencies.d).toBe("^1.0.1");

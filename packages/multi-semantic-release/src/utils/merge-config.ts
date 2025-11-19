@@ -1,7 +1,7 @@
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
 import { castArray, pickBy } from "lodash-es";
 
-const isNil = (value: unknown): boolean => value == undefined;
+const isNil = (value: unknown): boolean => value === undefined || value === null;
 
 const mergeConfig = (a: Record<string, unknown> = {}, b: Record<string, unknown> = {}): Record<string, unknown> => {
     return {

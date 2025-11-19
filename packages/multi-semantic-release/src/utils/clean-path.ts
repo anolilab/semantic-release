@@ -14,6 +14,7 @@ const cleanPath = (path: string, cwd: string = process.cwd()): string => {
     validate(path, "path: path");
     validate(cwd, "cwd: absolute");
 
+    // eslint-disable-next-line sonarjs/slow-regex
     return normalize(isAbsolute(path) ? path : join(cwd, path)).replace(/[/\\]+$/u, "");
 };
 

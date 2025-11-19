@@ -1,13 +1,14 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ResultPromise } from "execa";
+import type { Result } from "execa";
 import { execa } from "execa";
 import { describe, expect, it } from "vitest";
 
 import { copyDirectory } from "../helpers/file";
 import { gitCommitAll, gitInit, gitInitOrigin, gitPush } from "../helpers/git";
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const fixturesPath = resolve(__dirname, "../../__fixtures__");
 const msrBin = resolve(__dirname, "../../dist/bin/cli.js");
@@ -28,7 +29,7 @@ describe("multi-semantic-release CLI", () => {
         gitInitOrigin(cwd);
         gitPush(cwd);
 
-        const result: ResultPromise = await execa("node", [msrBin, "--no-sequential-prepare"], { cwd, env: environment, extendEnv: false });
+        const result: Result = await execa("node", [msrBin, "--no-sequential-prepare"], { cwd, env: environment, extendEnv: false });
         const { exitCode, stderr, stdout } = result;
 
         expect(stdout).toMatch("Started multirelease! Loading 4 packages...");
@@ -51,7 +52,7 @@ describe("multi-semantic-release CLI", () => {
         gitPush(cwd);
 
         // Run via command line.
-        const out: ResultPromise = await execa("node", [msrBin, "--ignore-packages=packages/c/**,packages/d/**"], {
+        const out: Result = await execa("node", [msrBin, "--ignore-packages=packages/c/**,packages/d/**"], {
             cwd,
             env: environment,
             extendEnv: false,

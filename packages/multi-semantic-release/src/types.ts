@@ -2,6 +2,8 @@
 
 import type { Writable } from "node:stream";
 
+import type { ReleaseType } from "semver";
+
 // Package manifest interface (package.json contents)
 export interface PackageManifest {
     [key: string]: unknown;
@@ -31,7 +33,7 @@ export interface Package {
     _depsUpdated?: boolean;
     _lastRelease?: Release;
     _nextRelease?: Release;
-    _nextType?: string | null;
+    _nextType?: ReleaseType | null;
     _prepared?: boolean;
     _preRelease?: string | null;
     _published?: boolean;

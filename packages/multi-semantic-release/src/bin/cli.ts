@@ -8,15 +8,24 @@ import multiSemanticRelease from "../multi-semantic-release";
 
 const stringList = {
     array: true,
-    coerce: (values: string[]): string[] =>
-        (values.length === 1 && values[0].trim() === "false"
-            ? []
-            : values.reduce((v: string[], value: string) => v.concat(value.split(",").map((x: string) => x.trim())), [])),
+    coerce: (values: string[]): string[] => {
+        if (values.length === 1 && values[0].trim() === "false") {
+            return [];
+        }
+
+        const result: string[] = [];
+
+        for (const value of values) {
+            result.push(...value.split(",").map((x: string) => x.trim()));
+        }
+
+        return result;
+    },
     type: "string",
 };
 
 // eslint-disable-next-line  consistent-return
-await (async (): Promise<number | void> => {
+await (async (): Promise<number | undefined> => {
     const cli = yargs(hideBin(process.argv))
         .usage("$0 [args]")
         .scriptName("multi-semantic-release")
@@ -75,7 +84,7 @@ await (async (): Promise<number | void> => {
         .exitProcess(false);
 
     try {
-        const { _, help, version, ...options } = cli.parse(process.argv.slice(2));
+        const { help, version, ...options } = cli.parse(process.argv.slice(2));
 
         if (Boolean(help) || Boolean(version)) {
             return 0;

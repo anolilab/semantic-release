@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/match-description */
 import { getTagHead } from "semantic-release/lib/git.js";
 
 import getCommitsFiltered from "./get-commits-filtered";
@@ -116,10 +117,10 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
         };
 
         /**
-         * Generate notes step (after).
-         * Responsible for generating the content of the release note. If multiple plugins with a generateNotes step are defined, the release notes will be the result of the concatenation of each plugin output.
-         *
-         * In multirelease: Edit the H2 to insert the package name and add an upgrades section to the note.
+         * Generates release notes for the package.
+         * Responsible for generating the content of the release note.
+         * If multiple plugins with a generateNotes step are defined, the release notes will be the result of the concatenation of each plugin output.
+         * In multirelease, edits the H2 to insert the package name and adds an upgrades section to the note.
          * We want this at the _end_ of the release note which is why it's stored in steps-after.
          *
          * Should look like:
@@ -136,7 +137,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          * **my-other-plugin:** upgraded to 4.9.6
          * @param pluginOptions Options to configure this plugin.
          * @param context The semantic-release context.
-         * @returns Promise that resolves to the string
+         * @returns Promise that resolves to the string.
          * @internal
          */
         const generateNotes = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<string> => {
@@ -193,7 +194,17 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             if (upgrades.length > 0) {
                 notes.push(`### Dependencies`);
 
-                const bullets = upgrades.map((d: Package) => `* **${d.name}:** upgraded to ${d._nextRelease!.version}`);
+                const bullets = upgrades
+                    .map((d: Package) => {
+                        const nextRelease = d._nextRelease;
+
+                        if (!nextRelease) {
+                            return "";
+                        }
+
+                        return `* **${d.name}:** upgraded to ${nextRelease.version}`;
+                    })
+                    .filter(Boolean);
 
                 notes.push(bullets.join("\n"));
             }
@@ -231,14 +242,12 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
                 firstParentBranch,
             );
 
-            const result = await plugins.prepare(context);
+            await plugins.prepare(context);
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._prepared = true;
 
             debug(debugPrefix, "prepared");
-
-            return result;
         };
 
         const publish = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<unknown> => {

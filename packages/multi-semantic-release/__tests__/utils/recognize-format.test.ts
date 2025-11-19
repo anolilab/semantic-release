@@ -1,11 +1,7 @@
+/* eslint-disable sonarjs/no-tab, @stylistic/no-tabs */
 import { describe, expect, it } from "vitest";
 
 import recognizeFormat from "../../src/utils/recognize-format";
-
-type RecognizeFormatResult = {
-    indent: string;
-    trailingWhitespace: string;
-};
 
 describe("recognizeFormat()", () => {
     describe("indentation", () => {

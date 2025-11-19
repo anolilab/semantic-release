@@ -40,7 +40,7 @@ const readManifest = (path: string): string => {
  * @returns The manifest file's contents.
  * @internal
  */
-export default (path: string): PackageManifest => {
+const getManifest = (path: string): PackageManifest => {
     const contents = readManifest(path);
 
     let manifest: unknown;
@@ -55,12 +55,14 @@ export default (path: string): PackageManifest => {
         throw new SyntaxError(`package.json was not an object: "${path}"`);
     }
 
-    if (typeof (manifest as PackageManifest).name !== "string" || (manifest as PackageManifest).name!.length === 0) {
+    const manifestTyped = manifest as PackageManifest;
+
+    if (typeof manifestTyped.name !== "string" || manifestTyped.name.length === 0) {
         throw new SyntaxError(`Package name must be non-empty string: "${path}"`);
     }
 
     const checkDeps = (scope: string) => {
-        if ((manifest as PackageManifest).hasOwnProperty!(scope) && typeof (manifest as PackageManifest)[scope as keyof PackageManifest] !== "object") {
+        if (Object.prototype.hasOwnProperty.call(manifestTyped, scope) && typeof manifestTyped[scope as keyof PackageManifest] !== "object") {
             throw new SyntaxError(`Package ${scope} must be object: "${path}"`);
         }
     };
@@ -70,7 +72,9 @@ export default (path: string): PackageManifest => {
     checkDeps("peerDependencies");
     checkDeps("optionalDependencies");
 
-    Object.defineProperty(manifest, "__contents__", { enumerable: false, value: contents });
+    Object.defineProperty(manifestTyped, "__contents__", { enumerable: false, value: contents });
 
-    return manifest as PackageManifest;
+    return manifestTyped;
 };
+
+export default getManifest;

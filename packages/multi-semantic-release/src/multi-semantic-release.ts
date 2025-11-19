@@ -23,7 +23,6 @@ import { validate } from "./utils/validate";
  * Load details about a package.
  * @param path The path to load details about.
  * @param allOptions Options that apply to all packages.
- * @param multiContext Context object for the multirelease.
  * @param allOptions.cwd
  * @param allOptions.env
  * @param allOptions.globalOptions
@@ -50,7 +49,7 @@ const getPackage = async (
         stderr: NodeJS.WriteStream;
         stdout: NodeJS.WriteStream;
     },
-): Promise<Package | void> => {
+): Promise<Package | undefined> => {
     // Make path absolute.
     // eslint-disable-next-line no-param-reassign
     path = cleanPath(path, cwd);
@@ -88,8 +87,7 @@ const getPackage = async (
 
 /**
  * Release an individual package.
- * @param pkg The specific package.
- * @param package_
+ * @param package_ The specific package.
  * @param createInlinePlugin A function that creates an inline plugin.
  * @param multiContext Context object for the multirelease.
  * @param flags Argv flags.
@@ -159,52 +157,41 @@ const releasePackage = async (
 
 /**
  * The multi-release context.
- * @typedef MultiContext
- * @param {Package[]} packages Array of all packages in this multirelease.
- * @param {Package[]} releasing Array of packages that will release.
- * @param {string} cwd The current working directory.
- * @param {object} env The environment variables.
- * @param {Logger} logger The logger for the multirelease.
- * @param {Stream} stdout The output stream for this multirelease.
- * @param {Stream} stderr The error stream for this multirelease.
+ * @typedef {object} MultiContext
+ * @property {Package[]} packages Array of all packages in this multirelease.
+ * @property {Package[]} releasing Array of packages that will release.
+ * @property {string} cwd The current working directory.
+ * @property {object} env The environment variables.
+ * @property {import('./logger').default} logger The logger for the multirelease.
+ * @property {import('node:stream').WriteStream} stdout The output stream for this multirelease.
+ * @property {import('node:stream').WriteStream} stderr The error stream for this multirelease.
  */
 
 /**
  * Details about an individual package in a multirelease
- * @typedef Package
- * @param {string} path String path to `package.json` for the package.
- * @param {string} dir The working directory for the package.
- * @param {string} name The name of the package, e.g. `my-amazing-package`
- * @param {string[]} deps Array of all dependency package names for the package (merging dependencies, devDependencies, peerDependencies).
- * @param {Package[]} localDeps Array of local dependencies this package relies on.
- * @param {context|void} context The semantic-release context for this package's release (filled in once semantic-release runs).
- * @param {undefined|Result|false} result The result of semantic-release (object with lastRelease, nextRelease, commits, releases), false if this package was skipped (no changes or similar), or undefined if the package's release hasn't completed yet.
- * @param {object} _lastRelease The last release object for the package before its current release (set during anaylze-commit)
- * @param {object} _nextRelease The next release object (the release the package is releasing for this cycle) (set during generateNotes)
+ * @typedef {object} Package
+ * @property {string} path String path to `package.json` for the package.
+ * @property {string} dir The working directory for the package.
+ * @property {string} name The name of the package, e.g. `my-amazing-package`
+ * @property {string[]} deps Array of all dependency package names for the package (merging dependencies, devDependencies, peerDependencies).
+ * @property {Package[]} localDeps Array of local dependencies this package relies on.
+ * @property {import('semantic-release').Context|void} context The semantic-release context for this package's release (filled in once semantic-release runs).
+ * @property {undefined|import('semantic-release').Result|false} result The result of semantic-release (object with lastRelease, nextRelease, commits, releases), false if this package was skipped (no changes or similar), or undefined if the package's release hasn't completed yet.
+ * @property {object} _lastRelease The last release object for the package before its current release (set during anaylze-commit)
+ * @property {object} _nextRelease The next release object (the release the package is releasing for this cycle) (set during generateNotes)
  */
 
 /**
  * Perform a multirelease.
- * @param {string[]} paths An array of paths to package.json files.
- * @param {object} inputOptions An object containing semantic-release options.
- * @param {object} settings An object containing: cwd, env, stdout, stderr (mainly for configuring tests).
+ * @param paths An array of paths to package.json files.
+ * @param inputOptions An object containing semantic-release options.
+ * @param settings An object containing: cwd, env, stdout, stderr (mainly for configuring tests).
  * @param settings.cwd
  * @param settings.env
- * @param {object} _flags Argv flags.
  * @param settings.stderr
  * @param settings.stdout
- * @returns {Promise<Package[]>} Promise that resolves to a list of package objects with `result` property describing whether it released or not.
- */
-
-/**
- * @param paths
- * @param inputOptions
- * @param root0
- * @param root0.cwd
- * @param root0.env
- * @param root0.stderr
- * @param root0.stdout
- * @param _flags
+ * @param flags Argv flags.
+ * @returns Promise that resolves to a list of package objects with `result` property describing whether it released or not.
  */
 const multiSemanticRelease = async (
     paths?: string[] | null,
@@ -220,7 +207,7 @@ const multiSemanticRelease = async (
         stderr?: NodeJS.WriteStream;
         stdout?: NodeJS.WriteStream;
     } = {},
-    _flags: Flags = {},
+    flags: Flags = {},
 ): Promise<Package[]> => {
     if (paths) {
         validate(paths, "paths: string[]");
@@ -234,45 +221,46 @@ const multiSemanticRelease = async (
     // eslint-disable-next-line no-param-reassign
     cwd = cleanPath(cwd);
 
-    const configMultiSemrel = await getConfigMultiSemrel(cwd, _flags);
+    const configMultiSemrel = await getConfigMultiSemrel(cwd, flags);
 
-    const flags: Flags = {
+    const mergedFlags: Flags = {
         deps: {},
         ...configMultiSemrel,
+        ...flags,
     };
 
     // Setup logger.
     logger.config.stdio = [stderr, stdout];
-    logger.config.level = flags.logLevel as string;
+    logger.config.level = mergedFlags.logLevel as string;
 
-    if (flags.silent) {
+    if (mergedFlags.silent) {
         logger.config.level = "silent";
     }
 
-    if (flags.debug) {
+    if (mergedFlags.debug) {
         logger.config.level = "debug";
     }
 
     logger.info(`multi-semantic-release version: ${multisemrelPackageJson.version}`);
     logger.info(`semantic-release version: ${semrelPkgJson.version}`);
 
-    if (flags.debug) {
-        logger.info(`flags: ${JSON.stringify(flags, null, 2)}`);
+    if (mergedFlags.debug) {
+        logger.info(`flags: ${JSON.stringify(mergedFlags, null, 2)}`);
     }
 
     // Vars.
     const globalOptions: GlobalOptions = await getConfig(cwd);
     const multiContext: MultiContext = { cwd, env: environment, globalOptions, inputOptions, stderr, stdout };
-    const { packages: _packages, queue } = await topo({
+    const { packages: allPackages, queue } = await topo({
         cwd,
         filter: ({ manifest, manifestAbsPath, manifestRelPath }: { manifest: { private?: boolean }; manifestAbsPath: string; manifestRelPath: string }) =>
-            (!flags.ignorePrivate || !manifest.private) && (paths ? paths.includes(manifestAbsPath) || paths.includes(manifestRelPath) : true),
-        workspacesExtra: Array.isArray(flags.ignorePackages) ? flags.ignorePackages.map((p: string) => `!${p}`) : [],
+            (!mergedFlags.ignorePrivate || !manifest.private) && (paths ? paths.includes(manifestAbsPath) || paths.includes(manifestRelPath) : true),
+        workspacesExtra: Array.isArray(mergedFlags.ignorePackages) ? mergedFlags.ignorePackages.map((p: string) => `!${p}`) : [],
     });
 
     // Get list of package.json paths according to workspaces.
     // eslint-disable-next-line no-param-reassign
-    paths = paths || Object.values(_packages).map((package_: { manifestPath: string }) => package_.manifestPath);
+    paths = paths || Object.values(allPackages).map((pkg: { manifestPath: string }) => pkg.manifestPath);
 
     // Start.
     logger.complete(`Started multirelease! Loading ${paths.length} packages...`);
@@ -293,21 +281,21 @@ const multiSemanticRelease = async (
     logger.complete(`Queued ${queue.length} packages! Starting release...`);
 
     // Release all packages.
-    const createInlinePlugin = createInlinePluginCreator(packages, multiContext, flags);
+    const createInlinePlugin = createInlinePluginCreator(packages, multiContext, mergedFlags);
     // eslint-disable-next-line unicorn/no-array-reduce
-    const released: number = await queue.reduce(async (_m: Promise<number>, _name: string) => {
-        const m = await _m;
-        const package_: Package | undefined = packages.find(({ name }: Package) => name === _name);
+    const released: number = await queue.reduce(async (previousCount: Promise<number>, packageName: string) => {
+        const count = await previousCount;
+        const pkg: Package | undefined = packages.find(({ name }: Package) => name === packageName);
 
-        if (package_) {
-            const { result } = await releasePackage(package_, createInlinePlugin, multiContext, flags);
+        if (pkg) {
+            const { result } = await releasePackage(pkg, createInlinePlugin, multiContext, mergedFlags);
 
             if (result) {
-                return m + 1;
+                return count + 1;
             }
         }
 
-        return m;
+        return count;
     }, Promise.resolve(0));
 
     logger.complete(`Released ${released} of ${queue.length} packages, semantically!`);

@@ -23,10 +23,12 @@ const CONFIG_FILES = [
  * @returns The found configuration option
  * @internal
  */
-export default async (cwd: string): Promise<Record<string, unknown>> => {
+const getConfig = async (cwd: string): Promise<Record<string, unknown>> => {
     // Call cosmiconfig.
     const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
 
     // istanbul ignore next (not important).
     return config?.config ?? {};
 };
+
+export default getConfig;

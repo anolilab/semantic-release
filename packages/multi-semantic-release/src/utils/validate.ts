@@ -66,6 +66,7 @@ const isInteger = (v: number): boolean => Number.isInteger(v);
  * @param typeString A string describing the expected type (e.g., "cwd: directory").
  * @throws {TypeError} If validation fails.
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const validate = (value: unknown, typeString: string): void => {
     const [name, type] = typeString.split(":").map((s) => s.trim());
     const isOptional = type?.endsWith("?");
