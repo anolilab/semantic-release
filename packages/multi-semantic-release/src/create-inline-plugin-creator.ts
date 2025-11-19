@@ -97,6 +97,11 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             // eslint-disable-next-line no-param-reassign
             npmPackage._branch = context.branch.name;
 
+            // Log branch and channel info for debugging
+            if (context.branch.channel) {
+                debug(debugPrefix, `Branch channel: ${context.branch.channel}`);
+            }
+
             context.cwd = dir;
 
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
@@ -220,6 +225,11 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._nextRelease = context.nextRelease;
+
+            // Log channel information for debugging
+            if (context.nextRelease?.channel) {
+                debug(debugPrefix, `Release channel: ${context.nextRelease.channel}`);
+            }
 
             const notes = [];
 
