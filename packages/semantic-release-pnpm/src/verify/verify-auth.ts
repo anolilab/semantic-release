@@ -27,10 +27,14 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
     try {
         logger.log(`Running "pnpm whoami" to verify authentication on registry "${registry}"`);
 
-        const whoamiResult = await execa("pnpm", ["whoami", "--userconfig", npmrc, "--registry", registry], {
+        const whoamiResult = await execa("pnpm", ["whoami", "--registry", registry], {
             cwd,
-            env: environment,
+            env: {
+                ...environment,
+                NPM_CONFIG_USERCONFIG: npmrc,
+            },
             preferLocal: true,
+            timeout: 5000, // 5 second timeout to prevent hanging when registry is unavailable
         });
 
         // Log the output
@@ -45,6 +49,131 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
         const semanticError = getError("EINVALIDNPMTOKEN", { registry });
 
         throw new AggregateError([semanticError], semanticError.message);
+    }
+};
+
+/**
+ * Check if an error indicates a connection or timeout issue.
+ * @param error The error to check.
+ * @returns True if the error is a connection/timeout error.
+ */
+const isConnectionError = (error: unknown): boolean => {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorCode = (error as { code?: string })?.code || "";
+    const isTimedOut = (error as { timedOut?: boolean })?.timedOut === true;
+
+    return (
+        isTimedOut
+        || errorCode === "ECONNREFUSED"
+        || errorCode === "ETIMEDOUT"
+        || errorMessage.includes("ECONNREFUSED")
+        || errorMessage.includes("ETIMEDOUT")
+        || errorMessage.includes("getaddrinfo ENOTFOUND")
+        || errorMessage.includes("timed out")
+    );
+};
+
+/**
+ * Check if an error message indicates an authentication issue.
+ * @param message The error message to check.
+ * @returns True if the message indicates an auth error.
+ */
+const isAuthErrorMessage = (message: string): boolean =>
+    message.includes("requires you to be logged in")
+    || message.includes("authentication")
+    || message.includes("Unauthorized")
+    || message.includes("401")
+    || message.includes("403");
+
+/**
+ * Handle errors from publish dry-run command.
+ * @param error The error to handle.
+ * @param registry The registry URL.
+ */
+const handlePublishError = (error: unknown, registry: string): never => {
+    // If it's already an AggregateError, re-throw it
+    if (error instanceof AggregateError) {
+        throw error;
+    }
+
+    // Check stderr for auth errors (execa errors have stderr property)
+    // Handle both string and array formats
+    const errorStderrRaw = (error as { stderr?: string | string[] })?.stderr;
+    const errorStderr = Array.isArray(errorStderrRaw) ? errorStderrRaw.join("\n") : errorStderrRaw || "";
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const combinedMessage = `${errorStderr} ${errorMessage}`;
+
+    // Check for connection errors or timeouts (registry not available) - treat as auth error
+    if (isConnectionError(error)) {
+        const semanticError = getError("EINVALIDNPMAUTH", { registry });
+
+        throw new AggregateError([semanticError], semanticError.message);
+    }
+
+    // Check for authentication errors
+    if (isAuthErrorMessage(combinedMessage)) {
+        const semanticError = getError("EINVALIDNPMAUTH", { registry });
+
+        throw new AggregateError([semanticError], semanticError.message);
+    }
+
+    // Re-throw other errors
+    throw error;
+};
+
+/**
+ * Verify authentication for custom registries using dry-run publish.
+ * @param npmrc Path to the .npmrc file.
+ * @param registry The registry URL.
+ * @param context The semantic-release context.
+ * @param pkgRoot Optional package root directory for dry-run publishing.
+ */
+const verifyAuthContextAgainstCustomRegistry = async (npmrc: string, registry: string, context: CommonContext, pkgRoot = "."): Promise<void> => {
+    const {
+        cwd,
+        env: { ...environment },
+        logger,
+        stderr,
+        stdout,
+    } = context;
+
+    try {
+        logger.log(`Running "pnpm publish --dry-run" to verify authentication on registry "${registry}"`);
+
+        // pnpm doesn't support --userconfig, use NPM_CONFIG_USERCONFIG env var instead
+        const publishArgs = ["publish", pkgRoot, "--dry-run", "--tag=semantic-release-auth-check", "--registry", registry];
+        const publishOptions = {
+            cwd,
+            env: {
+                ...environment,
+                NPM_CONFIG_USERCONFIG: npmrc,
+            },
+            preferLocal: true,
+            timeout: 5000, // 5 second timeout to prevent hanging when registry is unavailable
+        };
+
+        const publishResult = await execa("pnpm", publishArgs, publishOptions);
+
+        // Log the output (stdout/stderr are strings when lines option is not used)
+        const stdoutString = Array.isArray(publishResult.stdout) ? publishResult.stdout.join("\n") : publishResult.stdout || "";
+        const stderrString = Array.isArray(publishResult.stderr) ? publishResult.stderr.join("\n") : publishResult.stderr || "";
+
+        if (stdoutString) {
+            stdout.write(stdoutString);
+        }
+
+        if (stderrString) {
+            stderr.write(stderrString);
+
+            // Check for authentication errors in stderr
+            if (isAuthErrorMessage(stderrString)) {
+                const semanticError = getError("EINVALIDNPMAUTH", { registry });
+
+                throw new AggregateError([semanticError], semanticError.message);
+            }
+        }
+    } catch (error) {
+        handlePublishError(error, registry);
     }
 };
 
@@ -66,6 +195,7 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
     npmrc: string,
     package_: PackageJson,
     context: CommonContext,
+    pkgRoot?: string,
 ): Promise<void> => {
     const registry = getRegistry(package_, context);
 
@@ -76,14 +206,14 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
 
     await setNpmrcAuth(npmrc, registry, context);
 
-    const {
-        env: { DEFAULT_NPM_REGISTRY = OFFICIAL_REGISTRY },
-    } = context;
+    const normalizedRegistry = normalizeUrl(registry);
+    const normalizedOfficialRegistry = normalizeUrl(OFFICIAL_REGISTRY);
 
     // Verify authentication based on registry type
-    if (normalizeUrl(registry) === normalizeUrl(DEFAULT_NPM_REGISTRY)) {
-        await verifyAuthContextAgainstRegistry(npmrc, registry, context);
-    }
+    // Use whoami only for the official npm registry, use dry-run publish for all other registries
+    await (normalizedRegistry === normalizedOfficialRegistry
+        ? verifyAuthContextAgainstRegistry(npmrc, registry, context)
+        : verifyAuthContextAgainstCustomRegistry(npmrc, registry, context, pkgRoot));
 };
 
 export default verifyAuth;

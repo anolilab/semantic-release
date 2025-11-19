@@ -24,12 +24,18 @@ vi.mock(import("./helpers/npm-registry"), () => {
     };
 });
 
+// Mock execa to avoid actual command execution (following semantic-release/npm pattern)
+vi.mock(import("execa"));
+
+const { execa } = await import("execa");
+
 describe("semantic-release-integration", () => {
     let cwd: string;
 
     beforeEach(async () => {
         cwd = temporaryDirectory();
         await start();
+        vi.clearAllMocks();
     });
 
     afterEach(async () => {
@@ -118,13 +124,19 @@ describe("semantic-release-integration", () => {
     });
 
     it("should throw error if NPM token is invalid when targeting the default registry", async () => {
-        expect.assertions(3);
+        expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
             name: "published",
             publishConfig: { registry: npmRegistryUrl },
             version: "1.0.0",
         });
+
+        // Mock execa to reject with stderr containing auth error (simulating auth failure for custom registry)
+        const authError = new Error("Authentication failed");
+
+        (authError as { stderr?: string }).stderr = "This command requires you to be logged in to http://localhost:4873/";
+        vi.mocked(execa).mockRejectedValue(authError);
 
         const { verifyConditions } = await import("../../src");
 
@@ -178,6 +190,12 @@ describe("semantic-release-integration", () => {
             version: "0.0.0-dev",
         });
 
+        // Mock execa to resolve successfully (simulating successful auth for custom registry)
+        vi.mocked(execa).mockResolvedValue({
+            stderr: "",
+            stdout: "",
+        } as Awaited<ReturnType<typeof execa>>);
+
         const { verifyConditions } = await import("../../src");
 
         await expect(
@@ -203,6 +221,12 @@ describe("semantic-release-integration", () => {
             publishConfig: { registry: npmRegistryUrl },
             version: "0.0.0-dev",
         });
+
+        // Mock execa to resolve successfully (simulating successful auth for custom registry)
+        vi.mocked(execa).mockResolvedValue({
+            stderr: "",
+            stdout: "",
+        } as Awaited<ReturnType<typeof execa>>);
 
         const { verifyConditions } = await import("../../src");
 

@@ -74,16 +74,15 @@ describe(verifyAuth, () => {
 
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(execa).toHaveBeenCalledWith(
-            "pnpm",
-            ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--userconfig", npmrc, "--registry", customRegistry],
-            {
-                cwd: context.cwd,
-                env: context.env,
-                lines: true,
-                preferLocal: true,
+        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry], {
+            cwd: context.cwd,
+            env: {
+                ...context.env,
+                NPM_CONFIG_USERCONFIG: npmrc,
             },
-        );
+            preferLocal: true,
+            timeout: 5000,
+        });
     });
 
     it("should perform dry-run publish for custom registries from a sub-directory", async () => {
@@ -102,16 +101,15 @@ describe(verifyAuth, () => {
 
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(execa).toHaveBeenCalledWith(
-            "pnpm",
-            ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--userconfig", npmrc, "--registry", customRegistry],
-            {
-                cwd: context.cwd,
-                env: context.env,
-                lines: true,
-                preferLocal: true,
+        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry], {
+            cwd: context.cwd,
+            env: {
+                ...context.env,
+                NPM_CONFIG_USERCONFIG: npmrc,
             },
-        );
+            preferLocal: true,
+            timeout: 5000,
+        });
     });
 
     it("should throw error when dry-run publish fails with auth error for custom registry", async () => {

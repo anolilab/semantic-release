@@ -89,7 +89,9 @@ describe("set-npmrc-auth", () => {
         });
 
         expect(logSpy).toHaveBeenCalledWith(`Wrote NPM_USERNAME, NPM_PASSWORD, and NPM_EMAIL to ${npmrc}`);
-        await expect(readFile(npmrc)).resolves.toBe(`registry=https://registry.npmjs.org/\n\n_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`);
+        await expect(readFile(npmrc)).resolves.toBe(
+            `registry=https://registry.npmjs.org/\n\n//custom.registry.com/:_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`,
+        );
 
         await rm(npmrc);
     });

@@ -61,7 +61,11 @@ const setNpmrcAuth = async (
     }
 
     if (NPM_USERNAME && NPM_PASSWORD && NPM_EMAIL) {
-        await writeFile(npmrc, `${Object.keys(config).length > 0 ? `${stringify(config)}\n` : ""}_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`);
+        // Use scoped auth format: //registry/:_auth instead of _auth (required by npm/pnpm)
+        await writeFile(
+            npmrc,
+            `${Object.keys(config).length > 0 ? `${stringify(config)}\n` : ""}${nerfDart(registry)}:_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`,
+        );
 
         logger.log(`Wrote NPM_USERNAME, NPM_PASSWORD, and NPM_EMAIL to ${npmrc}`);
     } else if (NPM_TOKEN) {
