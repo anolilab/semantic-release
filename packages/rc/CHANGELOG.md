@@ -1,3 +1,20 @@
+## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.5...@anolilab/rc@3.0.0-alpha.1) (2025-11-19)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Bug Fixes
+
+* update dependencies and configurations across multiple packages ([c37a51f](https://github.com/anolilab/semantic-release/commit/c37a51f53899c7088140d398867ed9ab7b291acf))
+* update dependencies and node version across multiple packages ([cbfde4b](https://github.com/anolilab/semantic-release/commit/cbfde4b18e22a3994c70f145e9a9a6c71f4539c8))
+
+### Miscellaneous Chores
+
+* **release:** @anolilab/rc@3.0.0-alpha.1 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.4...@anolilab/rc@3.0.0-alpha.1) (2025-10-14) ([2af7f08](https://github.com/anolilab/semantic-release/commit/2af7f08c7e83f22d17362fec57e1158f2f691ab5))
+* **release:** @anolilab/rc@3.0.0-alpha.2 [skip ci]\n\n## @anolilab/rc [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.0.0-alpha.1...@anolilab/rc@3.0.0-alpha.2) (2025-10-21) ([bcb8d04](https://github.com/anolilab/semantic-release/commit/bcb8d047c0378d5dc479b84947de3ad13820133c))
+
 ## @anolilab/rc [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.0.0-alpha.1...@anolilab/rc@3.0.0-alpha.2) (2025-10-21)
 
 ### Bug Fixes
