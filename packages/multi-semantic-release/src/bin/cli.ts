@@ -9,7 +9,7 @@ import multiSemanticRelease from "../multi-semantic-release";
 const stringList = {
     array: true,
     coerce: (values: string[]): string[] => {
-        if (values.length === 1 && values[0].trim() === "false") {
+        if (values.length === 1 && values[0]?.trim() === "false") {
             return [];
         }
 
@@ -21,15 +21,14 @@ const stringList = {
 
         return result;
     },
-    type: "string",
+    type: "array" as const,
 };
 
-// eslint-disable-next-line  consistent-return
-await (async (): Promise<number | undefined> => {
+await (async (): Promise<void> => {
     const cli = yargs(hideBin(process.argv))
         .usage("$0 [args]")
         .scriptName("multi-semantic-release")
-        .option("d", { alias: "dry-run", describe: "Skip publishing", group: "Options", type: "boolean" })
+        .option("d", { alias: "dry-run", default: false, describe: "Skip publishing", group: "Options", type: "boolean" })
         .option("h", { alias: "help", group: "Options" })
         .option("debug", {
             describe: "Output debugging information.",
@@ -84,28 +83,25 @@ await (async (): Promise<number | undefined> => {
         .exitProcess(false);
 
     try {
-        const { help, version, ...options } = cli.parse(process.argv.slice(2));
+        const parsed = cli.parse(process.argv.slice(2)) as Record<string, unknown> & { help?: boolean; version?: boolean };
+        const { help, version, ...options } = parsed;
 
         if (Boolean(help) || Boolean(version)) {
-            return 0;
+            exit(0);
         }
 
-        // Do multirelease (log out any errors).
         // eslint-disable-next-line promise/catch-or-return
-        multiSemanticRelease(null, {}, {}, options).then(
+        multiSemanticRelease(null, {}, {}, options as Parameters<typeof multiSemanticRelease>[3]).then(
             // eslint-disable-next-line promise/always-return
             () => {
-                // Success.
                 exit(0);
             },
             (error: Error) => {
-                // Log out errors.
                 logger.error(`[multi-semantic-release]:`, error);
                 exit(1);
             },
         );
     } catch (error: unknown) {
-        // Log out errors.
         logger.error(`[multi-semantic-release]:`, error);
         exit(1);
     }

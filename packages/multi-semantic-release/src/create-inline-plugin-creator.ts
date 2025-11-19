@@ -1,65 +1,64 @@
 /* eslint-disable jsdoc/match-description */
 import { getTagHead } from "semantic-release/lib/git.js";
+import type { ReleaseType } from "semver";
 
 import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
-import type { Flags, MultiContext, Package, PluginFunctions, SemanticReleaseContext } from "./types";
+import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
 import { resolveReleaseType, updateManifestDeps } from "./update-deps";
 
 const { debug } = logger.withScope("msr:inlinePlugin");
 
+interface InlinePluginFunctions {
+    analyzeCommits?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string | null | undefined>;
+    generateNotes?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string>;
+    prepare?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<void>;
+    publish?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<unknown>;
+    verifyConditions?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<void>;
+    verifyRelease?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<void>;
+}
+
 /**
  * Create an inline plugin creator for a multirelease.
  * This is caused once per multirelease and returns a function which should be called once per package within the release.
- * @param packages The multi-semantic-release context.
+ * @param _packages The multi-semantic-release context.
  * @param multiContext The multi-semantic-release context.
  * @param flags argv options
  * @returns A function that creates an inline package.
  * @internal
  */
-const createInlinePluginCreator = (packages: Package[], multiContext: MultiContext, flags: Flags): (npmPackage: Package) => PluginFunctions => {
-    // Vars.
+const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): (npmPackage: Package) => InlinePluginFunctions => {
     const { cwd } = multiContext;
 
-    /**
-     * Create an inline plugin for an individual package in a multirelease.
-     * This is called once per package and returns the inline plugin used for semanticRelease()
-     * @param npmPackage The package this function is being called on.
-     * @returns A semantic-release inline plugin containing plugin step functions.
-     * @internal
-     */
-
-    /**
-     * @param npmPackage
-     */
-    const createInlinePlugin = (npmPackage: Package): PluginFunctions => {
-        // Vars.
+    const createInlinePlugin = (npmPackage: Package): InlinePluginFunctions => {
         const { dir, name, plugins } = npmPackage;
         const debugPrefix = `[${name}]`;
 
         /**
-         * @param pluginOptions Options to configure this plugin.
+         * @param _pluginOptions Options to configure this plugin.
          * @param context The semantic-release context.
          * @returns void
          * @internal
          */
-        const verifyConditions = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<void> => {
-            // Restore context for plugins that does not rely on parsed opts.
-            Object.assign(context.options, context.options._pkgOptions);
+        const verifyConditions = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
+            if (!context.options) {
+                context.options = {};
+            }
 
-            // And bind the actual logger.
-            Object.assign(npmPackage.fakeLogger, context.logger);
-            // Set package-specific cwd early so it's available to plugins
+            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(npmPackage.fakeLogger, context.logger || {});
             context.cwd = dir;
 
-            const result = await plugins.verifyConditions(context);
+            if (plugins.verifyConditions) {
+                await plugins.verifyConditions(context);
+            }
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._ready = true;
 
             debug(debugPrefix, "verified conditions");
 
-            return result;
+            return undefined;
         };
 
         /**
@@ -68,52 +67,66 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          *
          * In multirelease: Returns "patch" if the package contains references to other local packages that have changed, or null if this package references no local packages or they have not changed.
          * Also updates the `context.commits` setting with one returned from `getCommitsFiltered()` (which is filtered by package directory).
-         * @param pluginOptions Options to configure this plugin.
+         * @param _pluginOptions Options to configure this plugin.
          * @param context The semantic-release context.
          * @returns Promise that resolves when done.
          * @internal
          */
-        const analyzeCommits = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<string | null> => {
+        const analyzeCommits = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<string | null> => {
+            if (!context.branch) {
+                throw new Error("context.branch is required");
+            }
+
+            if (!context.options) {
+                context.options = {};
+            }
+
+            Object.assign(context.options, npmPackage.options);
+
             // eslint-disable-next-line no-param-reassign
             npmPackage._preRelease = context.branch.prerelease || null;
             // eslint-disable-next-line no-param-reassign
             npmPackage._branch = context.branch.name;
 
-            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
-            // Filter commits by directory.
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
-
-            // Set context.commits so analyzeCommits does correct analysis.
 
             context.commits = await getCommitsFiltered(
                 cwd,
                 dir,
-                context.lastRelease ? context.lastRelease.gitHead : undefined,
-                context.nextRelease ? context.nextRelease.gitHead : undefined,
+                context.lastRelease ? (context.lastRelease.gitHead as string | undefined) : undefined,
+                context.nextRelease ? (context.nextRelease.gitHead as string | undefined) : undefined,
                 firstParentBranch,
             );
 
-            // Set lastRelease for package from context.
             // eslint-disable-next-line no-param-reassign
             npmPackage._lastRelease = context.lastRelease;
 
-            // Set nextType for package from plugins.
+            let nextType: string | null | undefined = null;
+
+            if (plugins.analyzeCommits) {
+                nextType = await plugins.analyzeCommits(context);
+            }
+
             // eslint-disable-next-line no-param-reassign
-            npmPackage._nextType = await plugins.analyzeCommits(context);
+            npmPackage._nextType = nextType as ReleaseType | null | undefined;
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._analyzed = true;
 
-            // Make sure type is "patch" if the package has any deps that have been changed.
-            // eslint-disable-next-line no-param-reassign
-            npmPackage._nextType = resolveReleaseType(npmPackage, flags.deps.bump, flags.deps.release, [], flags.deps.prefix);
+            if (flags.deps) {
+                // eslint-disable-next-line no-param-reassign
+                npmPackage._nextType = resolveReleaseType(npmPackage, flags.deps.bump, flags.deps.release, [], flags.deps.prefix) as
+                | ReleaseType
+                | null
+                | undefined;
+            }
 
             debug(debugPrefix, "commits analyzed");
             debug(debugPrefix, `release type: ${npmPackage._nextType}`);
 
-            return npmPackage._nextType;
+            return npmPackage._nextType as string | null;
         };
 
         /**
@@ -135,60 +148,61 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          *
          * **my-amazing-plugin:** upgraded to 1.2.3
          * **my-other-plugin:** upgraded to 4.9.6
-         * @param pluginOptions Options to configure this plugin.
+         * @param _pluginOptions Options to configure this plugin.
          * @param context The semantic-release context.
          * @returns Promise that resolves to the string.
          * @internal
          */
-        const generateNotes = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<string> => {
-            // Set package-specific cwd early so it's available to plugins
+        const generateNotes = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<string> => {
+            if (!context.options) {
+                context.options = {};
+            }
+
+            Object.assign(context.options, npmPackage.options);
+
             context.cwd = dir;
 
-            // Set nextRelease for package.
             // eslint-disable-next-line no-param-reassign
             npmPackage._nextRelease = context.nextRelease;
 
-            // Wait until all todo packages are ready to generate notes.
-            // await waitForAll("_nextRelease", (p) => p._nextType);
-
-            // Vars.
             const notes = [];
 
-            // get SHA of lastRelease if not already there (should have been done by Semantic Release...)
             if (
                 context.lastRelease
                 && context.lastRelease.gitTag
                 && (!context.lastRelease.gitHead || context.lastRelease.gitHead === context.lastRelease.gitTag)
             ) {
-                context.lastRelease.gitHead = await getTagHead(context.lastRelease.gitTag, {
+                context.lastRelease.gitHead = await getTagHead(context.lastRelease.gitTag as string, {
                     cwd: context.cwd,
                     env: context.env,
                 });
             }
 
-            // Filter commits by directory (and release range)
-            const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
+            if (!context.branch) {
+                throw new Error("context.branch is required");
+            }
 
-            // Set context.commits so generateNotes does correct analysis.
+            const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
 
             context.commits = await getCommitsFiltered(
                 cwd,
                 dir,
-                context.lastRelease ? context.lastRelease.gitHead : undefined,
-                context.nextRelease ? context.nextRelease.gitHead : undefined,
+                context.lastRelease ? (context.lastRelease.gitHead as string | undefined) : undefined,
+                context.nextRelease ? (context.nextRelease.gitHead as string | undefined) : undefined,
                 firstParentBranch,
             );
 
-            // Get subnotes and add to list.
-            // Inject pkg name into title if it matches e.g. `# 1.0.0` or `## [1.0.1]` (as generate-release-notes does).
-            const subs = await plugins.generateNotes(context);
+            let subs: string | undefined;
+
+            if (plugins.generateNotes) {
+                subs = await plugins.generateNotes(context);
+            }
 
             // istanbul ignore else (unnecessary to __tests__)
             if (subs) {
                 notes.push(subs.replace(/^(#+) (\[?\d+\.\d+\.\d+\]?)/u, `$1 ${name} $2`));
             }
 
-            // If it has upgrades add an upgrades section.
             const upgrades = npmPackage.localDeps.filter((d: Package) => d._nextRelease);
 
             if (upgrades.length > 0) {
@@ -214,8 +228,13 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             return notes.join("\n\n");
         };
 
-        const prepare = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<void> => {
-            // Skip all operations in dry-run mode
+        const prepare = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
+            if (!context.options) {
+                context.options = {};
+            }
+
+            Object.assign(context.options, npmPackage.options);
+
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping prepare in dry-run mode");
 
@@ -226,23 +245,25 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._depsUpdated = true;
-            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
-            // Filter commits by directory.
-            const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
+            if (!context.branch) {
+                throw new Error("context.branch is required");
+            }
 
-            // Set context.commits so analyzeCommits does correct analysis.
+            const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
 
             context.commits = await getCommitsFiltered(
                 cwd,
                 dir,
-                context.lastRelease ? context.lastRelease.gitHead : undefined,
-                context.nextRelease ? context.nextRelease.gitHead : undefined,
+                context.lastRelease ? (context.lastRelease.gitHead as string | undefined) : undefined,
+                context.nextRelease ? (context.nextRelease.gitHead as string | undefined) : undefined,
                 firstParentBranch,
             );
 
-            await plugins.prepare(context);
+            if (plugins.prepare) {
+                await plugins.prepare(context);
+            }
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._prepared = true;
@@ -250,18 +271,28 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             debug(debugPrefix, "prepared");
         };
 
-        const publish = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<unknown> => {
-            // Skip all operations in dry-run mode
+        const publish = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<unknown> => {
+            if (!context.options) {
+                context.options = {};
+            }
+
+            Object.assign(context.options, npmPackage.options);
+
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping publish in dry-run mode");
 
                 return [];
             }
 
-            // Set package-specific cwd early so it's available to plugins
             context.cwd = dir;
 
-            const result = await plugins.publish(context);
+            let result: unknown[] = [];
+
+            if (plugins.publish) {
+                const publishResult = await plugins.publish?.(context);
+
+                result = Array.isArray(publishResult) ? publishResult : [publishResult];
+            }
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._published = true;
@@ -276,21 +307,23 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
          * Verify release step.
          * Responsible for verifying the release that was just published. If multiple plugins with a verifyRelease step are defined, all must pass.
          *
-         * In multirelease: Ensures context.cwd is set to the package directory so plugins can verify package-specific artifacts.
-         * @param pluginOptions Options to configure this plugin.
+         * In multi-release: Ensures context.cwd is set to the package directory so plugins can verify package-specific artifacts.
+         * @param _pluginOptions Options to configure this plugin.
          * @param context The semantic-release context.
          * @returns Promise that resolves when done.
          * @internal
          */
-        const verifyRelease = async (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext): Promise<void> => {
-            // Set package-specific cwd early so it's available to plugins
+        const verifyRelease = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
+            if (!context.options) {
+                context.options = {};
+            }
+
+            Object.assign(context.options, npmPackage.options);
             context.cwd = dir;
 
-            const result = await plugins.verifyRelease(context);
+            await plugins?.verifyRelease?.(context);
 
             debug(debugPrefix, "release verified");
-
-            return result;
         };
 
         const inlinePlugin = {
@@ -302,7 +335,6 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
             verifyRelease,
         };
 
-        // Add labels for logs.
         Object.keys(inlinePlugin).forEach((type: string) =>
             Reflect.defineProperty(inlinePlugin[type as keyof typeof inlinePlugin], "pluginName", {
                 enumerable: true,
@@ -313,7 +345,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
 
         debug(debugPrefix, "inlinePlugin created");
 
-        return inlinePlugin;
+        return inlinePlugin as InlinePluginFunctions;
     };
 
     return createInlinePlugin;

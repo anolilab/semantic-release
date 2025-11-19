@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/match-description */
 import { writeFileSync } from "node:fs";
 
 import { isEqual, isObject, transform } from "lodash-es";
@@ -42,7 +43,6 @@ const nextPreVersionCases = (
     packageNextType: string,
     packagePreRelease: string,
 ): string | undefined => {
-    // Case 1: Normal release on last version and is now converted to a prerelease
     if (!semver.prerelease(lastVersionForCurrentMultiRelease)) {
         const parsed = semver.parse(lastVersionForCurrentMultiRelease);
 
@@ -50,18 +50,15 @@ const nextPreVersionCases = (
             return undefined;
         }
 
-        // Increment the version first according to the release type
         const incrementedVersion = semver.inc(lastVersionForCurrentMultiRelease, (packageNextType || "patch") as ReleaseType);
 
         if (!incrementedVersion) {
             return undefined;
         }
 
-        // Then add the prerelease tag
         return `${incrementedVersion}-${packagePreRelease}.1`;
     }
 
-    // Case 2: Validates version with tags
     const latestTag = getLatestVersion(tags, true);
 
     return nextPreHighestVersion(latestTag, lastVersionForCurrentMultiRelease, packagePreRelease);
@@ -108,30 +105,22 @@ const getDependentRelease = (packageJson: Package, bumpStrategy: string, release
 
     const result = localDeps
         .filter((p: Package) => !ignore.includes(p))
-        // eslint-disable-next-line unicorn/no-array-reduce
+        // eslint-disable-next-line unicorn/no-array-reduce, sonarjs/cognitive-complexity
         .reduce((releaseType: string | undefined, p: Package) => {
-            // Has changed if...
-            // 1. Any local dep package itself has changed
-            // 2. Any local dep package has local deps that have changed.
-
             // eslint-disable-next-line @typescript-eslint/no-use-before-define
             const nextType: string | undefined = resolveReleaseType(p, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
             let nextVersion: string | undefined;
 
             if (nextType) {
-                // Update the nextVersion only if there is a next type to be bumped
                 // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 const version = p._preRelease ? getNextPreVersion(p) : getNextVersion(p);
 
                 nextVersion = version || undefined;
             } else {
-                // Set the nextVersion fallback to the last local dependency package last version
                 nextVersion = p._lastRelease?.version;
             }
 
-            // Check nested dependencies for release types even if this package doesn't have one
             if (!nextType && p.localDeps && p.localDeps.length > 0) {
-                // Recursively check nested dependencies
                 const nestedReleaseType = getDependentRelease(p, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
                 if (nestedReleaseType) {
@@ -144,7 +133,6 @@ const getDependentRelease = (packageJson: Package, bumpStrategy: string, release
                 }
             }
 
-            // 3. And this change should correspond to the manifest updating rule.
             const requireRelease: boolean = scopes
                 // eslint-disable-next-line unicorn/no-array-reduce
                 .reduce((accumulator: boolean, scope: Record<string, string>) => bumpDependency(scope, p.name, nextVersion) || accumulator, !lastVersion);
@@ -163,7 +151,6 @@ const getDependentRelease = (packageJson: Package, bumpStrategy: string, release
             return nextIndex > releaseIndex ? nextType : releaseType;
         }, undefined);
 
-    // If we found nested release types but no direct release type, use the highest nested one
     if (!result && highestNestedReleaseType) {
         return highestNestedReleaseType;
     }
@@ -173,6 +160,7 @@ const getDependentRelease = (packageJson: Package, bumpStrategy: string, release
 
 /**
  * Substitutes the "workspace:" prefix in the current version string with the actual version.
+ *
  * See:
  * {@link https://yarnpkg.com/features/workspaces#publishing-workspaces}
  * {@link https://pnpm.io/workspaces#publishing-workspace-packages}
@@ -201,17 +189,15 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
     return currentVersion;
 };
 
-// eslint-disable-next-line no-secrets/no-secrets
-// https://gist.github.com/Yimiprod/7ee176597fef230d1451
-const difference = (object: Record<string, unknown>, base: Record<string, unknown>): Record<string, string | Record<string, string>> => {
-    const result = transform(object, (accumulator: Record<string, string | Record<string, string>>, value: unknown, key: string) => {
+const difference = (object: Record<string, unknown>, base: Record<string, unknown>): Record<string, string> => {
+    const result = transform(object, (accumulator: Record<string, string>, value: unknown, key: string) => {
         if (!isEqual(value, base[key])) {
             accumulator[key]
                 = isObject(value) && isObject(base[key])
-                    ? difference(value as Record<string, unknown>, base[key] as Record<string, unknown>)
+                    ? JSON.stringify(difference(value as Record<string, unknown>, base[key] as Record<string, unknown>))
                     : `${base[key]} → ${value}`;
         }
-    }) as Record<string, string | Record<string, string>> | undefined;
+    }) as Record<string, string> | undefined;
 
     return result || {};
 };
@@ -332,36 +318,26 @@ export const resolveReleaseType = (
     ignore: Package[] = [],
     prefix: string = "",
 ): string | undefined => {
-    // NOTE This fn also updates pkg deps, so it must be invoked anyway.
     const dependentReleaseType = getDependentRelease(packageJson, bumpStrategy, releaseStrategy, ignore, prefix);
 
-    // Release type found by commitAnalyzer.
     if (packageJson._nextType) {
         return packageJson._nextType;
     }
 
-    // If dependentReleaseType is undefined but we have local dependencies,
-    // check if any of them or their nested dependencies changed
     if (!dependentReleaseType && packageJson.localDeps && packageJson.localDeps.length > 0 && packageJson.manifest) {
-        // Check if any dependency in manifest was actually updated
-        // (getDependentRelease modifies manifest in place, so we can check if versions changed)
         const manifest = packageJson.manifest as PackageManifest;
         const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
         const allDeps = { ...dependencies, ...devDependencies, ...optionalDependencies, ...peerDependencies };
 
-        // Check if any local dependency exists in manifest and has a nextType or nested dependencies with nextType
         const hasLocalDepInManifest = packageJson.localDeps.some((dep: Package) => {
             if (!dep.name || allDeps[dep.name] === undefined) {
                 return false;
             }
 
-            // Check if this dependency or its nested dependencies have a nextType
-            // This indicates that something actually changed
             if (dep._nextType) {
                 return true;
             }
 
-            // Check nested dependencies recursively
             if (dep.localDeps && dep.localDeps.length > 0) {
                 const nestedType = getDependentRelease(dep, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
@@ -371,9 +347,6 @@ export const resolveReleaseType = (
             return false;
         });
 
-        // If we have local deps in manifest that actually changed and releaseStrategy is not "inherit",
-        // use the releaseStrategy (defaults to "patch")
-        // This handles the case where nested dependencies changed but the immediate parent has _nextType: false
         if (hasLocalDepInManifest && releaseStrategy !== "inherit") {
             // eslint-disable-next-line no-param-reassign
             packageJson._nextType = releaseStrategy as ReleaseType;
@@ -385,11 +358,6 @@ export const resolveReleaseType = (
     if (!dependentReleaseType) {
         return undefined;
     }
-
-    // Define release type for dependent package if any of its deps changes.
-    // `patch`, `minor`, `major` — strictly declare the release type that occurs when any dependency is updated.
-    // `inherit` — applies the "highest" release of updated deps to the package.
-    // For example, if any dep has a breaking change, `major` release will be applied to the all dependants up the chain.
 
     // eslint-disable-next-line no-param-reassign
     packageJson._nextType = (releaseStrategy === "inherit" ? dependentReleaseType : releaseStrategy) as ReleaseType;
@@ -407,7 +375,6 @@ export const resolveReleaseType = (
  * @internal
  */
 export const resolveNextVersion = (currentVersion: string, nextVersion: string, bumpStrategy: string = "override", prefix: string = ""): string => {
-    // handle cases of "workspace protocol" defined in yarn and pnpm workspace, whose version starts with "workspace:"
     // eslint-disable-next-line no-param-reassign
     currentVersion = substituteWorkspaceVersion(currentVersion, nextVersion);
 
@@ -446,8 +413,6 @@ export const resolveNextVersion = (currentVersion: string, nextVersion: string, 
         return resolvedChunks.join(separator);
     }
 
-    // "override"
-    // By default next package version would be set as is for the all dependants.
     return prefix + nextVersion;
 };
 
@@ -460,16 +425,11 @@ export const updateManifestDeps = (packageJson: Package): void => {
     const { manifest, path } = packageJson;
     const { indent, trailingWhitespace } = recognizeFormat(manifest.__contents__ as string);
 
-    // We need to bump pkg.version for correct yarn.lock update
-    // https://github.com/qiwi/multi-semantic-release/issues/58
     manifest.version = packageJson?._nextRelease?.version || manifest.version;
 
-    // Loop through localDeps to verify release consistency.
     packageJson.localDeps.forEach((d: Package) => {
-        // Get version of dependency.
         const release = d._nextRelease || d._lastRelease;
 
-        // Cannot establish version.
         if (!release || !release.version) {
             throw new Error(`Cannot release ${packageJson.name} because dependency ${d.name} has not been released yet`);
         }
@@ -479,6 +439,5 @@ export const updateManifestDeps = (packageJson: Package): void => {
         return;
     }
 
-    // Write package.json back out.
     writeFileSync(path, JSON.stringify(manifest, null, indent) + trailingWhitespace);
 };

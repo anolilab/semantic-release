@@ -1,6 +1,5 @@
 import { cosmiconfig } from "cosmiconfig";
 
-// Copied from get-config.js in semantic-release
 const CONFIG_NAME = "release";
 const CONFIG_FILES = [
     "package.json",
@@ -18,13 +17,11 @@ const CONFIG_FILES = [
 
 /**
  * Get the release configuration options for a given directory.
- * Unfortunately we've had to copy this over from semantic-release, creating unnecessary duplication.
  * @param cwd The directory to search.
  * @returns The found configuration option
  * @internal
  */
 const getConfig = async (cwd: string): Promise<Record<string, unknown>> => {
-    // Call cosmiconfig.
     const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
 
     // istanbul ignore next (not important).

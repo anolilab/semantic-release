@@ -38,7 +38,6 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
 
     if (extendPaths) {
         const require = createRequire(import.meta.url);
-        // If `extends` is defined, load and merge each shareable config
         // eslint-disable-next-line unicorn/no-array-reduce
         const extendedOptions: MultiReleaseConfig = castArray(extendPaths).reduce((result: MultiReleaseConfig, extendPath: string) => {
             // eslint-disable-next-line import/no-dynamic-require
@@ -50,7 +49,6 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
         options = mergeConfig(options, extendedOptions);
     }
 
-    // Set default options values if not defined yet
     options = mergeConfig(
         {
             branches: undefined,
@@ -74,7 +72,6 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
         options,
     );
 
-    // Finally merge CLI options last so they always win
     return mergeConfig(options, cliOptions);
 };
 

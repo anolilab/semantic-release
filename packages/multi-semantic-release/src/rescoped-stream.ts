@@ -23,9 +23,10 @@ class RescopedStream extends Writable {
         this._scope = scope;
     }
 
-    public write(message: string): void {
+    public override write(message: string): boolean {
         validate(message, "msg: string");
-        this._stream.write(message.replace("[semantic-release]", `[${this._scope}]`));
+
+        return this._stream.write(message.replace("[semantic-release]", `[${this._scope}]`));
     }
 }
 

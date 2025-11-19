@@ -4,18 +4,21 @@ import { WritableStreamBuffer } from "stream-buffers";
 
 import logger from "./logger";
 
+type Logger = {
+    failure: (...args: unknown[]) => void;
+};
+
 const { Signale } = signale;
 
 /**
  * Get the release configuration options for a given directory.
- * Unfortunately we've had to copy this over from semantic-release, creating unnecessary duplication.
- * @param {object} context Object containing cwd, env, and logger properties that are passed to getConfig()
+ * @param context Object containing cwd, env, and logger properties that are passed to getConfig()
  * @param context.cwd
  * @param context.env
- * @param {object} options Options object for the config.
+ * @param options Options object for the config.
  * @param context.stderr
  * @param context.stdout
- * @returns {object} Returns what semantic-release's get config returns (object with options and plugins objects).
+ * @returns Returns what semantic-release's get config returns (object with options and plugins objects).
  * @internal
  */
 interface GetConfigSemanticContext {
@@ -30,15 +33,13 @@ const getConfigSemantic = async (
     options: Record<string, unknown>,
 ): Promise<{ options: Record<string, unknown>; plugins: Record<string, unknown> }> => {
     try {
-        // Blackhole logger (so we don't clutter output with "loaded plugin" messages).
+        const blackholeBuffer = new WritableStreamBuffer();
         // eslint-disable-next-line sonarjs/confidential-information-logging
-        const blackhole = new Signale({ stream: new WritableStreamBuffer() });
+        const blackhole = new Signale({ stream: blackholeBuffer as unknown as NodeJS.WriteStream });
 
-        // Return semantic-release's getConfig script.
-        return await semanticGetConfig({ cwd, env, logger: blackhole, stderr, stdout }, options);
+        return await semanticGetConfig({ cwd, env, logger: blackhole as unknown as Record<string, unknown>, stderr, stdout }, options);
     } catch (error: unknown) {
-        // Log error and rethrow it.
-        logger.failure(`Error in semantic-release getConfig(): %0`, error);
+        (logger as Logger).failure(`Error in semantic-release getConfig(): %0`, error);
 
         throw error;
     }

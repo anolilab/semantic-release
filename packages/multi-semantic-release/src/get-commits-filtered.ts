@@ -30,22 +30,18 @@ const getCommitsFiltered = async (
     nextRelease?: string,
     firstParentBranch?: string,
 ): Promise<Commit[]> => {
-    // Validate and normalize cwd (must be absolute directory)
     validate(cwd, "cwd: directory");
     // eslint-disable-next-line no-param-reassign
     cwd = cleanPath(cwd);
 
-    // Validate direction is a path, then clean it
     validate(direction, "dir: path");
     // eslint-disable-next-line no-param-reassign
     direction = cleanPath(direction, cwd);
 
-    // Validate cleaned direction is a directory
     if (!existsSync(direction) || !lstatSync(direction).isDirectory()) {
         throw new TypeError("dir: Must be a path to an existing directory");
     }
 
-    // Validate optional SHA parameters
     validate(lastRelease, "lastRelease: alphanumeric{40}?");
     validate(nextRelease, "nextRelease: alphanumeric{40}?");
 
@@ -73,7 +69,7 @@ const getCommitsFiltered = async (
     const gitLogFilterQuery = [...firstParentBranchFilter, range, "--", relpath];
     const stream = gitLogParser.parse({ _: gitLogFilterQuery }, { cwd: gitRoot, env: process.env });
 
-    const commits = await streamToArray(stream);
+    const commits = (await streamToArray(stream)) as Commit[];
 
     commits.forEach((commit: Commit) => {
         // eslint-disable-next-line no-param-reassign

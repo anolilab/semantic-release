@@ -14,15 +14,13 @@ type ReleaseResult
     = | {
         name: string;
         result: {
-            lastRelease:
-                | {
-                    channels?: string[];
-                    gitHead?: string;
-                    gitTag?: string;
-                    name?: string;
-                    version?: string;
-                }
-                | {};
+            lastRelease: {
+                channels?: string[];
+                gitHead?: string;
+                gitTag?: string;
+                name?: string;
+                version?: string;
+            };
             nextRelease?: {
                 gitHead: string;
                 gitTag: string;
@@ -450,7 +448,7 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease()
         // Doesn't include plugins that actually publish.
-        let result = await multiSemanticRelease(
+        await multiSemanticRelease(
             packages.map((folder) => `${folder}package.json`),
             {
                 branches: [{ name: "master", prerelease: "dev" }, { name: "release" }],
@@ -471,7 +469,7 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease() for a second release
         // Doesn't include plugins that actually publish.
-        result = await multiSemanticRelease(
+        const result = await multiSemanticRelease(
             packages.map((folder) => `${folder}package.json`),
             {
                 branches: [{ name: "master", prerelease: "dev" }, { name: "release" }],
@@ -545,7 +543,7 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease()
         // Doesn't include plugins that actually publish.
-        let result = await multiSemanticRelease(
+        await multiSemanticRelease(
             packages.map((folder) => `${folder}package.json`),
             {
                 branches: [{ name: "master" }, { name: "release" }],
@@ -567,7 +565,7 @@ describe("multiSemanticRelease()", () => {
         // Call multiSemanticRelease() for a second release
         // Doesn't include plugins that actually publish.
         // Change the master branch from release to prerelease to __tests__ bumping.
-        result = await multiSemanticRelease(
+        const result = await multiSemanticRelease(
             packages.map((folder) => `${folder}package.json`),
             {
                 branches: [{ channel: "beta", name: "master", prerelease: "beta" }, { name: "release" }],
@@ -647,7 +645,7 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease()
         // Doesn't include plugins that actually publish.
-        let result = await multiSemanticRelease(
+        await multiSemanticRelease(
             packages.map((folder) => `${folder}package.json`),
             {
                 branches: [{ name: "master", prerelease: "dev" }, { name: "release" }],
@@ -668,7 +666,7 @@ describe("multiSemanticRelease()", () => {
 
         // Call multiSemanticRelease() for a second release
         // Doesn't include plugins that actually publish.
-        result = await multiSemanticRelease(
+        const result = await multiSemanticRelease(
             packages.map((folder) => `${folder}package.json`),
             {
                 branches: [{ name: "master", prerelease: "dev" }, { name: "release" }],
@@ -860,7 +858,7 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("changes in some packages", async () => {
-        expect.assertions(36);
+        expect.assertions(37);
 
         // Create Git repo.
         const cwd = gitInit();
@@ -910,7 +908,7 @@ describe("multiSemanticRelease()", () => {
         expect(out).toMatch("Queued 4 packages! Starting release...");
         expect(out).toMatch("Created tag msr-test-a@1.1.0");
         expect(out).toMatch("Created tag msr-test-b@1.0.1");
-        // expect(out).toMatch("Created tag msr-test-c@1.0.1");
+        expect(out).toMatch("Created tag msr-test-c@1.0.1");
         expect(out).toMatch("There are no relevant changes, so no new version is released");
         expect(out).toMatch("Released 3 of 4 packages, semantically!");
 
@@ -927,9 +925,9 @@ describe("multiSemanticRelease()", () => {
             type: "minor",
             version: "1.1.0",
         });
+
         expect(result[0].result.nextRelease.notes).toMatch("# msr-test-a [1.1.0]");
         expect(result[0].result.nextRelease.notes).toMatch("### Features\n\n* **aaa:** Add missing text file");
-        // expect(result[3].result.nextRelease.notes).toMatch("### Dependencies\n\n* **msr-test-c:** upgraded to 1.0.1");
 
         // B.
         expect(result[2].name).toBe("msr-test-b");
@@ -1038,18 +1036,17 @@ describe("multiSemanticRelease()", () => {
                 plugins: [
                     {
                         // Ensure that msr-test-c is always ready before msr-test-d
-                        verify: (_, { lastRelease: { name } }) =>
-                            // eslint-disable-next-line compat/compat
-                            new Promise((resolve) => {
+                        verify: (_pluginOptions: Record<string, unknown>, { lastRelease: { name } }) =>
+                            new Promise<void>((_resolve) => {
                                 if (name.split("@")[0] === "msr-test-c") {
-                                    resolve();
+                                    _resolve();
                                 }
 
-                                setTimeout(resolve, 5000);
+                                setTimeout(_resolve, 5000);
                             }),
                     },
                     {
-                        prepare: (_, { lastRelease: { name } }) => {
+                        prepare: (_pluginOptions: Record<string, unknown>, { lastRelease: { name } }) => {
                             mockPrepare(name.split("@")[0]);
                         },
                     },
@@ -1372,7 +1369,7 @@ describe("multiSemanticRelease()", () => {
 
         const logOutput = gitGetLog(cwd, 3, "HEAD");
 
-        // eslint-disable-next-line regexp/no-super-linear-backtracking
+        // eslint-disable-next-line regexp/no-super-linear-backtracking, sonarjs/slow-regex
         expect(logOutput).not.toMatch(/.*aaa.*Add missing text file.*\n.*bbb.*Add missing text file.*/u);
     });
 
@@ -1693,14 +1690,10 @@ describe("multiSemanticRelease()", () => {
         expect(result[1]).toBeDefined();
 
         // Verify that package a was processed
-        if (result[0] && result[0] !== false) {
-            expect(result[0].name).toMatch(/msr-test-jsr-a/u);
-        }
+        expect(result[0].name).toMatch(/msr-test-jsr-a/u);
 
         // Verify that package b was processed
-        if (result[1] && result[1] !== false) {
-            expect(result[1].name).toMatch(/msr-test-jsr-b/u);
-        }
+        expect(result[1].name).toMatch(/msr-test-jsr-b/u);
 
         // Verify that JSR fixture is properly configured (no deno.json/jsr.json errors)
         const output = stdout.getContentsAsString("utf8") + stderr.getContentsAsString("utf8");

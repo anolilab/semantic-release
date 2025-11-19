@@ -50,17 +50,13 @@ const getPackage = async (
         stdout: NodeJS.WriteStream;
     },
 ): Promise<Package | undefined> => {
-    // Make path absolute.
     // eslint-disable-next-line no-param-reassign
     path = cleanPath(path, cwd);
 
     const directory = dirname(path);
-
-    // Get package.json file contents.
     const manifest = getManifest(path);
     const { name } = manifest;
 
-    // Combine list of all dependency names.
     const deps: string[] = Object.keys({
         ...manifest.dependencies,
         ...manifest.devDependencies,
@@ -68,21 +64,18 @@ const getPackage = async (
         ...manifest.optionalDependencies,
     });
 
-    // Load the package-specific options.
     const packageOptions = await getConfig(directory);
-
-    // The 'final options' are the global options merged with package-specific options.
-    // We merge this ourselves because package-specific options can override global options.
     const finalOptions: Record<string, unknown> = { ...globalOptions, ...packageOptions, ...inputOptions };
-
-    // Make a fake logger so semantic-release's get-config doesn't fail.
     const fakeLogger = { error() {}, log() {} };
 
-    // Use semantic-release's internal config with the final options (now we have the right `options.plugins` setting) to get the plugins object and the options including defaults.
-    // We need this so we can call e.g. plugins.analyzeCommit() to be able to affect the input and output of the whole set of plugins.
-    const { options, plugins } = await getConfigSemantic({ cwd: directory, env, stderr, stdout }, finalOptions);
+    const envRecord: Record<string, string> = Object.fromEntries(
+        Object.entries(env)
+            .filter(([, value]) => value !== undefined)
+            .map(([key, value]) => [key, String(value)]),
+    );
+    const { options, plugins } = await getConfigSemantic({ cwd: directory, env: envRecord, stderr, stdout }, finalOptions);
 
-    return { deps, dir: directory, fakeLogger, manifest, name, options, path, plugins } as Package;
+    return { deps, dir: directory, fakeLogger, localDeps: [], manifest, name, options, path, plugins } as Package;
 };
 
 /**
@@ -100,24 +93,12 @@ const releasePackage = async (
     multiContext: MultiContext,
     flags: Flags,
 ): Promise<Package> => {
-    // Vars.
     const { dir, name, options: packageOptions } = package_;
     const { env, stderr, stdout } = multiContext;
 
-    // Make an 'inline plugin' for this package.
-    // The inline plugin is the only plugin we call semanticRelease() with.
-    // The inline plugin functions then call e.g. plugins.analyzeCommits() manually and sometimes manipulate the responses.
     const inlinePlugin = createInlinePlugin(package_);
-
-    // Set the options that we call semanticRelease() with.
-    // This consists of:
-    // - The global options (e.g. from the top level package.json)
-    // - The package options (e.g. from the specific package's package.json)
     const options: Options = { ...packageOptions, ...inlinePlugin };
 
-    // Add the package name into tagFormat.
-    // Thought about doing a single release for the tag (merging several packages), but it's impossible to prevent Github releasing while allowing NPM to continue.
-    // It'd also be difficult to merge all the assets into one release without full editing/overriding the plugins.
     const tagFormatContext = {
         name,
         // eslint-disable-next-line no-template-curly-in-string
@@ -128,29 +109,21 @@ const releasePackage = async (
     const tagFormatDefault = "${name}@${version}";
 
     options.tagFormat = template(flags.tagFormat || tagFormatDefault)(tagFormatContext);
-
-    // These are the only two options that MSR shares with semrel
-    // Set them manually for now, defaulting to the msr versions
-    // This is approach can be reviewed if there's ever more crossover.
-    // - debug is only supported in semrel as a CLI arg, always default to MSR
     options.debug = flags.debug;
-    // - dryRun should use the msr version if specified, otherwise fallback to semrel
     options.dryRun = flags.dryRun === undefined ? options.dryRun : flags.dryRun;
     options.ci = flags.ci === undefined ? options.ci : flags.ci;
     options.branches = flags.branches ? castArray(flags.branches) : options.branches;
-
-    // This options are needed for plugins that do not rely on `pluginOptions` and extract them independently.
     options._pkgOptions = packageOptions;
 
     // Call semanticRelease() on the directory and save result to pkg.
     // Don't need to log out errors as semantic-release already does that.
     // eslint-disable-next-line no-param-reassign
-    package_.result = await semanticRelease(options, {
+    package_.result = (await semanticRelease(options, {
         cwd: dir,
         env,
-        stderr: new RescopedStream(stderr, name),
-        stdout: new RescopedStream(stdout, name),
-    });
+        stderr: new RescopedStream(stderr, name) as unknown as NodeJS.WriteStream,
+        stdout: new RescopedStream(stdout, name) as unknown as NodeJS.WriteStream,
+    })) as Package["result"];
 
     return package_;
 };
@@ -229,7 +202,6 @@ const multiSemanticRelease = async (
         ...flags,
     };
 
-    // Setup logger.
     logger.config.stdio = [stderr, stdout];
     logger.config.level = mergedFlags.logLevel as string;
 
@@ -241,47 +213,47 @@ const multiSemanticRelease = async (
         logger.config.level = "debug";
     }
 
-    logger.info(`multi-semantic-release version: ${multisemrelPackageJson.version}`);
-    logger.info(`semantic-release version: ${semrelPkgJson.version}`);
+    (logger as { info: (...args: unknown[]) => void }).info(`multi-semantic-release version: ${multisemrelPackageJson.version}`);
+    (logger as { info: (...args: unknown[]) => void }).info(`semantic-release version: ${semrelPkgJson.version}`);
 
     if (mergedFlags.debug) {
-        logger.info(`flags: ${JSON.stringify(mergedFlags, null, 2)}`);
+        (logger as { info: (...args: unknown[]) => void }).info(`flags: ${JSON.stringify(mergedFlags, null, 2)}`);
     }
 
-    // Vars.
     const globalOptions: GlobalOptions = await getConfig(cwd);
-    const multiContext: MultiContext = { cwd, env: environment, globalOptions, inputOptions, stderr, stdout };
+    const multiContext: MultiContext = { cwd, env: environment as NodeJS.ProcessEnv, globalOptions, inputOptions, stderr, stdout };
     const { packages: allPackages, queue } = await topo({
         cwd,
-        filter: ({ manifest, manifestAbsPath, manifestRelPath }: { manifest: { private?: boolean }; manifestAbsPath: string; manifestRelPath: string }) =>
-            (!mergedFlags.ignorePrivate || !manifest.private) && (paths ? paths.includes(manifestAbsPath) || paths.includes(manifestRelPath) : true),
+        filter: ((entry: { manifest: { private?: boolean }; manifestAbsPath: string; manifestRelPath: string }) => {
+            const manifest = entry.manifest as { private?: boolean };
+
+            return (
+                (!mergedFlags.ignorePrivate || !manifest.private)
+                && (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
+            );
+        }) as (entry: unknown) => boolean,
         workspacesExtra: Array.isArray(mergedFlags.ignorePackages) ? mergedFlags.ignorePackages.map((p: string) => `!${p}`) : [],
     });
 
-    // Get list of package.json paths according to workspaces.
     // eslint-disable-next-line no-param-reassign
     paths = paths || Object.values(allPackages).map((pkg: { manifestPath: string }) => pkg.manifestPath);
 
-    // Start.
-    logger.complete(`Started multirelease! Loading ${paths.length} packages...`);
+    (logger as { complete: (...args: unknown[]) => void }).complete(`Started multirelease! Loading ${paths.length} packages...`);
 
-    // Load packages from paths.
-    const packages: Package[] = await Promise.all(paths.map((path: string) => getPackage(path, multiContext)));
+    let packages: Package[] = (await Promise.all(paths.map((path: string) => getPackage(path, multiContext)))) as Package[];
+
+    packages = packages.filter((pkg): pkg is Package => pkg !== undefined) as Package[];
 
     packages.forEach((package_: Package) => {
-        // Once we load all the packages we can find their cross refs
-        // Make a list of local dependencies.
-        // Map dependency names (e.g. my-awesome-dep) to their actual package objects in the packages array.
         // eslint-disable-next-line no-param-reassign
         package_.localDeps = [...new Set(package_.deps.map((d: string) => packages.find((p: Package) => d === p.name)).filter(Boolean))] as Package[];
 
-        logger.success(`Loaded package ${package_.name}`);
+        (logger as { success: (...args: unknown[]) => void }).success(`Loaded package ${package_.name}`);
     });
 
-    logger.complete(`Queued ${queue.length} packages! Starting release...`);
+    (logger as { complete: (...args: unknown[]) => void }).complete(`Queued ${queue.length} packages! Starting release...`);
 
-    // Release all packages.
-    const createInlinePlugin = createInlinePluginCreator(packages, multiContext, mergedFlags);
+    const createInlinePlugin = createInlinePluginCreator(packages, multiContext, mergedFlags) as (package_: Package) => Record<string, unknown>;
     // eslint-disable-next-line unicorn/no-array-reduce
     const released: number = await queue.reduce(async (previousCount: Promise<number>, packageName: string) => {
         const count = await previousCount;
@@ -298,7 +270,7 @@ const multiSemanticRelease = async (
         return count;
     }, Promise.resolve(0));
 
-    logger.complete(`Released ${released} of ${queue.length} packages, semantically!`);
+    (logger as { complete: (...args: unknown[]) => void }).complete(`Released ${released} of ${queue.length} packages, semantically!`);
 
     return sortBy(packages, ({ name }: Package) => queue.indexOf(name));
 };

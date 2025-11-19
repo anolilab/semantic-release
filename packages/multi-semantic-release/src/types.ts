@@ -73,11 +73,12 @@ export interface ReleaseResult {
 
 // Plugin functions interface (matches semantic-release plugin structure)
 export interface PluginFunctions {
-    analyzeCommits?: (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext) => Promise<string | null | undefined>;
-    generateNotes?: (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext) => Promise<string>;
-    prepare?: (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext) => Promise<void>;
-    publish?: (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext) => Promise<unknown>;
-    verifyConditions?: (pluginOptions: Record<string, unknown>, context: SemanticReleaseContext) => Promise<void>;
+    analyzeCommits?: (context: SemanticReleaseContext) => Promise<string | null | undefined>;
+    generateNotes?: (context: SemanticReleaseContext) => Promise<string>;
+    prepare?: (context: SemanticReleaseContext) => Promise<void>;
+    publish?: (context: SemanticReleaseContext) => Promise<unknown>;
+    verifyConditions?: (context: SemanticReleaseContext) => Promise<void>;
+    verifyRelease?: (context: SemanticReleaseContext) => Promise<void>;
 }
 
 // Semantic Release context
