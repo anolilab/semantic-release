@@ -160,7 +160,7 @@ const createInlinePluginCreator = (packages: Package[], multiContext: MultiConte
                 && context.lastRelease.gitTag
                 && (!context.lastRelease.gitHead || context.lastRelease.gitHead === context.lastRelease.gitTag)
             ) {
-                context.lastRelease.gitHead = getTagHead(context.lastRelease.gitTag, {
+                context.lastRelease.gitHead = await getTagHead(context.lastRelease.gitTag, {
                     cwd: context.cwd,
                     env: context.env,
                 });
