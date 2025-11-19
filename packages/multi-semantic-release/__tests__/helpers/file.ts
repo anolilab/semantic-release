@@ -8,8 +8,7 @@ import { join } from "node:path";
  */
 export const isDirectory = (path: string): boolean =>
     // String path that exists and is a directory.
-    typeof path === "string" && existsSync(path) && lstatSync(path).isDirectory()
-;
+    typeof path === "string" && existsSync(path) && lstatSync(path).isDirectory();
 
 // Deep copy a directory.
 

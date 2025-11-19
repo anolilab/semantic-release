@@ -15,7 +15,7 @@ const exchangeIdToken = async (idToken: string, packageName: string, logger: { l
         headers: { Authorization: `Bearer ${idToken}` },
         method: "POST",
     });
-    const responseBody = (await response.json()) as { token: string, message: string };
+    const responseBody = (await response.json()) as { message: string; token: string };
 
     if (response.ok) {
         logger.log("OIDC token exchange with the npm registry succeeded");

@@ -59,7 +59,7 @@ describe(verifyAuth, () => {
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
 
-    it.skip("should perform dry-run publish for custom registries", async () => {
+    it("should perform dry-run publish for custom registries", async () => {
         expect.assertions(3);
 
         const customRegistry = "https://custom.registry.org/";
@@ -86,7 +86,7 @@ describe(verifyAuth, () => {
         );
     });
 
-    it.skip("should perform dry-run publish for custom registries from a sub-directory", async () => {
+    it("should perform dry-run publish for custom registries from a sub-directory", async () => {
         expect.assertions(3);
 
         const customRegistry = "https://custom.registry.org/";
@@ -114,7 +114,7 @@ describe(verifyAuth, () => {
         );
     });
 
-    it.skip("should throw error when dry-run publish fails with auth error for custom registry", async () => {
+    it("should throw error when dry-run publish fails with auth error for custom registry", async () => {
         expect.assertions(3);
 
         const customRegistry = "https://custom.registry.org/";

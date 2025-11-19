@@ -117,7 +117,7 @@ describe("semantic-release-integration", () => {
         ).resolves.not.toThrow();
     });
 
-    it.skip("should throw error if NPM token is invalid when targeting the default registry", async () => {
+    it("should throw error if NPM token is invalid when targeting the default registry", async () => {
         expect.assertions(3);
 
         await writeJson(join(cwd, "package.json"), {
@@ -143,8 +143,8 @@ describe("semantic-release-integration", () => {
         ).rejects.toThrow("Invalid npm authentication");
     });
 
-    it.skip("should throw error if NPM token is not provided when targeting the default registry", async () => {
-        expect.assertions(3);
+    it("should throw error if NPM token is not provided when targeting the default registry", async () => {
+        expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
             name: "published",

@@ -77,7 +77,6 @@
         "semver": "catalog:utils"
     },
     "devDependencies": {
-        "@types/env-ci": "3.1.4",
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
         "@arethetypeswrong/cli": "catalog:dev",
@@ -89,6 +88,7 @@
         "@semantic-release/github": "catalog:cli",
         "@semantic-release/release-notes-generator": "catalog:cli",
         "@types/dockerode": "catalog:types",
+        "@types/env-ci": "3.1.4",
         "@types/ini": "catalog:types",
         "@types/node": "catalog:types",
         "@types/semantic-release__error": "catalog:types",
