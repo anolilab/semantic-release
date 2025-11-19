@@ -18,7 +18,7 @@ const readManifest = (path: string): string => {
     try {
         stat = lstatSync(path);
     } catch {
-         (hard to __tests__ — happens if no read access etc).
+        // Hard to test — happens if no read access etc.
         throw new ReferenceError(`package.json cannot be read: "${path}"`);
     }
 
@@ -29,7 +29,7 @@ const readManifest = (path: string): string => {
     try {
         return readFileSync(path, "utf8");
     } catch {
-         (hard to __tests__ — happens if no read access etc).
+        // Hard to test — happens if no read access etc.
         throw new ReferenceError(`package.json cannot be read: "${path}"`);
     }
 };

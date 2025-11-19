@@ -40,9 +40,12 @@ const addChannel = async (pluginConfig: PluginConfig, packageJson: PackageJson, 
 
         const npmrc = getNpmrcPath(cwd, env);
 
-        const result = execa("pnpm", ["dist-tag", "add", `${packageJson.name}@${version}`, distributionTag, "--userconfig", npmrc, "--registry", registry], {
+        const result = execa("pnpm", ["dist-tag", "add", `${packageJson.name}@${version}`, distributionTag, "--registry", registry], {
             cwd,
-            env,
+            env: {
+                ...env,
+                NPM_CONFIG_USERCONFIG: npmrc,
+            },
             preferLocal: true,
         });
 

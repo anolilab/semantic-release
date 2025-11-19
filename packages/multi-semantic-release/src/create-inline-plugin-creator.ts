@@ -1,4 +1,5 @@
 /* eslint-disable jsdoc/match-description */
+import { execa } from "execa";
 import { getTagHead } from "semantic-release/lib/git.js";
 import type { ReleaseType } from "semver";
 
@@ -6,6 +7,7 @@ import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
 import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
 import { resolveReleaseType, updateManifestDeps } from "./update-deps";
+import cleanPath from "./utils/clean-path";
 import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./utils/detect-catalog-changes";
 
 const { debug } = logger.withScope("msr:inlinePlugin");
@@ -226,8 +228,12 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 && context.lastRelease.gitTag
                 && (!context.lastRelease.gitHead || context.lastRelease.gitHead === context.lastRelease.gitTag)
             ) {
+                // Get repository root to ensure consistent tag lookup
+                const root = await execa("git", ["rev-parse", "--show-toplevel"], { cwd: context.cwd });
+                const gitRoot = cleanPath(root.stdout);
+
                 context.lastRelease.gitHead = await getTagHead(context.lastRelease.gitTag as string, {
-                    cwd: context.cwd,
+                    cwd: gitRoot,
                     env: context.env,
                 });
             }
@@ -356,7 +362,6 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
             debug(debugPrefix, "published");
 
-            
             return result.length > 0 ? result[0] : {};
         };
 

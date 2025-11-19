@@ -40,7 +40,7 @@ const isConnectionError = (error: any): boolean => {
 const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string, context: CommonContext): Promise<void> => {
     const {
         cwd,
-        env: { ...environment },
+        env,
         logger,
         stderr,
         stdout,
@@ -52,7 +52,7 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
         const whoamiResult = await execa("pnpm", ["whoami", "--registry", registry], {
             cwd,
             env: {
-                ...environment,
+                ...env,
                 NPM_CONFIG_USERCONFIG: npmrc,
             },
             preferLocal: true,
@@ -141,7 +141,7 @@ const handlePublishError = (error: unknown, registry: string): never => {
 const verifyAuthContextAgainstCustomRegistry = async (npmrc: string, registry: string, context: CommonContext, pkgRoot = "."): Promise<void> => {
     const {
         cwd,
-        env: { ...environment },
+        env,
         logger,
         stderr,
         stdout,
@@ -150,12 +150,11 @@ const verifyAuthContextAgainstCustomRegistry = async (npmrc: string, registry: s
     try {
         logger.log(`Running "pnpm publish --dry-run" to verify authentication on registry "${registry}"`);
 
-        // pnpm doesn't support --userconfig, use NPM_CONFIG_USERCONFIG env var instead
         const publishArgs = ["publish", pkgRoot, "--dry-run", "--tag=semantic-release-auth-check", "--registry", registry];
         const publishOptions = {
             cwd,
             env: {
-                ...environment,
+                ...env,
                 NPM_CONFIG_USERCONFIG: npmrc,
             },
             preferLocal: true,
