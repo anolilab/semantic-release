@@ -1,7 +1,7 @@
 import dbg from "debug";
-import singnale from "signale";
+import signale from "signale";
 
-const { Signale } = singnale;
+const { Signale } = signale;
 
 const severityOrder = ["error", "warn", "info", "debug", "trace"] as const;
 

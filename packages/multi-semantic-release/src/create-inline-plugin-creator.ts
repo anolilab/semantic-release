@@ -296,7 +296,9 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             if (plugins.publish) {
                 const publishResult = await plugins.publish?.(context);
 
-                result = Array.isArray(publishResult) ? publishResult : [publishResult];
+                if (publishResult !== undefined) {
+                    result = Array.isArray(publishResult) ? publishResult : [publishResult];
+                }
             }
 
             // eslint-disable-next-line no-param-reassign

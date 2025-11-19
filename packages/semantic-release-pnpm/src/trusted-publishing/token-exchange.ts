@@ -1,3 +1,4 @@
+import type { KnownCiEnv } from "env-ci";
 import envCi from "env-ci";
 
 import { GITHUB_ACTIONS_PROVIDER_NAME, GITLAB_PIPELINES_PROVIDER_NAME, OFFICIAL_REGISTRY } from "../definitions/constants";
@@ -53,6 +54,9 @@ const exchangeGithubActionsToken = async (packageName: string, logger: { log: (m
     }
 
     if (!idToken) {
+        logger.log("NPM_ID_TOKEN environment variable is not set");
+        logger.log("Configure trusted publishing in your GitLab project settings and set the NPM_ID_TOKEN variable");
+
         return undefined;
     }
 
@@ -67,6 +71,7 @@ const exchangeGithubActionsToken = async (packageName: string, logger: { log: (m
  * @returns A promise that resolves to the npm token or undefined if exchange fails.
  */
 const exchangeGitlabPipelinesToken = async (packageName: string, logger: { log: (message: string) => void }): Promise<string | undefined> => {
+    // NPM_ID_TOKEN should be set in GitLab CI/CD variables with the OIDC token
     const idToken = process.env.NPM_ID_TOKEN;
 
     logger.log("Verifying OIDC context for publishing from GitLab Pipelines");
@@ -88,7 +93,21 @@ const exchangeGitlabPipelinesToken = async (packageName: string, logger: { log: 
  * @returns A promise that resolves to the npm token or undefined if no supported CI provider is detected.
  */
 const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (message: string) => void } }): Promise<string | undefined> => {
-    const { name: ciProviderName } = envCi() as { name: string };
+    if (!pkg.name || typeof pkg.name !== "string" || pkg.name.trim() === "") {
+        logger.log("Invalid package name provided for OIDC token exchange");
+
+        return Promise.resolve(undefined);
+    }
+
+    const ciEnv = envCi();
+    const ciProviderName: string | undefined
+        = typeof ciEnv === "object" && ciEnv !== null && typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
+
+    if (!ciProviderName) {
+        logger.log("Unable to detect CI provider for OIDC token exchange");
+
+        return Promise.resolve(undefined);
+    }
 
     if (GITHUB_ACTIONS_PROVIDER_NAME === ciProviderName) {
         return exchangeGithubActionsToken(pkg.name, logger);

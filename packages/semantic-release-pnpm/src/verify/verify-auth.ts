@@ -10,6 +10,28 @@ import getRegistry from "../utils/get-registry";
 import setNpmrcAuth from "../utils/set-npmrc-auth";
 
 /**
+ * Check if an error indicates a connection or timeout issue.
+ * @param error The error to check.
+ * @returns True if the error is a connection/timeout error.
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isConnectionError = (error: any): boolean => {
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    const errorCode = (error as { code?: string })?.code || "";
+    const isTimedOut = (error as { timedOut?: boolean })?.timedOut === true;
+
+    return (
+        isTimedOut
+        || errorCode === "ECONNREFUSED"
+        || errorCode === "ETIMEDOUT"
+        || errorMessage.includes("ECONNREFUSED")
+        || errorMessage.includes("ETIMEDOUT")
+        || errorMessage.includes("getaddrinfo ENOTFOUND")
+        || errorMessage.includes("timed out")
+    );
+};
+
+/**
  * Verify authentication context against the official npm registry using pnpm whoami.
  * @param npmrc Path to the .npmrc file.
  * @param registry The registry URL.
@@ -45,32 +67,20 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
         if (whoamiResult.stderr) {
             stderr.write(whoamiResult.stderr);
         }
-    } catch {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+        // Check for connection errors (registry not available)
+        if (isConnectionError(error)) {
+            const semanticError = getError("EINVALIDNPMAUTH", { registry });
+
+            throw new AggregateError([semanticError], semanticError.message);
+        }
+
+        // Treat other whoami failures as invalid token
         const semanticError = getError("EINVALIDNPMTOKEN", { registry });
 
         throw new AggregateError([semanticError], semanticError.message);
     }
-};
-
-/**
- * Check if an error indicates a connection or timeout issue.
- * @param error The error to check.
- * @returns True if the error is a connection/timeout error.
- */
-const isConnectionError = (error: unknown): boolean => {
-    const errorMessage = error instanceof Error ? error.message : String(error);
-    const errorCode = (error as { code?: string })?.code || "";
-    const isTimedOut = (error as { timedOut?: boolean })?.timedOut === true;
-
-    return (
-        isTimedOut
-        || errorCode === "ECONNREFUSED"
-        || errorCode === "ETIMEDOUT"
-        || errorMessage.includes("ECONNREFUSED")
-        || errorMessage.includes("ETIMEDOUT")
-        || errorMessage.includes("getaddrinfo ENOTFOUND")
-        || errorMessage.includes("timed out")
-    );
 };
 
 /**

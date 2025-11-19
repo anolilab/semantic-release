@@ -72,7 +72,7 @@
         "env-ci": "catalog:prod",
         "execa": "catalog:node",
         "ini": "catalog:prod",
-        "normalize-url": "catalog:database",
+        "normalize-url": "catalog:prod",
         "registry-auth-token": "catalog:prod",
         "semver": "catalog:utils"
     },
@@ -88,7 +88,7 @@
         "@semantic-release/github": "catalog:cli",
         "@semantic-release/release-notes-generator": "catalog:cli",
         "@types/dockerode": "catalog:types",
-        "@types/env-ci": "3.1.4",
+        "@types/env-ci": "catalog:types",
         "@types/ini": "catalog:types",
         "@types/node": "catalog:types",
         "@types/semantic-release__error": "catalog:types",

@@ -1,4 +1,4 @@
-import { isAbsolute, join, normalize } from "node:path";
+import { isAbsolute, join, normalize, parse } from "node:path";
 
 import { validate } from "./validate";
 
@@ -14,8 +14,16 @@ const cleanPath = (path: string, cwd: string = process.cwd()): string => {
     validate(path, "path: path");
     validate(cwd, "cwd: absolute");
 
-    // eslint-disable-next-line sonarjs/slow-regex
-    return normalize(isAbsolute(path) ? path : join(cwd, path)).replace(/[/\\]+$/u, "");
+    const normalized = normalize(isAbsolute(path) ? path : join(cwd, path));
+    const { root } = parse(normalized);
+
+    let end = normalized.length;
+
+    while (end > root.length && (normalized[end - 1] === "/" || normalized[end - 1] === "\\")) {
+        end -= 1;
+    }
+
+    return end === normalized.length ? normalized : normalized.slice(0, end);
 };
 
 export default cleanPath;
