@@ -22,10 +22,10 @@ const CONFIG_FILES = [
  * @internal
  */
 const getConfig = async (cwd: string): Promise<Record<string, unknown>> => {
-      const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
+    const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
 
-      // Not important
-      return config?.config ?? {};
+    // Not important
+    return config?.config ?? {};
 };
 
 export default getConfig;

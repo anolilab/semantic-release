@@ -38,13 +38,7 @@ const isConnectionError = (error: any): boolean => {
  * @param context The semantic-release context.
  */
 const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string, context: CommonContext): Promise<void> => {
-    const {
-        cwd,
-        env,
-        logger,
-        stderr,
-        stdout,
-    } = context;
+    const { cwd, env, logger, stderr, stdout } = context;
 
     try {
         logger.log(`Running "pnpm whoami" to verify authentication on registry "${registry}"`);
@@ -139,13 +133,7 @@ const handlePublishError = (error: unknown, registry: string): never => {
  * @param pkgRoot Optional package root directory for dry-run publishing.
  */
 const verifyAuthContextAgainstCustomRegistry = async (npmrc: string, registry: string, context: CommonContext, pkgRoot = "."): Promise<void> => {
-    const {
-        cwd,
-        env,
-        logger,
-        stderr,
-        stdout,
-    } = context;
+    const { cwd, env, logger, stderr, stdout } = context;
 
     try {
         logger.log(`Running "pnpm publish --dry-run" to verify authentication on registry "${registry}"`);
