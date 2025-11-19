@@ -61,11 +61,6 @@ jobs:
                     - "ubuntu-latest"
                 node_version: ["22", "24", "25"]
                 semantic_release_version: ["^24", "^25"]
-                # On the other platforms, we only test the lts node version
-                include:
-                    - os: "macos-latest"
-                      node_version: "24"
-                      semantic_release_version: "^25"
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
@@ -122,10 +117,6 @@ jobs:
                 os:
                     - "ubuntu-latest"
                 node_version: ["22", "24", "25"]
-                # On the other platforms, we only test the lts node version
-                include:
-                    - os: "macos-latest"
-                      node_version: "24"
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
