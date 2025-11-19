@@ -252,7 +252,6 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 subs = await plugins.generateNotes(context);
             }
 
-            // istanbul ignore else (unnecessary to __tests__)
             if (subs) {
                 notes.push(subs.replace(/^(#+) (\[?\d+\.\d+\.\d+\]?)/u, `$1 ${name} $2`));
             }
@@ -357,7 +356,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
             debug(debugPrefix, "published");
 
-            // istanbul ignore next
+            
             return result.length > 0 ? result[0] : {};
         };
 

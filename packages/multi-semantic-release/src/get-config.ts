@@ -24,7 +24,7 @@ const CONFIG_FILES = [
 const getConfig = async (cwd: string): Promise<Record<string, unknown>> => {
     const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
 
-    // istanbul ignore next (not important).
+     (not important).
     return config?.config ?? {};
 };
 
