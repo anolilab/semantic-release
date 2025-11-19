@@ -1703,4 +1703,155 @@ describe("multiSemanticRelease()", () => {
         // Verify no actual publishing occurred (dry-run was used)
         expect(output).toMatch(/dry.?run/iu);
     }, 30_000);
+
+    describe("catalog change detection", () => {
+        it("should trigger release when catalog version changes", async () => {
+            expect.assertions(10);
+
+            // Create Git repo with copy of pnpm workspace catalogs fixture.
+            const cwd = gitInit();
+
+            copyDirectory(`${fixturesPath}/pnpmWorkspaceCatalogs/`, cwd);
+
+            const initialSha = gitCommitAll(cwd, "feat: Initial release with catalogs");
+
+            gitInitOrigin(cwd);
+            gitPush(cwd);
+
+            // Create tags for initial release
+            gitTag(cwd, "msr-test-a@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-b@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-c@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-d@1.0.0", initialSha);
+            gitPush(cwd);
+
+            // Update catalog versions (major change)
+            const catalogPath = resolve(cwd, "pnpm-workspace.yaml");
+
+            writeFileSync(
+                catalogPath,
+                `packages:
+    - "packages/*"
+
+catalogs:
+    cli:
+        semantic-release: ^25.0.0
+        "@semantic-release/changelog": ^6.0.0
+    dev:
+        typescript: ^5.1.0
+        eslint: ^9.0.0
+    prod:
+        lodash-es: ^4.17.1
+`,
+            );
+
+            // Commit catalog changes (no commits in package directories)
+            gitCommitAll(cwd, "chore: update catalog versions");
+
+            // Capture output.
+            const stdout = new WritableStreamBuffer();
+            const stderr = new WritableStreamBuffer();
+
+            // Call multiSemanticRelease()
+            const result = await multiSemanticRelease(
+                [`packages/a/package.json`, `packages/b/package.json`, `packages/c/package.json`, `packages/d/package.json`],
+                {},
+                { cwd, env: environment, stderr, stdout },
+                { deps: { bump: "override", release: "patch" } },
+            );
+
+            // Package a uses semantic-release (major) and lodash-es (patch) from catalogs
+            // Should trigger major release due to semantic-release change
+            const packageA = result.find((p) => p.name === "msr-test-a");
+
+            expect(packageA?.result).toBeDefined();
+            expect(packageA?.result).not.toBe(false);
+            expect(packageA?.result?.nextRelease?.version).toBe("2.0.0");
+
+            // Package b uses @semantic-release/changelog (major) from catalog
+            // Should trigger major release
+            const packageB = result.find((p) => p.name === "msr-test-b");
+
+            expect(packageB?.result).toBeDefined();
+            expect(packageB?.result).not.toBe(false);
+            expect(packageB?.result?.nextRelease?.version).toBe("2.0.0");
+
+            // Package c uses lodash-es (patch) from catalog
+            // Should trigger patch release
+            const packageC = result.find((p) => p.name === "msr-test-c");
+
+            expect(packageC?.result).toBeDefined();
+            expect(packageC?.result).not.toBe(false);
+            expect(packageC?.result?.nextRelease?.version).toBe("1.0.1");
+
+            // Package d doesn't use any catalogs, should not release
+            const packageD = result.find((p) => p.name === "msr-test-d");
+
+            expect(packageD?.result).toBe(false);
+        });
+
+        it("should combine catalog changes with commit-based releases", async () => {
+            expect.assertions(4);
+
+            // Create Git repo with copy of pnpm workspace catalogs fixture.
+            const cwd = gitInit();
+
+            copyDirectory(`${fixturesPath}/pnpmWorkspaceCatalogs/`, cwd);
+
+            const initialSha = gitCommitAll(cwd, "feat: Initial release with catalogs");
+
+            gitInitOrigin(cwd);
+            gitPush(cwd);
+
+            // Create tags for initial release
+            gitTag(cwd, "msr-test-a@1.0.0", initialSha);
+
+            // Update catalog version (minor change)
+            const catalogPath = resolve(cwd, "pnpm-workspace.yaml");
+
+            writeFileSync(
+                catalogPath,
+                `packages:
+    - "packages/*"
+
+catalogs:
+    cli:
+        semantic-release: ^24.1.0
+        "@semantic-release/changelog": ^5.0.0
+    dev:
+        typescript: ^5.0.0
+        eslint: ^8.0.0
+    prod:
+        lodash-es: ^4.17.0
+`,
+            );
+
+            gitCommitAll(cwd, "chore: update catalog versions");
+
+            // Also add a commit in package a directory (minor change)
+            writeFileSync(resolve(cwd, "packages/a/test.txt"), "test");
+
+            gitCommitAll(cwd, "feat: add new feature");
+
+            // Capture output.
+            const stdout = new WritableStreamBuffer();
+            const stderr = new WritableStreamBuffer();
+
+            // Call multiSemanticRelease()
+            const result = await multiSemanticRelease(
+                [`packages/a/package.json`],
+                {},
+                { cwd, env: environment, stderr, stdout },
+                { deps: { bump: "override", release: "patch" } },
+            );
+
+            const packageA = result.find((p) => p.name === "msr-test-a");
+
+            expect(packageA?.result).toBeDefined();
+            expect(packageA?.result).not.toBe(false);
+            // Should use minor from commit (higher than patch from catalog)
+            expect(packageA?.result?.nextRelease?.version).toBe("1.1.0");
+            expect(packageA?.result?.nextRelease?.type).toBe("minor");
+        });
+    });
 });

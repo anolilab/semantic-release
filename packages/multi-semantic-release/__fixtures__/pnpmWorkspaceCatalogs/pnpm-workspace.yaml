@@ -1,0 +1,13 @@
+packages:
+    - "packages/*"
+
+catalogs:
+    cli:
+        semantic-release: ^24.0.0
+        "@semantic-release/changelog": ^5.0.0
+    dev:
+        typescript: ^5.0.0
+        eslint: ^8.0.0
+    prod:
+        lodash-es: ^4.17.0
+

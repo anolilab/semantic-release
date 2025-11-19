@@ -44,6 +44,7 @@ written into `package.json` at release time. This means there's no need to hard-
 - Supports npm (v7+), yarn, pnpm, bolt-based monorepos
 - Optional packages ignoring
 - Linux/MacOs/Windows support
+- **Automatic catalog change detection** - Automatically triggers releases when pnpm or Yarn catalog versions change
 
 ## Install
 
@@ -107,6 +108,35 @@ packages:
     - "!packages/b/**"
     - "!packages/c/**"
 ```
+
+#### Catalog Change Detection (pnpm)
+
+Multi-semantic-release automatically detects changes in pnpm catalogs defined in `pnpm-workspace.yaml` and triggers releases for packages that use those catalogs. When a catalog version changes, the release type (major/minor/patch) is determined by comparing the old and new versions using semantic versioning.
+
+Example `pnpm-workspace.yaml` with catalogs:
+
+```yaml
+packages:
+    - "packages/*"
+
+catalogs:
+    cli:
+        semantic-release: ^25.0.0
+        "@semantic-release/changelog": ^6.0.0
+    dev:
+        typescript: ^5.1.0
+        eslint: ^9.0.0
+    prod:
+        lodash-es: ^4.17.1
+```
+
+When you update a catalog version (e.g., `lodash-es: ^4.17.0` → `^4.17.1`), any package using `catalog:prod` for `lodash-es` will automatically get a patch release. The release type is determined by the version change:
+
+- **Major change** (e.g., `^1.0.0` → `^2.0.0`) triggers a major release
+- **Minor change** (e.g., `^1.0.0` → `^1.1.0`) triggers a minor release
+- **Patch change** (e.g., `^1.0.0` → `^1.0.1`) triggers a patch release
+
+Catalog changes are combined with commit-based releases - if both trigger a release, the highest severity is used.
 
 ### bolt
 

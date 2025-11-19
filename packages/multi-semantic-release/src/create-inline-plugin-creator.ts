@@ -6,6 +6,7 @@ import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
 import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
 import { resolveReleaseType, updateManifestDeps } from "./update-deps";
+import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./utils/detect-catalog-changes";
 
 const { debug } = logger.withScope("msr:inlinePlugin");
 
@@ -29,6 +30,9 @@ interface InlinePluginFunctions {
  */
 const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): (npmPackage: Package) => InlinePluginFunctions => {
     const { cwd } = multiContext;
+    // Cache catalog changes detection - only run once per multirelease
+    let catalogChangesCache: Map<string, "major" | "minor" | "patch"> | null = null;
+    let catalogChangesDetected = false;
 
     const createInlinePlugin = (npmPackage: Package): InlinePluginFunctions => {
         const { dir, name, plugins } = npmPackage;
@@ -73,6 +77,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @returns Promise that resolves when done.
          * @internal
          */
+        // eslint-disable-next-line sonarjs/cognitive-complexity
         const analyzeCommits = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<string | null> => {
             if (!context.branch) {
                 throw new Error("context.branch is required");
@@ -105,10 +110,56 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             // eslint-disable-next-line no-param-reassign
             npmPackage._lastRelease = context.lastRelease;
 
+            // Detect catalog changes (only once per multirelease)
+            if (!catalogChangesDetected && context.lastRelease?.gitHead) {
+                try {
+                    const catalogChanges = await detectCatalogChanges(
+                        cwd,
+                        context.lastRelease.gitHead as string,
+                        context.nextRelease?.gitHead as string | undefined,
+                    );
+
+                    if (Object.keys(catalogChanges).length > 0) {
+                        catalogChangesCache = getAffectedPackagesFromCatalogChanges(_packages, catalogChanges);
+                        catalogChangesDetected = true;
+
+                        debug(debugPrefix, `Detected catalog changes affecting ${catalogChangesCache.size} packages`);
+                    } else {
+                        catalogChangesDetected = true; // Mark as checked even if no changes
+                    }
+                } catch (error) {
+                    debug(debugPrefix, "Failed to detect catalog changes:", error);
+                    catalogChangesDetected = true; // Mark as checked to avoid repeated failures
+                }
+            }
+
+            // Check if this package is affected by catalog changes
+            let catalogTriggeredReleaseType: string | null = null;
+
+            if (catalogChangesCache && catalogChangesCache.has(npmPackage.name)) {
+                catalogTriggeredReleaseType = catalogChangesCache.get(npmPackage.name);
+
+                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType} release`);
+            }
+
             let nextType: string | null | undefined = null;
 
             if (plugins.analyzeCommits) {
                 nextType = await plugins.analyzeCommits(context);
+            }
+
+            // If catalog changes triggered a release and no commits triggered one, use catalog release type
+            if (!nextType && catalogTriggeredReleaseType) {
+                nextType = catalogTriggeredReleaseType;
+            } else if (nextType && catalogTriggeredReleaseType) {
+                // If both catalog and commits triggered releases, use the highest severity
+                const severityOrder = { major: 3, minor: 2, patch: 1 };
+                const commitSeverity = severityOrder[nextType as keyof typeof severityOrder] || 0;
+                const catalogSeverity = severityOrder[catalogTriggeredReleaseType as keyof typeof severityOrder] || 0;
+
+                if (catalogSeverity > commitSeverity) {
+                    nextType = catalogTriggeredReleaseType;
+                }
             }
 
             // eslint-disable-next-line no-param-reassign

@@ -52,10 +52,6 @@ catalogs:
     taze:
       specifier: ^19.9.0
       version: 19.9.0
-  database:
-    normalize-url:
-      specifier: ^8.1.0
-      version: 8.1.0
   dev:
     '@arethetypeswrong/cli':
       specifier: ^0.18.2
@@ -232,6 +228,9 @@ catalogs:
     is-ci:
       specifier: ^4.1.0
       version: 4.1.0
+    normalize-url:
+      specifier: ^8.1.0
+      version: 8.1.0
     plop:
       specifier: ^4.0.4
       version: 4.0.4
@@ -247,6 +246,9 @@ catalogs:
     stream-buffers:
       specifier: ^3.0.3
       version: 3.0.3
+    yaml:
+      specifier: ^2.8.1
+      version: 2.8.1
     yargs:
       specifier: 18.0.0
       version: 18.0.0
@@ -271,6 +273,9 @@ catalogs:
     '@types/dockerode':
       specifier: ^3.3.45
       version: 3.3.45
+    '@types/env-ci':
+      specifier: 3.1.4
+      version: 3.1.4
     '@types/git-log-parser':
       specifier: 1.2.3
       version: 1.2.3
@@ -415,6 +420,12 @@ importers:
       '@semrel-extra/topo':
         specifier: catalog:prod
         version: 1.14.1
+      '@visulima/fs':
+        specifier: catalog:prod
+        version: 4.0.6(yaml@2.8.1)
+      '@visulima/path':
+        specifier: catalog:node
+        version: 2.0.5
       cosmiconfig:
         specifier: catalog:icons
         version: 9.0.0(typescript@5.9.3)
@@ -448,6 +459,9 @@ importers:
       stream-buffers:
         specifier: catalog:prod
         version: 3.0.3
+      yaml:
+        specifier: catalog:prod
+        version: 2.8.1
       yargs:
         specifier: catalog:prod
         version: 18.0.0
@@ -785,7 +799,7 @@ importers:
         specifier: catalog:prod
         version: 6.0.0
       normalize-url:
-        specifier: catalog:database
+        specifier: catalog:prod
         version: 8.1.0
       registry-auth-token:
         specifier: catalog:prod
@@ -828,7 +842,7 @@ importers:
         specifier: catalog:types
         version: 3.3.45
       '@types/env-ci':
-        specifier: 3.1.4
+        specifier: catalog:types
         version: 3.1.4
       '@types/ini':
         specifier: catalog:types

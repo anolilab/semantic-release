@@ -50,6 +50,8 @@
     },
     "dependencies": {
         "@semrel-extra/topo": "catalog:prod",
+        "@visulima/fs": "catalog:prod",
+        "@visulima/path": "catalog:node",
         "cosmiconfig": "catalog:icons",
         "debug": "catalog:prod",
         "detect-indent": "catalog:prod",
@@ -61,6 +63,7 @@
         "semver": "catalog:utils",
         "signale": "catalog:prod",
         "stream-buffers": "catalog:prod",
+        "yaml": "catalog:prod",
         "yargs": "catalog:prod"
     },
     "devDependencies": {

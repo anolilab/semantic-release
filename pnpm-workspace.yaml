@@ -99,6 +99,7 @@ catalogs:
     signale: ^1.4.0
     sort-package-json: ^3.4.0
     stream-buffers: ^3.0.3
+    yaml: ^2.8.1
     yargs: 18.0.0
   test:
     '@vitest/coverage-v8': ^4.0.8
