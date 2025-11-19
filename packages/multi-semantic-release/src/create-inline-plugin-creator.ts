@@ -134,7 +134,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             // Check if this package is affected by catalog changes
-            let catalogTriggeredReleaseType: string | null = null;
+            let catalogTriggeredReleaseType: string | undefined;
 
             if (catalogChangesCache && catalogChangesCache.has(npmPackage.name)) {
                 catalogTriggeredReleaseType = catalogChangesCache.get(npmPackage.name);
@@ -142,10 +142,10 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType} release`);
             }
 
-            let nextType: string | null | undefined = null;
+            let nextType: string | undefined;
 
             if (plugins.analyzeCommits) {
-                nextType = await plugins.analyzeCommits(context);
+                nextType = await plugins.analyzeCommits(context) || undefined;
             }
 
             // If catalog changes triggered a release and no commits triggered one, use catalog release type
