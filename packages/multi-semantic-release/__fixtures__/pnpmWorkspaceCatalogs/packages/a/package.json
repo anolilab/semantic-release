@@ -1,0 +1,12 @@
+{
+    "name": "msr-test-a",
+    "version": "0.0.0",
+    "dependencies": {
+        "semantic-release": "catalog:cli",
+        "lodash-es": "catalog:prod"
+    },
+    "devDependencies": {
+        "typescript": "catalog:dev"
+    }
+}
+

@@ -10,11 +10,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const setNpmrcAuthFilePath = "../../../src/utils/set-npmrc-auth";
 
-// eslint-disable-next-line vitest/require-mock-type-parameters
 const logSpy = vi.fn();
 const logger = { log: logSpy };
 
-// eslint-disable-next-line vitest/require-mock-type-parameters
 const mockedHomedir = vi.fn();
 
 vi.mock(import("@anolilab/rc"), async () => {
@@ -91,7 +89,9 @@ describe("set-npmrc-auth", () => {
         });
 
         expect(logSpy).toHaveBeenCalledWith(`Wrote NPM_USERNAME, NPM_PASSWORD, and NPM_EMAIL to ${npmrc}`);
-        await expect(readFile(npmrc)).resolves.toBe(`registry=https://registry.npmjs.org/\n\n_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`);
+        await expect(readFile(npmrc)).resolves.toBe(
+            `registry=https://registry.npmjs.org/\n\n//custom.registry.com/:_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`,
+        );
 
         await rm(npmrc);
     });

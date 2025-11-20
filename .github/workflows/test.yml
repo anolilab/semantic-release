@@ -59,13 +59,8 @@ jobs:
             matrix:
                 os:
                     - "ubuntu-latest"
-                node_version: ["20", "21", "22", "23", "24"]
-                semantic_release_version: ["^22", "^23", "^24"]
-                # On the other platforms, we only test the lts node version
-                include:
-                    - os: "macos-latest"
-                      node_version: "22"
-                      semantic_release_version: "^22"
+                node_version: ["22", "24", "25"]
+                semantic_release_version: ["^24", "^25"]
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
@@ -104,6 +99,10 @@ jobs:
               env:
                   SKIP_CHECK: "true"
 
+            - name: "Build"
+              shell: "bash"
+              run: "pnpm run --filter=multi-semantic-release build"
+
             - name: "Run tests"
               shell: "bash"
               run: "pnpm run --filter=multi-semantic-release test"
@@ -117,11 +116,7 @@ jobs:
             matrix:
                 os:
                     - "ubuntu-latest"
-                node_version: ["20", "21", "22"]
-                # On the other platforms, we only test the lts node version
-                include:
-                    - os: "macos-latest"
-                      node_version: "20"
+                node_version: ["22", "24", "25"]
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
@@ -173,7 +168,7 @@ jobs:
               run: |
                   files="${{ steps.files.outputs.all_changed_files }}";
 
-                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 20 ]]; then
+                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 22 ]]; then
                       pnpm run test:affected:coverage --files=${files//\\/\/}
                   else
                       pnpm run test:affected --files=${files//\\/\/}
@@ -184,7 +179,7 @@ jobs:
               run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
 
             - name: "Upload code coverage to codecov"
-              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 20"
+              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22"
               uses: "anolilab/workflows/step/codecov@main"
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"

@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-clean-package-json",
-    "version": "3.0.5",
+    "version": "4.0.0-alpha.3",
     "description": "Clean package.json before publish by removing unnecessary properties",
     "keywords": [
         "anolilab",
@@ -62,12 +62,13 @@
     "dependencies": {
         "@semantic-release/error": "catalog:cli",
         "@visulima/fs": "catalog:prod",
-        "@visulima/path": "catalog:node"
+        "@visulima/path": "catalog:node",
+        "type-fest": "catalog:dev"
     },
     "devDependencies": {
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
-        "@anolilab/semantic-release-pnpm": "2.0.5",
+        "@anolilab/semantic-release-pnpm": "3.0.0-alpha.3",
         "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
         "@semantic-release/changelog": "catalog:cli",
         "@semantic-release/commit-analyzer": "catalog:cli",
@@ -76,7 +77,6 @@
         "@semantic-release/github": "catalog:cli",
         "@semantic-release/release-notes-generator": "catalog:cli",
         "@types/node": "catalog:types",
-        "@types/semantic-release": "catalog:types",
         "@types/semantic-release__error": "catalog:types",
         "@visulima/packem": "catalog:dev",
         "@vitest/coverage-v8": "catalog:test",
@@ -88,12 +88,11 @@
         "secretlint": "catalog:lint",
         "semantic-release": "catalog:cli",
         "tempy": "catalog:dev",
-        "type-fest": "catalog:dev",
         "typescript": "catalog:tsc",
         "vitest": "catalog:test"
     },
     "engines": {
-        "node": ">=20.8.1"
+        "node": "^22.14.0 || >=24.10.0"
     },
     "publishConfig": {
         "access": "public",

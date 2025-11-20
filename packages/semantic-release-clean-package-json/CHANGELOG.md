@@ -1,3 +1,42 @@
+## @anolilab/semantic-release-clean-package-json [4.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2...@anolilab/semantic-release-clean-package-json@4.0.0-alpha.3) (2025-11-20)
+
+### Miscellaneous Chores
+
+* **release:** update changelogs for multi-semantic-release, rc, clean-package-json, and preset packages ([a0073c4](https://github.com/anolilab/semantic-release/commit/a0073c4ef4c582dc3514afc42b4ffbd07bf07761))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.3
+
+## @anolilab/semantic-release-clean-package-json [4.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@4.0.0-alpha.1...@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2) (2025-10-21)
+
+### Bug Fixes
+
+* update package manager and dependencies across multiple configurations ([07a4e0b](https://github.com/anolilab/semantic-release/commit/07a4e0be0c8ba0b8fc79f5d922bb62f60db38350))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.2
+
+## @anolilab/semantic-release-clean-package-json [4.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.4...@anolilab/semantic-release-clean-package-json@4.0.0-alpha.1) (2025-10-14)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Bug Fixes
+
+* update dependencies and configurations across multiple packages ([62c36cd](https://github.com/anolilab/semantic-release/commit/62c36cd7eb77324e2e60ba6d0f9137e4b9b2c86d))
+* update dependencies and node version across multiple packages ([3cea078](https://github.com/anolilab/semantic-release/commit/3cea078f8aa27d0873e082bc54c4c5117e5105bf))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.1
+
 ## @anolilab/semantic-release-clean-package-json [3.0.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@3.0.4...@anolilab/semantic-release-clean-package-json@3.0.5) (2025-11-01)
 
 ### Bug Fixes
@@ -130,6 +169,22 @@
 
 * **@anolilab/semantic-release-pnpm:** upgraded to 1.1.9
 
+## @anolilab/semantic-release-clean-package-json [1.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1...@anolilab/semantic-release-clean-package-json@1.0.0-alpha.2) (2025-01-16)
+
+### Bug Fixes
+
+* changed plugin order to not publish cleaned package.json to GitHub ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
+
+## @anolilab/semantic-release-clean-package-json 1.0.0-alpha.1 (2025-01-15)
+
+### Features
+
+* new clean-package-json package for semantic-release ([#106](https://github.com/anolilab/semantic-release/issues/106)) ([94218d7](https://github.com/anolilab/semantic-release/commit/94218d72b21e698f46b96749d9216209782d381a))
+
+### Bug Fixes
+
+* **semantic-release-clean-package-json:** fixed circular dependency ([93b51f9](https://github.com/anolilab/semantic-release/commit/93b51f9c03503e10f0c0a23dcd55273622b40aa0))
+
 ## @anolilab/semantic-release-clean-package-json 1.0.0 (2025-01-16)
 
 ### Features
@@ -147,19 +202,3 @@
 ### Dependencies
 
 * **@anolilab/semantic-release-pnpm:** upgraded to 1.1.8
-
-## @anolilab/semantic-release-clean-package-json [1.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@1.0.0-alpha.1...@anolilab/semantic-release-clean-package-json@1.0.0-alpha.2) (2025-01-16)
-
-### Bug Fixes
-
-* changed plugin order to not publish cleaned package.json to GitHub ([6673e69](https://github.com/anolilab/semantic-release/commit/6673e69723fd340380250fa2d986e4c37091351f))
-
-## @anolilab/semantic-release-clean-package-json 1.0.0-alpha.1 (2025-01-15)
-
-### Features
-
-* new clean-package-json package for semantic-release ([#106](https://github.com/anolilab/semantic-release/issues/106)) ([94218d7](https://github.com/anolilab/semantic-release/commit/94218d72b21e698f46b96749d9216209782d381a))
-
-### Bug Fixes
-
-* **semantic-release-clean-package-json:** fixed circular dependency ([93b51f9](https://github.com/anolilab/semantic-release/commit/93b51f9c03503e10f0c0a23dcd55273622b40aa0))

@@ -1,0 +1,11 @@
+{
+    "name": "msr-test-b",
+    "version": "0.0.0",
+    "dependencies": {
+        "@semantic-release/changelog": "catalog:cli"
+    },
+    "devDependencies": {
+        "eslint": "catalog:dev"
+    }
+}
+

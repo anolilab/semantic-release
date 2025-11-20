@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/multi-semantic-release",
-    "version": "2.0.9",
+    "version": "3.0.0-alpha.4",
     "description": "A multi semantic release tool for a monorepo.",
     "repository": {
         "type": "git",
@@ -15,32 +15,34 @@
             "email": "d.bannert@anolilab.de"
         }
     ],
+    "sideEffects": [],
     "type": "module",
     "exports": {
-        ".": "./lib/multi-semantic-release.js",
-        "./*": "./*",
+        ".": {
+            "types": "./dist/multi-semantic-release.d.ts",
+            "import": "./dist/multi-semantic-release.js"
+        },
         "./package.json": "./package.json"
     },
     "bin": {
-        "multi-semantic-release": "./bin/cli.js"
+        "multi-semantic-release": "./dist/bin/cli.js"
     },
     "files": [
         "CHANGELOG.md",
         "README.md",
-        "bin",
-        "lib"
+        "dist"
     ],
     "scripts": {
-        "build": "echo 'There is no need for build' && exit 0",
-        "build:prod": "echo 'There is no need for build' && exit 0",
+        "build": "packem build --development",
+        "build:prod": "packem build --production",
         "clean": "rimraf node_modules dist .eslintcache",
-        "dev": "echo 'There is no need for dev' && exit 0",
+        "dev": "pnpm run build --watch",
         "lint:eslint": "eslint .",
         "lint:eslint:fix": "eslint . --fix",
         "lint:packagejson": "publint --strict",
         "lint:prettier": "prettier --config=.prettierrc.cjs --check .",
         "lint:prettier:fix": "prettier --config=.prettierrc.cjs --write .",
-        "lint:types": "tsc --noEmit || exit 0",
+        "lint:types": "tsc --noEmit",
         "test": "vitest run",
         "test:coverage": "vitest run --coverage",
         "test:ui": "vitest --ui --coverage.enabled=true",
@@ -48,7 +50,8 @@
     },
     "dependencies": {
         "@semrel-extra/topo": "catalog:prod",
-        "blork": "catalog:prod",
+        "@visulima/fs": "catalog:prod",
+        "@visulima/path": "catalog:node",
         "cosmiconfig": "catalog:icons",
         "debug": "catalog:prod",
         "detect-indent": "catalog:prod",
@@ -60,13 +63,15 @@
         "semver": "catalog:utils",
         "signale": "catalog:prod",
         "stream-buffers": "catalog:prod",
+        "yaml": "catalog:prod",
         "yargs": "catalog:prod"
     },
     "devDependencies": {
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
-        "@anolilab/semantic-release-clean-package-json": "3.0.5",
-        "@anolilab/semantic-release-pnpm": "2.0.5",
+        "@anolilab/semantic-release-clean-package-json": "4.0.0-alpha.3",
+        "@anolilab/semantic-release-pnpm": "3.0.0-alpha.3",
+        "@sebbo2002/semantic-release-jsr": "catalog:cli",
         "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
         "@semantic-release/changelog": "catalog:cli",
         "@semantic-release/commit-analyzer": "catalog:cli",
@@ -74,11 +79,20 @@
         "@semantic-release/git": "catalog:cli",
         "@semantic-release/github": "catalog:cli",
         "@semantic-release/release-notes-generator": "catalog:cli",
+        "@types/debug": "catalog:types",
+        "@types/git-log-parser": "catalog:types",
+        "@types/lodash-es": "catalog:types",
         "@types/node": "catalog:types",
+        "@types/semver": "catalog:types",
+        "@types/signale": "catalog:types",
+        "@types/stream-buffers": "catalog:types",
+        "@types/yargs": "catalog:types",
+        "@visulima/packem": "catalog:dev",
         "@vitest/coverage-v8": "catalog:test",
         "@vitest/ui": "catalog:test",
         "conventional-changelog-conventionalcommits": "catalog:dev",
         "cross-env": "catalog:node",
+        "esbuild": "catalog:build",
         "eslint": "catalog:lint",
         "eslint-plugin-you-dont-need-lodash-underscore": "catalog:lint",
         "file-url": "catalog:dev",
@@ -92,10 +106,10 @@
         "vitest": "catalog:test"
     },
     "peerDependencies": {
-        "semantic-release": ">=22.0.12"
+        "semantic-release": ">=24"
     },
     "engines": {
-        "node": ">=20.8.1"
+        "node": "^22.14.0 || >=24.10.0"
     },
     "os": [
         "darwin",

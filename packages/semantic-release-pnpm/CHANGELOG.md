@@ -1,3 +1,62 @@
+## @anolilab/semantic-release-pnpm [3.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0-alpha.2...@anolilab/semantic-release-pnpm@3.0.0-alpha.3) (2025-11-20)
+
+### Bug Fixes
+
+* enhance integration and unit tests for npm authentication ([79ae50d](https://github.com/anolilab/semantic-release/commit/79ae50d47362159a426d31acc9432ba3ac31993e))
+* update package dependencies and configurations ([fed735c](https://github.com/anolilab/semantic-release/commit/fed735c729647a595d587eaa162d2c44ff9948f1))
+
+### Miscellaneous Chores
+
+* add '@types/env-ci' dependency and refine type handling ([f897d6c](https://github.com/anolilab/semantic-release/commit/f897d6c26436790504bcb8ca98095e4ab3f2bd61))
+* update '@actions/core' dependency in semantic-release-pnpm ([50cc6e0](https://github.com/anolilab/semantic-release/commit/50cc6e09e2d1959acdcfc6475c1ecfbcb0fdb406))
+* update '@actions/core' dependency to production in pnpm configuration ([bfec287](https://github.com/anolilab/semantic-release/commit/bfec287c74f048f41bcb0517353d3d4dede451a0))
+* update Node.js version and refine dependencies in pnpm-workspace ([cbd6172](https://github.com/anolilab/semantic-release/commit/cbd617234ac6e5f5a14b70fbf6d6aec3bcd38fe0))
+
+### Code Refactoring
+
+* clean up whitespace and comments in get-config.ts and verify-auth.ts ([26dc037](https://github.com/anolilab/semantic-release/commit/26dc037917f281f24d096d9790b671262f432b24))
+* enhance inline plugin creator with consistent git root handling ([4ebaea4](https://github.com/anolilab/semantic-release/commit/4ebaea46d35bb89a0adcb4bf58c6df559e35f107))
+* Ensure consistent cwd handling across all plugin hooks ([3028b71](https://github.com/anolilab/semantic-release/commit/3028b71f6f16244968bd6646b042ac893ffa5bb9))
+* update test cases and improve type handling ([328c392](https://github.com/anolilab/semantic-release/commit/328c39278c609fd9169df79f3f48bbd8038d2e64))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.0.0-alpha.3
+
+## @anolilab/semantic-release-pnpm [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0-alpha.1...@anolilab/semantic-release-pnpm@3.0.0-alpha.2) (2025-10-21)
+
+### Features
+
+* enhance npm authentication and trusted publishing support ([ccd056a](https://github.com/anolilab/semantic-release/commit/ccd056a02432b988fdcc79401d71182a433c4e97))
+* update dependencies in pnpm-lock.yaml and pnpm-workspace.yaml ([001fd47](https://github.com/anolilab/semantic-release/commit/001fd4722fa6ba02c4d9479522ee2cb6f3d4067e))
+
+### Bug Fixes
+
+* update package manager and dependencies across multiple configurations ([07a4e0b](https://github.com/anolilab/semantic-release/commit/07a4e0be0c8ba0b8fc79f5d922bb62f60db38350))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.0.0-alpha.2
+
+## @anolilab/semantic-release-pnpm [3.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@2.0.4...@anolilab/semantic-release-pnpm@3.0.0-alpha.1) (2025-10-14)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Bug Fixes
+
+* update dependencies and configurations across multiple packages ([62c36cd](https://github.com/anolilab/semantic-release/commit/62c36cd7eb77324e2e60ba6d0f9137e4b9b2c86d))
+* update dependencies and node version across multiple packages ([3cea078](https://github.com/anolilab/semantic-release/commit/3cea078f8aa27d0873e082bc54c4c5117e5105bf))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.0.0-alpha.1
+
 ## @anolilab/semantic-release-pnpm [2.0.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@2.0.4...@anolilab/semantic-release-pnpm@2.0.5) (2025-11-01)
 
 ### Bug Fixes

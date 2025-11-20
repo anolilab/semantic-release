@@ -7,7 +7,7 @@ import { stringify } from "ini";
 import type { AuthOptions } from "registry-auth-token";
 import getAuthToken from "registry-auth-token";
 
-import { DEFAULT_NPM_REGISTRY } from "../definitions/constants";
+import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
 import getError from "./get-error";
 import nerfDart from "./nerf-dart";
@@ -47,7 +47,7 @@ const setNpmrcAuth = async (
     const { config, files } = rc("npm", {
         config: NPM_CONFIG_USERCONFIG ?? resolve(cwd, ".npmrc"),
         cwd,
-        defaults: { registry: DEFAULT_NPM_REGISTRY },
+        defaults: { registry: OFFICIAL_REGISTRY },
     });
 
     if (Array.isArray(files)) {
@@ -61,7 +61,11 @@ const setNpmrcAuth = async (
     }
 
     if (NPM_USERNAME && NPM_PASSWORD && NPM_EMAIL) {
-        await writeFile(npmrc, `${Object.keys(config).length > 0 ? `${stringify(config)}\n` : ""}_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`);
+        // Use scoped auth format: //registry/:_auth instead of _auth (required by npm/pnpm)
+        await writeFile(
+            npmrc,
+            `${Object.keys(config).length > 0 ? `${stringify(config)}\n` : ""}${nerfDart(registry)}:_auth = \${LEGACY_TOKEN}\nemail = \${NPM_EMAIL}`,
+        );
 
         logger.log(`Wrote NPM_USERNAME, NPM_PASSWORD, and NPM_EMAIL to ${npmrc}`);
     } else if (NPM_TOKEN) {

@@ -1,0 +1,8 @@
+{
+    "name": "msr-test-d",
+    "version": "0.0.0",
+    "dependencies": {
+        "some-other-package": "^1.0.0"
+    }
+}
+

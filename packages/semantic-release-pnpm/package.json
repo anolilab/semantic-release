@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-pnpm",
-    "version": "2.0.5",
+    "version": "3.0.0-alpha.3",
     "description": "Semantic-release plugin to publish a npm package with pnpm.",
     "keywords": [
         "anolilab",
@@ -63,14 +63,16 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "@anolilab/rc": "2.0.5",
+        "@actions/core": "catalog:prod",
+        "@anolilab/rc": "3.0.0-alpha.3",
         "@semantic-release/error": "catalog:cli",
         "@visulima/fs": "catalog:prod",
         "@visulima/package": "catalog:prod",
         "@visulima/path": "catalog:node",
+        "env-ci": "catalog:prod",
         "execa": "catalog:node",
         "ini": "catalog:prod",
-        "normalize-url": "catalog:database",
+        "normalize-url": "catalog:prod",
         "registry-auth-token": "catalog:prod",
         "semver": "catalog:utils"
     },
@@ -86,6 +88,7 @@
         "@semantic-release/github": "catalog:cli",
         "@semantic-release/release-notes-generator": "catalog:cli",
         "@types/dockerode": "catalog:types",
+        "@types/env-ci": "catalog:types",
         "@types/ini": "catalog:types",
         "@types/node": "catalog:types",
         "@types/semantic-release__error": "catalog:types",
@@ -112,7 +115,7 @@
         "vitest": "catalog:test"
     },
     "engines": {
-        "node": ">=20.8.1"
+        "node": "^22.14.0 || >=24.10.0"
     },
     "publishConfig": {
         "access": "public",
