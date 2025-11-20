@@ -104,7 +104,7 @@ catalogs:
   test:
     '@vitest/coverage-v8': ^4.0.8
     '@vitest/ui': ^4.0.8
-    vitest: ^4.0.10
+    vitest: ^4.0.12
   tsc:
     typescript: ^5.9.3
   types:
