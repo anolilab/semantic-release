@@ -181,7 +181,7 @@ catalogs:
       version: 5.0.0
     rimraf:
       specifier: ^6.1.2
-      version: 6.1.0
+      version: 6.1.2
   prod:
     '@actions/core':
       specifier: ^1.11.1
@@ -197,10 +197,10 @@ catalogs:
       version: 1.14.1
     '@visulima/fs':
       specifier: ^4.0.4
-      version: 4.0.6
+      version: 4.1.0
     '@visulima/package':
       specifier: ^4.1.4
-      version: 4.1.6
+      version: 4.1.7
     audit-ci:
       specifier: ^7.1.0
       version: 7.1.0
@@ -422,7 +422,7 @@ importers:
         version: 1.14.1
       '@visulima/fs':
         specifier: catalog:prod
-        version: 4.0.6(yaml@2.8.1)
+        version: 4.1.0(yaml@2.8.1)
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.5
@@ -561,7 +561,7 @@ importers:
         version: 0.3.15
       rimraf:
         specifier: catalog:node
-        version: 6.1.0
+        version: 6.1.2
       secretlint:
         specifier: catalog:lint
         version: 11.2.5
@@ -582,7 +582,7 @@ importers:
     dependencies:
       '@visulima/fs':
         specifier: catalog:prod
-        version: 4.0.6(yaml@2.8.1)
+        version: 4.1.0(yaml@2.8.1)
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.5
@@ -655,7 +655,7 @@ importers:
         version: 3.6.2
       rimraf:
         specifier: catalog:node
-        version: 6.1.0
+        version: 6.1.2
       secretlint:
         specifier: catalog:lint
         version: 11.2.5
@@ -688,7 +688,7 @@ importers:
         version: 4.0.0
       '@visulima/fs':
         specifier: catalog:prod
-        version: 4.0.6(yaml@2.8.1)
+        version: 4.1.0(yaml@2.8.1)
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.5
@@ -752,7 +752,7 @@ importers:
         version: 3.6.2
       rimraf:
         specifier: catalog:node
-        version: 6.1.0
+        version: 6.1.2
       secretlint:
         specifier: catalog:lint
         version: 11.2.5
@@ -782,10 +782,10 @@ importers:
         version: 4.0.0
       '@visulima/fs':
         specifier: catalog:prod
-        version: 4.0.6(yaml@2.8.1)
+        version: 4.1.0(yaml@2.8.1)
       '@visulima/package':
         specifier: catalog:prod
-        version: 4.1.6(@types/node@24.6.2)
+        version: 4.1.7(@types/node@24.6.2)
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.5
@@ -897,7 +897,7 @@ importers:
         version: 3.6.2
       rimraf:
         specifier: catalog:node
-        version: 6.1.0
+        version: 6.1.2
       secretlint:
         specifier: catalog:lint
         version: 11.2.5
@@ -967,7 +967,7 @@ importers:
         version: 3.6.2
       rimraf:
         specifier: catalog:node
-        version: 6.1.0
+        version: 6.1.2
       secretlint:
         specifier: catalog:lint
         version: 11.2.5
@@ -3085,16 +3085,6 @@ packages:
       yaml:
         optional: true
 
-  '@visulima/fs@4.0.6':
-    resolution: {integrity: sha512-jabaGZ3m78ROqhe9tJN6zT1V2JX1oM9pJrAQA9SagkPImgW/FjLYul1zcXqu4CvcS3B6pelM1eui/oWRrOYPkw==}
-    engines: {node: '>=20.19 <=25.x'}
-    os: [darwin, linux, win32]
-    peerDependencies:
-      yaml: ^2.7.1
-    peerDependenciesMeta:
-      yaml:
-        optional: true
-
   '@visulima/fs@4.1.0':
     resolution: {integrity: sha512-9bb7oupbXXXc++m8Ypj+VUBF+P1j/Y3gadoT2HQHPHqDMrpMt8pcZyXjofitw/DaYSB3EeQOvGqHdgvsY646sw==}
     engines: {node: '>=20.19 <=25.x'}
@@ -3121,11 +3111,6 @@ packages:
   '@visulima/package@4.0.0':
     resolution: {integrity: sha512-atuJR3Y3bdZMhjw334cuTcgzPxnjhzjFx54rhqnkp9Yhqi2o2GB5lAKe8yr2Ht8YAHBV9RKaB0FDcp+lm+RDbA==}
     engines: {node: '>=20.19 <=24.*'}
-    os: [darwin, linux, win32]
-
-  '@visulima/package@4.1.6':
-    resolution: {integrity: sha512-VYsbivP0rCuYua80DkHy0QkwfVbMpTUAIMW0uZbHlBA/bHfyde+oqlxKdwCZpoZLaZqqMIX4QbHWtRvoLwEkOg==}
-    engines: {node: '>=20.19 <=25.x'}
     os: [darwin, linux, win32]
 
   '@visulima/package@4.1.7':
@@ -4517,9 +4502,6 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.256:
-    resolution: {integrity: sha512-uqYq1IQhpXXLX+HgiXdyOZml7spy4xfy42yPxcCCRjswp0fYM2X+JwCON07lqnpLEGVCj739B7Yr+FngmHBMEQ==}
-
   electron-to-chromium@1.5.258:
     resolution: {integrity: sha512-rHUggNV5jKQ0sSdWwlaRDkFc3/rRJIVnOSe9yR4zrR07m3ZxhP4N27Hlg8VeJGGYgFTxK5NqDmWI4DSH72vIJg==}
 
@@ -5337,11 +5319,6 @@ packages:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
     hasBin: true
 
-  glob@11.1.0:
-    resolution: {integrity: sha512-vuNwKSaKiqm7g0THUBu2x7ckSs3XJLXE+2ssL7/MfTGPLLcrJQ/4Uq1CjPTtO5cCIiRxqvN6Twy1qOwhL0Xjcw==}
-    engines: {node: 20 || >=22}
-    hasBin: true
-
   glob@13.0.0:
     resolution: {integrity: sha512-tvZgpqk6fz4BaNZ66ZsRaZnbHvP/jG3uKJvAZOwEVUL4RTA5nJeeLYfyN9/VA8NX/V3IBG+hkeuGpKjvELkVhA==}
     engines: {node: 20 || >=22}
@@ -6037,10 +6014,6 @@ packages:
 
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
-
-  jackspeak@4.1.1:
-    resolution: {integrity: sha512-zptv57P3GpL+O0I7VdMJNBZCu+BPHVQUk55Ft8/QCJjTVxrnJHuVuX/0Bl2A6/+2oyR/ZMEuFKwmzqqZ/U5nPQ==}
-    engines: {node: 20 || >=22}
 
   jake@10.9.4:
     resolution: {integrity: sha512-wpHYzhxiVQL+IV05BLE2Xn34zW1S223hvjtqk0+gsPrwd/8JNLXJgZZM/iPFsYc1xyphF+6M6EvdE5E9MBGkDA==}
@@ -7932,11 +7905,6 @@ packages:
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
-  rimraf@6.1.0:
-    resolution: {integrity: sha512-DxdlA1bdNzkZK7JiNWH+BAx1x4tEJWoTofIopFo6qWUU94jYrFZ0ubY05TqH3nWPJ1nKa1JWVFDINZ3fnrle/A==}
-    engines: {node: 20 || >=22}
-    hasBin: true
-
   rimraf@6.1.2:
     resolution: {integrity: sha512-cFCkPslJv7BAXJsYlK1dZsbP8/ZNLkCAQ0bi1hf5EKX2QHegmDFEFA6QhuYJlk7UDdc+02JjO80YSOrWPpw06g==}
     engines: {node: 20 || >=22}
@@ -9376,7 +9344,7 @@ snapshots:
       '@stylistic/eslint-plugin-ts': 4.4.1(eslint@9.36.0(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/parser': 8.46.2(eslint@9.36.0(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/types': 8.46.2
-      '@visulima/package': 4.1.6(@types/node@24.10.1)
+      '@visulima/package': 4.1.7(@types/node@24.10.1)
       '@visulima/tsconfig': 1.2.0(yaml@2.8.1)
       '@vitest/eslint-plugin': 1.4.0(eslint@9.36.0(jiti@2.6.1))(typescript@5.9.3)(vitest@4.0.10(@types/debug@4.1.12)(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.0)(yaml@2.8.1))
       confusing-browser-globals: 1.0.11
@@ -9442,7 +9410,7 @@ snapshots:
       '@stylistic/eslint-plugin-ts': 4.4.1(eslint@9.36.0(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/parser': 8.46.2(eslint@9.36.0(jiti@2.6.1))(typescript@5.9.3)
       '@typescript-eslint/types': 8.46.2
-      '@visulima/package': 4.1.6(@types/node@24.6.2)
+      '@visulima/package': 4.1.7(@types/node@24.6.2)
       '@visulima/tsconfig': 1.2.0(yaml@2.8.1)
       '@vitest/eslint-plugin': 1.4.0(eslint@9.36.0(jiti@2.6.1))(typescript@5.9.3)(vitest@4.0.10)
       confusing-browser-globals: 1.0.11
@@ -9539,7 +9507,7 @@ snapshots:
 
   '@anolilab/rc@3.0.0-alpha.2(yaml@2.8.1)':
     dependencies:
-      '@visulima/fs': 4.0.6(yaml@2.8.1)
+      '@visulima/fs': 4.1.0(yaml@2.8.1)
       '@visulima/path': 2.0.5
       ini: 5.0.0
       ts-deepmerge: 7.0.3
@@ -9549,7 +9517,7 @@ snapshots:
   '@anolilab/semantic-release-clean-package-json@4.0.0-alpha.2(yaml@2.8.1)':
     dependencies:
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 4.0.6(yaml@2.8.1)
+      '@visulima/fs': 4.1.0(yaml@2.8.1)
       '@visulima/path': 2.0.5
       type-fest: 5.2.0
     transitivePeerDependencies:
@@ -9560,8 +9528,8 @@ snapshots:
       '@actions/core': 1.11.1
       '@anolilab/rc': 3.0.0-alpha.2(yaml@2.8.1)
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 4.0.6(yaml@2.8.1)
-      '@visulima/package': 4.1.6(@types/node@24.10.1)
+      '@visulima/fs': 4.1.0(yaml@2.8.1)
+      '@visulima/package': 4.1.7(@types/node@24.10.1)
       '@visulima/path': 2.0.5
       env-ci: 11.2.0
       execa: 9.6.0
@@ -9578,8 +9546,8 @@ snapshots:
       '@actions/core': 1.11.1
       '@anolilab/rc': 3.0.0-alpha.2(yaml@2.8.1)
       '@semantic-release/error': 4.0.0
-      '@visulima/fs': 4.0.6(yaml@2.8.1)
-      '@visulima/package': 4.1.6(@types/node@24.6.2)
+      '@visulima/fs': 4.1.0(yaml@2.8.1)
+      '@visulima/package': 4.1.7(@types/node@24.6.2)
       '@visulima/path': 2.0.5
       env-ci: 11.2.0
       execa: 9.6.0
@@ -11458,7 +11426,7 @@ snapshots:
 
   '@types/concat-stream@2.0.3':
     dependencies:
-      '@types/node': 18.19.130
+      '@types/node': 24.10.1
 
   '@types/conventional-commits-parser@5.0.2':
     dependencies:
@@ -11798,12 +11766,6 @@ snapshots:
     optionalDependencies:
       yaml: 2.8.1
 
-  '@visulima/fs@4.0.6(yaml@2.8.1)':
-    dependencies:
-      '@visulima/path': 2.0.5
-    optionalDependencies:
-      yaml: 2.8.1
-
   '@visulima/fs@4.1.0(yaml@2.8.1)':
     dependencies:
       '@visulima/path': 2.0.5
@@ -11828,34 +11790,22 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@visulima/package@4.1.6(@types/node@24.10.1)':
-    dependencies:
-      '@antfu/install-pkg': 1.1.0
-      '@inquirer/confirm': 5.1.21(@types/node@24.10.1)
-      '@visulima/fs': 4.0.6(yaml@2.8.1)
-      '@visulima/path': 2.0.5
-      json5: 2.2.3
-      normalize-package-data: 8.0.0
-      yaml: 2.8.1
-    transitivePeerDependencies:
-      - '@types/node'
-
-  '@visulima/package@4.1.6(@types/node@24.6.2)':
-    dependencies:
-      '@antfu/install-pkg': 1.1.0
-      '@inquirer/confirm': 5.1.21(@types/node@24.6.2)
-      '@visulima/fs': 4.0.6(yaml@2.8.1)
-      '@visulima/path': 2.0.5
-      json5: 2.2.3
-      normalize-package-data: 8.0.0
-      yaml: 2.8.1
-    transitivePeerDependencies:
-      - '@types/node'
-
   '@visulima/package@4.1.7(@types/node@24.10.1)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@inquirer/confirm': 5.1.21(@types/node@24.10.1)
+      '@visulima/fs': 4.1.0(yaml@2.8.1)
+      '@visulima/path': 2.0.5
+      json5: 2.2.3
+      normalize-package-data: 8.0.0
+      yaml: 2.8.1
+    transitivePeerDependencies:
+      - '@types/node'
+
+  '@visulima/package@4.1.7(@types/node@24.6.2)':
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@inquirer/confirm': 5.1.21(@types/node@24.6.2)
       '@visulima/fs': 4.1.0(yaml@2.8.1)
       '@visulima/path': 2.0.5
       json5: 2.2.3
@@ -12514,7 +12464,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.29
       caniuse-lite: 1.0.30001756
-      electron-to-chromium: 1.5.256
+      electron-to-chromium: 1.5.258
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.26.2)
 
@@ -13212,8 +13162,6 @@ snapshots:
   ejs@3.1.10:
     dependencies:
       jake: 10.9.4
-
-  electron-to-chromium@1.5.256: {}
 
   electron-to-chromium@1.5.258: {}
 
@@ -14266,15 +14214,6 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@11.1.0:
-    dependencies:
-      foreground-child: 3.3.1
-      jackspeak: 4.1.1
-      minimatch: 10.1.1
-      minipass: 7.1.2
-      package-json-from-dist: 1.0.1
-      path-scurry: 2.0.1
-
   glob@13.0.0:
     dependencies:
       minimatch: 10.1.1
@@ -15006,10 +14945,6 @@ snapshots:
       '@isaacs/cliui': 8.0.2
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
-
-  jackspeak@4.1.1:
-    dependencies:
-      '@isaacs/cliui': 8.0.2
 
   jake@10.9.4:
     dependencies:
@@ -16684,7 +16619,7 @@ snapshots:
       bl: 4.1.0
       chalk: 4.1.2
       cli-cursor: 3.1.0
-      cli-spinners: 2.6.1
+      cli-spinners: 2.9.2
       is-interactive: 1.0.0
       log-symbols: 4.1.0
       strip-ansi: 6.0.1
@@ -17512,11 +17447,6 @@ snapshots:
   reusify@1.0.4: {}
 
   rfdc@1.4.1: {}
-
-  rimraf@6.1.0:
-    dependencies:
-      glob: 11.1.0
-      package-json-from-dist: 1.0.1
 
   rimraf@6.1.2:
     dependencies:
