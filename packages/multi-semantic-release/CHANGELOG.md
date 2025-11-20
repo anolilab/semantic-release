@@ -1,3 +1,42 @@
+## @anolilab/multi-semantic-release [3.0.0-alpha.4](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0-alpha.3...@anolilab/multi-semantic-release@3.0.0-alpha.4) (2025-11-20)
+
+### Features
+
+* add debug logging for branch and release channel information in create-inline-plugin-creator.ts ([c67aa85](https://github.com/anolilab/semantic-release/commit/c67aa85c612b4e5525b95ca9249ffc74f03570f3))
+* Implemented catalog change detection in `create-inline-plugin-creator.ts` to trigger releases based on catalog version changes. ([b8716f5](https://github.com/anolilab/semantic-release/commit/b8716f59bc84723418dbe2873fcec42bd17fbd42))
+
+### Bug Fixes
+
+* **#232:** await getTagHead in createInlinePluginCreator for proper async handling ([2b813cf](https://github.com/anolilab/semantic-release/commit/2b813cf745e69386fc89c38f1c144c16778bf2d8)), closes [#232](https://github.com/anolilab/semantic-release/issues/232)
+* Ensure context.cwd is set to package directory for all plugin hooks ([877d314](https://github.com/anolilab/semantic-release/commit/877d3143a5c75787640454ee42aa450e59538922))
+
+### Miscellaneous Chores
+
+* add '@types/env-ci' dependency and refine type handling ([f897d6c](https://github.com/anolilab/semantic-release/commit/f897d6c26436790504bcb8ca98095e4ab3f2bd61))
+* **release:** update changelogs for multi-semantic-release, rc, clean-package-json, and preset packages ([a0073c4](https://github.com/anolilab/semantic-release/commit/a0073c4ef4c582dc3514afc42b4ffbd07bf07761))
+* update '@actions/core' dependency to production in pnpm configuration ([bfec287](https://github.com/anolilab/semantic-release/commit/bfec287c74f048f41bcb0517353d3d4dede451a0))
+* update ESLint configuration and refactor validation logic ([a604dc7](https://github.com/anolilab/semantic-release/commit/a604dc7bd7cb16ec90130e7c48a48a1ed4a9e60c))
+* update Node.js version and refine dependencies in pnpm-workspace ([cbd6172](https://github.com/anolilab/semantic-release/commit/cbd617234ac6e5f5a14b70fbf6d6aec3bcd38fe0))
+* update Node.js version matrix in GitHub Actions workflow ([c558222](https://github.com/anolilab/semantic-release/commit/c558222a6114286227d47d2a766ae6958caeb18c))
+
+### Code Refactoring
+
+* clean up comments in multi-semantic-release files ([9672b6e](https://github.com/anolilab/semantic-release/commit/9672b6e9635514e94750ddef78aa42247f301d0f))
+* clean up whitespace and comments in get-config.ts and verify-auth.ts ([26dc037](https://github.com/anolilab/semantic-release/commit/26dc037917f281f24d096d9790b671262f432b24))
+* enhance inline plugin creator with consistent git root handling ([4ebaea4](https://github.com/anolilab/semantic-release/commit/4ebaea46d35bb89a0adcb4bf58c6df559e35f107))
+* enhance type handling and improve test clarity in multi-semantic-release ([6243828](https://github.com/anolilab/semantic-release/commit/62438283c017512572714d90fbaf6ccafc7d3769))
+* Ensure consistent cwd handling across all plugin hooks ([3028b71](https://github.com/anolilab/semantic-release/commit/3028b71f6f16244968bd6646b042ac893ffa5bb9))
+* improve test clarity and type handling in update-deps and CLI tests ([eb43625](https://github.com/anolilab/semantic-release/commit/eb436256e2801ef3beafb397a7aaaa216721f6ab))
+* improve type handling in create-inline-plugin-creator.ts ([fe8f579](https://github.com/anolilab/semantic-release/commit/fe8f57986a3fe5abd3597c35e089c91b87ff8a99))
+* Simplify plugin configuration and enhance cwd handling ([7f15f47](https://github.com/anolilab/semantic-release/commit/7f15f47a1f6cb87f3db7a1042b7605493e848aa2))
+* update test cases and improve type handling ([328c392](https://github.com/anolilab/semantic-release/commit/328c39278c609fd9169df79f3f48bbd8038d2e64))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.0.0-alpha.3
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0-alpha.3
+
 ## @anolilab/multi-semantic-release [3.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0-alpha.2...@anolilab/multi-semantic-release@3.0.0-alpha.3) (2025-10-22)
 
 ### Bug Fixes

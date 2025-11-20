@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/multi-semantic-release",
-    "version": "3.0.0-alpha.3",
+    "version": "3.0.0-alpha.4",
     "description": "A multi semantic release tool for a monorepo.",
     "repository": {
         "type": "git",
@@ -69,8 +69,8 @@
     "devDependencies": {
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
-        "@anolilab/semantic-release-clean-package-json": "catalog:cli",
-        "@anolilab/semantic-release-pnpm": "catalog:cli",
+        "@anolilab/semantic-release-clean-package-json": "4.0.0-alpha.3",
+        "@anolilab/semantic-release-pnpm": "3.0.0-alpha.3",
         "@sebbo2002/semantic-release-jsr": "catalog:cli",
         "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
         "@semantic-release/changelog": "catalog:cli",
