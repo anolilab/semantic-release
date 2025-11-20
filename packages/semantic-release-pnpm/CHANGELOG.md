@@ -1,3 +1,29 @@
+## @anolilab/semantic-release-pnpm [3.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0-alpha.2...@anolilab/semantic-release-pnpm@3.0.0-alpha.3) (2025-11-20)
+
+### Bug Fixes
+
+* enhance integration and unit tests for npm authentication ([79ae50d](https://github.com/anolilab/semantic-release/commit/79ae50d47362159a426d31acc9432ba3ac31993e))
+* update package dependencies and configurations ([fed735c](https://github.com/anolilab/semantic-release/commit/fed735c729647a595d587eaa162d2c44ff9948f1))
+
+### Miscellaneous Chores
+
+* add '@types/env-ci' dependency and refine type handling ([f897d6c](https://github.com/anolilab/semantic-release/commit/f897d6c26436790504bcb8ca98095e4ab3f2bd61))
+* update '@actions/core' dependency in semantic-release-pnpm ([50cc6e0](https://github.com/anolilab/semantic-release/commit/50cc6e09e2d1959acdcfc6475c1ecfbcb0fdb406))
+* update '@actions/core' dependency to production in pnpm configuration ([bfec287](https://github.com/anolilab/semantic-release/commit/bfec287c74f048f41bcb0517353d3d4dede451a0))
+* update Node.js version and refine dependencies in pnpm-workspace ([cbd6172](https://github.com/anolilab/semantic-release/commit/cbd617234ac6e5f5a14b70fbf6d6aec3bcd38fe0))
+
+### Code Refactoring
+
+* clean up whitespace and comments in get-config.ts and verify-auth.ts ([26dc037](https://github.com/anolilab/semantic-release/commit/26dc037917f281f24d096d9790b671262f432b24))
+* enhance inline plugin creator with consistent git root handling ([4ebaea4](https://github.com/anolilab/semantic-release/commit/4ebaea46d35bb89a0adcb4bf58c6df559e35f107))
+* Ensure consistent cwd handling across all plugin hooks ([3028b71](https://github.com/anolilab/semantic-release/commit/3028b71f6f16244968bd6646b042ac893ffa5bb9))
+* update test cases and improve type handling ([328c392](https://github.com/anolilab/semantic-release/commit/328c39278c609fd9169df79f3f48bbd8038d2e64))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.0.0-alpha.3
+
 ## @anolilab/semantic-release-pnpm [3.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0-alpha.1...@anolilab/semantic-release-pnpm@3.0.0-alpha.2) (2025-10-21)
 
 ### Features
