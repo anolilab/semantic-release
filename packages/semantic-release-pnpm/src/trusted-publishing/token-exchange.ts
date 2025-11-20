@@ -1,3 +1,4 @@
+import { getIDToken } from "@actions/core";
 import type { KnownCiEnv } from "env-ci";
 import envCi from "env-ci";
 
@@ -42,9 +43,6 @@ const exchangeGithubActionsToken = async (packageName: string, logger: { log: (m
     logger.log("Verifying OIDC context for publishing from GitHub Actions");
 
     try {
-        // Import dynamically to avoid issues if @actions/core is not available
-        const { getIDToken } = await import("@actions/core");
-
         idToken = await getIDToken("npm:registry.npmjs.org");
     } catch (error) {
         logger.log(`Retrieval of GitHub Actions OIDC token failed: ${(error as Error).message}`);

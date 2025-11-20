@@ -15,11 +15,11 @@ import { validate } from "../../src/utils/validate";
  * @param name Configuration setting name to add.
  * @param value Configuration setting value to set.
  */
-export const gitConfig = (cwd: string, name: string, value: string): void => {
+export const gitConfig = (cwd: string, name: string, value: string | number | boolean): void => {
     validate(cwd, "cwd: absolute");
     validate(name, "name: string+");
 
-    execaSync("git", ["config", "--add", name, value], { cwd });
+    execaSync("git", ["config", "--add", name, String(value)], { cwd });
 };
 
 /**

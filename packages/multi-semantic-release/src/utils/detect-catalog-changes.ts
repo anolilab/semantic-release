@@ -195,7 +195,6 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
         return {};
     }
 
-    // If no last release, assume all current catalog versions are new
     if (!lastReleaseGitHead) {
         debug("No last release found, skipping catalog change detection");
 

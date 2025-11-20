@@ -13,7 +13,7 @@ import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./u
 const { debug } = logger.withScope("msr:inlinePlugin");
 
 interface InlinePluginFunctions {
-    analyzeCommits?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string | null | undefined>;
+    analyzeCommits?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string | null>;
     generateNotes?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string>;
     prepare?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<void>;
     publish?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<unknown>;
@@ -186,7 +186,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             debug(debugPrefix, "commits analyzed");
             debug(debugPrefix, `release type: ${npmPackage._nextType}`);
 
-            return npmPackage._nextType as string | null;
+            return npmPackage._nextType ?? null;
         };
 
         /**
