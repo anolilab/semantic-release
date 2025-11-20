@@ -1,3 +1,27 @@
+## @anolilab/semantic-release-preset [12.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@11.0.5...@anolilab/semantic-release-preset@12.0.0) (2025-11-20)
+
+### ⚠ BREAKING CHANGES
+
+* - node-versions: the minimum node version for the v24 range is now v24.10.0
+- deps: a minimum of node v22.14 is now required
+
+### Bug Fixes
+
+* update dependencies and node version across multiple packages ([cbfde4b](https://github.com/anolilab/semantic-release/commit/cbfde4b18e22a3994c70f145e9a9a6c71f4539c8))
+
+### Miscellaneous Chores
+
+* **release:** @anolilab/semantic-release-preset@12.0.0-alpha.1 [skip ci]\n\n## @anolilab/semantic-release-preset [12.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@11.0.4...@anolilab/semantic-release-preset@12.0.0-alpha.1) (2025-10-14) ([fbf4056](https://github.com/anolilab/semantic-release/commit/fbf4056ee1fbeeb24da52ad6dd4530fe3f86dfb0))
+* **release:** @anolilab/semantic-release-preset@12.0.0-alpha.2 [skip ci]\n\n## @anolilab/semantic-release-preset [12.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.0.0-alpha.1...@anolilab/semantic-release-preset@12.0.0-alpha.2) (2025-10-21) ([b4c704b](https://github.com/anolilab/semantic-release/commit/b4c704bf72190d96d4e083dfcc7629e758ee811b))
+* **release:** @anolilab/semantic-release-preset@12.0.0-alpha.3 [skip ci]\n\n## @anolilab/semantic-release-preset [12.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.0.0-alpha.2...@anolilab/semantic-release-preset@12.0.0-alpha.3) (2025-11-20) ([95878ec](https://github.com/anolilab/semantic-release/commit/95878ecad6a951d887cbea74792317a21c063ee3))
+* **release:** update changelogs for multi-semantic-release, rc, clean-package-json, and preset packages ([a0073c4](https://github.com/anolilab/semantic-release/commit/a0073c4ef4c582dc3514afc42b4ffbd07bf07761))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.0.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.0.0
+
 ## @anolilab/semantic-release-preset [12.0.0-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.0.0-alpha.2...@anolilab/semantic-release-preset@12.0.0-alpha.3) (2025-11-20)
 
 ### Miscellaneous Chores
