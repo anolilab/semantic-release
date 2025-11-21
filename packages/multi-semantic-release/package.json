@@ -106,7 +106,7 @@
         "vitest": "catalog:test"
     },
     "peerDependencies": {
-        "semantic-release": ">=24"
+        "semantic-release": ">=25.0.2"
     },
     "engines": {
         "node": "^22.14.0 || >=24.10.0"
