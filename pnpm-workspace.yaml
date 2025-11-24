@@ -102,7 +102,7 @@ catalogs:
     yaml: ^2.8.1
     yargs: 18.0.0
   test:
-    '@vitest/coverage-v8': ^4.0.8
+    '@vitest/coverage-v8': ^4.0.13
     '@vitest/ui': ^4.0.8
     vitest: ^4.0.12
   tsc:

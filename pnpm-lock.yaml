@@ -245,8 +245,8 @@ catalogs:
       version: 18.0.0
   test:
     '@vitest/coverage-v8':
-      specifier: ^4.0.8
-      version: 4.0.8
+      specifier: ^4.0.13
+      version: 4.0.13
     '@vitest/ui':
       specifier: ^4.0.8
       version: 4.0.8
@@ -522,7 +522,7 @@ importers:
         version: 2.0.0-alpha.35(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(lightningcss@1.30.2)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
-        version: 4.0.8(vitest@4.0.12)
+        version: 4.0.13(vitest@4.0.12)
       '@vitest/ui':
         specifier: catalog:test
         version: 4.0.8(vitest@4.0.12)
@@ -625,7 +625,7 @@ importers:
         version: 2.0.0-alpha.35(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(lightningcss@1.30.2)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
-        version: 4.0.8(vitest@4.0.12)
+        version: 4.0.13(vitest@4.0.12)
       '@vitest/ui':
         specifier: catalog:test
         version: 4.0.8(vitest@4.0.12)
@@ -728,7 +728,7 @@ importers:
         version: 2.0.0-alpha.35(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(lightningcss@1.30.2)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
-        version: 4.0.8(vitest@4.0.12)
+        version: 4.0.13(vitest@4.0.12)
       '@vitest/ui':
         specifier: catalog:test
         version: 4.0.8(vitest@4.0.12)
@@ -855,7 +855,7 @@ importers:
         version: 2.0.0-alpha.35(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.13(typescript@5.9.3)))(@types/node@24.6.2)(esbuild@0.25.10)(lightningcss@1.30.2)(package-manager-detector@1.5.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.13(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.13(typescript@5.9.3)))(typedoc@0.28.13(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.1)
       '@vitest/coverage-v8':
         specifier: catalog:test
-        version: 4.0.8(vitest@4.0.12)
+        version: 4.0.13(vitest@4.0.12)
       '@vitest/ui':
         specifier: catalog:test
         version: 4.0.8(vitest@4.0.12)
@@ -3515,11 +3515,11 @@ packages:
     resolution: {integrity: sha512-6PCtTUl8dchyjIpsoOnyrn62iya+NuZ3hKkJsQM6rj+29wNJ8Py5mps80pGMcpeEFwVd3hCOcndpV7IWE1KDXQ==}
     engines: {node: '>=18.0.0 <=23.x'}
 
-  '@vitest/coverage-v8@4.0.8':
-    resolution: {integrity: sha512-wQgmtW6FtPNn4lWUXi8ZSYLpOIb92j3QCujxX3sQ81NTfQ/ORnE0HtK7Kqf2+7J9jeveMGyGyc4NWc5qy3rC4A==}
+  '@vitest/coverage-v8@4.0.13':
+    resolution: {integrity: sha512-w77N6bmtJ3CFnL/YHiYotwW/JI3oDlR3K38WEIqegRfdMSScaYxwYKB/0jSNpOTZzUjQkG8HHEz4sdWQMWpQ5g==}
     peerDependencies:
-      '@vitest/browser': 4.0.8
-      vitest: 4.0.8
+      '@vitest/browser': 4.0.13
+      vitest: 4.0.13
     peerDependenciesMeta:
       '@vitest/browser':
         optional: true
@@ -3554,6 +3554,9 @@ packages:
   '@vitest/pretty-format@4.0.12':
     resolution: {integrity: sha512-R7nMAcnienG17MvRN8TPMJiCG8rrZJblV9mhT7oMFdBXvS0x+QD6S1G4DxFusR2E0QIS73f7DqSR1n87rrmE+g==}
 
+  '@vitest/pretty-format@4.0.13':
+    resolution: {integrity: sha512-ooqfze8URWbI2ozOeLDMh8YZxWDpGXoeY3VOgcDnsUxN0jPyPWSUvjPQWqDGCBks+opWlN1E4oP1UYl3C/2EQA==}
+
   '@vitest/pretty-format@4.0.8':
     resolution: {integrity: sha512-qRrjdRkINi9DaZHAimV+8ia9Gq6LeGz2CgIEmMLz3sBDYV53EsnLZbJMR1q84z1HZCMsf7s0orDgZn7ScXsZKg==}
 
@@ -3573,6 +3576,9 @@ packages:
 
   '@vitest/utils@4.0.12':
     resolution: {integrity: sha512-DVS/TLkLdvGvj1avRy0LSmKfrcI9MNFvNGN6ECjTUHWJdlcgPDOXhjMis5Dh7rBH62nAmSXnkPbE+DZ5YD75Rw==}
+
+  '@vitest/utils@4.0.13':
+    resolution: {integrity: sha512-ydozWyQ4LZuu8rLp47xFUWis5VOKMdHjXCWhs1LuJsTNKww+pTHQNK4e0assIB9K80TxFyskENL6vCu3j34EYA==}
 
   '@vitest/utils@4.0.8':
     resolution: {integrity: sha512-pdk2phO5NDvEFfUTxcTP8RFYjVj/kfLSPIN5ebP2Mu9kcIMeAQTbknqcFEyBcC4z2pJlJI9aS5UQjcYfhmKAow==}
@@ -12228,10 +12234,10 @@ snapshots:
     transitivePeerDependencies:
       - yaml
 
-  '@vitest/coverage-v8@4.0.8(vitest@4.0.12)':
+  '@vitest/coverage-v8@4.0.13(vitest@4.0.12)':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
-      '@vitest/utils': 4.0.8
+      '@vitest/utils': 4.0.13
       ast-v8-to-istanbul: 0.3.8
       debug: 4.4.3
       istanbul-lib-coverage: 3.2.2
@@ -12296,6 +12302,10 @@ snapshots:
     dependencies:
       tinyrainbow: 3.0.3
 
+  '@vitest/pretty-format@4.0.13':
+    dependencies:
+      tinyrainbow: 3.0.3
+
   '@vitest/pretty-format@4.0.8':
     dependencies:
       tinyrainbow: 3.0.3
@@ -12327,6 +12337,11 @@ snapshots:
   '@vitest/utils@4.0.12':
     dependencies:
       '@vitest/pretty-format': 4.0.12
+      tinyrainbow: 3.0.3
+
+  '@vitest/utils@4.0.13':
+    dependencies:
+      '@vitest/pretty-format': 4.0.13
       tinyrainbow: 3.0.3
 
   '@vitest/utils@4.0.8':
