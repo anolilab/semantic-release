@@ -51,7 +51,6 @@
     "dependencies": {
         "@anolilab/commitlint-config": "catalog:lint",
         "@anolilab/lint-staged-config": "catalog:lint",
-        "@anolilab/multi-semantic-release": "catalog:cli",
         "@anolilab/prettier-config": "catalog:lint",
         "@anolilab/textlint-config": "catalog:lint",
         "@babel/core": "catalog:prod",
