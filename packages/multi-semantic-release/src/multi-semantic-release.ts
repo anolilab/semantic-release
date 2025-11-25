@@ -67,6 +67,23 @@ const getPackage = async (
 
     const packageOptions = await getConfig(directory);
     const finalOptions: Record<string, unknown> = { ...globalOptions, ...packageOptions, ...inputOptions };
+
+    // Normalize repository URL from manifest if not already set in options
+    // This ensures git+https:// URLs from package.json are normalized before semantic-release processes them
+    if (!finalOptions.repositoryUrl && manifest.repository) {
+        let repositoryUrl: string | undefined;
+
+        if (typeof manifest.repository === "string") {
+            repositoryUrl = manifest.repository;
+        } else if (typeof manifest.repository === "object" && manifest.repository !== null && "url" in manifest.repository) {
+            repositoryUrl = manifest.repository.url as string;
+        }
+
+        if (repositoryUrl) {
+            finalOptions.repositoryUrl = normalizeRepositoryUrl(repositoryUrl);
+        }
+    }
+
     const fakeLogger = { error() {}, log() {} };
 
     const envRecord: Record<string, string> = Object.fromEntries(
