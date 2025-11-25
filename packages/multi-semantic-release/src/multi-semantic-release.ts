@@ -69,7 +69,9 @@ const getPackage = async (
     const finalOptions: Record<string, unknown> = { ...globalOptions, ...packageOptions, ...inputOptions };
 
     // Normalize repository URL from manifest if not already set in options
-    // This ensures git+https:// URLs from package.json are normalized before semantic-release processes them
+    // This ensures git+https:// and git+ssh:// URLs from package.json are normalized before semantic-release processes them.
+    // Note: When using token-based authentication (e.g., GITHUB_TOKEN), semantic-release automatically converts
+    // repository URLs to HTTPS format regardless of the repositoryUrl format specified.
     if (!finalOptions.repositoryUrl && manifest.repository) {
         let repositoryUrl: string | undefined;
 
@@ -133,8 +135,9 @@ const releasePackage = async (
     options.branches = flags.branches ? castArray(flags.branches) : options.branches;
     options._pkgOptions = packageOptions;
 
-    // Normalize repositoryUrl to remove npm-specific prefixes (e.g., git+https:// -> https://)
-    // This is necessary because git commands don't understand the git+ prefix used in package.json
+    // Normalize repositoryUrl to remove npm-specific prefixes (e.g., git+https:// -> https://, git+ssh:// -> ssh://)
+    // This is necessary because git commands don't understand the git+ prefix used in package.json.
+    // Note: When using token-based authentication, semantic-release automatically converts URLs to HTTPS format.
     if (options.repositoryUrl && typeof options.repositoryUrl === "string") {
         options.repositoryUrl = normalizeRepositoryUrl(options.repositoryUrl);
     }
