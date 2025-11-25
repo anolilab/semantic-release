@@ -17,6 +17,7 @@ import logger from "./logger";
 import RescopedStream from "./rescoped-stream";
 import type { Flags, GlobalOptions, InputOptions, MultiContext, Package } from "./types";
 import cleanPath from "./utils/clean-path";
+import normalizeRepositoryUrl from "./utils/normalize-repository-url";
 import { validate } from "./utils/validate";
 
 /**
@@ -114,6 +115,12 @@ const releasePackage = async (
     options.ci = flags.ci === undefined ? options.ci : flags.ci;
     options.branches = flags.branches ? castArray(flags.branches) : options.branches;
     options._pkgOptions = packageOptions;
+
+    // Normalize repositoryUrl to remove npm-specific prefixes (e.g., git+https:// -> https://)
+    // This is necessary because git commands don't understand the git+ prefix used in package.json
+    if (options.repositoryUrl && typeof options.repositoryUrl === "string") {
+        options.repositoryUrl = normalizeRepositoryUrl(options.repositoryUrl);
+    }
 
     // Call semanticRelease() on the directory and save result to pkg.
     // Don't need to log out errors as semantic-release already does that.
