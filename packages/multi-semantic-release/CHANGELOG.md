@@ -1,3 +1,16 @@
+## @anolilab/multi-semantic-release [3.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.0.0...@anolilab/multi-semantic-release@3.1.0) (2025-11-25)
+
+### Bug Fixes
+
+* add repository URL normalization utility and tests ([38dbe63](https://github.com/anolilab/semantic-release/commit/38dbe6344fad5dc88ea7ee84af14c9afb42c8f50))
+* Included checks to confirm that explicit repository URLs in configuration options are preserved without modification. ([98997fd](https://github.com/anolilab/semantic-release/commit/98997fdfec1c22bcfd49d71d9cba2456bbbf9d78))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.1.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.1.0
+
 ## @anolilab/multi-semantic-release [3.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@2.0.9...@anolilab/multi-semantic-release@3.0.0) (2025-11-20)
 
 ### ⚠ BREAKING CHANGES
