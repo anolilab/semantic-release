@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-pnpm [3.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0...@anolilab/semantic-release-pnpm@3.1.0) (2025-11-25)
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.1.0
+
 ## @anolilab/semantic-release-pnpm [3.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@2.0.5...@anolilab/semantic-release-pnpm@3.0.0) (2025-11-20)
 
 ### ⚠ BREAKING CHANGES
