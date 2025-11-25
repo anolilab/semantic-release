@@ -1,3 +1,5 @@
+## @anolilab/rc [3.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.0.0...@anolilab/rc@3.1.0) (2025-11-25)
+
 ## @anolilab/rc [3.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@2.0.5...@anolilab/rc@3.0.0) (2025-11-20)
 
 ### ⚠ BREAKING CHANGES
