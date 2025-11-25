@@ -141,3 +141,27 @@ overrides:
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
   tmp@<=0.2.3: '>=0.2.5'
   vite@>=7.1.0 <=7.1.10: '>=7.2.4'
+
+preferWorkspacePackages: true
+
+saveWorkspaceProtocol: true
+
+sharedWorkspaceLockfile: true
+
+dedupeInjectedDeps: true
+
+disallowWorkspaceCycles: true
+
+ignoreWorkspaceCycles: false
+
+includeWorkspaceRoot: false
+
+injectWorkspacePackages: false
+
+linkWorkspacePackages: true
+
+minimumReleaseAgeExclude:
+  - vitest
+  - '@vitest/*'
+  - typescript
+  - '@types/*'
