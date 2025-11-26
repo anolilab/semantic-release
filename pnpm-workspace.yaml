@@ -62,7 +62,7 @@ catalogs:
   markdown:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
-    '@nx/workspace': 22.1.0
+    '@nx/workspace': 22.1.1
     nx: ^22.1.1
   network:
     browserslist-config-anolilab: ^6.0.7
