@@ -7,7 +7,7 @@ packages:
 
 catalogs:
   build:
-    esbuild: 0.25.10
+    esbuild: 0.27.0
   cli:
     '@anolilab/semantic-release-clean-package-json': 4.0.0-alpha.2
     '@anolilab/semantic-release-pnpm': 3.0.0-alpha.2
