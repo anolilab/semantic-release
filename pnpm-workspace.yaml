@@ -113,7 +113,7 @@ catalogs:
     '@types/git-log-parser': 1.2.3
     '@types/ini': ^4.1.1
     '@types/lodash-es': 4.17.12
-    '@types/node': 24.6.2
+    '@types/node': 24.10.1
     '@types/semantic-release__error': 3.0.3
     '@types/semver': 7.7.1
     '@types/signale': 1.4.7
