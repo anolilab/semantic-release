@@ -1,3 +1,18 @@
+## @anolilab/semantic-release-pnpm [3.2.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.1.0...@anolilab/semantic-release-pnpm@3.2.0) (2025-12-04)
+
+### Bug Fixes
+
+* enhanced OIDC context handling, added better debug logs ([#239](https://github.com/anolilab/semantic-release/issues/239)) ([2ae7ea5](https://github.com/anolilab/semantic-release/commit/2ae7ea5282d20254b96bbf768c2b1af2e868b6ae))
+
+### Miscellaneous Chores
+
+* enhance package.json keywords across multiple packages ([842cd32](https://github.com/anolilab/semantic-release/commit/842cd32acf48c34d3226b1b2d63e7cdecdeff6b7))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.2.0
+
 ## @anolilab/semantic-release-pnpm [3.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.0.0...@anolilab/semantic-release-pnpm@3.1.0) (2025-11-25)
 
 
