@@ -197,8 +197,18 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
     const registry = getRegistry(package_, context);
 
     // Check if OIDC context is established for trusted publishing
-    if (package_.name && await oidcContextEstablished(registry, package_, context)) {
-        return;
+    if (package_.name) {
+        context.logger.log(`Checking OIDC trusted publishing for package "${package_.name}" on registry "${registry}"`);
+
+        if (await oidcContextEstablished(registry, package_, context)) {
+            context.logger.log("OIDC trusted publishing verified successfully, skipping NPM_TOKEN check");
+
+            return;
+        }
+
+        context.logger.log("OIDC trusted publishing not available, falling back to NPM_TOKEN authentication");
+    } else {
+        context.logger.log("Package name not found, skipping OIDC check and using NPM_TOKEN authentication");
     }
 
     await setNpmrcAuth(npmrc, registry, context);

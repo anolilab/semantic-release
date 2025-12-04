@@ -63,6 +63,7 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
             firstParent: false,
             ignorePackages: [],
             ignorePrivate: true,
+            logLevel: "info",
             sequentialInit: false,
             sequentialPrepare: true,
             silent: false,

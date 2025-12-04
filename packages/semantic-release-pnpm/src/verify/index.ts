@@ -42,9 +42,13 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
         const packageJson = await getPackage(pluginConfig, context);
 
         if (shouldPublish(pluginConfig, packageJson)) {
+            context.logger.log(`Verifying authentication for package "${packageJson.name ?? "unknown"}"`);
+
             const npmrc = getNpmrcPath(context.cwd, context.env);
 
             await verifyAuth(npmrc, packageJson, context, pluginConfig.pkgRoot);
+        } else {
+            context.logger.log(`Skipping authentication verification for package "${packageJson.name ?? "unknown"}" (publishing disabled)`);
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
