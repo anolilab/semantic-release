@@ -1,8 +1,11 @@
 import type { PackageJson } from "@visulima/package";
+import debug from "debug";
 import normalizeUrl from "normalize-url";
 
 import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import exchangeToken from "./token-exchange";
+
+const debugLog = debug("semantic-release-pnpm:oidc-context");
 
 /**
  * Determines whether an OIDC context has been established for publishing to the official npm registry.
@@ -21,24 +24,24 @@ const oidcContext = async (registry: string, pkg: PackageJson, context: { logger
     const normalizedOfficialRegistry = normalizeUrl(OFFICIAL_REGISTRY);
 
     if (normalizedRegistry !== normalizedOfficialRegistry) {
-        context.logger.log(`Registry "${registry}" (normalized: "${normalizedRegistry}") does not match official registry "${OFFICIAL_REGISTRY}" (normalized: "${normalizedOfficialRegistry}"), skipping OIDC check`);
+        debugLog(`Registry "${registry}" (normalized: "${normalizedRegistry}") does not match official registry "${OFFICIAL_REGISTRY}" (normalized: "${normalizedOfficialRegistry}"), skipping OIDC check`);
 
         return false;
     }
 
-    context.logger.log(`Registry matches official npm registry, attempting OIDC token exchange for package "${pkg.name ?? "unknown"}"`);
+    debugLog(`Registry matches official npm registry, attempting OIDC token exchange for package "${pkg.name ?? "unknown"}"`);
 
     try {
         const token = await exchangeToken({ name: pkg.name ?? "" }, context);
 
         if (!token) {
-            context.logger.log("OIDC token exchange did not succeed, falling back to NPM_TOKEN authentication");
+            debugLog("OIDC token exchange did not succeed, falling back to NPM_TOKEN authentication");
         }
 
         return !!token;
     } catch (error) {
-        context.logger.log(`OIDC context check failed: ${error instanceof Error ? error.message : String(error)}`);
-        context.logger.log("Falling back to NPM_TOKEN authentication");
+        debugLog(`OIDC context check failed: ${error instanceof Error ? error.message : String(error)}`);
+        debugLog("Falling back to NPM_TOKEN authentication");
 
         return false;
     }

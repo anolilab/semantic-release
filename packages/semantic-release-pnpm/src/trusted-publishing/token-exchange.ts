@@ -1,8 +1,11 @@
 import { getIDToken } from "@actions/core";
+import debug from "debug";
 import type { KnownCiEnv } from "env-ci";
 import envCi from "env-ci";
 
 import { GITHUB_ACTIONS_PROVIDER_NAME, GITLAB_PIPELINES_PROVIDER_NAME, OFFICIAL_REGISTRY } from "../definitions/constants";
+
+const debugLog = debug("semantic-release-pnpm:token-exchange");
 
 /**
  * Exchanges an OIDC ID token for an npm registry token.
@@ -20,12 +23,12 @@ const exchangeIdToken = async (idToken: string, packageName: string, logger: { l
     const responseBody = (await response.json()) as { message: string; token: string };
 
     if (response.ok) {
-        logger.log("OIDC token exchange with the npm registry succeeded");
+        debugLog("OIDC token exchange with the npm registry succeeded");
 
         return responseBody.token;
     }
 
-    logger.log(`OIDC token exchange with the npm registry failed: ${response.status} ${responseBody.message}`);
+    debugLog(`OIDC token exchange with the npm registry failed: ${response.status} ${responseBody.message}`);
 
     return undefined;
 };
@@ -40,20 +43,20 @@ const exchangeIdToken = async (idToken: string, packageName: string, logger: { l
 const exchangeGithubActionsToken = async (packageName: string, logger: { log: (message: string) => void }): Promise<string | undefined> => {
     let idToken: string | undefined;
 
-    logger.log("Verifying OIDC context for publishing from GitHub Actions");
+    debugLog("Verifying OIDC context for publishing from GitHub Actions");
 
     try {
         idToken = await getIDToken("npm:registry.npmjs.org");
     } catch (error) {
-        logger.log(`Retrieval of GitHub Actions OIDC token failed: ${(error as Error).message}`);
-        logger.log("Have you granted the `id-token: write` permission to this workflow?");
+        debugLog(`Retrieval of GitHub Actions OIDC token failed: ${(error as Error).message}`);
+        debugLog("Have you granted the `id-token: write` permission to this workflow?");
 
         return undefined;
     }
 
     if (!idToken) {
-        logger.log("NPM_ID_TOKEN environment variable is not set");
-        logger.log("Configure trusted publishing in your GitLab project settings and set the NPM_ID_TOKEN variable");
+        debugLog("NPM_ID_TOKEN environment variable is not set");
+        debugLog("Configure trusted publishing in your GitLab project settings and set the NPM_ID_TOKEN variable");
 
         return undefined;
     }
@@ -72,7 +75,7 @@ const exchangeGitlabPipelinesToken = async (packageName: string, logger: { log: 
     // NPM_ID_TOKEN should be set in GitLab CI/CD variables with the OIDC token
     const idToken = process.env.NPM_ID_TOKEN;
 
-    logger.log("Verifying OIDC context for publishing from GitLab Pipelines");
+    debugLog("Verifying OIDC context for publishing from GitLab Pipelines");
 
     if (!idToken) {
         return undefined;
@@ -92,7 +95,7 @@ const exchangeGitlabPipelinesToken = async (packageName: string, logger: { log: 
  */
 const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (message: string) => void } }): Promise<string | undefined> => {
     if (!pkg.name || typeof pkg.name !== "string" || pkg.name.trim() === "") {
-        logger.log("Invalid package name provided for OIDC token exchange");
+        debugLog("Invalid package name provided for OIDC token exchange");
 
         return Promise.resolve(undefined);
     }
@@ -102,13 +105,13 @@ const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (mess
         = typeof ciEnv === "object" && ciEnv !== null && typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
 
     if (!ciProviderName) {
-        logger.log("Unable to detect CI provider for OIDC token exchange");
-        logger.log("Supported CI providers for OIDC trusted publishing: GitHub Actions, GitLab CI/CD");
+        debugLog("Unable to detect CI provider for OIDC token exchange");
+        debugLog("Supported CI providers for OIDC trusted publishing: GitHub Actions, GitLab CI/CD");
 
         return Promise.resolve(undefined);
     }
 
-    logger.log(`Detected CI provider: ${ciProviderName}`);
+    debugLog(`Detected CI provider: ${ciProviderName}`);
 
     if (GITHUB_ACTIONS_PROVIDER_NAME === ciProviderName) {
         return exchangeGithubActionsToken(pkg.name, logger);
@@ -118,8 +121,8 @@ const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (mess
         return exchangeGitlabPipelinesToken(pkg.name, logger);
     }
 
-    logger.log(`CI provider "${ciProviderName}" is not supported for OIDC trusted publishing`);
-    logger.log("Supported CI providers: GitHub Actions, GitLab CI/CD");
+    debugLog(`CI provider "${ciProviderName}" is not supported for OIDC trusted publishing`);
+    debugLog("Supported CI providers: GitHub Actions, GitLab CI/CD");
 
     return Promise.resolve(undefined);
 };

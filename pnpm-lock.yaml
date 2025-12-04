@@ -775,6 +775,9 @@ importers:
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.5
+      debug:
+        specifier: catalog:prod
+        version: 4.4.3
       env-ci:
         specifier: catalog:prod
         version: 11.2.0
@@ -824,6 +827,9 @@ importers:
       '@semantic-release/release-notes-generator':
         specifier: catalog:cli
         version: 14.1.0(semantic-release@25.0.2(typescript@5.9.3))
+      '@types/debug':
+        specifier: catalog:types
+        version: 4.1.12
       '@types/dockerode':
         specifier: catalog:types
         version: 3.3.47

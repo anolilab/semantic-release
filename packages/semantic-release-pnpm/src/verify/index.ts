@@ -1,3 +1,5 @@
+import debug from "debug";
+
 import type { VerifyConditionsContext } from "../definitions/context";
 import type { PluginConfig } from "../definitions/plugin-config";
 import getNpmrcPath from "../utils/get-npmrc-path";
@@ -6,6 +8,8 @@ import { shouldPublish } from "../utils/should-publish";
 import verifyAuth from "./verify-auth";
 import verifyConfig from "./verify-config";
 import verifyPnpm from "./verify-pnpm";
+
+const debugLog = debug("semantic-release-pnpm:verify");
 
 /**
  * Aggregate all verification steps required by the plugin during the `verifyConditions` life-cycle
@@ -42,13 +46,13 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
         const packageJson = await getPackage(pluginConfig, context);
 
         if (shouldPublish(pluginConfig, packageJson)) {
-            context.logger.log(`Verifying authentication for package "${packageJson.name ?? "unknown"}"`);
+            debugLog(`Verifying authentication for package "${packageJson.name ?? "unknown"}"`);
 
             const npmrc = getNpmrcPath(context.cwd, context.env);
 
             await verifyAuth(npmrc, packageJson, context, pluginConfig.pkgRoot);
         } else {
-            context.logger.log(`Skipping authentication verification for package "${packageJson.name ?? "unknown"}" (publishing disabled)`);
+            debugLog(`Skipping authentication verification for package "${packageJson.name ?? "unknown"}" (publishing disabled)`);
         }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
