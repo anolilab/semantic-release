@@ -12,9 +12,10 @@ const debug = dbg("semantic-release-pnpm:token-exchange");
  * Exchanges an OIDC ID token for an npm registry token.
  * @param idToken The OIDC ID token to exchange.
  * @param packageName The name of the package to publish.
+ * @param context Optional semantic-release context for logging warnings.
  * @returns A promise that resolves to the npm token or undefined if exchange fails.
  */
-const exchangeIdToken = async (idToken: string, packageName: string): Promise<string | undefined> => {
+const exchangeIdToken = async (idToken: string, packageName: string, context?: CommonContext): Promise<string | undefined> => {
     const response = await fetch(`${OFFICIAL_REGISTRY}-/npm/v1/oidc/token/exchange/package/${encodeURIComponent(packageName)}`, {
         headers: { Authorization: `Bearer ${idToken}` },
         method: "POST",
@@ -29,15 +30,28 @@ const exchangeIdToken = async (idToken: string, packageName: string): Promise<st
 
     debug(`OIDC token exchange with the npm registry failed: ${response.status} ${responseBody.message}`);
 
+    // Check if the package doesn't exist (404) and provide helpful guidance
+    if (response.status === 404 || responseBody.message?.toLowerCase().includes("not found")) {
+        const warningMessage
+            = `Package "${packageName}" does not exist on npm. npm requires a package to exist before you can configure OIDC trusted publishing. `
+                + `You can either publish a dummy version manually first (e.g., \`pnpm publish --tag dummy\`) or use the \`setup-npm-trusted-publish\` tool `
+                + `(https://github.com/azu/setup-npm-trusted-publish) to create a placeholder package. `
+                + `After the package exists, configure OIDC trusted publishing at https://www.npmjs.com/package/${encodeURIComponent(packageName)}/access`;
+
+        context?.logger?.error(warningMessage);
+        debug(warningMessage);
+    }
+
     return undefined;
 };
 
 /**
  * Exchanges a GitHub Actions OIDC token for an npm registry token.
  * @param packageName The name of the package to publish.
+ * @param context Optional semantic-release context for logging warnings.
  * @returns A promise that resolves to the npm token or undefined if exchange fails.
  */
-const exchangeGithubActionsToken = async (packageName: string): Promise<string | undefined> => {
+const exchangeGithubActionsToken = async (packageName: string, context?: CommonContext): Promise<string | undefined> => {
     let idToken: string | undefined;
 
     debug("Verifying OIDC context for publishing from GitHub Actions");
@@ -58,15 +72,16 @@ const exchangeGithubActionsToken = async (packageName: string): Promise<string |
         return undefined;
     }
 
-    return exchangeIdToken(idToken, packageName);
+    return exchangeIdToken(idToken, packageName, context);
 };
 
 /**
  * Exchanges a GitLab Pipelines OIDC token for an npm registry token.
  * @param packageName The name of the package to publish.
+ * @param context Optional semantic-release context for logging warnings.
  * @returns A promise that resolves to the npm token or undefined if exchange fails.
  */
-const exchangeGitlabPipelinesToken = async (packageName: string): Promise<string | undefined> => {
+const exchangeGitlabPipelinesToken = async (packageName: string, context?: CommonContext): Promise<string | undefined> => {
     // NPM_ID_TOKEN should be set in GitLab CI/CD variables with the OIDC token
     const idToken = process.env.NPM_ID_TOKEN;
 
@@ -79,7 +94,7 @@ const exchangeGitlabPipelinesToken = async (packageName: string): Promise<string
         return undefined;
     }
 
-    return exchangeIdToken(idToken, packageName);
+    return exchangeIdToken(idToken, packageName, context);
 };
 
 /**
@@ -110,11 +125,11 @@ const tokenExchange = (pkg: { name: string }, context: CommonContext): Promise<s
     debug(`Detected CI provider: ${ciProviderName}`);
 
     if (GITHUB_ACTIONS_PROVIDER_NAME === ciProviderName) {
-        return exchangeGithubActionsToken(pkg.name);
+        return exchangeGithubActionsToken(pkg.name, context);
     }
 
     if (GITLAB_PIPELINES_PROVIDER_NAME === ciProviderName) {
-        return exchangeGitlabPipelinesToken(pkg.name);
+        return exchangeGitlabPipelinesToken(pkg.name, context);
     }
 
     debug(`CI provider "${ciProviderName}" is not supported for OIDC trusted publishing`);
