@@ -103,9 +103,12 @@ const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (mess
 
     if (!ciProviderName) {
         logger.log("Unable to detect CI provider for OIDC token exchange");
+        logger.log("Supported CI providers for OIDC trusted publishing: GitHub Actions, GitLab CI/CD");
 
         return Promise.resolve(undefined);
     }
+
+    logger.log(`Detected CI provider: ${ciProviderName}`);
 
     if (GITHUB_ACTIONS_PROVIDER_NAME === ciProviderName) {
         return exchangeGithubActionsToken(pkg.name, logger);
@@ -114,6 +117,9 @@ const tokenExchange = (pkg: { name: string }, { logger }: { logger: { log: (mess
     if (GITLAB_PIPELINES_PROVIDER_NAME === ciProviderName) {
         return exchangeGitlabPipelinesToken(pkg.name, logger);
     }
+
+    logger.log(`CI provider "${ciProviderName}" is not supported for OIDC trusted publishing`);
+    logger.log("Supported CI providers: GitHub Actions, GitLab CI/CD");
 
     return Promise.resolve(undefined);
 };

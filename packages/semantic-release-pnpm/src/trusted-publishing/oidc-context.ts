@@ -1,4 +1,5 @@
 import type { PackageJson } from "@visulima/package";
+import normalizeUrl from "normalize-url";
 
 import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import exchangeToken from "./token-exchange";
@@ -15,15 +16,26 @@ import exchangeToken from "./token-exchange";
  * @returns A promise that resolves to true if OIDC context is established, false otherwise.
  */
 const oidcContext = async (registry: string, pkg: PackageJson, context: { logger: { log: (message: string) => void } }): Promise<boolean> => {
-    if (OFFICIAL_REGISTRY !== registry) {
+    // Normalize URLs before comparing to handle differences in trailing slashes, casing, etc.
+    const normalizedRegistry = normalizeUrl(registry);
+    const normalizedOfficialRegistry = normalizeUrl(OFFICIAL_REGISTRY);
+
+    if (normalizedRegistry !== normalizedOfficialRegistry) {
         return false;
     }
 
     try {
         const token = await exchangeToken({ name: pkg.name ?? "" }, context);
 
+        if (!token) {
+            context.logger.log("OIDC token exchange did not succeed, falling back to NPM_TOKEN authentication");
+        }
+
         return !!token;
-    } catch {
+    } catch (error) {
+        context.logger.log(`OIDC context check failed: ${error instanceof Error ? error.message : String(error)}`);
+        context.logger.log("Falling back to NPM_TOKEN authentication");
+
         return false;
     }
 };
