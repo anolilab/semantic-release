@@ -775,9 +775,6 @@ importers:
       '@visulima/path':
         specifier: catalog:node
         version: 2.0.5
-      debug:
-        specifier: catalog:prod
-        version: 4.4.3
       env-ci:
         specifier: catalog:prod
         version: 11.2.0
