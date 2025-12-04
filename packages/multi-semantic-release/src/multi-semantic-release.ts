@@ -1,6 +1,7 @@
 import { dirname } from "node:path";
 
 import { topo } from "@semrel-extra/topo";
+import dbg from "debug";
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
 import { castArray, sortBy, template } from "lodash-es";
 import type { Options } from "semantic-release";
@@ -86,8 +87,6 @@ const getPackage = async (
         }
     }
 
-    const fakeLogger = { error() {}, log() {} };
-
     const envRecord: Record<string, string> = Object.fromEntries(
         Object.entries(env)
             .filter(([, value]) => value !== undefined)
@@ -95,7 +94,7 @@ const getPackage = async (
     );
     const { options, plugins } = await getConfigSemantic({ cwd: directory, env: envRecord, stderr, stdout }, finalOptions);
 
-    return { deps, dir: directory, fakeLogger, localDeps: [], manifest, name, options, path, plugins } as Package;
+    return { deps, dir: directory, localDeps: [], manifest, name, options, path, plugins } as Package;
 };
 
 /**
@@ -238,6 +237,8 @@ const multiSemanticRelease = async (
 
     if (mergedFlags.debug) {
         logger.config.level = "debug";
+
+        dbg.enable("msr:*,semantic-release:*");
     }
 
     (logger as { info: (...args: unknown[]) => void }).info(`multi-semantic-release version: ${multisemrelPackageJson.version}`);

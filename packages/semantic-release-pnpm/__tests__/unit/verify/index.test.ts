@@ -19,14 +19,14 @@ const { default: verifyAuth } = await import("../../../src/verify/verify-auth");
 const { default: verifyConfig } = await import("../../../src/verify/verify-config");
 const { default: verifyPnpm } = await import("../../../src/verify/verify-pnpm");
 
-describe("verify", () => {
+describe(verify, () => {
     const pluginConfig: PluginConfig = {};
     const context: VerifyConditionsContext = {
         branch: { name: "main" },
         branches: [{ name: "main" }],
         cwd: "/test/directory",
         env: {},
-        logger: { log: vi.fn(), error: vi.fn(), success: vi.fn() },
+        logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
         options: {},
         // eslint-disable-next-line n/no-unsupported-features/node-builtins
         stderr: { write: vi.fn() } as unknown as WritableStream,
@@ -59,7 +59,7 @@ describe("verify", () => {
     it("should log when skipping authentication for a package that should not be published", async () => {
         expect.assertions(2);
 
-        const pkg = { name: "test-package", version: "1.0.0", private: true };
+        const pkg = { name: "test-package", private: true, version: "1.0.0" };
 
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
@@ -73,7 +73,7 @@ describe("verify", () => {
     it("should not log authentication messages when package should not be published", async () => {
         expect.assertions(1);
 
-        const pkg = { name: "test-package", version: "1.0.0", private: true };
+        const pkg = { name: "test-package", private: true, version: "1.0.0" };
 
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
@@ -83,4 +83,3 @@ describe("verify", () => {
         expect(verifyAuth).not.toHaveBeenCalled();
     });
 });
-

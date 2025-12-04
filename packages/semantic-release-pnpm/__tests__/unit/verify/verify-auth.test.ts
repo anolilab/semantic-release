@@ -137,6 +137,7 @@ describe(verifyAuth, () => {
         expect.assertions(2);
 
         const pkgWithoutName = { version: "1.0.0" };
+
         vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));

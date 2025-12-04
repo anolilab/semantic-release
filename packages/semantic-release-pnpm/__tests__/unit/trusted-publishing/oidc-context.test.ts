@@ -69,6 +69,7 @@ describe(oidcContextEstablished, () => {
         expect.assertions(3);
 
         const error = new Error("Token exchange failed");
+
         vi.mocked(exchangeToken).mockRejectedValue(error);
 
         const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);

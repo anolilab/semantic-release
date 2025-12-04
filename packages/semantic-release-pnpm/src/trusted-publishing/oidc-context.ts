@@ -21,7 +21,9 @@ const oidcContext = async (registry: string, pkg: PackageJson, context: { logger
     const normalizedOfficialRegistry = normalizeUrl(OFFICIAL_REGISTRY);
 
     if (normalizedRegistry !== normalizedOfficialRegistry) {
-        context.logger.log(`Registry "${registry}" (normalized: "${normalizedRegistry}") does not match official registry "${OFFICIAL_REGISTRY}" (normalized: "${normalizedOfficialRegistry}"), skipping OIDC check`);
+        context.logger.log(
+            `Registry "${registry}" (normalized: "${normalizedRegistry}") does not match official registry "${OFFICIAL_REGISTRY}" (normalized: "${normalizedOfficialRegistry}"), skipping OIDC check`,
+        );
 
         return false;
     }
