@@ -10,7 +10,21 @@
         "monorepo",
         "semantic-release",
         "semantic-release-plugin",
-        "semantic-release-pnpm"
+        "semantic-release-pnpm",
+        "registry",
+        "npmjs",
+        "npm-registry",
+        "package-manager",
+        "workspace",
+        "workspaces",
+        "trusted-publishing",
+        "otp",
+        "authentication",
+        "npm-publish",
+        "package-publish",
+        "release-plugin",
+        "ci-cd",
+        "automation"
     ],
     "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/semantic-release-pnpm",
     "bugs": {

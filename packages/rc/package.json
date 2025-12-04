@@ -4,7 +4,23 @@
     "description": "The runtime configuration loader.",
     "keywords": [
         "anolilab",
-        "rc"
+        "rc",
+        "runtime-configuration",
+        "config",
+        "configuration",
+        "loader",
+        "settings",
+        "ini",
+        "json",
+        "yaml",
+        "cosmiconfig",
+        "dotfiles",
+        "dot-config",
+        ".rc",
+        "config-loader",
+        "config-parser",
+        "environment-config",
+        "app-config"
     ],
     "homepage": "https://github.com/anolilab/semantic-release/tree/main/packages/rc",
     "bugs": {
