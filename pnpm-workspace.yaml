@@ -29,7 +29,7 @@ catalogs:
     '@ckeditor/typedoc-plugins': 43.1.0
     '@visulima/packem': 2.0.0-alpha.40
     conventional-changelog-conventionalcommits: 9.1.0
-    dockerode: 4.0.8
+    dockerode: 4.0.9
     file-url: ^4.0.0
     get-stream: 9.0.1
     got: ^14.6.5
