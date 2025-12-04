@@ -26,7 +26,7 @@ globalThis.fetch = mockFetch;
 describe(exchangeToken, () => {
     const packageName = "@scope/some-package";
     const pkg = { name: packageName };
-    const logger = { log: vi.fn() };
+    const logger = { error: vi.fn(), log: vi.fn(), success: vi.fn() };
 
     beforeEach(() => {
         vi.clearAllMocks();
