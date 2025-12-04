@@ -238,7 +238,13 @@ const multiSemanticRelease = async (
     if (mergedFlags.debug) {
         logger.config.level = "debug";
 
-        dbg.enable("msr:*,semantic-release:*");
+        let extraDebug = "";
+
+        if (environment.DEBUG) {
+            extraDebug = `,${environment.DEBUG}`;
+        }
+
+        dbg.enable(`msr:*,semantic-release:*${extraDebug}`);
     }
 
     (logger as { info: (...args: unknown[]) => void }).info(`multi-semantic-release version: ${multisemrelPackageJson.version}`);
