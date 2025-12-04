@@ -7,10 +7,10 @@ packages:
 
 catalogs:
   build:
-    esbuild: 0.25.10
+    esbuild: 0.25.12
   cli:
-    '@anolilab/semantic-release-clean-package-json': 4.0.0-alpha.2
-    '@anolilab/semantic-release-pnpm': 3.0.0-alpha.2
+    '@anolilab/semantic-release-clean-package-json': 4.0.0
+    '@anolilab/semantic-release-pnpm': 3.0.0
     '@sebbo2002/semantic-release-jsr': ^3.1.0
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
@@ -23,13 +23,13 @@ catalogs:
     commitizen: ^4.3.1
     semantic-release: ^25.0.2
     semantic-release-yarn: ^3.0.2
-    taze: ^19.9.0
+    taze: ^19.9.2
   dev:
     '@arethetypeswrong/cli': ^0.18.2
     '@ckeditor/typedoc-plugins': 43.1.0
     '@visulima/packem': 2.0.0-alpha.35
     conventional-changelog-conventionalcommits: 9.1.0
-    dockerode: 4.0.8
+    dockerode: 4.0.9
     file-url: ^4.0.0
     get-stream: 9.0.1
     got: ^14.6.5
@@ -69,15 +69,15 @@ catalogs:
   node:
     '@visulima/path': ^2.0.5
     cross-env: ^10.1.0
-    execa: ^9.6.0
-    pkg-pr-new: ^0.0.60
+    execa: ^9.6.1
+    pkg-pr-new: ^0.0.62
     resolve-from: ^5.0.0
     rimraf: ^6.1.2
   peer:
     left-pad: latest
   prod:
     '@actions/core': ^1.11.1
-    '@anolilab/rc': 3.0.0-alpha.2
+    '@anolilab/rc': 3.0.0
     '@babel/core': ^7.28.5
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^4.1.0
@@ -98,7 +98,7 @@ catalogs:
     signale: ^1.4.0
     sort-package-json: ^3.4.0
     stream-buffers: ^3.0.3
-    yaml: ^2.8.1
+    yaml: ^2.8.2
     yargs: 18.0.0
   test:
     '@vitest/coverage-v8': ^4.0.14
