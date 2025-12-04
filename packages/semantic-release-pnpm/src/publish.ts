@@ -1,6 +1,7 @@
 /* eslint-disable jsdoc/informative-docs */
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
+import dbg from "debug";
 import { execa } from "execa";
 
 import type { PublishContext } from "./definitions/context";
@@ -10,6 +11,8 @@ import getRegistry from "./utils/get-registry";
 import type { ReleaseInfo } from "./utils/get-release-info";
 import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
+
+const debug = dbg("semantic-release-pnpm:publish");
 
 /**
  * Publish the package to the npm registry using `pnpm publish` when the plugin configuration and
@@ -68,6 +71,8 @@ const publish = async (pluginConfig: PluginConfig, packageJson: PackageJson, con
         if (pluginConfig.disableScripts) {
             pnpmArguments.push("--ignore-scripts");
         }
+
+        debug(`Executing: pnpm ${pnpmArguments.join(" ")}`);
 
         const result = execa("pnpm", pnpmArguments, {
             cwd,

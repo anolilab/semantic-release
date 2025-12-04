@@ -1,3 +1,5 @@
+import dbg from "debug";
+
 import addChannelNpm from "./add-channel";
 import type { AddChannelContext, PrepareContext, PublishContext, VerifyConditionsContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
@@ -7,6 +9,7 @@ import getPackage from "./utils/get-package";
 import type { ReleaseInfo } from "./utils/get-release-info";
 import verify from "./verify";
 
+const debug = dbg("semantic-release-pnpm:index");
 const PLUGIN_NAME = "semantic-release-pnpm";
 
 let verified: boolean;
@@ -58,7 +61,10 @@ export const verifyConditions = async (pluginConfig: PluginConfig, context: Veri
  * @returns Resolves when preparation steps have completed.
  */
 export const prepare = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
-    if (!verified) {
+    if (verified) {
+        debug("Skipping verifyConditions (already verified)");
+    } else {
+        debug("Verification not cached, running verifyConditions");
         await verify(pluginConfig, context);
     }
 
@@ -78,11 +84,17 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<ReleaseInfo | false> => {
     const packageJson = await getPackage(pluginConfig, context);
 
-    if (!verified) {
+    if (verified) {
+        debug("Skipping verifyConditions (already verified)");
+    } else {
+        debug("Verification not cached, running verifyConditions");
         await verify(pluginConfig, context);
     }
 
-    if (!prepared) {
+    if (prepared) {
+        debug("Skipping prepare (already prepared)");
+    } else {
+        debug("Preparation not cached, running prepare");
         await prepareNpm(pluginConfig, context);
     }
 
@@ -98,7 +110,10 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
  * done.
  */
 export const addChannel = async (pluginConfig: PluginConfig, context: AddChannelContext): Promise<ReleaseInfo | false> => {
-    if (!verified) {
+    if (verified) {
+        debug("Skipping verifyConditions (already verified)");
+    } else {
+        debug("Verification not cached, running verifyConditions");
         await verify(pluginConfig, context);
     }
 

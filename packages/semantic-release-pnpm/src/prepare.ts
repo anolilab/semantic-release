@@ -1,10 +1,13 @@
 /* eslint-disable jsdoc/informative-docs */
 import { move } from "@visulima/fs";
 import { resolve } from "@visulima/path";
+import dbg from "debug";
 import { execa } from "execa";
 
 import type { PrepareContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
+
+const debug = dbg("semantic-release-pnpm:prepare");
 
 /**
  * Prepare the package for publishing by
@@ -62,9 +65,14 @@ const prepare = async (
         const tarballSource = resolve(cwd, tarball);
         const tarballDestination = resolve(cwd, tarballDir.trim(), tarball);
 
+        debug(`Created tarball: ${tarball}`);
+
         // Only move the tarball if we need to
         // Fixes: https://github.com/semantic-release/npm/issues/169
-        if (tarballSource !== tarballDestination) {
+        if (tarballSource === tarballDestination) {
+            debug(`Tarball already at destination: ${tarballDestination}`);
+        } else {
+            debug(`Moving tarball from ${tarballSource} to ${tarballDestination}`);
             await move(tarballSource, tarballDestination);
         }
     }

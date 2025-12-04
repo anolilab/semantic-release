@@ -42,7 +42,6 @@ export interface Package {
     _ready?: boolean;
     deps: string[];
     dir: string;
-    fakeLogger: { error: () => void; log: () => void };
     localDeps: Package[];
     manifest: PackageManifest;
     name: string;

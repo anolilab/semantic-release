@@ -76,4 +76,24 @@ describe(getRegistry, () => {
             "https://custom4.registry.com/",
         );
     });
+
+    it("get the registry configured in \"publishConfig\" for scoped package", async () => {
+        expect.assertions(1);
+
+        await writeFile(resolve(cwd, ".npmrc"), "@scope:registry = https://custom3.registry.com\nregistry = https://custom4.registry.com");
+
+        expect(
+            getRegistry(
+                {
+                    name: "@scope/package-name",
+                    publishConfig: {
+                        "@scope:registry": "https://custom5.registry.com",
+                        registry: "https://custom6.registry.com",
+                    },
+                },
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                { cwd, env: { NPM_CONFIG_REGISTRY: "https://custom1.registry.com/" } } as any,
+            ),
+        ).toBe("https://custom5.registry.com/");
+    });
 });

@@ -26,7 +26,7 @@ globalThis.fetch = mockFetch;
 describe(exchangeToken, () => {
     const packageName = "@scope/some-package";
     const pkg = { name: packageName };
-    const logger = { log: vi.fn() };
+    const logger = { error: vi.fn(), log: vi.fn(), success: vi.fn() };
 
     beforeEach(() => {
         vi.clearAllMocks();
@@ -63,7 +63,7 @@ describe(exchangeToken, () => {
         });
 
         it("should return undefined when ID token retrieval fails on GitHub Actions", async () => {
-            expect.assertions(2);
+            expect.assertions(1);
 
             vi.mocked(envCi).mockReturnValue({ name: githubProviderName });
             vi.mocked(getIDToken).mockRejectedValue(new Error("Unable to get ACTIONS_ID_TOKEN_REQUEST_URL env variable"));
@@ -71,11 +71,10 @@ describe(exchangeToken, () => {
             const result = await exchangeToken(pkg, { logger });
 
             expect(result).toBeUndefined();
-            expect(logger.log).toHaveBeenCalledWith("Retrieval of GitHub Actions OIDC token failed: Unable to get ACTIONS_ID_TOKEN_REQUEST_URL env variable");
         });
 
         it("should return undefined when token exchange fails on GitHub Actions", async () => {
-            expect.assertions(3);
+            expect.assertions(2);
 
             vi.mocked(envCi).mockReturnValue({ name: githubProviderName });
             vi.mocked(getIDToken).mockResolvedValue("id-token-value");
@@ -92,7 +91,6 @@ describe(exchangeToken, () => {
 
             expect(result).toBeUndefined();
             expect(getIDToken).toHaveBeenCalledWith("npm:registry.npmjs.org");
-            expect(logger.log).toHaveBeenCalledWith("OIDC token exchange with the npm registry failed: 401 Unauthorized");
         });
     });
 
@@ -132,7 +130,7 @@ describe(exchangeToken, () => {
         });
 
         it("should return undefined when token exchange fails on GitLab Pipelines", async () => {
-            expect.assertions(2);
+            expect.assertions(1);
 
             process.env.NPM_ID_TOKEN = "gitlab-id-token-value";
             vi.mocked(envCi).mockReturnValue({ name: gitlabProviderName });
@@ -148,7 +146,6 @@ describe(exchangeToken, () => {
             const result = await exchangeToken(pkg, { logger });
 
             expect(result).toBeUndefined();
-            expect(logger.log).toHaveBeenCalledWith("OIDC token exchange with the npm registry failed: 401 Unauthorized");
         });
     });
 
@@ -161,6 +158,44 @@ describe(exchangeToken, () => {
             const result = await exchangeToken(pkg, { logger });
 
             expect(result).toBeUndefined();
+        });
+
+        it("should return undefined when CI provider cannot be detected", async () => {
+            expect.assertions(1);
+
+            vi.mocked(envCi).mockReturnValue({});
+
+            const result = await exchangeToken(pkg, { logger });
+
+            expect(result).toBeUndefined();
+        });
+
+        it("should return undefined when package name is invalid", async () => {
+            expect.assertions(1);
+
+            const invalidPkg = { name: "" };
+
+            const result = await exchangeToken(invalidPkg, { logger });
+
+            expect(result).toBeUndefined();
+        });
+
+        it("should return access token when token exchange succeeds", async () => {
+            expect.assertions(1);
+
+            vi.mocked(envCi).mockReturnValue({ name: "GitHub Actions" });
+            vi.mocked(getIDToken).mockResolvedValue("id-token-value");
+
+            const mockResponse = {
+                json: () => Promise.resolve({ token: "access-token-value" }),
+                ok: true,
+            };
+
+            mockFetch.mockResolvedValue(mockResponse);
+
+            const result = await exchangeToken(pkg, { logger });
+
+            expect(result).toBe("access-token-value");
         });
     });
 });

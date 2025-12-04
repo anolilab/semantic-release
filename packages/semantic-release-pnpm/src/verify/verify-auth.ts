@@ -1,4 +1,5 @@
 import type { PackageJson } from "@visulima/package";
+import dbg from "debug";
 import { execa } from "execa";
 import normalizeUrl from "normalize-url";
 
@@ -8,6 +9,8 @@ import oidcContextEstablished from "../trusted-publishing/oidc-context";
 import getError from "../utils/get-error";
 import getRegistry from "../utils/get-registry";
 import setNpmrcAuth from "../utils/set-npmrc-auth";
+
+const debug = dbg("semantic-release-pnpm:verify-auth");
 
 /**
  * Check if an error indicates a connection or timeout issue.
@@ -197,8 +200,18 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
     const registry = getRegistry(package_, context);
 
     // Check if OIDC context is established for trusted publishing
-    if (package_.name && await oidcContextEstablished(registry, package_, context)) {
-        return;
+    if (package_.name) {
+        debug(`Checking OIDC trusted publishing for package "${package_.name}" on registry "${registry}"`);
+
+        if (await oidcContextEstablished(registry, package_, context)) {
+            debug("OIDC trusted publishing verified successfully, skipping NPM_TOKEN check");
+
+            return;
+        }
+
+        debug("OIDC trusted publishing not available, falling back to NPM_TOKEN authentication");
+    } else {
+        debug("Package name not found, skipping OIDC check and using NPM_TOKEN authentication");
     }
 
     await setNpmrcAuth(npmrc, registry, context);

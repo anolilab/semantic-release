@@ -1,9 +1,11 @@
 import { getPackageManagerVersion } from "@visulima/package";
+import dbg from "debug";
 import { gte } from "semver";
 
 import type { CommonContext } from "../definitions/context";
 import getError from "../utils/get-error";
 
+const debug = dbg("semantic-release-pnpm:verify-pnpm");
 const MIN_PNPM_VERSION = "8.0.0";
 
 /**
@@ -22,11 +24,16 @@ const verifyPnpm = async ({ logger }: CommonContext): Promise<void> => {
 
     const version = getPackageManagerVersion("pnpm");
 
+    debug(`Detected pnpm version: ${String(version)}`);
+
     if (gte(MIN_PNPM_VERSION, version)) {
+        debug(`pnpm version ${String(version)} is below minimum required version ${MIN_PNPM_VERSION}`);
         const semanticError = getError("EINVALIDPNPM", { version: String(version) });
 
         throw new AggregateError([semanticError], semanticError.message);
     }
+
+    debug(`pnpm version ${String(version)} meets minimum requirement (>= ${MIN_PNPM_VERSION})`);
 };
 
 export default verifyPnpm;

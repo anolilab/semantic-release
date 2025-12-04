@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import oidcContextEstablished from "../../../src/trusted-publishing/oidc-context";
 
@@ -14,6 +14,10 @@ const { default: exchangeToken } = await import("../../../src/trusted-publishing
 describe(oidcContextEstablished, () => {
     const pkg = { name: "@scope/package" };
     const context = { logger: { log: vi.fn() } };
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
 
     it("should return true when OIDC context is established for official registry", async () => {
         expect.assertions(2);
@@ -45,10 +49,24 @@ describe(oidcContextEstablished, () => {
         expect(result).toBe(false);
     });
 
+    it("should return true when registry URL has different format but same registry", async () => {
+        expect.assertions(2);
+
+        vi.mocked(exchangeToken).mockResolvedValue("token-value");
+
+        // Test with registry URL without trailing slash
+        const result = await oidcContextEstablished("https://registry.npmjs.org", pkg, context);
+
+        expect(result).toBe(true);
+        expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
+    });
+
     it("should return false when exchangeToken throws an error", async () => {
         expect.assertions(1);
 
-        vi.mocked(exchangeToken).mockRejectedValue(new Error("Token exchange failed"));
+        const error = new Error("Token exchange failed");
+
+        vi.mocked(exchangeToken).mockRejectedValue(error);
 
         const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 

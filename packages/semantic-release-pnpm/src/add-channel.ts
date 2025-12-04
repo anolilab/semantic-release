@@ -1,4 +1,5 @@
 import type { PackageJson } from "@visulima/package";
+import dbg from "debug";
 import { execa } from "execa";
 
 import type { AddChannelContext } from "./definitions/context";
@@ -9,6 +10,8 @@ import getRegistry from "./utils/get-registry";
 import type { ReleaseInfo } from "./utils/get-release-info";
 import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
+
+const debug = dbg("semantic-release-pnpm:add-channel");
 
 /**
  * After a successful publish this step adds the newly released version to another npm distribution
@@ -39,8 +42,11 @@ const addChannel = async (pluginConfig: PluginConfig, packageJson: PackageJson, 
         logger.log(`Adding version ${version} to npm registry on dist-tag ${distributionTag}`);
 
         const npmrc = getNpmrcPath(cwd, env);
+        const distTagArguments = ["dist-tag", "add", `${packageJson.name}@${version}`, distributionTag, "--registry", registry];
 
-        const result = execa("pnpm", ["dist-tag", "add", `${packageJson.name}@${version}`, distributionTag, "--registry", registry], {
+        debug(`Executing: pnpm ${distTagArguments.join(" ")}`);
+
+        const result = execa("pnpm", distTagArguments, {
             cwd,
             env: {
                 ...env,

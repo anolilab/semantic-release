@@ -53,7 +53,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
             Object.assign(context.options, npmPackage.options);
             Object.assign(context.options, context.options._pkgOptions || {});
-            Object.assign(npmPackage.fakeLogger, context.logger || {});
+
             context.cwd = dir;
 
             if (plugins.verifyConditions) {

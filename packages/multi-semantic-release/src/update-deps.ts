@@ -174,8 +174,9 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
         // eslint-disable-next-line regexp/optimal-quantifier-concatenation
         const match = /^workspace:(([\^~*])?.*)$/u.exec(currentVersion);
 
-        if (!match)
+        if (!match) {
             return currentVersion;
+        }
 
         const [, range, caret] = match;
 

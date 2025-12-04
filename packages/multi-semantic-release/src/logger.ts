@@ -54,14 +54,6 @@ const logger: Logger = {
                 return;
             }
 
-            if (assertLevel(l, "debug")) {
-                dbg.enable("msr:");
-            }
-
-            if (assertLevel(l, "trace")) {
-                dbg.enable("msr:,semantic-release:");
-            }
-
             this._level = l;
         },
         get level(): string {

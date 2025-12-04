@@ -3,10 +3,13 @@
 import { rc } from "@anolilab/rc";
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
+import dbg from "debug";
 import type { AuthOptions } from "registry-auth-token";
 
 import { DEFAULT_NPM_REGISTRY, OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
+
+const debug = dbg("semantic-release-pnpm:registry");
 
 /**
  * Derive the registry URL for a given npm scope from a parsed npm configuration object (`npmrc`).
@@ -40,22 +43,47 @@ const getRegistryUrl = (scope: string, npmrc: AuthOptions["npmrc"]): string => {
  * @param pkg The package manifest whose registry is to be determined.
  * @param pkg.name The name of the package.
  * @param pkg.publishConfig The publish configuration.
- * @param pkg.publishConfig.registry The registry to use for publishing.
  * @param context Semantic-release execution context.
  * @param context.cwd The base cwd.
  * @param context.env The environment variables.
  * @returns The registry URL (always trailing slash suffixed).
  */
-const getRegistry = ({ name, publishConfig: { registry } = {} }: PackageJson, { cwd, env }: CommonContext): string =>
-    registry
-    ?? env.NPM_CONFIG_REGISTRY
-    ?? getRegistryUrl(
-        (name as string).split("/")[0] as string,
-        rc("npm", {
+const getRegistry = ({ name, publishConfig = {} }: PackageJson, { cwd, env }: CommonContext): string => {
+    let resolvedRegistry: string;
+    let source: string;
+
+    const scope = (name as string).split("/")[0] as string;
+    const publishRegistry = publishConfig[`${scope}:registry`] ?? publishConfig.registry;
+
+    if (publishRegistry) {
+        resolvedRegistry = publishRegistry as string;
+        source = "package.json#publishConfig.registry";
+    } else if (env.NPM_CONFIG_REGISTRY) {
+        resolvedRegistry = env.NPM_CONFIG_REGISTRY;
+        source = "NPM_CONFIG_REGISTRY environment variable";
+    } else {
+        const npmrcConfig = rc("npm", {
             config: env.NPM_CONFIG_USERCONFIG ?? resolve(cwd, ".npmrc"),
             cwd,
             defaults: { registry: OFFICIAL_REGISTRY },
-        }).config as AuthOptions["npmrc"],
-    );
+        });
+        const npmrc = npmrcConfig.config as AuthOptions["npmrc"];
+
+        resolvedRegistry = getRegistryUrl(scope, npmrc);
+
+        // eslint-disable-next-line unicorn/prefer-ternary
+        if (npmrc && (npmrc[`${scope}:registry`] ?? npmrc.registry)) {
+            source = `.npmrc file (${npmrc[`${scope}:registry`] ? `scoped registry for ${scope}` : "default registry"})`;
+        } else {
+            source = "default registry (OFFICIAL_REGISTRY)";
+        }
+    }
+
+    const finalRegistry = resolvedRegistry.endsWith("/") ? resolvedRegistry : `${resolvedRegistry}/`;
+
+    debug(`Resolved registry "${finalRegistry}" from ${source}`);
+
+    return finalRegistry;
+};
 
 export default getRegistry;
