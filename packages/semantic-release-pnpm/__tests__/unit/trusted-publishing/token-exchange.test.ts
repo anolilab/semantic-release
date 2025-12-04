@@ -154,13 +154,56 @@ describe(exchangeToken, () => {
 
     describe("other CI providers", () => {
         it("should return undefined when no supported CI provider is detected", async () => {
-            expect.assertions(1);
+            expect.assertions(2);
 
             vi.mocked(envCi).mockReturnValue({ name: "Other Service" });
 
             const result = await exchangeToken(pkg, { logger });
 
             expect(result).toBeUndefined();
+            expect(logger.log).toHaveBeenCalledWith(expect.stringContaining("CI provider \"Other Service\" is not supported"));
+        });
+
+        it("should log when CI provider cannot be detected", async () => {
+            expect.assertions(2);
+
+            vi.mocked(envCi).mockReturnValue({});
+
+            const result = await exchangeToken(pkg, { logger });
+
+            expect(result).toBeUndefined();
+            expect(logger.log).toHaveBeenCalledWith("Unable to detect CI provider for OIDC token exchange");
+        });
+
+        it("should log when package name is invalid", async () => {
+            expect.assertions(2);
+
+            const invalidPkg = { name: "" };
+
+            const result = await exchangeToken(invalidPkg, { logger });
+
+            expect(result).toBeUndefined();
+            expect(logger.log).toHaveBeenCalledWith("Invalid package name provided for OIDC token exchange");
+        });
+
+        it("should log detected CI provider", async () => {
+            expect.assertions(3);
+
+            vi.mocked(envCi).mockReturnValue({ name: "GitHub Actions" });
+            vi.mocked(getIDToken).mockResolvedValue("id-token-value");
+
+            const mockResponse = {
+                json: () => Promise.resolve({ token: "access-token-value" }),
+                ok: true,
+            };
+
+            mockFetch.mockResolvedValue(mockResponse);
+
+            const result = await exchangeToken(pkg, { logger });
+
+            expect(result).toBe("access-token-value");
+            expect(logger.log).toHaveBeenCalledWith("Detected CI provider: GitHub Actions");
+            expect(logger.log).toHaveBeenCalledWith("OIDC token exchange with the npm registry succeeded");
         });
     });
 });

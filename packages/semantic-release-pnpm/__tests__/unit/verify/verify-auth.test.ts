@@ -34,19 +34,21 @@ describe(verifyAuth, () => {
     });
 
     it("should skip authentication when OIDC context is established for official registry", async () => {
-        expect.assertions(2);
+        expect.assertions(4);
 
         vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
         vi.mocked(oidcContextEstablished).mockResolvedValue(true);
 
         await verifyAuth(npmrc, pkg, context);
 
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Checking OIDC trusted publishing"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("OIDC trusted publishing verified successfully"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
         expect(setNpmrcAuth).not.toHaveBeenCalled();
     });
 
     it("should verify token auth when OIDC context is not established for official registry", async () => {
-        expect.assertions(3);
+        expect.assertions(5);
 
         vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
@@ -55,12 +57,14 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Checking OIDC trusted publishing"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("falling back to NPM_TOKEN authentication"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
 
     it("should perform dry-run publish for custom registries", async () => {
-        expect.assertions(3);
+        expect.assertions(4);
 
         const customRegistry = "https://custom.registry.org/";
 
@@ -72,6 +76,7 @@ describe(verifyAuth, () => {
 
         await verifyAuth(npmrc, pkg, context, "/dist");
 
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Checking OIDC trusted publishing"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
         expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry], {
@@ -126,6 +131,18 @@ describe(verifyAuth, () => {
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm authentication");
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
+    });
+
+    it("should log when package name is missing", async () => {
+        expect.assertions(2);
+
+        const pkgWithoutName = { version: "1.0.0" };
+        vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
+        vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
+        vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
+
+        await expect(verifyAuth(npmrc, pkgWithoutName, context)).rejects.toThrow("Invalid npm token");
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Package name not found"));
     });
 
     it("should bubble through errors from setting up auth", async () => {

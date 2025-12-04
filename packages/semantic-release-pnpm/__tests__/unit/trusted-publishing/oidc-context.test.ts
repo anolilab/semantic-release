@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import oidcContextEstablished from "../../../src/trusted-publishing/oidc-context";
 
@@ -15,8 +15,12 @@ describe(oidcContextEstablished, () => {
     const pkg = { name: "@scope/package" };
     const context = { logger: { log: vi.fn() } };
 
+    beforeEach(() => {
+        vi.clearAllMocks();
+    });
+
     it("should return true when OIDC context is established for official registry", async () => {
-        expect.assertions(2);
+        expect.assertions(3);
 
         vi.mocked(exchangeToken).mockResolvedValue("token-value");
 
@@ -24,10 +28,11 @@ describe(oidcContextEstablished, () => {
 
         expect(result).toBe(true);
         expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Registry matches official npm registry"));
     });
 
     it("should return false when OIDC context is not established for official registry", async () => {
-        expect.assertions(2);
+        expect.assertions(3);
 
         vi.mocked(exchangeToken).mockResolvedValue(undefined);
 
@@ -35,23 +40,41 @@ describe(oidcContextEstablished, () => {
 
         expect(result).toBe(false);
         expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
+        expect(context.logger.log).toHaveBeenCalledWith("OIDC token exchange did not succeed, falling back to NPM_TOKEN authentication");
     });
 
-    it("should return false when registry is not the official registry", async () => {
-        expect.assertions(1);
+    it("should log and return false when registry is not the official registry", async () => {
+        expect.assertions(2);
 
         const result = await oidcContextEstablished("https://custom.registry.org/", pkg, context);
 
         expect(result).toBe(false);
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("does not match official registry"));
     });
 
-    it("should return false when exchangeToken throws an error", async () => {
-        expect.assertions(1);
+    it("should log and return false when registry URL has different format but same registry", async () => {
+        expect.assertions(3);
 
-        vi.mocked(exchangeToken).mockRejectedValue(new Error("Token exchange failed"));
+        vi.mocked(exchangeToken).mockResolvedValue("token-value");
+
+        // Test with registry URL without trailing slash
+        const result = await oidcContextEstablished("https://registry.npmjs.org", pkg, context);
+
+        expect(result).toBe(true);
+        expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Registry matches official npm registry"));
+    });
+
+    it("should log error and return false when exchangeToken throws an error", async () => {
+        expect.assertions(3);
+
+        const error = new Error("Token exchange failed");
+        vi.mocked(exchangeToken).mockRejectedValue(error);
 
         const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
         expect(result).toBe(false);
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("OIDC context check failed"));
+        expect(context.logger.log).toHaveBeenCalledWith("Falling back to NPM_TOKEN authentication");
     });
 });
