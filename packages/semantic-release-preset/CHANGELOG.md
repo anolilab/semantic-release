@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-preset [12.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.0.1...@anolilab/semantic-release-preset@12.1.0) (2025-12-04)
+
+### Miscellaneous Chores
+
+* enhance package.json keywords across multiple packages ([842cd32](https://github.com/anolilab/semantic-release/commit/842cd32acf48c34d3226b1b2d63e7cdecdeff6b7))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.2.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.2.0
+
 ## @anolilab/semantic-release-preset [12.0.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.0.0...@anolilab/semantic-release-preset@12.0.1) (2025-11-25)
 
 
