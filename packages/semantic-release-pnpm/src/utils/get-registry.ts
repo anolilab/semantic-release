@@ -46,7 +46,6 @@ const getRegistryUrl = (scope: string, npmrc: AuthOptions["npmrc"]): string => {
  * @param context Semantic-release execution context.
  * @param context.cwd The base cwd.
  * @param context.env The environment variables.
- * @param context.logger The logger instance.
  * @returns The registry URL (always trailing slash suffixed).
  */
 const getRegistry = ({ name, publishConfig = {} }: PackageJson, { cwd, env }: CommonContext): string => {

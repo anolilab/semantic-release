@@ -4,6 +4,7 @@ import type { KnownCiEnv } from "env-ci";
 import envCi from "env-ci";
 
 import { GITHUB_ACTIONS_PROVIDER_NAME, GITLAB_PIPELINES_PROVIDER_NAME, OFFICIAL_REGISTRY } from "../definitions/constants";
+import type { CommonContext } from "../definitions/context";
 
 const debug = dbg("semantic-release-pnpm:token-exchange");
 
@@ -85,14 +86,12 @@ const exchangeGitlabPipelinesToken = async (packageName: string): Promise<string
  * Exchanges OIDC tokens for supported CI providers.
  * @param pkg The package information.
  * @param pkg.name The name of the package to publish.
- * @param _context The semantic-release context (unused, kept for API compatibility).
- * @param _context.logger The logger instance (unused).
- * @param _context.logger.log The logger function (unused).
+ * @param context The semantic-release context
  * @returns A promise that resolves to the npm token or undefined if no supported CI provider is detected.
  */
-const tokenExchange = (pkg: { name: string }, _context: { logger: { log: (message: string) => void } }): Promise<string | undefined> => {
+const tokenExchange = (pkg: { name: string }, context: CommonContext): Promise<string | undefined> => {
     if (!pkg.name || typeof pkg.name !== "string" || pkg.name.trim() === "") {
-        debug("Invalid package name provided for OIDC token exchange");
+        context.logger.error("Invalid package name provided for OIDC token exchange");
 
         return Promise.resolve(undefined);
     }

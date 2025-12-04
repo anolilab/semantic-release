@@ -10,7 +10,7 @@ import getError from "../utils/get-error";
 import getRegistry from "../utils/get-registry";
 import setNpmrcAuth from "../utils/set-npmrc-auth";
 
-const debug = dbg("msr:semantic-release-pnpm:verify-auth");
+const debug = dbg("semantic-release-pnpm:verify-auth");
 
 /**
  * Check if an error indicates a connection or timeout issue.

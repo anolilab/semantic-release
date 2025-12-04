@@ -6,7 +6,7 @@ import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
 import exchangeToken from "./token-exchange";
 
-const debug = dbg("msr:semantic-release-pnpm:oidc-context");
+const debug = dbg("semantic-release-pnpm:oidc-context");
 
 /**
  * Determines whether an OIDC context has been established for publishing to the official npm registry.
