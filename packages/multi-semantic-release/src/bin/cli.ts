@@ -76,7 +76,7 @@ await (async (): Promise<void> => {
         .option("tag-format", {
             describe:
                 // eslint-disable-next-line no-template-curly-in-string
-                'Format to use for creating tag names. Should include "name" and "version" vars. Default: "${name}@${version}" generates "package-name@1.0.0"',
+                "Format to use for creating tag names. Should include \"name\" and \"version\" vars. Default: \"${name}@${version}\" generates \"package-name@1.0.0\"",
             type: "string",
         })
         .strict(false)

@@ -30,7 +30,8 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
     context.logger.log("Created a backup of the package.json file.");
 
-    const keepProperties = new Set([...defaultKeepProperties, ...(pluginConfig.keep ?? [])]);
+    const keep = pluginConfig.keep ?? [];
+    const keepProperties = new Set([...defaultKeepProperties, ...keep]);
 
     context.logger.log(`Keeping the following properties: ${[...keepProperties].join(", ")}`);
 

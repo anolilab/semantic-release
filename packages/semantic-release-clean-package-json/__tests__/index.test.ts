@@ -84,8 +84,8 @@ describe("semantic-release-clean-package-json", () => {
             version: "1.0.0",
         });
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "devDependencies"');
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "eslintConfig"');
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"devDependencies\"");
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"eslintConfig\"");
     });
 
     it("should keep flag from given config", async () => {

@@ -262,8 +262,8 @@ const multiSemanticRelease = async (
             const manifest = entry.manifest as { private?: boolean };
 
             return (
-                (!mergedFlags.ignorePrivate || !manifest.private) &&
-                (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
+                (!mergedFlags.ignorePrivate || !manifest.private)
+                && (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
             );
         }) as (entry: unknown) => boolean,
         workspacesExtra: Array.isArray(mergedFlags.ignorePackages) ? mergedFlags.ignorePackages.map((p: string) => `!${p}`) : [],

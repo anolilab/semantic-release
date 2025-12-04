@@ -21,7 +21,7 @@ describe("recognizeFormat()", () => {
         it("no indentation", () => {
             expect.assertions(1);
 
-            expect(recognizeFormat('{"a": "b"}').indent).toBe("");
+            expect(recognizeFormat("{\"a\": \"b\"}").indent).toBe("");
         });
     });
 
@@ -29,19 +29,19 @@ describe("recognizeFormat()", () => {
         it("no trailing whitespace", () => {
             expect.assertions(1);
 
-            expect(recognizeFormat('{"a": "b"}').trailingWhitespace).toBe("");
+            expect(recognizeFormat("{\"a\": \"b\"}").trailingWhitespace).toBe("");
         });
 
         it("newline", () => {
             expect.assertions(1);
 
-            expect(recognizeFormat('{"a": "b"}\n').trailingWhitespace).toBe("\n");
+            expect(recognizeFormat("{\"a\": \"b\"}\n").trailingWhitespace).toBe("\n");
         });
 
         it("multiple newlines", () => {
             expect.assertions(1);
 
-            expect(recognizeFormat('{"a": "b"}\n\n').trailingWhitespace).toBe("\n");
+            expect(recognizeFormat("{\"a\": \"b\"}\n\n").trailingWhitespace).toBe("\n");
         });
     });
 });

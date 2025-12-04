@@ -31,7 +31,7 @@ const CONFIG_FILES = [
  * @internal
  */
 const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<MultiReleaseConfig> => {
-    const { config } = (await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd)) || {};
+    const { config } = await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd) || {};
     const { extends: extendPaths, ...rest } = { ...config };
 
     let options: MultiReleaseConfig = rest;
