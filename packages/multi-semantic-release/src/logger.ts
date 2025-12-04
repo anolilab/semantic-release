@@ -76,9 +76,14 @@ const logger: Logger = {
                 stream: stdout,
                 types: {
                     complete: { badge: "🎉", color: "green", label: "", stream: [stdout] },
+                    debug: { badge: "🐛", color: "yellow", label: "", stream: [stdout] },
                     error: { badge: "✖", color: "red", label: "", stream: [stderr] },
+                    failure: { badge: "✖", color: "red", label: "", stream: [stderr] },
+                    info: { badge: "ℹ", color: "blue", label: "", stream: [stdout] },
                     log: { badge: "•", color: "magenta", label: "", stream: [stdout] },
                     success: { badge: "✔", color: "green", label: "", stream: [stdout] },
+                    trace: { badge: "🔍", color: "cyan", label: "", stream: [stdout] },
+                    warn: { badge: "⚠", color: "orange", label: "", stream: [stderr] },
                 },
             }) as unknown as Record<string, unknown>;
         },
