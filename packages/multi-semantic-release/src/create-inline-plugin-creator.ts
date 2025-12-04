@@ -55,7 +55,6 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             Object.assign(context.options, context.options._pkgOptions || {});
 
             context.cwd = dir;
-            console.log({ context });
 
             if (plugins.verifyConditions) {
                 await plugins.verifyConditions(context);

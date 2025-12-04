@@ -3,6 +3,7 @@
 import { rc } from "@anolilab/rc";
 import { writeFile } from "@visulima/fs";
 import { resolve } from "@visulima/path";
+import dbg from "debug";
 import { stringify } from "ini";
 import type { AuthOptions } from "registry-auth-token";
 import getAuthToken from "registry-auth-token";
@@ -11,6 +12,8 @@ import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
 import getError from "./get-error";
 import nerfDart from "./nerf-dart";
+
+const debug = dbg("semantic-release-pnpm:auth");
 
 /**
  * Ensure that the `.npmrc` file referenced by `npmrc` contains valid authentication credentials for
@@ -54,13 +57,17 @@ const setNpmrcAuth = async (
         logger.log("Reading npm config from %s", files.join(", "));
     }
 
-    if (getAuthToken(registry, { npmrc: config } as AuthOptions)) {
+    const existingToken = getAuthToken(registry, { npmrc: config } as AuthOptions);
+
+    if (existingToken) {
+        debug(`Using existing authentication token from npmrc files for registry "${registry}"`);
         await writeFile(npmrc, stringify(config));
 
         return;
     }
 
     if (NPM_USERNAME && NPM_PASSWORD && NPM_EMAIL) {
+        debug(`Using username/password/email authentication strategy for registry "${registry}"`);
         // Use scoped auth format: //registry/:_auth instead of _auth (required by npm/pnpm)
         await writeFile(
             npmrc,
@@ -69,10 +76,12 @@ const setNpmrcAuth = async (
 
         logger.log(`Wrote NPM_USERNAME, NPM_PASSWORD, and NPM_EMAIL to ${npmrc}`);
     } else if (NPM_TOKEN) {
+        debug(`Using NPM_TOKEN authentication strategy for registry "${registry}"`);
         await writeFile(npmrc, `${Object.keys(config).length > 0 ? `${stringify(config)}\n` : ""}${nerfDart(registry)}:_authToken = \${NPM_TOKEN}`);
 
         logger.log(`Wrote NPM_TOKEN to ${npmrc}`);
     } else {
+        debug(`No authentication credentials found for registry "${registry}"`);
         const semanticError = getError("ENONPMTOKEN", { registry });
 
         throw new AggregateError([semanticError], semanticError.message);

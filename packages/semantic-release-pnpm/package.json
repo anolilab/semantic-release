@@ -69,6 +69,7 @@
         "@visulima/fs": "catalog:prod",
         "@visulima/package": "catalog:prod",
         "@visulima/path": "catalog:node",
+        "debug": "catalog:prod",
         "env-ci": "catalog:prod",
         "execa": "catalog:node",
         "ini": "catalog:prod",
