@@ -10,30 +10,30 @@ import multiSemanticRelease from "../src/multi-semantic-release";
 import { copyDirectory, createNewTestingFiles } from "./helpers/file";
 import { gitAdd, gitCommit, gitCommitAll, gitGetLog, gitInit, gitInitOrigin, gitPush, gitTag } from "./helpers/git";
 
-type ReleaseResult
-    = | {
-        name: string;
-        result: {
-            lastRelease: {
-                channels?: string[];
-                gitHead?: string;
-                gitTag?: string;
-                name?: string;
-                version?: string;
-            };
-            nextRelease?: {
-                gitHead: string;
-                gitTag: string;
-                notes?: string;
-                type: string;
-                version: string;
-            };
-        };
-    }
+type ReleaseResult =
     | {
-        name: string;
-        result: false;
-    };
+          name: string;
+          result: {
+              lastRelease: {
+                  channels?: string[];
+                  gitHead?: string;
+                  gitTag?: string;
+                  name?: string;
+                  version?: string;
+              };
+              nextRelease?: {
+                  gitHead: string;
+                  gitTag: string;
+                  notes?: string;
+                  type: string;
+                  version: string;
+              };
+          };
+      }
+    | {
+          name: string;
+          result: false;
+      };
 
 const require = createRequire(import.meta.url);
 const environment = {};
@@ -50,7 +50,7 @@ describe("multiSemanticRelease()", () => {
         ["satisfy", "^", [3, 2, 0, 1]],
         ["inherit", "^", [3, 2, 0, 1]],
     ])("with Yarn Workspace Ranges & deps.bump=%s & deps.prefix=%s", (strategy, prefix, packageOrder) => {
-        it("should replace \"workspace:\" with correct version", async () => {
+        it('should replace "workspace:" with correct version', async () => {
             expect.assertions(37);
 
             // Create Git repo with copy of Yarn workspaces fixture.

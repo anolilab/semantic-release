@@ -174,8 +174,7 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
         // eslint-disable-next-line regexp/optimal-quantifier-concatenation
         const match = /^workspace:(([\^~*])?.*)$/u.exec(currentVersion);
 
-        if (!match)
-            return currentVersion;
+        if (!match) return currentVersion;
 
         const [, range, caret] = match;
 
@@ -192,8 +191,8 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
 const difference = (object: Record<string, unknown>, base: Record<string, unknown>): Record<string, string> => {
     const result = transform(object, (accumulator: Record<string, string>, value: unknown, key: string) => {
         if (!isEqual(value, base[key])) {
-            accumulator[key]
-                = isObject(value) && isObject(base[key])
+            accumulator[key] =
+                isObject(value) && isObject(base[key])
                     ? JSON.stringify(difference(value as Record<string, unknown>, base[key] as Record<string, unknown>))
                     : `${base[key]} → ${value}`;
         }

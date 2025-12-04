@@ -43,25 +43,26 @@ const getRegistryUrl = (scope: string, npmrc: AuthOptions["npmrc"]): string => {
  * @param pkg The package manifest whose registry is to be determined.
  * @param pkg.name The name of the package.
  * @param pkg.publishConfig The publish configuration.
- * @param pkg.publishConfig.registry The registry to use for publishing.
  * @param context Semantic-release execution context.
  * @param context.cwd The base cwd.
  * @param context.env The environment variables.
  * @param context.logger The logger instance.
  * @returns The registry URL (always trailing slash suffixed).
  */
-const getRegistry = ({ name, publishConfig: { registry } = {} }: PackageJson, { cwd, env }: CommonContext): string => {
+const getRegistry = ({ name, publishConfig = {} }: PackageJson, { cwd, env }: CommonContext): string => {
     let resolvedRegistry: string;
     let source: string;
 
-    if (registry) {
-        resolvedRegistry = registry;
+    const scope = (name as string).split("/")[0] as string;
+    const publishRegistry = publishConfig[`${scope}:registry`] ?? publishConfig.registry;
+
+    if (publishRegistry) {
+        resolvedRegistry = publishRegistry as string;
         source = "package.json#publishConfig.registry";
     } else if (env.NPM_CONFIG_REGISTRY) {
         resolvedRegistry = env.NPM_CONFIG_REGISTRY;
         source = "NPM_CONFIG_REGISTRY environment variable";
     } else {
-        const scope = (name as string).split("/")[0] as string;
         const npmrcConfig = rc("npm", {
             config: env.NPM_CONFIG_USERCONFIG ?? resolve(cwd, ".npmrc"),
             cwd,
@@ -71,11 +72,12 @@ const getRegistry = ({ name, publishConfig: { registry } = {} }: PackageJson, { 
 
         resolvedRegistry = getRegistryUrl(scope, npmrc);
 
-        source
-            = npmrc && (npmrc[`${scope}:registry`] ?? npmrc.registry)
-                // eslint-disable-next-line sonarjs/no-nested-conditional
-                ? `.npmrc file (${npmrc[`${scope}:registry`] ? `scoped registry for ${scope}` : "default registry"})`
-                : "default registry (OFFICIAL_REGISTRY)";
+        // eslint-disable-next-line unicorn/prefer-ternary
+        if (npmrc && (npmrc[`${scope}:registry`] ?? npmrc.registry)) {
+            source = `.npmrc file (${npmrc[`${scope}:registry`] ? `scoped registry for ${scope}` : "default registry"})`;
+        } else {
+            source = "default registry (OFFICIAL_REGISTRY)";
+        }
     }
 
     const finalRegistry = resolvedRegistry.endsWith("/") ? resolvedRegistry : `${resolvedRegistry}/`;
