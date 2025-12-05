@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [3.2.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.1...@anolilab/semantic-release-pnpm@3.2.2) (2025-12-05)
+
+### Bug Fixes
+
+* enhance OIDC authentication handling in verifyAuth ([0141c07](https://github.com/anolilab/semantic-release/commit/0141c07cc4a0457b4aa01ecade582c40d17ef205))
+
 ## @anolilab/semantic-release-pnpm [3.2.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.0...@anolilab/semantic-release-pnpm@3.2.1) (2025-12-05)
 
 ### Bug Fixes
