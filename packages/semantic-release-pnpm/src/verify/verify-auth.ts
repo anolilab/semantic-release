@@ -1,7 +1,11 @@
+import { rc } from "@anolilab/rc";
 import type { PackageJson } from "@visulima/package";
+import { resolve } from "@visulima/path";
 import dbg from "debug";
 import { execa } from "execa";
 import normalizeUrl from "normalize-url";
+import type { AuthOptions } from "registry-auth-token";
+import getAuthToken from "registry-auth-token";
 
 import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
@@ -11,6 +15,61 @@ import getRegistry from "../utils/get-registry";
 import setNpmrcAuth from "../utils/set-npmrc-auth";
 
 const debug = dbg("semantic-release-pnpm:verify-auth");
+
+/**
+ * Cache for whoami results to prevent throttling when verifying multiple packages.
+ * Key format: `${normalizedRegistry}:${tokenIdentifier}`
+ * Value: Promise that resolves when authentication is verified
+ */
+const whoamiCache = new Map<string, Promise<void>>();
+
+/**
+ * Generate a cache key for whoami verification.
+ * Uses registry URL and auth token identifier to uniquely identify the auth context.
+ * @param registry The registry URL.
+ * @param context The semantic-release context containing environment variables.
+ * @returns Cache key string.
+ */
+const getCacheKey = (registry: string, context: CommonContext): string => {
+    const normalizedRegistry = normalizeUrl(registry);
+    const {
+        env: { NPM_PASSWORD, NPM_TOKEN, NPM_USERNAME },
+    } = context;
+
+    // Generate cache key based on available auth credentials
+    // Use token identifier (first 8 + last 4 chars) for security
+    if (NPM_TOKEN) {
+        const tokenId = NPM_TOKEN.length > 12 ? `${NPM_TOKEN.slice(0, 8)}...${NPM_TOKEN.slice(-4)}` : NPM_TOKEN.slice(0, 8);
+
+        return `${normalizedRegistry}:token:${tokenId}`;
+    }
+
+    if (NPM_USERNAME && NPM_PASSWORD) {
+        // Use username as identifier for username/password auth
+        return `${normalizedRegistry}:user:${NPM_USERNAME}`;
+    }
+
+    // Fallback: try to read from npmrc file (for existing .npmrc files)
+    // This handles cases where auth was already configured
+    try {
+        const { config } = rc("npm", {
+            config: context.env.NPM_CONFIG_USERCONFIG ?? resolve(context.cwd, ".npmrc"),
+            cwd: context.cwd,
+            defaults: { registry: OFFICIAL_REGISTRY },
+        });
+        const token = getAuthToken(registry, { npmrc: config } as AuthOptions);
+
+        if (token) {
+            const tokenId = token.length > 12 ? `${token.slice(0, 8)}...${token.slice(-4)}` : token.slice(0, 8);
+
+            return `${normalizedRegistry}:token:${tokenId}`;
+        }
+    } catch {
+        // If we can't read/parse npmrc, fall back to registry-only key
+    }
+
+    return `${normalizedRegistry}:default`;
+};
 
 /**
  * Check if an error indicates a connection or timeout issue.
@@ -36,47 +95,87 @@ const isConnectionError = (error: any): boolean => {
 
 /**
  * Verify authentication context against the official npm registry using pnpm whoami.
+ * Results are cached per registry/auth token combination to prevent throttling in monorepos.
  * @param npmrc Path to the .npmrc file.
  * @param registry The registry URL.
  * @param context The semantic-release context.
  */
 const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string, context: CommonContext): Promise<void> => {
-    const { cwd, env, logger, stderr, stdout } = context;
+    const cacheKey = getCacheKey(registry, context);
 
-    try {
-        logger.log(`Running "pnpm whoami" to verify authentication on registry "${registry}"`);
+    // Check cache first to avoid redundant whoami calls
+    if (whoamiCache.has(cacheKey)) {
+        debug(`Using cached whoami result for registry "${registry}"`);
 
-        const whoamiResult = await execa("pnpm", ["whoami", "--registry", registry], {
-            cwd,
-            env: {
-                ...env,
-                NPM_CONFIG_USERCONFIG: npmrc,
-            },
-            preferLocal: true,
-            timeout: 5000, // 5 second timeout to prevent hanging when registry is unavailable
-        });
+        const cachedResult = whoamiCache.get(cacheKey);
 
-        // Log the output
-        if (whoamiResult.stdout) {
-            stdout.write(whoamiResult.stdout);
+        try {
+            await cachedResult;
+
+            return;
+        } catch {
+            // If cached result was an error, remove it from cache and retry
+            // This allows recovery from transient errors
+            debug(`Cached whoami result failed, retrying for registry "${registry}"`);
+
+            whoamiCache.delete(cacheKey);
         }
+    }
 
-        if (whoamiResult.stderr) {
-            stderr.write(whoamiResult.stderr);
-        }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-        // Check for connection errors (registry not available)
-        if (isConnectionError(error)) {
-            const semanticError = getError("EINVALIDNPMAUTH", { registry });
+    // Create the verification promise
+    const verificationPromise = (async (): Promise<void> => {
+        const { cwd, env, logger, stderr, stdout } = context;
+
+        try {
+            logger.log(`Running "pnpm whoami" to verify authentication on registry "${registry}"`);
+
+            const whoamiResult = await execa("pnpm", ["whoami", "--registry", registry], {
+                cwd,
+                env: {
+                    ...env,
+                    NPM_CONFIG_USERCONFIG: npmrc,
+                },
+                preferLocal: true,
+                timeout: 5000, // 5 second timeout to prevent hanging when registry is unavailable
+            });
+
+            // Log the output
+            if (whoamiResult.stdout) {
+                stdout.write(whoamiResult.stdout);
+            }
+
+            if (whoamiResult.stderr) {
+                stderr.write(whoamiResult.stderr);
+            }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            // Check for connection errors (registry not available)
+            if (isConnectionError(error)) {
+                const semanticError = getError("EINVALIDNPMAUTH", { registry });
+
+                throw new AggregateError([semanticError], semanticError.message);
+            }
+
+            // Treat other whoami failures as invalid token
+            const semanticError = getError("EINVALIDNPMTOKEN", { registry });
 
             throw new AggregateError([semanticError], semanticError.message);
         }
+    })();
 
-        // Treat other whoami failures as invalid token
-        const semanticError = getError("EINVALIDNPMTOKEN", { registry });
+    // Store in cache (even if it fails, to prevent multiple simultaneous calls)
+    whoamiCache.set(cacheKey, verificationPromise);
 
-        throw new AggregateError([semanticError], semanticError.message);
+    try {
+        await verificationPromise;
+    } catch (error) {
+        // Remove from cache on error so it can be retried later
+        // Connection errors are removed immediately, auth errors stay cached to prevent repeated failures
+        if (isConnectionError(error)) {
+            whoamiCache.delete(cacheKey);
+        }
+
+        throw error;
     }
 };
 

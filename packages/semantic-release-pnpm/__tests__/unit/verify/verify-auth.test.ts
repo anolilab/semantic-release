@@ -20,7 +20,7 @@ describe(verifyAuth, () => {
     const pkg = { name: "test-package", version: "1.0.0" };
     const context: CommonContext = {
         cwd: "/test/directory",
-        env: { DEFAULT_NPM_REGISTRY: OFFICIAL_REGISTRY },
+        env: { DEFAULT_NPM_REGISTRY: OFFICIAL_REGISTRY, NPM_TOKEN: "test_token_1234567890" },
         logger: { log: vi.fn() },
         options: {},
         // eslint-disable-next-line n/no-unsupported-features/node-builtins
@@ -156,5 +156,32 @@ describe(verifyAuth, () => {
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow(thrownError);
         expect(oidcContextEstablished).toHaveBeenCalledWith(registry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, registry, context);
+    });
+
+    it("should cache whoami results for the same registry and token", async () => {
+        expect.assertions(3);
+
+        vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
+        vi.mocked(oidcContextEstablished).mockResolvedValue(false);
+        vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
+        vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" });
+
+        // First call - should execute whoami
+        await verifyAuth(npmrc, pkg, context);
+
+        expect(execa).toHaveBeenCalledTimes(1);
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\""));
+
+        // Second call with same registry/token - should use cache
+        vi.clearAllMocks();
+        vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
+        vi.mocked(oidcContextEstablished).mockResolvedValue(false);
+        vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
+        vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" });
+
+        await verifyAuth(npmrc, pkg, context);
+
+        // execa should not be called again due to caching (call count should still be 0 after clearAllMocks)
+        expect(execa).not.toHaveBeenCalled();
     });
 });

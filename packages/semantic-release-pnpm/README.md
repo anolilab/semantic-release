@@ -76,6 +76,7 @@ When publishing to the [official registry](https://registry.npmjs.org/), it is r
 
 > [!IMPORTANT]
 > **First-time releases with OIDC**: npm requires a package to exist before you can configure OIDC trusted publishing. If you're releasing a package for the first time with OIDC, you have two options:
+>
 > 1. Publish a dummy version manually first (e.g., `pnpm publish --tag dummy`), then configure OIDC trusted publishing, and then use semantic-release for subsequent releases.
 > 2. Use the [`setup-npm-trusted-publish`](https://github.com/azu/setup-npm-trusted-publish) tool to automatically create and publish a placeholder package for OIDC setup purposes.
 >
