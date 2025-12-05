@@ -1,3 +1,11 @@
+## @anolilab/multi-semantic-release [3.2.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.1...@anolilab/multi-semantic-release@3.2.2) (2025-12-05)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.2.2
+* **@anolilab/semantic-release-pnpm:** upgraded to 3.2.2
+
 ## @anolilab/multi-semantic-release [3.2.1](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.0...@anolilab/multi-semantic-release@3.2.1) (2025-12-05)
 
 
