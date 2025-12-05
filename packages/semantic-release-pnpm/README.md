@@ -53,7 +53,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 | Step               | Description                                                                                                                      |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `verifyConditions` | Verify the presence of the `NPM_TOKEN` environment variable, or an `.npmrc` file, and verify the authentication method is valid. |
+| `verifyConditions` | Verify the presence of the `NPM_TOKEN` environment variable, or an `.npmrc` file, and verify the authentication method is valid. Results are cached per registry/auth combination to prevent throttling in monorepos. |
 | `prepare`          | Update the `package.json` version and [create](https://docs.npmjs.com/cli/pack) the npm package tarball.                         |
 | `addChannel`       | [Add a release to a dist-tag](https://docs.npmjs.com/cli/dist-tag).                                                              |
 | `publish`          | [Publish the npm package](https://docs.npmjs.com/cli/publish) to the registry.                                                   |
@@ -81,6 +81,9 @@ When publishing to the [official registry](https://registry.npmjs.org/), it is r
 > 2. Use the [`setup-npm-trusted-publish`](https://github.com/azu/setup-npm-trusted-publish) tool to automatically create and publish a placeholder package for OIDC setup purposes.
 >
 > After the initial package exists, you can configure OIDC trusted publishing at `https://www.npmjs.com/package/<package-name>/access` and then use semantic-release for all future releases.
+
+> [!TIP]
+> **Monorepo Performance**: The plugin automatically caches authentication verification results per registry/auth token combination. This prevents throttling when verifying multiple packages in monorepos, as `pnpm whoami` is only called once per unique registry/authentication context rather than once per package.
 
 ##### Trusted publishing from GitHub Actions
 

@@ -1,8 +1,10 @@
 import { rc } from "@anolilab/rc";
+import { writeFile } from "@visulima/fs";
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
 import { execa } from "execa";
+import { stringify } from "ini";
 import normalizeUrl from "normalize-url";
 import type { AuthOptions } from "registry-auth-token";
 import getAuthToken from "registry-auth-token";
@@ -10,8 +12,10 @@ import getAuthToken from "registry-auth-token";
 import { OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
 import oidcContextEstablished from "../trusted-publishing/oidc-context";
+import exchangeToken from "../trusted-publishing/token-exchange";
 import getError from "../utils/get-error";
 import getRegistry from "../utils/get-registry";
+import nerfDart from "../utils/nerf-dart";
 import setNpmrcAuth from "../utils/set-npmrc-auth";
 
 const debug = dbg("semantic-release-pnpm:verify-auth");
@@ -303,12 +307,31 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext,
         debug(`Checking OIDC trusted publishing for package "${package_.name}" on registry "${registry}"`);
 
         if (await oidcContextEstablished(registry, package_, context)) {
-            debug("OIDC trusted publishing verified successfully, skipping NPM_TOKEN check");
+            debug("OIDC trusted publishing verified successfully, exchanging token for npmrc");
 
-            return;
+            // Exchange OIDC token and write to npmrc for use during publish
+            const oidcToken = await exchangeToken({ name: package_.name }, context);
+
+            if (oidcToken) {
+                const { config } = rc("npm", {
+                    config: context.env.NPM_CONFIG_USERCONFIG ?? resolve(context.cwd, ".npmrc"),
+                    cwd: context.cwd,
+                    defaults: { registry: OFFICIAL_REGISTRY },
+                });
+
+                // Write the OIDC-exchanged token to npmrc
+                await writeFile(npmrc, `${Object.keys(config).length > 0 ? `${stringify(config)}\n` : ""}${nerfDart(registry)}:_authToken = ${oidcToken}`);
+
+                debug(`Wrote OIDC-exchanged token to ${npmrc} for use during publish`);
+                context.logger.log(`OIDC trusted publishing configured for package "${package_.name}"`);
+
+                return;
+            }
+
+            debug("OIDC token exchange failed, falling back to NPM_TOKEN authentication");
+        } else {
+            debug("OIDC trusted publishing not available, falling back to NPM_TOKEN authentication");
         }
-
-        debug("OIDC trusted publishing not available, falling back to NPM_TOKEN authentication");
     } else {
         debug("Package name not found, skipping OIDC check and using NPM_TOKEN authentication");
     }

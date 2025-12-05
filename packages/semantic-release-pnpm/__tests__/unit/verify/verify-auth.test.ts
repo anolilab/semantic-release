@@ -9,11 +9,17 @@ vi.mock(import("execa"));
 vi.mock(import("../../../src/utils/get-registry"));
 vi.mock(import("../../../src/utils/set-npmrc-auth"));
 vi.mock(import("../../../src/trusted-publishing/oidc-context"));
+vi.mock(import("../../../src/trusted-publishing/token-exchange"));
+vi.mock(import("@visulima/fs"));
+vi.mock(import("@anolilab/rc"));
 
 const { execa } = await import("execa");
 const { default: getRegistry } = await import("../../../src/utils/get-registry");
 const { default: setNpmrcAuth } = await import("../../../src/utils/set-npmrc-auth");
 const { default: oidcContextEstablished } = await import("../../../src/trusted-publishing/oidc-context");
+const { default: exchangeToken } = await import("../../../src/trusted-publishing/token-exchange");
+const { writeFile } = await import("@visulima/fs");
+const { rc } = await import("@anolilab/rc");
 
 describe(verifyAuth, () => {
     const npmrc = "npmrc contents";
@@ -34,15 +40,20 @@ describe(verifyAuth, () => {
     });
 
     it("should skip authentication when OIDC context is established for official registry", async () => {
-        expect.assertions(2);
+        expect.assertions(4);
 
         vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
         vi.mocked(oidcContextEstablished).mockResolvedValue(true);
+        vi.mocked(exchangeToken).mockResolvedValue("oidc-exchanged-token");
+        vi.mocked(rc).mockReturnValue({ config: {}, files: [] });
+        vi.mocked(writeFile).mockResolvedValue(undefined);
 
         await verifyAuth(npmrc, pkg, context);
 
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
+        expect(exchangeToken).toHaveBeenCalledWith({ name: pkg.name }, context);
         expect(setNpmrcAuth).not.toHaveBeenCalled();
+        expect(writeFile).toHaveBeenCalledWith(npmrc, "//registry.npmjs.org/:_authToken = oidc-exchanged-token");
     });
 
     it("should verify token auth when OIDC context is not established for official registry", async () => {
