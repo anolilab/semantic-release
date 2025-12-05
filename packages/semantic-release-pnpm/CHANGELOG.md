@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [3.2.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.0...@anolilab/semantic-release-pnpm@3.2.1) (2025-12-05)
+
+### Bug Fixes
+
+* implement caching for whoami results in verifyAuth ([e8a482f](https://github.com/anolilab/semantic-release/commit/e8a482fec317dc829f9a373804b99110abafd1b2))
+
 ## @anolilab/semantic-release-pnpm [3.2.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.1.0...@anolilab/semantic-release-pnpm@3.2.0) (2025-12-04)
 
 ### Bug Fixes
