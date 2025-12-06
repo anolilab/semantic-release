@@ -117,8 +117,8 @@ catalogs:
     '@types/semantic-release__error': 3.0.3
     '@types/semver': 7.7.1
     '@types/signale': 1.4.7
-    '@types/stream-buffers': 3.0.7
-    '@types/yargs': 17.0.34
+    '@types/stream-buffers': 3.0.8
+    '@types/yargs': 17.0.35
   utils:
     lodash-es: ^4.17.21
     semver: ^7.7.3
