@@ -50,4 +50,21 @@ describe("normalizeRepositoryUrl()", () => {
 
         expect(normalizeRepositoryUrl("github.com/visulima/packem.git")).toBe("github.com/visulima/packem.git");
     });
+
+    it("should preserve URLs with authentication tokens", () => {
+        expect.assertions(3);
+
+        // GitLab CI token format
+        expect(normalizeRepositoryUrl("https://gitlab-ci-token:token@git.afteroot.info/main/helm-charts.git")).toBe(
+            "https://gitlab-ci-token:token@git.afteroot.info/main/helm-charts.git",
+        );
+
+        // GitHub token format
+        expect(normalizeRepositoryUrl("https://token@github.com/owner/repo.git")).toBe("https://token@github.com/owner/repo.git");
+
+        // git+https:// with token should still normalize the prefix but preserve auth
+        expect(normalizeRepositoryUrl("git+https://gitlab-ci-token:token@git.afteroot.info/main/helm-charts.git")).toBe(
+            "https://gitlab-ci-token:token@git.afteroot.info/main/helm-charts.git",
+        );
+    });
 });
