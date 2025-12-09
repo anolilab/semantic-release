@@ -1,3 +1,9 @@
+## @anolilab/rc [3.2.1-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.2.0...@anolilab/rc@3.2.1-alpha.1) (2025-12-09)
+
+### Bug Fixes
+
+* add GitHub labeler configuration and update package metadata ([dce9314](https://github.com/anolilab/semantic-release/commit/dce9314ca6aefaf86e75c6d065cdac8ad7a60717))
+
 ## @anolilab/rc [3.2.0](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.1.0...@anolilab/rc@3.2.0) (2025-12-04)
 
 ### Miscellaneous Chores
