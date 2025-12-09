@@ -5,8 +5,9 @@
  * converts repository URLs to HTTPS format regardless of the repositoryUrl format specified.
  * This normalization ensures git commands receive valid URLs without npm-specific prefixes.
  *
- * Important: URLs that already contain authentication tokens (e.g., `https://token@host/repo.git`)
- * are left unchanged to avoid interfering with semantic-release's token handling.
+ * Important: URLs that contain authentication tokens (e.g., `https://token@host/repo.git`) preserve
+ * the authentication part while still normalizing prefixes (e.g., `git+https://token@host/repo.git`
+ * becomes `https://token@host/repo.git`). This avoids interfering with semantic-release's token handling.
  * @param url The repository URL to normalize.
  * @returns The normalized repository URL, or the original URL if no normalization is needed.
  * @internal
@@ -16,15 +17,16 @@ const normalizeRepositoryUrl = (url: string | undefined): string | undefined => 
         return url;
     }
 
-    // Skip normalization if URL already contains authentication (e.g., token@host or user@host)
-    // This prevents interfering with semantic-release's automatic token injection
+    // Handle URLs that contain authentication tokens (e.g., token@host or user:pass@host)
     // Pattern matches: protocol://[user[:password]@]host or protocol://token@host
+    // We still normalize git+ prefixes but preserve the authentication part
     if (/^[^:]+:\/\/[^@]+@/u.test(url)) {
-        // Still remove git+ prefix if present, but preserve the auth part
+        // Remove git+ prefix if present, but preserve the auth part
         if (url.startsWith("git+")) {
             return url.slice(4);
         }
 
+        // URL has auth but no git+ prefix, return as-is
         return url;
     }
 
