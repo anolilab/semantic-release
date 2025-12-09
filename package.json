@@ -17,6 +17,7 @@
         "clean": "nx run-many --target=clean --all --parallel && rimraf ./node_modules",
         "graph": "nx dep-graph",
         "preinstall": "node verify-node-version.cjs && npx only-allow pnpm",
+        "postinstall": "(is-ci || husky || exit 0) && node scripts/generate-labeler-config.js && node scripts/list-packages.js",
         "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
         "lint:affected:eslint": "nx affected --target=lint:eslint --parallel --nxBail",
         "lint:affected:eslint:fix": "nx affected --target=lint:eslint:fix --parallel --nxBail",
@@ -37,7 +38,6 @@
         "lint:types": "nx run-many --target=lint:types --all --parallel",
         "nx": "nx",
         "plop": "plop",
-        "prepare": "is-ci || husky install || exit 0",
         "sort-package-json": "sort-package-json packages/**/package.json apps/**/package.json ./package.json",
         "test": "nx run-many --target=test --all --parallel",
         "test:affected": "nx affected --target=test --parallel --nxBail",
@@ -79,7 +79,7 @@
         "typescript": "catalog:tsc",
         "vitest": "catalog:test"
     },
-    "packageManager": "pnpm@10.24.0",
+    "packageManager": "pnpm@10.25.0",
     "engines": {
         "node": "^22.14.0 || >= 24.10.0"
     }

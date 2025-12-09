@@ -1,9 +1,24 @@
+<!-- START_PACKAGE_OG_IMAGE_PLACEHOLDER -->
+
+<a href="https://github.com/anolilab/semantic-release" align="center">
+
+  <img src="__assets__/package-og.svg" alt="semantic-release-preset" />
+
+</a>
+
+<h3 align="center">Semantic-release predefined presets.</h3>
+
+<!-- END_PACKAGE_OG_IMAGE_PLACEHOLDER -->
+
+<br />
+
 <div align="center">
-<h1>Shareable semantic-release configuration</h1>
 
-A shareable [semantic-release](https://github.com/semantic-release/semantic-release) configuration, for enforcing consistent GitHub/NPM releases in your projects.
-
-[![npm-image]][npm-url] [![license-image]][license-url]
+[![typescript-image][typescript-badge]][typescript-url]
+[![mit licence][license-badge]][license]
+[![npm downloads][npm-downloads-badge]][npm-downloads]
+[![Chat][chat-badge]][chat]
+[![PRs Welcome][prs-welcome-badge]][prs-welcome]
 
 </div>
 
@@ -18,6 +33,8 @@ A shareable [semantic-release](https://github.com/semantic-release/semantic-rele
 </div>
 
 ---
+
+A shareable [semantic-release](https://github.com/semantic-release/semantic-release) configuration, for enforcing consistent GitHub/NPM releases in your projects.
 
 ## Purpose
 
@@ -588,9 +605,27 @@ If you would like to help take a look at the [list of issues](https://github.com
 - [Daniel Bannert](https://github.com/prisis)
 - [All Contributors](https://github.com/anolilab/javascript-style-guide/graphs/contributors)
 
+## Made with ❤️ at Anolilab
+
+This is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. [Anolilab](https://www.anolilab.com/open-source) is a Development and AI Studio. Contact us at [hello@anolilab.com](mailto:hello@anolilab.com) if you need any help with these technologies or just want to say hi!
+
 ## License
 
-The anolilab javascript-style-guide is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT)
+The anolilab semantic-release-preset is open-sourced software licensed under the [MIT][license-url]
+
+<!-- badges -->
+
+[license-badge]: https://img.shields.io/npm/l/@anolilab/semantic-release-preset?style=for-the-badge
+[license]: https://github.com/anolilab/multi-semantic-release/blob/main/LICENSE
+[npm-downloads-badge]: https://img.shields.io/npm/dm/@anolilab/semantic-release-preset?style=for-the-badge
+[npm-downloads]: https://www.npmjs.com/package/@anolilab/semantic-release-preset
+[prs-welcome-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge
+[prs-welcome]: https://github.com/anolilab/multi-semantic-release/blob/main/.github/CONTRIBUTING.md
+[chat-badge]: https://img.shields.io/discord/902465130518949899.svg?style=for-the-badge
+[chat]: https://discord.gg/TtFJY8xkFK
+[typescript-badge]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
+[typescript-url]: https://www.typescriptlang.org/
+[license-url]: LICENSE.md
 
 [1]: https://github.com/semantic-release/commit-analyzer
 [2]: https://github.com/semantic-release/release-notes-generator
@@ -601,7 +636,3 @@ The anolilab javascript-style-guide is open-sourced software licensed under the 
 [7]: https://github.com/semantic-release/npm
 [8]: https://github.com/anolilab/semantic-release-pnpm
 [9]: https://github.com/hongaar/semantic-release-yarn
-[license-image]: https://img.shields.io/npm/l/@anolilab/semantic-release-preset?color=blueviolet&style=for-the-badge
-[license-url]: LICENSE.md "license"
-[npm-image]: https://img.shields.io/npm/v/@anolilab/semantic-release-preset/latest.svg?style=for-the-badge&logo=npm
-[npm-url]: https://www.npmjs.com/package/@anolilab/semantic-release-preset/v/latest "npm"

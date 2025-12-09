@@ -1,0 +1,18 @@
+"package: multi-semantic-release":
+    - changed-files:
+          - any-glob-to-any-file: "packages/multi-semantic-release/**/*"
+"package: rc":
+    - changed-files:
+          - any-glob-to-any-file: "packages/rc/**/*"
+"package: semantic-release-clean-package-json":
+    - changed-files:
+          - any-glob-to-any-file: "packages/semantic-release-clean-package-json/**/*"
+"package: semantic-release-pnpm":
+    - changed-files:
+          - any-glob-to-any-file: "packages/semantic-release-pnpm/**/*"
+"package: semantic-release-preset":
+    - changed-files:
+          - any-glob-to-any-file: "packages/semantic-release-preset/**/*"
+"documentation":
+    - changed-files:
+          - any-glob-to-any-file: "docs/**/*"

@@ -1,12 +1,24 @@
+<!-- START_PACKAGE_OG_IMAGE_PLACEHOLDER -->
+
+<a href="https://github.com/anolilab/semantic-release" align="center">
+
+  <img src="__assets__/package-og.svg" alt="multi-semantic-release" />
+
+</a>
+
+<h3 align="center">A multi semantic release tool for a monorepo.</h3>
+
+<!-- END_PACKAGE_OG_IMAGE_PLACEHOLDER -->
+
+<br />
+
 <div align="center">
 
-<img src="https://github.com/anolilab/semantic-release/blob/main/.github/logo.svg" alt="Logo" width="200">
-
-<h1>Multi Semantic Release</h1>
-
-hacky [semantic-release](https://github.com/semantic-release/semantic-release) for monorepos based on [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
-
-[![npm-image]][npm-url] [![license-image]][license-url]
+[![typescript-image][typescript-badge]][typescript-url]
+[![mit licence][license-badge]][license]
+[![npm downloads][npm-downloads-badge]][npm-downloads]
+[![Chat][chat-badge]][chat]
+[![PRs Welcome][prs-welcome-badge]][prs-welcome]
 
 </div>
 
@@ -21,6 +33,8 @@ hacky [semantic-release](https://github.com/semantic-release/semantic-release) f
 </div>
 
 ---
+
+Hacky [semantic-release](https://github.com/semantic-release/semantic-release) for monorepos based on [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
 
 This fork of [dhoub/multi-semantic-release](https://github.com/dhoulb/multi-semantic-release) replaces [`setImmediate` loops](https://github.com/dhoulb/multi-semantic-release/blob/561a8e66133d422d88008c32c479d1148876aba4/lib/wait.js#L13)
 and [`execa.sync` hooks](https://github.com/dhoulb/multi-semantic-release/blob/561a8e66133d422d88008c32c479d1148876aba4/lib/execaHook.js#L5) with event-driven flow and finally makes possible to run the most release operations in parallel.
@@ -490,11 +504,24 @@ If you would like to help take a look at the [list of issues](https://github.com
 - [dhoub/multi-semantic-release](https://github.com/dhoulb/multi-semantic-release)
 - [qiwi/multi-semantic-release](https://github.com/qiwi/multi-semantic-release)
 
+## Made with ❤️ at Anolilab
+
+This is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. [Anolilab](https://www.anolilab.com/open-source) is a Development and AI Studio. Contact us at [hello@anolilab.com](mailto:hello@anolilab.com) if you need any help with these technologies or just want to say hi!
+
 ## License
 
 [0BSD](./LICENSE.md)
 
-[license-image]: https://img.shields.io/npm/l/@anolilab/multi-semantic-release?color=blueviolet&style=for-the-badge
-[license-url]: LICENSE.md "license"
-[npm-image]: https://img.shields.io/npm/v/@anolilab/multi-semantic-release/latest.svg?style=for-the-badge&logo=npm
-[npm-url]: https://www.npmjs.com/package/@anolilab/multi-semantic-releasv/latest "npm"
+<!-- badges -->
+
+[license-badge]: https://img.shields.io/npm/l/@anolilab/multi-semantic-release?style=for-the-badge
+[license]: https://github.com/anolilab/multi-semantic-release/blob/main/LICENSE
+[npm-downloads-badge]: https://img.shields.io/npm/dm/@anolilab/multi-semantic-release?style=for-the-badge
+[npm-downloads]: https://www.npmjs.com/package/@anolilab/multi-semantic-release
+[prs-welcome-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge
+[prs-welcome]: https://github.com/anolilab/multi-semantic-release/blob/main/.github/CONTRIBUTING.md
+[chat-badge]: https://img.shields.io/discord/902465130518949899.svg?style=for-the-badge
+[chat]: https://discord.gg/TtFJY8xkFK
+[typescript-badge]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
+[typescript-url]: https://www.typescriptlang.org/
+[license-url]: LICENSE.md

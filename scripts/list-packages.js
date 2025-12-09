@@ -1,0 +1,178 @@
+/**
+ * Lists all packages in the monorepo and generates a markdown table
+ * Updates the README.md file by replacing content between START_TABLE_PLACEHOLDER and END_TABLE_PLACEHOLDER
+ */
+
+import { readdir, readFile, writeFile } from "node:fs/promises";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+const packagesDir = join(__dirname, "..", "packages");
+const readmePath = join(__dirname, "..", "README.md");
+
+/**
+ * Recursively finds all package.json files in the packages directory
+ * @param {string} dir - Directory to search
+ * @param {string[]} packages - Array to collect package info
+ * @returns {Promise<void>}
+ */
+async function findPackages(dir, packages = []) {
+    try {
+        const entries = await readdir(dir, { withFileTypes: true });
+
+        for (const entry of entries) {
+            const fullPath = join(dir, entry.name);
+
+            // Skip test fixtures, examples, benchmarks, and test directories
+            if (
+                entry.name.startsWith("__") ||
+                entry.name === "examples" ||
+                entry.name === "__bench__" ||
+                entry.name === "__tests__"
+            ) {
+                continue;
+            }
+
+            if (entry.isDirectory()) {
+                const packageJsonPath = join(fullPath, "package.json");
+                try {
+                    const packageJsonContent = await readFile(packageJsonPath, "utf-8");
+                    const packageJson = JSON.parse(packageJsonContent);
+                    const rootDir = join(__dirname, "..");
+                    // Get relative path from root, ensuring it starts with packages/
+                    let relativePath = fullPath.replace(rootDir, "").replace(/^\/+/, "");
+                    // If path doesn't start with packages/, add it
+                    if (!relativePath.startsWith("packages/")) {
+                        relativePath = `packages/${relativePath}`;
+                    }
+                    packages.push({
+                        name: packageJson.name,
+                        version: packageJson.version || "",
+                        description: packageJson.description || "",
+                        path: relativePath,
+                    });
+                } catch {
+                    // No package.json, continue searching subdirectories
+                    await findPackages(fullPath, packages);
+                }
+            }
+        }
+    } catch (error) {
+        // Directory doesn't exist or can't be read, skip it
+        if (error.code !== "ENOENT") {
+            console.error(`Error reading directory ${dir}:`, error.message);
+        }
+    }
+}
+
+/**
+ * Escapes markdown table special characters
+ * @param {string} text - Text to escape
+ * @returns {string}
+ */
+function escapeMarkdown(text) {
+    return text.replace(/\|/g, "\\|").replace(/\n/g, " ");
+}
+
+/**
+ * Generates npm badge URL
+ * @param {string} packageName - Package name
+ * @returns {string}
+ */
+function getNpmBadgeUrl(packageName) {
+    const encodedName = encodeURIComponent(packageName);
+    return `https://img.shields.io/npm/v/${encodedName}?style=flat-square&labelColor=292a44&color=663399&label=v`;
+}
+
+/**
+ * Generates npm package URL
+ * @param {string} packageName - Package name
+ * @returns {string}
+ */
+function getNpmPackageUrl(packageName) {
+    return `https://www.npmjs.com/package/${packageName}`;
+}
+
+/**
+ * Generates the markdown table content
+ * @param {Array} packages - Array of package objects
+ * @returns {string}
+ */
+function generateTableContent(packages) {
+    let content = "";
+
+    content += "| Package | Version | Description |\n";
+    content += "| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n";
+
+    // Sort packages by name
+    packages.sort((a, b) => a.name.localeCompare(b.name));
+
+    // Add packages
+    for (const pkg of packages) {
+        const packageLink = `[${pkg.name}](${pkg.path}/README.md)`;
+        const npmBadge = `[![npm](https://img.shields.io/npm/v/${encodeURIComponent(pkg.name)}?style=flat-square&labelColor=292a44&color=663399&label=v)](https://www.npmjs.com/package/${encodeURIComponent(pkg.name)})`;
+        const description = escapeMarkdown(pkg.description || "No description");
+
+        content += `| ${packageLink} | ${npmBadge} | ${description} |\n`;
+    }
+
+    return content.trim();
+}
+
+/**
+ * Replaces content between placeholders in README
+ * @param {string} readmeContent - Current README content
+ * @param {string} newContent - New content to insert
+ * @returns {string}
+ */
+function replaceTableContent(readmeContent, newContent) {
+    const startMarker = "<!-- START_TABLE_PLACEHOLDER -->";
+    const endMarker = "<!-- END_TABLE_PLACEHOLDER -->";
+
+    const startIndex = readmeContent.indexOf(startMarker);
+    const endIndex = readmeContent.indexOf(endMarker);
+
+    if (startIndex === -1 || endIndex === -1) {
+        throw new Error(
+            `Could not find placeholders in README. Make sure both ${startMarker} and ${endMarker} exist.`,
+        );
+    }
+
+    if (startIndex >= endIndex) {
+        throw new Error("START_TABLE_PLACEHOLDER must come before END_TABLE_PLACEHOLDER");
+    }
+
+    const before = readmeContent.substring(0, startIndex + startMarker.length);
+    const after = readmeContent.substring(endIndex);
+
+    return `${before}\n${newContent}\n${after}`;
+}
+
+/**
+ * Main function to list all packages and update README
+ */
+async function listPackages() {
+    const packages = [];
+    await findPackages(packagesDir, packages);
+
+    // Generate table content
+    const tableContent = generateTableContent(packages);
+
+    // Read current README
+    const readmeContent = await readFile(readmePath, "utf-8");
+
+    // Replace content between placeholders
+    const updatedReadme = replaceTableContent(readmeContent, tableContent);
+
+    // Write updated README
+    await writeFile(readmePath, updatedReadme, "utf-8");
+
+    const totalPackages = packages.length;
+    console.log(`✅ Successfully updated README.md with ${totalPackages} packages\n`);
+}
+
+listPackages().catch((error) => {
+    console.error("Error listing packages:", error);
+    process.exit(1);
+});
