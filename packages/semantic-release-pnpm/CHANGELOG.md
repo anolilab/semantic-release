@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [4.0.0-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@4.0.0-alpha.1...@anolilab/semantic-release-pnpm@4.0.0-alpha.2) (2025-12-10)
+
+### Bug Fixes
+
+* fixed discord link ([af624ef](https://github.com/anolilab/semantic-release/commit/af624ef616ebd84b84932f8f1bf5c978b7a8349d))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 3.2.1-alpha.2
+
 ## @anolilab/semantic-release-pnpm [4.0.0-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.2...@anolilab/semantic-release-pnpm@4.0.0-alpha.1) (2025-12-09)
 
 ### Bug Fixes
