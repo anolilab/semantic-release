@@ -1,3 +1,15 @@
+## @anolilab/multi-semantic-release [3.2.3-alpha.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.3-alpha.2...@anolilab/multi-semantic-release@3.2.3-alpha.3) (2025-12-10)
+
+### Bug Fixes
+
+* fixed discord link ([af624ef](https://github.com/anolilab/semantic-release/commit/af624ef616ebd84b84932f8f1bf5c978b7a8349d))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 4.2.3-alpha.2
+* **@anolilab/semantic-release-pnpm:** upgraded to 4.0.0-alpha.2
+
 ## @anolilab/multi-semantic-release [3.2.3-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.3-alpha.1...@anolilab/multi-semantic-release@3.2.3-alpha.2) (2025-12-10)
 
 ### Bug Fixes
