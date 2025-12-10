@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-preset",
-    "version": "12.1.3-alpha.1",
+    "version": "12.1.3-alpha.2",
     "description": "Semantic-release predefined presets.",
     "keywords": [
         "anolilab",
@@ -101,7 +101,7 @@
         "test:watch": "echo 'There is no need for test' && exit 0"
     },
     "dependencies": {
-        "@anolilab/semantic-release-clean-package-json": "4.2.3-alpha.1",
+        "@anolilab/semantic-release-clean-package-json": "4.2.3-alpha.2",
         "@semantic-release/changelog": "catalog:cli",
         "@semantic-release/commit-analyzer": "catalog:cli",
         "@semantic-release/exec": "catalog:cli",
@@ -113,7 +113,7 @@
     "devDependencies": {
         "@anolilab/eslint-config": "catalog:lint",
         "@anolilab/prettier-config": "catalog:lint",
-        "@anolilab/semantic-release-pnpm": "4.0.0-alpha.1",
+        "@anolilab/semantic-release-pnpm": "4.0.0-alpha.2",
         "@secretlint/secretlint-rule-preset-recommend": "catalog:lint",
         "conventional-changelog-conventionalcommits": "catalog:dev",
         "cross-env": "catalog:node",
@@ -125,7 +125,7 @@
         "typescript": "catalog:tsc"
     },
     "peerDependencies": {
-        "@anolilab/semantic-release-pnpm": "4.0.0-alpha.1",
+        "@anolilab/semantic-release-pnpm": "4.0.0-alpha.2",
         "@semantic-release/npm": "catalog:cli",
         "semantic-release": "catalog:cli",
         "semantic-release-yarn": "catalog:cli"
