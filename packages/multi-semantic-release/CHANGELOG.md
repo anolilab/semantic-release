@@ -1,3 +1,9 @@
+## @anolilab/multi-semantic-release [3.2.3-alpha.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.3-alpha.1...@anolilab/multi-semantic-release@3.2.3-alpha.2) (2025-12-10)
+
+### Bug Fixes
+
+* improve repository URL normalization logic ([5a9e6af](https://github.com/anolilab/semantic-release/commit/5a9e6af11195c989d7d581990e29f59b8392d115))
+
 ## @anolilab/multi-semantic-release [3.2.3-alpha.1](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.2...@anolilab/multi-semantic-release@3.2.3-alpha.1) (2025-12-09)
 
 ### Bug Fixes
