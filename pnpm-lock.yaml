@@ -92,8 +92,8 @@ catalogs:
       version: 9.0.0
   lint:
     '@anolilab/commitlint-config':
-      specifier: ^6.0.7
-      version: 6.0.7
+      specifier: ^7.0.0
+      version: 7.0.0
     '@anolilab/eslint-config':
       specifier: ^16.4.4
       version: 16.4.4
@@ -315,7 +315,7 @@ importers:
     dependencies:
       '@anolilab/commitlint-config':
         specifier: catalog:lint
-        version: 6.0.7(@commitlint/cli@20.2.0(@types/node@24.10.1)(typescript@5.9.3))(@types/node@24.10.1)(typescript@5.9.3)
+        version: 7.0.0(@commitlint/cli@20.2.0(@types/node@24.10.1)(typescript@5.9.3))(@types/node@24.10.1)(typescript@5.9.3)
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
         version: 3.0.39(@types/node@24.10.1)(eslint@9.39.1(jiti@2.6.1))(husky@9.1.7)(lint-staged@16.2.7)(prettier@3.7.4)(secretlint@11.2.5)(vitest@4.0.15)(yaml@2.8.2)
@@ -993,8 +993,8 @@ packages:
   '@andrewbranch/untar.js@1.0.3':
     resolution: {integrity: sha512-Jh15/qVmrLGhkKJBdXlK1+9tY4lZruYjsgkDFj08ZmDiWVBLJcqkok7Z0/R0In+i1rScBpJlSvrTS2Lm41Pbnw==}
 
-  '@anolilab/commitlint-config@6.0.7':
-    resolution: {integrity: sha512-A9Ijg3x3AvkpKgNARvXdvJKADjHZDdbiHAXqPpeiWWfTOTNwl73b411ZDqYXqXV5v9vezUfY1l+6nyqBWebFbg==}
+  '@anolilab/commitlint-config@7.0.0':
+    resolution: {integrity: sha512-5OL17AU9NhN8p5l1+XU6HcBBSxI0mhyF7zdLZOkGLJxFOHNxTivN6cYZGINh9bZ5XHbleI5MwDGqw92jifXH/A==}
     engines: {node: '>=20.18.* <=25.*'}
     hasBin: true
     peerDependencies:
@@ -1268,8 +1268,8 @@ packages:
     resolution: {integrity: sha512-SQCBGsL9MFk8utWNSthdxd9iOD1pIVZSHxGBwYIGfd67RTjxqzFOSAYeQVXOu3IxRC3YrTOH37ThnTLjUlyF2w==}
     engines: {node: '>=v18'}
 
-  '@commitlint/core@20.1.0':
-    resolution: {integrity: sha512-ZRKjxjIhq+ulUZZCL4nTgcHJ8zQj7jYHDoCsf5OnLPqY5gy8l7MgsOZ0RQtwwwZ3zO4HCqF/wWRV5EaN6ei5LA==}
+  '@commitlint/core@20.2.0':
+    resolution: {integrity: sha512-wc1nUU3vyxby9BcUApwfTr5qfsVrDEQp9dKFn8cURk1HCYMPlP55QWeZqHflQsthk//Csm3rw9uvZ6mvtNrUVg==}
     engines: {node: '>=v18'}
 
   '@commitlint/ensure@20.2.0':
@@ -9438,11 +9438,11 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@anolilab/commitlint-config@6.0.7(@commitlint/cli@20.2.0(@types/node@24.10.1)(typescript@5.9.3))(@types/node@24.10.1)(typescript@5.9.3)':
+  '@anolilab/commitlint-config@7.0.0(@commitlint/cli@20.2.0(@types/node@24.10.1)(typescript@5.9.3))(@types/node@24.10.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/cli': 20.2.0(@types/node@24.10.1)(typescript@5.9.3)
       '@commitlint/config-conventional': 20.2.0
-      '@commitlint/core': 20.1.0(@types/node@24.10.1)(typescript@5.9.3)
+      '@commitlint/core': 20.2.0(@types/node@24.10.1)(typescript@5.9.3)
       commitizen: 4.3.1(@types/node@24.10.1)(typescript@5.9.3)
       conventional-changelog-conventionalcommits: 9.1.0
       cz-conventional-changelog: 3.3.0(@types/node@24.10.1)(typescript@5.9.3)
@@ -9767,7 +9767,7 @@ snapshots:
       '@commitlint/types': 20.2.0
       ajv: 8.17.1
 
-  '@commitlint/core@20.1.0(@types/node@24.10.1)(typescript@5.9.3)':
+  '@commitlint/core@20.2.0(@types/node@24.10.1)(typescript@5.9.3)':
     dependencies:
       '@commitlint/format': 20.2.0
       '@commitlint/lint': 20.2.0
