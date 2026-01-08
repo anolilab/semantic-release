@@ -244,7 +244,7 @@ const verifyAuthContextAgainstCustomRegistry = async (npmrc: string, registry: s
     try {
         logger.log(`Running "pnpm publish --dry-run" to verify authentication on registry "${registry}"`);
 
-        const publishArgs = ["publish", pkgRoot, "--dry-run", "--tag=semantic-release-auth-check", "--registry", registry];
+        const publishArgs = ["publish", pkgRoot, "--dry-run", "--tag=semantic-release-auth-check", "--registry", registry, "--no-git-checks"];
         const publishOptions = {
             cwd,
             env: {
