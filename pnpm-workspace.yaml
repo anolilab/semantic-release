@@ -43,29 +43,29 @@ catalogs:
   icons:
     cosmiconfig: ^9.0.0
   lint:
-    '@anolilab/commitlint-config': ^6.0.7
+    '@anolilab/commitlint-config': ^8.1.0
     '@anolilab/eslint-config': ^16.4.4
-    '@anolilab/lint-staged-config': ^3.0.39
-    '@anolilab/prettier-config': ^6.0.8
-    '@anolilab/textlint-config': ^9.0.9
-    '@commitlint/cli': ^20.2.0
-    '@commitlint/config-conventional': ^20.2.0
+    '@anolilab/lint-staged-config': ^4.0.1
+    '@anolilab/prettier-config': ^8.0.1
+    '@anolilab/textlint-config': ^11.1.0
+    '@commitlint/cli': ^20.3.1
+    '@commitlint/config-conventional': ^20.3.1
     '@secretlint/secretlint-rule-preset-recommend': ^11.2.5
     eslint: 9.39.1
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: ^16.2.7
     prettier: ^3.7.4
-    publint: ^0.3.15
+    publint: ^0.3.16
     secretlint: 11.2.5
     textlint: ^15.5.0
   markdown:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
-    '@nx/workspace': 22.1.3
-    nx: ^22.2.0
+    '@nx/workspace': 22.3.3
+    nx: ^22.3.3
   network:
-    browserslist-config-anolilab: ^6.0.7
+    browserslist-config-anolilab: ^7.0.1
   node:
     '@visulima/path': ^2.0.5
     cross-env: ^10.1.0
@@ -96,14 +96,14 @@ catalogs:
     plop: ^4.0.4
     registry-auth-token: ^5.1.0
     signale: ^1.4.0
-    sort-package-json: ^3.5.1
+    sort-package-json: ^3.6.0
     stream-buffers: ^3.0.3
     yaml: ^2.8.2
     yargs: 18.0.0
   test:
     '@vitest/coverage-v8': ^4.0.15
     '@vitest/ui': ^4.0.15
-    vitest: ^4.0.15
+    vitest: ^4.0.16
   tsc:
     typescript: ^5.9.3
   types:
@@ -153,8 +153,10 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
+  '@modelcontextprotocol/sdk@<1.25.2': '>=1.25.2'
   body-parser@>=2.2.0 <2.2.1: '>=2.2.1'
   chrono-node@<2.2.4: '>=2.9.0'
+  qs@<6.14.1: '>=6.14.1'
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
   tmp@<=0.2.3: '>=0.2.5'
   vite@>=7.1.0 <=7.1.10: '>=7.2.7'
