@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [4.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.2...@anolilab/semantic-release-pnpm@4.0.0) (2026-01-08)
+
+### Bug Fixes
+
+* add GitHub labeler configuration and update package metadata ([dce9314](https://github.com/anolilab/semantic-release/commit/dce9314ca6aefaf86e75c6d065cdac8ad7a60717))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.0
+
 ## @anolilab/semantic-release-pnpm [3.2.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.1...@anolilab/semantic-release-pnpm@3.2.2) (2025-12-05)
 
 ### Bug Fixes

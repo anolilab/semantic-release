@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-preset [13.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.1.2...@anolilab/semantic-release-preset@13.0.0) (2026-01-08)
+
+### Bug Fixes
+
+* add GitHub labeler configuration and update package metadata ([dce9314](https://github.com/anolilab/semantic-release/commit/dce9314ca6aefaf86e75c6d065cdac8ad7a60717))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.0.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 4.0.0
+
 ## @anolilab/semantic-release-preset [12.1.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.1.1...@anolilab/semantic-release-preset@12.1.2) (2025-12-05)
 
 
