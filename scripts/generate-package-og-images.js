@@ -151,7 +151,7 @@ function saveSVGToAssets(packagePath, svg) {
  * Inserts SVG link into README.md file and replaces name/description section
  * @param {string} readmePath - Path to README.md
  * @param {string} svgPath - Relative path to SVG file
- * @param {string} packageName - Package name without @visulima/ prefix
+ * @param {string} packageName - Package name without @anolilab/ prefix
  * @param {string} packageDescription - Package description from package.json
  * @param {string} startPlaceholder - Start placeholder pattern
  * @param {string} endPlaceholder - End placeholder pattern
@@ -197,7 +197,7 @@ function insertSVGIntoReadme(
     }
 
     // Create the image link HTML
-    const imageLink = `<a href="https://github.com/anolilab/semantic-release" align="center">\n\n  <img src="${svgPath}" alt="${packageName}" />\n\n</a>\n\n<h3 align="center">${packageDescription}</h3>`;
+    const imageLink = `<a href="https://www.anolilab.com/open-source" align="center">\n\n  <img src="${svgPath}" alt="${packageName}" />\n\n</a>\n\n<h3 align="center">${packageDescription}</h3>`;
 
     // Replace content between placeholders (including empty content or same-line placeholders)
     const escapedStart = startPlaceholder.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
