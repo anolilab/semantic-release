@@ -7,10 +7,10 @@ packages:
 
 catalogs:
   build:
-    esbuild: 0.27.0
+    esbuild: 0.27.2
   cli:
-    '@anolilab/semantic-release-clean-package-json': 4.0.0-alpha.2
-    '@anolilab/semantic-release-pnpm': 3.0.0-alpha.2
+    '@anolilab/semantic-release-clean-package-json': 4.0.0
+    '@anolilab/semantic-release-pnpm': 3.0.0
     '@sebbo2002/semantic-release-jsr': ^3.1.0
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
@@ -32,9 +32,9 @@ catalogs:
     dockerode: 4.0.9
     file-url: ^4.0.0
     get-stream: 9.0.1
-    got: ^14.6.5
+    got: ^14.6.6
     left-pad: latest
-    p-retry: ^7.1.0
+    p-retry: ^7.1.1
     stream-buffers: ^3.0.3
     tempy: ^3.1.0
     type-fest: ^5.3.1
@@ -76,8 +76,8 @@ catalogs:
   peer:
     left-pad: latest
   prod:
-    '@actions/core': ^2.0.0
-    '@anolilab/rc': 3.0.0-alpha.2
+    '@actions/core': ^2.0.1
+    '@anolilab/rc': 3.0.0
     '@babel/core': ^7.28.5
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^4.1.0
@@ -92,7 +92,7 @@ catalogs:
     git-log-parser: ^1.2.1
     ini: ^6.0.0
     is-ci: ^4.1.0
-    normalize-url: ^8.1.0
+    normalize-url: ^8.1.1
     plop: ^4.0.4
     registry-auth-token: ^5.1.0
     signale: ^1.4.0
