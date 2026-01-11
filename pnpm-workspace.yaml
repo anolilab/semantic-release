@@ -27,7 +27,7 @@ catalogs:
   dev:
     '@arethetypeswrong/cli': ^0.18.2
     '@ckeditor/typedoc-plugins': 43.1.0
-    '@visulima/packem': 2.0.0-alpha.40
+    '@visulima/packem': 2.0.0-alpha.49
     conventional-changelog-conventionalcommits: 9.1.0
     dockerode: 4.0.9
     file-url: ^4.0.0
