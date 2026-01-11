@@ -87,7 +87,7 @@ describe(verifyAuth, () => {
         expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm publish --dry-run\" to verify authentication"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry], {
+        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry, "--no-git-checks"], {
             cwd: context.cwd,
             env: {
                 ...context.env,
@@ -114,7 +114,7 @@ describe(verifyAuth, () => {
 
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry], {
+        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry, "--no-git-checks"], {
             cwd: context.cwd,
             env: {
                 ...context.env,
