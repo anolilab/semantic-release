@@ -81,8 +81,8 @@ catalogs:
       specifier: ^5.3.1
       version: 5.3.1
     typedoc:
-      specifier: 0.28.14
-      version: 0.28.14
+      specifier: 0.28.15
+      version: 0.28.15
     typedoc-plugin-rename-defaults:
       specifier: 0.7.3
       version: 0.7.3
@@ -516,7 +516,7 @@ importers:
         version: 17.0.34
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
+        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.15(vitest@4.0.16)
@@ -589,7 +589,7 @@ importers:
         version: 8.0.1(prettier@3.7.4)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
-        version: 43.1.0(typedoc@0.28.14(typescript@5.9.3))
+        version: 43.1.0(typedoc@0.28.15(typescript@5.9.3))
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.2.5
@@ -619,7 +619,7 @@ importers:
         version: 24.10.1
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
+        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.15(vitest@4.0.16)
@@ -655,13 +655,13 @@ importers:
         version: 3.1.0
       typedoc:
         specifier: catalog:dev
-        version: 0.28.14(typescript@5.9.3)
+        version: 0.28.15(typescript@5.9.3)
       typedoc-plugin-markdown:
         specifier: catalog:markdown
-        version: 4.9.0(typedoc@0.28.14(typescript@5.9.3))
+        version: 4.9.0(typedoc@0.28.15(typescript@5.9.3))
       typedoc-plugin-rename-defaults:
         specifier: catalog:dev
-        version: 0.7.3(typedoc@0.28.14(typescript@5.9.3))
+        version: 0.7.3(typedoc@0.28.15(typescript@5.9.3))
       typescript:
         specifier: catalog:tsc
         version: 5.9.3
@@ -722,7 +722,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
+        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.15(vitest@4.0.16)
@@ -855,7 +855,7 @@ importers:
         version: 3.0.7
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
+        version: 2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.0.15(vitest@4.0.16)
@@ -1758,8 +1758,8 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@gerrit0/mini-shiki@3.12.2':
-    resolution: {integrity: sha512-HKZPmO8OSSAAo20H2B3xgJdxZaLTwtlMwxg0967scnrDlPwe6j5+ULGHyIqwgTbFCn9yv/ff8CmfWZLE9YKBzA==}
+  '@gerrit0/mini-shiki@3.21.0':
+    resolution: {integrity: sha512-9PrsT5DjZA+w3lur/aOIx3FlDeHdyCEFlv9U+fmsVyjPZh61G5SYURQ/1ebe2U63KbDmI2V8IhIUegWb8hjOyg==}
 
   '@grpc/grpc-js@1.12.5':
     resolution: {integrity: sha512-d3iiHxdpg5+ZcJ6jnDSOT8Z0O0VMVGy34jAnYLUX8yd36b1qn8f1TwOA/Lc7TsOh03IkPJ38eGI5qD2EjNkoEA==}
@@ -2680,17 +2680,17 @@ packages:
   '@semrel-extra/topo@1.14.1':
     resolution: {integrity: sha512-V7hlOQoBXgqLSa4ai9S0LGOO7cKTqRu5dh0T83xfE+VqZQmDkuRm956ooJ2/M8y62kWIxS2VEfePnEoB74x6fg==}
 
-  '@shikijs/engine-oniguruma@3.12.2':
-    resolution: {integrity: sha512-hozwnFHsLvujK4/CPVHNo3Bcg2EsnG8krI/ZQ2FlBlCRpPZW4XAEQmEwqegJsypsTAN9ehu2tEYe30lYKSZW/w==}
+  '@shikijs/engine-oniguruma@3.21.0':
+    resolution: {integrity: sha512-OYknTCct6qiwpQDqDdf3iedRdzj6hFlOPv5hMvI+hkWfCKs5mlJ4TXziBG9nyabLwGulrUjHiCq3xCspSzErYQ==}
 
-  '@shikijs/langs@3.12.2':
-    resolution: {integrity: sha512-bVx5PfuZHDSHoBal+KzJZGheFuyH4qwwcwG/n+MsWno5cTlKmaNtTsGzJpHYQ8YPbB5BdEdKU1rga5/6JGY8ww==}
+  '@shikijs/langs@3.21.0':
+    resolution: {integrity: sha512-g6mn5m+Y6GBJ4wxmBYqalK9Sp0CFkUqfNzUy2pJglUginz6ZpWbaWjDB4fbQ/8SHzFjYbtU6Ddlp1pc+PPNDVA==}
 
-  '@shikijs/themes@3.12.2':
-    resolution: {integrity: sha512-fTR3QAgnwYpfGczpIbzPjlRnxyONJOerguQv1iwpyQZ9QXX4qy/XFQqXlf17XTsorxnHoJGbH/LXBvwtqDsF5A==}
+  '@shikijs/themes@3.21.0':
+    resolution: {integrity: sha512-BAE4cr9EDiZyYzwIHEk7JTBJ9CzlPuM4PchfcA5ao1dWXb25nv6hYsoDiBq2aZK9E3dlt3WB78uI96UESD+8Mw==}
 
-  '@shikijs/types@3.12.2':
-    resolution: {integrity: sha512-K5UIBzxCyv0YoxN3LMrKB9zuhp1bV+LgewxuVwHdl4Gz5oePoUFrr9EfgJlGlDeXCU1b/yhdnXeuRvAnz8HN8Q==}
+  '@shikijs/types@3.21.0':
+    resolution: {integrity: sha512-zGrWOxZ0/+0ovPY7PvBU2gIS9tmhSUUt30jAcNV0Bq0gb2S98gwfjIs1vxlmH5zM7/4YxLamT6ChlqqAJmPPjA==}
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
@@ -8841,8 +8841,8 @@ packages:
     peerDependencies:
       typedoc: '>=0.22.x <0.29.x'
 
-  typedoc@0.28.14:
-    resolution: {integrity: sha512-ftJYPvpVfQvFzpkoSfHLkJybdA/geDJ8BGQt/ZnkkhnBYoYW6lBgPQXu6vqLxO4X75dA55hX8Af847H5KXlEFA==}
+  typedoc@0.28.15:
+    resolution: {integrity: sha512-mw2/2vTL7MlT+BVo43lOsufkkd2CJO4zeOSuWQQsiXoV2VuEn7f6IZp2jsUDPmBMABpgR0R5jlcJ2OGEFYmkyg==}
     engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
@@ -9760,9 +9760,9 @@ snapshots:
       hashery: 1.4.0
       keyv: 5.5.5
 
-  '@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3))':
+  '@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3))':
     dependencies:
-      typedoc: 0.28.14(typescript@5.9.3)
+      typedoc: 0.28.15(typescript@5.9.3)
 
   '@clack/core@0.5.0':
     dependencies:
@@ -10181,12 +10181,12 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@gerrit0/mini-shiki@3.12.2':
+  '@gerrit0/mini-shiki@3.21.0':
     dependencies:
-      '@shikijs/engine-oniguruma': 3.12.2
-      '@shikijs/langs': 3.12.2
-      '@shikijs/themes': 3.12.2
-      '@shikijs/types': 3.12.2
+      '@shikijs/engine-oniguruma': 3.21.0
+      '@shikijs/langs': 3.21.0
+      '@shikijs/themes': 3.21.0
+      '@shikijs/types': 3.21.0
       '@shikijs/vscode-textmate': 10.0.2
 
   '@grpc/grpc-js@1.12.5':
@@ -11146,20 +11146,20 @@ snapshots:
       js-yaml: 4.1.1
       toposource: 1.2.0
 
-  '@shikijs/engine-oniguruma@3.12.2':
+  '@shikijs/engine-oniguruma@3.21.0':
     dependencies:
-      '@shikijs/types': 3.12.2
+      '@shikijs/types': 3.21.0
       '@shikijs/vscode-textmate': 10.0.2
 
-  '@shikijs/langs@3.12.2':
+  '@shikijs/langs@3.21.0':
     dependencies:
-      '@shikijs/types': 3.12.2
+      '@shikijs/types': 3.21.0
 
-  '@shikijs/themes@3.12.2':
+  '@shikijs/themes@3.21.0':
     dependencies:
-      '@shikijs/types': 3.12.2
+      '@shikijs/types': 3.21.0
 
-  '@shikijs/types@3.12.2':
+  '@shikijs/types@3.21.0':
     dependencies:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
@@ -11970,7 +11970,7 @@ snapshots:
       - '@types/node'
       - yaml
 
-  '@visulima/packem@2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)':
+  '@visulima/packem@2.0.0-alpha.40(@arethetypeswrong/core@0.18.2)(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(github-slugger@2.0.0)(lightningcss@1.30.2)(package-manager-detector@1.6.0)(postcss@8.5.6)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -11985,7 +11985,7 @@ snapshots:
       '@visulima/packem-share': 1.0.0-alpha.14(@types/node@24.10.1)(rollup@4.55.1)(yaml@2.8.2)
       '@visulima/pail': 3.2.0
       '@visulima/path': 1.4.0
-      '@visulima/rollup-plugin-css': 1.0.0-alpha.10(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(lightningcss@1.30.2)(postcss@8.5.6)(rollup@4.55.1)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
+      '@visulima/rollup-plugin-css': 1.0.0-alpha.10(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(lightningcss@1.30.2)(postcss@8.5.6)(rollup@4.55.1)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)
       '@visulima/source-map': 2.0.3
       '@visulima/tabular': 3.1.3
       '@visulima/tsconfig': 2.1.0(yaml@2.8.2)
@@ -12007,13 +12007,13 @@ snapshots:
       tinyglobby: 0.2.15
     optionalDependencies:
       '@arethetypeswrong/core': 0.18.2
-      '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.14(typescript@5.9.3))
+      '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.15(typescript@5.9.3))
       esbuild: 0.27.0
       lightningcss: 1.30.2
       postcss: 8.5.6
-      typedoc: 0.28.14(typescript@5.9.3)
-      typedoc-plugin-markdown: 4.9.0(typedoc@0.28.14(typescript@5.9.3))
-      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.14(typescript@5.9.3))
+      typedoc: 0.28.15(typescript@5.9.3)
+      typedoc-plugin-markdown: 4.9.0(typedoc@0.28.15(typescript@5.9.3))
+      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.15(typescript@5.9.3))
       typescript: 5.9.3
     transitivePeerDependencies:
       - '@bomb.sh/tab'
@@ -12042,7 +12042,7 @@ snapshots:
 
   '@visulima/path@2.0.5': {}
 
-  '@visulima/rollup-plugin-css@1.0.0-alpha.10(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.14(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(lightningcss@1.30.2)(postcss@8.5.6)(rollup@4.55.1)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)))(typedoc@0.28.14(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)':
+  '@visulima/rollup-plugin-css@1.0.0-alpha.10(@ckeditor/typedoc-plugins@43.1.0(typedoc@0.28.15(typescript@5.9.3)))(@types/node@24.10.1)(esbuild@0.27.0)(lightningcss@1.30.2)(postcss@8.5.6)(rollup@4.55.1)(typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)))(typedoc@0.28.15(typescript@5.9.3))(typescript@5.9.3)(yaml@2.8.2)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.55.1)
       '@visulima/fs': 4.0.4(yaml@2.8.2)
@@ -12055,13 +12055,13 @@ snapshots:
       rollup: 4.55.1
       source-map-js: 1.2.1
     optionalDependencies:
-      '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.14(typescript@5.9.3))
+      '@ckeditor/typedoc-plugins': 43.1.0(typedoc@0.28.15(typescript@5.9.3))
       esbuild: 0.27.0
       lightningcss: 1.30.2
       postcss: 8.5.6
-      typedoc: 0.28.14(typescript@5.9.3)
-      typedoc-plugin-markdown: 4.9.0(typedoc@0.28.14(typescript@5.9.3))
-      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.14(typescript@5.9.3))
+      typedoc: 0.28.15(typescript@5.9.3)
+      typedoc-plugin-markdown: 4.9.0(typedoc@0.28.15(typescript@5.9.3))
+      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.15(typescript@5.9.3))
       typescript: 5.9.3
     transitivePeerDependencies:
       - '@types/node'
@@ -18553,18 +18553,18 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-markdown@4.9.0(typedoc@0.28.14(typescript@5.9.3)):
+  typedoc-plugin-markdown@4.9.0(typedoc@0.28.15(typescript@5.9.3)):
     dependencies:
-      typedoc: 0.28.14(typescript@5.9.3)
+      typedoc: 0.28.15(typescript@5.9.3)
 
-  typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.14(typescript@5.9.3)):
+  typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.15(typescript@5.9.3)):
     dependencies:
       camelcase: 8.0.0
-      typedoc: 0.28.14(typescript@5.9.3)
+      typedoc: 0.28.15(typescript@5.9.3)
 
-  typedoc@0.28.14(typescript@5.9.3):
+  typedoc@0.28.15(typescript@5.9.3):
     dependencies:
-      '@gerrit0/mini-shiki': 3.12.2
+      '@gerrit0/mini-shiki': 3.21.0
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
