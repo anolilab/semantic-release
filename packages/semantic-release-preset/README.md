@@ -626,7 +626,6 @@ The anolilab semantic-release-preset is open-sourced software licensed under the
 [typescript-badge]: https://img.shields.io/badge/Typescript-294E80.svg?style=for-the-badge&logo=typescript
 [typescript-url]: https://www.typescriptlang.org/
 [license-url]: LICENSE.md
-
 [1]: https://github.com/semantic-release/commit-analyzer
 [2]: https://github.com/semantic-release/release-notes-generator
 [3]: https://github.com/semantic-release/changelog

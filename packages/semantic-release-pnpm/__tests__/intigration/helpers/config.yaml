@@ -20,4 +20,4 @@ middlewares:
     audit:
         enabled: true
 logs:
-    - {type: stdout, format: pretty, level: http}
+    - { type: stdout, format: pretty, level: http }

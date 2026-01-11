@@ -50,6 +50,8 @@ or `devDependencies` or `peerDependencies`). However in multi-semantic-release t
 written into `package.json` at release time. This means there's no need to hard-code versions any more
 (we recommend just using `*` asterisk instead in your repo code).
 
+**Note:** While `devDependencies` are updated in `package.json`, they do not trigger version bumps for the package itself. Only runtime dependencies (`dependencies`, `peerDependencies`, `optionalDependencies`) can trigger version bumps when they change.
+
 ### Key features
 
 - CLI & JS API
@@ -149,6 +151,8 @@ When you update a catalog version (e.g., `lodash-es: ^4.17.0` → `^4.17.1`), an
 - **Major change** (e.g., `^1.0.0` → `^2.0.0`) triggers a major release
 - **Minor change** (e.g., `^1.0.0` → `^1.1.0`) triggers a minor release
 - **Patch change** (e.g., `^1.0.0` → `^1.0.1`) triggers a patch release
+
+**Note:** Catalog references in `devDependencies` are updated but do not trigger version bumps. Only catalog references in `dependencies`, `peerDependencies`, and `optionalDependencies` can trigger releases.
 
 Catalog changes are combined with commit-based releases - if both trigger a release, the highest severity is used.
 
@@ -291,11 +295,11 @@ The first configuration file found will be used, and the search stops there.
 
 ### `deps` Options
 
-| Option  | Type                                 | CLI Flag         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------- | ------------------------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| bump    | `override \| satisfy \| inherit`     | `--deps.bump`    | Define deps version update rule. <ul><li>`override` — replace any prev version with the next one</li><li>`satisfy` — check the next pkg version against its current references. If it matches (`*` matches to any, `1.1.0` matches `1.1.x`, `1.5.0` matches to `^1.0.0` and so on) release will not be triggered, if not `override` strategy will be applied instead; `inherit` will try to follow the current declaration version/range. `~1.0.0` + `minor` turns into `~1.1.0`, `1.x` + `major` gives `2.x`, but `1.x` + `minor` gives `1.x` so there will be no release, etc. +;</li><li>`ignore` prevent dependencies from being bumped by MSR</li></ul> |
-| release | `patch \| minor \| major \| inherit` | `--deps.release` | Define release type for dependent package if any of its deps changes. <ul><li>`patch`, `minor`, `major` — strictly declare the release type that occurs when any dependency is updated;</li><li> `inherit` — applies the "highest" release of updated deps to the package. <br/> _For example, if any dep has a breaking change, `major` release will be applied to the all dependants up the chain._</li></ul>                                                                                                                                                                                                                                              |
-| prefix  | `'^' \| '~' \| ''`                   | `--deps.prefix`  | Optional prefix to be attached to the next version if `bump` is set to `override`. Supported values: `^` \| `~` \| `''` (empty string) ; **`''` by default**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Option  | Type                                           | CLI Flag         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ------- | ---------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| bump    | `override \| satisfy \| inherit`               | `--deps.bump`    | Define deps version update rule. <ul><li>`override` — replace any prev version with the next one</li><li>`satisfy` — check the next pkg version against its current references. If it matches (`*` matches to any, `1.1.0` matches `1.1.x`, `1.5.0` matches to `^1.0.0` and so on) release will not be triggered, if not `override` strategy will be applied instead; `inherit` will try to follow the current declaration version/range. `~1.0.0` + `minor` turns into `~1.1.0`, `1.x` + `major` gives `2.x`, but `1.x` + `minor` gives `1.x` so there will be no release, etc. +;</li><li>`ignore` prevent dependencies from being bumped by MSR</li></ul>                                                                                                                                                                                                  |
+| release | `patch \| minor \| major \| inherit \| Object` | `--deps.release` | Define release type for dependent package if any of its deps changes. <ul><li>`patch`, `minor`, `major` — strictly declare the release type that occurs when any dependency is updated;</li><li> `inherit` — applies the "highest" release of updated deps to the package. <br/> _For example, if any dep has a breaking change, `major` release will be applied to the all dependants up the chain._</li><li> **Object mapping** — configure different release types based on dependency severity: <br/> `{ major: "minor", minor: "patch", patch: "patch" }` <br/> This allows fine-grained control, e.g., major dependency bumps can trigger minor bumps instead of major bumps.</li></ul> **Note:** Only `dependencies`, `peerDependencies`, and `optionalDependencies` trigger version bumps. `devDependencies` are updated but do not trigger releases. |
+| prefix  | `'^' \| '~' \| ''`                             | `--deps.prefix`  | Optional prefix to be attached to the next version if `bump` is set to `override`. Supported values: `^` \| `~` \| `''` (empty string) ; **`''` by default**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Examples
 
@@ -304,6 +308,30 @@ The first configuration file found will be used, and the search stops there.
 ```sh
 $ multi-semantic-release --ignore-packages=packages/a/**,packages/b/** --deps.bump=inherit
 ```
+
+- Using release mapping to control how dependency bumps trigger releases:
+
+```json
+{
+    "multi-release": {
+        "deps": {
+            "release": {
+                "major": "minor",
+                "minor": "patch",
+                "patch": "patch"
+            }
+        }
+    }
+}
+```
+
+This configuration means:
+
+- When a dependency has a **major** bump → trigger a **minor** bump for the dependent package
+- When a dependency has a **minor** bump → trigger a **patch** bump for the dependent package
+- When a dependency has a **patch** bump → trigger a **patch** bump for the dependent package
+
+This is useful when you want to be more conservative about version bumps, e.g., major dependency changes don't necessarily require major bumps in your package.
 
 ## Configuring Semantic-Release
 
@@ -412,6 +440,13 @@ A key requirement is handling local dep version numbers elegantly. multi-semanti
 - If a release has not changed but has local deps that _have_ changed... do a `patch` bump on that package too
 - Before packages are released (in semantic-release's prepare step), the correct current/next version number of _all_ local dependencies is written into the `package.json` file (overwriting any existing value)
 - This ensures the package at the time of publishing will be atomically correct with all other packages in the monorepo.
+
+**Important:** `devDependencies` are handled differently from runtime dependencies:
+
+- `devDependencies` are **updated** in `package.json` when their versions change
+- However, `devDependencies` **do not trigger version bumps** for the package itself
+- Only `dependencies`, `peerDependencies`, and `optionalDependencies` can trigger version bumps when they change
+- This aligns with semantic versioning principles, as `devDependencies` don't affect the published package's runtime behavior
 
 The above means that, possibly, if someone upgrades dependencies and pulls down a package from NPM _during the multirelease_ (before all its deps have been published at their next versions), then their `npm install` will fail (it will work if they try again in a few minutes). On balance I thought it was more important to be atomically correct (this situation should be fairly rare assuming projects commit their lockfiles).
 

@@ -97,7 +97,7 @@ describe(prepare, () => {
         await expect(readFile(packagePath)).resolves.toStrictEqual(expectedContent);
     });
 
-    it("should create the package in the \"tarballDir\" directory", async () => {
+    it('should create the package in the "tarballDir" directory', async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");
@@ -122,7 +122,7 @@ describe(prepare, () => {
         await expect(isAccessible(tarballPath)).resolves.toBe(true);
     });
 
-    it("should only move the created tarball if the \"tarballDir\" directory is not the CWD", async () => {
+    it('should only move the created tarball if the "tarballDir" directory is not the CWD', async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");

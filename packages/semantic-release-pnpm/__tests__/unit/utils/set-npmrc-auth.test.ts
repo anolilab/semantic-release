@@ -59,7 +59,7 @@ describe("set-npmrc-auth", () => {
         await rm(home, { recursive: true });
     });
 
-    it("should set auth with \"NPM_TOKEN\"", async () => {
+    it('should set auth with "NPM_TOKEN"', async () => {
         expect.assertions(2);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
@@ -75,7 +75,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should set auth with \"NPM_USERNAME\", \"NPM_PASSWORD\" and \"NPM_EMAIL\"", async () => {
+    it('should set auth with "NPM_USERNAME", "NPM_PASSWORD" and "NPM_EMAIL"', async () => {
         expect.assertions(2);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
@@ -96,7 +96,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve home \".npmrc\"", async () => {
+    it('should preserve home ".npmrc"', async () => {
         expect.assertions(3);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
@@ -116,7 +116,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve home and local \".npmrc\"", async () => {
+    it('should preserve home and local ".npmrc"', async () => {
         expect.assertions(3);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
@@ -137,7 +137,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve all \".npmrc\" if auth is already configured", async () => {
+    it('should preserve all ".npmrc" if auth is already configured', async () => {
         expect.assertions(2);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -157,7 +157,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve \".npmrc\" if auth is already configured for a scoped package", async () => {
+    it('should preserve ".npmrc" if auth is already configured for a scoped package', async () => {
         expect.assertions(2);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -177,7 +177,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should throw error if \"NPM_TOKEN\" is missing", async () => {
+    it('should throw error if "NPM_TOKEN" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -201,7 +201,7 @@ describe("set-npmrc-auth", () => {
         }
     });
 
-    it("should emulate npm config resolution if \"NPM_CONFIG_USERCONFIG\" is set", async () => {
+    it('should emulate npm config resolution if "NPM_CONFIG_USERCONFIG" is set', async () => {
         expect.assertions(2);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -226,7 +226,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should throw error if \"NPM_USERNAME\" is missing", async () => {
+    it('should throw error if "NPM_USERNAME" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -251,7 +251,7 @@ describe("set-npmrc-auth", () => {
         }
     });
 
-    it("should throw error if \"NPM_PASSWORD\" is missing", async () => {
+    it('should throw error if "NPM_PASSWORD" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -276,7 +276,7 @@ describe("set-npmrc-auth", () => {
         }
     });
 
-    it("should throw error if \"NPM_EMAIL\" is missing", async () => {
+    it('should throw error if "NPM_EMAIL" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });

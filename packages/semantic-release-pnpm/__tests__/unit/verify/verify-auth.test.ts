@@ -66,7 +66,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
@@ -84,18 +84,22 @@ describe(verifyAuth, () => {
 
         await verifyAuth(npmrc, pkg, context, "/dist");
 
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm publish --dry-run\" to verify authentication"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm publish --dry-run" to verify authentication'));
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry, "--no-git-checks"], {
-            cwd: context.cwd,
-            env: {
-                ...context.env,
-                NPM_CONFIG_USERCONFIG: npmrc,
+        expect(execa).toHaveBeenCalledWith(
+            "pnpm",
+            ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry, "--no-git-checks"],
+            {
+                cwd: context.cwd,
+                env: {
+                    ...context.env,
+                    NPM_CONFIG_USERCONFIG: npmrc,
+                },
+                preferLocal: true,
+                timeout: 5000,
             },
-            preferLocal: true,
-            timeout: 5000,
-        });
+        );
     });
 
     it("should perform dry-run publish for custom registries from a sub-directory", async () => {
@@ -114,15 +118,19 @@ describe(verifyAuth, () => {
 
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(execa).toHaveBeenCalledWith("pnpm", ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry, "--no-git-checks"], {
-            cwd: context.cwd,
-            env: {
-                ...context.env,
-                NPM_CONFIG_USERCONFIG: npmrc,
+        expect(execa).toHaveBeenCalledWith(
+            "pnpm",
+            ["publish", "/dist", "--dry-run", "--tag=semantic-release-auth-check", "--registry", customRegistry, "--no-git-checks"],
+            {
+                cwd: context.cwd,
+                env: {
+                    ...context.env,
+                    NPM_CONFIG_USERCONFIG: npmrc,
+                },
+                preferLocal: true,
+                timeout: 5000,
             },
-            preferLocal: true,
-            timeout: 5000,
-        });
+        );
     });
 
     it("should throw error when dry-run publish fails with auth error for custom registry", async () => {
@@ -151,7 +159,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkgWithoutName, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
     });
 
     it("should bubble through errors from setting up auth", async () => {
@@ -181,7 +189,7 @@ describe(verifyAuth, () => {
         await verifyAuth(npmrc, pkg, context);
 
         expect(execa).toHaveBeenCalledTimes(1);
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\""));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami"'));
 
         // Second call with same registry/token - should use cache
         vi.clearAllMocks();

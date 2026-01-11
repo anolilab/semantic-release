@@ -32,11 +32,11 @@ const exchangeIdToken = async (idToken: string, packageName: string, context?: C
 
     // Check if the package doesn't exist (404) and provide helpful guidance
     if (response.status === 404 || responseBody.message?.toLowerCase().includes("not found")) {
-        const warningMessage
-            = `Package "${packageName}" does not exist on npm. npm requires a package to exist before you can configure OIDC trusted publishing. `
-                + `You can either publish a dummy version manually first (e.g., \`pnpm publish --tag dummy\`) or use the \`setup-npm-trusted-publish\` tool `
-                + `(https://github.com/azu/setup-npm-trusted-publish) to create a placeholder package. `
-                + `After the package exists, configure OIDC trusted publishing at https://www.npmjs.com/package/${encodeURIComponent(packageName)}/access`;
+        const warningMessage =
+            `Package "${packageName}" does not exist on npm. npm requires a package to exist before you can configure OIDC trusted publishing. ` +
+            `You can either publish a dummy version manually first (e.g., \`pnpm publish --tag dummy\`) or use the \`setup-npm-trusted-publish\` tool ` +
+            `(https://github.com/azu/setup-npm-trusted-publish) to create a placeholder package. ` +
+            `After the package exists, configure OIDC trusted publishing at https://www.npmjs.com/package/${encodeURIComponent(packageName)}/access`;
 
         context?.logger?.error(warningMessage);
         debug(warningMessage);
@@ -112,8 +112,8 @@ const tokenExchange = (pkg: { name: string }, context: CommonContext): Promise<s
     }
 
     const ciEnv = envCi();
-    const ciProviderName: string | undefined
-        = typeof ciEnv === "object" && ciEnv !== null && typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
+    const ciProviderName: string | undefined =
+        typeof ciEnv === "object" && ciEnv !== null && typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
 
     if (!ciProviderName) {
         debug("Unable to detect CI provider for OIDC token exchange");

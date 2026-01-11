@@ -5,13 +5,13 @@ import type { PluginConfig } from "../../../src/definitions/plugin-config";
 import verifyConfig from "../../../src/verify/verify-config";
 
 describe("verify-config", () => {
-    it("verify \"npmPublish\", \"tarballDir\" and \"pkgRoot\" options", async () => {
+    it('verify "npmPublish", "tarballDir" and "pkgRoot" options', async () => {
         expect.assertions(1);
 
         expect(verifyConfig({ npmPublish: true, pkgRoot: "dist", tarballDir: "release" })).toStrictEqual([]);
     });
 
-    it("return SemanticReleaseError if \"npmPublish\" option is not a Boolean", async () => {
+    it('return SemanticReleaseError if "npmPublish" option is not a Boolean', async () => {
         expect.assertions(3);
 
         const npmPublish = 42;
@@ -22,7 +22,7 @@ describe("verify-config", () => {
         expect((error as SemanticReleaseError).code).toBe("EINVALIDNPMPUBLISH");
     });
 
-    it("return SemanticReleaseError if \"tarballDir\" option is not a String", async () => {
+    it('return SemanticReleaseError if "tarballDir" option is not a String', async () => {
         expect.assertions(3);
 
         // eslint-disable-next-line unicorn/prevent-abbreviations
@@ -34,7 +34,7 @@ describe("verify-config", () => {
         expect((error as SemanticReleaseError).code).toBe("EINVALIDTARBALLDIR");
     });
 
-    it("return SemanticReleaseError if \"pkgRoot\" option is not a String", async () => {
+    it('return SemanticReleaseError if "pkgRoot" option is not a String', async () => {
         expect.assertions(3);
 
         const packageRoot = 42;
@@ -45,7 +45,7 @@ describe("verify-config", () => {
         expect((error as SemanticReleaseError).code).toBe("EINVALIDPKGROOT");
     });
 
-    it("return SemanticReleaseError if \"publishBranch\" option is not a String", async () => {
+    it('return SemanticReleaseError if "publishBranch" option is not a String', async () => {
         expect.assertions(3);
 
         const publishBranch = 42;

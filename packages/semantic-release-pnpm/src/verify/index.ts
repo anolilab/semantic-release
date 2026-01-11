@@ -35,7 +35,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...typedError.errors ?? [error]];
+        errors = [...errors, ...(typedError.errors ?? [error])];
     }
 
     try {
@@ -56,7 +56,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...typedError.errors ?? [error]];
+        errors = [...errors, ...(typedError.errors ?? [error])];
     }
 
     if (errors.length > 0) {

@@ -7,11 +7,42 @@ import semver from "semver";
 
 import getManifest from "./get-manifest";
 import logger from "./logger";
-import type { Package, PackageManifest } from "./types";
+import type { Package, PackageManifest, ReleaseStrategy } from "./types";
 import { getHighestVersion, getLatestVersion } from "./utils/get-version";
 import recognizeFormat from "./utils/recognize-format";
 
 const { debug } = logger.withScope("msr:updateDeps");
+
+/**
+ * Resolve the release type to use based on the release strategy and dependency release type.
+ * @param releaseStrategy The release strategy (string or mapping object).
+ * @param dependencyReleaseType The release type of the dependency (patch, minor, major).
+ * @returns The release type to apply to the dependent package.
+ * @internal
+ */
+const resolveReleaseTypeFromStrategy = (
+    releaseStrategy:
+        | ReleaseStrategy
+        | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
+    dependencyReleaseType: Omit<ReleaseStrategy, "inherit"> | undefined,
+): Omit<ReleaseStrategy, "inherit"> | undefined => {
+    // If it's a string, use it directly (backward compatible)
+    if (typeof releaseStrategy === "string") {
+        if (releaseStrategy === "inherit") {
+            return dependencyReleaseType;
+        }
+
+        return releaseStrategy as Omit<ReleaseStrategy, "inherit">;
+    }
+
+    // If it's an object mapping, use the mapping based on dependency release type
+    if (dependencyReleaseType && releaseStrategy[dependencyReleaseType as keyof typeof releaseStrategy]) {
+        return releaseStrategy[dependencyReleaseType as keyof typeof releaseStrategy];
+    }
+
+    // Fallback: if no mapping for this dependency type, return undefined (no release)
+    return undefined;
+};
 
 /**
  * Resolve next prerelease comparing bumped tags versions with last version.
@@ -68,18 +99,29 @@ const nextPreVersionCases = (
  * Get dependent release type by recursive scanning and updating pkg deps.
  * @param packageJson The package with local deps to check.
  * @param bumpStrategy Dependency resolution strategy: override, satisfy, inherit.
- * @param releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit.
+ * @param releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit, or mapping object.
  * @param ignore Packages to ignore (to prevent infinite loops).
  * @param prefix Dependency version prefix to be attached if `bumpStrategy='override'`. ^ | ~ | '' (defaults to empty string)
  * @returns Returns the highest release type if found, undefined otherwise
  * @internal
  */
-const getDependentRelease = (packageJson: Package, bumpStrategy: string, releaseStrategy: string, ignore: Package[], prefix: string): string | undefined => {
+const getDependentRelease = (
+    packageJson: Package,
+    bumpStrategy: string,
+    releaseStrategy:
+        | ReleaseStrategy
+        | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
+    ignore: Package[],
+    prefix: string,
+): string | undefined => {
     const severityOrder = ["patch", "minor", "major"] as const;
     const { localDeps, manifest = {} } = packageJson;
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
     const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest as PackageManifest;
-    const scopes: Record<string, string>[] = [dependencies, devDependencies, peerDependencies, optionalDependencies];
+    // All scopes for updating versions (including devDependencies)
+    const allScopes: Record<string, string>[] = [dependencies, devDependencies, peerDependencies, optionalDependencies];
+    // Only runtime scopes for triggering releases (excluding devDependencies)
+    const releaseScopes: Record<string, string>[] = [dependencies, peerDependencies, optionalDependencies];
 
     const bumpDependency = (scope: Record<string, string>, name: string, nextVersion: string | undefined): boolean => {
         const currentVersion = scope[name];
@@ -133,22 +175,41 @@ const getDependentRelease = (packageJson: Package, bumpStrategy: string, release
                 }
             }
 
-            const requireRelease: boolean = scopes
-                // eslint-disable-next-line unicorn/no-array-reduce
-                .reduce((accumulator: boolean, scope: Record<string, string>) => bumpDependency(scope, p.name, nextVersion) || accumulator, !lastVersion);
+            // Update all dependencies (including devDependencies) but only check runtime deps for triggering releases
+            allScopes.forEach((scope) => bumpDependency(scope, p.name, nextVersion));
+            const requireRelease: boolean
+                = releaseScopes.some((scope: Record<string, string>) => {
+                    const currentVersion = scope[p.name];
+
+                    if (!nextVersion || !currentVersion) {
+                        return false;
+                    }
+
+                    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                    const resolvedVersion = resolveNextVersion(currentVersion, nextVersion, bumpStrategy, prefix);
+
+                    return currentVersion !== resolvedVersion;
+                }) || !lastVersion;
 
             if (!requireRelease || !nextType) {
                 return releaseType;
             }
 
-            if (!releaseType) {
-                return nextType;
+            // Apply release strategy mapping if configured
+            const mappedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, nextType as Omit<ReleaseStrategy, "inherit">);
+
+            if (!mappedReleaseType) {
+                return releaseType;
             }
 
-            const nextIndex = severityOrder.indexOf(nextType as (typeof severityOrder)[number]);
+            if (!releaseType) {
+                return mappedReleaseType;
+            }
+
+            const mappedIndex = severityOrder.indexOf(mappedReleaseType as (typeof severityOrder)[number]);
             const releaseIndex = severityOrder.indexOf(releaseType as (typeof severityOrder)[number]);
 
-            return nextIndex > releaseIndex ? nextType : releaseType;
+            return mappedIndex > releaseIndex ? mappedReleaseType : releaseType;
         }, undefined);
 
     if (!result && highestNestedReleaseType) {
@@ -306,7 +367,7 @@ export const getNextPreVersion = (packageJson: Package): string | undefined => {
  * Resolve package release type taking into account the cascading dependency update.
  * @param packageJson Package object.
  * @param bumpStrategy Dependency resolution strategy: override, satisfy, inherit.
- * @param releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit.
+ * @param releaseStrategy Release type triggered by deps updating: patch, minor, major, inherit, or mapping object.
  * @param ignore Packages to ignore (to prevent infinite loops).
  * @param prefix Dependency version prefix to be attached if `bumpStrategy='override'`. ^ | ~ | '' (defaults to empty string)
  * @returns Resolved release type.
@@ -315,7 +376,9 @@ export const getNextPreVersion = (packageJson: Package): string | undefined => {
 export const resolveReleaseType = (
     packageJson: Package,
     bumpStrategy: string = "override",
-    releaseStrategy: string = "patch",
+    releaseStrategy:
+        | ReleaseStrategy
+        | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> } = "patch",
     ignore: Package[] = [],
     prefix: string = "",
 ): string | undefined => {
@@ -327,11 +390,12 @@ export const resolveReleaseType = (
 
     if (!dependentReleaseType && packageJson.localDeps && packageJson.localDeps.length > 0 && packageJson.manifest) {
         const manifest = packageJson.manifest as PackageManifest;
-        const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
-        const allDeps = { ...dependencies, ...devDependencies, ...optionalDependencies, ...peerDependencies };
+        const { dependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
+        // Only check runtime dependencies (exclude devDependencies) for triggering releases
+        const runtimeDeps = { ...dependencies, ...optionalDependencies, ...peerDependencies };
 
         const hasLocalDepInManifest = packageJson.localDeps.some((dep: Package) => {
-            if (!dep.name || allDeps[dep.name] === undefined) {
+            if (!dep.name || runtimeDeps[dep.name] === undefined) {
                 return false;
             }
 
@@ -348,9 +412,12 @@ export const resolveReleaseType = (
             return false;
         });
 
-        if (hasLocalDepInManifest && releaseStrategy !== "inherit") {
+        if (hasLocalDepInManifest) {
+            // For non-inherit strategies, use the strategy directly (or default to patch if mapping)
+            const strategyReleaseType = typeof releaseStrategy === "string" && releaseStrategy !== "inherit" ? releaseStrategy : "patch";
+
             // eslint-disable-next-line no-param-reassign
-            packageJson._nextType = releaseStrategy as ReleaseType;
+            packageJson._nextType = strategyReleaseType as ReleaseType;
 
             return packageJson._nextType;
         }
@@ -360,8 +427,15 @@ export const resolveReleaseType = (
         return undefined;
     }
 
+    // Apply release strategy mapping
+    const finalReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, dependentReleaseType as "patch" | "minor" | "major");
+
+    if (!finalReleaseType) {
+        return undefined;
+    }
+
     // eslint-disable-next-line no-param-reassign
-    packageJson._nextType = (releaseStrategy === "inherit" ? dependentReleaseType : releaseStrategy) as ReleaseType;
+    packageJson._nextType = finalReleaseType as ReleaseType;
 
     return packageJson._nextType;
 };

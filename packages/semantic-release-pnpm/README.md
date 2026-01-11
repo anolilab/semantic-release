@@ -60,12 +60,12 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
 
 ## Steps that are used
 
-| Step               | Description                                                                                                                      |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| Step               | Description                                                                                                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `verifyConditions` | Verify the presence of the `NPM_TOKEN` environment variable, or an `.npmrc` file, and verify the authentication method is valid. Results are cached per registry/auth combination to prevent throttling in monorepos. |
-| `prepare`          | Update the `package.json` version and [create](https://docs.npmjs.com/cli/pack) the npm package tarball.                         |
-| `addChannel`       | [Add a release to a dist-tag](https://docs.npmjs.com/cli/dist-tag).                                                              |
-| `publish`          | [Publish the npm package](https://docs.npmjs.com/cli/publish) to the registry.                                                   |
+| `prepare`          | Update the `package.json` version and [create](https://docs.npmjs.com/cli/pack) the npm package tarball.                                                                                                              |
+| `addChannel`       | [Add a release to a dist-tag](https://docs.npmjs.com/cli/dist-tag).                                                                                                                                                   |
+| `publish`          | [Publish the npm package](https://docs.npmjs.com/cli/publish) to the registry.                                                                                                                                        |
 
 ## Configuration
 

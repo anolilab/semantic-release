@@ -265,10 +265,8 @@ export const findPackagesUsingCatalog = (packages: Package[], catalogName: strin
 
     for (const pkg of packages) {
         const { manifest } = pkg;
-        const depScopes = [manifest.dependencies, manifest.devDependencies, manifest.peerDependencies, manifest.optionalDependencies].filter(Boolean) as Record<
-            string,
-            string
-        >[];
+        // Only check runtime dependencies (exclude devDependencies) for triggering version bumps
+        const depScopes = [manifest.dependencies, manifest.peerDependencies, manifest.optionalDependencies].filter(Boolean) as Record<string, string>[];
 
         for (const scope of depScopes) {
             for (const [depName, depVersion] of Object.entries(scope)) {

@@ -87,13 +87,13 @@ const isConnectionError = (error: any): boolean => {
     const isTimedOut = (error as { timedOut?: boolean })?.timedOut === true;
 
     return (
-        isTimedOut
-        || errorCode === "ECONNREFUSED"
-        || errorCode === "ETIMEDOUT"
-        || errorMessage.includes("ECONNREFUSED")
-        || errorMessage.includes("ETIMEDOUT")
-        || errorMessage.includes("getaddrinfo ENOTFOUND")
-        || errorMessage.includes("timed out")
+        isTimedOut ||
+        errorCode === "ECONNREFUSED" ||
+        errorCode === "ETIMEDOUT" ||
+        errorMessage.includes("ECONNREFUSED") ||
+        errorMessage.includes("ETIMEDOUT") ||
+        errorMessage.includes("getaddrinfo ENOTFOUND") ||
+        errorMessage.includes("timed out")
     );
 };
 
@@ -189,11 +189,11 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
  * @returns True if the message indicates an auth error.
  */
 const isAuthErrorMessage = (message: string): boolean =>
-    message.includes("requires you to be logged in")
-    || message.includes("authentication")
-    || message.includes("Unauthorized")
-    || message.includes("401")
-    || message.includes("403");
+    message.includes("requires you to be logged in") ||
+    message.includes("authentication") ||
+    message.includes("Unauthorized") ||
+    message.includes("401") ||
+    message.includes("403");
 
 /**
  * Handle errors from publish dry-run command.
