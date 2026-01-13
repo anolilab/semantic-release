@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-preset [13.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.0.0...@anolilab/semantic-release-preset@13.1.0) (2026-01-13)
+
+### Features
+
+* update README and types to clarify devDependencies handling and release strategies ([e598b08](https://github.com/anolilab/semantic-release/commit/e598b0865da5e2cd80893e240513cc4689956a1e))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.1.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 4.1.0
+
 ## @anolilab/semantic-release-preset [13.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@12.1.2...@anolilab/semantic-release-preset@13.0.0) (2026-01-08)
 
 ### Bug Fixes
