@@ -1,3 +1,19 @@
+## @anolilab/multi-semantic-release [4.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.0.0...@anolilab/multi-semantic-release@4.1.0) (2026-01-13)
+
+### Features
+
+* update README and types to clarify devDependencies handling and release strategies ([e598b08](https://github.com/anolilab/semantic-release/commit/e598b0865da5e2cd80893e240513cc4689956a1e))
+
+### Bug Fixes
+
+* **tests:** update assertions and comments to reflect changes in release behavior for devDependencies ([879968c](https://github.com/anolilab/semantic-release/commit/879968c1ca2a80214197e1ca51effb7ba4612cc1))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.1.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 4.1.0
+
 ## @anolilab/multi-semantic-release [4.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@3.2.2...@anolilab/multi-semantic-release@4.0.0) (2026-01-08)
 
 ### Bug Fixes
