@@ -44,7 +44,7 @@ catalogs:
     cosmiconfig: ^9.0.0
   lint:
     '@anolilab/commitlint-config': ^8.1.0
-    '@anolilab/eslint-config': ^16.4.4
+    '@anolilab/eslint-config': ^17.2.0
     '@anolilab/lint-staged-config': ^4.0.1
     '@anolilab/prettier-config': ^8.0.1
     '@anolilab/textlint-config': ^11.1.0
