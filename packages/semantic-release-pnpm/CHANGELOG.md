@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [4.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@4.0.0...@anolilab/semantic-release-pnpm@4.1.0) (2026-01-13)
+
+### Features
+
+* update README and types to clarify devDependencies handling and release strategies ([e598b08](https://github.com/anolilab/semantic-release/commit/e598b0865da5e2cd80893e240513cc4689956a1e))
+
+### Bug Fixes
+
+* add --no-git-checks option to pnpm publish command in authentication verification tests ([c21dd7a](https://github.com/anolilab/semantic-release/commit/c21dd7aa4b93524b4f9edae168146e2b3d3e5850))
+* add --no-git-checks to custom registry verification dry run ([#255](https://github.com/anolilab/semantic-release/issues/255)) ([ea25b84](https://github.com/anolilab/semantic-release/commit/ea25b84de9a756efdade1fa4d3204e92c01a632c))
+
 ## @anolilab/semantic-release-pnpm [4.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@3.2.2...@anolilab/semantic-release-pnpm@4.0.0) (2026-01-08)
 
 ### Bug Fixes
