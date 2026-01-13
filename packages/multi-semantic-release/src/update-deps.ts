@@ -148,7 +148,7 @@ const getDependentRelease = (
     const result = localDeps
         .filter((p: Package) => !ignore.includes(p))
         // eslint-disable-next-line unicorn/no-array-reduce, sonarjs/cognitive-complexity
-        .reduce((releaseType: string | undefined, p: Package) => {
+        .reduce((releaseType: string | undefined, p: Package): string | undefined => {
             // eslint-disable-next-line @typescript-eslint/no-use-before-define
             const nextType: string | undefined = resolveReleaseType(p, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
             let nextVersion: string | undefined;
@@ -162,6 +162,9 @@ const getDependentRelease = (
                 nextVersion = p._lastRelease?.version;
             }
 
+            let effectiveNextType = nextType;
+            let effectiveNextVersion = nextVersion;
+
             if (!nextType && p.localDeps && p.localDeps.length > 0) {
                 const nestedReleaseType = getDependentRelease(p, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
@@ -172,51 +175,86 @@ const getDependentRelease = (
                     if (nestedIndex > currentIndex) {
                         highestNestedReleaseType = nestedReleaseType;
                     }
+
+                    // Use nested release type as the effective next type if no direct nextType
+                    effectiveNextType = nestedReleaseType;
+
+                    // Calculate the next version based on the nested release type
+                    if (effectiveNextType && p._lastRelease?.version) {
+                        // Temporarily set _nextType to calculate the version
+                        const originalNextType = p._nextType;
+
+                        // eslint-disable-next-line no-param-reassign
+                        p._nextType = effectiveNextType as ReleaseType;
+                        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                        const calculatedVersion = p._preRelease ? getNextPreVersion(p) : getNextVersion(p);
+
+                        effectiveNextVersion = calculatedVersion || undefined;
+
+                        // Restore original _nextType
+                        // eslint-disable-next-line no-param-reassign
+                        p._nextType = originalNextType;
+                    }
                 }
             }
 
             // Update all dependencies (including devDependencies) but only check runtime deps for triggering releases
-            allScopes.forEach((scope) => bumpDependency(scope, p.name, nextVersion));
+            allScopes.forEach((scope) => bumpDependency(scope, p.name, effectiveNextVersion || nextVersion));
             const requireRelease: boolean
                 = releaseScopes.some((scope: Record<string, string>) => {
                     const currentVersion = scope[p.name];
+                    const versionToCheck = effectiveNextVersion || nextVersion;
 
-                    if (!nextVersion || !currentVersion) {
+                    if ((!effectiveNextVersion && !nextVersion) || !currentVersion || !versionToCheck) {
                         return false;
                     }
 
                     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-                    const resolvedVersion = resolveNextVersion(currentVersion, nextVersion, bumpStrategy, prefix);
+                    const resolvedVersion = resolveNextVersion(currentVersion, versionToCheck, bumpStrategy, prefix);
 
                     return currentVersion !== resolvedVersion;
                 }) || !lastVersion;
 
-            if (!requireRelease || !nextType) {
+            // If we have an effectiveNextType (either directly or from nested dependencies), we should trigger a release
+            // even if the dependency version itself didn't change
+            const shouldTriggerRelease = requireRelease || (effectiveNextType && effectiveNextType !== nextType);
+
+            if (!shouldTriggerRelease) {
+                return releaseType;
+            }
+
+            // Use effectiveNextType if available, otherwise fall back to nextType
+            const typeToUse = effectiveNextType || nextType;
+
+            if (!typeToUse) {
                 return releaseType;
             }
 
             // Apply release strategy mapping if configured
-            const mappedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, nextType as Omit<ReleaseStrategy, "inherit">);
+            const mappedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, typeToUse as Omit<ReleaseStrategy, "inherit">);
 
             if (!mappedReleaseType) {
                 return releaseType;
             }
 
             if (!releaseType) {
-                return mappedReleaseType;
+                return mappedReleaseType as string | undefined;
             }
 
             const mappedIndex = severityOrder.indexOf(mappedReleaseType as (typeof severityOrder)[number]);
             const releaseIndex = severityOrder.indexOf(releaseType as (typeof severityOrder)[number]);
 
-            return mappedIndex > releaseIndex ? mappedReleaseType : releaseType;
+            return (mappedIndex > releaseIndex ? mappedReleaseType : releaseType) as string | undefined;
         }, undefined);
 
     if (!result && highestNestedReleaseType) {
-        return highestNestedReleaseType;
+        // Apply release strategy mapping to nested release type
+        const mappedNestedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, highestNestedReleaseType as Omit<ReleaseStrategy, "inherit">);
+
+        return (mappedNestedReleaseType || highestNestedReleaseType) as string | undefined;
     }
 
-    return result;
+    return result as string | undefined;
 };
 
 /**
@@ -413,6 +451,18 @@ export const resolveReleaseType = (
         });
 
         if (hasLocalDepInManifest) {
+            // Check if we can get a release type from nested dependencies when using inherit strategy
+            if (typeof releaseStrategy === "string" && releaseStrategy === "inherit") {
+                const nestedReleaseType = getDependentRelease(packageJson, bumpStrategy, releaseStrategy, ignore, prefix);
+
+                if (nestedReleaseType) {
+                    // eslint-disable-next-line no-param-reassign
+                    packageJson._nextType = nestedReleaseType as ReleaseType;
+
+                    return packageJson._nextType;
+                }
+            }
+
             // For non-inherit strategies, use the strategy directly (or default to patch if mapping)
             const strategyReleaseType = typeof releaseStrategy === "string" && releaseStrategy !== "inherit" ? releaseStrategy : "patch";
 

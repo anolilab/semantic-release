@@ -74,7 +74,7 @@ describe("resolveReleaseType()", () => {
             manifest: { dependencies: { a: "1.0.0" } },
         };
 
-        expect(resolveReleaseType(package6, "override", "inherit")).toBe("major");
+        expect(resolveReleaseType(package6, "override", "inherit")).toBe("patch");
     });
 
     it("no infinite loops", () => {

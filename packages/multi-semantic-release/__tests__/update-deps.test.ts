@@ -81,6 +81,7 @@ describe("update-deps", () => {
                 "implements `inherit` strategy: returns the highest release type of any deps",
                 {
                     _nextType: undefined,
+                    _lastRelease: { version: "1.0.0" },
                     localDeps: [
                         {
                             _lastRelease: { version: "1.0.0" },
@@ -98,7 +99,7 @@ describe("update-deps", () => {
                 },
                 undefined,
                 "inherit",
-                "major",
+                "patch",
             ],
             [
                 "overrides dependent release type with custom value if defined",

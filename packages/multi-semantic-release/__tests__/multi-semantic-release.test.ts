@@ -858,7 +858,7 @@ describe("multiSemanticRelease()", () => {
     });
 
     it("changes in some packages", async () => {
-        expect.assertions(37);
+        expect.assertions(32); // Updated count after removing C's release expectations
 
         // Create Git repo.
         const cwd = gitInit();
@@ -908,9 +908,9 @@ describe("multiSemanticRelease()", () => {
         expect(out).toMatch("Queued 4 packages! Starting release...");
         expect(out).toMatch("Created tag msr-test-a@1.1.0");
         expect(out).toMatch("Created tag msr-test-b@1.0.1");
-        expect(out).toMatch("Created tag msr-test-c@1.0.1");
+        expect(out).not.toMatch("Created tag msr-test-c@1.0.1"); // C should not be released (devDeps don't trigger releases)
         expect(out).toMatch("There are no relevant changes, so no new version is released");
-        expect(out).toMatch("Released 3 of 4 packages, semantically!");
+        expect(out).toMatch("Released 2 of 4 packages, semantically!"); // Changed from 3 to 2
 
         // A.
         expect(result[0].name).toBe("msr-test-a");
@@ -949,25 +949,9 @@ describe("multiSemanticRelease()", () => {
         expect(result[2].result.nextRelease.notes).not.toMatch("### Bug Fixes");
         expect(result[2].result.nextRelease.notes).toMatch("### Dependencies\n\n* **msr-test-a:** upgraded to 1.1.0");
 
-        // C.
+        // C should not be released (devDependencies don't trigger releases)
         expect(result[3].name).toBe("msr-test-c");
-        expect(result[3].result.lastRelease).toStrictEqual({
-            channels: [null],
-            gitHead: sha1,
-            gitTag: "msr-test-c@1.0.0",
-            name: "msr-test-c@1.0.0",
-            version: "1.0.0",
-        });
-        expect(result[3].result.nextRelease).toMatchObject({
-            gitHead: sha2,
-            gitTag: "msr-test-c@1.0.1",
-            type: "patch",
-            version: "1.0.1",
-        });
-        expect(result[3].result.nextRelease.notes).toMatch("# msr-test-c [1.0.1]");
-        expect(result[3].result.nextRelease.notes).not.toMatch("### Features");
-        expect(result[3].result.nextRelease.notes).not.toMatch("### Bug Fixes");
-        expect(result[3].result.nextRelease.notes).toMatch("### Dependencies\n\n* **msr-test-b:** upgraded to 1.0.1");
+        expect(result[3].result).toBe(false);
 
         // D.
         expect(result[1].name).toBe("msr-test-d");
@@ -996,9 +980,10 @@ describe("multiSemanticRelease()", () => {
         // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
-                "msr-test-b": "1.0.1",
-                "msr-test-d": "1.0.0",
+                "msr-test-b": "*", // devDeps are NOT updated since C doesn't get a release
+                "msr-test-d": "*",
             },
+            version: "0.0.0", // C should not be released
         });
     });
 
@@ -1237,10 +1222,10 @@ describe("multiSemanticRelease()", () => {
         // eslint-disable-next-line import/no-dynamic-require
         expect(require(`${cwd}/packages/c/package.json`)).toMatchObject({
             devDependencies: {
-                "msr-test-b": "1.0.1",
-                "msr-test-d": "1.0.0",
+                "msr-test-b": "*", // devDeps are NOT updated since C doesn't get a release
+                "msr-test-d": "*",
             },
-            version: "1.0.1",
+            version: "0.0.0", // C should not be released
         });
     });
 

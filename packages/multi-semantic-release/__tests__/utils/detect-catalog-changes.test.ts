@@ -297,8 +297,8 @@ catalogs:
             expect(result[0].name).toBe("package-a");
         });
 
-        it("should find packages using catalog in devDependencies", () => {
-            expect.assertions(2);
+        it("should NOT find packages using catalog in devDependencies (devDeps don't trigger releases)", () => {
+            expect.assertions(1);
 
             const packages: Package[] = [
                 {
@@ -315,8 +315,7 @@ catalogs:
 
             const result = findPackagesUsingCatalog(packages, "dev");
 
-            expect(result).toHaveLength(1);
-            expect(result[0].name).toBe("package-a");
+            expect(result).toHaveLength(0);
         });
 
         it("should find packages using specific package in catalog", () => {
