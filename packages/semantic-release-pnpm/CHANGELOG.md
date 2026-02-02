@@ -1,3 +1,5 @@
+## @anolilab/semantic-release-pnpm [5.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@4.1.0...@anolilab/semantic-release-pnpm@5.0.0) (2026-02-02)
+
 ## @anolilab/semantic-release-pnpm [4.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@4.0.0...@anolilab/semantic-release-pnpm@4.1.0) (2026-01-13)
 
 ### Features
