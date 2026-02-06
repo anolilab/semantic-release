@@ -9,7 +9,7 @@ catalogs:
   build:
     esbuild: 0.27.2
   cli:
-    '@anolilab/semantic-release-clean-package-json': 5.1.0
+    '@anolilab/semantic-release-clean-package-json': 5.2.0
     '@anolilab/semantic-release-pnpm': 4.1.0
     '@sebbo2002/semantic-release-jsr': 3.1.1
     '@semantic-release/changelog': ^6.0.3
@@ -36,7 +36,7 @@ catalogs:
     left-pad: ^1.3.0
     p-retry: 7.1.1
     stream-buffers: ^3.0.3
-    tempy: 3.1.2
+    tempy: 3.2.0
     type-fest: 5.4.3
     typedoc: 0.28.16
     typedoc-plugin-rename-defaults: 0.7.3
