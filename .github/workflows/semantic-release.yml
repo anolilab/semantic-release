@@ -28,12 +28,12 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@5ef0c079ce82195b2a36a210272d6b661572d83e" # v2.14.2
               with:
                   egress-policy: "audit"
 
             - name: "Wait for tests to succeed"
-              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
+              uses: "lewagon/wait-on-check-action@74049309dfeff245fe8009a0137eacf28136cb3c" # v1.5.0
               timeout-minutes: 20
               with:
                   ref: "${{ github.event.pull_request.head.sha || github.sha }}"
@@ -44,7 +44,7 @@ jobs:
                   ignore-checks: "lock-closed / lock-closed, Socket Security: Pull Request Alerts, Dependabot"
 
             - name: "Git checkout"
-              uses: "actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3" # v6.0.0
+              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
               with:
                   fetch-depth: 0
                   token: "${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}"
