@@ -10,7 +10,7 @@ catalogs:
     esbuild: 0.27.2
   cli:
     '@anolilab/semantic-release-clean-package-json': 5.1.0
-    '@anolilab/semantic-release-pnpm': 4.1.0
+    '@anolilab/semantic-release-pnpm': 5.0.0
     '@sebbo2002/semantic-release-jsr': 3.1.1
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
