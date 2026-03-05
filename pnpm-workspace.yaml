@@ -7,7 +7,7 @@ packages:
 
 catalogs:
   build:
-    esbuild: 0.27.2
+    esbuild: 0.27.3
   cli:
     '@anolilab/semantic-release-clean-package-json': 5.1.0
     '@anolilab/semantic-release-pnpm': 4.1.0
@@ -26,7 +26,7 @@ catalogs:
     taze: ^19.9.2
   dev:
     '@arethetypeswrong/cli': ^0.18.2
-    '@ckeditor/typedoc-plugins': 54.3.2
+    '@ckeditor/typedoc-plugins': 54.3.4
     '@visulima/packem': 2.0.0-alpha.49
     conventional-changelog-conventionalcommits: 9.1.0
     dockerode: 4.0.9
@@ -41,13 +41,13 @@ catalogs:
     typedoc: 0.28.16
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
-    cosmiconfig: ^9.0.0
+    cosmiconfig: ^9.0.1
   lint:
     '@anolilab/commitlint-config': 9.0.0
     '@anolilab/eslint-config': 21.0.0
     '@anolilab/lint-staged-config': 5.1.0
-    '@anolilab/prettier-config': 9.1.0
-    '@anolilab/textlint-config': 12.1.0
+    '@anolilab/prettier-config': 9.1.1
+    '@anolilab/textlint-config': 12.1.2
     '@commitlint/cli': 20.4.0
     '@commitlint/config-conventional': 20.4.0
     '@secretlint/secretlint-rule-preset-recommend': 11.3.1
@@ -56,7 +56,7 @@ catalogs:
     husky: ^9.1.7
     lint-staged: ^16.2.7
     prettier: 3.8.1
-    publint: 0.3.17
+    publint: 0.3.18
     secretlint: 11.3.1
     textlint: 15.5.1
   markdown:
@@ -70,9 +70,9 @@ catalogs:
     '@visulima/path': ^2.0.5
     cross-env: ^10.1.0
     execa: ^9.6.1
-    pkg-pr-new: ^0.0.62
+    pkg-pr-new: ^0.0.65
     resolve-from: ^5.0.0
-    rimraf: ^6.1.2
+    rimraf: ^6.1.3
   peer:
     left-pad: ^1.3.0
   prod:
@@ -121,7 +121,7 @@ catalogs:
     '@types/yargs': 17.0.35
   utils:
     lodash-es: 4.17.23
-    semver: ^7.7.3
+    semver: ^7.7.4
     ts-deepmerge: ^7.0.3
 
 dedupeInjectedDeps: true
