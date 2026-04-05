@@ -37,7 +37,7 @@ catalogs:
     p-retry: 7.1.1
     stream-buffers: ^3.0.3
     tempy: 3.1.2
-    type-fest: 5.4.3
+    type-fest: 5.4.4
     typedoc: 0.28.16
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
@@ -107,13 +107,13 @@ catalogs:
   tsc:
     typescript: ^5.9.3
   types:
-    '@types/debug': 4.1.12
+    '@types/debug': 4.1.13
     '@types/dockerode': 4.0.1
     '@types/env-ci': 3.1.4
     '@types/git-log-parser': 1.2.3
     '@types/ini': ^4.1.1
     '@types/lodash-es': 4.17.12
-    '@types/node': 24.10.9
+    '@types/node': 24.10.15
     '@types/semantic-release__error': 3.0.3
     '@types/semver': 7.7.1
     '@types/signale': 1.4.7
