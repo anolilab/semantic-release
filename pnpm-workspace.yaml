@@ -58,7 +58,7 @@ catalogs:
     prettier: 3.8.1
     publint: 0.3.17
     secretlint: 11.3.1
-    textlint: 15.5.1
+    textlint: 15.5.2
   markdown:
     typedoc-plugin-markdown: 4.9.0
   monorepo:
