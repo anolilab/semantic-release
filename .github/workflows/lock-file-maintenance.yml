@@ -20,4 +20,3 @@ jobs:
             run-audit-fix: true
         secrets:
             github-token: "${{ secrets.LOCK_MAINTENANCE_GITHUB_TOKEN }}"
-
