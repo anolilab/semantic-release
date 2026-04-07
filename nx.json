@@ -77,5 +77,6 @@
         "defaultBase": "main"
     },
     "defaultBase": "main",
-    "$schema": "./node_modules/nx/schemas/nx-schema.json"
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "analytics": false
 }
