@@ -2,7 +2,6 @@ import { rm } from "node:fs/promises";
 
 import { isAccessible, readJson, writeJson } from "@visulima/fs";
 import { join, resolve } from "@visulima/path";
-import type { PackageJson } from "type-fest";
 
 import defaultKeepProperties from "./default-keep-properties";
 import type { CommonContext, PublishContext } from "./definitions/context";
@@ -85,7 +84,7 @@ export const success = async (pluginConfig: PluginConfig, context: CommonContext
     if (await isAccessible(backupPackageJson)) {
         const packageJson = await getPackage(pluginConfig, context);
 
-        const backupPackageJsonContent = (await readJson(backupPackageJson)) as PackageJson;
+        const backupPackageJsonContent = await readJson(backupPackageJson) as Record<string, unknown>;
 
         // Overwrite the version from the backup package.json
         backupPackageJsonContent.version = packageJson.version;

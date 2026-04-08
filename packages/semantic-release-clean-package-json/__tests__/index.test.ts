@@ -1,7 +1,9 @@
+import { mkdtempSync } from "node:fs";
 import { rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 import { readJson, writeJson } from "@visulima/fs";
-import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { publish, success } from "../src";
@@ -54,8 +56,8 @@ const context: Partial<PublishContext> = {
 describe("semantic-release-clean-package-json", () => {
     let temporaryDirectoryPath: string;
 
-    beforeEach(async () => {
-        temporaryDirectoryPath = temporaryDirectory();
+    beforeEach(() => {
+        temporaryDirectoryPath = mkdtempSync(join(tmpdir(), "clean-pkg-json-"));
     });
 
     afterEach(async () => {
@@ -84,8 +86,8 @@ describe("semantic-release-clean-package-json", () => {
             version: "1.0.0",
         });
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "devDependencies"');
-        expect((context as PublishContext).logger.log).toHaveBeenCalledWith('Removing property "eslintConfig"');
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"devDependencies\"");
+        expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Removing property \"eslintConfig\"");
     });
 
     it("should keep flag from given config", async () => {

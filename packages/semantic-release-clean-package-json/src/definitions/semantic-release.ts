@@ -29,7 +29,7 @@ export interface BranchObject {
      * For example `{name: 'next', channel: 'channel-${name}'}` will be
      * expanded to `{name: 'next', channel: 'channel-next'}`.
      */
-    channel?: string | false | undefined;
+    channel?: string | false;
 
     /**
      * The name of git branch.
@@ -67,7 +67,7 @@ export interface BranchObject {
      *
      * Required for pre-release branches.
      */
-    prerelease?: boolean | string | undefined;
+    prerelease?: boolean | string;
 
     /**
      * The range of [semantic versions](https://semver.org/) to support on
@@ -82,7 +82,7 @@ export interface BranchObject {
      * Required for maintenance branches, unless `name` is formatted like
      * `N.N.x` or `N.x` (`N` is a number).
      */
-    range?: string | undefined;
+    range?: string;
 }
 
 /**
@@ -151,18 +151,18 @@ export interface Options {
      * See [Workflow configuration](https://semantic-release.gitbook.io/semantic-release/usage/workflow-configuration#workflow-configuration)
      * for more details.
      */
-    branches?: BranchSpec | ReadonlyArray<BranchSpec> | undefined;
+    branches?: BranchSpec | ReadonlyArray<BranchSpec>;
 
     /**
      * Set to false to skip Continuous Integration environment verifications.
      * This allows for making releases from a local machine.
      */
-    ci?: boolean | undefined;
+    ci?: boolean;
 
     /**
      * Dry-run mode, skip publishing, print next version and release notes.
      */
-    dryRun?: boolean | undefined;
+    dryRun?: boolean;
 
     /**
      * List of modules or file paths containing a
@@ -176,7 +176,7 @@ export interface Options {
      * file will take precedence over the ones defined in any shareable
      * configuration.
      */
-    extends?: ReadonlyArray<string> | string | undefined;
+    extends?: ReadonlyArray<string> | string;
 
     /**
      * Define the list of plugins to use. Plugins will run in series, in
@@ -196,7 +196,7 @@ export interface Options {
      *     "@semantic-release/github"
      * ]`
      */
-    plugins?: ReadonlyArray<PluginSpec> | undefined;
+    plugins?: ReadonlyArray<PluginSpec>;
 
     /**
      * The git repository URL.
@@ -206,7 +206,7 @@ export interface Options {
      *
      * Default: `repository` property in `package.json`, or git origin url.
      */
-    repositoryUrl?: string | undefined;
+    repositoryUrl?: string;
 
     /**
      * The git tag format used by **semantic-release** to identify
@@ -217,7 +217,7 @@ export interface Options {
      * exactly once and compile to a
      * [valid git reference](https://git-scm.com/docs/git-check-ref-format#_description).
      */
-    tagFormat?: string | undefined;
+    tagFormat?: string;
 }
 
 export interface Commit {
