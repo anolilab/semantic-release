@@ -194,8 +194,8 @@ const isAuthErrorMessage = (message: string): boolean =>
     message.includes("requires you to be logged in")
     || message.includes("authentication")
     || message.includes("Unauthorized")
-    || message.includes("401")
-    || message.includes("403");
+    || /\b401\b/.test(message)
+    || /\b403\b/.test(message);
 
 /**
  * Handle errors from publish dry-run command.
@@ -269,13 +269,6 @@ const verifyAuthContextAgainstCustomRegistry = async (npmrc: string, registry: s
 
         if (stderrString) {
             stderr.write(stderrString);
-
-            // Check for authentication errors in stderr
-            if (isAuthErrorMessage(stderrString)) {
-                const semanticError = getError("EINVALIDNPMAUTH", { registry });
-
-                throw new AggregateError([semanticError], semanticError.message);
-            }
         }
     } catch (error) {
         handlePublishError(error, registry);
