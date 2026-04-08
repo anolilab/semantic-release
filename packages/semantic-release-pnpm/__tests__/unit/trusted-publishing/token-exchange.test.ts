@@ -100,15 +100,13 @@ describe(exchangeToken, () => {
         });
     });
 
-    describe("gitLab Pipelines", () => {
-        const gitlabProviderName = "GitLab CI/CD";
-
-        it("should return an access token when token exchange succeeds on GitLab Pipelines", async () => {
+    describe("nPM_ID_TOKEN (generic trusted publishing)", () => {
+        it("should return an access token when token exchange succeeds via NPM_ID_TOKEN", async () => {
             expect.assertions(2);
 
-            process.env.NPM_ID_TOKEN = "gitlab-id-token-value";
+            process.env.NPM_ID_TOKEN = "generic-id-token-value";
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-            vi.mocked(envCi).mockReturnValue({ name: gitlabProviderName } as any);
+            vi.mocked(envCi).mockReturnValue({ name: "CircleCI" } as any);
 
             const mockResponse = {
                 json: () => Promise.resolve({ token: "access-token-value" }),
@@ -122,29 +120,17 @@ describe(exchangeToken, () => {
 
             expect(result).toBe("access-token-value");
             expect(mockFetch).toHaveBeenCalledWith("https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/%40scope%2Fsome-package", {
-                headers: { Authorization: "Bearer gitlab-id-token-value" },
+                headers: { Authorization: "Bearer generic-id-token-value" },
                 method: "POST",
             });
         });
 
-        it("should return undefined when ID token is not available on GitLab Pipelines", async () => {
+        it("should return undefined when token exchange fails via NPM_ID_TOKEN", async () => {
             expect.assertions(1);
 
+            process.env.NPM_ID_TOKEN = "generic-id-token-value";
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-            vi.mocked(envCi).mockReturnValue({ name: gitlabProviderName } as any);
-
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-            const result = await exchangeToken(pkg, { logger } as any);
-
-            expect(result).toBeUndefined();
-        });
-
-        it("should return undefined when token exchange fails on GitLab Pipelines", async () => {
-            expect.assertions(1);
-
-            process.env.NPM_ID_TOKEN = "gitlab-id-token-value";
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-            vi.mocked(envCi).mockReturnValue({ name: gitlabProviderName } as any);
+            vi.mocked(envCi).mockReturnValue({ name: "GitLab CI/CD" } as any);
 
             const mockResponse = {
                 json: () => Promise.resolve({ message: "Unauthorized" }),
@@ -158,6 +144,51 @@ describe(exchangeToken, () => {
             const result = await exchangeToken(pkg, { logger } as any);
 
             expect(result).toBeUndefined();
+        });
+
+        it("should take priority over GitHub Actions OIDC when NPM_ID_TOKEN is set", async () => {
+            expect.assertions(3);
+
+            process.env.NPM_ID_TOKEN = "explicit-id-token-value";
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+            vi.mocked(envCi).mockReturnValue({ name: "GitHub Actions" } as any);
+
+            const mockResponse = {
+                json: () => Promise.resolve({ token: "access-token-value" }),
+                ok: true,
+            };
+
+            mockFetch.mockResolvedValue(mockResponse);
+
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+            const result = await exchangeToken(pkg, { logger } as any);
+
+            expect(result).toBe("access-token-value");
+            expect(getIDToken).not.toHaveBeenCalled();
+            expect(mockFetch).toHaveBeenCalledWith("https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/%40scope%2Fsome-package", {
+                headers: { Authorization: "Bearer explicit-id-token-value" },
+                method: "POST",
+            });
+        });
+
+        it("should work on unknown CI providers when NPM_ID_TOKEN is set", async () => {
+            expect.assertions(1);
+
+            process.env.NPM_ID_TOKEN = "generic-id-token-value";
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+            vi.mocked(envCi).mockReturnValue({ name: "Other Service" } as any);
+
+            const mockResponse = {
+                json: () => Promise.resolve({ token: "access-token-value" }),
+                ok: true,
+            };
+
+            mockFetch.mockResolvedValue(mockResponse);
+
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+            const result = await exchangeToken(pkg, { logger } as any);
+
+            expect(result).toBe("access-token-value");
         });
     });
 

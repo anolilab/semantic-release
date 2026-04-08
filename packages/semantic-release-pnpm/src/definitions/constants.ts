@@ -16,7 +16,3 @@ export const OFFICIAL_REGISTRY = "https://registry.npmjs.org/";
  */
 export const GITHUB_ACTIONS_PROVIDER_NAME = "GitHub Actions";
 
-/**
- * GitLab Pipelines provider name used for OIDC detection.
- */
-export const GITLAB_PIPELINES_PROVIDER_NAME = "GitLab CI/CD";

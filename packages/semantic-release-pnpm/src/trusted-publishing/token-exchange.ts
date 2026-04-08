@@ -3,7 +3,7 @@ import dbg from "debug";
 import type { KnownCiEnv } from "env-ci";
 import envCi from "env-ci";
 
-import { GITHUB_ACTIONS_PROVIDER_NAME, GITLAB_PIPELINES_PROVIDER_NAME, OFFICIAL_REGISTRY } from "../definitions/constants";
+import { GITHUB_ACTIONS_PROVIDER_NAME, OFFICIAL_REGISTRY } from "../definitions/constants";
 import type { CommonContext } from "../definitions/context";
 
 const debug = dbg("semantic-release-pnpm:token-exchange");
@@ -76,29 +76,14 @@ const exchangeGithubActionsToken = async (packageName: string, context?: CommonC
 };
 
 /**
- * Exchanges a GitLab Pipelines OIDC token for an npm registry token.
- * @param packageName The name of the package to publish.
- * @param context Optional semantic-release context for logging warnings.
- * @returns A promise that resolves to the npm token or undefined if exchange fails.
- */
-const exchangeGitlabPipelinesToken = async (packageName: string, context?: CommonContext): Promise<string | undefined> => {
-    // NPM_ID_TOKEN should be set in GitLab CI/CD variables with the OIDC token
-    const idToken = process.env.NPM_ID_TOKEN;
-
-    debug("Verifying OIDC context for publishing from GitLab Pipelines");
-
-    if (!idToken) {
-        debug("NPM_ID_TOKEN environment variable is not set");
-        debug("Configure trusted publishing in your GitLab project settings and set the NPM_ID_TOKEN variable");
-
-        return undefined;
-    }
-
-    return exchangeIdToken(idToken, packageName, context);
-};
-
-/**
  * Exchanges OIDC tokens for supported CI providers.
+ *
+ * When the `NPM_ID_TOKEN` environment variable is set, it is used directly for token exchange
+ * regardless of the CI provider. This enables generic trusted publishing support for any CI
+ * provider (e.g. CircleCI, GitLab, etc.) that can provide an OIDC identity token.
+ *
+ * When `NPM_ID_TOKEN` is not set, falls back to CI-specific token retrieval (GitHub Actions).
+ *
  * @param pkg The package information.
  * @param pkg.name The name of the package to publish.
  * @param context The semantic-release context
@@ -111,12 +96,19 @@ const tokenExchange = (pkg: { name: string }, context: CommonContext): Promise<s
         return Promise.resolve(undefined);
     }
 
+    const idToken = process.env.NPM_ID_TOKEN;
+
+    if (idToken) {
+        debug("NPM_ID_TOKEN environment variable detected, using it for OIDC token exchange");
+
+        return exchangeIdToken(idToken, pkg.name, context);
+    }
+
     const ciEnv = envCi();
     const ciProviderName: string | undefined = typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
 
     if (!ciProviderName) {
         debug("Unable to detect CI provider for OIDC token exchange");
-        debug("Supported CI providers for OIDC trusted publishing: GitHub Actions, GitLab CI/CD");
 
         return Promise.resolve(undefined);
     }
@@ -127,12 +119,7 @@ const tokenExchange = (pkg: { name: string }, context: CommonContext): Promise<s
         return exchangeGithubActionsToken(pkg.name, context);
     }
 
-    if (GITLAB_PIPELINES_PROVIDER_NAME === ciProviderName) {
-        return exchangeGitlabPipelinesToken(pkg.name, context);
-    }
-
-    debug(`CI provider "${ciProviderName}" is not supported for OIDC trusted publishing`);
-    debug("Supported CI providers: GitHub Actions, GitLab CI/CD");
+    debug(`CI provider "${ciProviderName}" does not have built-in OIDC support; set NPM_ID_TOKEN to use trusted publishing`);
 
     return Promise.resolve(undefined);
 };

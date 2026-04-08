@@ -128,6 +128,28 @@ id_tokens:
 
 See the [npm documentation for more details about configuring pipeline details](https://docs.npmjs.com/trusted-publishers#gitlab-cicd-configuration)
 
+##### Trusted publishing for CircleCI
+
+To use trusted publishing in [CircleCI](https://docs.npmjs.com/trusted-publishers#circleci-configuration) you need to set the environment variable `NPM_ID_TOKEN` to an NPM Identity Token:
+
+```yaml
+jobs:
+    semantic-release:
+        steps:
+            # ...
+            - run:
+                  name: Semantic Release with Trusted Publishing via OIDC
+                  command: |
+                      # Fetch the OIDC token with the correct audience for npm
+                      export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+                      # Run semantic release
+                      npx semantic-release
+```
+
+##### Generic Trusted Publishing
+
+The generic mechanism for trusted publishing is to set the `NPM_ID_TOKEN` environment variable to an OIDC identity token. This approach works with any CI platform that has implemented trusted publishing support with npm but does not have specific built-in support in this plugin. If token exchange fails, it will fall back to using token authentication.
+
 ##### Unsupported CI providers
 
 Token authentication is **required** and can be set via [environment variables](#environment-variables).
@@ -158,9 +180,10 @@ Provenance applies specifically to publishing, so configure it under `publishCon
 
 ### Environment variables
 
-| Variable    | Description                                                                                                                   |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `NPM_TOKEN` | Npm token created via [npm token create](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) |
+| Variable       | Description                                                                                                                                                                                                                        |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NPM_TOKEN`    | Npm token created via [npm token create](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens)                                                                                                      |
+| `NPM_ID_TOKEN` | OIDC identity token for [trusted publishing](https://docs.npmjs.com/trusted-publishers). Must be configured in your CI job (see [GitLab](#trusted-publishing-for-gitlab-pipelines), [CircleCI](#trusted-publishing-for-circleci)). Takes priority over CI-specific token retrieval when set. |
 
 ### Options
 
