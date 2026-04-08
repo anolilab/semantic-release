@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-clean-package-json [5.5.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.4.0...@anolilab/semantic-release-clean-package-json@5.5.0) (2026-04-08)
+
+### Bug Fixes
+
+* **semantic-release-clean-package-json:** fix type errors and resolve all ESLint violations ([e5c27b0](https://github.com/anolilab/semantic-release/commit/e5c27b08e11e49343aba0489a3a1b7ec490ff441))
+* **semantic-release-clean-package-json:** fix type errors and resolve all ESLint violations ([eb420d7](https://github.com/anolilab/semantic-release/commit/eb420d7402a7b2608d2746ca95df544136912a06))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.0.0
+
 ## @anolilab/semantic-release-clean-package-json [5.4.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.3.0...@anolilab/semantic-release-clean-package-json@5.4.0) (2026-04-07)
 
 
