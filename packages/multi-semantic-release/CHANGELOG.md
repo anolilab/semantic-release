@@ -1,3 +1,16 @@
+## @anolilab/multi-semantic-release [4.4.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.3.0...@anolilab/multi-semantic-release@4.4.0) (2026-04-08)
+
+### Bug Fixes
+
+* **multi-semantic-release:** fix type errors and resolve all ESLint violations ([de5c27a](https://github.com/anolilab/semantic-release/commit/de5c27ada34691ba2b171aca89ed9f0f54cec348))
+* **multi-semantic-release:** fix type errors and resolve all ESLint violations ([ff6e250](https://github.com/anolilab/semantic-release/commit/ff6e250270b43eb2f83c9426e7d4e0c9944b67dd))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.0
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.0.0
+
 ## @anolilab/multi-semantic-release [4.3.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.2.0...@anolilab/multi-semantic-release@4.3.0) (2026-04-07)
 
 
