@@ -1,7 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "extends": "./tsconfig.base.json",
-    "compilerOptions": {
-        "moduleResolution": "Node",
-    },
+    "include": ["packages/*/src/**/*", "packages/*/*.d.ts"],
+    "exclude": ["dist/**/*", "node_modules/**/*", "build/**/*", "**/coverage/**"]
 }

@@ -1,15 +1,15 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
-        "baseUrl": "./",
-        "downlevelIteration": true,
         "isolatedModules": true,
         "lib": ["ES2023"],
         "module": "ESNext",
+        "moduleResolution": "Bundler",
         "target": "ESNext",
         "tsBuildInfoFile": ".tsbuildinfo",
         "moduleDetection": "force",
         "verbatimModuleSyntax": true,
+        "resolveJsonModule": true,
 
         "strict": true,
         "alwaysStrict": true,
