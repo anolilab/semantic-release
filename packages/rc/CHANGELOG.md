@@ -1,3 +1,9 @@
+## @anolilab/rc [4.0.1](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.0...@anolilab/rc@4.0.1) (2026-04-08)
+
+### Bug Fixes
+
+* **rc:** fix type errors and resolve all ESLint violations ([c04e626](https://github.com/anolilab/semantic-release/commit/c04e6263db20e41886580963c0df8a86d09cc86c))
+
 ## @anolilab/rc [4.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@3.2.0...@anolilab/rc@4.0.0) (2026-01-08)
 
 ### Bug Fixes
