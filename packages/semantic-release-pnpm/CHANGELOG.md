@@ -1,3 +1,16 @@
+## @anolilab/semantic-release-pnpm [8.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@7.0.0...@anolilab/semantic-release-pnpm@8.0.0) (2026-04-08)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** false EINVALIDNPMAUTH on successful dry-run publish ([ccb0475](https://github.com/anolilab/semantic-release/commit/ccb04758a6b3cf7176f5ea6a5081a0ec239c3e0e)), closes [anolilab/semantic-release#278](https://github.com/anolilab/semantic-release/issues/278)
+* **semantic-release-pnpm:** fix type errors and resolve all ESLint violations ([943e416](https://github.com/anolilab/semantic-release/commit/943e41694917a5a94c3d7f629acd198d7e37b592))
+* **semantic-release-pnpm:** fix verify-auth test and resolve ESLint violations ([9f38380](https://github.com/anolilab/semantic-release/commit/9f383802f58df3ceb13c46b570853c309ee95357))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.1
+
 ## @anolilab/semantic-release-pnpm [7.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@6.0.0...@anolilab/semantic-release-pnpm@7.0.0) (2026-04-07)
 
 ## @anolilab/semantic-release-pnpm [6.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@5.0.0...@anolilab/semantic-release-pnpm@6.0.0) (2026-04-07)
