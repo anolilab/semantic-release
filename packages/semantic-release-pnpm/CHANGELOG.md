@@ -1,3 +1,13 @@
+## @anolilab/semantic-release-pnpm [8.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.0.0...@anolilab/semantic-release-pnpm@8.1.0) (2026-04-08)
+
+### Features
+
+* **semantic-release-pnpm:** add generic and CircleCI trusted publishing via NPM_ID_TOKEN ([c2aafd3](https://github.com/anolilab/semantic-release/commit/c2aafd301b45cdf5f92eef78ff0d461f7e0df0fb))
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** allow tarballDir option to be set to false ([a31e1d6](https://github.com/anolilab/semantic-release/commit/a31e1d64b2e8481a73700a3dff64233e14aab91d)), closes [#302](https://github.com/anolilab/semantic-release/issues/302)
+
 ## @anolilab/semantic-release-pnpm [8.0.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@7.0.0...@anolilab/semantic-release-pnpm@8.0.0) (2026-04-08)
 
 ### Bug Fixes
