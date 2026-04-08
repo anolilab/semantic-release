@@ -13,7 +13,7 @@ import { errors } from "../definitions/errors";
  * @param [context] – Optional values injected into the error message template.
  * @returns Fully initialised semantic-release error instance.
  */
-const getError = <T extends keyof typeof errors>(code: T, context: ErrorContext = {}): SemanticReleaseError => {
+const getError = (code: keyof typeof errors, context: ErrorContext = {}): SemanticReleaseError => {
     const { details, message }: { details?: string; message: string } = (errors[code] as ErrorDefinition)(context);
 
     return new SemanticReleaseError(message, code, details);

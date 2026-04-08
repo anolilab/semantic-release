@@ -2,6 +2,7 @@ import { rm } from "node:fs/promises";
 
 import { writeFile, writeJson } from "@visulima/fs";
 import { resolve } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
@@ -10,7 +11,7 @@ import getPackage from "../../../src/utils/get-package";
 describe("get-pkg", () => {
     let cwd: string;
 
-    beforeEach(async () => {
+    beforeEach(() => {
         cwd = temporaryDirectory();
     });
 
@@ -58,7 +59,7 @@ describe("get-pkg", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain("Missing `package.json` file.");
-            // eslint-disable-next-line vitest/no-conditional-expect
+            // eslint-disable-next-line vitest/no-conditional-expect, @typescript-eslint/no-unsafe-member-access
             expect(typeError.errors[0].code).toBe("ENOPKG");
         }
     });
@@ -78,7 +79,7 @@ describe("get-pkg", () => {
             expect(typeError.name).toBe("AggregateError");
             // eslint-disable-next-line vitest/no-conditional-expect
             expect(typeError.message).toContain("Missing `name` property in `package.json`");
-            // eslint-disable-next-line vitest/no-conditional-expect
+            // eslint-disable-next-line vitest/no-conditional-expect, @typescript-eslint/no-unsafe-member-access
             expect(typeError.errors[0].code).toBe("ENOPKGNAME");
         }
     });

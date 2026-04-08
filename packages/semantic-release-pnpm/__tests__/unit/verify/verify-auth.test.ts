@@ -5,6 +5,7 @@ import type { CommonContext } from "../../../src/definitions/context";
 import verifyAuth from "../../../src/verify/verify-auth";
 
 // Mock dependencies
+// eslint-disable-next-line e18e/ban-dependencies
 vi.mock(import("execa"));
 vi.mock(import("../../../src/utils/get-registry"));
 vi.mock(import("../../../src/utils/set-npmrc-auth"));
@@ -13,6 +14,7 @@ vi.mock(import("../../../src/trusted-publishing/token-exchange"));
 vi.mock(import("@visulima/fs"));
 vi.mock(import("@anolilab/rc"));
 
+// eslint-disable-next-line e18e/ban-dependencies
 const { execa } = await import("execa");
 const { default: getRegistry } = await import("../../../src/utils/get-registry");
 const { default: setNpmrcAuth } = await import("../../../src/utils/set-npmrc-auth");
@@ -27,13 +29,13 @@ describe(verifyAuth, () => {
     const context: CommonContext = {
         cwd: "/test/directory",
         env: { DEFAULT_NPM_REGISTRY: OFFICIAL_REGISTRY, NPM_TOKEN: "test_token_1234567890" },
-        logger: { log: vi.fn() },
+        logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
         options: {},
-        // eslint-disable-next-line n/no-unsupported-features/node-builtins
-        stderr: { pipe: vi.fn(), write: vi.fn() } as unknown as WritableStream,
-        // eslint-disable-next-line n/no-unsupported-features/node-builtins
-        stdout: { pipe: vi.fn(), write: vi.fn() } as unknown as WritableStream,
-    };
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        stderr: { pipe: vi.fn(), write: vi.fn() } as any,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        stdout: { pipe: vi.fn(), write: vi.fn() } as any,
+    } as unknown as CommonContext;
 
     beforeEach(() => {
         vi.clearAllMocks();
@@ -66,7 +68,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
@@ -80,11 +82,12 @@ describe(verifyAuth, () => {
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
 
-        vi.mocked(execa).mockResolvedValue({ stderr: "some output", stdout: "" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        vi.mocked(execa).mockResolvedValue({ stderr: "some output", stdout: "" } as any);
 
         await verifyAuth(npmrc, pkg, context, "/dist");
 
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm publish --dry-run" to verify authentication'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm publish --dry-run\" to verify authentication"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
         expect(execa).toHaveBeenCalledWith(
@@ -112,7 +115,8 @@ describe(verifyAuth, () => {
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
 
-        vi.mocked(execa).mockResolvedValue({ stderr: "some output", stdout: "" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        vi.mocked(execa).mockResolvedValue({ stderr: "some output", stdout: "" } as any);
 
         await verifyAuth(npmrc, pkg, context, pkgRoot);
 
@@ -142,7 +146,8 @@ describe(verifyAuth, () => {
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
 
-        vi.mocked(execa).mockResolvedValue({ stderr: "This command requires you to be logged in to https://custom.registry.org/", stdout: "" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        vi.mocked(execa).mockResolvedValue({ stderr: "This command requires you to be logged in to https://custom.registry.org/", stdout: "" } as any);
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm authentication");
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
@@ -159,7 +164,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkgWithoutName, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
     });
 
     it("should bubble through errors from setting up auth", async () => {
@@ -183,20 +188,22 @@ describe(verifyAuth, () => {
         vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
-        vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" } as any);
 
         // First call - should execute whoami
         await verifyAuth(npmrc, pkg, context);
 
         expect(execa).toHaveBeenCalledTimes(1);
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami"'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\""));
 
         // Second call with same registry/token - should use cache
         vi.clearAllMocks();
         vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
-        vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" });
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+        vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" } as any);
 
         await verifyAuth(npmrc, pkg, context);
 

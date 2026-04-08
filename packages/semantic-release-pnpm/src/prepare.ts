@@ -2,6 +2,7 @@
 import { move } from "@visulima/fs";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 
 import type { PrepareContext } from "./definitions/context";

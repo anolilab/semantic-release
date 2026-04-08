@@ -2,6 +2,7 @@
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 
 import type { PublishContext } from "./definitions/context";
@@ -85,19 +86,20 @@ const publish = async (pluginConfig: PluginConfig, packageJson: PackageJson, con
 
         try {
             await result;
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
-            logger.log(`Failed to publish ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}: ${error.message ?? error}`);
+        } catch (error) {
+            const errorMessage = error instanceof Error ? error.message : String(error);
 
-            throw new AggregateError([error], error.message);
+            logger.log(`Failed to publish ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}: ${errorMessage}`);
+
+            throw new AggregateError([error], errorMessage, { cause: error });
         }
 
-        logger.log(`Published ${packageJson.name}@${version} to dist-tag @${distributionTag} on ${registry}`);
+        logger.log(`Published ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}`);
 
         return getReleaseInfo(packageJson, context, distributionTag, registry);
     }
 
-    logger.log(`Skip publishing to npm registry as ${reasonToNotPublish(pluginConfig, packageJson)}`);
+    logger.log(`Skip publishing to npm registry as ${reasonToNotPublish(pluginConfig, packageJson) ?? ""}`);
 
     return false;
 };

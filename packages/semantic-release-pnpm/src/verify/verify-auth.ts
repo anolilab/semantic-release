@@ -3,6 +3,7 @@ import { writeFile } from "@visulima/fs";
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 import { stringify } from "ini";
 import normalizeUrl from "normalize-url";
@@ -64,7 +65,8 @@ const getCacheKey = (registry: string, context: CommonContext): string => {
         const token = getAuthToken(registry, { npmrc: config } as AuthOptions);
 
         if (token) {
-            const tokenId = token.length > 12 ? `${token.slice(0, 8)}...${token.slice(-4)}` : token.slice(0, 8);
+            const tokenValue = token.token;
+            const tokenId = tokenValue.length > 12 ? `${tokenValue.slice(0, 8)}...${tokenValue.slice(-4)}` : tokenValue.slice(0, 8);
 
             return `${normalizedRegistry}:token:${tokenId}`;
         }
@@ -83,17 +85,17 @@ const getCacheKey = (registry: string, context: CommonContext): string => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isConnectionError = (error: any): boolean => {
     const errorMessage = error instanceof Error ? error.message : String(error);
-    const errorCode = (error as { code?: string })?.code || "";
-    const isTimedOut = (error as { timedOut?: boolean })?.timedOut === true;
+    const errorCode = (error as { code?: string }).code ?? "";
+    const isTimedOut = (error as { timedOut?: boolean }).timedOut === true;
 
     return (
-        isTimedOut ||
-        errorCode === "ECONNREFUSED" ||
-        errorCode === "ETIMEDOUT" ||
-        errorMessage.includes("ECONNREFUSED") ||
-        errorMessage.includes("ETIMEDOUT") ||
-        errorMessage.includes("getaddrinfo ENOTFOUND") ||
-        errorMessage.includes("timed out")
+        isTimedOut
+        || errorCode === "ECONNREFUSED"
+        || errorCode === "ETIMEDOUT"
+        || errorMessage.includes("ECONNREFUSED")
+        || errorMessage.includes("ETIMEDOUT")
+        || errorMessage.includes("getaddrinfo ENOTFOUND")
+        || errorMessage.includes("timed out")
     );
 };
 
@@ -157,13 +159,13 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
             if (isConnectionError(error)) {
                 const semanticError = getError("EINVALIDNPMAUTH", { registry });
 
-                throw new AggregateError([semanticError], semanticError.message);
+                throw new AggregateError([semanticError], semanticError.message, { cause: error });
             }
 
             // Treat other whoami failures as invalid token
             const semanticError = getError("EINVALIDNPMTOKEN", { registry });
 
-            throw new AggregateError([semanticError], semanticError.message);
+            throw new AggregateError([semanticError], semanticError.message, { cause: error });
         }
     })();
 
@@ -189,11 +191,11 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
  * @returns True if the message indicates an auth error.
  */
 const isAuthErrorMessage = (message: string): boolean =>
-    message.includes("requires you to be logged in") ||
-    message.includes("authentication") ||
-    message.includes("Unauthorized") ||
-    message.includes("401") ||
-    message.includes("403");
+    message.includes("requires you to be logged in")
+    || message.includes("authentication")
+    || message.includes("Unauthorized")
+    || message.includes("401")
+    || message.includes("403");
 
 /**
  * Handle errors from publish dry-run command.
@@ -208,8 +210,8 @@ const handlePublishError = (error: unknown, registry: string): never => {
 
     // Check stderr for auth errors (execa errors have stderr property)
     // Handle both string and array formats
-    const errorStderrRaw = (error as { stderr?: string | string[] })?.stderr;
-    const errorStderr = Array.isArray(errorStderrRaw) ? errorStderrRaw.join("\n") : errorStderrRaw || "";
+    const errorStderrRaw = (error as { stderr?: string | string[] }).stderr;
+    const errorStderr = Array.isArray(errorStderrRaw) ? errorStderrRaw.join("\n") : errorStderrRaw ?? "";
     const errorMessage = error instanceof Error ? error.message : String(error);
     const combinedMessage = `${errorStderr} ${errorMessage}`;
 

@@ -28,14 +28,14 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
     let errorsMessage = "";
 
     try {
-        await verifyPnpm(context);
+        verifyPnpm(context);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         const typedError = error as AggregateError;
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...(typedError.errors ?? [error])];
+        errors = [...errors, ...(typedError.errors as Error[])];
     }
 
     try {
@@ -56,7 +56,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...(typedError.errors ?? [error])];
+        errors = [...errors, ...(typedError.errors as Error[])];
     }
 
     if (errors.length > 0) {

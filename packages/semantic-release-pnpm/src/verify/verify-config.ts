@@ -1,5 +1,6 @@
 import type SemanticReleaseError from "@semantic-release/error";
 
+import type { errors as errorDefinitions } from "../definitions/errors";
 import type { PluginConfig } from "../definitions/plugin-config";
 import getError from "../utils/get-error";
 
@@ -59,8 +60,8 @@ const verifyConfig = (config: PluginConfig): SemanticReleaseError[] =>
             return errors;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return [...errors, getError(`EINVALID${option.toUpperCase()}` as any, { [option]: value })];
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        return [...errors, getError(`EINVALID${option.toUpperCase()}` as keyof typeof errorDefinitions, { [option]: value })];
     }, []);
 
 export default verifyConfig;

@@ -109,7 +109,7 @@ Your configuration for the \`tarballDir\` option is \`${String(tarballDir)}\`.`,
             details: `When not publishing through [trusted publishing](https://docs.npmjs.com/trusted-publishers), an [npm token](${linkify(
                 "README.md#npm-registry-authentication",
             )}) must be created and set in the \`NPM_TOKEN\` environment variable on your CI environment.
-Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow publishing to the registry \`${registry}\`.`,
+Please make sure to create an [npm token](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens) and set it in the \`NPM_TOKEN\` environment variable on your CI environment. The token must allow publishing to the registry \`${registry ?? ""}\`.`,
             message: "No npm token specified.",
         };
     },

@@ -28,10 +28,10 @@ describe(verify, () => {
         env: {},
         logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
         options: {},
-        // eslint-disable-next-line n/no-unsupported-features/node-builtins
-        stderr: { write: vi.fn() } as unknown as WritableStream,
-        // eslint-disable-next-line n/no-unsupported-features/node-builtins
-        stdout: { write: vi.fn() } as unknown as WritableStream,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        stderr: { write: vi.fn() } as any,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+        stdout: { write: vi.fn() } as any,
     };
 
     beforeEach(() => {

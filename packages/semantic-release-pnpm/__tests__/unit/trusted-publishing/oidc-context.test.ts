@@ -13,7 +13,8 @@ const { default: exchangeToken } = await import("../../../src/trusted-publishing
 
 describe(oidcContextEstablished, () => {
     const pkg = { name: "@scope/package" };
-    const context = { logger: { log: vi.fn() } };
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+    const context = { logger: { log: vi.fn() } } as any;
 
     beforeEach(() => {
         vi.clearAllMocks();
@@ -24,6 +25,7 @@ describe(oidcContextEstablished, () => {
 
         vi.mocked(exchangeToken).mockResolvedValue("token-value");
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
         expect(result).toBe(true);
@@ -35,6 +37,7 @@ describe(oidcContextEstablished, () => {
 
         vi.mocked(exchangeToken).mockResolvedValue(undefined);
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
         expect(result).toBe(false);
@@ -44,6 +47,7 @@ describe(oidcContextEstablished, () => {
     it("should return false when registry is not the official registry", async () => {
         expect.assertions(1);
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const result = await oidcContextEstablished("https://custom.registry.org/", pkg, context);
 
         expect(result).toBe(false);
@@ -55,6 +59,7 @@ describe(oidcContextEstablished, () => {
         vi.mocked(exchangeToken).mockResolvedValue("token-value");
 
         // Test with registry URL without trailing slash
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const result = await oidcContextEstablished("https://registry.npmjs.org", pkg, context);
 
         expect(result).toBe(true);
@@ -68,6 +73,7 @@ describe(oidcContextEstablished, () => {
 
         vi.mocked(exchangeToken).mockRejectedValue(error);
 
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
         expect(result).toBe(false);

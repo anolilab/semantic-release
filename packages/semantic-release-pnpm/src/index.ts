@@ -34,18 +34,18 @@ export const verifyConditions = async (pluginConfig: PluginConfig, context: Veri
     if (context.options.publish) {
         const publish = Array.isArray(context.options.publish) ? context.options.publish : [context.options.publish];
 
-        const publishPlugin = publish.find((config) => config.path && config.path === PLUGIN_NAME) || {};
+        const publishPlugin = (publish.find((config: Record<string, unknown>) => config.path && config.path === PLUGIN_NAME) ?? {}) as Record<string, unknown>;
 
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.npmPublish = pluginConfig.npmPublish ?? publishPlugin.npmPublish;
+        pluginConfig.npmPublish = pluginConfig.npmPublish ?? (publishPlugin.npmPublish as PluginConfig["npmPublish"]);
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.tarballDir = pluginConfig.tarballDir ?? publishPlugin.tarballDir;
+        pluginConfig.tarballDir = pluginConfig.tarballDir ?? (publishPlugin.tarballDir as PluginConfig["tarballDir"]);
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.pkgRoot = pluginConfig.pkgRoot ?? publishPlugin.pkgRoot;
+        pluginConfig.pkgRoot = pluginConfig.pkgRoot ?? (publishPlugin.pkgRoot as PluginConfig["pkgRoot"]);
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.disableScripts = pluginConfig.disableScripts ?? publishPlugin.disableScripts;
+        pluginConfig.disableScripts = pluginConfig.disableScripts ?? (publishPlugin.disableScripts as PluginConfig["disableScripts"]);
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.branches = pluginConfig.branches ?? publishPlugin.branches;
+        pluginConfig.branches = pluginConfig.branches ?? (publishPlugin.branches as PluginConfig["branches"]);
     }
 
     await verify(pluginConfig, context);

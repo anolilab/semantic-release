@@ -127,6 +127,6 @@ export interface Release {
     gitTag?: string;
     name?: string;
     // https://github.com/sindresorhus/semver-diff#semverdiffversiona-versionb
-    type?: "build" | "major" | "minor" | "patch" | "premajor" | "preminor" | "prepatch" | "prerelease" | undefined;
+    type?: "build" | "major" | "minor" | "patch" | "premajor" | "preminor" | "prepatch" | "prerelease";
     version: string;
 }

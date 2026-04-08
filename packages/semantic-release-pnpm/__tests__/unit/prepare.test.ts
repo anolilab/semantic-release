@@ -3,8 +3,10 @@ import { rm } from "node:fs/promises";
 import { isAccessible, readFile, readJson, writeFile, writeJson } from "@visulima/fs";
 import type { PackageJson } from "@visulima/package";
 import { join } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 import { WritableStreamBuffer } from "stream-buffers";
+// eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -18,7 +20,7 @@ const logger = { error: vi.fn(), log: logSpy, success: vi.fn() };
 describe(prepare, () => {
     let cwd: string;
 
-    beforeEach(async () => {
+    beforeEach(() => {
         cwd = temporaryDirectory();
     });
 
@@ -97,7 +99,7 @@ describe(prepare, () => {
         await expect(readFile(packagePath)).resolves.toStrictEqual(expectedContent);
     });
 
-    it('should create the package in the "tarballDir" directory', async () => {
+    it("should create the package in the \"tarballDir\" directory", async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");
@@ -122,7 +124,7 @@ describe(prepare, () => {
         await expect(isAccessible(tarballPath)).resolves.toBe(true);
     });
 
-    it('should only move the created tarball if the "tarballDir" directory is not the CWD', async () => {
+    it("should only move the created tarball if the \"tarballDir\" directory is not the CWD", async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");

@@ -30,12 +30,11 @@ const getPackage = async ({ pkgRoot }: Options, { cwd }: { cwd: CommonContext["c
         }
 
         return packageJson;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-        if (error.code === "ENOENT") {
+    } catch (error) {
+        if ((error as NodeJS.ErrnoException).code === "ENOENT") {
             const semanticError = getError("ENOPKG");
 
-            throw new AggregateError([semanticError], semanticError.message);
+            throw new AggregateError([semanticError], semanticError.message, { cause: error });
         }
 
         throw error;
