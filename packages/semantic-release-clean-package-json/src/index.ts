@@ -84,7 +84,7 @@ export const success = async (pluginConfig: PluginConfig, context: CommonContext
     if (await isAccessible(backupPackageJson)) {
         const packageJson = await getPackage(pluginConfig, context);
 
-        const backupPackageJsonContent = await readJson(backupPackageJson) as Record<string, unknown>;
+        const backupPackageJsonContent = (await readJson(backupPackageJson)) as Record<string, unknown>;
 
         // Overwrite the version from the backup package.json
         backupPackageJsonContent.version = packageJson.version;
