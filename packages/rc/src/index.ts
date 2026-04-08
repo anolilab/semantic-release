@@ -63,6 +63,7 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
                 }
 
                 // Increment cursor used to track the object at the current depth
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 cursor = cursor[subkey];
             });
         }
@@ -109,8 +110,8 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
             configFiles.add(file);
         }
 
-        if (isAccessibleSync(`${file as string}.json`)) {
-            configFiles.add(`${file as string}.json`);
+        if (isAccessibleSync(`${file}.json`)) {
+            configFiles.add(`${file}.json`);
         }
     }
 
@@ -213,9 +214,7 @@ export const rc = (
         }
     }
 
-    if (environment) {
-        configs.push(environment);
-    }
+    configs.push(environment);
 
     return { config: merge(options.defaults ?? {}, ...configs), files: configFiles };
 };

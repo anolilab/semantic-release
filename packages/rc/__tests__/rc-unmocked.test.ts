@@ -1,9 +1,11 @@
+import { mkdtempSync } from "node:fs";
 import { rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join as pathJoin } from "node:path";
 import { env } from "node:process";
 
 import { writeJsonSync } from "@visulima/fs";
 import { join } from "@visulima/path";
-import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { rc } from "../src";
@@ -13,8 +15,11 @@ const mocks = vi.hoisted(() => {
     return { mockedCwd: vi.fn(), mockedFindUpSync: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 
-vi.mock(import("node:os"), () => {
+vi.mock(import("node:os"), async () => {
+    const actual = await vi.importActual("node:os");
+
     return {
+        ...actual,
         homedir: mocks.mockedHomeDir,
     };
 });
@@ -34,9 +39,9 @@ describe("rc-unmocked", () => {
 
     const npmEnvironment: Record<keyof typeof env, string | undefined> = {};
 
-    beforeEach(async () => {
-        cwdPath = temporaryDirectory();
-        homePath = temporaryDirectory();
+    beforeEach(() => {
+        cwdPath = mkdtempSync(pathJoin(tmpdir(), "rc-unmocked-"));
+        homePath = mkdtempSync(pathJoin(tmpdir(), "rc-unmocked-home-"));
 
         mocks.mockedCwd.mockReturnValue(cwdPath);
         mocks.mockedHomeDir.mockReturnValue(homePath);

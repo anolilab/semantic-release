@@ -6,7 +6,7 @@ describe(isJson, () => {
     it.each([5, "5", "true", "null", "{}", "{\"foo\": \"bar\"}", "[1, 2, 3]", "{\"foo\": \"bar\", \"baz\": \"qux\"}"])("should return true for valid JSON", (value) => {
         expect.assertions(1);
 
-        expect(isJson(value)).toBe(true);
+        expect(isJson(value as string)).toBe(true);
     });
 
     // eslint-disable-next-line no-void
@@ -15,7 +15,7 @@ describe(isJson, () => {
         (value) => {
             expect.assertions(1);
 
-            expect(isJson(value)).toBe(false);
+            expect(isJson(value as string)).toBe(false);
         },
     );
 });

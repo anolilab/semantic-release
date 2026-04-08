@@ -1,8 +1,10 @@
+import { mkdtempSync } from "node:fs";
 import { rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join as pathJoin } from "node:path";
 import { env } from "node:process";
 
 import { join } from "@visulima/path";
-import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { rc } from "../src";
@@ -14,7 +16,7 @@ const addExtensions = (sources: string[][]) =>
         ["", ".json"].forEach((extension) => {
             const current = [pathArray].flat();
 
-            current[current.length - 1] += extension;
+            current[current.length - 1] = (current.at(-1) ?? "") + extension;
             accumulator.push(current);
         });
 
@@ -36,8 +38,11 @@ vi.mock(import("@visulima/fs"), async () => {
     };
 });
 
-vi.mock(import("node:os"), () => {
+vi.mock(import("node:os"), async () => {
+    const actual = await vi.importActual("node:os");
+
     return {
+        ...actual,
         homedir: mocks.mockedHomeDir,
     };
 });
@@ -56,9 +61,9 @@ describe(rc, () => {
     let homePath: string;
     const npmEnvironment: Record<keyof typeof env, string | undefined> = {};
 
-    beforeEach(async () => {
-        cwdPath = temporaryDirectory();
-        homePath = temporaryDirectory();
+    beforeEach(() => {
+        cwdPath = mkdtempSync(pathJoin(tmpdir(), "rc-test-"));
+        homePath = mkdtempSync(pathJoin(tmpdir(), "rc-test-home-"));
 
         mocks.mockedCwd.mockReturnValue(cwdPath);
         mocks.mockedHomeDir.mockReturnValue(homePath);

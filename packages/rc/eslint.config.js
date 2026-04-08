@@ -19,10 +19,9 @@ export default createConfig(
         ],
         jsx: false,
         react: false,
-        // Enable this after the lint errors are fixed.
-        // typescript: {
-        //    tsconfigPath: "tsconfig.json",
-        // },
+        typescript: {
+            tsconfigPath: "tsconfig.eslint.json",
+        },
     },
     {
         ignores: ["**/__tests__"],
