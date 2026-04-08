@@ -40,12 +40,15 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
     if (extendPaths) {
         const require = createRequire(import.meta.url);
         // eslint-disable-next-line unicorn/no-array-reduce
-        const extendedOptions: MultiReleaseConfig = castArray(extendPaths as string | string[]).reduce<MultiReleaseConfig>((result: MultiReleaseConfig, extendPath: string) => {
-            // eslint-disable-next-line import/no-dynamic-require
-            const extendsOptions: MultiReleaseConfig = require(resolveFrom(cwd, extendPath)) as MultiReleaseConfig;
+        const extendedOptions: MultiReleaseConfig = castArray(extendPaths as string | string[]).reduce<MultiReleaseConfig>(
+            (result: MultiReleaseConfig, extendPath: string) => {
+                // eslint-disable-next-line import/no-dynamic-require
+                const extendsOptions: MultiReleaseConfig = require(resolveFrom(cwd, extendPath)) as MultiReleaseConfig;
 
-            return mergeConfig(result, extendsOptions);
-        }, {});
+                return mergeConfig(result, extendsOptions);
+            },
+            {},
+        );
 
         options = mergeConfig(options, extendedOptions);
     }

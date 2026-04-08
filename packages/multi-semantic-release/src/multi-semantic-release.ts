@@ -78,7 +78,7 @@ const getPackage = async (
 
         if (typeof manifest.repository === "string") {
             repositoryUrl = manifest.repository;
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
         } else if (typeof manifest.repository === "object" && manifest.repository !== null && "url" in manifest.repository) {
             repositoryUrl = manifest.repository.url as string;
         }
@@ -263,8 +263,8 @@ const multiSemanticRelease = async (
             const manifest = entry.manifest as { private?: boolean };
 
             return (
-                (!mergedFlags.ignorePrivate || !manifest.private)
-                && (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
+                (!mergedFlags.ignorePrivate || !manifest.private) &&
+                (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
             );
         }) as (entry: unknown) => boolean,
         workspacesExtra: Array.isArray(mergedFlags.ignorePackages) ? mergedFlags.ignorePackages.map((p: string) => `!${p}`) : [],

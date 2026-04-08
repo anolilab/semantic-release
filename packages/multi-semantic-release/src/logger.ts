@@ -94,11 +94,11 @@ const logger: Logger = {
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
                 if (assertLevel(aliases[l as keyof typeof aliases] ?? l, (this as Logger).config.level)) {
                     const signaleInstance = (this as Logger).config._signale;
-                    const logFunction
-                        = (signaleInstance[l] as ((...args: unknown[]) => void) | undefined)
+                    const logFunction =
+                        (signaleInstance[l] as ((...args: unknown[]) => void) | undefined) ??
                         // eslint-disable-next-line no-console
-                            ?? (console[l as keyof Console] as ((...args: unknown[]) => void) | undefined)
-                            ?? (() => {});
+                        (console[l as keyof Console] as ((...args: unknown[]) => void) | undefined) ??
+                        (() => {});
 
                     logFunction((this as Logger).prefix, ...arguments_);
                 }

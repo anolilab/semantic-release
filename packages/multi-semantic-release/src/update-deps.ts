@@ -206,8 +206,8 @@ const getDependentRelease = (
 
             // Update all dependencies (including devDependencies) but only check runtime deps for triggering releases
             allScopes.forEach((scope) => bumpDependency(scope, p.name, effectiveNextVersion ?? nextVersion));
-            const requireRelease: boolean
-                = releaseScopes.some((scope: Record<string, string>) => {
+            const requireRelease: boolean =
+                releaseScopes.some((scope: Record<string, string>) => {
                     const currentVersion = scope[p.name];
                     const versionToCheck = effectiveNextVersion ?? nextVersion;
 
@@ -297,8 +297,8 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
 const difference = (object: Record<string, unknown>, base: Record<string, unknown>): Record<string, string> => {
     const result = transform(object, (accumulator: Record<string, string>, value: unknown, key: string) => {
         if (!isEqual(value, base[key])) {
-            accumulator[key]
-                = isObject(value) && isObject(base[key])
+            accumulator[key] =
+                isObject(value) && isObject(base[key])
                     ? JSON.stringify(difference(value as Record<string, unknown>, base[key] as Record<string, unknown>))
                     : `${String(base[key])} → ${String(value)}`;
         }
@@ -358,7 +358,7 @@ const auditManifestChanges = (actualManifest: Record<string, unknown>, path: str
 export const getNextVersion = (packageJson: Package): string | null => {
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
 
-    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : lastVersion ?? "1.0.0";
+    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : (lastVersion ?? "1.0.0");
 };
 
 /**
