@@ -1,3 +1,9 @@
+## @anolilab/multi-semantic-release [4.4.1](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.0...@anolilab/multi-semantic-release@4.4.1) (2026-04-08)
+
+### Bug Fixes
+
+* **multi-semantic-release:** apply deps.release strategy to catalog-triggered releases ([bafa1a3](https://github.com/anolilab/semantic-release/commit/bafa1a3e27e42f31b20ce579c8d8bce9711ffb46))
+
 ## @anolilab/multi-semantic-release [4.4.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.3.0...@anolilab/multi-semantic-release@4.4.0) (2026-04-08)
 
 ### Bug Fixes
