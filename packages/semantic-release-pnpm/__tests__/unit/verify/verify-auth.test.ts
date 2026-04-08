@@ -146,8 +146,12 @@ describe(verifyAuth, () => {
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
-        vi.mocked(execa).mockResolvedValue({ stderr: "This command requires you to be logged in to https://custom.registry.org/", stdout: "" } as any);
+        vi.mocked(execa).mockRejectedValue(
+            Object.assign(new Error("Command failed"), {
+                stderr: "This command requires you to be logged in to https://custom.registry.org/",
+                stdout: "",
+            }) as Error & { stderr: string; stdout: string },
+        );
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm authentication");
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);

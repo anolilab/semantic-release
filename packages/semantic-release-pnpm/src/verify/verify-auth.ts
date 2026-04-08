@@ -185,6 +185,9 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
     }
 };
 
+const AUTH_STATUS_401 = /\b401\b/;
+const AUTH_STATUS_403 = /\b403\b/;
+
 /**
  * Check if an error message indicates an authentication issue.
  * @param message The error message to check.
@@ -194,8 +197,8 @@ const isAuthErrorMessage = (message: string): boolean =>
     message.includes("requires you to be logged in")
     || message.includes("authentication")
     || message.includes("Unauthorized")
-    || /\b401\b/.test(message)
-    || /\b403\b/.test(message);
+    || AUTH_STATUS_401.test(message)
+    || AUTH_STATUS_403.test(message);
 
 /**
  * Handle errors from publish dry-run command.

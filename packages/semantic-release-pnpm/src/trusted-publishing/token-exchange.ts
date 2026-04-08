@@ -112,8 +112,7 @@ const tokenExchange = (pkg: { name: string }, context: CommonContext): Promise<s
     }
 
     const ciEnv = envCi();
-    const ciProviderName: string | undefined
-        = typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
+    const ciProviderName: string | undefined = typeof (ciEnv as KnownCiEnv).name === "string" ? (ciEnv as KnownCiEnv).name : undefined;
 
     if (!ciProviderName) {
         debug("Unable to detect CI provider for OIDC token exchange");

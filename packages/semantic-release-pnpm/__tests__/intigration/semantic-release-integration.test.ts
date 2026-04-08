@@ -66,7 +66,7 @@ describe("semantic-release-integration", () => {
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).resolves.not.toThrow();
     });
@@ -92,7 +92,7 @@ describe("semantic-release-integration", () => {
                 options: { publish: ["@semantic-release/npm"] },
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).resolves.not.toThrow();
     });
@@ -118,7 +118,7 @@ describe("semantic-release-integration", () => {
                 options: { publish: ["@semantic-release/npm"] },
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).resolves.not.toThrow();
     });
@@ -149,7 +149,7 @@ describe("semantic-release-integration", () => {
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).rejects.toThrow("Invalid npm authentication");
     });
@@ -174,7 +174,7 @@ describe("semantic-release-integration", () => {
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).rejects.toThrow("No npm token specified");
     });
@@ -205,7 +205,7 @@ describe("semantic-release-integration", () => {
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).resolves.not.toThrow();
     });
@@ -236,7 +236,7 @@ describe("semantic-release-integration", () => {
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
         ).resolves.not.toThrow();
     });
