@@ -1773,20 +1773,21 @@ catalogs:
             );
 
             // Package a uses semantic-release (major) and lodash-es (patch) from catalogs
-            // Should trigger major release due to semantic-release change
+            // With deps.release: "patch", catalog changes should trigger a patch release
+            // regardless of the catalog dependency's own release type
             const packageA = result.find((p) => p.name === "msr-test-a");
 
             expect(packageA?.result).toBeDefined();
             expect(packageA?.result).not.toBe(false);
-            expect((packageA?.result as ReleaseResultType).nextRelease?.version).toBe("2.0.0");
+            expect((packageA?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
 
             // Package b uses @semantic-release/changelog (major) from catalog
-            // Should trigger major release
+            // With deps.release: "patch", should trigger patch release
             const packageB = result.find((p) => p.name === "msr-test-b");
 
             expect(packageB?.result).toBeDefined();
             expect(packageB?.result).not.toBe(false);
-            expect((packageB?.result as ReleaseResultType).nextRelease?.version).toBe("2.0.0");
+            expect((packageB?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
 
             // Package c uses lodash-es (patch) from catalog
             // Should trigger patch release

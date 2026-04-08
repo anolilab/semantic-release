@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { Package } from "../src/types";
-import { getNextPreVersion, getNextVersion, getPreReleaseTag, resolveNextVersion, resolveReleaseType } from "../src/update-deps";
+import { getNextPreVersion, getNextVersion, getPreReleaseTag, resolveNextVersion, resolveReleaseType, resolveReleaseTypeFromStrategy } from "../src/update-deps";
 
 describe("update-deps", () => {
     describe("resolveNextVersion()", () => {
@@ -314,6 +314,38 @@ describe("update-deps", () => {
             expect.assertions(1);
 
             expect(getPreReleaseTag(version as string)).toBe(preReleaseTag);
+        });
+    });
+
+    describe("resolveReleaseTypeFromStrategy()", () => {
+        it.each([
+            // String strategies
+            ["patch", "major", "patch"],
+            ["patch", "minor", "patch"],
+            ["patch", "patch", "patch"],
+            ["minor", "major", "minor"],
+            ["minor", "minor", "minor"],
+            ["minor", "patch", "minor"],
+            ["major", "major", "major"],
+            ["major", "minor", "major"],
+            ["major", "patch", "major"],
+            ["inherit", "major", "major"],
+            ["inherit", "minor", "minor"],
+            ["inherit", "patch", "patch"],
+            ["inherit", undefined, undefined],
+            // Object mapping strategies
+            [{ major: "major", minor: "minor", patch: "patch" }, "major", "major"],
+            [{ major: "major", minor: "minor", patch: "patch" }, "minor", "minor"],
+            [{ major: "major", minor: "minor", patch: "patch" }, "patch", "patch"],
+            [{ major: "major", minor: "patch", patch: "patch" }, "minor", "patch"],
+            [{ major: "minor" }, "major", "minor"],
+            [{ major: "minor" }, "patch", undefined],
+            [{}, "major", undefined],
+        ])("strategy %j with dependency type %s gives %s", (strategy, dependencyType, expected) => {
+            expect.assertions(1);
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            expect(resolveReleaseTypeFromStrategy(strategy as any, dependencyType as any)).toBe(expected);
         });
     });
 });

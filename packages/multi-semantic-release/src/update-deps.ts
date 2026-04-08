@@ -25,7 +25,7 @@ const CHUNK_DIGIT_REGEX = /\d+/u;
  * @returns The release type to apply to the dependent package.
  * @internal
  */
-const resolveReleaseTypeFromStrategy = (
+export const resolveReleaseTypeFromStrategy = (
     releaseStrategy:
         | ReleaseStrategy
         | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },

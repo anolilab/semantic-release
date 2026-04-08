@@ -501,10 +501,10 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.4.0
+        specifier: 5.5.0
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
-        specifier: 7.0.0
+        specifier: 8.0.0
         version: link:../semantic-release-pnpm
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
@@ -731,7 +731,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 7.0.0
+        specifier: 8.0.0
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -803,7 +803,7 @@ importers:
         specifier: catalog:prod
         version: 3.0.0
       '@anolilab/rc':
-        specifier: 4.0.0
+        specifier: 4.0.1
         version: link:../rc
       '@semantic-release/error':
         specifier: catalog:cli
@@ -954,7 +954,7 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.4.0
+        specifier: 5.5.0
         version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: catalog:cli
@@ -985,7 +985,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 7.0.0
+        specifier: 8.0.0
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint

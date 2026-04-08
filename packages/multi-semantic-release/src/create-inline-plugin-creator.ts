@@ -7,7 +7,7 @@ import type { ReleaseType } from "semver";
 import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
 import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
-import { resolveReleaseType, updateManifestDeps } from "./update-deps";
+import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps } from "./update-deps";
 import cleanPath from "./utils/clean-path";
 import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./utils/detect-catalog-changes";
 
@@ -146,9 +146,20 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             let catalogTriggeredReleaseType: string | undefined;
 
             if (catalogChangesCache?.has(npmPackage.name)) {
-                catalogTriggeredReleaseType = catalogChangesCache.get(npmPackage.name);
+                const rawCatalogReleaseType = catalogChangesCache.get(npmPackage.name);
 
-                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release`);
+                // Apply deps.release strategy to catalog-triggered release types,
+                // just like workspace dependency bumps go through resolveReleaseTypeFromStrategy.
+                // Without this, a major catalog dependency bump (e.g. @actions/core 2→3)
+                // would directly cause a major release in consuming packages, ignoring the
+                // configured strategy (default: "patch").
+                if (flags.deps?.release) {
+                    catalogTriggeredReleaseType = resolveReleaseTypeFromStrategy(flags.deps.release, rawCatalogReleaseType) as string | undefined;
+                } else {
+                    catalogTriggeredReleaseType = rawCatalogReleaseType;
+                }
+
+                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release (raw: ${rawCatalogReleaseType ?? ""})`);
             }
 
             let nextType: string | undefined;
