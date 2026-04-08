@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import type { Package } from "../src/types";
 import { getNextPreVersion, getNextVersion, getPreReleaseTag, resolveNextVersion, resolveReleaseType } from "../src/update-deps";
 
 describe("update-deps", () => {
@@ -72,6 +73,7 @@ describe("update-deps", () => {
                 {
                     _nextType: "patch",
                     localDeps: [],
+                    manifest: {},
                 },
                 undefined,
                 undefined,
@@ -80,16 +82,16 @@ describe("update-deps", () => {
             [
                 "implements `inherit` strategy: returns the highest release type of any deps",
                 {
-                    _nextType: undefined,
                     _lastRelease: { version: "1.0.0" },
+                    _nextType: undefined,
                     localDeps: [
                         {
                             _lastRelease: { version: "1.0.0" },
                             _nextType: false,
                             localDeps: [
-                                { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], name: "b" },
-                                { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], name: "c" },
-                                { _lastRelease: { version: "1.0.0" }, _nextType: "major", localDeps: [], name: "d" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], manifest: {}, name: "b" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], manifest: {}, name: "c" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: "major", localDeps: [], manifest: {}, name: "d" },
                             ],
                             manifest: { dependencies: { b: "1.0.0", c: "1.0.0", d: "1.0.0" } },
                             name: "a",
@@ -109,9 +111,9 @@ describe("update-deps", () => {
                         {
                             _nextType: false,
                             localDeps: [
-                                { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], name: "b" },
-                                { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], name: "c" },
-                                { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], name: "d" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], manifest: {}, name: "b" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], manifest: {}, name: "c" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], manifest: {}, name: "d" },
                             ],
                             manifest: { dependencies: { b: "1.0.0", c: "1.0.0", d: "1.0.0" } },
                             name: "a",
@@ -131,9 +133,9 @@ describe("update-deps", () => {
                         {
                             _nextType: false,
                             localDeps: [
-                                { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], name: "b" },
-                                { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], name: "c" },
-                                { _lastRelease: { version: "1.0.0" }, _nextType: "major", localDeps: [], name: "d" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], manifest: {}, name: "b" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], manifest: {}, name: "c" },
+                                { _lastRelease: { version: "1.0.0" }, _nextType: "major", localDeps: [], manifest: {}, name: "d" },
                             ],
                             manifest: { dependencies: { b: "1.0.0", c: "1.0.0", d: "1.0.0" } },
                             name: "a",
@@ -153,31 +155,35 @@ describe("update-deps", () => {
                         {
                             _nextType: false,
                             localDeps: [
-                                { _nextType: false, localDeps: [] },
+                                { _nextType: false, localDeps: [], manifest: {} },
                                 {
                                     _nextType: undefined,
-                                    localDeps: [{ _nextType: undefined, localDeps: [] }],
+                                    localDeps: [{ _nextType: undefined, localDeps: [], manifest: {} }],
+                                    manifest: {},
                                 },
                             ],
+                            manifest: {},
                         },
                     ],
+                    manifest: {},
                 },
                 undefined,
                 undefined,
                 undefined,
             ],
-        ])("%s", (name, packageJson, bumpStrategy, releaseStrategy, result) => {
+        ])("%s", (_name, packageJson, bumpStrategy, releaseStrategy, result) => {
             expect.assertions(1);
 
-            expect(resolveReleaseType(packageJson, bumpStrategy, releaseStrategy)).toBe(result);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+            expect(resolveReleaseType(packageJson as unknown as Package, bumpStrategy as string | undefined, releaseStrategy as any)).toBe(result);
         });
 
         it("`override` + `prefix` injects carets to the manifest", () => {
             expect.assertions(6);
 
-            const packageB = { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], name: "b" };
-            const packageC = { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], name: "c" };
-            const packageD = { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], name: "d" };
+            const packageB = { _lastRelease: { version: "1.0.0" }, _nextType: false, localDeps: [], manifest: {}, name: "b" };
+            const packageC = { _lastRelease: { version: "1.0.0" }, _nextType: "minor", localDeps: [], manifest: {}, name: "c" };
+            const packageD = { _lastRelease: { version: "1.0.0" }, _nextType: "patch", localDeps: [], manifest: {}, name: "d" };
             const packageA = {
                 _nextType: false,
                 localDeps: [packageB, packageC, packageD],
@@ -191,7 +197,7 @@ describe("update-deps", () => {
                 name: "root",
             };
 
-            const type = resolveReleaseType(packageJson, "override", "patch", [], "^");
+            const type = resolveReleaseType(packageJson as unknown as Package, "override", "patch", [], "^");
 
             expect(type).toBe("patch");
             expect(packageJson._nextType).toBe("patch");
@@ -217,9 +223,10 @@ describe("update-deps", () => {
 
             expect(
                 getNextVersion({
-                    _lastRelease: { version: lastVersion },
-                    _nextType: releaseType,
-                }),
+                    _lastRelease: { version: lastVersion as string },
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
+                    _nextType: releaseType as any,
+                } as unknown as Package),
             ).toBe(nextVersion);
         });
     });
@@ -245,21 +252,23 @@ describe("update-deps", () => {
             expect(
                 getNextPreVersion({
                     _branch: "master",
-                    _lastRelease: { version: lastVersion },
-                    _nextType: releaseType,
+                    _lastRelease: { version: lastVersion as string },
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
+                    _nextType: releaseType as any,
                     _preRelease: preRelease,
                     name: "testing-package",
-                }),
+                } as unknown as Package),
             ).toBe(nextVersion);
 
             expect(
                 getNextPreVersion({
                     _branch: "master",
-                    _lastRelease: { version: lastVersion },
-                    _nextType: releaseType,
+                    _lastRelease: { version: lastVersion as string },
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
+                    _nextType: releaseType as any,
                     _preRelease: preRelease,
                     name: "testing-package",
-                }),
+                } as unknown as Package),
             ).toBe(nextVersion);
         });
 
@@ -281,10 +290,11 @@ describe("update-deps", () => {
                 getNextPreVersion({
                     _branch: "master",
                     _lastRelease: { version: lastVersion },
-                    _nextType: releaseType,
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment
+                    _nextType: releaseType as any,
                     _preRelease: preRelease,
                     name: "testing-package",
-                }),
+                } as unknown as Package),
             ).toBe(nextVersion);
         });
     });
@@ -303,7 +313,7 @@ describe("update-deps", () => {
         ])("%s gives %s", (version, preReleaseTag) => {
             expect.assertions(1);
 
-            expect(getPreReleaseTag(version)).toBe(preReleaseTag);
+            expect(getPreReleaseTag(version as string)).toBe(preReleaseTag);
         });
     });
 });

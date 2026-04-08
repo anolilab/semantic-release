@@ -2,6 +2,7 @@
 import { existsSync, lstatSync } from "node:fs";
 import { relative } from "node:path";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 import gitLogParser from "git-log-parser";
 
@@ -65,7 +66,7 @@ const getCommitsFiltered = async (
 
     const relpath = relative(gitRoot, direction);
     const firstParentBranchFilter = firstParentBranch ? ["--first-parent", firstParentBranch] : [];
-    const range = (lastRelease ? `${lastRelease}..` : "") + (nextRelease || "HEAD");
+    const range = (lastRelease ? `${lastRelease}..` : "") + (nextRelease ?? "HEAD");
     const gitLogFilterQuery = [...firstParentBranchFilter, range, "--", relpath];
     const stream = gitLogParser.parse({ _: gitLogFilterQuery }, { cwd: gitRoot, env: process.env });
 

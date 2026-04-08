@@ -1,17 +1,22 @@
 /* eslint-disable jsdoc/match-description */
 import { writeFileSync } from "node:fs";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { isEqual, isObject, transform } from "lodash-es";
 import type { ReleaseType } from "semver";
 import semver from "semver";
 
 import getManifest from "./get-manifest";
 import logger from "./logger";
-import type { Package, PackageManifest, ReleaseStrategy } from "./types";
+import type { Package, ReleaseStrategy } from "./types";
 import { getHighestVersion, getLatestVersion } from "./utils/get-version";
 import recognizeFormat from "./utils/recognize-format";
 
 const { debug } = logger.withScope("msr:updateDeps");
+
+// eslint-disable-next-line regexp/optimal-quantifier-concatenation
+const WORKSPACE_VERSION_REGEX = /^workspace:(([\^~*])?.*)$/u;
+const CHUNK_DIGIT_REGEX = /\d+/u;
 
 /**
  * Resolve the release type to use based on the release strategy and dependency release type.
@@ -54,7 +59,7 @@ const resolveReleaseTypeFromStrategy = (
  */
 const nextPreHighestVersion = (latestTag: string | undefined, lastVersion: string, packagePreRelease: string): string | undefined => {
     const bumpFromTags = latestTag ? semver.inc(latestTag, "prerelease", packagePreRelease) : undefined;
-    const bumpFromLast = semver.inc(lastVersion, "prerelease", packagePreRelease) || undefined;
+    const bumpFromLast = semver.inc(lastVersion, "prerelease", packagePreRelease) ?? undefined;
 
     return bumpFromTags ? getHighestVersion(bumpFromLast, bumpFromTags) : bumpFromLast;
 };
@@ -115,9 +120,9 @@ const getDependentRelease = (
     prefix: string,
 ): string | undefined => {
     const severityOrder = ["patch", "minor", "major"] as const;
-    const { localDeps, manifest = {} } = packageJson;
+    const { localDeps, manifest } = packageJson;
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
-    const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest as PackageManifest;
+    const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
     // All scopes for updating versions (including devDependencies)
     const allScopes: Record<string, string>[] = [dependencies, devDependencies, peerDependencies, optionalDependencies];
     // Only runtime scopes for triggering releases (excluding devDependencies)
@@ -157,7 +162,7 @@ const getDependentRelease = (
                 // eslint-disable-next-line @typescript-eslint/no-use-before-define
                 const version = p._preRelease ? getNextPreVersion(p) : getNextVersion(p);
 
-                nextVersion = version || undefined;
+                nextVersion = version ?? undefined;
             } else {
                 nextVersion = p._lastRelease?.version;
             }
@@ -165,6 +170,7 @@ const getDependentRelease = (
             let effectiveNextType = nextType;
             let effectiveNextVersion = nextVersion;
 
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!nextType && p.localDeps && p.localDeps.length > 0) {
                 const nestedReleaseType = getDependentRelease(p, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
@@ -189,7 +195,7 @@ const getDependentRelease = (
                         // eslint-disable-next-line @typescript-eslint/no-use-before-define
                         const calculatedVersion = p._preRelease ? getNextPreVersion(p) : getNextVersion(p);
 
-                        effectiveNextVersion = calculatedVersion || undefined;
+                        effectiveNextVersion = calculatedVersion ?? undefined;
 
                         // Restore original _nextType
                         // eslint-disable-next-line no-param-reassign
@@ -199,11 +205,11 @@ const getDependentRelease = (
             }
 
             // Update all dependencies (including devDependencies) but only check runtime deps for triggering releases
-            allScopes.forEach((scope) => bumpDependency(scope, p.name, effectiveNextVersion || nextVersion));
+            allScopes.forEach((scope) => bumpDependency(scope, p.name, effectiveNextVersion ?? nextVersion));
             const requireRelease: boolean
                 = releaseScopes.some((scope: Record<string, string>) => {
                     const currentVersion = scope[p.name];
-                    const versionToCheck = effectiveNextVersion || nextVersion;
+                    const versionToCheck = effectiveNextVersion ?? nextVersion;
 
                     if ((!effectiveNextVersion && !nextVersion) || !currentVersion || !versionToCheck) {
                         return false;
@@ -224,7 +230,7 @@ const getDependentRelease = (
             }
 
             // Use effectiveNextType if available, otherwise fall back to nextType
-            const typeToUse = effectiveNextType || nextType;
+            const typeToUse = effectiveNextType ?? nextType;
 
             if (!typeToUse) {
                 return releaseType;
@@ -251,10 +257,10 @@ const getDependentRelease = (
         // Apply release strategy mapping to nested release type
         const mappedNestedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, highestNestedReleaseType as Omit<ReleaseStrategy, "inherit">);
 
-        return (mappedNestedReleaseType || highestNestedReleaseType) as string | undefined;
+        return (mappedNestedReleaseType ?? highestNestedReleaseType) as string | undefined;
     }
 
-    return result as string | undefined;
+    return result;
 };
 
 /**
@@ -270,8 +276,7 @@ const getDependentRelease = (
  */
 const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string): string => {
     if (currentVersion.startsWith("workspace:")) {
-        // eslint-disable-next-line regexp/optimal-quantifier-concatenation
-        const match = /^workspace:(([\^~*])?.*)$/u.exec(currentVersion);
+        const match = WORKSPACE_VERSION_REGEX.exec(currentVersion);
 
         if (!match) {
             return currentVersion;
@@ -280,7 +285,7 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
         const [, range, caret] = match;
 
         if (caret === range) {
-            return caret === "*" ? nextVersion : caret + nextVersion;
+            return caret === "*" ? nextVersion : (caret ?? "") + nextVersion;
         }
 
         return range as string;
@@ -295,11 +300,11 @@ const difference = (object: Record<string, unknown>, base: Record<string, unknow
             accumulator[key]
                 = isObject(value) && isObject(base[key])
                     ? JSON.stringify(difference(value as Record<string, unknown>, base[key] as Record<string, unknown>))
-                    : `${base[key]} → ${value}`;
+                    : `${String(base[key])} → ${String(value)}`;
         }
     }) as Record<string, string> | undefined;
 
-    return result || {};
+    return result ?? {};
 };
 
 /**
@@ -353,7 +358,7 @@ const auditManifestChanges = (actualManifest: Record<string, unknown>, path: str
 export const getNextVersion = (packageJson: Package): string | null => {
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
 
-    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : lastVersion || "1.0.0";
+    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : lastVersion ?? "1.0.0";
 };
 
 /**
@@ -371,7 +376,7 @@ export const getPreReleaseTag = (version: string): string | null => {
 
     const prereleaseTag = parsed.prerelease[0];
 
-    if (prereleaseTag === undefined || prereleaseTag === null) {
+    if (prereleaseTag === undefined) {
         return null;
     }
 
@@ -393,12 +398,12 @@ export const getNextPreVersion = (packageJson: Package): string | undefined => {
     // Note: this is only set is a current multi-semantic-release released
     const lastVersionForCurrentRelease: string | undefined = packageJson._lastRelease?.version;
 
-    const lastPreReleaseTag: string | null = getPreReleaseTag(lastVersionForCurrentRelease || "");
+    const lastPreReleaseTag: string | null = getPreReleaseTag(lastVersionForCurrentRelease ?? "");
     const isNewPreReleaseTag: boolean = lastPreReleaseTag !== null && lastPreReleaseTag !== packageJson._preRelease;
 
     return isNewPreReleaseTag || !lastVersionForCurrentRelease
-        ? `1.0.0-${packageJson._preRelease}.1`
-        : nextPreVersionCases([], lastVersionForCurrentRelease || "", packageJson._nextType || "patch", packageJson._preRelease || "");
+        ? `1.0.0-${packageJson._preRelease ?? ""}.1`
+        : nextPreVersionCases([], lastVersionForCurrentRelease, packageJson._nextType ?? "patch", packageJson._preRelease ?? "");
 };
 
 /**
@@ -411,6 +416,7 @@ export const getNextPreVersion = (packageJson: Package): string | undefined => {
  * @returns Resolved release type.
  * @internal
  */
+/* eslint-disable sonarjs/cognitive-complexity */
 export const resolveReleaseType = (
     packageJson: Package,
     bumpStrategy: string = "override",
@@ -420,14 +426,16 @@ export const resolveReleaseType = (
     ignore: Package[] = [],
     prefix: string = "",
 ): string | undefined => {
+    /* eslint-enable sonarjs/cognitive-complexity */
     const dependentReleaseType = getDependentRelease(packageJson, bumpStrategy, releaseStrategy, ignore, prefix);
 
     if (packageJson._nextType) {
         return packageJson._nextType;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!dependentReleaseType && packageJson.localDeps && packageJson.localDeps.length > 0 && packageJson.manifest) {
-        const manifest = packageJson.manifest as PackageManifest;
+        const { manifest } = packageJson;
         const { dependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
         // Only check runtime dependencies (exclude devDependencies) for triggering releases
         const runtimeDeps = { ...dependencies, ...optionalDependencies, ...peerDependencies };
@@ -441,6 +449,7 @@ export const resolveReleaseType = (
                 return true;
             }
 
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (dep.localDeps && dep.localDeps.length > 0) {
                 const nestedType = getDependentRelease(dep, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
@@ -529,7 +538,7 @@ export const resolveNextVersion = (currentVersion: string, nextVersion: string, 
         const currentChunks: string[] = currentVersion.split(separator);
         const resolvedChunks: string[] = currentChunks.map((chunk: string, index: number) => {
             if (nextChunks[index]) {
-                return chunk.replace(/\d+/u, nextChunks[index]);
+                return chunk.replace(CHUNK_DIGIT_REGEX, nextChunks[index]);
             }
 
             return chunk;
@@ -550,12 +559,12 @@ export const updateManifestDeps = (packageJson: Package): void => {
     const { manifest, path } = packageJson;
     const { indent, trailingWhitespace } = recognizeFormat(manifest.__contents__ as string);
 
-    manifest.version = packageJson?._nextRelease?.version || manifest.version;
+    manifest.version = packageJson._nextRelease?.version ?? manifest.version;
 
     packageJson.localDeps.forEach((d: Package) => {
-        const release = d._nextRelease || d._lastRelease;
+        const release = d._nextRelease ?? d._lastRelease;
 
-        if (!release || !release.version) {
+        if (!release?.version) {
             throw new Error(`Cannot release ${packageJson.name} because dependency ${d.name} has not been released yet`);
         }
     });

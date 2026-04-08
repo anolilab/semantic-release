@@ -8,6 +8,8 @@
  * @returns The normalized repository URL, or the original URL if no normalization is needed.
  * @internal
  */
+const GIT_PROTOCOL_REGEX = /^git:\/\//u;
+
 const normalizeRepositoryUrl = (url: string | undefined): string | undefined => {
     if (!url) {
         return url;
@@ -23,7 +25,7 @@ const normalizeRepositoryUrl = (url: string | undefined): string | undefined => 
     // Remove git:// prefix if present (legacy git protocol)
     // Convert to https:// as git:// is deprecated and not supported by GitHub
     if (url.startsWith("git://")) {
-        return url.replace(/^git:\/\//u, "https://");
+        return url.replace(GIT_PROTOCOL_REGEX, "https://");
     }
 
     return url;

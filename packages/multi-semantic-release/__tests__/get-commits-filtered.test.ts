@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
 import { describe, expect, it } from "vitest";
 
@@ -37,8 +38,8 @@ describe("getCommitsFiltered()", () => {
         const commits: Commit[] = await getCommitsFiltered(cwd, "bbb/");
 
         expect(commits).toHaveLength(1);
-        expect(commits[0].hash).toBe(sha2);
-        expect(commits[0].subject).toBe("Commit 2");
+        expect(commits[0]?.hash).toBe(sha2);
+        expect(commits[0]?.subject).toBe("Commit 2");
     });
 
     it("works correctly (with lastRelease)", async () => {
@@ -85,18 +86,22 @@ describe("getCommitsFiltered()", () => {
         const commits: Commit[] = await getCommitsFiltered(cwd, "bbb/");
 
         expect(commits).toHaveLength(1);
-        expect(commits[0].hash).toBe(sha);
+        expect(commits[0]?.hash).toBe(sha);
     });
 
     it("typeError if cwd is not absolute path to directory", async () => {
         expect.assertions(6);
 
-        await expect(getCommitsFiltered(123, ".")).rejects.toBeInstanceOf(TypeError);
-        await expect(getCommitsFiltered(123, ".")).rejects.toMatchObject({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(123 as any, ".")).rejects.toBeInstanceOf(TypeError);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(123 as any, ".")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("cwd: Must be directory that exists in the filesystem"),
         });
         await expect(getCommitsFiltered("aaa", ".")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered("aaa", ".")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("cwd: Must be directory that exists in the filesystem"),
         });
 
@@ -104,6 +109,7 @@ describe("getCommitsFiltered()", () => {
 
         await expect(getCommitsFiltered(`${cwd}/abc`, ".")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(`${cwd}/abc`, ".")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("cwd: Must be directory that exists in the filesystem"),
         });
     });
@@ -113,16 +119,21 @@ describe("getCommitsFiltered()", () => {
 
         const cwd = temporaryDirectory();
 
-        await expect(getCommitsFiltered(cwd, 123)).rejects.toBeInstanceOf(TypeError);
-        await expect(getCommitsFiltered(cwd, 123)).rejects.toMatchObject({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, 123 as any)).rejects.toBeInstanceOf(TypeError);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, 123 as any)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must be valid path"),
         });
         await expect(getCommitsFiltered(cwd, "abc")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, "abc")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must be a path to an existing directory"),
         });
         await expect(getCommitsFiltered(cwd, `${cwd}/abc`)).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, `${cwd}/abc`)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must be a path to an existing directory"),
         });
     });
@@ -134,10 +145,12 @@ describe("getCommitsFiltered()", () => {
 
         await expect(getCommitsFiltered(cwd, cwd)).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, cwd)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must not be equal to cwd"),
         });
         await expect(getCommitsFiltered(cwd, ".")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, ".")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must not be equal to cwd"),
         });
     });
@@ -150,10 +163,12 @@ describe("getCommitsFiltered()", () => {
 
         await expect(getCommitsFiltered(cwd, direction)).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, direction)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must be inside cwd"),
         });
         await expect(getCommitsFiltered(cwd, "..")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, "..")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("dir: Must be inside cwd"),
         });
     });
@@ -165,16 +180,23 @@ describe("getCommitsFiltered()", () => {
 
         mkdirSync(join(cwd, "dir"));
 
-        await expect(getCommitsFiltered(cwd, "dir", false)).rejects.toBeInstanceOf(TypeError);
-        await expect(getCommitsFiltered(cwd, "dir", false)).rejects.toMatchObject({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", false as any)).rejects.toBeInstanceOf(TypeError);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", false as any)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("lastRelease: Must be alphanumeric string with size 40 or empty"),
         });
-        await expect(getCommitsFiltered(cwd, "dir", 123)).rejects.toBeInstanceOf(TypeError);
-        await expect(getCommitsFiltered(cwd, "dir", 123)).rejects.toMatchObject({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", 123 as any)).rejects.toBeInstanceOf(TypeError);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", 123 as any)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("lastRelease: Must be alphanumeric string with size 40 or empty"),
         });
         await expect(getCommitsFiltered(cwd, "dir", "nottherightlength")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, "dir", "nottherightlength")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("lastRelease: Must be alphanumeric string with size 40 or empty"),
         });
     });
@@ -186,16 +208,23 @@ describe("getCommitsFiltered()", () => {
 
         mkdirSync(join(cwd, "dir"));
 
-        await expect(getCommitsFiltered(cwd, "dir", undefined, false)).rejects.toBeInstanceOf(TypeError);
-        await expect(getCommitsFiltered(cwd, "dir", undefined, false)).rejects.toMatchObject({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", undefined, false as any)).rejects.toBeInstanceOf(TypeError);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", undefined, false as any)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("nextRelease: Must be alphanumeric string with size 40 or empty"),
         });
-        await expect(getCommitsFiltered(cwd, "dir", undefined, 123)).rejects.toBeInstanceOf(TypeError);
-        await expect(getCommitsFiltered(cwd, "dir", undefined, 123)).rejects.toMatchObject({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", undefined, 123 as any)).rejects.toBeInstanceOf(TypeError);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument
+        await expect(getCommitsFiltered(cwd, "dir", undefined, 123 as any)).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("nextRelease: Must be alphanumeric string with size 40 or empty"),
         });
         await expect(getCommitsFiltered(cwd, "dir", undefined, "nottherightlength")).rejects.toBeInstanceOf(TypeError);
         await expect(getCommitsFiltered(cwd, "dir", undefined, "nottherightlength")).rejects.toMatchObject({
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             message: expect.stringMatching("nextRelease: Must be alphanumeric string with size 40 or empty"),
         });
     });
@@ -228,6 +257,6 @@ describe("getCommitsFiltered()", () => {
         const commits: Commit[] = await getCommitsFiltered(cwd, "bbb/", sha2, sha3);
 
         expect(commits).toHaveLength(1);
-        expect(commits[0].hash).toBe(sha3);
+        expect(commits[0]?.hash).toBe(sha3);
     });
 });

@@ -48,7 +48,7 @@ export interface Package {
     options: Record<string, unknown>;
     path: string;
     plugins: PluginFunctions;
-    result?: ReleaseResult | false | undefined;
+    result?: ReleaseResult | false;
 }
 
 // Release information

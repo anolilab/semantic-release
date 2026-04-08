@@ -18,7 +18,7 @@ import type { FileFormat } from "../types";
 const recognizeFormat = (contents: string): FileFormat => {
     return {
         indent: detectIndent(contents).indent,
-        trailingWhitespace: detectNewline(contents) || "",
+        trailingWhitespace: detectNewline(contents) ?? "",
     };
 };
 

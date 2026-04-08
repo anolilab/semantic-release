@@ -49,7 +49,7 @@ describe("repository URL normalization", () => {
 
         const getConfigSemanticSpy = vi
             .spyOn(getConfigSemanticModule, "default")
-            .mockImplementation(async (_context: unknown, options: Record<string, unknown>) => {
+            .mockImplementation((_context: unknown, options: Record<string, unknown>) => {
                 capturedOptions = options;
 
                 // Return a mock response to avoid calling semantic-release's actual getConfig
@@ -69,7 +69,7 @@ describe("repository URL normalization", () => {
 
             // Call multiSemanticRelease - this will fail because we're mocking, but we just need to verify the options
             try {
-                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr, stdout });
+                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream });
             } catch {
                 // Expected to fail, we're just checking the options passed
             }
@@ -119,7 +119,7 @@ describe("repository URL normalization", () => {
 
         const getConfigSemanticSpy = vi
             .spyOn(getConfigSemanticModule, "default")
-            .mockImplementation(async (_context: unknown, options: Record<string, unknown>) => {
+            .mockImplementation((_context: unknown, options: Record<string, unknown>) => {
                 capturedOptions = options;
 
                 // Return a mock response to avoid calling semantic-release's actual getConfig
@@ -139,7 +139,7 @@ describe("repository URL normalization", () => {
 
             // Call multiSemanticRelease - this will fail because we're mocking, but we just need to verify the options
             try {
-                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr, stdout });
+                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream });
             } catch {
                 // Expected to fail, we're just checking the options passed
             }
@@ -186,7 +186,7 @@ describe("repository URL normalization", () => {
 
         const getConfigSemanticSpy = vi
             .spyOn(getConfigSemanticModule, "default")
-            .mockImplementation(async (_context: unknown, options: Record<string, unknown>) => {
+            .mockImplementation((_context: unknown, options: Record<string, unknown>) => {
                 capturedOptions = options;
 
                 // Return a mock response to avoid calling semantic-release's actual getConfig
@@ -206,7 +206,7 @@ describe("repository URL normalization", () => {
 
             // Call multiSemanticRelease - this will fail because we're mocking, but we just need to verify the options
             try {
-                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr, stdout });
+                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream });
             } catch {
                 // Expected to fail, we're just checking the options passed
             }
@@ -254,7 +254,7 @@ describe("repository URL normalization", () => {
 
         const getConfigSemanticSpy = vi
             .spyOn(getConfigSemanticModule, "default")
-            .mockImplementation(async (_context: unknown, options: Record<string, unknown>) => {
+            .mockImplementation((_context: unknown, options: Record<string, unknown>) => {
                 capturedOptions = options;
 
                 // Return a mock response to avoid calling semantic-release's actual getConfig
@@ -274,7 +274,7 @@ describe("repository URL normalization", () => {
 
             // Call multiSemanticRelease - this will fail because we're mocking, but we just need to verify the options
             try {
-                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr, stdout });
+                await multiSemanticRelease([packageJsonPath], {}, { cwd, env: {}, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream });
             } catch {
                 // Expected to fail, we're just checking the options passed
             }

@@ -4,34 +4,9 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 
 import getConfig from "../src/get-config-multi-semrel";
+import type { Flags, MultiReleaseConfig } from "../src/types";
 import { copyDirectory } from "./helpers/file";
 import { gitInit } from "./helpers/git";
-
-type Config = {
-    debug?: boolean;
-    deps: {
-        bump: string;
-        prefix: string;
-        release: string;
-    };
-    dryRun?: boolean;
-    firstParent: boolean;
-    ignorePackages: string[];
-    ignorePrivate: boolean;
-    sequentialInit: boolean;
-    sequentialPrepare: boolean;
-    tagFormat: string;
-};
-
-type CliFlags = {
-    debug?: boolean;
-    deps?: {
-        bump?: string;
-        release?: string;
-    };
-    dryRun?: boolean;
-    ignorePackages?: string[];
-};
 
 const fixturesPath = resolve(dirname(fileURLToPath(import.meta.url)), "../__fixtures__");
 
@@ -39,7 +14,7 @@ describe("getConfig()", () => {
     it("default options", async () => {
         expect.assertions(1);
 
-        const result: Config = await getConfig(process.cwd(), {});
+        const result: MultiReleaseConfig = await getConfig(process.cwd(), {});
 
         expect(result).toMatchObject({
             debug: false,
@@ -62,7 +37,7 @@ describe("getConfig()", () => {
     it("only CLI flags and default options", async () => {
         expect.assertions(1);
 
-        const cliFlags: CliFlags = {
+        const cliFlags: Flags = {
             debug: true,
             deps: {
                 bump: "inherit",
@@ -71,7 +46,7 @@ describe("getConfig()", () => {
             ignorePackages: ["!packages/d/**"],
         };
 
-        const result: Config = await getConfig(process.cwd(), cliFlags);
+        const result: MultiReleaseConfig = await getConfig(process.cwd(), cliFlags);
 
         expect(result).toMatchObject({
             debug: true,
@@ -98,7 +73,7 @@ describe("getConfig()", () => {
 
         copyDirectory(`${fixturesPath}/yarnWorkspacesConfig/`, cwd);
 
-        const result: Config = await getConfig(cwd, {});
+        const result: MultiReleaseConfig = await getConfig(cwd, {});
 
         expect(result).toMatchObject({
             debug: true,
@@ -122,7 +97,7 @@ describe("getConfig()", () => {
         expect.assertions(1);
 
         const cwd = gitInit();
-        const cliFlags: CliFlags = {
+        const cliFlags: Flags = {
             debug: false,
             deps: {
                 release: "minor",
@@ -132,7 +107,7 @@ describe("getConfig()", () => {
 
         copyDirectory(`${fixturesPath}/yarnWorkspacesConfig/`, cwd);
 
-        const result: Config = await getConfig(cwd, cliFlags);
+        const result: MultiReleaseConfig = await getConfig(cwd, cliFlags);
 
         expect(result).toMatchObject({
             debug: false,
@@ -159,7 +134,7 @@ describe("getConfig()", () => {
 
         copyDirectory(`${fixturesPath}/yarnWorkspacesConfigExtends/`, cwd);
 
-        const result: Config = await getConfig(cwd, {});
+        const result: MultiReleaseConfig = await getConfig(cwd, {});
 
         expect(result).toMatchObject({
             debug: true,
@@ -183,7 +158,7 @@ describe("getConfig()", () => {
         expect.assertions(1);
 
         const cwd = gitInit();
-        const cliFlags: CliFlags = {
+        const cliFlags: Flags = {
             debug: false,
             deps: {
                 release: "minor",
@@ -193,7 +168,7 @@ describe("getConfig()", () => {
 
         copyDirectory(`${fixturesPath}/yarnWorkspacesConfigExtends/`, cwd);
 
-        const result: Config = await getConfig(cwd, cliFlags);
+        const result: MultiReleaseConfig = await getConfig(cwd, cliFlags);
 
         expect(result).toMatchObject({
             debug: false,

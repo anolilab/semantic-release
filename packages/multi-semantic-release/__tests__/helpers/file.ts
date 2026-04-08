@@ -63,6 +63,6 @@ export const copyDirectory = (source: string, target: string): void => {
 export const createNewTestingFiles = (folders: string[], cwd: string): void => {
     folders.forEach((fld) => {
         // eslint-disable-next-line sonarjs/pseudo-random
-        writeFileSync(`${cwd}/${fld}test.txt`, `${fld}${Math.random()}`);
+        writeFileSync(`${cwd}/${fld}test.txt`, `${fld}${String(Math.random())}`);
     });
 };

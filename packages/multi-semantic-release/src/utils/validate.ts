@@ -4,6 +4,9 @@ import { Writable } from "node:stream";
 
 import { WritableStreamBuffer } from "stream-buffers";
 
+const ALPHANUMERIC_40_REGEX = /^[a-f0-9]{40}$/i;
+const KEBAB_CASE_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
 /**
  * Check if a value is a directory that exists in the filesystem.
  */
@@ -37,7 +40,7 @@ const isAlphanumeric40 = (v: string | undefined): boolean => {
         return true; // Optional
     }
 
-    return typeof v === "string" && /^[a-f0-9]{40}$/i.test(v);
+    return typeof v === "string" && ALPHANUMERIC_40_REGEX.test(v);
 };
 
 /**
@@ -48,7 +51,7 @@ const isStringPlus = (v: string): boolean => typeof v === "string" && v.length >
 /**
  * Check if a value is a kebab-case string.
  */
-const isKebab = (v: string): boolean => typeof v === "string" && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(v);
+const isKebab = (v: string): boolean => typeof v === "string" && KEBAB_CASE_REGEX.test(v);
 
 /**
  * Check if a value is a lowercase string.
@@ -68,7 +71,8 @@ const isInteger = (v: number): boolean => Number.isInteger(v);
  */
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const validate = (value: unknown, typeString: string): void => {
-    const [name, type] = typeString.split(":").map((s) => s.trim());
+    const [rawName, type] = typeString.split(":").map((s) => s.trim());
+    const name = rawName ?? "value";
     const isOptional = type?.endsWith("?");
     const baseType = isOptional && type ? type.slice(0, -1) : type;
 

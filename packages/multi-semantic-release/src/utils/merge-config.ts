@@ -1,4 +1,4 @@
-// eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
+// eslint-disable-next-line you-dont-need-lodash-underscore/cast-array, e18e/ban-dependencies
 import { castArray, pickBy } from "lodash-es";
 
 const isNil = (value: unknown): boolean => value === undefined || value === null;
@@ -14,7 +14,7 @@ const mergeConfig = (a: Record<string, unknown> = {}, b: Record<string, unknown>
             ...pickBy(b.deps as Record<string, unknown>, (option: unknown) => !isNil(option)),
         },
         // Treat arrays differently by merging them
-        ignorePackages: [...new Set([...castArray(a.ignorePackages || []), ...castArray(b.ignorePackages || [])])],
+        ignorePackages: [...new Set([...castArray(a.ignorePackages ?? []), ...castArray(b.ignorePackages ?? [])])],
     };
 };
 

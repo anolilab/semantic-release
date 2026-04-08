@@ -9,6 +9,8 @@ import cleanPath from "./clean-path";
 
 const { debug } = logger.withScope("msr:catalogChanges");
 
+const VERSION_PREFIX_REGEX = /^[\^~]/;
+
 interface CatalogChanges {
     [catalogName: string]: {
         [packageName: string]: {
@@ -40,7 +42,7 @@ const parsePnpmCatalog = (cwd: string): Record<string, Record<string, string>> |
     try {
         const parsed = readYamlSync<CatalogFile>(catalogPath);
 
-        return parsed.catalogs || null;
+        return parsed.catalogs ?? null;
     } catch (error) {
         debug("Failed to parse pnpm-workspace.yaml:", error);
 
@@ -64,7 +66,7 @@ const parseYarnCatalog = async (cwd: string): Promise<Record<string, Record<stri
     try {
         const parsed = (await readJson(catalogPath)) as CatalogFile;
 
-        return parsed.catalogs || null;
+        return parsed.catalogs ?? null;
     } catch (error) {
         debug("Failed to parse package.json for yarn catalog:", error);
 
@@ -96,6 +98,7 @@ const getCatalogDefinitions = async (cwd: string): Promise<Record<string, Record
  * @returns Catalog definitions or null if no catalogs found.
  */
 const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Promise<Record<string, Record<string, string>> | null> => {
+    // eslint-disable-next-line e18e/ban-dependencies
     const { execa } = await import("execa");
 
     try {
@@ -108,7 +111,7 @@ const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Prom
                 const { parse: parseYaml } = await import("yaml");
                 const parsed = parseYaml(result.stdout) as CatalogFile;
 
-                if (parsed?.catalogs) {
+                if (parsed.catalogs) {
                     return parsed.catalogs;
                 }
             }
@@ -123,7 +126,7 @@ const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Prom
             if (result.exitCode === 0 && result.stdout) {
                 const parsed = JSON.parse(result.stdout) as CatalogFile;
 
-                return parsed.catalogs || null;
+                return parsed.catalogs ?? null;
             }
         } catch {
             // File might not exist at this commit
@@ -144,7 +147,7 @@ const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Prom
 const getReleaseTypeFromVersionChange = (oldVersion: string, newVersion: string): "major" | "minor" | "patch" | null => {
     // Extract version from range (e.g., "^1.2.3" -> "1.2.3")
     const extractVersion = (version: string): string => {
-        const cleaned = version.replace(/^[\^~]/, "").trim();
+        const cleaned = version.replace(VERSION_PREFIX_REGEX, "").trim();
 
         return cleaned;
     };
@@ -232,9 +235,7 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
                 const releaseType = getReleaseTypeFromVersionChange(oldVersion, newVersion);
 
                 if (releaseType) {
-                    if (!changes[catalogName]) {
-                        changes[catalogName] = {};
-                    }
+                    changes[catalogName] ??= {};
 
                     changes[catalogName][packageName] = {
                         newVersion,

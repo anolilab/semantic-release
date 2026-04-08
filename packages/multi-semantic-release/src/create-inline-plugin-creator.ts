@@ -1,4 +1,5 @@
 /* eslint-disable jsdoc/match-description */
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 import { getTagHead } from "semantic-release/lib/git.js";
 import type { ReleaseType } from "semver";
@@ -11,6 +12,8 @@ import cleanPath from "./utils/clean-path";
 import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./utils/detect-catalog-changes";
 
 const { debug } = logger.withScope("msr:inlinePlugin");
+
+const HEADING_VERSION_REGEX = /^(#+) (\[?\d+\.\d+\.\d+\]?)/u;
 
 interface InlinePluginFunctions {
     analyzeCommits?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string | null>;
@@ -47,12 +50,13 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @internal
          */
         const verifyConditions = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!context.options) {
                 context.options = {};
             }
 
             Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(context.options, context.options._pkgOptions ?? {});
 
             context.cwd = dir;
 
@@ -85,21 +89,23 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 throw new Error("context.branch is required");
             }
 
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!context.options) {
                 context.options = {};
             }
 
             Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(context.options, context.options._pkgOptions ?? {});
 
             // eslint-disable-next-line no-param-reassign
-            npmPackage._preRelease = context.branch.prerelease || null;
+            npmPackage._preRelease = context.branch.prerelease ?? null;
             // eslint-disable-next-line no-param-reassign
             npmPackage._branch = context.branch.name;
 
             // Log branch and channel info for debugging
             if (context.branch.channel) {
-                debug(debugPrefix, `Branch channel: ${context.branch.channel}`);
+                // eslint-disable-next-line @typescript-eslint/no-base-to-string
+                debug(debugPrefix, `Branch channel: ${String(context.branch.channel)}`);
             }
 
             context.cwd = dir;
@@ -109,8 +115,8 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             context.commits = await getCommitsFiltered(
                 cwd,
                 dir,
-                context.lastRelease ? (context.lastRelease.gitHead as string | undefined) : undefined,
-                context.nextRelease ? (context.nextRelease.gitHead as string | undefined) : undefined,
+                context.lastRelease ? context.lastRelease.gitHead : undefined,
+                context.nextRelease ? context.nextRelease.gitHead : undefined,
                 firstParentBranch,
             );
 
@@ -122,15 +128,15 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 try {
                     const catalogChanges = await detectCatalogChanges(
                         cwd,
-                        context.lastRelease.gitHead as string,
-                        context.nextRelease?.gitHead as string | undefined,
+                        context.lastRelease.gitHead,
+                        context.nextRelease?.gitHead,
                     );
 
                     if (Object.keys(catalogChanges).length > 0) {
                         catalogChangesCache = getAffectedPackagesFromCatalogChanges(_packages, catalogChanges);
                         catalogChangesDetected = true;
 
-                        debug(debugPrefix, `Detected catalog changes affecting ${catalogChangesCache.size} packages`);
+                        debug(debugPrefix, `Detected catalog changes affecting ${String(catalogChangesCache.size)} packages`);
                     } else {
                         catalogChangesDetected = true; // Mark as checked even if no changes
                     }
@@ -143,16 +149,16 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             // Check if this package is affected by catalog changes
             let catalogTriggeredReleaseType: string | undefined;
 
-            if (catalogChangesCache && catalogChangesCache.has(npmPackage.name)) {
+            if (catalogChangesCache?.has(npmPackage.name)) {
                 catalogTriggeredReleaseType = catalogChangesCache.get(npmPackage.name);
 
-                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType} release`);
+                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release`);
             }
 
             let nextType: string | undefined;
 
             if (plugins.analyzeCommits) {
-                nextType = await plugins.analyzeCommits(context) || undefined;
+                nextType = await plugins.analyzeCommits(context) ?? undefined;
             }
 
             // If catalog changes triggered a release and no commits triggered one, use catalog release type
@@ -184,7 +190,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             debug(debugPrefix, "commits analyzed");
-            debug(debugPrefix, `release type: ${npmPackage._nextType}`);
+            debug(debugPrefix, `release type: ${npmPackage._nextType ?? "none"}`);
 
             return npmPackage._nextType ?? null;
         };
@@ -214,12 +220,13 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @internal
          */
         const generateNotes = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<string> => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!context.options) {
                 context.options = {};
             }
 
             Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(context.options, context.options._pkgOptions ?? {});
 
             context.cwd = dir;
 
@@ -234,15 +241,14 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             const notes = [];
 
             if (
-                context.lastRelease
-                && context.lastRelease.gitTag
+                context.lastRelease?.gitTag
                 && (!context.lastRelease.gitHead || context.lastRelease.gitHead === context.lastRelease.gitTag)
             ) {
                 // Get repository root to ensure consistent tag lookup
                 const root = await execa("git", ["rev-parse", "--show-toplevel"], { cwd: context.cwd });
                 const gitRoot = cleanPath(root.stdout);
 
-                context.lastRelease.gitHead = await getTagHead(context.lastRelease.gitTag as string, {
+                context.lastRelease.gitHead = await getTagHead(context.lastRelease.gitTag, {
                     cwd: gitRoot,
                     env: context.env,
                 });
@@ -257,8 +263,8 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             context.commits = await getCommitsFiltered(
                 cwd,
                 dir,
-                context.lastRelease ? (context.lastRelease.gitHead as string | undefined) : undefined,
-                context.nextRelease ? (context.nextRelease.gitHead as string | undefined) : undefined,
+                context.lastRelease ? context.lastRelease.gitHead : undefined,
+                context.nextRelease ? context.nextRelease.gitHead : undefined,
                 firstParentBranch,
             );
 
@@ -269,7 +275,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             if (subs) {
-                notes.push(subs.replace(/^(#+) (\[?\d+\.\d+\.\d+\]?)/u, `$1 ${name} $2`));
+                notes.push(subs.replace(HEADING_VERSION_REGEX, `$1 ${name} $2`));
             }
 
             const upgrades = npmPackage.localDeps.filter((d: Package) => d._nextRelease);
@@ -298,12 +304,13 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
         };
 
         const prepare = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!context.options) {
                 context.options = {};
             }
 
             Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(context.options, context.options._pkgOptions ?? {});
 
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping prepare in dry-run mode");
@@ -326,8 +333,8 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             context.commits = await getCommitsFiltered(
                 cwd,
                 dir,
-                context.lastRelease ? (context.lastRelease.gitHead as string | undefined) : undefined,
-                context.nextRelease ? (context.nextRelease.gitHead as string | undefined) : undefined,
+                context.lastRelease ? context.lastRelease.gitHead : undefined,
+                context.nextRelease ? context.nextRelease.gitHead : undefined,
                 firstParentBranch,
             );
 
@@ -342,12 +349,13 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
         };
 
         const publish = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<unknown> => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!context.options) {
                 context.options = {};
             }
 
             Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(context.options, context.options._pkgOptions ?? {});
 
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping publish in dry-run mode");
@@ -360,7 +368,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             let result: unknown[] = [];
 
             if (plugins.publish) {
-                const publishResult = await plugins.publish?.(context);
+                const publishResult = await plugins.publish(context);
 
                 if (publishResult !== undefined) {
                     result = Array.isArray(publishResult) ? publishResult : [publishResult];
@@ -386,15 +394,16 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @internal
          */
         const verifyRelease = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             if (!context.options) {
                 context.options = {};
             }
 
             Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions || {});
+            Object.assign(context.options, context.options._pkgOptions ?? {});
             context.cwd = dir;
 
-            await plugins?.verifyRelease?.(context);
+            await plugins.verifyRelease?.(context);
 
             debug(debugPrefix, "release verified");
         };

@@ -2,7 +2,7 @@ import { dirname } from "node:path";
 
 import { topo } from "@semrel-extra/topo";
 import dbg from "debug";
-// eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
+// eslint-disable-next-line you-dont-need-lodash-underscore/cast-array, e18e/ban-dependencies
 import { castArray, sortBy, template } from "lodash-es";
 import type { Options } from "semantic-release";
 import semanticRelease from "semantic-release";
@@ -78,6 +78,7 @@ const getPackage = async (
 
         if (typeof manifest.repository === "string") {
             repositoryUrl = manifest.repository;
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
         } else if (typeof manifest.repository === "object" && manifest.repository !== null && "url" in manifest.repository) {
             repositoryUrl = manifest.repository.url as string;
         }
@@ -127,10 +128,10 @@ const releasePackage = async (
     // eslint-disable-next-line no-template-curly-in-string
     const tagFormatDefault = "${name}@${version}";
 
-    options.tagFormat = template(flags.tagFormat || tagFormatDefault)(tagFormatContext);
+    options.tagFormat = template(flags.tagFormat ?? tagFormatDefault)(tagFormatContext);
     options.debug = flags.debug;
-    options.dryRun = flags.dryRun === undefined ? options.dryRun : flags.dryRun;
-    options.ci = flags.ci === undefined ? options.ci : flags.ci;
+    options.dryRun = flags.dryRun ?? options.dryRun;
+    options.ci = flags.ci ?? options.ci;
     options.branches = flags.branches ? castArray(flags.branches) : options.branches;
     options._pkgOptions = packageOptions;
 
@@ -255,7 +256,7 @@ const multiSemanticRelease = async (
     }
 
     const globalOptions: GlobalOptions = await getConfig(cwd);
-    const multiContext: MultiContext = { cwd, env: environment as NodeJS.ProcessEnv, globalOptions, inputOptions, stderr, stdout };
+    const multiContext: MultiContext = { cwd, env: environment, globalOptions, inputOptions, stderr, stdout };
     const { packages: allPackages, queue } = await topo({
         cwd,
         filter: ((entry: { manifest: { private?: boolean }; manifestAbsPath: string; manifestRelPath: string }) => {
@@ -270,13 +271,13 @@ const multiSemanticRelease = async (
     });
 
     // eslint-disable-next-line no-param-reassign
-    paths = paths || Object.values(allPackages).map((pkg: { manifestPath: string }) => pkg.manifestPath);
+    paths = paths ?? Object.values(allPackages).map((pkg: { manifestPath: string }) => pkg.manifestPath);
 
-    (logger as { complete: (...args: unknown[]) => void }).complete(`Started multirelease! Loading ${paths.length} packages...`);
+    (logger as { complete: (...args: unknown[]) => void }).complete(`Started multirelease! Loading ${String(paths.length)} packages...`);
 
-    let packages: Package[] = (await Promise.all(paths.map((path: string) => getPackage(path, multiContext)))) as Package[];
+    const packageResults = await Promise.all(paths.map((path: string) => getPackage(path, multiContext)));
 
-    packages = packages.filter((pkg): pkg is Package => pkg !== undefined) as Package[];
+    const packages: Package[] = packageResults.filter((pkg): pkg is Package => pkg !== undefined);
 
     packages.forEach((package_: Package) => {
         // eslint-disable-next-line no-param-reassign
@@ -285,7 +286,7 @@ const multiSemanticRelease = async (
         (logger as { success: (...args: unknown[]) => void }).success(`Loaded package ${package_.name}`);
     });
 
-    (logger as { complete: (...args: unknown[]) => void }).complete(`Queued ${queue.length} packages! Starting release...`);
+    (logger as { complete: (...args: unknown[]) => void }).complete(`Queued ${String(queue.length)} packages! Starting release...`);
 
     const createInlinePlugin = createInlinePluginCreator(packages, multiContext, mergedFlags) as (package_: Package) => Record<string, unknown>;
     // eslint-disable-next-line unicorn/no-array-reduce
@@ -304,7 +305,7 @@ const multiSemanticRelease = async (
         return count;
     }, Promise.resolve(0));
 
-    (logger as { complete: (...args: unknown[]) => void }).complete(`Released ${released} of ${queue.length} packages, semantically!`);
+    (logger as { complete: (...args: unknown[]) => void }).complete(`Released ${String(released)} of ${String(queue.length)} packages, semantically!`);
 
     return sortBy(packages, ({ name }: Package) => queue.indexOf(name));
 };

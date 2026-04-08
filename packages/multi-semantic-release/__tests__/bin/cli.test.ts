@@ -1,7 +1,9 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import type { Result } from "execa";
+// eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 import { describe, expect, it } from "vitest";
 

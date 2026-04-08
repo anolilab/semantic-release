@@ -3,8 +3,10 @@
  * https://github.com/semantic-release/semantic-release/blob/master/test/helpers/git-utils.js
  */
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { execaSync } from "execa";
 import fileUrl from "file-url";
+// eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
 
 import { validate } from "../../src/utils/validate";
@@ -202,5 +204,5 @@ export const gitGetLog = (cwd: string, number: number, hash: string): string => 
     validate(hash, "hash: string+");
 
     // Run command.
-    return execaSync("git", ["log", `-${number}`, hash], { cwd }).stdout;
+    return execaSync("git", ["log", `-${String(number)}`, hash], { cwd }).stdout;
 };

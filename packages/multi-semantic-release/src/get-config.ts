@@ -25,7 +25,7 @@ const getConfig = async (cwd: string): Promise<Record<string, unknown>> => {
     const config = await cosmiconfig(CONFIG_NAME, { mergeSearchPlaces: false, searchPlaces: CONFIG_FILES }).search(cwd);
 
     // Not important
-    return config?.config ?? {};
+    return (config?.config ?? {}) as Record<string, unknown>;
 };
 
 export default getConfig;

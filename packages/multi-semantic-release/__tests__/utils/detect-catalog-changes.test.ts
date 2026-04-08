@@ -76,7 +76,7 @@ catalogs:
 
             expect(changes).toHaveProperty("cli");
             expect(changes.cli).toHaveProperty("semantic-release");
-            expect(changes.cli["semantic-release"]).toStrictEqual({
+            expect(changes.cli?.["semantic-release"]).toStrictEqual({
                 newVersion: "^25.0.0",
                 oldVersion: "^24.0.0",
                 releaseType: "major",
@@ -117,7 +117,7 @@ catalogs:
 
             const changes = await detectCatalogChanges(cwd, initialSha);
 
-            expect(changes.cli["semantic-release"]).toStrictEqual({
+            expect(changes.cli?.["semantic-release"]).toStrictEqual({
                 newVersion: "^24.1.0",
                 oldVersion: "^24.0.0",
                 releaseType: "minor",
@@ -158,7 +158,7 @@ catalogs:
 
             const changes = await detectCatalogChanges(cwd, initialSha);
 
-            expect(changes.cli["semantic-release"]).toStrictEqual({
+            expect(changes.cli?.["semantic-release"]).toStrictEqual({
                 newVersion: "^24.0.1",
                 oldVersion: "^24.0.0",
                 releaseType: "patch",
@@ -207,9 +207,9 @@ catalogs:
 
             expect(changes).toHaveProperty("cli");
             expect(changes).toHaveProperty("dev");
-            expect(changes.cli["semantic-release"].releaseType).toBe("major");
-            expect(changes.cli["@semantic-release/changelog"].releaseType).toBe("major");
-            expect(changes.dev["typescript"].releaseType).toBe("minor");
+            expect(changes.cli?.["semantic-release"]?.releaseType).toBe("major");
+            expect(changes.cli?.["@semantic-release/changelog"]?.releaseType).toBe("major");
+            expect(changes.dev?.["typescript"]?.releaseType).toBe("minor");
         });
 
         it("should return empty object when no last release", async () => {
@@ -294,7 +294,7 @@ catalogs:
             const result = findPackagesUsingCatalog(packages, "cli");
 
             expect(result).toHaveLength(1);
-            expect(result[0].name).toBe("package-a");
+            expect(result[0]?.name).toBe("package-a");
         });
 
         it("should NOT find packages using catalog in devDependencies (devDeps don't trigger releases)", () => {
@@ -310,7 +310,7 @@ catalogs:
                         peerDependencies: {},
                     },
                     name: "package-a",
-                } as Package,
+                } as unknown as Package,
             ];
 
             const result = findPackagesUsingCatalog(packages, "dev");
@@ -329,7 +329,7 @@ catalogs:
             const result = findPackagesUsingCatalog(packages, "cli", "semantic-release");
 
             expect(result).toHaveLength(1);
-            expect(result[0].name).toBe("package-a");
+            expect(result[0]?.name).toBe("package-a");
         });
 
         it("should return empty array when no packages use catalog", () => {
@@ -479,11 +479,11 @@ catalogs:
             expect(changes).toHaveProperty("cli");
             expect(changes).toHaveProperty("dev");
             expect(changes).toHaveProperty("prod");
-            expect(changes.cli["semantic-release"].releaseType).toBe("major");
-            expect(changes.cli["@semantic-release/changelog"].releaseType).toBe("major");
-            expect(changes.dev["typescript"].releaseType).toBe("minor");
-            expect(changes.dev["eslint"].releaseType).toBe("major");
-            expect(changes.prod["lodash-es"].releaseType).toBe("minor");
+            expect(changes.cli?.["semantic-release"]?.releaseType).toBe("major");
+            expect(changes.cli?.["@semantic-release/changelog"]?.releaseType).toBe("major");
+            expect(changes.dev?.["typescript"]?.releaseType).toBe("minor");
+            expect(changes.dev?.["eslint"]?.releaseType).toBe("major");
+            expect(changes.prod?.["lodash-es"]?.releaseType).toBe("minor");
         });
     });
 });

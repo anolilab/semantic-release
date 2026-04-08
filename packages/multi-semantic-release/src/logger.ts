@@ -87,17 +87,18 @@ const logger: Logger = {
         };
     },
     // eslint-disable-next-line unicorn/no-array-reduce
-    ...(([...severityOrder, ...Object.keys(aliases)] as const).reduce(
+    ...(([...severityOrder, ...Object.keys(aliases)] as const).reduce<Record<string, (...args: unknown[]) => void>>(
         (m: Record<string, (...args: unknown[]) => void>, l: string) => {
             // eslint-disable-next-line no-param-reassign,func-names
             m[l] = function (...arguments_: unknown[]) {
-                if (assertLevel(aliases[l as keyof typeof aliases] || l, (this as Logger).config.level)) {
-                    const signaleInstance = (this as Logger).config._signale as Record<string, unknown>;
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+                if (assertLevel(aliases[l as keyof typeof aliases] ?? l, (this as Logger).config.level)) {
+                    const signaleInstance = (this as Logger).config._signale;
                     const logFunction
                         = (signaleInstance[l] as ((...args: unknown[]) => void) | undefined)
                         // eslint-disable-next-line no-console
-                            || (console[l as keyof Console] as ((...args: unknown[]) => void) | undefined)
-                            || (() => {});
+                            ?? (console[l as keyof Console] as ((...args: unknown[]) => void) | undefined)
+                            ?? (() => {});
 
                     logFunction((this as Logger).prefix, ...arguments_);
                 }
@@ -105,7 +106,7 @@ const logger: Logger = {
 
             return m;
         },
-        {} as Record<string, (...args: unknown[]) => void>,
+        {},
     ) as Pick<Logger, "complete" | "error" | "failure" | "info" | "log" | "success" | "warn">),
     debug: dbg("msr:"),
 };

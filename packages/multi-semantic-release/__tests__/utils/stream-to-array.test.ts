@@ -2,6 +2,7 @@ import { createReadStream, unlinkSync, writeFileSync } from "node:fs";
 import { nextTick } from "node:process";
 import { PassThrough, Readable } from "node:stream";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { temporaryFile } from "tempy";
 import { describe, expect, it } from "vitest";
 

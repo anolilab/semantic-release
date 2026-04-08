@@ -62,7 +62,7 @@ const getManifest = (path: string): PackageManifest => {
     }
 
     const checkDeps = (scope: string) => {
-        if (Object.prototype.hasOwnProperty.call(manifestTyped, scope) && typeof manifestTyped[scope as keyof PackageManifest] !== "object") {
+        if (Object.hasOwn(manifestTyped, scope) && typeof manifestTyped[scope as keyof PackageManifest] !== "object") {
             throw new SyntaxError(`Package ${scope} must be object: "${path}"`);
         }
     };

@@ -14,11 +14,12 @@ import { gt, prerelease, rcompare } from "semver";
  * @internal
  */
 const selectVersionBy = (predicate: (a: string, b: string) => boolean, version1: string | undefined, version2: string | undefined): string | undefined => {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (predicate && version1 && version2) {
         return predicate(version1, version2) ? version1 : version2;
     }
 
-    return version1 || version2;
+    return version1 ?? version2;
 };
 
 /**
@@ -34,4 +35,5 @@ export const getHighestVersion = selectVersionBy.bind(null, gt);
  * @internal
  */
 export const getLatestVersion = (versions: string[], withPrerelease?: boolean): string | undefined =>
+    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
     versions.filter((version: string) => withPrerelease || !prerelease(version)).toSorted(rcompare)[0];

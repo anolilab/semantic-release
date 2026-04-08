@@ -1,7 +1,7 @@
 import { createRequire } from "node:module";
 
 import { cosmiconfig } from "cosmiconfig";
-// eslint-disable-next-line you-dont-need-lodash-underscore/cast-array
+// eslint-disable-next-line you-dont-need-lodash-underscore/cast-array, e18e/ban-dependencies
 import { castArray } from "lodash-es";
 import resolveFrom from "resolve-from";
 
@@ -31,20 +31,21 @@ const CONFIG_FILES = [
  * @internal
  */
 const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<MultiReleaseConfig> => {
-    const { config } = await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd) || {};
-    const { extends: extendPaths, ...rest } = { ...config };
+    const searchResult = await cosmiconfig(CONFIG_NAME, { searchPlaces: CONFIG_FILES }).search(cwd);
+    const config = (searchResult?.config ?? {}) as Record<string, unknown>;
+    const { extends: extendPaths, ...rest } = config;
 
-    let options: MultiReleaseConfig = rest;
+    let options: MultiReleaseConfig = rest as MultiReleaseConfig;
 
     if (extendPaths) {
         const require = createRequire(import.meta.url);
         // eslint-disable-next-line unicorn/no-array-reduce
-        const extendedOptions: MultiReleaseConfig = castArray(extendPaths).reduce((result: MultiReleaseConfig, extendPath: string) => {
+        const extendedOptions: MultiReleaseConfig = castArray(extendPaths as string | string[]).reduce<MultiReleaseConfig>((result: MultiReleaseConfig, extendPath: string) => {
             // eslint-disable-next-line import/no-dynamic-require
-            const extendsOptions: MultiReleaseConfig = require(resolveFrom(cwd, extendPath));
+            const extendsOptions: MultiReleaseConfig = require(resolveFrom(cwd, extendPath)) as MultiReleaseConfig;
 
             return mergeConfig(result, extendsOptions);
-        }, {} as MultiReleaseConfig);
+        }, {});
 
         options = mergeConfig(options, extendedOptions);
     }
