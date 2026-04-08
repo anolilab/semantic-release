@@ -99,7 +99,7 @@ Your configuration for the \`publishBranch\` option is \`${String(publishBranch)
     },
     EINVALIDTARBALLDIR: ({ tarballDir }: ErrorContext) => {
         return {
-            details: `The [tarballDir option](${linkify("README.md#tarballdir")}) option, if defined, must be a \`String\`.
+            details: `The [tarballDir option](${linkify("README.md#tarballdir")}) option, if defined, must be a \`String\` or \`false\`.
 Your configuration for the \`tarballDir\` option is \`${String(tarballDir)}\`.`,
             message: "Invalid `tarballDir` option.",
         };

@@ -4,5 +4,5 @@ export interface PluginConfig {
     npmPublish?: boolean;
     pkgRoot?: string;
     publishBranch?: string;
-    tarballDir?: string;
+    tarballDir?: false | string;
 }

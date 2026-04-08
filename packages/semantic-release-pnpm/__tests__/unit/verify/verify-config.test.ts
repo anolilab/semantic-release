@@ -5,13 +5,13 @@ import type { PluginConfig } from "../../../src/definitions/plugin-config";
 import verifyConfig from "../../../src/verify/verify-config";
 
 describe("verify-config", () => {
-    it("verify \"npmPublish\", \"tarballDir\" and \"pkgRoot\" options", () => {
+    it('verify "npmPublish", "tarballDir" and "pkgRoot" options', () => {
         expect.assertions(1);
 
         expect(verifyConfig({ npmPublish: true, pkgRoot: "dist", tarballDir: "release" })).toStrictEqual([]);
     });
 
-    it("return SemanticReleaseError if \"npmPublish\" option is not a Boolean", () => {
+    it('return SemanticReleaseError if "npmPublish" option is not a Boolean', () => {
         expect.assertions(3);
 
         const npmPublish = 42;
@@ -22,7 +22,13 @@ describe("verify-config", () => {
         expect((error as SemanticReleaseError).code).toBe("EINVALIDNPMPUBLISH");
     });
 
-    it("return SemanticReleaseError if \"tarballDir\" option is not a String", () => {
+    it('accept "tarballDir" option set to false', () => {
+        expect.assertions(1);
+
+        expect(verifyConfig({ tarballDir: false })).toStrictEqual([]);
+    });
+
+    it('return SemanticReleaseError if "tarballDir" option is not a String or false', () => {
         expect.assertions(3);
 
         // eslint-disable-next-line unicorn/prevent-abbreviations
@@ -34,7 +40,7 @@ describe("verify-config", () => {
         expect((error as SemanticReleaseError).code).toBe("EINVALIDTARBALLDIR");
     });
 
-    it("return SemanticReleaseError if \"pkgRoot\" option is not a String", () => {
+    it('return SemanticReleaseError if "pkgRoot" option is not a String', () => {
         expect.assertions(3);
 
         const packageRoot = 42;
@@ -45,7 +51,7 @@ describe("verify-config", () => {
         expect((error as SemanticReleaseError).code).toBe("EINVALIDPKGROOT");
     });
 
-    it("return SemanticReleaseError if \"publishBranch\" option is not a String", () => {
+    it('return SemanticReleaseError if "publishBranch" option is not a String', () => {
         expect.assertions(3);
 
         const publishBranch = 42;

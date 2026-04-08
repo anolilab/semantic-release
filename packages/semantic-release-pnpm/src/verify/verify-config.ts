@@ -28,7 +28,8 @@ const VALIDATORS: Record<string, ValidatorFunction> = {
     npmPublish: (value: any): boolean => typeof value === "boolean",
     pkgRoot: isNonEmptyString,
     publishBranch: isNonEmptyString,
-    tarballDir: isNonEmptyString,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    tarballDir: (value: any): boolean => value === false || isNonEmptyString(value),
 };
 
 /**
@@ -39,7 +40,8 @@ const VALIDATORS: Record<string, ValidatorFunction> = {
  * Currently validated options:
  * • branches – must be an array of branch definitions.
  * • npmPublish – must be a boolean.
- * • pkgRoot, publishBranch, tarballDir – must be non-empty strings.
+ * • pkgRoot, publishBranch – must be non-empty strings.
+ * • tarballDir – must be a non-empty string or `false`.
  *
  * Options that are `null` or `undefined` are ignored (treated as not provided).
  * @param config – Plugin configuration object to validate.
