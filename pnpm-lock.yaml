@@ -311,7 +311,7 @@ overrides:
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.18.0'
   axios@>=1.0.0 <=1.13.4: '>=1.13.5'
   body-parser@>=2.2.0 <2.2.1: '>=2.2.1'
-  brace-expansion@<1.1.13: '>=1.1.13'
+  brace-expansion@<1.1.13: '>=3.0.2'
   brace-expansion@>=2.0.0 <2.0.3: '>=2.0.3'
   chrono-node@<2.2.4: '>=2.9.0'
   defu@<=6.1.4: '>=6.1.5'
@@ -505,7 +505,7 @@ importers:
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
         version: 3.2.1
@@ -732,7 +732,7 @@ importers:
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.6.0
@@ -985,7 +985,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.0.0
+        specifier: 8.1.0
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -1174,6 +1174,14 @@ packages:
     hasBin: true
     peerDependencies:
       prettier: 3.8.1
+
+  '@anolilab/rc@4.0.1':
+    resolution: {integrity: sha512-jrSMVwHTrdRqavktZUx7CnCfKKzPuoR5QGwA1azRbIYuuV4Di8AbwSmEiEtzDyYV7RgRnowW/aIQmWJBNCGKqw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-pnpm@8.0.0':
+    resolution: {integrity: sha512-voN33QLeZYkiIgdoDG8F64uhBKHKTLkuuD45Wa1LYgcM6aNINO0swMUVcCbHlUvsbE9TRD4macE3q4sOGvaVqQ==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@anolilab/textlint-config@13.0.0':
     resolution: {integrity: sha512-su0BwbOmLnpBimts53VMHVp7ei2HhDTK76vqrSzC//AEce9/E8kCJeArwU/atzpONzCZt8g3q0A+NFVN0mTXIQ==}
@@ -9557,6 +9565,35 @@ snapshots:
   '@anolilab/prettier-config@10.0.0(prettier@3.8.1)':
     dependencies:
       prettier: 3.8.1
+
+  '@anolilab/rc@4.0.1(yaml@2.8.3)':
+    dependencies:
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/path': 2.0.5
+      ini: 6.0.0
+      ts-deepmerge: 7.0.3
+    transitivePeerDependencies:
+      - yaml
+
+  '@anolilab/semantic-release-pnpm@8.0.0(@types/node@25.5.2)(yaml@2.8.3)':
+    dependencies:
+      '@actions/core': 3.0.0
+      '@anolilab/rc': 4.0.1(yaml@2.8.3)
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/package': 4.1.7(@types/node@25.5.2)
+      '@visulima/path': 2.0.5
+      debug: 4.4.3
+      env-ci: 11.2.0
+      execa: 9.6.1
+      ini: 6.0.0
+      normalize-url: 9.0.0
+      registry-auth-token: 5.1.1
+      semver: 7.7.4
+    transitivePeerDependencies:
+      - '@types/node'
+      - supports-color
+      - yaml
 
   '@anolilab/textlint-config@13.0.0(textlint@15.5.2)':
     dependencies:
