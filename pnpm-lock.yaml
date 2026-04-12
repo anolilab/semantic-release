@@ -309,7 +309,7 @@ overrides:
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.26.0'
   ajv@<6.14.0: '>=6.14.0'
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.18.0'
-  axios@>=1.0.0 <=1.13.4: '>=1.13.5'
+  axios@>=1.0.0 <=1.13.4: '>=1.15.0'
   body-parser@>=2.2.0 <2.2.1: '>=2.2.1'
   brace-expansion@<1.1.13: '>=1.1.13'
   brace-expansion@>=2.0.0 <2.0.3: '>=2.0.3'
@@ -505,7 +505,7 @@ importers:
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
         version: 3.2.1
@@ -732,7 +732,7 @@ importers:
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.6.0
@@ -985,7 +985,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.0.0
+        specifier: 8.1.0
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -1174,6 +1174,14 @@ packages:
     hasBin: true
     peerDependencies:
       prettier: 3.8.1
+
+  '@anolilab/rc@4.0.1':
+    resolution: {integrity: sha512-jrSMVwHTrdRqavktZUx7CnCfKKzPuoR5QGwA1azRbIYuuV4Di8AbwSmEiEtzDyYV7RgRnowW/aIQmWJBNCGKqw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-pnpm@8.0.0':
+    resolution: {integrity: sha512-voN33QLeZYkiIgdoDG8F64uhBKHKTLkuuD45Wa1LYgcM6aNINO0swMUVcCbHlUvsbE9TRD4macE3q4sOGvaVqQ==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@anolilab/textlint-config@13.0.0':
     resolution: {integrity: sha512-su0BwbOmLnpBimts53VMHVp7ei2HhDTK76vqrSzC//AEce9/E8kCJeArwU/atzpONzCZt8g3q0A+NFVN0mTXIQ==}
@@ -3893,8 +3901,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  axios@1.14.0:
-    resolution: {integrity: sha512-3Y8yrqLSwjuzpXuZ0oIYZ/XGgLwUIBU3uLvbcpb0pidD9ctpShJd43KSlEEkVQg6DS0G9NKyzOvBfUtDKEyHvQ==}
+  axios@1.15.0:
+    resolution: {integrity: sha512-wWyJDlAatxk30ZJer+GeCWS209sA42X+N5jU2jy6oHTp7ufw8uzUTVFBX9+wTfAlhiJXGS0Bq7X6efruWjuK9Q==}
 
   bail@1.0.5:
     resolution: {integrity: sha512-xFbRxM1tahm08yHBP16MMjVUAvDaBMD38zsM9EMAUN61omwLmKlOpB/Zku5QkjZ8TZ4vn53pj+t518cH0S03RQ==}
@@ -9558,6 +9566,35 @@ snapshots:
     dependencies:
       prettier: 3.8.1
 
+  '@anolilab/rc@4.0.1(yaml@2.8.3)':
+    dependencies:
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/path': 2.0.5
+      ini: 6.0.0
+      ts-deepmerge: 7.0.3
+    transitivePeerDependencies:
+      - yaml
+
+  '@anolilab/semantic-release-pnpm@8.0.0(@types/node@25.5.2)(yaml@2.8.3)':
+    dependencies:
+      '@actions/core': 3.0.0
+      '@anolilab/rc': 4.0.1(yaml@2.8.3)
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/package': 4.1.7(@types/node@25.5.2)
+      '@visulima/path': 2.0.5
+      debug: 4.4.3
+      env-ci: 11.2.0
+      execa: 9.6.1
+      ini: 6.0.0
+      normalize-url: 9.0.0
+      registry-auth-token: 5.1.1
+      semver: 7.7.4
+    transitivePeerDependencies:
+      - '@types/node'
+      - supports-color
+      - yaml
+
   '@anolilab/textlint-config@13.0.0(textlint@15.5.2)':
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
@@ -12302,7 +12339,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  axios@1.14.0:
+  axios@1.15.0:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
@@ -16411,7 +16448,7 @@ snapshots:
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.2
       '@zkochan/js-yaml': 0.0.7
-      axios: 1.14.0
+      axios: 1.15.0
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       cliui: 8.0.1
