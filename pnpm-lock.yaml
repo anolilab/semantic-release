@@ -48,8 +48,8 @@ catalogs:
       specifier: ^0.18.2
       version: 0.18.2
     '@ckeditor/typedoc-plugins':
-      specifier: 55.4.0
-      version: 55.4.0
+      specifier: 55.5.0
+      version: 55.5.0
     '@visulima/packem':
       specifier: 2.0.0-alpha.49
       version: 2.0.0-alpha.49
@@ -305,8 +305,8 @@ catalogs:
 overrides:
   '@hono/node-server@<1.19.10': '>=1.19.10'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
-  '@modelcontextprotocol/sdk@<1.25.2': '>=1.25.2'
-  '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.26.0'
+  '@modelcontextprotocol/sdk@<1.25.2': '>=1.29.0'
+  '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.29.0'
   ajv@<6.14.0: '>=6.14.0'
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.18.0'
   axios@>=1.0.0 <=1.13.4: '>=1.13.5'
@@ -336,15 +336,15 @@ overrides:
   path-to-regexp@>=8.0.0 <8.4.0: '>=8.4.0'
   picomatch@<2.3.2: '>=2.3.2'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.4'
-  qs@<6.14.1: '>=6.14.1'
-  qs@>=6.7.0 <=6.14.1: '>=6.14.2'
+  qs@<6.14.1: '>=6.15.1'
+  qs@>=6.7.0 <=6.14.1: '>=6.15.1'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.1'
   tmp@<=0.2.3: '>=0.2.5'
-  undici@<6.23.0: '>=6.23.0'
+  undici@<6.23.0: '>=6.24.1'
   undici@<6.24.0: '>=6.24.0'
   undici@>=6.0.0 <6.24.0: '>=6.24.0'
-  undici@>=7.0.0 <7.18.2: '>=7.18.2'
+  undici@>=7.0.0 <7.18.2: '>=7.24.7'
   undici@>=7.0.0 <7.24.0: '>=7.24.0'
   undici@>=7.17.0 <7.24.0: '>=7.24.0'
   vite@>=7.0.0 <=7.3.1: '>=7.3.2'
@@ -505,7 +505,7 @@ importers:
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
         version: 3.2.1
@@ -556,7 +556,7 @@ importers:
         version: 17.0.35
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
+        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.1.3(vitest@4.1.3)
@@ -629,7 +629,7 @@ importers:
         version: 10.0.0(prettier@3.8.1)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
-        version: 55.4.0(typedoc@0.28.18(typescript@6.0.2))
+        version: 55.5.0(typedoc@0.28.18(typescript@6.0.2))
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.6.0
@@ -659,7 +659,7 @@ importers:
         version: 25.5.2
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
+        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.1.3(vitest@4.1.3)
@@ -732,7 +732,7 @@ importers:
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.6.0
@@ -762,7 +762,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
+        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.1.3(vitest@4.1.3)
@@ -895,7 +895,7 @@ importers:
         version: 3.0.8
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
+        version: 2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
       '@vitest/coverage-v8':
         specifier: catalog:test
         version: 4.1.3(vitest@4.1.3)
@@ -985,7 +985,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.0.0
+        specifier: 8.1.0
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -1175,6 +1175,14 @@ packages:
     peerDependencies:
       prettier: 3.8.1
 
+  '@anolilab/rc@4.0.1':
+    resolution: {integrity: sha512-jrSMVwHTrdRqavktZUx7CnCfKKzPuoR5QGwA1azRbIYuuV4Di8AbwSmEiEtzDyYV7RgRnowW/aIQmWJBNCGKqw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-pnpm@8.0.0':
+    resolution: {integrity: sha512-voN33QLeZYkiIgdoDG8F64uhBKHKTLkuuD45Wa1LYgcM6aNINO0swMUVcCbHlUvsbE9TRD4macE3q4sOGvaVqQ==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
   '@anolilab/textlint-config@13.0.0':
     resolution: {integrity: sha512-su0BwbOmLnpBimts53VMHVp7ei2HhDTK76vqrSzC//AEce9/E8kCJeArwU/atzpONzCZt8g3q0A+NFVN0mTXIQ==}
     engines: {node: '>=22.12.0 <=25.*'}
@@ -1293,8 +1301,8 @@ packages:
   '@cacheable/utils@2.3.3':
     resolution: {integrity: sha512-JsXDL70gQ+1Vc2W/KUFfkAJzgb4puKwwKehNLuB+HrNKWf91O736kGfxn4KujXCCSuh6mRRL4XEB0PkAFjWS0A==}
 
-  '@ckeditor/typedoc-plugins@55.4.0':
-    resolution: {integrity: sha512-SVXiGZt1B/VdUYxsUrElvuA01h7W7yNAGXq/NHMvtk14Ooy4x4DBowGjGXfwqKq1mB3Zgz4H3Y9OYMlJiDXz4Q==}
+  '@ckeditor/typedoc-plugins@55.5.0':
+    resolution: {integrity: sha512-5ZUVxeMIT8caMfma3BxaGVFONz7wqtGyOt9lZ+IjWUl8fK715RISU8PMjzXHy81IEDUcfrFflsRXt5tE7jiQBQ==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
     peerDependencies:
       typedoc: ^0.28.14
@@ -7771,8 +7779,8 @@ packages:
     resolution: {integrity: sha512-kXuQdQTB6oN3KhI6V4acnBSZx8D2I4xzZvn9+wFLLFCoBNQY/sFnCW6c43OL7pOQ2HvGV4lnWIXNmgfp7cTWhQ==}
     engines: {node: '>=20'}
 
-  qs@6.15.0:
-    resolution: {integrity: sha512-mAZTtNCeetKMH+pSjrb76NAM8V9a05I9aBZOHztWy/UqcJdQYNsf59vrRKWnojAT9Y+GbIvoTBC++CPHqpDBhQ==}
+  qs@6.15.1:
+    resolution: {integrity: sha512-6YHEFRL9mfgcAvql/XhwTvf5jKcOiiupt2FiJxHkiX1z4j7WL8J/jRHYLluORvc1XxB5rV20KoeK00gVJamspg==}
     engines: {node: '>=0.6'}
 
   quansync@1.0.0:
@@ -9558,6 +9566,35 @@ snapshots:
     dependencies:
       prettier: 3.8.1
 
+  '@anolilab/rc@4.0.1(yaml@2.8.3)':
+    dependencies:
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/path': 2.0.5
+      ini: 6.0.0
+      ts-deepmerge: 7.0.3
+    transitivePeerDependencies:
+      - yaml
+
+  '@anolilab/semantic-release-pnpm@8.0.0(@types/node@25.5.2)(yaml@2.8.3)':
+    dependencies:
+      '@actions/core': 3.0.0
+      '@anolilab/rc': 4.0.1(yaml@2.8.3)
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/package': 4.1.7(@types/node@25.5.2)
+      '@visulima/path': 2.0.5
+      debug: 4.4.3
+      env-ci: 11.2.0
+      execa: 9.6.1
+      ini: 6.0.0
+      normalize-url: 9.0.0
+      registry-auth-token: 5.1.1
+      semver: 7.7.4
+    transitivePeerDependencies:
+      - '@types/node'
+      - supports-color
+      - yaml
+
   '@anolilab/textlint-config@13.0.0(textlint@15.5.2)':
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
@@ -9746,7 +9783,7 @@ snapshots:
       hashery: 1.4.0
       keyv: 5.6.0
 
-  '@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2))':
+  '@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2))':
     dependencies:
       typedoc: 0.28.18(typescript@6.0.2)
       upath: 2.0.1
@@ -11877,7 +11914,7 @@ snapshots:
       - '@types/node'
       - yaml
 
-  '@visulima/packem@2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)':
+  '@visulima/packem@2.0.0-alpha.49(@arethetypeswrong/core@0.18.2)(@babel/core@7.29.0)(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(github-slugger@2.0.0)(lightningcss@1.32.0)(package-manager-detector@1.6.0)(postcss@8.5.8)(rolldown@1.0.0-rc.12)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 0.11.0
@@ -11892,7 +11929,7 @@ snapshots:
       '@visulima/packem-share': 1.0.0-alpha.18(@types/node@25.5.2)(rollup@4.60.1)(yaml@2.8.3)
       '@visulima/pail': 3.2.2
       '@visulima/path': 2.0.5
-      '@visulima/rollup-plugin-css': 1.0.0-alpha.17(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(lightningcss@1.32.0)(postcss@8.5.8)(rollup@4.60.1)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
+      '@visulima/rollup-plugin-css': 1.0.0-alpha.17(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(lightningcss@1.32.0)(postcss@8.5.8)(rollup@4.60.1)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)
       '@visulima/source-map': 2.0.5
       '@visulima/tabular': 3.1.3
       '@visulima/tsconfig': 2.1.3(yaml@2.8.3)
@@ -11915,7 +11952,7 @@ snapshots:
     optionalDependencies:
       '@arethetypeswrong/core': 0.18.2
       '@babel/core': 7.29.0
-      '@ckeditor/typedoc-plugins': 55.4.0(typedoc@0.28.18(typescript@6.0.2))
+      '@ckeditor/typedoc-plugins': 55.5.0(typedoc@0.28.18(typescript@6.0.2))
       esbuild: 0.28.0
       lightningcss: 1.32.0
       postcss: 8.5.8
@@ -11945,7 +11982,7 @@ snapshots:
 
   '@visulima/path@2.0.5': {}
 
-  '@visulima/rollup-plugin-css@1.0.0-alpha.17(@ckeditor/typedoc-plugins@55.4.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(lightningcss@1.32.0)(postcss@8.5.8)(rollup@4.60.1)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)':
+  '@visulima/rollup-plugin-css@1.0.0-alpha.17(@ckeditor/typedoc-plugins@55.5.0(typedoc@0.28.18(typescript@6.0.2)))(@types/node@25.5.2)(esbuild@0.28.0)(lightningcss@1.32.0)(postcss@8.5.8)(rollup@4.60.1)(typedoc-plugin-markdown@4.11.0(typedoc@0.28.18(typescript@6.0.2)))(typedoc-plugin-rename-defaults@0.7.3(typedoc@0.28.18(typescript@6.0.2)))(typedoc@0.28.18(typescript@6.0.2))(typescript@6.0.2)(yaml@2.8.3)':
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.60.1)
       '@visulima/fs': 4.1.0(yaml@2.8.3)
@@ -11958,7 +11995,7 @@ snapshots:
       rollup: 4.60.1
       source-map-js: 1.2.1
     optionalDependencies:
-      '@ckeditor/typedoc-plugins': 55.4.0(typedoc@0.28.18(typescript@6.0.2))
+      '@ckeditor/typedoc-plugins': 55.5.0(typedoc@0.28.18(typescript@6.0.2))
       esbuild: 0.28.0
       lightningcss: 1.32.0
       postcss: 8.5.8
@@ -12346,7 +12383,7 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.7.2
       on-finished: 2.4.1
-      qs: 6.15.0
+      qs: 6.15.1
       raw-body: 3.0.2
       type-is: 2.0.1
     transitivePeerDependencies:
@@ -13760,7 +13797,7 @@ snapshots:
       once: 1.4.0
       parseurl: 1.3.3
       proxy-addr: 2.0.7
-      qs: 6.15.0
+      qs: 6.15.1
       range-parser: 1.2.1
       router: 2.2.0
       send: 1.2.1
@@ -16999,7 +17036,7 @@ snapshots:
     dependencies:
       hookified: 1.15.0
 
-  qs@6.15.0:
+  qs@6.15.1:
     dependencies:
       side-channel: 1.1.0
 
