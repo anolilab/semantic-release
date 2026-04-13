@@ -32,7 +32,7 @@ jobs:
             codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176" # v2.17.0
               with:
                   egress-policy: "audit"
 
@@ -67,7 +67,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176" # v2.17.0
               with:
                   egress-policy: "audit"
 
@@ -88,7 +88,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/setup@9212260a922e37110bc90c281b7376197de2807d" # main
               with:
                   node-version: "${{ matrix.node_version }}"
                   enable-nx-cache: false
@@ -123,7 +123,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176" # v2.17.0
               with:
                   egress-policy: "audit"
 
@@ -144,7 +144,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/setup@9212260a922e37110bc90c281b7376197de2807d" # main
               with:
                   node-version: "${{ matrix.node_version }}"
 
@@ -180,7 +180,7 @@ jobs:
 
             - name: "Upload code coverage to codecov"
               if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22"
-              uses: "anolilab/workflows/step/codecov@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/codecov@9212260a922e37110bc90c281b7376197de2807d" # main
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
@@ -201,7 +201,7 @@ jobs:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@f808768d1510423e83855289c910610ca9b43176" # v2.17.0
               with:
                   egress-policy: "audit"
 
