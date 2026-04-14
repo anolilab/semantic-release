@@ -309,6 +309,7 @@ overrides:
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.26.0'
   ajv@<6.14.0: '>=6.14.0'
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.18.0'
+  axios@<1.15.0: '>=1.15.0'
   axios@>=1.0.0 <=1.13.4: '>=1.13.5'
   body-parser@>=2.2.0 <2.2.1: '>=2.2.1'
   brace-expansion@<1.1.13: '>=1.1.13'
@@ -318,6 +319,7 @@ overrides:
   diff@>=5.0.0 <5.2.2: '>=5.2.2'
   flatted@<3.4.0: '>=3.4.0'
   flatted@<=3.4.1: '>=3.4.2'
+  follow-redirects@<=1.15.11: '>=1.16.0'
   handlebars@>=4.0.0 <4.7.9: '>=4.7.9'
   handlebars@>=4.0.0 <=4.7.8: '>=4.7.9'
   handlebars@>=4.6.0 <=4.7.8: '>=4.7.9'
@@ -505,7 +507,7 @@ importers:
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
         version: 3.2.1
@@ -732,7 +734,7 @@ importers:
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.0.0
-        version: link:../semantic-release-pnpm
+        version: 8.0.0(@types/node@25.5.2)(yaml@2.8.3)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 11.6.0
@@ -985,7 +987,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.1)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.0.0
+        specifier: 8.1.0
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -1174,6 +1176,14 @@ packages:
     hasBin: true
     peerDependencies:
       prettier: 3.8.1
+
+  '@anolilab/rc@4.0.1':
+    resolution: {integrity: sha512-jrSMVwHTrdRqavktZUx7CnCfKKzPuoR5QGwA1azRbIYuuV4Di8AbwSmEiEtzDyYV7RgRnowW/aIQmWJBNCGKqw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-pnpm@8.0.0':
+    resolution: {integrity: sha512-voN33QLeZYkiIgdoDG8F64uhBKHKTLkuuD45Wa1LYgcM6aNINO0swMUVcCbHlUvsbE9TRD4macE3q4sOGvaVqQ==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@anolilab/textlint-config@13.0.0':
     resolution: {integrity: sha512-su0BwbOmLnpBimts53VMHVp7ei2HhDTK76vqrSzC//AEce9/E8kCJeArwU/atzpONzCZt8g3q0A+NFVN0mTXIQ==}
@@ -5278,8 +5288,8 @@ packages:
   flatted@3.4.2:
     resolution: {integrity: sha512-PjDse7RzhcPkIJwy5t7KPWQSZ9cAbzQXcafsetQoD7sOJRQlGikNbx7yZp2OotDnJyrDcbyRq3Ttb18iYOqkxA==}
 
-  follow-redirects@1.15.11:
-    resolution: {integrity: sha512-deG2P0JfjrTxl50XGCDyfI97ZGVCxIpfKYmfyrQ54n5FO/0gfIES8C/Psl6kWVDolizcaaxZJnTS0QSMxvnsBQ==}
+  follow-redirects@1.16.0:
+    resolution: {integrity: sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
@@ -9558,6 +9568,35 @@ snapshots:
     dependencies:
       prettier: 3.8.1
 
+  '@anolilab/rc@4.0.1(yaml@2.8.3)':
+    dependencies:
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/path': 2.0.5
+      ini: 6.0.0
+      ts-deepmerge: 7.0.3
+    transitivePeerDependencies:
+      - yaml
+
+  '@anolilab/semantic-release-pnpm@8.0.0(@types/node@25.5.2)(yaml@2.8.3)':
+    dependencies:
+      '@actions/core': 3.0.0
+      '@anolilab/rc': 4.0.1(yaml@2.8.3)
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 4.1.0(yaml@2.8.3)
+      '@visulima/package': 4.1.7(@types/node@25.5.2)
+      '@visulima/path': 2.0.5
+      debug: 4.4.3
+      env-ci: 11.2.0
+      execa: 9.6.1
+      ini: 6.0.0
+      normalize-url: 9.0.0
+      registry-auth-token: 5.1.1
+      semver: 7.7.4
+    transitivePeerDependencies:
+      - '@types/node'
+      - supports-color
+      - yaml
+
   '@anolilab/textlint-config@13.0.0(textlint@15.5.2)':
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
@@ -12304,7 +12343,7 @@ snapshots:
 
   axios@1.14.0:
     dependencies:
-      follow-redirects: 1.15.11
+      follow-redirects: 1.16.0
       form-data: 4.0.5
       proxy-from-env: 2.1.0
     transitivePeerDependencies:
@@ -13934,7 +13973,7 @@ snapshots:
 
   flatted@3.4.2: {}
 
-  follow-redirects@1.15.11: {}
+  follow-redirects@1.16.0: {}
 
   for-each@0.3.5:
     dependencies:
