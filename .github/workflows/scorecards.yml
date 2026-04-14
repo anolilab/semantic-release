@@ -6,11 +6,11 @@ name: "Scorecard supply-chain security"
 
 on: # yamllint disable-line rule:truthy
     # For Branch-Protection check. Only the default branch is supported. See
-    # https://github.com/ossf/scorecard/main/docs/checks.md#branch-protection
+    # https://github.com/ossf/scorecard/blob/main/docs/checks.md#branch-protection
     # eslint-disable-next-line yml/no-empty-mapping-value
     branch_protection_rule: # yamllint disable-line rule:empty-values
     # To guarantee Maintained check is occasionally updated. See
-    # https://github.com/ossf/scorecard/main/docs/checks.md#maintained
+    # https://github.com/ossf/scorecard/blob/main/docs/checks.md#maintained
     schedule:
         - cron: "20 7 * * 2"
     push:
@@ -22,6 +22,7 @@ permissions: "read-all"
 jobs:
     analysis:
         name: "Scorecard analysis"
+        timeout-minutes: 30
         runs-on: "ubuntu-latest"
         permissions:
             # Needed to upload the results to code-scanning dashboard.
@@ -33,12 +34,12 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
               with:
                   egress-policy: "audit"
 
             - name: "Checkout code"
-              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
+              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
               with:
                   persist-credentials: false
 
@@ -65,7 +66,7 @@ jobs:
             # Upload the results as artifacts (optional). Commenting out will disable uploads of run results in SARIF
             # format to the repository Actions tab.
             - name: "Upload artifact"
-              uses: "actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f" # v7.0.0
+              uses: "actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02" # v4.6.2
               with:
                   name: "SARIF file"
                   path: "results.sarif"
@@ -73,6 +74,6 @@ jobs:
 
             # Upload the results to GitHub's code scanning dashboard.
             - name: "Upload to code-scanning"
-              uses: "github/codeql-action/upload-sarif@c10b8064de6f491fea524254123dbe5e09572f13" # v4.35.1
+              uses: "github/codeql-action/upload-sarif@d3ced5c96c16c4332e2a61eb6f3649d6f1b20bb8" # v3.31.5
               with:
                   sarif_file: "results.sarif"

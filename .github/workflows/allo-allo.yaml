@@ -11,9 +11,13 @@ on: # yamllint disable-line rule:truthy
             - "opened"
             - "closed"
 
+permissions:
+    contents: "read"
+
 jobs:
     allo-allo:
-        uses: "anolilab/workflows/.github/workflows/allo-allo.yml@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+        timeout-minutes: 10
+        uses: "anolilab/workflows/.github/workflows/allo-allo.yml@main"
         with:
-            target-repo: "anolilab/semantic-release"
+            target-repo: "anolilab/multi-semantic-release"
             onboarding-lead: "prisis"

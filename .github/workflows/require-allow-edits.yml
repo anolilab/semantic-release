@@ -7,6 +7,7 @@ permissions:
 
 jobs:
     check_allow_edits:
+        timeout-minutes: 10
         permissions:
             pull-requests: "read" # for ljharb/require-allow-edits to check 'allow edits' on PR
 
@@ -16,10 +17,8 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
               with:
                   egress-policy: "audit"
 
-            - uses: "ljharb/require-allow-edits@13f90bc8cc5de000f2b44a0e2c3a11d108e8cd9f" # main
-              with:
-                  pull_number: "${{ github.event.pull_request.number }}"
+            - uses: "ljharb/require-allow-edits@13f90bc8cc5de000f2b44a0e2c3a11d108e8cd9f" # v2.0.1

@@ -16,7 +16,7 @@ env:
 jobs:
     preview:
         name: "Preview Release"
-        if: "github.repository == 'anolilab/semantic-release'"
+        if: "github.repository == 'anolilab/multi-semantic-release'"
         runs-on: "ubuntu-latest"
         permissions:
             contents: "write"
@@ -26,12 +26,12 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
               with:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
+              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
               with:
                   # Number of commits to fetch. 0 indicates all history for all branches and tags.
                   # Pulls all commits (needed for NX)
@@ -43,33 +43,70 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5
+              uses: "nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1" # v4
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/setup@main"
               with:
                   node-version: "22.x"
                   cache-prefix: "preview-release"
+                  run-signatures-audit: false
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@22103cc46bda19c2b464ffe86db46df6922fd323" # v47.0.5
+              uses: "tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c" # v44.5.7
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
                   separator: ","
 
+            - name: "Wait for Build Native workflow"
+              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
+              timeout-minutes: 30
+              with:
+                  ref: "${{ github.event.pull_request.head.sha }}"
+                  repo-token: "${{ secrets.GITHUB_TOKEN }}"
+                  wait-interval: 15 # seconds
+                  check-name: "Check Native Build"
+                  allowed-conclusions: "success,skipped,neutral"
+
+            - name: "Download native build artifacts"
+              id: "native-artifacts"
+              uses: "dawidd6/action-download-artifact@8a338493df3d275e4a7a63bcff3b8fe97e51a927" # v19
+              with:
+                  workflow: "build-native.yml"
+                  pr: "${{ github.event.pull_request.number }}"
+                  name: "bindings-(.+)"
+                  name_is_regexp: true
+                  path: "artifacts"
+                  if_no_artifact_found: "ignore"
+                  allow_forks: false
+
+            - name: "Distribute native artifacts to platform packages"
+              if: "${{ steps.native-artifacts.outcome == 'success' }}"
+              shell: "bash"
+              run: |
+                  # task-runner: move matching .node files and distribute to npm packages
+                  find artifacts -name "task-runner-native.*.node" -exec mv {} packages/tooling/task-runner/ \;
+                  cd packages/tooling/task-runner && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
+
+                  # tui: move matching .node files and distribute to npm packages
+                  find artifacts -name "tui-native.*.node" -exec mv {} packages/terminal/tui/ \;
+                  cd packages/terminal/tui && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
+
+                  # vis: move matching .node files and distribute to npm packages
+                  find artifacts -name "vis-native.*.node" -exec mv {} packages/tooling/vis/ \;
+                  cd packages/tooling/vis && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
+
+                  rm -rf artifacts/
+
             - name: "Build"
               shell: "bash"
               run: |
                   files="${{ steps.files.outputs.all_changed_files }}";
-                  pnpm run build:affected:packages:prod --files=${files//\\/\/}
-
-            - name: "Prepare nx cache"
-              shell: "bash"
-              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
+                  pnpm run build:affected:prod:packages --files=${files//\\/\/}
 
             - name: "Preview Release"
               shell: "bash"

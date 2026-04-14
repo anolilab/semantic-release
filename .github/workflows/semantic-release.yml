@@ -11,6 +11,7 @@ on: # yamllint disable-line rule:truthy
             - "next-major"
             - "alpha"
             - "beta"
+    workflow_dispatch: # yamllint disable-line rule:empty-values
 
 permissions:
     contents: "read" # for checkout
@@ -18,7 +19,7 @@ permissions:
 jobs:
     semantic-release:
         name: "Semantic Release"
-        if: "github.repository == 'anolilab/semantic-release'"
+        if: "github.repository == 'anolilab/multi-semantic-release'"
         runs-on: "ubuntu-latest"
         permissions:
             contents: "write" # to be able to publish a GitHub release
@@ -28,23 +29,23 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
               with:
                   egress-policy: "audit"
 
             - name: "Wait for tests to succeed"
-              uses: "lewagon/wait-on-check-action@a08fbe2b86f9336198f33be6ad9c16b96f92799c" # v1.6.0
+              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
               timeout-minutes: 20
               with:
                   ref: "${{ github.event.pull_request.head.sha || github.sha }}"
                   repo-token: "${{ secrets.GITHUB_TOKEN }}"
-                  wait-interval: 60 # seconds
+                  wait-interval: 30 # seconds
                   running-workflow-name: "Semantic Release" # wait for all other checks to complete
                   allowed-conclusions: "success,skipped,neutral" # all other checks must pass, being skipped or cancelled is not sufficient
                   ignore-checks: "lock-closed / lock-closed, Socket Security: Pull Request Alerts, Dependabot"
 
             - name: "Git checkout"
-              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
+              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
               with:
                   fetch-depth: 0
                   token: "${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}"
@@ -55,10 +56,39 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/setup@main"
               with:
                   node-version: "22.x"
                   cache-prefix: "semantic-release"
+                  run-signatures-audit: false
+
+            - name: "Download native build artifacts"
+              uses: "dawidd6/action-download-artifact@8a338493df3d275e4a7a63bcff3b8fe97e51a927" # v19
+              with:
+                  workflow: "build-native.yml"
+                  commit: "${{ github.sha }}"
+                  name: "bindings-(.+)"
+                  name_is_regexp: true
+                  path: "artifacts"
+                  if_no_artifact_found: "fail"
+                  allow_forks: false
+
+            - name: "Distribute native artifacts to platform packages"
+              shell: "bash"
+              run: |
+                  # task-runner: move matching .node files and distribute to npm packages
+                  find artifacts -name "task-runner-native.*.node" -exec mv {} packages/tooling/task-runner/ \;
+                  cd packages/tooling/task-runner && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
+
+                  # tui: move matching .node files and distribute to npm packages
+                  find artifacts -name "tui-native.*.node" -exec mv {} packages/terminal/tui/ \;
+                  cd packages/terminal/tui && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
+
+                  # vis: move matching .node files and distribute to npm packages
+                  find artifacts -name "vis-native.*.node" -exec mv {} packages/tooling/vis/ \;
+                  cd packages/tooling/vis && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
+
+                  rm -rf artifacts/
 
             - name: "Build Production"
               run: "pnpm run build:packages:prod"
@@ -66,18 +96,14 @@ jobs:
             - name: "test and coverage"
               run: "pnpm run test:coverage"
               env:
+                  # This is needed for the colorize integration test
                   TEST_PROD_BUILD: "true"
 
-            - name: "Prepare nx cache"
-              shell: "bash"
-              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
-
             - name: "Upload code coverage to codecov"
-              uses: "anolilab/workflows/step/codecov@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/codecov@main"
               with:
                   run-lint: "false"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
-                  exclude-projects: "semantic-release-preset"
 
             - name: "Semantic Release"
               if: "success()"
@@ -88,4 +114,4 @@ jobs:
                   GIT_AUTHOR_EMAIL: "github-actions[bot]@users.noreply.github.com"
                   GIT_COMMITTER_NAME: "github-actions-shell"
                   GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
-              run: "node packages/multi-semantic-release/dist/bin/cli.js"
+              run: "pnpm exec multi-semantic-release --ignore-packages='packages/tooling/task-runner/npm/**,packages/terminal/tui/npm/**,packages/tooling/vis/npm/**'"

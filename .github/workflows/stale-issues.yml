@@ -4,8 +4,13 @@ on: # yamllint disable-line rule:truthy
     schedule:
         - cron: "0 0 * * *"
 
+permissions:
+    contents: "read"
+    issues: "write"
+
 jobs:
     stale-issues:
-        uses: "anolilab/workflows/.github/workflows/stale-issues.yml@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+        timeout-minutes: 10
+        uses: "anolilab/workflows/.github/workflows/stale-issues.yml@main"
         with:
-            target-repo: "anolilab/semantic-release"
+            target-repo: "anolilab/multi-semantic-release"
