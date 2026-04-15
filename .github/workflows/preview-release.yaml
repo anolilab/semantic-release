@@ -16,7 +16,7 @@ env:
 jobs:
     preview:
         name: "Preview Release"
-        if: "github.repository == 'anolilab/multi-semantic-release'"
+        if: "github.repository == 'anolilab/semantic-release'"
         runs-on: "ubuntu-latest"
         permissions:
             contents: "write"

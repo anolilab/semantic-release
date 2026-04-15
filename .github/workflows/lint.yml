@@ -24,7 +24,7 @@ env:
 jobs:
     files-changed:
         name: "Detect what files changed"
-        if: "github.repository == 'anolilab/multi-semantic-release'"
+        if: "github.repository == 'anolilab/semantic-release'"
         runs-on: "ubuntu-24.04"
         timeout-minutes: 3
         # Map a step output to a job output

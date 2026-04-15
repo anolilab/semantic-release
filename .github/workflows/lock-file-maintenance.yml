@@ -16,7 +16,7 @@ jobs:
         timeout-minutes: 30
         uses: "anolilab/workflows/.github/workflows/pnpm-lock-file-maintenance.yml@main"
         with:
-            target-repo: "anolilab/multi-semantic-release"
+            target-repo: "anolilab/semantic-release"
             node-version: "22.x"
             run-audit-fix: true
         secrets:

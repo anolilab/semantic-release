@@ -19,7 +19,7 @@ permissions:
 jobs:
     semantic-release:
         name: "Semantic Release"
-        if: "github.repository == 'anolilab/multi-semantic-release'"
+        if: "github.repository == 'anolilab/semantic-release'"
         runs-on: "ubuntu-latest"
         permissions:
             contents: "write" # to be able to publish a GitHub release

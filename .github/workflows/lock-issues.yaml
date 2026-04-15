@@ -13,4 +13,4 @@ jobs:
         timeout-minutes: 10
         uses: "anolilab/workflows/.github/workflows/lock-closed.yml@main"
         with:
-            target-repo: "anolilab/multi-semantic-release"
+            target-repo: "anolilab/semantic-release"
