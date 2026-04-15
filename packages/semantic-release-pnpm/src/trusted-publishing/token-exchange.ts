@@ -83,7 +83,6 @@ const exchangeGithubActionsToken = async (packageName: string, context?: CommonC
  * provider (e.g. CircleCI, GitLab, etc.) that can provide an OIDC identity token.
  *
  * When `NPM_ID_TOKEN` is not set, falls back to CI-specific token retrieval (GitHub Actions).
- *
  * @param pkg The package information.
  * @param pkg.name The name of the package to publish.
  * @param context The semantic-release context

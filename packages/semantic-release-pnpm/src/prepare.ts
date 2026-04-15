@@ -1,9 +1,11 @@
 /* eslint-disable jsdoc/informative-docs */
-import { move } from "@visulima/fs";
+import { isAccessible, move, readJson, writeJson } from "@visulima/fs";
+import { getPackageManagerVersion } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
 // eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
+import { major } from "semver";
 
 import type { PrepareContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
@@ -12,8 +14,9 @@ const debug = dbg("semantic-release-pnpm:prepare");
 
 /**
  * Prepare the package for publishing by
- * 1. writing the upcoming semantic-release version to the `package.json` with `pnpm version` (without
- * creating a git tag) and
+ * 1. writing the upcoming semantic-release version to the `package.json` — via `pnpm version`
+ * (without creating a git tag) on pnpm &lt; 10, or via `pnpm pkg set` on pnpm v10+ where the
+ * `version` command does not reliably accept `--no-git-tag-version` — and
  * 2. optionally creating a tarball via `pnpm pack` which is moved to the configured `tarballDir`.
  *
  * The function mirrors the behaviour of the official semantic-release `@semantic-release/npm` plugin
@@ -42,7 +45,19 @@ const prepare = async (
 
     logger.log("Write version %s to package.json in %s", version, basePath);
 
-    const versionResult = execa("pnpm", ["version", version, "--no-git-tag-version", "--allow-same-version"], {
+    const pnpmVersion = getPackageManagerVersion("pnpm");
+    const pnpmMajor = major(pnpmVersion);
+
+    debug("Detected pnpm major version: %d", pnpmMajor);
+
+    // pnpm v10 tightened CLI option parsing and some releases reject
+    // `--no-git-tag-version` on `pnpm version`. Use the stable `pnpm pkg set`
+    // command on v10+, and keep `pnpm version` for older versions so its
+    // side-effects (e.g. npm-shrinkwrap.json sync, version lifecycle scripts)
+    // continue to work as before.
+    const versionArguments = pnpmMajor >= 10 ? ["pkg", "set", `version=${version}`] : ["version", version, "--no-git-tag-version", "--allow-same-version"];
+
+    const versionResult = execa("pnpm", versionArguments, {
         cwd: basePath,
         env,
         preferLocal: true,
@@ -52,6 +67,22 @@ const prepare = async (
     versionResult.stderr.pipe(stderr, { end: false });
 
     await versionResult;
+
+    // `pnpm pkg set` does not update npm-shrinkwrap.json like `pnpm version`
+    // does, so mirror the version bump manually on pnpm v10+.
+    if (pnpmMajor >= 10) {
+        const shrinkwrapPath = resolve(basePath, "npm-shrinkwrap.json");
+
+        if (await isAccessible(shrinkwrapPath)) {
+            debug(`Updating npm-shrinkwrap.json at ${shrinkwrapPath}`);
+
+            const shrinkwrap = (await readJson(shrinkwrapPath)) as Record<string, unknown>;
+
+            shrinkwrap.version = version;
+
+            await writeJson(shrinkwrapPath, shrinkwrap, { indent: 2 });
+        }
+    }
 
     if (tarballDir) {
         logger.log("Creating npm package version %s", version);
