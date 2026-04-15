@@ -64,34 +64,6 @@ jobs:
                   run-signatures-audit: false
                   run-npm-audit: false
 
-            - name: "Download native build artifacts"
-              uses: "dawidd6/action-download-artifact@8a338493df3d275e4a7a63bcff3b8fe97e51a927" # v19
-              with:
-                  workflow: "build-native.yml"
-                  commit: "${{ github.sha }}"
-                  name: "bindings-(.+)"
-                  name_is_regexp: true
-                  path: "artifacts"
-                  if_no_artifact_found: "fail"
-                  allow_forks: false
-
-            - name: "Distribute native artifacts to platform packages"
-              shell: "bash"
-              run: |
-                  # task-runner: move matching .node files and distribute to npm packages
-                  find artifacts -name "task-runner-native.*.node" -exec mv {} packages/tooling/task-runner/ \;
-                  cd packages/tooling/task-runner && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
-
-                  # tui: move matching .node files and distribute to npm packages
-                  find artifacts -name "tui-native.*.node" -exec mv {} packages/terminal/tui/ \;
-                  cd packages/terminal/tui && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
-
-                  # vis: move matching .node files and distribute to npm packages
-                  find artifacts -name "vis-native.*.node" -exec mv {} packages/tooling/vis/ \;
-                  cd packages/tooling/vis && pnpm exec napi artifacts --output-dir . --npm-dir npm && rm -f *.node && cd ../../..
-
-                  rm -rf artifacts/
-
             - name: "Build Production"
               run: "pnpm run build:packages:prod"
 
