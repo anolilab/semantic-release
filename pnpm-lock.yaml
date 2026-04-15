@@ -312,7 +312,7 @@ overrides:
   axios@<1.15.0: '>=1.15.0'
   axios@>=1.0.0 <=1.13.4: '>=1.13.5'
   body-parser@>=2.2.0 <2.2.1: '>=2.2.1'
-  brace-expansion@<1.1.13: '>=1.1.13'
+  brace-expansion@<1.1.13: '>=2.1.0'
   brace-expansion@>=2.0.0 <2.0.3: '>=2.0.3'
   chrono-node@<2.2.4: '>=2.9.0'
   defu@<=6.1.4: '>=6.1.5'
