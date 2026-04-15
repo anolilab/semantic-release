@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [8.1.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.0...@anolilab/semantic-release-pnpm@8.1.1) (2026-04-15)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** support pnpm v10 in prepare step ([f1dee76](https://github.com/anolilab/semantic-release/commit/f1dee765dc2278cecde34e85bc6d7096eeeba3d5))
+
 ## @anolilab/semantic-release-pnpm [8.1.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.0.0...@anolilab/semantic-release-pnpm@8.1.0) (2026-04-08)
 
 ### Features
