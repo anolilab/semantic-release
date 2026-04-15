@@ -180,9 +180,9 @@ Provenance applies specifically to publishing, so configure it under `publishCon
 
 ### Environment variables
 
-| Variable       | Description                                                                                                                                                                                                                        |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `NPM_TOKEN`    | Npm token created via [npm token create](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens)                                                                                                      |
+| Variable       | Description                                                                                                                                                                                                                                                                                  |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NPM_TOKEN`    | Npm token created via [npm token create](https://docs.npmjs.com/getting-started/working_with_tokens#how-to-create-new-tokens)                                                                                                                                                                |
 | `NPM_ID_TOKEN` | OIDC identity token for [trusted publishing](https://docs.npmjs.com/trusted-publishers). Must be configured in your CI job (see [GitLab](#trusted-publishing-for-gitlab-pipelines), [CircleCI](#trusted-publishing-for-circleci)). Takes priority over CI-specific token retrieval when set. |
 
 ### Options

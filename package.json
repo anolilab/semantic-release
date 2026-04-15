@@ -42,8 +42,7 @@
         "test": "nx run-many --target=test --all --parallel",
         "test:affected": "nx affected --target=test --parallel --nxBail",
         "test:affected:coverage": "nx affected --target=test:coverage --parallel --nxBail",
-        "test:coverage": "nx run-many --target=test:coverage --all --parallel",
-        "update:deps": "taze"
+        "test:coverage": "nx run-many --target=test:coverage --all --parallel"
     },
     "browserslist": [
         "extends browserslist-config-anolilab"
@@ -74,7 +73,6 @@
         "secretlint": "catalog:lint",
         "semantic-release": "catalog:cli",
         "sort-package-json": "catalog:prod",
-        "taze": "catalog:cli",
         "textlint": "catalog:lint",
         "typescript": "catalog:tsc",
         "vitest": "catalog:test"

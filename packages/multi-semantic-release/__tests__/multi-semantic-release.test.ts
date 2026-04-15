@@ -48,7 +48,7 @@ describe("multiSemanticRelease()", () => {
         ["satisfy", "^", [3, 2, 0, 1]],
         ["inherit", "^", [3, 2, 0, 1]],
     ])("with Yarn Workspace Ranges & deps.bump=%s & deps.prefix=%s", (strategy, prefix, packageOrder) => {
-        it('should replace "workspace:" with correct version', async () => {
+        it("should replace \"workspace:\" with correct version", async () => {
             expect.assertions(37);
 
             // Create Git repo with copy of Yarn workspaces fixture.

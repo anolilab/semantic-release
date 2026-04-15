@@ -15,4 +15,3 @@ export const OFFICIAL_REGISTRY = "https://registry.npmjs.org/";
  * GitHub Actions provider name used for OIDC detection.
  */
 export const GITHUB_ACTIONS_PROVIDER_NAME = "GitHub Actions";
-

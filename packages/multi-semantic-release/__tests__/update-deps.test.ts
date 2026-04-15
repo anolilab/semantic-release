@@ -1,7 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { Package } from "../src/types";
-import { getNextPreVersion, getNextVersion, getPreReleaseTag, resolveNextVersion, resolveReleaseType, resolveReleaseTypeFromStrategy } from "../src/update-deps";
+import {
+    getNextPreVersion,
+    getNextVersion,
+    getPreReleaseTag,
+    resolveNextVersion,
+    resolveReleaseType,
+    resolveReleaseTypeFromStrategy,
+} from "../src/update-deps";
+
+type StrategyArgument = Parameters<typeof resolveReleaseTypeFromStrategy>[0];
+type DependencyReleaseType = Parameters<typeof resolveReleaseTypeFromStrategy>[1];
 
 describe("update-deps", () => {
     describe("resolveNextVersion()", () => {
@@ -344,8 +354,7 @@ describe("update-deps", () => {
         ])("strategy %j with dependency type %s gives %s", (strategy, dependencyType, expected) => {
             expect.assertions(1);
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            expect(resolveReleaseTypeFromStrategy(strategy as any, dependencyType as any)).toBe(expected);
+            expect(resolveReleaseTypeFromStrategy(strategy as StrategyArgument, dependencyType as DependencyReleaseType)).toBe(expected);
         });
     });
 });

@@ -13,6 +13,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { PrepareContext } from "../../src/definitions/context";
 import prepare from "../../src/prepare";
 
+vi.mock(import("@visulima/package"), async (importOriginal) => {
+    const actual = await importOriginal();
+
+    return { ...actual, getPackageManagerVersion: vi.fn(() => "10.33.0") };
+});
+
+const { getPackageManagerVersion } = await import("@visulima/package");
+const getPackageManagerVersionMock = vi.mocked(getPackageManagerVersion);
+
 const logSpy = vi.fn();
 
 const logger = { error: vi.fn(), log: logSpy, success: vi.fn() };
@@ -22,6 +31,7 @@ describe(prepare, () => {
 
     beforeEach(() => {
         cwd = temporaryDirectory();
+        getPackageManagerVersionMock.mockReturnValue("10.33.0");
     });
 
     afterEach(async () => {
@@ -147,5 +157,80 @@ describe(prepare, () => {
         expect(logSpy).toHaveBeenCalledWith("Write version %s to package.json in %s", "1.0.0", cwd);
         expect(packageJson.version).toBe("1.0.0");
         await expect(isAccessible(tarballPath)).resolves.toBe(true);
+    });
+
+    it("should update package.json on pnpm v9 via `pnpm version`", async () => {
+        expect.assertions(2);
+
+        getPackageManagerVersionMock.mockReturnValue("9.15.0");
+
+        const packagePath = join(cwd, "package.json");
+
+        await writeJson(packagePath, { name: "legacy-pkg", version: "0.0.0-dev" });
+
+        await prepare({}, {
+            cwd,
+            env: {},
+            logger,
+            nextRelease: { version: "2.0.0" },
+            stderr: new WritableStreamBuffer(),
+            stdout: new WritableStreamBuffer(),
+        } as unknown as PrepareContext);
+
+        const packageJson = await readJson<PackageJson>(packagePath);
+
+        expect(packageJson.version).toBe("2.0.0");
+        expect(logSpy).toHaveBeenCalledWith("Write version %s to package.json in %s", "2.0.0", cwd);
+    });
+
+    it("should sync npm-shrinkwrap.json manually on pnpm v10", async () => {
+        expect.assertions(2);
+
+        getPackageManagerVersionMock.mockReturnValue("10.33.0");
+
+        const packagePath = join(cwd, "package.json");
+        const shrinkwrapPath = join(cwd, "npm-shrinkwrap.json");
+
+        await writeJson(packagePath, { name: "pkg", version: "0.0.0-dev" });
+        await writeJson(shrinkwrapPath, { name: "pkg", version: "0.0.0-dev" });
+
+        await prepare({}, {
+            cwd,
+            env: {},
+            logger,
+            nextRelease: { version: "3.1.4" },
+            stderr: new WritableStreamBuffer(),
+            stdout: new WritableStreamBuffer(),
+        } as unknown as PrepareContext);
+
+        const packageJson = await readJson<PackageJson>(packagePath);
+        const shrinkwrap = await readJson<Record<string, string>>(shrinkwrapPath);
+
+        expect(packageJson.version).toBe("3.1.4");
+        expect(shrinkwrap.version).toBe("3.1.4");
+    });
+
+    it("should not fail on pnpm v10 when npm-shrinkwrap.json is absent", async () => {
+        expect.assertions(2);
+
+        getPackageManagerVersionMock.mockReturnValue("10.33.0");
+
+        const packagePath = join(cwd, "package.json");
+
+        await writeJson(packagePath, { name: "pkg", version: "0.0.0-dev" });
+
+        await prepare({}, {
+            cwd,
+            env: {},
+            logger,
+            nextRelease: { version: "4.0.0" },
+            stderr: new WritableStreamBuffer(),
+            stdout: new WritableStreamBuffer(),
+        } as unknown as PrepareContext);
+
+        const packageJson = await readJson<PackageJson>(packagePath);
+
+        expect(packageJson.version).toBe("4.0.0");
+        await expect(isAccessible(join(cwd, "npm-shrinkwrap.json"))).resolves.toBe(false);
     });
 });
