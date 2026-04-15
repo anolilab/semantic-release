@@ -10,7 +10,6 @@ permissions:
 
 jobs:
     cleanup-branch-cache:
-        timeout-minutes: 10
         uses: "anolilab/workflows/.github/workflows/cleanup-branch-cache.yaml@main"
         with:
-            target-repo: "anolilab/multi-semantic-release"
+            target-repo: "anolilab/semantic-release"

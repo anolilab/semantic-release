@@ -16,8 +16,7 @@ permissions:
 
 jobs:
     allo-allo:
-        timeout-minutes: 10
         uses: "anolilab/workflows/.github/workflows/allo-allo.yml@main"
         with:
-            target-repo: "anolilab/multi-semantic-release"
+            target-repo: "anolilab/semantic-release"
             onboarding-lead: "prisis"

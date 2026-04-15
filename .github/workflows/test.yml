@@ -32,60 +32,47 @@ jobs:
             codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
               with:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
+              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Check for file changes"
-              uses: "dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36" # v3.0.2
+              uses: "dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d" # v4.0.1
               id: "changes"
               with:
                   token: "${{ github.token }}"
                   filters: ".github/file-filters.yml"
 
-    test:
-        name: >-
-          Test (node-${{ matrix.node_version }}, ${{ matrix.os }}${{ matrix.deno_version && format(', deno {0}', matrix.deno_version) || '' }}${{ matrix.bun_version && format(', bun {0}', matrix.bun_version) || '' }})
+    test-multi-semantic-release:
+        name: "Test semantic-release version ${{ matrix.semantic_release_version }} on (node-${{ matrix.node_version }}, ${{ matrix.os }})"
         if: "needs.files-changed.outputs.packages == 'true'"
         needs: "files-changed"
         strategy:
+            max-parallel: 4
             matrix:
-                include:
-                    - os: "ubuntu-latest"
-                      node_version: "22"
-                    - os: "ubuntu-latest"
-                      node_version: "24"
-                    - os: "ubuntu-latest"
-                      node_version: "25"
-                    - os: "macos-latest"
-                      node_version: "22"
-                    - os: "windows-latest"
-                      node_version: "22"
-                    - os: "ubuntu-latest"
-                      node_version: "22"
-                      bun_version: "latest"
-                    - os: "ubuntu-latest"
-                      node_version: "22"
-                      deno_version: "lts"
+                os:
+                    - "ubuntu-latest"
+                node_version: ["22", "24", "25"]
+                semantic_release_version: ["^24", "^25"]
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
               with:
                   egress-policy: "audit"
 
             - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
+              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
@@ -97,44 +84,74 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1" # v4
+              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@main"
+              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
               with:
                   node-version: "${{ matrix.node_version }}"
-                  install-bun: "matrix.os == 'ubuntu-latest'"
-                  skip-playwright: "true"
-                  run-signatures-audit: false
+                  enable-nx-cache: false
 
-            - name: "Setup Deno"
-              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22 && matrix.deno_version"
-              uses: "denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb" # v2.0.3
-              with:
-                  deno-version: "${{ matrix.deno_version }}"
-                  cache: true
-            - name: "Setup Bun"
-              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22 && matrix.bun_version"
-              uses: "oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76" # v2.0.2
-              with:
-                  bun-version: "${{ matrix.bun_version }}"
+            - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
+              run: |
+                  pnpm add -D semantic-release@${{ matrix.semantic_release_version }} --filter=multi-semantic-release
+              env:
+                  SKIP_CHECK: "true"
 
-            - name: "Wait for Build Native workflow"
-              if: "matrix.os == 'ubuntu-latest'"
-              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
-              timeout-minutes: 30
+            - name: "Build"
+              shell: "bash"
+              run: "pnpm run --filter=multi-semantic-release build"
+
+            - name: "Run tests"
+              shell: "bash"
+              run: "pnpm run --filter=multi-semantic-release test"
+
+    test-packages:
+        name: "Test (node-${{ matrix.node_version }}, ${{ matrix.os }})"
+        if: "needs.files-changed.outputs.packages == 'true'"
+        needs: "files-changed"
+        strategy:
+            max-parallel: 4
+            matrix:
+                os:
+                    - "ubuntu-latest"
+                node_version: ["22", "24", "25"]
+            fail-fast: false
+        runs-on: "${{ matrix.os }}"
+        env:
+            NODE: "${{ matrix.node_version }}"
+        steps:
+            - name: "Harden Runner"
+              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
               with:
-                  ref: "${{ github.event.pull_request.head.sha || github.sha }}"
-                  repo-token: "${{ secrets.GITHUB_TOKEN }}"
-                  wait-interval: 15 # seconds
-                  check-name: "Check Native Build"
-                  allowed-conclusions: "success,skipped,neutral"
+                  egress-policy: "audit"
+
+            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
+              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
+              env:
+                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
+                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
+                  EMAIL: "github-actions[bot]@users.noreply.github.com"
+              with:
+                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
+                  # Pulls all commits (needed for NX)
+                  fetch-depth: 0
+
+            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
+              id: "setSHAs"
+              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5
+
+            - name: "Setup resources and environment"
+              id: "setup"
+              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              with:
+                  node-version: "${{ matrix.node_version }}"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c" # v44.5.7
+              uses: "tj-actions/changed-files@22103cc46bda19c2b464ffe86db46df6922fd323" # v47.0.5
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -151,118 +168,40 @@ jobs:
               run: |
                   files="${{ steps.files.outputs.all_changed_files }}";
 
-                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 22 && ${{ !matrix.deno_version }} && ${{ !matrix.bun_version }} ]]; then
+                  if [[ ${{ matrix.os }} == "ubuntu-latest" && ${{ matrix.node_version }} == 22 ]]; then
                       pnpm run test:affected:coverage --files=${files//\\/\/}
                   else
                       pnpm run test:affected --files=${files//\\/\/}
                   fi
 
+            - name: "Prepare nx cache"
+              shell: "bash"
+              run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
+
             - name: "Upload code coverage to codecov"
-              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22 && !matrix.deno_version && !matrix.bun_version"
-              uses: "anolilab/workflows/step/codecov@main"
+              if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22"
+              uses: "anolilab/workflows/step/codecov@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
                   use-affected: "true"
                   affected-files: "${{ steps.files.outputs.all_changed_files }}"
-                  exclude-affected-projects: "pail-bench,redact-bench,colorize-bench,inspector-bench,docs,storybook"
-
-    browser-test:
-        name: "Browser Test (${{ matrix.browser }})"
-        if: "needs.files-changed.outputs.packages == 'true'"
-        needs: "files-changed"
-        strategy:
-            fail-fast: false
-            matrix:
-                include:
-                    - browser: "chrome"
-                      os: "ubuntu-latest"
-                    - browser: "firefox"
-                      os: "ubuntu-latest"
-                    - browser: "webkit"
-                      os: "macos-latest"
-        runs-on: "${{ matrix.os }}"
-        env:
-            NODE: "22"
-        steps:
-            - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
-              with:
-                  egress-policy: "audit"
-
-            - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
-              env:
-                  GIT_COMMITTER_NAME: "GitHub Actions Shell"
-                  GIT_AUTHOR_NAME: "GitHub Actions Shell"
-                  EMAIL: "github-actions[bot]@users.noreply.github.com"
-              with:
-                  # Number of commits to fetch. 0 indicates all history for all branches and tags.
-                  # Pulls all commits (needed for NX)
-                  fetch-depth: 0
-
-            - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
-              id: "setSHAs"
-              uses: "nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1" # v4
-
-            - name: "Setup resources and environment"
-              id: "setup"
-              uses: "anolilab/workflows/step/setup@main"
-              with:
-                  node-version: "22"
-                  skip-playwright: "false"
-                  run-signatures-audit: false
-
-            - name: "Wait for Build Native workflow"
-              if: "matrix.os == 'ubuntu-latest'"
-              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
-              timeout-minutes: 30
-              with:
-                  ref: "${{ github.event.pull_request.head.sha || github.sha }}"
-                  repo-token: "${{ secrets.GITHUB_TOKEN }}"
-                  wait-interval: 15 # seconds
-                  check-name: "Check Native Build"
-                  allowed-conclusions: "success,skipped,neutral"
-
-            # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
-            - name: "Get changed files"
-              id: "files"
-              uses: "tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c" # v44.5.7
-              with:
-                  files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
-                  base_sha: "${{ steps.setSHAs.outputs.base }}"
-                  separator: ","
-
-            - name: "Build"
-              shell: "bash"
-              run: |
-                  files="${{ steps.files.outputs.all_changed_files }}";
-                  pnpm run build:affected:packages --files=${files//\\/\/}
-
-            - name: "Install playwright"
-              shell: "bash"
-              run: "pnpm --filter \"inspector\" exec playwright install"
-
-            - name: "Run ${{ matrix.browser }} browser tests"
-              shell: "bash"
-              run: |
-                  files="${{ steps.files.outputs.all_changed_files }}";
-                  pnpm run test:affected:browser:${{ matrix.browser }} --files=${files//\\/\/}
+                  exclude-affected-projects: "semantic-release-preset"
 
     # This check runs once all dependant jobs have passed
-    # It symbolizes that all required checks have successfully passed (Or skipped)
+    # It symbolizes that all required Frontend checks have succesfully passed (Or skipped)
     # This check is the only required GitHub check
     test-required-check:
-        needs: ["files-changed", "test", "browser-test"]
+        needs: ["files-changed", "test-multi-semantic-release", "test-packages"]
         name: "Check Test Run"
         # This is necessary since a failed/skipped dependent job would cause this job to be skipped
-        if: "always() && (needs.test.result == 'success' || needs.test.result == 'skipped') && (needs.browser-test.result == 'success' || needs.browser-test.result == 'skipped')"
+        if: "always() && (needs.test-packages.result == 'success' || needs.test-packages.result == 'skipped') && (needs.test-multi-semantic-release.result == 'success' || needs.test-multi-semantic-release.result == 'skipped')"
         runs-on: "ubuntu-24.04"
         steps:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
               with:
                   egress-policy: "audit"
 
