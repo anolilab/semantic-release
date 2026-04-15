@@ -50,20 +50,20 @@ catalogs:
     '@anolilab/textlint-config': 13.0.0
     '@commitlint/cli': 20.5.0
     '@commitlint/config-conventional': 20.5.0
-    '@secretlint/secretlint-rule-preset-recommend': 11.6.0
+    '@secretlint/secretlint-rule-preset-recommend': 11.7.1
     eslint: 10.2.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 16.4.0
-    prettier: 3.8.1
+    prettier: 3.8.3
     publint: 0.3.18
-    secretlint: 11.6.0
-    textlint: 15.5.2
+    secretlint: 11.7.1
+    textlint: 15.5.4
   markdown:
     typedoc-plugin-markdown: 4.11.0
   monorepo:
-    '@nx/workspace': 22.6.4
-    nx: 22.6.4
+    '@nx/workspace': 22.6.5
+    nx: 22.6.5
   network:
     browserslist-config-anolilab: 9.0.0
   node:
@@ -103,7 +103,7 @@ catalogs:
   test:
     '@vitest/coverage-v8': 4.1.3
     '@vitest/ui': 4.1.3
-    vitest: 4.1.3
+    vitest: 4.1.4
   tsc:
     typescript: 6.0.2
   types:
