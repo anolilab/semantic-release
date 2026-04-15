@@ -37,7 +37,7 @@ jobs:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
+              uses: "actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd" # v5.0.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
@@ -85,7 +85,7 @@ jobs:
                   egress-policy: "audit"
 
             - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
+              uses: "actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd" # v5.0.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
@@ -97,7 +97,7 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1" # v4
+              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5
 
             - name: "Setup resources and environment"
               id: "setup"
@@ -182,7 +182,7 @@ jobs:
                   egress-policy: "audit"
 
             - name: "Git checkout ${{ env.HEAD_REPOSITORY }}:${{ env.HEAD_REF }}"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
+              uses: "actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd" # v5.0.1
               env:
                   GIT_COMMITTER_NAME: "GitHub Actions Shell"
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
@@ -194,7 +194,7 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@3e9ad7370203c1e93d109be57f3b72eb0eb511b1" # v4
+              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5
 
             - name: "Setup resources and environment"
               id: "setup"
