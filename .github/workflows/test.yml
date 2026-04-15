@@ -52,7 +52,7 @@ jobs:
 
     test:
         name: >-
-          Test (node-${{ matrix.node_version }}, ${{ matrix.os }}${{ matrix.deno_version && format(', deno {0}', matrix.deno_version) || '' }}${{ matrix.bun_version && format(', bun {0}', matrix.bun_version) || '' }})
+            Test (node-${{ matrix.node_version }}, ${{ matrix.os }}${{ matrix.deno_version && format(', deno {0}', matrix.deno_version) || '' }}${{ matrix.bun_version && format(', bun {0}', matrix.bun_version) || '' }})
         if: "needs.files-changed.outputs.packages == 'true'"
         needs: "files-changed"
         strategy:
@@ -106,6 +106,8 @@ jobs:
                   node-version: "${{ matrix.node_version }}"
                   install-bun: "matrix.os == 'ubuntu-latest'"
                   skip-playwright: "true"
+                  # TODO: re-enable once pnpm/npm audit works with unpublished @visulima/task-runner-binding-* packages and pnpm registry config
+                  run-npm-audit: false
                   run-signatures-audit: false
 
             - name: "Setup Deno"
@@ -119,17 +121,6 @@ jobs:
               uses: "oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76" # v2.0.2
               with:
                   bun-version: "${{ matrix.bun_version }}"
-
-            - name: "Wait for Build Native workflow"
-              if: "matrix.os == 'ubuntu-latest'"
-              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
-              timeout-minutes: 30
-              with:
-                  ref: "${{ github.event.pull_request.head.sha || github.sha }}"
-                  repo-token: "${{ secrets.GITHUB_TOKEN }}"
-                  wait-interval: 15 # seconds
-                  check-name: "Check Native Build"
-                  allowed-conclusions: "success,skipped,neutral"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
@@ -211,18 +202,9 @@ jobs:
               with:
                   node-version: "22"
                   skip-playwright: "false"
+                  # TODO: re-enable once pnpm/npm audit works with unpublished @visulima/task-runner-binding-* packages and pnpm registry config
+                  run-npm-audit: false
                   run-signatures-audit: false
-
-            - name: "Wait for Build Native workflow"
-              if: "matrix.os == 'ubuntu-latest'"
-              uses: "lewagon/wait-on-check-action@3603e826ee561ea102b58accb5ea55a1a7482343" # v1.4.1
-              timeout-minutes: 30
-              with:
-                  ref: "${{ github.event.pull_request.head.sha || github.sha }}"
-                  repo-token: "${{ secrets.GITHUB_TOKEN }}"
-                  wait-interval: 15 # seconds
-                  check-name: "Check Native Build"
-                  allowed-conclusions: "success,skipped,neutral"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
@@ -241,7 +223,7 @@ jobs:
 
             - name: "Install playwright"
               shell: "bash"
-              run: "pnpm --filter \"inspector\" exec playwright install"
+              run: 'pnpm --filter "inspector" exec playwright install'
 
             - name: "Run ${{ matrix.browser }} browser tests"
               shell: "bash"
