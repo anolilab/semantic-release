@@ -63,8 +63,8 @@ catalogs:
       specifier: 9.0.1
       version: 9.0.1
     got:
-      specifier: 15.0.1
-      version: 15.0.1
+      specifier: 15.0.2
+      version: 15.0.2
     p-retry:
       specifier: 8.0.0
       version: 8.0.0
@@ -300,7 +300,7 @@ catalogs:
       version: 7.0.3
 
 overrides:
-  '@hono/node-server@<1.19.10': '>=1.19.13'
+  '@hono/node-server@<1.19.10': '>=1.19.14'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
   '@modelcontextprotocol/sdk@<1.25.2': '>=1.25.3'
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.26.0'
@@ -308,7 +308,7 @@ overrides:
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.18.0'
   axios@<1.15.0: '>=1.15.0'
   axios@>=1.0.0 <1.15.0: '>=1.15.0'
-  axios@>=1.0.0 <=1.13.4: '>=1.13.5'
+  axios@>=1.0.0 <=1.13.4: '>=1.13.6'
   body-parser@>=2.2.0 <2.2.1: '>=2.2.2'
   brace-expansion@<1.1.13: '>=1.1.14'
   brace-expansion@>=2.0.0 <2.0.3: '>=2.0.3'
@@ -345,8 +345,8 @@ overrides:
   undici@<6.24.0: '>=6.24.1'
   undici@>=6.0.0 <6.24.0: '>=6.24.1'
   undici@>=7.0.0 <7.18.2: '>=7.18.2'
-  undici@>=7.0.0 <7.24.0: '>=7.24.7'
-  undici@>=7.17.0 <7.24.0: '>=7.24.7'
+  undici@>=7.0.0 <7.24.0: '>=7.24.8'
+  undici@>=7.17.0 <7.24.0: '>=7.24.8'
   vite@>=7.0.0 <=7.3.1: '>=7.3.2'
   vite@>=7.1.0 <=7.1.10: '>=7.2.7'
   vite@>=7.1.0 <=7.3.1: '>=7.3.2'
@@ -919,7 +919,7 @@ importers:
         version: 9.0.1
       got:
         specifier: catalog:dev
-        version: 15.0.1
+        version: 15.0.2
       p-retry:
         specifier: catalog:dev
         version: 8.0.0
@@ -5516,8 +5516,8 @@ packages:
     resolution: {integrity: sha512-mThBblvlAF1d4O5oqyvN+ZxLAYwIJK7bpMxgYqPD9okW0C3qm5FFn7k811QrcuEBwaogR3ngOFoCfs6mRv7teQ==}
     engines: {node: '>=14.16'}
 
-  got@15.0.1:
-    resolution: {integrity: sha512-InYCBboAj9YmFiMcxbIRQ/WPoLsKSc9t9EGaUjGENtxunnx8USWtRY/SO/V3VsHLfDvUxAO2Qmx+6fQyG1jjaw==}
+  got@15.0.2:
+    resolution: {integrity: sha512-opPIdoQSTOGqX3h0d8QQoqCX0oF728V1PFxbPqquAFSeWPUOlPQ3Gi6IKIqGm6NMcDl+DWUwQb2RR+xvuEJOQQ==}
     engines: {node: '>=22'}
 
   graceful-fs@4.2.10:
@@ -14374,7 +14374,7 @@ snapshots:
       p-cancelable: 3.0.0
       responselike: 3.0.0
 
-  got@15.0.1:
+  got@15.0.2:
     dependencies:
       '@sindresorhus/is': 7.2.0
       byte-counter: 0.1.0
