@@ -336,7 +336,6 @@ overrides:
   path-to-regexp@>=8.0.0 <8.4.0: '>=8.4.2'
   picomatch@<2.3.2: '>=2.3.2'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.4'
-  protobufjs@<7.5.5: '>=7.5.5'
   qs@<6.14.1: '>=6.14.2'
   qs@>=6.7.0 <=6.14.1: '>=6.14.2'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
@@ -7725,8 +7724,8 @@ packages:
   proto-list@1.2.4:
     resolution: {integrity: sha512-vtK/94akxsTMhe0/cbfpR+syPuszcuwhqVjJq26CuNDgFGj682oRBXOP5MJpv2r7JtE8MsiepGIqvvOTBwn2vA==}
 
-  protobufjs@8.0.1:
-    resolution: {integrity: sha512-NWWCCscLjs+cOKF/s/XVNFRW7Yih0fdH+9brffR5NZCy8k42yRdl5KlWKMVXuI1vfCoy4o1z80XR/W/QUb3V3w==}
+  protobufjs@7.5.5:
+    resolution: {integrity: sha512-3wY1AxV+VBNW8Yypfd1yQY9pXnqTAN+KwQxL8iYm3/BjKYMNg4i0owhEe26PWDOMaIrzeeF98Lqd5NGz4omiIg==}
     engines: {node: '>=12.0.0'}
 
   proxy-addr@2.0.7:
@@ -10191,7 +10190,7 @@ snapshots:
     dependencies:
       lodash.camelcase: 4.3.0
       long: 5.2.4
-      protobufjs: 8.0.1
+      protobufjs: 7.5.5
       yargs: 17.7.2
 
   '@hono/node-server@1.19.14(hono@4.12.14)':
@@ -13164,7 +13163,7 @@ snapshots:
       '@grpc/grpc-js': 1.12.5
       '@grpc/proto-loader': 0.7.13
       docker-modem: 5.0.7
-      protobufjs: 8.0.1
+      protobufjs: 7.5.5
       tar-fs: 2.1.4
       uuid: 10.0.0
     transitivePeerDependencies:
@@ -17103,7 +17102,7 @@ snapshots:
 
   proto-list@1.2.4: {}
 
-  protobufjs@8.0.1:
+  protobufjs@7.5.5:
     dependencies:
       '@protobufjs/aspromise': 1.1.2
       '@protobufjs/base64': 1.1.2
