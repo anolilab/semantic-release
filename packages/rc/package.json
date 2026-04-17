@@ -93,8 +93,6 @@
         "test:watch": "vitest"
     },
     "dependencies": {
-        "@visulima/fs": "catalog:prod",
-        "@visulima/path": "catalog:node",
         "ini": "catalog:prod",
         "ts-deepmerge": "catalog:utils"
     },
@@ -111,6 +109,7 @@
         "@semantic-release/release-notes-generator": "catalog:cli",
         "@types/ini": "catalog:types",
         "@types/node": "catalog:types",
+        "@visulima/fs": "catalog:prod",
         "@visulima/packem": "catalog:dev",
         "@visulima/path": "catalog:node",
         "@vitest/coverage-v8": "catalog:test",
