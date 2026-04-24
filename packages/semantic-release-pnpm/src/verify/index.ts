@@ -46,7 +46,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
             const npmrc = getNpmrcPath(context.cwd, context.env);
 
-            await verifyAuth(npmrc, packageJson, context, pluginConfig.pkgRoot);
+            await verifyAuth(npmrc, packageJson, context);
         } else {
             context.logger.log(`Skipping authentication verification for package "${packageJson.name ?? "unknown"}" (publishing disabled)`);
         }
