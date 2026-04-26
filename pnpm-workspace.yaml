@@ -1,16 +1,18 @@
 packages:
-  - '!**/__test__/**'
-  - '!**/__tests__/**'
-  - '!**/__fixtures__/**'
-  - packages/**
-  - '!packages/multi-semantic-release/__fixtures__/**'
+  - "!**/__test__/**"
+  - "!**/__tests__/**"
+  - "!**/__fixtures__/**"
+  - "packages/**"
+  - "!packages/multi-semantic-release/__fixtures__/**"
 
+allowBuilds:
+  esbuild: true
 catalogs:
   build:
     esbuild: 0.28.0
   cli:
-    '@anolilab/semantic-release-clean-package-json': 5.2.0
-    '@anolilab/semantic-release-pnpm': 7.0.0
+    '@anolilab/semantic-release-clean-package-json': 5.5.0
+    '@anolilab/semantic-release-pnpm': 8.1.2
     '@sebbo2002/semantic-release-jsr': 3.2.1
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
@@ -26,19 +28,19 @@ catalogs:
     taze: 19.11.0
   dev:
     '@arethetypeswrong/cli': ^0.18.2
-    '@ckeditor/typedoc-plugins': 55.4.0
+    '@ckeditor/typedoc-plugins': 55.5.0
     '@visulima/packem': 2.0.0-alpha.49
     conventional-changelog-conventionalcommits: 9.3.1
-    dockerode: 4.0.10
+    dockerode: 5.0.0
     file-url: ^4.0.0
     get-stream: 9.0.1
-    got: 15.0.1
+    got: 15.0.3
     left-pad: ^1.3.0
     p-retry: 8.0.0
     stream-buffers: ^3.0.3
     tempy: 3.2.0
-    type-fest: 5.5.0
-    typedoc: 0.28.18
+    type-fest: 5.6.0
+    typedoc: 0.28.19
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
     cosmiconfig: 9.0.1
@@ -48,36 +50,36 @@ catalogs:
     '@anolilab/lint-staged-config': 11.0.0
     '@anolilab/prettier-config': 10.0.0
     '@anolilab/textlint-config': 13.0.0
-    '@commitlint/cli': 20.5.0
+    '@commitlint/cli': 20.5.2
     '@commitlint/config-conventional': 20.5.0
-    '@secretlint/secretlint-rule-preset-recommend': 11.7.1
-    eslint: 10.2.0
+    '@secretlint/secretlint-rule-preset-recommend': 12.3.1
+    eslint: 10.2.1
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 16.4.0
     prettier: 3.8.3
     publint: 0.3.18
-    secretlint: 11.7.1
-    textlint: 15.5.4
+    secretlint: 12.3.1
+    textlint: 15.6.0
   markdown:
     typedoc-plugin-markdown: 4.11.0
   monorepo:
-    '@nx/workspace': 22.6.5
-    nx: 22.6.5
+    '@nx/workspace': 22.7.0
+    nx: 22.7.0
   network:
     browserslist-config-anolilab: 9.0.0
   node:
     '@visulima/path': ^2.0.5
     cross-env: ^10.1.0
     execa: ^9.6.1
-    pkg-pr-new: 0.0.66
+    pkg-pr-new: 0.0.67
     resolve-from: ^5.0.0
     rimraf: 6.1.3
   peer:
     left-pad: ^1.3.0
   prod:
-    '@actions/core': 3.0.0
-    '@anolilab/rc': 4.0.1
+    '@actions/core': 3.0.1
+    '@anolilab/rc': 4.0.2
     '@babel/core': 7.29.0
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^4.1.0
@@ -101,11 +103,11 @@ catalogs:
     yaml: 2.8.3
     yargs: 18.0.0
   test:
-    '@vitest/coverage-v8': 4.1.3
-    '@vitest/ui': 4.1.3
-    vitest: 4.1.4
+    '@vitest/coverage-v8': 4.1.5
+    '@vitest/ui': 4.1.5
+    vitest: 4.1.5
   tsc:
-    typescript: 6.0.2
+    typescript: 6.0.3
   types:
     '@types/debug': 4.1.13
     '@types/dockerode': 4.0.1
@@ -113,7 +115,7 @@ catalogs:
     '@types/git-log-parser': 1.2.3
     '@types/ini': ^4.1.1
     '@types/lodash-es': 4.17.12
-    '@types/node': 25.5.2
+    '@types/node': 25.6.0
     '@types/semantic-release__error': 3.0.3
     '@types/semver': 7.7.1
     '@types/signale': 1.4.7
@@ -123,7 +125,6 @@ catalogs:
     lodash-es: 4.18.1
     semver: 7.7.4
     ts-deepmerge: ^7.0.3
-
 dedupeInjectedDeps: true
 
 disallowWorkspaceCycles: true
@@ -165,6 +166,7 @@ overrides:
   body-parser@>=2.2.0 <2.2.1: '>=2.2.2'
   brace-expansion@<1.1.13: '>=1.1.14'
   brace-expansion@>=2.0.0 <2.0.3: '>=2.0.3'
+  brace-expansion@>=4.0.0 <5.0.5: '>=5.0.5'
   chrono-node@<2.2.4: '>=2.9.0'
   defu@<=6.1.4: '>=6.1.7'
   diff@>=5.0.0 <5.2.2: '>=5.2.2'
@@ -200,9 +202,11 @@ overrides:
   undici@>=7.0.0 <7.18.2: '>=7.18.2'
   undici@>=7.0.0 <7.24.0: '>=7.24.7'
   undici@>=7.17.0 <7.24.0: '>=7.24.7'
+  uuid@<14.0.0: '>=14.0.0'
   vite@>=7.0.0 <=7.3.1: '>=7.3.2'
   vite@>=7.1.0 <=7.1.10: '>=7.2.7'
   vite@>=7.1.0 <=7.3.1: '>=7.3.2'
+  yaml@>=2.0.0 <2.8.3: '>=2.8.3'
 
 preferWorkspacePackages: true
 
