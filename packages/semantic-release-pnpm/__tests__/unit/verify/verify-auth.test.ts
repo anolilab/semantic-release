@@ -127,11 +127,12 @@ describe(verifyAuth, () => {
     });
 
     it("should not fail when the package version already exists in a custom registry", async () => {
-        expect.assertions(2);
+        expect.assertions(3);
 
-        const customRegistry = "https://custom.registry.org/";
+        // Use a distinct registry to avoid hitting the cache populated by the preceding test
+        const alreadyPublishedRegistry = "https://already-published.registry.org/";
 
-        vi.mocked(getRegistry).mockReturnValue(customRegistry);
+        vi.mocked(getRegistry).mockReturnValue(alreadyPublishedRegistry);
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
 
@@ -139,7 +140,12 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockResolvedValue({ stderr: "", stdout: "test-user" } as any);
 
         await expect(verifyAuth(npmrc, pkg, context)).resolves.toBeUndefined();
-        expect(execa).toHaveBeenCalledWith("pnpm", ["whoami", "--registry", customRegistry], expect.any(Object));
+
+        // The regression guard: old code used `pnpm publish --dry-run`, which fails when the
+        // version already exists. New code uses `whoami` exclusively, so that error path
+        // is unreachable regardless of the registry's publish state.
+        expect(execa).toHaveBeenCalledWith("pnpm", ["whoami", "--registry", alreadyPublishedRegistry], expect.any(Object));
+        expect(execa).not.toHaveBeenCalledWith("pnpm", expect.arrayContaining(["publish", "--dry-run"]), expect.any(Object));
     });
 
     it("should verify auth when package name is missing", async () => {
