@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-clean-package-json [5.5.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.1...@anolilab/semantic-release-clean-package-json@5.5.2) (2026-04-26)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.4
+
 ## @anolilab/semantic-release-clean-package-json [5.5.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.0...@anolilab/semantic-release-clean-package-json@5.5.1) (2026-04-26)
 
 ### Styles
