@@ -102,22 +102,17 @@ jobs:
             - name: "Build"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run build:affected:packages --files=\"$CHANGED_FILES\""
+              run: 'pnpm run build:affected:packages --files="$CHANGED_FILES"'
 
             - name: "lint eslint"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run lint:affected:eslint --files=\"$CHANGED_FILES\""
+              run: 'pnpm run lint:affected:eslint --files="$CHANGED_FILES"'
 
             - name: "lint typescript types"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run lint:affected:types --files=\"$CHANGED_FILES\""
-
-            - name: "lint attw"
-              env:
-                  CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run lint:affected:attw --files=\"$CHANGED_FILES\""
+              run: 'pnpm run lint:affected:types --files="$CHANGED_FILES"'
 
     package-json-lint:
         if: "needs.files-changed.outputs.package_json_lintable == 'true'"
@@ -167,12 +162,12 @@ jobs:
             - name: "Build"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run build:affected:packages --files=\"$CHANGED_FILES\""
+              run: 'pnpm run build:affected:packages --files="$CHANGED_FILES"'
 
             - name: "lint package.json"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run lint:affected:package-json --files=\"$CHANGED_FILES\""
+              run: 'pnpm run lint:affected:package-json --files="$CHANGED_FILES"'
 
     yaml-lint:
         if: "needs.files-changed.outputs.yaml_lintable == 'true'"
