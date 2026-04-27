@@ -32,7 +32,7 @@ jobs:
             codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -67,7 +67,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -88,7 +88,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/setup@0902480949db1f1d6516f0cc3f8ce245b4242ade" # main
               with:
                   node-version: "${{ matrix.node_version }}"
                   enable-nx-cache: false
@@ -123,7 +123,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -144,14 +144,14 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/setup@0902480949db1f1d6516f0cc3f8ce245b4242ade" # main
               with:
                   node-version: "${{ matrix.node_version }}"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@22103cc46bda19c2b464ffe86db46df6922fd323" # v47.0.5
+              uses: "tj-actions/changed-files@9426d40962ed5378910ee2e21d5f8c6fcbf2dd96" # v47.0.6
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -180,7 +180,7 @@ jobs:
 
             - name: "Upload code coverage to codecov"
               if: "matrix.os == 'ubuntu-latest' && matrix.node_version == 22"
-              uses: "anolilab/workflows/step/codecov@6f532c500cfe608e2cc5ff59413161b7a1294de7" # main
+              uses: "anolilab/workflows/step/codecov@0902480949db1f1d6516f0cc3f8ce245b4242ade" # main
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
@@ -201,7 +201,7 @@ jobs:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@fe104658747b27e96e4f7e80cd0a94068e53901d" # v2.16.1
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
