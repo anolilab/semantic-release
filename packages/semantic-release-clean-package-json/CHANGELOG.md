@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [5.5.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.2...@anolilab/semantic-release-clean-package-json@5.5.3) (2026-04-27)
+
+### Miscellaneous Chores
+
+* **semantic-release-clean-package-json:** apply prettier formatting ([ef3c781](https://github.com/anolilab/semantic-release/commit/ef3c7818dd967fa753d22fd78eec991949f6b88c))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.5
+
 ## @anolilab/semantic-release-clean-package-json [5.5.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.1...@anolilab/semantic-release-clean-package-json@5.5.2) (2026-04-26)
 
 
