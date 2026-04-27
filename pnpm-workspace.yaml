@@ -154,7 +154,7 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
-  '@hono/node-server@<1.19.10': '>=1.19.13'
+  '@hono/node-server@<1.19.10': '>=2.0.0'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
   '@modelcontextprotocol/sdk@<1.25.2': '>=1.25.3'
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.26.0'
