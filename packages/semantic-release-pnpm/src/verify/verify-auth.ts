@@ -89,13 +89,13 @@ const isConnectionError = (error: any): boolean => {
     const isTimedOut = (error as { timedOut?: boolean }).timedOut === true;
 
     return (
-        isTimedOut
-        || errorCode === "ECONNREFUSED"
-        || errorCode === "ETIMEDOUT"
-        || errorMessage.includes("ECONNREFUSED")
-        || errorMessage.includes("ETIMEDOUT")
-        || errorMessage.includes("getaddrinfo ENOTFOUND")
-        || errorMessage.includes("timed out")
+        isTimedOut ||
+        errorCode === "ECONNREFUSED" ||
+        errorCode === "ETIMEDOUT" ||
+        errorMessage.includes("ECONNREFUSED") ||
+        errorMessage.includes("ETIMEDOUT") ||
+        errorMessage.includes("getaddrinfo ENOTFOUND") ||
+        errorMessage.includes("timed out")
     );
 };
 
@@ -198,7 +198,7 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
  * @param context – semantic-release context providing env, logger, streams, etc.
  * @returns Resolves when authentication has been verified.
  */
-const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext) => Promise<void> = async (
+export const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext) => Promise<void> = async (
     npmrc: string,
     package_: PackageJson,
     context: CommonContext,
@@ -244,4 +244,10 @@ const verifyAuth: (npmrc: string, package_: PackageJson, context: CommonContext)
     await verifyAuthContextAgainstRegistry(npmrc, registry, context);
 };
 
-export default verifyAuth;
+/**
+ * Clear the whoami verification cache. Intended for test isolation —
+ * call from `beforeEach` to prevent state leaking between tests.
+ */
+export const resetWhoamiCache = (): void => {
+    whoamiCache.clear();
+};

@@ -15,7 +15,7 @@ vi.mock(import("../../../src/verify/verify-pnpm"));
 const { default: getPackage } = await import("../../../src/utils/get-package");
 const { shouldPublish } = await import("../../../src/utils/should-publish");
 const { default: getNpmrcPath } = await import("../../../src/utils/get-npmrc-path");
-const { default: verifyAuth } = await import("../../../src/verify/verify-auth");
+const { verifyAuth } = await import("../../../src/verify/verify-auth");
 const { default: verifyConfig } = await import("../../../src/verify/verify-config");
 const { default: verifyPnpm } = await import("../../../src/verify/verify-pnpm");
 

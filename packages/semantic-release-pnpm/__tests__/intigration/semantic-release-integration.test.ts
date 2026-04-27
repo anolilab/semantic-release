@@ -7,6 +7,7 @@ import { WritableStreamBuffer } from "stream-buffers";
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { resetWhoamiCache } from "../../src/verify/verify-auth";
 import { authEnvironment, start, stop, url as npmRegistryUrl } from "./helpers/npm-registry";
 
 // Mock the npm registry helpers to avoid docker setup
@@ -39,6 +40,7 @@ describe("semantic-release-integration", () => {
         cwd = temporaryDirectory();
         await start();
         vi.clearAllMocks();
+        resetWhoamiCache();
     });
 
     afterEach(async () => {
@@ -46,7 +48,7 @@ describe("semantic-release-integration", () => {
         await stop();
     });
 
-    it("should skip npm auth verification if \"npmPublish\" is false", async () => {
+    it('should skip npm auth verification if "npmPublish" is false', async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
@@ -71,7 +73,7 @@ describe("semantic-release-integration", () => {
         ).resolves.not.toThrow();
     });
 
-    it("should skip npm auth verification if \"package.private\" is true", async () => {
+    it('should skip npm auth verification if "package.private" is true', async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
@@ -97,7 +99,7 @@ describe("semantic-release-integration", () => {
         ).resolves.not.toThrow();
     });
 
-    it("should skip npm token verification if \"package.private\" is true", async () => {
+    it('should skip npm token verification if "package.private" is true', async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
@@ -151,7 +153,7 @@ describe("semantic-release-integration", () => {
                 stdout: new WritableStreamBuffer(),
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } as any),
-        ).rejects.toThrow("Invalid npm authentication");
+        ).rejects.toThrow("Invalid npm token");
     });
 
     it("should throw error if NPM token is not provided when targeting the default registry", async () => {

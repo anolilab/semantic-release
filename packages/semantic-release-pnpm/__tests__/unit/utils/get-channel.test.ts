@@ -15,7 +15,7 @@ describe(getChannel, () => {
         expect(getChannel("next")).toBe("next");
     });
 
-    it("prefix channel with \"release-\" if invalid", () => {
+    it('prefix channel with "release-" if invalid', () => {
         expect.assertions(2);
 
         expect(getChannel("1.x")).toBe("release-1.x");
