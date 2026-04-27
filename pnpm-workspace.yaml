@@ -4,15 +4,14 @@ packages:
   - "!**/__fixtures__/**"
   - "packages/**"
   - "!packages/multi-semantic-release/__fixtures__/**"
-
 allowBuilds:
   esbuild: true
 catalogs:
   build:
     esbuild: 0.28.0
   cli:
-    '@anolilab/semantic-release-clean-package-json': 5.5.0
-    '@anolilab/semantic-release-pnpm': 8.1.2
+    '@anolilab/semantic-release-clean-package-json': 5.5.2
+    '@anolilab/semantic-release-pnpm': 8.1.4
     '@sebbo2002/semantic-release-jsr': 3.2.1
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
