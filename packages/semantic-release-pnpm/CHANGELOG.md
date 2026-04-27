@@ -1,3 +1,17 @@
+## @anolilab/semantic-release-pnpm [8.1.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.4...@anolilab/semantic-release-pnpm@8.1.5) (2026-04-27)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** align integration test with whoami error and add cache reset helper ([fdfc677](https://github.com/anolilab/semantic-release/commit/fdfc67705d1ba0b28dee9acd9b61fc1ec6916e62))
+* **semantic-release-pnpm:** remove duplicate verifyAuthContextAgainstCustomRegistry function ([dc64c44](https://github.com/anolilab/semantic-release/commit/dc64c4443e61883136d78fb407ba1329bc06fc09))
+* **semantic-release-pnpm:** use `npm pkg set` on pnpm v10+ ([c96d683](https://github.com/anolilab/semantic-release/commit/c96d6834099a2cfafa000a976be73fa9074f531c))
+* **semantic-release-pnpm:** use pnpm whoami for custom registry auth verification ([afee204](https://github.com/anolilab/semantic-release/commit/afee2047abcd6201d63414f80349a7e5331925f8))
+
+### Tests
+
+* **semantic-release-pnpm:** strengthen already-published regression test ([6e84c11](https://github.com/anolilab/semantic-release/commit/6e84c11505925e47bc72aff1e1d2fa897125e276))
+* **semantic-release-pnpm:** use distinct registry URL in whoami-failure test to avoid cache collision ([5900697](https://github.com/anolilab/semantic-release/commit/59006976fb6aec218b85e7d54fcff3332f3dee19))
+
 ## @anolilab/semantic-release-pnpm [8.1.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.3...@anolilab/semantic-release-pnpm@8.1.4) (2026-04-26)
 
 ### Miscellaneous Chores
