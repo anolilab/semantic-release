@@ -108,7 +108,8 @@ describe(verifyAuth, () => {
     it("should throw EINVALIDNPMTOKEN when whoami fails for custom registry", async () => {
         expect.assertions(3);
 
-        const customRegistry = "https://custom.registry.org/";
+        // Use a distinct registry to avoid hitting the whoamiCache populated by the preceding test
+        const customRegistry = "https://failing.registry.org/";
 
         vi.mocked(getRegistry).mockReturnValue(customRegistry);
         vi.mocked(oidcContextEstablished).mockResolvedValue(false);
@@ -116,7 +117,7 @@ describe(verifyAuth, () => {
 
         vi.mocked(execa).mockRejectedValue(
             Object.assign(new Error("Command failed"), {
-                stderr: "This command requires you to be logged in to https://custom.registry.org/",
+                stderr: "This command requires you to be logged in to https://failing.registry.org/",
                 stdout: "",
             }) as Error & { stderr: string; stdout: string },
         );
