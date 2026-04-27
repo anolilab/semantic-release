@@ -728,7 +728,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.3)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.3
+        specifier: 8.1.4
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -948,7 +948,7 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.5.1
+        specifier: 5.5.2
         version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: catalog:cli
@@ -979,7 +979,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.0(prettier@3.8.3)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.3
+        specifier: 8.1.4
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint

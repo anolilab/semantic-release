@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [8.1.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.3...@anolilab/semantic-release-pnpm@8.1.4) (2026-04-26)
+
+### Miscellaneous Chores
+
+* clean up old lint command ([07d70e6](https://github.com/anolilab/semantic-release/commit/07d70e65b2fe220c3aee13eab796a70577a2d5c6))
+
 ## @anolilab/semantic-release-pnpm [8.1.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.2...@anolilab/semantic-release-pnpm@8.1.3) (2026-04-26)
 
 ## @anolilab/semantic-release-pnpm [8.1.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.1...@anolilab/semantic-release-pnpm@8.1.2) (2026-04-17)
