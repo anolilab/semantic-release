@@ -10,6 +10,6 @@ permissions:
 
 jobs:
     stale-issues:
-        uses: "anolilab/workflows/.github/workflows/stale-issues.yml@main"
+        uses: "anolilab/workflows/.github/workflows/stale-issues.yml@bbe85cc99b036e08d0ac7daf7be586218d8e2d0c" # main
         with:
             target-repo: "anolilab/semantic-release"
