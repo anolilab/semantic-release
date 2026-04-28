@@ -19,8 +19,17 @@ vi.mock(import("@visulima/package"), async (importOriginal) => {
     return { ...actual, getPackageManagerVersion: vi.fn(() => "10.33.0") };
 });
 
+vi.mock(import("execa"), async (importOriginal) => {
+    const actual = await importOriginal();
+
+    return { ...actual, execa: vi.fn(actual.execa) };
+});
+
 const { getPackageManagerVersion } = await import("@visulima/package");
 const getPackageManagerVersionMock = vi.mocked(getPackageManagerVersion);
+
+const { execa: execaImport } = await import("execa");
+const execaMock = vi.mocked(execaImport);
 
 const logSpy = vi.fn();
 
@@ -32,6 +41,7 @@ describe(prepare, () => {
     beforeEach(() => {
         cwd = temporaryDirectory();
         getPackageManagerVersionMock.mockReturnValue("10.33.0");
+        execaMock.mockClear();
     });
 
     afterEach(async () => {
@@ -208,6 +218,55 @@ describe(prepare, () => {
 
         expect(packageJson.version).toBe("3.1.4");
         expect(shrinkwrap.version).toBe("3.1.4");
+    });
+
+    it("should set the version via `npm pkg set` on pnpm v10+ (pnpm has no `pkg` command)", async () => {
+        expect.assertions(3);
+
+        getPackageManagerVersionMock.mockReturnValue("10.33.0");
+
+        const packagePath = join(cwd, "package.json");
+
+        await writeJson(packagePath, { name: "pkg", version: "0.0.0-dev" });
+
+        await prepare({}, {
+            cwd,
+            env: {},
+            logger,
+            nextRelease: { version: "5.0.0" },
+            stderr: new WritableStreamBuffer(),
+            stdout: new WritableStreamBuffer(),
+        } as unknown as PrepareContext);
+
+        const versionCalls = execaMock.mock.calls.filter(([, arguments_]) => Array.isArray(arguments_) && arguments_[0] === "pkg" && arguments_[1] === "set");
+
+        expect(versionCalls).toHaveLength(1);
+        expect(versionCalls[0]?.[0]).toBe("npm");
+        expect(versionCalls[0]?.[1]).toStrictEqual(["pkg", "set", "version=5.0.0"]);
+    });
+
+    it("should set the version via `pnpm version` on pnpm v9", async () => {
+        expect.assertions(2);
+
+        getPackageManagerVersionMock.mockReturnValue("9.15.0");
+
+        const packagePath = join(cwd, "package.json");
+
+        await writeJson(packagePath, { name: "legacy-pkg", version: "0.0.0-dev" });
+
+        await prepare({}, {
+            cwd,
+            env: {},
+            logger,
+            nextRelease: { version: "2.1.0" },
+            stderr: new WritableStreamBuffer(),
+            stdout: new WritableStreamBuffer(),
+        } as unknown as PrepareContext);
+
+        const versionCalls = execaMock.mock.calls.filter(([bin, arguments_]) => bin === "pnpm" && Array.isArray(arguments_) && arguments_[0] === "version");
+
+        expect(versionCalls).toHaveLength(1);
+        expect(versionCalls[0]?.[1]).toStrictEqual(["version", "2.1.0", "--no-git-tag-version", "--allow-same-version"]);
     });
 
     it("should not fail on pnpm v10 when npm-shrinkwrap.json is absent", async () => {
