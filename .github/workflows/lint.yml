@@ -102,17 +102,17 @@ jobs:
             - name: "Build"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: 'pnpm run build:affected:packages --files="$CHANGED_FILES"'
+              run: "pnpm run build:affected:packages --files=\"$CHANGED_FILES\""
 
             - name: "lint eslint"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: 'pnpm run lint:affected:eslint --files="$CHANGED_FILES"'
+              run: "pnpm run lint:affected:eslint --files=\"$CHANGED_FILES\""
 
             - name: "lint typescript types"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: 'pnpm run lint:affected:types --files="$CHANGED_FILES"'
+              run: "pnpm run lint:affected:types --files=\"$CHANGED_FILES\""
 
     package-json-lint:
         if: "needs.files-changed.outputs.package_json_lintable == 'true'"
@@ -162,12 +162,12 @@ jobs:
             - name: "Build"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: 'pnpm run build:affected:packages --files="$CHANGED_FILES"'
+              run: "pnpm run build:affected:packages --files=\"$CHANGED_FILES\""
 
             - name: "lint package.json"
               env:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: 'pnpm run lint:affected:package-json --files="$CHANGED_FILES"'
+              run: "pnpm run lint:affected:package-json --files=\"$CHANGED_FILES\""
 
     yaml-lint:
         if: "needs.files-changed.outputs.yaml_lintable == 'true'"
@@ -213,11 +213,17 @@ jobs:
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
+            # Direct binary install instead of raven-actions/actionlint, which runs `npm install`
+            # in the workspace and fails on this repo's pnpm-only `catalog:` dependency protocol.
             - name: "Lint github workflows"
-              uses: "raven-actions/actionlint@205b530c5d9fa8f44ae9ed59f341a0db994aa6f8" # v2.1.2
-              with:
-                  # The empty shellcheck flag disables shellcheck for a working solution in test.yml
-                  shellcheck: ""
+              env:
+                  ACTIONLINT_VERSION: "1.7.12"
+              # The empty -shellcheck= flag disables shellcheck for a working solution in test.yml
+              run: |
+                  curl -sSfL --retry 3 -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+                  tar -xzf actionlint.tar.gz actionlint
+                  rm actionlint.tar.gz
+                  ./actionlint -shellcheck= -color
 
     markdown-lint:
         if: "needs.files-changed.outputs.markdown_lintable == 'true'"
