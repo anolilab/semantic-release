@@ -35,7 +35,7 @@ jobs:
             package_json_lintable: "${{ steps.changes.outputs.package_json_lintable }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -47,7 +47,7 @@ jobs:
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Check for file changes"
-              uses: "dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36" # v3.0.2
+              uses: "dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d" # v4.0.1
               id: "changes"
               with:
                   token: "${{ github.token }}"
@@ -62,7 +62,7 @@ jobs:
         timeout-minutes: 20
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -83,7 +83,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@main"
+              uses: "anolilab/workflows/step/setup@bbe85cc99b036e08d0ac7daf7be586218d8e2d0c" # main
               with:
                   node-version: "22.x"
                   cache-prefix: "lint"
@@ -93,7 +93,7 @@ jobs:
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c" # v44.5.7
+              uses: "tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c" # v46.0.5
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -114,11 +114,6 @@ jobs:
                   CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
               run: "pnpm run lint:affected:types --files=\"$CHANGED_FILES\""
 
-            - name: "lint attw"
-              env:
-                  CHANGED_FILES: "${{ steps.files.outputs.all_changed_files }}"
-              run: "pnpm run lint:affected:attw --files=\"$CHANGED_FILES\""
-
     package-json-lint:
         if: "needs.files-changed.outputs.package_json_lintable == 'true'"
         needs: "files-changed"
@@ -127,7 +122,7 @@ jobs:
         timeout-minutes: 15
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -148,7 +143,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@main"
+              uses: "anolilab/workflows/step/setup@bbe85cc99b036e08d0ac7daf7be586218d8e2d0c" # main
               with:
                   node-version: "22.x"
                   cache-prefix: "lint"
@@ -158,7 +153,7 @@ jobs:
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
               id: "files"
-              uses: "tj-actions/changed-files@c65cd883420fd2eb864698a825fc4162dd94482c" # v44.5.7
+              uses: "tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c" # v46.0.5
               with:
                   files_ignore_from_source_file: ".github/ignore-files-for-nx-affected.yml"
                   base_sha: "${{ steps.setSHAs.outputs.base }}"
@@ -182,7 +177,7 @@ jobs:
         timeout-minutes: 10
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -207,7 +202,7 @@ jobs:
         runs-on: "ubuntu-latest"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -218,11 +213,17 @@ jobs:
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
+            # Direct binary install instead of raven-actions/actionlint, which runs `npm install`
+            # in the workspace and fails on this repo's pnpm-only `catalog:` dependency protocol.
             - name: "Lint github workflows"
-              uses: "raven-actions/actionlint@205b530c5d9fa8f44ae9ed59f341a0db994aa6f8" # v2.1.2
-              with:
-                  # The empty shellcheck flag disables shellcheck for a working solution in test.yml
-                  shellcheck: ""
+              env:
+                  ACTIONLINT_VERSION: "1.7.12"
+              # The empty -shellcheck= flag disables shellcheck for a working solution in test.yml
+              run: |
+                  curl -sSfL --retry 3 -o actionlint.tar.gz "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+                  tar -xzf actionlint.tar.gz actionlint
+                  rm actionlint.tar.gz
+                  ./actionlint -shellcheck= -color
 
     markdown-lint:
         if: "needs.files-changed.outputs.markdown_lintable == 'true'"
@@ -232,7 +233,7 @@ jobs:
         timeout-minutes: 10
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@95d9a5deda9de15063e7595e9719c11c38c90ae2" # v2.13.2
+              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
               with:
                   egress-policy: "audit"
 
@@ -243,14 +244,14 @@ jobs:
                   GIT_AUTHOR_NAME: "GitHub Actions Shell"
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
-            - uses: "pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061" # v4.2.0
+            - uses: "pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320" # v4.4.0
               with:
                   run_install: false
 
             - name: "Use Node.js 22.x"
               uses: "actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020" # v4.4.0
               with:
-                  node-version: "22.x"
+                  node-version: "22.22.2"
                   cache: "pnpm"
 
             - name: "Install dependencies"

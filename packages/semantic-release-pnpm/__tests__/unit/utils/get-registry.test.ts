@@ -29,7 +29,7 @@ describe(getRegistry, () => {
         expect(getRegistry({ name: "package-name", publishConfig: {} }, { cwd, env: {} } as any)).toBe(OFFICIAL_REGISTRY);
     });
 
-    it("get the registry configured in \".npmrc\" and normalize trailing slash", async () => {
+    it('get the registry configured in ".npmrc" and normalize trailing slash', async () => {
         expect.assertions(1);
 
         await writeFile(resolve(cwd, ".npmrc"), "registry = https://custom1.registry.com");
@@ -38,7 +38,7 @@ describe(getRegistry, () => {
         expect(getRegistry({ name: "package-name" }, { cwd, env: {} } as any)).toBe("https://custom1.registry.com/");
     });
 
-    it("get the registry configured from \"publishConfig\"", async () => {
+    it('get the registry configured from "publishConfig"', async () => {
         expect.assertions(1);
 
         await writeFile(resolve(cwd, ".npmrc"), "registry = https://custom2.registry.com");
@@ -49,7 +49,7 @@ describe(getRegistry, () => {
         );
     });
 
-    it("get the registry configured in \"NPM_CONFIG_REGISTRY\"", () => {
+    it('get the registry configured in "NPM_CONFIG_REGISTRY"', () => {
         expect.assertions(1);
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
@@ -58,7 +58,7 @@ describe(getRegistry, () => {
         );
     });
 
-    it("get the registry configured in \".npmrc\" for scoped package", async () => {
+    it('get the registry configured in ".npmrc" for scoped package', async () => {
         expect.assertions(1);
 
         await writeFile(resolve(cwd, ".npmrc"), "@scope:registry = https://custom3.registry.com");
@@ -67,7 +67,7 @@ describe(getRegistry, () => {
         expect(getRegistry({ name: "@scope/package-name" }, { cwd, env: {} } as any)).toBe("https://custom3.registry.com/");
     });
 
-    it("get the registry configured via \"NPM_CONFIG_USERCONFIG\" for scoped package", async () => {
+    it('get the registry configured via "NPM_CONFIG_USERCONFIG" for scoped package', async () => {
         expect.assertions(1);
 
         await writeFile(resolve(cwd, ".custom-npmrc"), "@scope:registry = https://custom4.registry.com");
@@ -78,7 +78,7 @@ describe(getRegistry, () => {
         );
     });
 
-    it("get the registry configured in \"publishConfig\" for scoped package", async () => {
+    it('get the registry configured in "publishConfig" for scoped package', async () => {
         expect.assertions(1);
 
         await writeFile(resolve(cwd, ".npmrc"), "@scope:registry = https://custom3.registry.com\nregistry = https://custom4.registry.com");

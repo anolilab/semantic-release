@@ -1,3 +1,60 @@
+## @anolilab/semantic-release-clean-package-json [5.5.7](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.6...@anolilab/semantic-release-clean-package-json@5.5.7) (2026-05-04)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.9
+
+## @anolilab/semantic-release-clean-package-json [5.5.6](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.5...@anolilab/semantic-release-clean-package-json@5.5.6) (2026-05-01)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.8
+
+## @anolilab/semantic-release-clean-package-json [5.5.5](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.4...@anolilab/semantic-release-clean-package-json@5.5.5) (2026-04-29)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.7
+
+## @anolilab/semantic-release-clean-package-json [5.5.4](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.3...@anolilab/semantic-release-clean-package-json@5.5.4) (2026-04-28)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.6
+
+## @anolilab/semantic-release-clean-package-json [5.5.3](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.2...@anolilab/semantic-release-clean-package-json@5.5.3) (2026-04-27)
+
+### Miscellaneous Chores
+
+* **semantic-release-clean-package-json:** apply prettier formatting ([ef3c781](https://github.com/anolilab/semantic-release/commit/ef3c7818dd967fa753d22fd78eec991949f6b88c))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.5
+
+## @anolilab/semantic-release-clean-package-json [5.5.2](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.1...@anolilab/semantic-release-clean-package-json@5.5.2) (2026-04-26)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.4
+
+## @anolilab/semantic-release-clean-package-json [5.5.1](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.0...@anolilab/semantic-release-clean-package-json@5.5.1) (2026-04-26)
+
+### Styles
+
+* **semantic-release-clean-package-json:** apply consistent quote style in tests ([6789671](https://github.com/anolilab/semantic-release/commit/67896711ad598a287d008ee93d55ef6dbbef07f1))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.3
+
 ## @anolilab/semantic-release-clean-package-json [5.5.0](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.4.0...@anolilab/semantic-release-clean-package-json@5.5.0) (2026-04-08)
 
 ### Bug Fixes

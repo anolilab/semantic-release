@@ -3,7 +3,7 @@ import type { PluginConfig } from "../definitions/plugin-config";
 import getNpmrcPath from "../utils/get-npmrc-path";
 import getPackage from "../utils/get-package";
 import { shouldPublish } from "../utils/should-publish";
-import verifyAuth from "./verify-auth";
+import { verifyAuth } from "./verify-auth";
 import verifyConfig from "./verify-config";
 import verifyPnpm from "./verify-pnpm";
 
@@ -46,7 +46,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
             const npmrc = getNpmrcPath(context.cwd, context.env);
 
-            await verifyAuth(npmrc, packageJson, context, pluginConfig.pkgRoot);
+            await verifyAuth(npmrc, packageJson, context);
         } else {
             context.logger.log(`Skipping authentication verification for package "${packageJson.name ?? "unknown"}" (publishing disabled)`);
         }

@@ -51,13 +51,16 @@ const prepare = async (
     debug("Detected pnpm major version: %d", pnpmMajor);
 
     // pnpm v10 tightened CLI option parsing and some releases reject
-    // `--no-git-tag-version` on `pnpm version`. Use the stable `pnpm pkg set`
-    // command on v10+, and keep `pnpm version` for older versions so its
-    // side-effects (e.g. npm-shrinkwrap.json sync, version lifecycle scripts)
-    // continue to work as before.
-    const versionArguments = pnpmMajor >= 10 ? ["pkg", "set", `version=${version}`] : ["version", version, "--no-git-tag-version", "--allow-same-version"];
+    // `--no-git-tag-version` on `pnpm version`. Fall back to `npm pkg set` on
+    // v10+ (pnpm itself recommends this — `pnpm pkg` is not implemented and
+    // exits with ERR_PNPM_NOT_IMPLEMENTED). Keep `pnpm version` for older
+    // versions so its side-effects (e.g. npm-shrinkwrap.json sync, version
+    // lifecycle scripts) continue to work as before.
+    const versionBin = pnpmMajor >= 10 ? "npm" : "pnpm";
+    const versionArguments
+        = pnpmMajor >= 10 ? ["pkg", "set", `version=${version}`] : ["version", version, "--no-git-tag-version", "--allow-same-version"];
 
-    const versionResult = execa("pnpm", versionArguments, {
+    const versionResult = execa(versionBin, versionArguments, {
         cwd: basePath,
         env,
         preferLocal: true,

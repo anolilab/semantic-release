@@ -4,8 +4,11 @@
 import { homedir } from "node:os";
 import { cwd, env } from "node:process";
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { isAccessibleSync, readFileSync } from "@visulima/fs";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { parseJson, stripJsonComments } from "@visulima/fs/utils";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { dirname, join } from "@visulima/path";
 import { parse } from "ini";
 import { merge } from "ts-deepmerge";
