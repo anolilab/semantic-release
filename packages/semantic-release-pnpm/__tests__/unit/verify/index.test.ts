@@ -97,12 +97,16 @@ describe(verify, () => {
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
 
-        await expect(verify(pluginConfig, context)).rejects.toThrow(AggregateError);
-        await expect(verify(pluginConfig, context)).rejects.toSatisfy((e: AggregateError) => e.errors.includes(plainError));
+        try {
+            await verify(pluginConfig, context);
+        } catch (e) {
+            expect(e).toBeInstanceOf(AggregateError);
+            expect((e as AggregateError).errors).toContain(plainError);
+        }
     });
 
     it("should handle a plain Error thrown by verifyAuth without crashing", async () => {
-        expect.assertions(1);
+        expect.assertions(2);
 
         const plainError = new Error("EINVALIDNPMTOKEN Invalid npm token.");
 
@@ -113,6 +117,11 @@ describe(verify, () => {
         vi.mocked(getNpmrcPath).mockReturnValue(".npmrc");
         vi.mocked(verifyAuth).mockRejectedValue(plainError);
 
-        await expect(verify(pluginConfig, context)).rejects.toSatisfy((e: AggregateError) => e.errors.includes(plainError));
+        try {
+            await verify(pluginConfig, context);
+        } catch (e) {
+            expect(e).toBeInstanceOf(AggregateError);
+            expect((e as AggregateError).errors).toContain(plainError);
+        }
     });
 });
