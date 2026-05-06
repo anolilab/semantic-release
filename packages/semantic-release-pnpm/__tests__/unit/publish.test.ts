@@ -9,14 +9,20 @@ vi.mock(import("../../src/utils/get-registry"));
 vi.mock(import("../../src/utils/get-channel"));
 vi.mock(import("../../src/utils/get-release-info"));
 vi.mock(import("../../src/utils/should-publish"));
+// Keep ExecaError real so instanceof checks in publish.ts work correctly.
 // eslint-disable-next-line e18e/ban-dependencies
-vi.mock(import("execa"));
+vi.mock("execa", async (importOriginal) => {
+    const actual = await importOriginal<typeof import("execa")>();
+
+    return { ...actual, execa: vi.fn() };
+});
 
 const { default: getRegistry } = await import("../../src/utils/get-registry");
 const { default: getChannel } = await import("../../src/utils/get-channel");
 const { getReleaseInfo } = await import("../../src/utils/get-release-info");
 const { shouldPublish } = await import("../../src/utils/should-publish");
-const { execa } = await import("execa");
+// eslint-disable-next-line e18e/ban-dependencies
+const { ExecaError, execa } = await import("execa");
 
 const logSpy = vi.fn();
 const logger = { error: vi.fn(), log: logSpy, success: vi.fn() };
@@ -82,7 +88,11 @@ describe(publish, () => {
             Object.assign(Promise.resolve({ stdout: "main" }), { stderr: { pipe: vi.fn() }, stdout: { pipe: vi.fn() } }) as ReturnType<typeof execa>,
         );
 
-        const alreadyPublishedError = new Error("cannot publish over the previously published versions");
+        const alreadyPublishedError = Object.setPrototypeOf(
+            new Error("cannot publish over the previously published versions"),
+            ExecaError.prototype,
+        ) as ExecaError;
+
         const mockProcess = { stderr: { pipe: vi.fn() }, stdout: { pipe: vi.fn() } };
 
         vi.mocked(execa).mockReturnValueOnce(
@@ -93,6 +103,23 @@ describe(publish, () => {
 
         expect(result).toStrictEqual(releaseInfo);
         expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("already published"));
+    });
+
+    it("should throw when a plain Error (not ExecaError) contains the already-published phrase", async () => {
+        expect.assertions(1);
+
+        vi.mocked(execa).mockReturnValueOnce(
+            Object.assign(Promise.resolve({ stdout: "main" }), { stderr: { pipe: vi.fn() }, stdout: { pipe: vi.fn() } }) as ReturnType<typeof execa>,
+        );
+
+        const plainError = new Error("cannot publish over the previously published versions");
+        const mockProcess = { stderr: { pipe: vi.fn() }, stdout: { pipe: vi.fn() } };
+
+        vi.mocked(execa).mockReturnValueOnce(
+            Object.assign(Promise.reject(plainError), mockProcess) as ReturnType<typeof execa>,
+        );
+
+        await expect(publish(pluginConfig, packageJson, context)).rejects.toThrow(AggregateError);
     });
 
     it("should throw for other publish errors", async () => {
