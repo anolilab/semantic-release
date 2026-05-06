@@ -89,6 +89,15 @@ const publish = async (pluginConfig: PluginConfig, packageJson: PackageJson, con
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
 
+            if (
+                errorMessage.includes("cannot publish over the previously published versions") ||
+                errorMessage.includes("previously published versions")
+            ) {
+                logger.log(`Package ${packageJson.name ?? ""}@${version} is already published at dist-tag @${distributionTag} on ${registry}, skipping`);
+
+                return getReleaseInfo(packageJson, context, distributionTag, registry);
+            }
+
             logger.log(`Failed to publish ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}: ${errorMessage}`);
 
             throw new AggregateError([error], errorMessage, { cause: error });
