@@ -82,4 +82,46 @@ describe(verify, () => {
 
         expect(verifyAuth).not.toHaveBeenCalled();
     });
+
+    it("should handle a plain Error thrown by verifyPnpm without crashing", async () => {
+        expect.assertions(2);
+
+        const plainError = new Error("pnpm not found");
+
+        vi.mocked(verifyPnpm).mockImplementation(() => {
+            throw plainError;
+        });
+
+        const pkg = { name: "test-package", private: true, version: "1.0.0" };
+
+        vi.mocked(getPackage).mockResolvedValue(pkg);
+        vi.mocked(shouldPublish).mockReturnValue(false);
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (e) {
+            expect(e).toBeInstanceOf(AggregateError);
+            expect((e as AggregateError).errors).toContain(plainError);
+        }
+    });
+
+    it("should handle a plain Error thrown by verifyAuth without crashing", async () => {
+        expect.assertions(2);
+
+        const plainError = new Error("EINVALIDNPMTOKEN Invalid npm token.");
+
+        const pkg = { name: "test-package", version: "1.0.0" };
+
+        vi.mocked(getPackage).mockResolvedValue(pkg);
+        vi.mocked(shouldPublish).mockReturnValue(true);
+        vi.mocked(getNpmrcPath).mockReturnValue(".npmrc");
+        vi.mocked(verifyAuth).mockRejectedValue(plainError);
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (e) {
+            expect(e).toBeInstanceOf(AggregateError);
+            expect((e as AggregateError).errors).toContain(plainError);
+        }
+    });
 });

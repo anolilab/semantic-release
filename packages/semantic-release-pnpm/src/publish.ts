@@ -3,7 +3,7 @@ import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
 // eslint-disable-next-line e18e/ban-dependencies
-import { execa } from "execa";
+import { ExecaError, execa } from "execa";
 
 import type { PublishContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
@@ -88,6 +88,15 @@ const publish = async (pluginConfig: PluginConfig, packageJson: PackageJson, con
             await result;
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
+
+            if (
+                error instanceof ExecaError &&
+                errorMessage.includes("cannot publish over the previously published versions")
+            ) {
+                logger.log(`Package ${packageJson.name ?? ""}@${version} is already published at dist-tag @${distributionTag} on ${registry}, skipping`);
+
+                return getReleaseInfo(packageJson, context, distributionTag, registry);
+            }
 
             logger.log(`Failed to publish ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}: ${errorMessage}`);
 
