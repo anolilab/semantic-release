@@ -100,8 +100,13 @@ const isConnectionError = (error: any): boolean => {
 };
 
 /**
- * Verify authentication context against the official npm registry using pnpm whoami.
+ * Verify authentication context against a registry using pnpm whoami.
  * Results are cached per registry/auth token combination to prevent throttling in monorepos.
+ *
+ * Note: `pnpm whoami` is reliable on the official npm registry but may fail on custom registries
+ * even when the credentials are valid for publishing (e.g. GitLab Package Registry with deploy
+ * tokens, some Verdaccio configurations). For custom registries a whoami failure is therefore
+ * treated as a soft warning — the publish step is the authoritative credential check.
  * @param npmrc Path to the .npmrc file.
  * @param registry The registry URL.
  * @param context The semantic-release context.
@@ -162,10 +167,26 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
                 throw new AggregateError([semanticError], semanticError.message, { cause: error });
             }
 
-            // Treat other whoami failures as invalid token
-            const semanticError = getError("EINVALIDNPMTOKEN", { registry });
+            // whoami is fully reliable only on the official npm registry. Custom registries vary
+            // in their /-/whoami support: the GitLab Package Registry returns 401 for deploy tokens
+            // even though those tokens are valid for `npm publish`; some Verdaccio configurations
+            // disable the endpoint entirely. Treat whoami failures on custom registries as a soft
+            // warning — the publish step is the authoritative auth check and will surface real
+            // credential errors with full context.
+            if (normalizeUrl(registry) === normalizeUrl(OFFICIAL_REGISTRY)) {
+                const semanticError = getError("EINVALIDNPMTOKEN", { registry });
 
-            throw new AggregateError([semanticError], semanticError.message, { cause: error });
+                throw new AggregateError([semanticError], semanticError.message, { cause: error });
+            }
+
+            const errorMessage = error instanceof Error ? error.message : String(error);
+
+            context.logger.warn(
+                `Could not verify auth via "pnpm whoami" on custom registry "${registry}" (${errorMessage}). ` +
+                    `This registry may not support /-/whoami for the configured token type ` +
+                    `(e.g. GitLab Package Registry with deploy tokens). ` +
+                    `The publish step will surface any real credential errors.`,
+            );
         }
     })();
 
