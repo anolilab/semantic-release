@@ -1,6 +1,6 @@
 {
     "name": "@anolilab/semantic-release-pnpm",
-    "version": "8.1.9",
+    "version": "8.1.10",
     "description": "Semantic-release plugin to publish a npm package with pnpm.",
     "keywords": [
         "anolilab",
