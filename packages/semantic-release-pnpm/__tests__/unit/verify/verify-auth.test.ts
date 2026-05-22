@@ -69,7 +69,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
@@ -88,7 +88,7 @@ describe(verifyAuth, () => {
 
         await verifyAuth(npmrc, pkg, context);
 
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
         expect(execa).toHaveBeenCalledWith("pnpm", ["whoami", "--registry", customRegistry], {
@@ -195,7 +195,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkgWithoutName, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
     });
 
     it("should bubble through errors from setting up auth", async () => {
@@ -226,7 +226,7 @@ describe(verifyAuth, () => {
         await verifyAuth(npmrc, pkg, context);
 
         expect(execa).toHaveBeenCalledTimes(1);
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami"'));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\""));
 
         // Second call with same registry/token - should use cache
         vi.clearAllMocks();
