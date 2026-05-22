@@ -8,7 +8,7 @@ jobs:
         permissions:
             contents: "read"
             pull-requests: "read"
-        uses: "anolilab/workflows/.github/workflows/lint.yml@045a2d464dad0661a570c8a3c19f4b32bf9efad9" # v15.3.0+
+        uses: "anolilab/workflows/.github/workflows/lint.yml@20b8733e71ebbb165d54fe8cede47e225985a58a" # v15.3.1+
         with:
             lint_eslint: true
             lint_types: true
