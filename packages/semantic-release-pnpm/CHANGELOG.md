@@ -1,3 +1,5 @@
+## @anolilab/semantic-release-pnpm [8.1.11](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.10...@anolilab/semantic-release-pnpm@8.1.11) (2026-05-22)
+
 ## @anolilab/semantic-release-pnpm [8.1.10](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.9...@anolilab/semantic-release-pnpm@8.1.10) (2026-05-21)
 
 ### Miscellaneous Chores
