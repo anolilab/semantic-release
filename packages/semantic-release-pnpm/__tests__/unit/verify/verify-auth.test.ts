@@ -29,7 +29,7 @@ describe(verifyAuth, () => {
     const context: CommonContext = {
         cwd: "/test/directory",
         env: { DEFAULT_NPM_REGISTRY: OFFICIAL_REGISTRY, NPM_TOKEN: "test_token_1234567890" },
-        logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+        logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
         options: {},
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
         stderr: { pipe: vi.fn(), write: vi.fn() } as any,
@@ -102,8 +102,8 @@ describe(verifyAuth, () => {
         });
     });
 
-    it("should throw EINVALIDNPMTOKEN when whoami fails for custom registry", async () => {
-        expect.assertions(3);
+    it("should warn and continue when whoami fails for a custom registry", async () => {
+        expect.assertions(4);
 
         // Use a distinct registry to avoid hitting the whoamiCache populated by the preceding test
         const customRegistry = "https://failing.registry.org/";
@@ -119,9 +119,48 @@ describe(verifyAuth, () => {
             }) as Error & { stderr: string; stdout: string },
         );
 
-        await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
+        // Must NOT throw — whoami failures on custom registries are soft warnings
+        await expect(verifyAuth(npmrc, pkg, context)).resolves.toBeUndefined();
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
+        expect(context.logger.warn).toHaveBeenCalledWith(expect.stringContaining("Could not verify auth via \"pnpm whoami\" on custom registry"));
+    });
+
+    it("should still throw EINVALIDNPMTOKEN when whoami fails for the official npm registry", async () => {
+        expect.assertions(3);
+
+        vi.mocked(getRegistry).mockReturnValue(OFFICIAL_REGISTRY);
+        vi.mocked(oidcContextEstablished).mockResolvedValue(false);
+        vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
+
+        vi.mocked(execa).mockRejectedValue(new Error("401 Unauthorized"));
+
+        await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
+        expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
+        expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
+    });
+
+    it("should warn and continue when GitLab Package Registry deploy token cannot authenticate whoami", async () => {
+        expect.assertions(3);
+
+        // GitLab deploy tokens are valid for npm publish but the /-/whoami endpoint returns 401
+        // for them. This must not abort the release pipeline.
+        const gitlabRegistry = "https://gitlab.example.com/api/v4/projects/123/packages/npm/";
+
+        vi.mocked(getRegistry).mockReturnValue(gitlabRegistry);
+        vi.mocked(oidcContextEstablished).mockResolvedValue(false);
+        vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
+
+        vi.mocked(execa).mockRejectedValue(
+            Object.assign(new Error("ERR_PNPM_REGISTRY_FETCH_ERROR  GET https://gitlab.example.com/api/v4/projects/123/packages/npm/-/whoami: 401 Unauthorized"), {
+                stderr: "401 Unauthorized",
+                stdout: "",
+            }),
+        );
+
+        await expect(verifyAuth(npmrc, pkg, context)).resolves.toBeUndefined();
+        expect(context.logger.warn).toHaveBeenCalledWith(expect.stringContaining("gitlab.example.com"));
+        expect(context.logger.warn).toHaveBeenCalledWith(expect.stringContaining("GitLab Package Registry with deploy tokens"));
     });
 
     it("should not fail when the package version already exists in a custom registry", async () => {
