@@ -7,7 +7,6 @@ import dbg from "debug";
 import { execa } from "execa";
 import { stringify } from "ini";
 import normalizeUrl from "normalize-url";
-import type { AuthOptions } from "registry-auth-token";
 import getAuthToken from "registry-auth-token";
 
 import { OFFICIAL_REGISTRY } from "../definitions/constants";
@@ -62,7 +61,7 @@ const getCacheKey = (registry: string, context: CommonContext): string => {
             cwd: context.cwd,
             defaults: { registry: OFFICIAL_REGISTRY },
         });
-        const token = getAuthToken(registry, { npmrc: config } as AuthOptions);
+        const token = getAuthToken(registry, { npmrc: config });
 
         if (token) {
             const tokenValue = token.token;
@@ -182,10 +181,10 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
             const errorMessage = error instanceof Error ? error.message : String(error);
 
             context.logger.warn(
-                `Could not verify auth via "pnpm whoami" on custom registry "${registry}" (${errorMessage}). ` +
-                    `This registry may not support /-/whoami for the configured token type ` +
-                    `(e.g. GitLab Package Registry with deploy tokens). ` +
-                    `The publish step will surface any real credential errors.`,
+                `Could not verify auth via "pnpm whoami" on custom registry "${registry}" (${errorMessage}). `
+                + `This registry may not support /-/whoami for the configured token type `
+                + `(e.g. GitLab Package Registry with deploy tokens). `
+                + `The publish step will surface any real credential errors.`,
             );
         }
     })();

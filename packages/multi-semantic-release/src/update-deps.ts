@@ -37,7 +37,7 @@ const resolveReleaseTypeFromStrategy = (
             return dependencyReleaseType;
         }
 
-        return releaseStrategy as Omit<ReleaseStrategy, "inherit">;
+        return releaseStrategy;
     }
 
     // If it's an object mapping, use the mapping based on dependency release type
@@ -206,8 +206,8 @@ const getDependentRelease = (
 
             // Update all dependencies (including devDependencies) but only check runtime deps for triggering releases
             allScopes.forEach((scope) => bumpDependency(scope, p.name, effectiveNextVersion ?? nextVersion));
-            const requireRelease: boolean =
-                releaseScopes.some((scope: Record<string, string>) => {
+            const requireRelease: boolean
+                = releaseScopes.some((scope: Record<string, string>) => {
                     const currentVersion = scope[p.name];
                     const versionToCheck = effectiveNextVersion ?? nextVersion;
 
@@ -237,7 +237,7 @@ const getDependentRelease = (
             }
 
             // Apply release strategy mapping if configured
-            const mappedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, typeToUse as Omit<ReleaseStrategy, "inherit">);
+            const mappedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, typeToUse);
 
             if (!mappedReleaseType) {
                 return releaseType;
@@ -255,7 +255,7 @@ const getDependentRelease = (
 
     if (!result && highestNestedReleaseType) {
         // Apply release strategy mapping to nested release type
-        const mappedNestedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, highestNestedReleaseType as Omit<ReleaseStrategy, "inherit">);
+        const mappedNestedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, highestNestedReleaseType);
 
         return (mappedNestedReleaseType ?? highestNestedReleaseType) as string | undefined;
     }
@@ -297,8 +297,8 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
 const difference = (object: Record<string, unknown>, base: Record<string, unknown>): Record<string, string> => {
     const result = transform(object, (accumulator: Record<string, string>, value: unknown, key: string) => {
         if (!isEqual(value, base[key])) {
-            accumulator[key] =
-                isObject(value) && isObject(base[key])
+            accumulator[key]
+                = isObject(value) && isObject(base[key])
                     ? JSON.stringify(difference(value as Record<string, unknown>, base[key] as Record<string, unknown>))
                     : `${String(base[key])} → ${String(value)}`;
         }
@@ -358,7 +358,7 @@ const auditManifestChanges = (actualManifest: Record<string, unknown>, path: str
 export const getNextVersion = (packageJson: Package): string | null => {
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
 
-    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : (lastVersion ?? "1.0.0");
+    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : lastVersion ?? "1.0.0";
 };
 
 /**
@@ -476,7 +476,7 @@ export const resolveReleaseType = (
             const strategyReleaseType = typeof releaseStrategy === "string" && releaseStrategy !== "inherit" ? releaseStrategy : "patch";
 
             // eslint-disable-next-line no-param-reassign
-            packageJson._nextType = strategyReleaseType as ReleaseType;
+            packageJson._nextType = strategyReleaseType;
 
             return packageJson._nextType;
         }
@@ -487,7 +487,7 @@ export const resolveReleaseType = (
     }
 
     // Apply release strategy mapping
-    const finalReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, dependentReleaseType as "patch" | "minor" | "major");
+    const finalReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, dependentReleaseType);
 
     if (!finalReleaseType) {
         return undefined;

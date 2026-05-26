@@ -70,6 +70,7 @@ rules:
         allowed-values:
             - "false"
             - "true"
+        check-keys: false
 
 yaml-files:
     - "*.yaml"

@@ -95,7 +95,7 @@ const getPackage = async (
     );
     const { options, plugins } = await getConfigSemantic({ cwd: directory, env: envRecord, stderr, stdout }, finalOptions);
 
-    return { deps, dir: directory, localDeps: [], manifest, name, options, path, plugins } as Package;
+    return { deps, dir: directory, localDeps: [], manifest, name, options, path, plugins };
 };
 
 /**
@@ -260,11 +260,11 @@ const multiSemanticRelease = async (
     const { packages: allPackages, queue } = await topo({
         cwd,
         filter: ((entry: { manifest: { private?: boolean }; manifestAbsPath: string; manifestRelPath: string }) => {
-            const manifest = entry.manifest as { private?: boolean };
+            const { manifest } = entry;
 
             return (
-                (!mergedFlags.ignorePrivate || !manifest.private) &&
-                (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
+                (!mergedFlags.ignorePrivate || !manifest.private)
+                && (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
             );
         }) as (entry: unknown) => boolean,
         workspacesExtra: Array.isArray(mergedFlags.ignorePackages) ? mergedFlags.ignorePackages.map((p: string) => `!${p}`) : [],
