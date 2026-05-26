@@ -16,7 +16,7 @@
         "build:packages:prod": "nx run-many --target=build:prod --parallel --projects=tag:type:package",
         "clean": "nx run-many --target=clean --all --parallel && rimraf ./node_modules",
         "graph": "nx dep-graph",
-        "preinstall": "node verify-node-version.cjs && npx only-allow pnpm",
+        "preinstall": "node verify-node-version.cjs && pnpm dlx only-allow pnpm",
         "postinstall": "(is-ci || husky || exit 0) && node scripts/generate-labeler-config.js && node scripts/list-packages.js",
         "lint": "pnpm run lint:prettier && pnpm run lint:eslint",
         "lint:affected:eslint": "nx affected --target=lint:eslint --parallel --nxBail",
@@ -77,7 +77,7 @@
         "typescript": "catalog:tsc",
         "vitest": "catalog:test"
     },
-    "packageManager": "pnpm@10.33.4",
+    "packageManager": "pnpm@11.3.0",
     "engines": {
         "node": "^22.14.0 || >= 24.10.0"
     }
