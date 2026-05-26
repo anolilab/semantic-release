@@ -1,3 +1,19 @@
+## @anolilab/semantic-release-pnpm [8.1.15](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.14...@anolilab/semantic-release-pnpm@8.1.15) (2026-05-26)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** handle non-AggregateError in verify and skip re-publish ([#309](https://github.com/anolilab/semantic-release/issues/309)) ([6acb075](https://github.com/anolilab/semantic-release/commit/6acb075cbd3e7abf1f8c0d5417ffb661fd331646))
+* **semantic-release-pnpm:** soft-fail whoami for non-official registries ([#310](https://github.com/anolilab/semantic-release/issues/310)) ([b041d88](https://github.com/anolilab/semantic-release/commit/b041d88374957b254cc4f4561a44467a422918a9))
+
+### Miscellaneous Chores
+
+* **deps:** bump deps and upgrade to pnpm 11 ([#312](https://github.com/anolilab/semantic-release/issues/312)) ([100be77](https://github.com/anolilab/semantic-release/commit/100be77953d6c51f595b01fd092a2a83c011ed0b))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.3
+
 ## @anolilab/semantic-release-pnpm [8.1.14](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.13...@anolilab/semantic-release-pnpm@8.1.14) (2026-05-23)
 
 ## @anolilab/semantic-release-pnpm [8.1.13](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.12...@anolilab/semantic-release-pnpm@8.1.13) (2026-05-23)
