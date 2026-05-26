@@ -1,3 +1,15 @@
+## @anolilab/multi-semantic-release [4.4.4](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.3...@anolilab/multi-semantic-release@4.4.4) (2026-05-26)
+
+### Miscellaneous Chores
+
+* **deps:** bump deps and upgrade to pnpm 11 ([#312](https://github.com/anolilab/semantic-release/issues/312)) ([100be77](https://github.com/anolilab/semantic-release/commit/100be77953d6c51f595b01fd092a2a83c011ed0b))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.13
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.15
+
 ## @anolilab/multi-semantic-release [4.4.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.2...@anolilab/multi-semantic-release@4.4.3) (2026-05-23)
 
 
