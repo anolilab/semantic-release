@@ -5,13 +5,13 @@ packages:
   - "packages/**"
   - "!packages/multi-semantic-release/__fixtures__/**"
 allowBuilds:
-  cpu-features: set this to true or false
+  cpu-features: true
   esbuild: true
-  nx: set this to true or false
-  protobufjs: set this to true or false
-  rs-module-lexer: set this to true or false
-  ssh2: set this to true or false
-  unrs-resolver: set this to true or false
+  nx: true
+  protobufjs: true
+  rs-module-lexer: true
+  ssh2: true
+  unrs-resolver: true
 catalogs:
   build:
     esbuild: 0.28.0
