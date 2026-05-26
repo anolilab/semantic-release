@@ -7,6 +7,7 @@ import { WritableStreamBuffer } from "stream-buffers";
 import { temporaryDirectory } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { OFFICIAL_REGISTRY } from "../../src/definitions/constants";
 import { resetWhoamiCache } from "../../src/verify/verify-auth";
 import { authEnvironment, start, stop, url as npmRegistryUrl } from "./helpers/npm-registry";
 
@@ -64,7 +65,7 @@ describe("semantic-release-integration", () => {
             verifyConditions({ npmPublish: false }, {
                 cwd,
                 env: { NPM_TOKEN: "wrong_token" },
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
@@ -90,7 +91,7 @@ describe("semantic-release-integration", () => {
             verifyConditions({ npmPublish: false }, {
                 cwd,
                 env: {},
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: { publish: ["@semantic-release/npm"] },
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
@@ -116,7 +117,7 @@ describe("semantic-release-integration", () => {
             verifyConditions({}, {
                 cwd,
                 env: {},
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: { publish: ["@semantic-release/npm"] },
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
@@ -128,16 +129,16 @@ describe("semantic-release-integration", () => {
     it("should throw error if NPM token is invalid when targeting the default registry", async () => {
         expect.assertions(1);
 
+        // Use the official npm registry — whoami failures there remain hard errors.
+        // Custom registry whoami failures are soft-warnings (the publish step is the real check).
         await writeJson(join(cwd, "package.json"), {
             name: "published",
-            publishConfig: { registry: npmRegistryUrl },
+            publishConfig: { registry: OFFICIAL_REGISTRY },
             version: "1.0.0",
         });
 
-        // Mock execa to reject with stderr containing auth error (simulating auth failure for custom registry)
-        const authError = new Error("Authentication failed");
+        const authError = new Error("401 Unauthorized");
 
-        (authError as { stderr?: string }).stderr = "This command requires you to be logged in to http://localhost:4873/";
         vi.mocked(execa).mockRejectedValue(authError);
 
         const { verifyConditions } = await import("../../src");
@@ -146,8 +147,8 @@ describe("semantic-release-integration", () => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
             verifyConditions({}, {
                 cwd,
-                env: { DEFAULT_NPM_REGISTRY: npmRegistryUrl, NPM_TOKEN: "wrong_token" },
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                env: { DEFAULT_NPM_REGISTRY: OFFICIAL_REGISTRY, NPM_TOKEN: "wrong_token" },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
@@ -172,7 +173,7 @@ describe("semantic-release-integration", () => {
             verifyConditions({}, {
                 cwd,
                 env: { DEFAULT_NPM_REGISTRY: npmRegistryUrl },
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
@@ -203,7 +204,7 @@ describe("semantic-release-integration", () => {
             verifyConditions({}, {
                 cwd,
                 env: authEnvironment,
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
@@ -234,7 +235,7 @@ describe("semantic-release-integration", () => {
             verifyConditions({ pkgRoot: "dist" }, {
                 cwd,
                 env: authEnvironment,
-                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn() },
+                logger: { error: vi.fn(), log: vi.fn(), success: vi.fn(), warn: vi.fn() },
                 options: {},
                 stderr: new WritableStreamBuffer(),
                 stdout: new WritableStreamBuffer(),
