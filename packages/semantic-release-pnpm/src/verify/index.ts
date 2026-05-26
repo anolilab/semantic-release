@@ -29,13 +29,14 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
     try {
         verifyPnpm(context);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-        const typedError = error as AggregateError;
+    } catch (error) {
+        // verify-auth re-throws plain Errors (e.g. EINVALIDNPMTOKEN from GitLab) and verify-pnpm can
+        // surface non-Aggregate errors as well, so `errors` may not be an iterable array.
+        const typedError = error as Error & { errors?: unknown };
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...(typedError.errors as Error[])];
+        errors = [...errors, ...Array.isArray(typedError.errors) ? (typedError.errors as Error[]) : [typedError]];
     }
 
     try {
@@ -50,13 +51,12 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
         } else {
             context.logger.log(`Skipping authentication verification for package "${packageJson.name ?? "unknown"}" (publishing disabled)`);
         }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-        const typedError = error as AggregateError;
+    } catch (error) {
+        const typedError = error as Error & { errors?: unknown };
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...(typedError.errors as Error[])];
+        errors = [...errors, ...Array.isArray(typedError.errors) ? (typedError.errors as Error[]) : [typedError]];
     }
 
     if (errors.length > 0) {

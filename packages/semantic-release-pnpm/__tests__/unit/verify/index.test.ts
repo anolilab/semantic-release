@@ -82,4 +82,68 @@ describe(verify, () => {
 
         expect(verifyAuth).not.toHaveBeenCalled();
     });
+
+    it("should handle a plain Error thrown by verifyPnpm without crashing", async () => {
+        expect.assertions(2);
+
+        const plainError = new Error("pnpm not found");
+
+        vi.mocked(verifyPnpm).mockImplementation(() => {
+            throw plainError;
+        });
+
+        const pkg = { name: "test-package", private: true, version: "1.0.0" };
+
+        vi.mocked(getPackage).mockResolvedValue(pkg);
+        vi.mocked(shouldPublish).mockReturnValue(false);
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (error) {
+            expect(error).toBeInstanceOf(AggregateError);
+            expect((error as AggregateError).errors).toContain(plainError);
+        }
+    });
+
+    it("should handle a plain Error thrown by verifyAuth without crashing", async () => {
+        expect.assertions(2);
+
+        const plainError = new Error("EINVALIDNPMTOKEN Invalid npm token.");
+
+        const pkg = { name: "test-package", version: "1.0.0" };
+
+        vi.mocked(getPackage).mockResolvedValue(pkg);
+        vi.mocked(shouldPublish).mockReturnValue(true);
+        vi.mocked(getNpmrcPath).mockReturnValue(".npmrc");
+        vi.mocked(verifyAuth).mockRejectedValue(plainError);
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (error) {
+            expect(error).toBeInstanceOf(AggregateError);
+            expect((error as AggregateError).errors).toContain(plainError);
+        }
+    });
+
+    it("should handle an Error whose 'errors' property is not an array", async () => {
+        expect.assertions(2);
+
+        const malformedError = Object.assign(new Error("malformed aggregate"), { errors: "not an array" });
+
+        vi.mocked(verifyPnpm).mockImplementation(() => {
+            throw malformedError;
+        });
+
+        const pkg = { name: "test-package", private: true, version: "1.0.0" };
+
+        vi.mocked(getPackage).mockResolvedValue(pkg);
+        vi.mocked(shouldPublish).mockReturnValue(false);
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (error) {
+            expect(error).toBeInstanceOf(AggregateError);
+            expect((error as AggregateError).errors).toContain(malformedError);
+        }
+    });
 });
