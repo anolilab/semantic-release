@@ -10,8 +10,8 @@ vi.mock(import("../../src/utils/get-channel"));
 vi.mock(import("../../src/utils/get-release-info"));
 vi.mock(import("../../src/utils/should-publish"));
 // Keep ExecaError real so instanceof checks in publish.ts work correctly.
-// eslint-disable-next-line e18e/ban-dependencies
-vi.mock("execa", async (importOriginal) => {
+
+vi.mock(import("execa"), async (importOriginal) => {
     const actual = await importOriginal<typeof import("execa")>();
 
     return { ...actual, execa: vi.fn() };
@@ -22,7 +22,7 @@ const { default: getChannel } = await import("../../src/utils/get-channel");
 const { getReleaseInfo } = await import("../../src/utils/get-release-info");
 const { shouldPublish } = await import("../../src/utils/should-publish");
 // eslint-disable-next-line e18e/ban-dependencies
-const { ExecaError, execa } = await import("execa");
+const { execa, ExecaError } = await import("execa");
 
 const mockExecaResult = <T>(outcome: Promise<T>) =>
     Object.assign(outcome, { stderr: { pipe: vi.fn() }, stdout: { pipe: vi.fn() } }) as ReturnType<typeof execa>;
@@ -42,8 +42,8 @@ describe(publish, () => {
         logger,
         nextRelease: { channel: undefined, version: "1.0.0" },
         options: {},
-        stderr: new WritableStreamBuffer() as unknown as PublishContext["stderr"],
-        stdout: new WritableStreamBuffer() as unknown as PublishContext["stdout"],
+        stderr: new WritableStreamBuffer(),
+        stdout: new WritableStreamBuffer(),
     };
 
     const releaseInfo = { channel: "latest", name: "test-package@1.0.0", url: "https://example.com" };
@@ -86,6 +86,29 @@ describe(publish, () => {
         );
 
         vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.reject(alreadyPublishedError)));
+
+        const result = await publish(pluginConfig, packageJson, context);
+
+        expect(result).toStrictEqual(releaseInfo);
+        expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("already published"));
+    });
+
+    it("should detect already-published when the phrase only appears in stderr", async () => {
+        expect.assertions(2);
+
+        vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.resolve({ stdout: "main" })));
+
+        const stderrOnlyError = Object.assign(
+            Object.setPrototypeOf(new Error("Command failed: pnpm publish"), ExecaError.prototype) as ExecaError,
+            {
+                exitCode: 1,
+                failed: true,
+                shortMessage: "Command failed: pnpm publish",
+                stderr: "npm error code E403\nnpm error 403 cannot publish over the previously published versions",
+            },
+        );
+
+        vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.reject(stderrOnlyError)));
 
         const result = await publish(pluginConfig, packageJson, context);
 

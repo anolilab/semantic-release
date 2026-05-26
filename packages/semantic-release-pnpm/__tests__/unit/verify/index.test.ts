@@ -99,9 +99,9 @@ describe(verify, () => {
 
         try {
             await verify(pluginConfig, context);
-        } catch (e) {
-            expect(e).toBeInstanceOf(AggregateError);
-            expect((e as AggregateError).errors).toContain(plainError);
+        } catch (error) {
+            expect(error).toBeInstanceOf(AggregateError);
+            expect((error as AggregateError).errors).toContain(plainError);
         }
     });
 
@@ -119,9 +119,31 @@ describe(verify, () => {
 
         try {
             await verify(pluginConfig, context);
-        } catch (e) {
-            expect(e).toBeInstanceOf(AggregateError);
-            expect((e as AggregateError).errors).toContain(plainError);
+        } catch (error) {
+            expect(error).toBeInstanceOf(AggregateError);
+            expect((error as AggregateError).errors).toContain(plainError);
+        }
+    });
+
+    it("should handle an Error whose 'errors' property is not an array", async () => {
+        expect.assertions(2);
+
+        const malformedError = Object.assign(new Error("malformed aggregate"), { errors: "not an array" });
+
+        vi.mocked(verifyPnpm).mockImplementation(() => {
+            throw malformedError;
+        });
+
+        const pkg = { name: "test-package", private: true, version: "1.0.0" };
+
+        vi.mocked(getPackage).mockResolvedValue(pkg);
+        vi.mocked(shouldPublish).mockReturnValue(false);
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (error) {
+            expect(error).toBeInstanceOf(AggregateError);
+            expect((error as AggregateError).errors).toContain(malformedError);
         }
     });
 });

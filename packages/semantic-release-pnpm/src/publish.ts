@@ -3,7 +3,7 @@ import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
 // eslint-disable-next-line e18e/ban-dependencies
-import { ExecaError, execa } from "execa";
+import { execa, ExecaError } from "execa";
 
 import type { PublishContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
@@ -14,6 +14,45 @@ import { getReleaseInfo } from "./utils/get-release-info";
 import { reasonToNotPublish, shouldPublish } from "./utils/should-publish";
 
 const debug = dbg("semantic-release-pnpm:publish");
+
+const ALREADY_PUBLISHED_PHRASE = "cannot publish over the previously published versions";
+
+/**
+ * Detect the registry response that signals a CI retry against an already-published version.
+ * Matches against `stderr` first (closest to the raw registry payload) and falls back to the
+ * rendered `message` for execa formatting changes.
+ */
+const isAlreadyPublishedError = (error: Error & { shortMessage?: unknown; stderr?: unknown }): boolean => {
+    const haystacks = [error.stderr, error.shortMessage, error.message].filter((value): value is string => typeof value === "string");
+
+    return haystacks.some((value) => value.includes(ALREADY_PUBLISHED_PHRASE));
+};
+
+/**
+ * Build the failure outcome for a `pnpm publish` error: log the appropriate message and either
+ * return the existing release info (when the version is already published) or throw an
+ * `AggregateError` that wraps the original cause.
+ */
+const handlePublishError = (
+    error: unknown,
+    packageJson: PackageJson,
+    context: PublishContext,
+    distributionTag: string,
+    registry: string,
+): ReleaseInfo => {
+    const { logger, nextRelease: { version } } = context;
+    const errorMessage = error instanceof Error ? error.message : String(error);
+
+    if (error instanceof ExecaError && isAlreadyPublishedError(error)) {
+        logger.log(`Package ${packageJson.name ?? ""}@${version} is already published at dist-tag @${distributionTag} on ${registry}, skipping`);
+
+        return getReleaseInfo(packageJson, context, distributionTag, registry);
+    }
+
+    logger.log(`Failed to publish ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}: ${errorMessage}`);
+
+    throw new AggregateError([error], errorMessage, { cause: error });
+};
 
 /**
  * Publish the package to the npm registry using `pnpm publish` when the plugin configuration and
@@ -87,20 +126,7 @@ const publish = async (pluginConfig: PluginConfig, packageJson: PackageJson, con
         try {
             await result;
         } catch (error) {
-            const errorMessage = error instanceof Error ? error.message : String(error);
-
-            if (
-                error instanceof ExecaError &&
-                errorMessage.includes("cannot publish over the previously published versions")
-            ) {
-                logger.log(`Package ${packageJson.name ?? ""}@${version} is already published at dist-tag @${distributionTag} on ${registry}, skipping`);
-
-                return getReleaseInfo(packageJson, context, distributionTag, registry);
-            }
-
-            logger.log(`Failed to publish ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}: ${errorMessage}`);
-
-            throw new AggregateError([error], errorMessage, { cause: error });
+            return handlePublishError(error, packageJson, context, distributionTag, registry);
         }
 
         logger.log(`Published ${packageJson.name ?? ""}@${version} to dist-tag @${distributionTag} on ${registry}`);
