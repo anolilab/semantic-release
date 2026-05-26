@@ -27,14 +27,14 @@ let container: Docker.Container;
 export const start = async (): Promise<void> => {
     await getStream(await docker.pull(IMAGE));
 
-    container = (await docker.createContainer({
+    container = await docker.createContainer({
         HostConfig: {
             Binds: [`${join(dirname(fileURLToPath(import.meta.url)), "config.yaml")}:/verdaccio/conf/config.yaml`],
             PortBindings: { [`${REGISTRY_PORT}/tcp`]: [{ HostPort: REGISTRY_PORT }] },
         },
         Image: IMAGE,
         Tty: true,
-    })) as unknown as Docker.Container;
+    });
 
     await container.start();
     await setTimeout(4000);

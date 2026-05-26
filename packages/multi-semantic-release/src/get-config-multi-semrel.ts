@@ -35,7 +35,7 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
     const config = (searchResult?.config ?? {}) as Record<string, unknown>;
     const { extends: extendPaths, ...rest } = config;
 
-    let options: MultiReleaseConfig = rest as MultiReleaseConfig;
+    let options: MultiReleaseConfig = rest;
 
     if (extendPaths) {
         const require = createRequire(import.meta.url);
@@ -73,7 +73,7 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
             silent: false,
             // eslint-disable-next-line no-template-curly-in-string
             tagFormat: "${name}@${version}",
-        } as MultiReleaseConfig,
+        },
         options,
     );
 

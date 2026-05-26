@@ -116,7 +116,7 @@ describe(verifyAuth, () => {
             Object.assign(new Error("Command failed"), {
                 stderr: "This command requires you to be logged in to https://failing.registry.org/",
                 stdout: "",
-            }) as Error & { stderr: string; stdout: string },
+            }),
         );
 
         // Must NOT throw — whoami failures on custom registries are soft warnings

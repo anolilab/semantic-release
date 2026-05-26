@@ -5,7 +5,6 @@ import { writeFile } from "@visulima/fs";
 import { resolve } from "@visulima/path";
 import dbg from "debug";
 import { stringify } from "ini";
-import type { AuthOptions } from "registry-auth-token";
 import getAuthToken from "registry-auth-token";
 
 import { OFFICIAL_REGISTRY } from "../definitions/constants";
@@ -57,7 +56,7 @@ const setNpmrcAuth = async (
         logger.log("Reading npm config from %s", files.join(", "));
     }
 
-    const existingToken = getAuthToken(registry, { npmrc: config } as AuthOptions);
+    const existingToken = getAuthToken(registry, { npmrc: config });
 
     if (existingToken) {
         debug(`Using existing authentication token from npmrc files for registry "${registry}"`);

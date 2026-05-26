@@ -125,10 +125,10 @@ export interface MultiReleaseConfig {
         release?:
             | ReleaseStrategy
             | {
-                  major?: Omit<ReleaseStrategy, "inherit">;
-                  minor?: Omit<ReleaseStrategy, "inherit">;
-                  patch?: Omit<ReleaseStrategy, "inherit">;
-              };
+                major?: Omit<ReleaseStrategy, "inherit">;
+                minor?: Omit<ReleaseStrategy, "inherit">;
+                patch?: Omit<ReleaseStrategy, "inherit">;
+            };
     };
     dryRun?: boolean;
     firstParent?: boolean;
