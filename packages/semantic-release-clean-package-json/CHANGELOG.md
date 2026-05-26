@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [5.5.13](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.12...@anolilab/semantic-release-clean-package-json@5.5.13) (2026-05-26)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** handle non-AggregateError in verify and skip re-publish ([#309](https://github.com/anolilab/semantic-release/issues/309)) ([6acb075](https://github.com/anolilab/semantic-release/commit/6acb075cbd3e7abf1f8c0d5417ffb661fd331646))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.15
+
 ## @anolilab/semantic-release-clean-package-json [5.5.12](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.11...@anolilab/semantic-release-clean-package-json@5.5.12) (2026-05-23)
 
 
