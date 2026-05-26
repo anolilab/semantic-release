@@ -1,3 +1,17 @@
+## @anolilab/semantic-release-pnpm [8.1.14](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.13...@anolilab/semantic-release-pnpm@8.1.14) (2026-05-23)
+
+## @anolilab/semantic-release-pnpm [8.1.13](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.12...@anolilab/semantic-release-pnpm@8.1.13) (2026-05-23)
+
+## @anolilab/semantic-release-pnpm [8.1.12](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.11...@anolilab/semantic-release-pnpm@8.1.12) (2026-05-23)
+
+## @anolilab/semantic-release-pnpm [8.1.11](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.10...@anolilab/semantic-release-pnpm@8.1.11) (2026-05-22)
+
+## @anolilab/semantic-release-pnpm [8.1.10](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.9...@anolilab/semantic-release-pnpm@8.1.10) (2026-05-21)
+
+### Miscellaneous Chores
+
+* **security:** apply audit overrides ([9607d56](https://github.com/anolilab/semantic-release/commit/9607d56c06dd830707151026b0308f0db56c3861))
+
 ## @anolilab/semantic-release-pnpm [8.1.9](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.8...@anolilab/semantic-release-pnpm@8.1.9) (2026-05-04)
 
 ## @anolilab/semantic-release-pnpm [8.1.8](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.7...@anolilab/semantic-release-pnpm@8.1.8) (2026-05-01)

@@ -26,7 +26,7 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
+              uses: "step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411" # v2.19.4
               with:
                   egress-policy: "audit"
 
@@ -43,7 +43,7 @@ jobs:
 
             - name: "Derive appropriate SHAs for base and head for `nx affected` commands"
               id: "setSHAs"
-              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5
+              uses: "nrwl/nx-set-shas@afb73a62d26e41464e9254689e1fd6122ee683c1" # v5.0.1
 
             - name: "Setup resources and environment"
               id: "setup"

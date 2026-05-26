@@ -89,13 +89,13 @@ const isConnectionError = (error: any): boolean => {
     const isTimedOut = (error as { timedOut?: boolean }).timedOut === true;
 
     return (
-        isTimedOut ||
-        errorCode === "ECONNREFUSED" ||
-        errorCode === "ETIMEDOUT" ||
-        errorMessage.includes("ECONNREFUSED") ||
-        errorMessage.includes("ETIMEDOUT") ||
-        errorMessage.includes("getaddrinfo ENOTFOUND") ||
-        errorMessage.includes("timed out")
+        isTimedOut
+        || errorCode === "ECONNREFUSED"
+        || errorCode === "ETIMEDOUT"
+        || errorMessage.includes("ECONNREFUSED")
+        || errorMessage.includes("ETIMEDOUT")
+        || errorMessage.includes("getaddrinfo ENOTFOUND")
+        || errorMessage.includes("timed out")
     );
 };
 

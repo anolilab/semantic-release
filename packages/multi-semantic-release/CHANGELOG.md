@@ -1,3 +1,27 @@
+## @anolilab/multi-semantic-release [4.4.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.2...@anolilab/multi-semantic-release@4.4.3) (2026-05-23)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.12
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.14
+
+## @anolilab/multi-semantic-release [4.4.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.1...@anolilab/multi-semantic-release@4.4.2) (2026-05-23)
+
+### Miscellaneous Chores
+
+* **security:** apply audit overrides ([9607d56](https://github.com/anolilab/semantic-release/commit/9607d56c06dd830707151026b0308f0db56c3861))
+
+### Code Refactoring
+
+* **multi-semantic-release:** satisfy exports-last lint rule and tighten test types ([1d61f30](https://github.com/anolilab/semantic-release/commit/1d61f30fcecee7e7cc79f644d515c174d1c2925e))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.11
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.13
+
 ## @anolilab/multi-semantic-release [4.4.1](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.0...@anolilab/multi-semantic-release@4.4.1) (2026-04-08)
 
 ### Bug Fixes

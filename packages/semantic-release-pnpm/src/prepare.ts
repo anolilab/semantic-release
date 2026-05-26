@@ -57,8 +57,7 @@ const prepare = async (
     // versions so its side-effects (e.g. npm-shrinkwrap.json sync, version
     // lifecycle scripts) continue to work as before.
     const versionBin = pnpmMajor >= 10 ? "npm" : "pnpm";
-    const versionArguments
-        = pnpmMajor >= 10 ? ["pkg", "set", `version=${version}`] : ["version", version, "--no-git-tag-version", "--allow-same-version"];
+    const versionArguments = pnpmMajor >= 10 ? ["pkg", "set", `version=${version}`] : ["version", version, "--no-git-tag-version", "--allow-same-version"];
 
     const versionResult = execa(versionBin, versionArguments, {
         cwd: basePath,

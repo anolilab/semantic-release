@@ -1,55 +1,15 @@
-# https://help.github.com/en/categories/automating-your-workflow-with-github-actions
-
 name: "Zizmor"
-
-on: # yamllint disable-line rule:truthy
-    workflow_dispatch: # yamllint disable-line rule:empty-values
-    pull_request:
-        types: ["opened", "synchronize"]
-        paths:
-            - ".github/workflows/**"
+on:
     push:
-        branches:
-            - "main"
-        paths:
-            - ".github/workflows/**"
-
-concurrency:
-    group: "${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}"
-    cancel-in-progress: true
-
+        branches: ["main"]
+    pull_request:
+        branches: ["main"]
 permissions: {}
-
 jobs:
     zizmor:
-        name: "Zizmor"
-        timeout-minutes: 15
-        runs-on: "ubuntu-latest"
         permissions:
             security-events: "write"
-        steps:
-            - name: "Harden Runner"
-              uses: "step-security/harden-runner@8d3c67de8e2fe68ef647c8db1e6a09f647780f40" # v2.19.0
-              with:
-                  egress-policy: "audit"
-
-            - name: "Git checkout"
-              uses: "actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5" # v4.3.1
-              with:
-                  persist-credentials: false
-
-            - name: "Install zizmor"
-              uses: "taiki-e/install-action@481c34c1cf3a84c68b5e46f4eccfc82af798415a" # v2.75.23
-              with:
-                  tool: "zizmor"
-
-            - name: "Run zizmor"
-              run: "zizmor --format sarif . > results.sarif"
-              env:
-                  GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-            - name: "Upload SARIF file"
-              uses: "github/codeql-action/upload-sarif@95e58e9a2cdfd71adc6e0353d5c52f41a045d225" # v4.35.2
-              with:
-                  sarif_file: "results.sarif"
-                  category: "zizmor"
+            contents: "read"
+        uses: "anolilab/workflows/.github/workflows/zizmor.yml@20b8733e71ebbb165d54fe8cede47e225985a58a" # v15.3.1+
+        with:
+            min_severity: "medium"

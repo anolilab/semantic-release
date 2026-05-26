@@ -33,7 +33,7 @@ interface InlinePluginFunctions {
  * @returns A function that creates an inline package.
  * @internal
  */
-const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): (npmPackage: Package) => InlinePluginFunctions => {
+const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): ((npmPackage: Package) => InlinePluginFunctions) => {
     const { cwd } = multiContext;
     // Cache catalog changes detection - only run once per multirelease
     let catalogChangesCache: Map<string, "major" | "minor" | "patch"> | null = null;
@@ -163,7 +163,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             let nextType: string | undefined;
 
             if (plugins.analyzeCommits) {
-                nextType = await plugins.analyzeCommits(context) ?? undefined;
+                nextType = (await plugins.analyzeCommits(context)) ?? undefined;
             }
 
             // If catalog changes triggered a release and no commits triggered one, use catalog release type
@@ -189,9 +189,9 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             if (flags.deps) {
                 // eslint-disable-next-line no-param-reassign
                 npmPackage._nextType = resolveReleaseType(npmPackage, flags.deps.bump, flags.deps.release, [], flags.deps.prefix) as
-                | ReleaseType
-                | null
-                | undefined;
+                    | ReleaseType
+                    | null
+                    | undefined;
             }
 
             debug(debugPrefix, "commits analyzed");
