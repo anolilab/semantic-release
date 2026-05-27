@@ -1,5 +1,5 @@
 name: "Dependency review"
-on:
+on: # yamllint disable-line rule:truthy
     pull_request:
         branches: ["main"]
 permissions: {}

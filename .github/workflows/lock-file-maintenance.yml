@@ -17,6 +17,6 @@ jobs:
         with:
             target-repo: "anolilab/semantic-release"
             node-version: "22.x"
-            run-audit-fix: true
+            run-audit-fix: false
         secrets:
             github-token: "${{ secrets.LOCK_MAINTENANCE_GITHUB_TOKEN }}"
