@@ -1,5 +1,5 @@
 name: "Scorecards supply-chain security"
-on:
+on: # yamllint disable-line rule:truthy
     branch_protection_rule: {}
     schedule:
         - cron: "37 14 * * 6"

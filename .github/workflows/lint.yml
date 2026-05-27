@@ -1,5 +1,5 @@
 name: "Lint"
-on:
+on: # yamllint disable-line rule:truthy
     pull_request:
         branches: ["main"]
 permissions: {}
@@ -8,7 +8,7 @@ jobs:
         permissions:
             contents: "read"
             pull-requests: "read"
-        uses: "anolilab/workflows/.github/workflows/lint.yml@20b8733e71ebbb165d54fe8cede47e225985a58a" # v15.3.1+
+        uses: "anolilab/workflows/.github/workflows/lint.yml@1dc687e78887af5536dbd0877054fc1c56c5575b" # v15.3.1+
         with:
             lint_eslint: true
             lint_types: true
