@@ -12,6 +12,6 @@ permissions:
 
 jobs:
     lock-closed:
-        uses: "anolilab/workflows/.github/workflows/lock-closed.yml@9705d8fb1b70fdd3670b36e9dd1456820ccef30e" # main
+        uses: "anolilab/workflows/.github/workflows/lock-closed.yml@fb949a57450041b1d899f1436d17dae2701ba9ec" # main
         with:
             target-repo: "anolilab/semantic-release"
