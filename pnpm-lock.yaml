@@ -345,7 +345,7 @@ overrides:
   qs@>=6.7.0 <=6.14.1: '>=6.15.2'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.2'
-  tmp@<=0.2.3: '>=0.2.5'
+  tmp@<0.2.6: '>=0.2.6'
   undici@<6.23.0: '>=6.25.0'
   undici@<6.24.0: '>=6.25.0'
   undici@>=6.0.0 <6.24.0: '>=6.25.0'
@@ -8639,12 +8639,8 @@ packages:
   title-case@4.3.2:
     resolution: {integrity: sha512-I/nkcBo73mO42Idfv08jhInV61IMb61OdIFxk+B4Gu1oBjWBPOLmhZdsli+oJCVaD+86pYQA93cJfFt224ZFAA==}
 
-  tmp@0.2.4:
-    resolution: {integrity: sha512-UdiSoX6ypifLmrfQ/XfiawN6hkjSBpCjhKxxZcWlUUmoXLaCKQU0bx4HF/tdDK2uzRuchf1txGvrWBzYREssoQ==}
-    engines: {node: '>=14.14'}
-
-  tmp@0.2.5:
-    resolution: {integrity: sha512-voyz6MApa1rQGUxT3E+BK7/ROe8itEx7vD8/HEvt4xwXucvQ5G5oeEiHkmHZJuBO21RpOf+YYm9MOivj709jow==}
+  tmp@0.2.7:
+    resolution: {integrity: sha512-e0votIpp4Uo2AJYSzVHV6xCcawuiez3DzqDAbrTc3YxBkplN6e+dM13ZeIcZnDg/QpSuU2zfZ3rzwY8ukEnaXw==}
     engines: {node: '>=14.14'}
 
   to-regex-range@5.0.1:
@@ -13728,7 +13724,7 @@ snapshots:
     dependencies:
       chardet: 0.7.0
       iconv-lite: 0.4.24
-      tmp: 0.2.5
+      tmp: 0.2.7
 
   fast-content-type-parse@3.0.0: {}
 
@@ -16364,7 +16360,7 @@ snapshots:
       strip-bom: 3.0.0
       supports-color: 7.2.0
       tar-stream: 2.2.0
-      tmp: 0.2.4
+      tmp: 0.2.7
       tree-kill: 1.2.2
       tsconfig-paths: 4.2.0
       tslib: 2.8.1
@@ -18198,9 +18194,7 @@ snapshots:
 
   title-case@4.3.2: {}
 
-  tmp@0.2.4: {}
-
-  tmp@0.2.5: {}
+  tmp@0.2.7: {}
 
   to-regex-range@5.0.1:
     dependencies:
