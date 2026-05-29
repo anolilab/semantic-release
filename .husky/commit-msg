@@ -1,6 +1,5 @@
 #!/bin/sh
 
-. "$(dirname "$0")/_/husky.sh"
 . "$(dirname "$0")/common.sh"
 
 # The hook should exit with non-zero status after issuing
