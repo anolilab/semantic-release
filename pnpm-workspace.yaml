@@ -16,8 +16,8 @@ catalogs:
   build:
     esbuild: 0.28.0
   cli:
-    '@anolilab/semantic-release-clean-package-json': 5.5.7
-    '@anolilab/semantic-release-pnpm': 8.1.9
+    '@anolilab/semantic-release-clean-package-json': 5.5.13
+    '@anolilab/semantic-release-pnpm': 8.1.15
     '@sebbo2002/semantic-release-jsr': 3.2.1
     '@semantic-release/changelog': ^6.0.3
     '@semantic-release/commit-analyzer': 13.0.1
@@ -32,8 +32,8 @@ catalogs:
     semantic-release-yarn: ^3.0.2
     taze: 19.14.1
   dev:
-    '@arethetypeswrong/cli': ^0.18.2
-    '@ckeditor/typedoc-plugins': 55.6.1
+    '@arethetypeswrong/cli': ^0.18.3
+    '@ckeditor/typedoc-plugins': 55.6.3
     '@visulima/packem': 2.0.0-alpha.49
     conventional-changelog-conventionalcommits: 9.3.1
     dockerode: 5.0.0
@@ -61,7 +61,7 @@ catalogs:
     eslint: 10.4.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
-    lint-staged: 17.0.5
+    lint-staged: 17.0.7
     prettier: 3.8.3
     publint: 0.3.21
     secretlint: 13.0.2
@@ -84,7 +84,7 @@ catalogs:
     left-pad: ^1.3.0
   prod:
     '@actions/core': 3.0.1
-    '@anolilab/rc': 4.0.2
+    '@anolilab/rc': 4.0.3
     '@babel/core': 7.29.7
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^4.1.0
@@ -172,7 +172,7 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
-  '@hono/node-server@<1.19.10': '>=2.0.3'
+  '@hono/node-server@<1.19.10': '>=2.0.4'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
   '@modelcontextprotocol/sdk@<1.25.2': '>=1.29.0'
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.29.0'
@@ -214,7 +214,7 @@ overrides:
   qs@>=6.7.0 <=6.14.1: '>=6.15.2'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.2'
-  tmp@<0.2.6: '>=0.2.6'
+  tmp@<0.2.6: '>=0.2.7'
   undici@<6.23.0: '>=6.25.0'
   undici@<6.24.0: '>=6.25.0'
   undici@>=6.0.0 <6.24.0: '>=6.25.0'
