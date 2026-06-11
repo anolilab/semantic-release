@@ -16,7 +16,7 @@ permissions:
 
 jobs:
     allo-allo:
-        uses: "anolilab/workflows/.github/workflows/allo-allo.yml@bbe85cc99b036e08d0ac7daf7be586218d8e2d0c" # main
+        uses: "anolilab/workflows/.github/workflows/allo-allo.yml@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
         with:
             target-repo: "anolilab/semantic-release"
             onboarding-lead: "prisis"
