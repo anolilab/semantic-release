@@ -160,6 +160,7 @@ minimumReleaseAgeExclude:
   - '@nx/nx-win32-x64-msvc@22.7.4'
   - '@nx/workspace@22.7.4'
   - nx@22.7.4
+  - shell-quote@1.8.4
 
 onlyBuiltDependencies:
   - cpu-features
@@ -213,6 +214,7 @@ overrides:
   qs@<6.14.1: '>=6.15.2'
   qs@>=6.7.0 <=6.14.1: '>=6.15.2'
   rollup@>=4.0.0 <4.59.0: '>=4.59.0'
+  shell-quote@>=1.1.0 <=1.8.3: ^1.8.4
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.2'
   tmp@<0.2.6: '>=0.2.7'
   undici@<6.23.0: '>=6.25.0'
