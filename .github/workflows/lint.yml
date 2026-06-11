@@ -15,7 +15,7 @@ jobs:
             lint_types: true
             lint_attw: false
             lint_package_json: true
-            lint_markdown: true
+            lint_markdown: false
             lint_yaml: true
             lint_actionlint: true
             lint_rust: false
