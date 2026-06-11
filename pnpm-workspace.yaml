@@ -109,8 +109,8 @@ catalogs:
     yargs: 18.0.0
   test:
     '@vitest/coverage-v8': 4.1.8
-    '@vitest/ui': 4.1.7
-    vitest: 4.1.7
+    '@vitest/ui': 4.1.8
+    vitest: 4.1.8
   tsc:
     typescript: 6.0.3
   types:
