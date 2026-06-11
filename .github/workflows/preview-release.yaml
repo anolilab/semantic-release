@@ -31,7 +31,7 @@ jobs:
                   egress-policy: "audit"
 
             - name: "Git checkout"
-              uses: "actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd" # v6.0.2
+              uses: "actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10" # v6.0.3
               with:
                   # Number of commits to fetch. 0 indicates all history for all branches and tags.
                   # Pulls all commits (needed for NX)
@@ -47,7 +47,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@bbe85cc99b036e08d0ac7daf7be586218d8e2d0c" # main
+              uses: "anolilab/workflows/step/setup@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
               with:
                   node-version: "22.x"
                   cache-prefix: "preview-release"

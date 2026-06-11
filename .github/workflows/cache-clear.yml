@@ -10,6 +10,6 @@ permissions:
 
 jobs:
     cleanup-branch-cache:
-        uses: "anolilab/workflows/.github/workflows/cleanup-branch-cache.yaml@bbe85cc99b036e08d0ac7daf7be586218d8e2d0c" # main
+        uses: "anolilab/workflows/.github/workflows/cleanup-branch-cache.yaml@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
         with:
             target-repo: "anolilab/semantic-release"
