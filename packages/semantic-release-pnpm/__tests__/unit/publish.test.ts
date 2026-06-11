@@ -1,3 +1,4 @@
+// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -11,6 +12,7 @@ vi.mock(import("../../src/utils/get-release-info"));
 vi.mock(import("../../src/utils/should-publish"));
 // Keep ExecaError real so instanceof checks in publish.ts work correctly.
 
+// eslint-disable-next-line e18e/ban-dependencies
 vi.mock(import("execa"), async (importOriginal) => {
     const actual = await importOriginal<typeof import("execa")>();
 
@@ -77,11 +79,11 @@ describe(publish, () => {
 
         // Prototype swap makes instanceof ExecaError true; extra fields harden against future
         // publish.ts checks on shortMessage / exitCode / failed / stderr.
-        const alreadyPublishedError = Object.assign(
+        const alreadyPublishedError: Error = Object.assign(
             Object.setPrototypeOf(
                 new Error("cannot publish over the previously published versions"),
-                ExecaError.prototype,
-            ) as ExecaError,
+                ExecaError.prototype as object,
+            ) as Error,
             { exitCode: 1, failed: true, shortMessage: "cannot publish over the previously published versions", stderr: "" },
         );
 
@@ -98,8 +100,8 @@ describe(publish, () => {
 
         vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.resolve({ stdout: "main" })));
 
-        const stderrOnlyError = Object.assign(
-            Object.setPrototypeOf(new Error("Command failed: pnpm publish"), ExecaError.prototype) as ExecaError,
+        const stderrOnlyError: Error = Object.assign(
+            Object.setPrototypeOf(new Error("Command failed: pnpm publish"), ExecaError.prototype as object) as Error,
             {
                 exitCode: 1,
                 failed: true,

@@ -1,5 +1,6 @@
 import { createRequire } from "node:module";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { cosmiconfig } from "cosmiconfig";
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array, e18e/ban-dependencies
 import { castArray } from "lodash-es";

@@ -3,6 +3,7 @@
 import { rc } from "@anolilab/rc";
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 import type { AuthOptions } from "registry-auth-token";
 

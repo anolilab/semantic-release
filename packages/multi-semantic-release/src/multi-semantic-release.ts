@@ -1,6 +1,7 @@
 import { dirname } from "node:path";
 
 import { topo } from "@semrel-extra/topo";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array, e18e/ban-dependencies
 import { castArray, sortBy, template } from "lodash-es";

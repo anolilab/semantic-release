@@ -3,6 +3,7 @@
 import { rc } from "@anolilab/rc";
 import { writeFile } from "@visulima/fs";
 import { resolve } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 import { stringify } from "ini";
 import getAuthToken from "registry-auth-token";
