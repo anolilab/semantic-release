@@ -48,7 +48,7 @@ catalogs:
     typedoc: 0.28.19
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
-    cosmiconfig: 9.0.1
+    cosmiconfig: 9.0.2
   lint:
     '@anolilab/commitlint-config': 10.0.1
     '@anolilab/eslint-config': 27.0.2
@@ -128,7 +128,7 @@ catalogs:
     '@types/yargs': 17.0.35
   utils:
     lodash-es: 4.18.1
-    semver: 7.8.1
+    semver: 7.8.2
     ts-deepmerge: ^8.0.0
 
 blockExoticSubdeps: true
