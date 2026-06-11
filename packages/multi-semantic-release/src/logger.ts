@@ -1,3 +1,4 @@
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 import signale from "signale";
 

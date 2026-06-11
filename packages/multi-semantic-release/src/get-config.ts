@@ -1,3 +1,4 @@
+// eslint-disable-next-line e18e/ban-dependencies
 import { cosmiconfig } from "cosmiconfig";
 
 const CONFIG_NAME = "release";

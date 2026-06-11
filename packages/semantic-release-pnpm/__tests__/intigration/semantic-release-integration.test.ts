@@ -2,6 +2,7 @@ import { rm } from "node:fs/promises";
 
 import { writeJson } from "@visulima/fs";
 import { join } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 // eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";

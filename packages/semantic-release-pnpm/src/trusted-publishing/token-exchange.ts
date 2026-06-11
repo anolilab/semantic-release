@@ -1,4 +1,5 @@
 import { getIDToken } from "@actions/core";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 import type { KnownCiEnv } from "env-ci";
 import envCi from "env-ci";

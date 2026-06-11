@@ -5,6 +5,7 @@ import type { PackageJson } from "@visulima/package";
 import { join } from "@visulima/path";
 // eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
+// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 // eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
@@ -19,6 +20,7 @@ vi.mock(import("@visulima/package"), async (importOriginal) => {
     return { ...actual, getPackageManagerVersion: vi.fn(() => "10.33.0") };
 });
 
+// eslint-disable-next-line e18e/ban-dependencies
 vi.mock(import("execa"), async (importOriginal) => {
     const actual = await importOriginal();
 
@@ -28,6 +30,7 @@ vi.mock(import("execa"), async (importOriginal) => {
 const { getPackageManagerVersion } = await import("@visulima/package");
 const getPackageManagerVersionMock = vi.mocked(getPackageManagerVersion);
 
+// eslint-disable-next-line e18e/ban-dependencies
 const { execa: execaImport } = await import("execa");
 const execaMock = vi.mocked(execaImport);
 
