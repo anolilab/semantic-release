@@ -97,12 +97,10 @@ describe(verify, () => {
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
 
-        try {
-            await verify(pluginConfig, context);
-        } catch (error) {
-            expect(error).toBeInstanceOf(AggregateError);
-            expect((error as AggregateError).errors).toContain(plainError);
-        }
+        const error = await verify(pluginConfig, context).catch((error_: unknown) => error_);
+
+        expect(error).toBeInstanceOf(AggregateError);
+        expect((error as AggregateError).errors).toContain(plainError);
     });
 
     it("should handle a plain Error thrown by verifyAuth without crashing", async () => {
@@ -117,12 +115,10 @@ describe(verify, () => {
         vi.mocked(getNpmrcPath).mockReturnValue(".npmrc");
         vi.mocked(verifyAuth).mockRejectedValue(plainError);
 
-        try {
-            await verify(pluginConfig, context);
-        } catch (error) {
-            expect(error).toBeInstanceOf(AggregateError);
-            expect((error as AggregateError).errors).toContain(plainError);
-        }
+        const error = await verify(pluginConfig, context).catch((error_: unknown) => error_);
+
+        expect(error).toBeInstanceOf(AggregateError);
+        expect((error as AggregateError).errors).toContain(plainError);
     });
 
     it("should handle an Error whose 'errors' property is not an array", async () => {
@@ -139,11 +135,9 @@ describe(verify, () => {
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
 
-        try {
-            await verify(pluginConfig, context);
-        } catch (error) {
-            expect(error).toBeInstanceOf(AggregateError);
-            expect((error as AggregateError).errors).toContain(malformedError);
-        }
+        const error = await verify(pluginConfig, context).catch((error_: unknown) => error_);
+
+        expect(error).toBeInstanceOf(AggregateError);
+        expect((error as AggregateError).errors).toContain(malformedError);
     });
 });

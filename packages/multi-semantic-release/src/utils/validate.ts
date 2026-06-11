@@ -2,6 +2,7 @@ import { existsSync, lstatSync } from "node:fs";
 import { isAbsolute as pathIsAbsolute } from "node:path";
 import { Writable } from "node:stream";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 
 const ALPHANUMERIC_40_REGEX = /^[a-f0-9]{40}$/i;

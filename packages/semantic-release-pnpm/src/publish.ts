@@ -1,6 +1,7 @@
 /* eslint-disable jsdoc/informative-docs */
 import type { PackageJson } from "@visulima/package";
 import { resolve } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 // eslint-disable-next-line e18e/ban-dependencies
 import { execa, ExecaError } from "execa";

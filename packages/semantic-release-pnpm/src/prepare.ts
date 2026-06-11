@@ -2,6 +2,7 @@
 import { isAccessible, move, readJson, writeJson } from "@visulima/fs";
 import { getPackageManagerVersion } from "@visulima/package";
 import { resolve } from "@visulima/path";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 // eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";

@@ -1,5 +1,6 @@
 import semanticGetConfig from "semantic-release/lib/get-config.js";
 import signale from "signale";
+// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 
 import logger from "./logger";
