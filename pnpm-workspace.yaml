@@ -130,6 +130,9 @@ catalogs:
     lodash-es: 4.18.1
     semver: 7.8.1
     ts-deepmerge: ^8.0.0
+
+blockExoticSubdeps: true
+
 dedupeInjectedDeps: true
 
 disallowWorkspaceCycles: true
@@ -141,6 +144,8 @@ includeWorkspaceRoot: false
 injectWorkspacePackages: false
 
 linkWorkspacePackages: true
+
+minimumReleaseAge: 1440
 
 minimumReleaseAgeExclude:
   - vitest
