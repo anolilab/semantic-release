@@ -1,4 +1,5 @@
 import type { PackageJson } from "@visulima/package";
+// eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 // eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";

@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { dirname, join } from "@visulima/path";
 import Docker from "dockerode";
+// eslint-disable-next-line e18e/ban-dependencies
 import getStream from "get-stream";
 // @ts-expect-error -- got v15 types resolve differently under this tsconfig
 import { got } from "got";
