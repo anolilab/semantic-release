@@ -296,8 +296,8 @@ catalogs:
       specifier: 4.18.1
       version: 4.18.1
     semver:
-      specifier: 7.8.2
-      version: 7.8.2
+      specifier: 7.8.3
+      version: 7.8.3
     ts-deepmerge:
       specifier: ^8.0.0
       version: 8.0.0
@@ -486,7 +486,7 @@ importers:
         version: 5.0.0
       semver:
         specifier: catalog:utils
-        version: 7.8.2
+        version: 7.8.3
       signale:
         specifier: catalog:prod
         version: 1.4.0
@@ -843,7 +843,7 @@ importers:
         version: 5.1.1
       semver:
         specifier: catalog:utils
-        version: 7.8.2
+        version: 7.8.3
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
@@ -8121,6 +8121,11 @@ packages:
 
   semver@7.8.2:
     resolution: {integrity: sha512-c8jsqUZm3omBOI66G90z1Dyw5z622G8oLG+omfsHBJf3CWQTlOcwOjvOG6wtiNfW6anKm/eA39LMwMtMez2TiQ==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.8.3:
+    resolution: {integrity: sha512-wnilbGyMxzbY7dNOl7jpKbLSjcfeweJWU5j4+u5qW+6/wuGD9KzIGOyZnQVSBM9E7DtWaaH3CyHkppYrKYoxwg==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -17561,6 +17566,8 @@ snapshots:
   semver@7.7.4: {}
 
   semver@7.8.2: {}
+
+  semver@7.8.3: {}
 
   send@1.2.1:
     dependencies:
