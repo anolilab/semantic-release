@@ -344,7 +344,7 @@ overrides:
   picomatch@>=4.0.0 <4.0.4: '>=4.0.4'
   qs@<6.14.1: '>=6.15.2'
   qs@>=6.7.0 <=6.14.1: '>=6.15.2'
-  rollup@>=4.0.0 <4.59.0: '>=4.59.0'
+  rollup@>=4.0.0 <4.59.0: '>=4.59.1'
   shell-quote@>=1.1.0 <=1.8.3: ^1.8.4
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.2'
   tmp@<0.2.6: '>=0.2.7'
@@ -2412,7 +2412,7 @@ packages:
     resolution: {integrity: sha512-tPCzJOtS7uuVZd+xPhoy5W4vThe6KWXNmsFCNktaAh5RTqcLiSfT4huPQIXkgJ6YCOjJHvecOAzQxLFhPxKr+g==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2421,7 +2421,7 @@ packages:
     resolution: {integrity: sha512-U2YHaxR2cU/yAiwKJtJRhnyLk7cifnQw0zUpISsocBDoHDJn+HTV74ABqnwr5bEgWUwFZC9oFL6wLe21lHu5eQ==}
     engines: {node: '>=16.0.0 || 14 >= 14.17'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2430,7 +2430,7 @@ packages:
     resolution: {integrity: sha512-Mymi24fd9hlRifdZV/jYIFj1dn99F34imiYu3KzlAcgBcRi3i9SucgW/VRo5SQ9K4NuQ7dCep6pFWgNyhRdFHQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2439,7 +2439,7 @@ packages:
     resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2448,7 +2448,7 @@ packages:
     resolution: {integrity: sha512-EGI2te5ENk1coGeADSIwZ7G2Q8CJS2sF120T7jLw4xFw9n7wIOXHo+kIYRAoVpJAN+kmqZSoO3Fp4JtoNF4ReA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2457,7 +2457,7 @@ packages:
     resolution: {integrity: sha512-lUYM3UBGuM93CnMPG1YocWu7X802BrNF3jW2zny5gQyLQgRFJhV1Sq0Zi74+dh/6NBx1DxFC4b4GXg9wUCG5Qg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2466,7 +2466,7 @@ packages:
     resolution: {integrity: sha512-J4RZarRvQAm5IF0/LwUUg+obsm+xZhYnbMXmXROyoSE1ATJe3oXSb9L5MMppdxP2ylNSjv6zFBwKYjcKMucVfA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2475,7 +2475,7 @@ packages:
     resolution: {integrity: sha512-gpC4R1G9Ni92ZIRTexqbhX7U+9estZrbhP+9SRb0DW9xpB9g7j34r+J2hqrcW/lRI7dJaU84MxZM0Rt82tqYPQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2484,7 +2484,7 @@ packages:
     resolution: {integrity: sha512-5EdhGZtnu3V88ces7s53hhfK5KSASnJZv8Lulpc04cWO3REESroJXg73DFsOmgbU2BhwV0E20bu2IDZb3VKW4Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -3379,7 +3379,7 @@ packages:
       esbuild: '*'
       oxc-transform: '*'
       p-queue: '*'
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
       sucrase: '*'
       typescript: '*'
     peerDependenciesMeta:
@@ -3402,7 +3402,7 @@ packages:
     resolution: {integrity: sha512-48/+JaaGAW92H8F6ciUeektuZOf4BoPl7yq4VTOdZFpIRxqv+1HFuyc2MmX9hbpseesFSjRnPy3uEmDWgNOeIg==}
     engines: {node: '>=20.19 <=25.*'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
 
   '@visulima/packem@2.0.0-alpha.49':
     resolution: {integrity: sha512-aN/W9BWZuTgdKje2WuZmnOnUDN76ikKek3o0K14jQVD5We1QGaHqpFqbgC30NxPjfwggr/nH9qfI4v8WQ3JX8w==}
@@ -3548,7 +3548,7 @@ packages:
       postcss-modules-scope: '>=3.2.0'
       postcss-modules-values: '>=4.0.0'
       postcss-value-parser: '>=4.2.0'
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
       sass: '>=1.0.0'
       sass-embedded: '>=1.79.4'
       stylus: '>=0.60.0'
@@ -7980,24 +7980,24 @@ packages:
     resolution: {integrity: sha512-d0UrqxYd8KyZ6i3M2Nx7WOMy708qsV/7fTHMHxCMCBOAe3V/U7OMPu5GkX8hC+cmkHhzGnfeYongl1IgiooddA==}
     engines: {node: '>=16'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
       typescript: ^4.5 || ^5.0
 
   rollup-plugin-license@3.6.0:
     resolution: {integrity: sha512-1ieLxTCaigI5xokIfszVDRoy6c/Wmlot1fDEnea7Q/WXSR8AqOjYljHDLObAx7nFxHC2mbxT3QnTSPhaic2IYw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
 
   rollup-plugin-polyfill-node@0.13.0:
     resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
 
   rollup-plugin-pure@0.4.0:
     resolution: {integrity: sha512-m5hnihG13c4JJ+OlBkbkxmQdmDfXyqsf3LuYa3O7YhtZ3/8OdRfTuxySSJ+wJ9qFUWJ0T6ApqEwTgYNQKVBcFg==}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
 
   rollup-plugin-visualizer@6.0.5:
     resolution: {integrity: sha512-9+HlNgKCVbJDs8tVtjQ43US12eqaiHyyiLMdBwQ7vSZPiHMysGNo2E88TAp1si5wx8NAoYriI2A5kuKfIakmJg==}
@@ -8005,7 +8005,7 @@ packages:
     hasBin: true
     peerDependencies:
       rolldown: 1.x || ^1.0.0-beta
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.1'
     peerDependenciesMeta:
       rolldown:
         optional: true
