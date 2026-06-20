@@ -14,7 +14,7 @@ allowBuilds:
   unrs-resolver: true
 catalogs:
   build:
-    esbuild: 0.28.0
+    esbuild: 0.28.1
   cli:
     '@anolilab/semantic-release-clean-package-json': 5.5.13
     '@anolilab/semantic-release-pnpm': 8.1.15
@@ -166,6 +166,8 @@ minimumReleaseAgeExclude:
   - '@nx/workspace@22.7.4'
   - nx@22.7.4
   - shell-quote@1.8.4
+  # Renovate security update: esbuild@0.28.1
+  - esbuild@0.28.1
 
 onlyBuiltDependencies:
   - cpu-features
