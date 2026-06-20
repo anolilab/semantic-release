@@ -97,7 +97,7 @@ catalogs:
     detect-newline: ^4.0.1
     env-ci: ^11.2.0
     git-log-parser: ^1.2.1
-    ini: ^7.0.0
+    ini: ^6.0.0
     is-ci: ^4.1.0
     normalize-url: 9.0.1
     plop: 4.0.5
