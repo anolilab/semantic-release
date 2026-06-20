@@ -73,6 +73,7 @@ jobs:
               run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
 
             - name: "Upload code coverage to codecov"
+              continue-on-error: true # coverage upload must not block the release (codecov/keybase fetches are flaky)
               uses: "anolilab/workflows/step/codecov@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
               with:
                   run-lint: "false"
