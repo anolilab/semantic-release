@@ -166,6 +166,8 @@ minimumReleaseAgeExclude:
   - '@nx/workspace@22.7.4'
   - nx@22.7.4
   - shell-quote@1.8.4
+  # Renovate security update: undici@8.5.0
+  - undici@8.5.0
 
 onlyBuiltDependencies:
   - cpu-features
@@ -224,7 +226,7 @@ overrides:
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.2'
   tmp@<0.2.6: '>=0.2.7'
   undici@<6.23.0: '>=6.26.0'
-  undici@<6.24.0: '>=6.26.0'
+  undici@<6.24.0: '>=8.5.0'
   undici@>=6.0.0 <6.24.0: '>=6.26.0'
   undici@>=7.0.0 <7.18.2: '>=7.27.2'
   undici@>=7.0.0 <7.24.0: '>=7.27.2'
