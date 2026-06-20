@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [5.5.14](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.13...@anolilab/semantic-release-clean-package-json@5.5.14) (2026-06-20)
+
+### Bug Fixes
+
+* **build:** add @visulima/pail devDependency to satisfy cerebro peer ([a440c7d](https://github.com/anolilab/semantic-release/commit/a440c7dc61ca5ae69b4931e7ba751c43fdc8159b))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.16
+
 ## @anolilab/semantic-release-clean-package-json [5.5.13](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.12...@anolilab/semantic-release-clean-package-json@5.5.13) (2026-05-26)
 
 ### Bug Fixes
