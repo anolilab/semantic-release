@@ -1,3 +1,17 @@
+## @anolilab/multi-semantic-release [4.4.5](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.4...@anolilab/multi-semantic-release@4.4.5) (2026-06-20)
+
+### Bug Fixes
+
+* **build:** add @visulima/pail devDependency to satisfy cerebro peer ([a440c7d](https://github.com/anolilab/semantic-release/commit/a440c7dc61ca5ae69b4931e7ba751c43fdc8159b))
+* **deps:** bump vitest, lodash override, ckeditor typedoc-plugins, semantic-release peer, workflow pins ([3119947](https://github.com/anolilab/semantic-release/commit/3119947b999cd21425dc9d851b07b5fb92f73008)), closes [#328](https://github.com/anolilab/semantic-release/issues/328) [#329](https://github.com/anolilab/semantic-release/issues/329) [#330](https://github.com/anolilab/semantic-release/issues/330) [#331](https://github.com/anolilab/semantic-release/issues/331) [#324](https://github.com/anolilab/semantic-release/issues/324)
+* **lint:** satisfy eslint-config v27 rules and make codecov upload non-blocking ([da69704](https://github.com/anolilab/semantic-release/commit/da69704ad8158cd82a4eab1259164fbbb6c82999))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.14
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.16
+
 ## @anolilab/multi-semantic-release [4.4.4](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.3...@anolilab/multi-semantic-release@4.4.4) (2026-05-26)
 
 ### Miscellaneous Chores
