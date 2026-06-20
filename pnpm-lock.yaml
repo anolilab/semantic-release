@@ -350,7 +350,7 @@ overrides:
   tmp@<0.2.6: '>=0.2.7'
   undici@<6.23.0: '>=8.5.0'
   undici@<6.24.0: '>=6.26.0'
-  undici@>=6.0.0 <6.24.0: '>=6.26.0'
+  undici@>=6.0.0 <6.24.0: '>=8.5.0'
   undici@>=7.0.0 <7.18.2: '>=7.27.2'
   undici@>=7.0.0 <7.24.0: '>=7.27.2'
   undici@>=7.17.0 <7.24.0: '>=7.27.2'
@@ -8882,6 +8882,10 @@ packages:
     resolution: {integrity: sha512-E9MkTS4xXLnRPYqxH2e6Hr2/49e7WFDKczKcCaFH4VaZs2iNvHMqeIkyUAD9vM8kujy9TjVrRlQ5KkdEJxB2pw==}
     engines: {node: '>=22.19.0'}
 
+  undici@8.5.0:
+    resolution: {integrity: sha512-xamtWoB1EshgjpmlXd7GGm2VfdDtw1+rD8uhry8pSNW3If6S8E0m2T2+orSKeZXEn/aPJMviCpDBA65WJt8zhg==}
+    engines: {node: '>=22.19.0'}
+
   unherit@3.0.1:
     resolution: {integrity: sha512-akOOQ/Yln8a2sgcLj4U0Jmx0R5jpIg2IUyRrWOzmEbjBtGzBdHtSeFKgoEcoH4KYIG/Pb8GQ/BwtYm0GCq1Sqg==}
 
@@ -9381,7 +9385,7 @@ snapshots:
   '@actions/http-client@4.0.0':
     dependencies:
       tunnel: 0.0.6
-      undici: 8.1.0
+      undici: 8.5.0
 
   '@actions/io@3.0.2': {}
 
@@ -18585,6 +18589,8 @@ snapshots:
   undici-types@7.24.6: {}
 
   undici@8.1.0: {}
+
+  undici@8.5.0: {}
 
   unherit@3.0.1: {}
 
