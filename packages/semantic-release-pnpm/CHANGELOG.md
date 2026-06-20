@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-pnpm [8.1.16](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.15...@anolilab/semantic-release-pnpm@8.1.16) (2026-06-20)
+
+### Bug Fixes
+
+* **build:** add @visulima/pail devDependency to satisfy cerebro peer ([a440c7d](https://github.com/anolilab/semantic-release/commit/a440c7dc61ca5ae69b4931e7ba751c43fdc8159b))
+* **lint:** satisfy eslint-config v27 rules and make codecov upload non-blocking ([da69704](https://github.com/anolilab/semantic-release/commit/da69704ad8158cd82a4eab1259164fbbb6c82999))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.4
+
 ## @anolilab/semantic-release-pnpm [8.1.15](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.14...@anolilab/semantic-release-pnpm@8.1.15) (2026-05-26)
 
 ### Bug Fixes
