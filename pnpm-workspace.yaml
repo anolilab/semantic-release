@@ -168,6 +168,8 @@ minimumReleaseAgeExclude:
   - shell-quote@1.8.4
   # Renovate security update: esbuild@0.28.1
   - esbuild@0.28.1
+  # Renovate security update: vite@8.0.16
+  - vite@8.0.16
 
 onlyBuiltDependencies:
   - cpu-features
@@ -232,7 +234,7 @@ overrides:
   undici@>=7.0.0 <7.24.0: '>=7.27.2'
   undici@>=7.17.0 <7.24.0: '>=7.27.2'
   uuid@<14.0.0: '>=14.0.0'
-  vite@>=7.0.0 <=7.3.1: '>=7.3.2'
+  vite@>=7.0.0 <=7.3.1: '>=8.0.16'
   vite@>=7.1.0 <=7.1.10: '>=7.2.7'
   vite@>=7.1.0 <=7.3.1: '>=7.3.2'
   yaml@>=2.0.0 <2.8.3: '>=2.9.0'
