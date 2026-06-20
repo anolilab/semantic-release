@@ -166,6 +166,8 @@ minimumReleaseAgeExclude:
   - '@nx/workspace@22.7.4'
   - nx@22.7.4
   - shell-quote@1.8.4
+  # Renovate security update: undici@8.5.0
+  - undici@8.5.0
 
 onlyBuiltDependencies:
   - cpu-features
@@ -228,7 +230,7 @@ overrides:
   undici@>=6.0.0 <6.24.0: '>=6.26.0'
   undici@>=7.0.0 <7.18.2: '>=7.27.2'
   undici@>=7.0.0 <7.24.0: '>=7.27.2'
-  undici@>=7.17.0 <7.24.0: '>=7.27.2'
+  undici@>=7.17.0 <7.24.0: '>=8.5.0'
   uuid@<14.0.0: '>=14.0.0'
   vite@>=7.0.0 <=7.3.1: '>=7.3.2'
   vite@>=7.1.0 <=7.1.10: '>=7.2.7'
