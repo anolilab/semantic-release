@@ -93,6 +93,7 @@
         "@types/node": "catalog:types",
         "@types/semantic-release__error": "catalog:types",
         "@visulima/packem": "catalog:dev",
+        "@visulima/pail": "catalog:dev",
         "@vitest/coverage-v8": "catalog:test",
         "@vitest/ui": "catalog:test",
         "esbuild": "catalog:build",

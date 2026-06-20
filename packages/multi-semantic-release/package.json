@@ -116,6 +116,7 @@
         "@types/stream-buffers": "catalog:types",
         "@types/yargs": "catalog:types",
         "@visulima/packem": "catalog:dev",
+        "@visulima/pail": "catalog:dev",
         "@vitest/coverage-v8": "catalog:test",
         "@vitest/ui": "catalog:test",
         "conventional-changelog-conventionalcommits": "catalog:dev",
