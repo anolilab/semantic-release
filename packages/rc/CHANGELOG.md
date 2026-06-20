@@ -1,3 +1,9 @@
+## @anolilab/rc [4.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.3...@anolilab/rc@4.0.4) (2026-06-20)
+
+### Bug Fixes
+
+* **build:** add @visulima/pail devDependency to satisfy cerebro peer ([a440c7d](https://github.com/anolilab/semantic-release/commit/a440c7dc61ca5ae69b4931e7ba751c43fdc8159b))
+
 ## @anolilab/rc [4.0.3](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.2...@anolilab/rc@4.0.3) (2026-05-26)
 
 ### Miscellaneous Chores
