@@ -44,7 +44,7 @@ jobs:
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Check for file changes"
-              uses: "dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d" # v4.0.1
+              uses: "dorny/paths-filter@7b450fff21473bca461d4b92ce414b9d0420d706" # v4.0.2
               id: "changes"
               with:
                   token: "${{ github.token }}"
@@ -88,7 +88,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
+              uses: "anolilab/workflows/step/setup@6d0f01d0742f15c51b2398bc97e0b008c7416b00" # main
               with:
                   node-version: "${{ matrix.node_version }}"
                   enable-nx-cache: false
@@ -144,7 +144,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
+              uses: "anolilab/workflows/step/setup@6d0f01d0742f15c51b2398bc97e0b008c7416b00" # main
               with:
                   node-version: "${{ matrix.node_version }}"
 
@@ -183,7 +183,7 @@ jobs:
               # Coverage upload is informational and depends on the flaky codecov.io network path;
               # do not fail the required "Check Test Run" gate when the upload itself errors.
               continue-on-error: true
-              uses: "anolilab/workflows/step/codecov@d7d84717329a45c2b5ffbda19ae76d8604f61c00" # main
+              uses: "anolilab/workflows/step/codecov@6d0f01d0742f15c51b2398bc97e0b008c7416b00" # main
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
