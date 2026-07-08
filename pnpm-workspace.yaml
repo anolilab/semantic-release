@@ -63,7 +63,7 @@ catalogs:
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 17.0.7
-    prettier: 3.8.3
+    prettier: 3.8.5
     publint: 0.3.21
     secretlint: 13.0.2
     textlint: 15.7.1
