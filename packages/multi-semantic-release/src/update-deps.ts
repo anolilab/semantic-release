@@ -42,10 +42,10 @@ const resolveReleaseTypeFromStrategy = (
 
     // If it's an object mapping, use the mapping based on dependency release type
     if (dependencyReleaseType) {
-        // eslint-disable-next-line unicorn/no-unsafe-property-key, sonarjs/inconsistent-function-name
         const key = dependencyReleaseType as keyof typeof releaseStrategy;
 
         if (Object.hasOwn(releaseStrategy, key)) {
+            // eslint-disable-next-line unicorn/no-unsafe-property-key
             return releaseStrategy[key];
         }
     }
