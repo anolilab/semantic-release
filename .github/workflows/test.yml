@@ -59,7 +59,7 @@ jobs:
             matrix:
                 os:
                     - "ubuntu-latest"
-                node_version: ["22", "24", "25"]
+                node_version: ["22", "24", "25", "26"]
                 semantic_release_version: ["^24", "^25"]
             fail-fast: false
         runs-on: "${{ matrix.os }}"
@@ -117,7 +117,7 @@ jobs:
             matrix:
                 os:
                     - "ubuntu-latest"
-                node_version: ["22", "24", "25"]
+                node_version: ["22", "24", "25", "26"]
             fail-fast: false
         runs-on: "${{ matrix.os }}"
         env:
