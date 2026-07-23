@@ -92,6 +92,7 @@ jobs:
               with:
                   node-version: "${{ matrix.node_version }}"
                   enable-nx-cache: false
+                  npm-version: "${{ matrix.node_version == '25' && '11' || 'latest' }}"
 
             - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
               run: |
