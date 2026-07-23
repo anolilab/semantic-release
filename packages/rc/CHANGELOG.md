@@ -1,3 +1,5 @@
+## @anolilab/rc [4.0.5](https://github.com/anolilab/semantic-release/compare/%40anolilab%2Frc%404.0.4...%40anolilab%2Frc%404.0.5) (2026-07-23)
+
 ## @anolilab/rc [4.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.3...@anolilab/rc@4.0.4) (2026-06-20)
 
 ### Bug Fixes
