@@ -4,8 +4,6 @@ import { isAccessible, readFile, readJson, writeFile, writeJson } from "@visulim
 import type { PackageJson } from "@visulima/package";
 import { join } from "@visulima/path";
 // eslint-disable-next-line e18e/ban-dependencies
-import { execa } from "execa";
-// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 // eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
