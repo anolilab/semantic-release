@@ -80,8 +80,8 @@ describe(prepare, () => {
         const shrinkwrapPath = join(cwd, "npm-shrinkwrap.json");
 
         await writeJson(packagePath, { version: "0.0.0-dev" });
-        // Create a npm-shrinkwrap.json file
-        await execa("npm", ["shrinkwrap"], { cwd });
+        // Create a npm-shrinkwrap.json file manually (npm v11+ removed `npm shrinkwrap`)
+        await writeJson(shrinkwrapPath, { version: "0.0.0-dev" });
 
         await prepare({}, {
             cwd,
