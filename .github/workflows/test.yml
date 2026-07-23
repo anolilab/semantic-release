@@ -148,6 +148,7 @@ jobs:
               uses: "anolilab/workflows/step/setup@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
               with:
                   node-version: "${{ matrix.node_version }}"
+                  npm-version: "${{ matrix.node_version == '25' && '11' || 'latest' }}"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
