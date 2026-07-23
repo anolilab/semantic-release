@@ -36,7 +36,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...Array.isArray(typedError.errors) ? (typedError.errors as Error[]) : [typedError]];
+        errors = [...errors, ...(Array.isArray(typedError.errors) ? (typedError.errors as Error[]) : [typedError])];
     }
 
     try {
@@ -56,7 +56,7 @@ const verify = async (pluginConfig: PluginConfig, context: VerifyConditionsConte
 
         errorsMessage += typedError.message;
 
-        errors = [...errors, ...Array.isArray(typedError.errors) ? (typedError.errors as Error[]) : [typedError]];
+        errors = [...errors, ...(Array.isArray(typedError.errors) ? (typedError.errors as Error[]) : [typedError])];
     }
 
     if (errors.length > 0) {

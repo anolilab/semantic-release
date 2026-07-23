@@ -89,13 +89,13 @@ const isConnectionError = (error: any): boolean => {
     const isTimedOut = (error as { timedOut?: boolean }).timedOut === true;
 
     return (
-        isTimedOut
-        || errorCode === "ECONNREFUSED"
-        || errorCode === "ETIMEDOUT"
-        || errorMessage.includes("ECONNREFUSED")
-        || errorMessage.includes("ETIMEDOUT")
-        || errorMessage.includes("getaddrinfo ENOTFOUND")
-        || errorMessage.includes("timed out")
+        isTimedOut ||
+        errorCode === "ECONNREFUSED" ||
+        errorCode === "ETIMEDOUT" ||
+        errorMessage.includes("ECONNREFUSED") ||
+        errorMessage.includes("ETIMEDOUT") ||
+        errorMessage.includes("getaddrinfo ENOTFOUND") ||
+        errorMessage.includes("timed out")
     );
 };
 
@@ -182,10 +182,10 @@ const verifyAuthContextAgainstRegistry = async (npmrc: string, registry: string,
             const errorMessage = error instanceof Error ? error.message : String(error);
 
             context.logger.warn(
-                `Could not verify auth via "pnpm whoami" on custom registry "${registry}" (${errorMessage}). `
-                + `This registry may not support /-/whoami for the configured token type `
-                + `(e.g. GitLab Package Registry with deploy tokens). `
-                + `The publish step will surface any real credential errors.`,
+                `Could not verify auth via "pnpm whoami" on custom registry "${registry}" (${errorMessage}). ` +
+                    `This registry may not support /-/whoami for the configured token type ` +
+                    `(e.g. GitLab Package Registry with deploy tokens). ` +
+                    `The publish step will surface any real credential errors.`,
             );
         }
     })();

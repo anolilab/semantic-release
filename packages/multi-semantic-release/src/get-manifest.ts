@@ -61,16 +61,16 @@ const getManifest = (path: string): PackageManifest => {
         throw new SyntaxError(`Package name must be non-empty string: "${path}"`);
     }
 
-    const checkDeps = (scope: string) => {
+    const checkDependencies = (scope: string) => {
         if (Object.hasOwn(manifestTyped, scope) && typeof manifestTyped[scope as keyof PackageManifest] !== "object") {
             throw new SyntaxError(`Package ${scope} must be object: "${path}"`);
         }
     };
 
-    checkDeps("dependencies");
-    checkDeps("devDependencies");
-    checkDeps("peerDependencies");
-    checkDeps("optionalDependencies");
+    checkDependencies("dependencies");
+    checkDependencies("devDependencies");
+    checkDependencies("peerDependencies");
+    checkDependencies("optionalDependencies");
 
     Object.defineProperty(manifestTyped, "__contents__", { enumerable: false, value: contents });
 

@@ -35,7 +35,7 @@ const getConfigSemantic = async (
 ): Promise<{ options: Record<string, unknown>; plugins: Record<string, unknown> }> => {
     try {
         const blackholeBuffer = new WritableStreamBuffer();
-        // eslint-disable-next-line sonarjs/confidential-information-logging
+         
         const blackhole = new Signale({ stream: blackholeBuffer as unknown as NodeJS.WriteStream });
 
         return await semanticGetConfig({ cwd, env, logger: blackhole as unknown as Record<string, unknown>, stderr, stdout }, options);

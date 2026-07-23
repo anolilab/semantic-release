@@ -46,7 +46,7 @@ const getCommitsFiltered = async (
     validate(lastRelease, "lastRelease: alphanumeric{40}?");
     validate(nextRelease, "nextRelease: alphanumeric{40}?");
 
-    if (direction.indexOf(cwd) !== 0) {
+    if (!direction.startsWith(cwd)) {
         throw new TypeError("dir: Must be inside cwd");
     }
 
