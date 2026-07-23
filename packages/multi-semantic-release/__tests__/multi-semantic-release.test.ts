@@ -30,7 +30,7 @@ const environment = {};
 const fixturesPath = resolve(dirname(fileURLToPath(import.meta.url)), "../__fixtures__");
 
 // Static regex patterns (moved to module scope per e18e/prefer-static-regex)
-// eslint-disable-next-line regexp/no-super-linear-backtracking, sonarjs/slow-regex
+// eslint-disable-next-line regexp/no-super-linear-backtracking, sonarjs/super-linear-regex
 const RE_BOT_COMMIT_FILTER = /.*aaa.*Add missing text file.*\n.*bbb.*Add missing text file.*/u;
 const RE_PACKAGES_A = /packages\/a$/u;
 const RE_PACKAGES_B = /packages\/b$/u;
@@ -49,7 +49,7 @@ describe("multiSemanticRelease()", () => {
         ["satisfy", "^", [3, 2, 0, 1]],
         ["inherit", "^", [3, 2, 0, 1]],
     ])("with Yarn Workspace Ranges & deps.bump=%s & deps.prefix=%s", (strategy, prefix, packageOrder) => {
-        it("should replace \"workspace:\" with correct version", async () => {
+        it('should replace "workspace:" with correct version', async () => {
             expect.assertions(37);
 
             // Create Git repo with copy of Yarn workspaces fixture.
@@ -1022,7 +1022,7 @@ describe("multiSemanticRelease()", () => {
                         // Ensure that msr-test-c is always ready before msr-test-d
                         verify: (_pluginOptions: Record<string, unknown>, { lastRelease: { name } }: { lastRelease: { name: string } }) =>
                             new Promise<void>((_resolve) => {
-                                if (name.split("@")[0] === "msr-test-c") {
+                                if (name.split("@", 1)[0] === "msr-test-c") {
                                     _resolve();
                                 }
 
@@ -1031,7 +1031,7 @@ describe("multiSemanticRelease()", () => {
                     },
                     {
                         prepare: (_pluginOptions: Record<string, unknown>, { lastRelease: { name } }: { lastRelease: { name: string } }) => {
-                            mockPrepare(name.split("@")[0]);
+                            mockPrepare(name.split("@", 1)[0]);
                         },
                     },
                 ],

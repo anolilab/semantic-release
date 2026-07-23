@@ -7,7 +7,7 @@ import type { ReleaseType } from "semver";
 import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
 import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
-import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps } from "./update-deps";
+import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps as updateManifestDependencies } from "./update-deps";
 import cleanPath from "./utils/clean-path";
 import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./utils/detect-catalog-changes";
 
@@ -33,11 +33,11 @@ interface InlinePluginFunctions {
  * @returns A function that creates an inline package.
  * @internal
  */
-const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): (npmPackage: Package) => InlinePluginFunctions => {
+const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): ((npmPackage: Package) => InlinePluginFunctions) => {
     const { cwd } = multiContext;
     // Cache catalog changes detection - only run once per multirelease
     let catalogChangesCache: Map<string, "major" | "minor" | "patch"> | null = null;
-    let catalogChangesDetected = false;
+    let isCatalogChangesDetected = false;
 
     const createInlinePlugin = (npmPackage: Package): InlinePluginFunctions => {
         const { dir, name, plugins } = npmPackage;
@@ -124,21 +124,21 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             npmPackage._lastRelease = context.lastRelease;
 
             // Detect catalog changes (only once per multirelease)
-            if (!catalogChangesDetected && context.lastRelease?.gitHead) {
+            if (!isCatalogChangesDetected && context.lastRelease?.gitHead) {
                 try {
                     const catalogChanges = await detectCatalogChanges(cwd, context.lastRelease.gitHead, context.nextRelease?.gitHead);
 
                     if (Object.keys(catalogChanges).length > 0) {
                         catalogChangesCache = getAffectedPackagesFromCatalogChanges(_packages, catalogChanges);
-                        catalogChangesDetected = true;
+                        isCatalogChangesDetected = true;
 
                         debug(debugPrefix, `Detected catalog changes affecting ${String(catalogChangesCache.size)} packages`);
                     } else {
-                        catalogChangesDetected = true; // Mark as checked even if no changes
+                        isCatalogChangesDetected = true; // Mark as checked even if no changes
                     }
                 } catch (error) {
                     debug(debugPrefix, "Failed to detect catalog changes:", error);
-                    catalogChangesDetected = true; // Mark as checked to avoid repeated failures
+                    isCatalogChangesDetected = true; // Mark as checked to avoid repeated failures
                 }
             }
 
@@ -163,7 +163,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             let nextType: string | undefined;
 
             if (plugins.analyzeCommits) {
-                nextType = await plugins.analyzeCommits(context) ?? undefined;
+                nextType = (await plugins.analyzeCommits(context)) ?? undefined;
             }
 
             // If catalog changes triggered a release and no commits triggered one, use catalog release type
@@ -189,9 +189,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             if (flags.deps) {
                 // eslint-disable-next-line no-param-reassign
                 npmPackage._nextType = resolveReleaseType(npmPackage, flags.deps.bump, flags.deps.release, [], flags.deps.prefix) as
-                | ReleaseType
-                | null
-                | undefined;
+                    ReleaseType | null | undefined;
             }
 
             debug(debugPrefix, "commits analyzed");
@@ -277,6 +275,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             if (subs) {
+                // eslint-disable-next-line unicorn/no-unsafe-string-replacement
                 notes.push(subs.replace(HEADING_VERSION_REGEX, `$1 ${name} $2`));
             }
 
@@ -320,7 +319,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 return;
             }
 
-            updateManifestDeps(npmPackage);
+            updateManifestDependencies(npmPackage);
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._depsUpdated = true;

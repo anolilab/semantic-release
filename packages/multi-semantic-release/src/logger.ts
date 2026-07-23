@@ -6,6 +6,7 @@ const { Signale } = signale;
 
 const severityOrder = ["error", "warn", "info", "debug", "trace"] as const;
 
+// eslint-disable-next-line unicorn/consistent-boolean-name
 const assertLevel = (level: string, limit: string): boolean => {
     const levelIndex = severityOrder.indexOf(level as (typeof severityOrder)[number]);
     const limitIndex = severityOrder.indexOf(limit as (typeof severityOrder)[number]);
@@ -55,15 +56,19 @@ const logger: Logger = {
                 return;
             }
 
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             this._level = l;
         },
         get level(): string {
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             return this._level;
         },
         set stdio([stderr, stdout]: [NodeJS.WriteStream, NodeJS.WriteStream]) {
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             this._stdout = stdout;
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             this._stderr = stderr;
-            // eslint-disable-next-line sonarjs/confidential-information-logging
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             this._signale = new Signale({
                 config: { displayLabel: false, displayTimestamp: true },
                 stream: stdout,
@@ -76,13 +81,16 @@ const logger: Logger = {
             }) as unknown as Record<string, unknown>;
         },
         get stdio(): [NodeJS.WriteStream, NodeJS.WriteStream] {
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             return [this._stderr, this._stdout];
         },
     },
     prefix: "msr:",
     withScope(prefix: string): Logger {
         return {
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             ...this,
+            // eslint-disable-next-line unicorn/no-this-outside-of-class
             debug: dbg(prefix || this.prefix),
             prefix,
         };
@@ -92,17 +100,21 @@ const logger: Logger = {
         (m: Record<string, (...args: unknown[]) => void>, l: string) => {
             // eslint-disable-next-line no-param-reassign,func-names
             m[l] = function (...arguments_: unknown[]) {
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                if (assertLevel(aliases[l as keyof typeof aliases] ?? l, (this as Logger).config.level)) {
-                    const signaleInstance = (this as Logger).config._signale;
-                    const logFunction
-                        = (signaleInstance[l] as ((...args: unknown[]) => void) | undefined)
-                        // eslint-disable-next-line no-console
-                            ?? (console[l as keyof Console] as ((...args: unknown[]) => void) | undefined)
-                            ?? (() => {});
-
-                    logFunction((this as Logger).prefix, ...arguments_);
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, unicorn/no-this-outside-of-class
+                if (!assertLevel(aliases[l as keyof typeof aliases] ?? l, (this as Logger).config.level)) {
+                    return;
                 }
+
+                // eslint-disable-next-line unicorn/no-this-outside-of-class
+                const signaleInstance = (this as Logger).config._signale;
+                const logFunction =
+                    (signaleInstance[l] as ((...args: unknown[]) => void) | undefined) ??
+                    // eslint-disable-next-line no-console, @typescript-eslint/unbound-method
+                    (console[l as keyof Console] as ((...args: unknown[]) => void) | undefined) ??
+                    (() => {});
+
+                // eslint-disable-next-line unicorn/no-this-outside-of-class
+                logFunction((this as Logger).prefix, ...arguments_);
             };
 
             return m;

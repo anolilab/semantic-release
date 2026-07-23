@@ -19,6 +19,7 @@ const NPM_EMAIL = "integration@test.com";
 
 const docker = new Docker();
 
+ 
 let container: Docker.Container;
 
 /**
@@ -28,9 +29,12 @@ let container: Docker.Container;
 export const start = async (): Promise<void> => {
     await getStream(await docker.pull(IMAGE));
 
+    const configPath = join(dirname(fileURLToPath(import.meta.url)), "config.yaml");
+
+    // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
     container = await docker.createContainer({
         HostConfig: {
-            Binds: [`${join(dirname(fileURLToPath(import.meta.url)), "config.yaml")}:/verdaccio/conf/config.yaml`],
+            Binds: [`${configPath}:/verdaccio/conf/config.yaml`],
             PortBindings: { [`${REGISTRY_PORT}/tcp`]: [{ HostPort: REGISTRY_PORT }] },
         },
         Image: IMAGE,

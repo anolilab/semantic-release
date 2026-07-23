@@ -28,7 +28,7 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411" # v2.19.4
+              uses: "step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920" # v2.20.0
               with:
                   egress-policy: "audit"
 
@@ -44,7 +44,7 @@ jobs:
                   ignore-checks: "lock-closed / lock-closed, Socket Security: Pull Request Alerts, Dependabot"
 
             - name: "Git checkout"
-              uses: "actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10" # v6.0.3
+              uses: "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" # v7.0.1
               with:
                   fetch-depth: 0
                   token: "${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}"
@@ -55,7 +55,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@6d0f01d0742f15c51b2398bc97e0b008c7416b00" # main
+              uses: "anolilab/workflows/step/setup@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
               with:
                   node-version: "22.x"
                   cache-prefix: "semantic-release"
@@ -74,7 +74,7 @@ jobs:
 
             - name: "Upload code coverage to codecov"
               continue-on-error: true # coverage upload must not block the release (codecov/keybase fetches are flaky)
-              uses: "anolilab/workflows/step/codecov@6d0f01d0742f15c51b2398bc97e0b008c7416b00" # main
+              uses: "anolilab/workflows/step/codecov@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
               with:
                   run-lint: "false"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"

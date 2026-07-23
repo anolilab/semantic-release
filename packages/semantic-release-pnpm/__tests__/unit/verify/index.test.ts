@@ -97,7 +97,13 @@ describe(verify, () => {
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
 
-        const error = await verify(pluginConfig, context).catch((error_: unknown) => error_);
+        let error: unknown;
+
+        try {
+            await verify(pluginConfig, context);
+        } catch (error_: unknown) {
+            error = error_;
+        }
 
         expect(error).toBeInstanceOf(AggregateError);
         expect((error as AggregateError).errors).toContain(plainError);
@@ -115,10 +121,16 @@ describe(verify, () => {
         vi.mocked(getNpmrcPath).mockReturnValue(".npmrc");
         vi.mocked(verifyAuth).mockRejectedValue(plainError);
 
-        const error = await verify(pluginConfig, context).catch((error_: unknown) => error_);
+        let error2: unknown;
 
-        expect(error).toBeInstanceOf(AggregateError);
-        expect((error as AggregateError).errors).toContain(plainError);
+        try {
+            await verify(pluginConfig, context);
+        } catch (error_: unknown) {
+            error2 = error_;
+        }
+
+        expect(error2).toBeInstanceOf(AggregateError);
+        expect((error2 as AggregateError).errors).toContain(plainError);
     });
 
     it("should handle an Error whose 'errors' property is not an array", async () => {
@@ -135,9 +147,15 @@ describe(verify, () => {
         vi.mocked(getPackage).mockResolvedValue(pkg);
         vi.mocked(shouldPublish).mockReturnValue(false);
 
-        const error = await verify(pluginConfig, context).catch((error_: unknown) => error_);
+        let error3: unknown;
 
-        expect(error).toBeInstanceOf(AggregateError);
-        expect((error as AggregateError).errors).toContain(malformedError);
+        try {
+            await verify(pluginConfig, context);
+        } catch (error_: unknown) {
+            error3 = error_;
+        }
+
+        expect(error3).toBeInstanceOf(AggregateError);
+        expect((error3 as AggregateError).errors).toContain(malformedError);
     });
 });

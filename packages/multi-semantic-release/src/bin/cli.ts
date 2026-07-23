@@ -1,6 +1,8 @@
 import { exit } from "node:process";
 
+// eslint-disable-next-line e18e/ban-dependencies
 import yargs from "yargs";
+// eslint-disable-next-line e18e/ban-dependencies
 import { hideBin } from "yargs/helpers";
 
 import logger from "../logger";
@@ -75,7 +77,7 @@ const cli = yargs(hideBin(process.argv))
     .option("tag-format", {
         describe:
             // eslint-disable-next-line no-template-curly-in-string
-            "Format to use for creating tag names. Should include \"name\" and \"version\" vars. Default: \"${name}@${version}\" generates \"package-name@1.0.0\"",
+            'Format to use for creating tag names. Should include "name" and "version" vars. Default: "${name}@${version}" generates "package-name@1.0.0"',
         type: "string",
     })
     .strict(false)
@@ -89,16 +91,13 @@ try {
         exit(0);
     }
 
-    await multiSemanticRelease(null, {}, {}, options as Parameters<typeof multiSemanticRelease>[3]).then(
-        // eslint-disable-next-line promise/always-return
-        () => {
-            exit(0);
-        },
-        (error: unknown) => {
-            logger.error(`[multi-semantic-release]:`, error);
-            exit(1);
-        },
-    );
+    try {
+        await multiSemanticRelease(null, {}, {}, options);
+        exit(0);
+    } catch (error: unknown) {
+        logger.error(`[multi-semantic-release]:`, error);
+        exit(1);
+    }
 } catch (error: unknown) {
     logger.error(`[multi-semantic-release]:`, error);
     exit(1);

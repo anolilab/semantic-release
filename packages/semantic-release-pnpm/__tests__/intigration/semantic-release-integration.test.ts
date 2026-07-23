@@ -50,7 +50,7 @@ describe("semantic-release-integration", () => {
         await stop();
     });
 
-    it("should skip npm auth verification if \"npmPublish\" is false", async () => {
+    it('should skip npm auth verification if "npmPublish" is false', async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
@@ -75,7 +75,7 @@ describe("semantic-release-integration", () => {
         ).resolves.not.toThrow();
     });
 
-    it("should skip npm auth verification if \"package.private\" is true", async () => {
+    it('should skip npm auth verification if "package.private" is true', async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {
@@ -101,7 +101,7 @@ describe("semantic-release-integration", () => {
         ).resolves.not.toThrow();
     });
 
-    it("should skip npm token verification if \"package.private\" is true", async () => {
+    it('should skip npm token verification if "package.private" is true', async () => {
         expect.assertions(1);
 
         await writeJson(join(cwd, "package.json"), {

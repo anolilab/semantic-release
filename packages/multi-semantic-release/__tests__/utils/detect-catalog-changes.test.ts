@@ -270,10 +270,10 @@ catalogs:
     });
 
     describe("findPackagesUsingCatalog()", () => {
-        const createMockPackage = (name: string, deps: Record<string, string> = {}): Package =>
+        const createMockPackage = (name: string, dependencies: Record<string, string> = {}): Package =>
             ({
                 manifest: {
-                    dependencies: deps,
+                    dependencies,
                     devDependencies: {},
                     name,
                     optionalDependencies: {},
@@ -348,10 +348,10 @@ catalogs:
 
     describe("getAffectedPackagesFromCatalogChanges()", () => {
         // eslint-disable-next-line sonarjs/no-identical-functions
-        const createMockPackage = (name: string, deps: Record<string, string> = {}): Package =>
+        const createMockPackage = (name: string, dependencies: Record<string, string> = {}): Package =>
             ({
                 manifest: {
-                    dependencies: deps,
+                    dependencies,
                     devDependencies: {},
                     name,
                     optionalDependencies: {},

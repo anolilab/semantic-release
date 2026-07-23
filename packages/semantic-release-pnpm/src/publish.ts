@@ -34,14 +34,11 @@ const isAlreadyPublishedError = (error: Error & { shortMessage?: unknown; stderr
  * return the existing release info (when the version is already published) or throw an
  * `AggregateError` that wraps the original cause.
  */
-const handlePublishError = (
-    error: unknown,
-    packageJson: PackageJson,
-    context: PublishContext,
-    distributionTag: string,
-    registry: string,
-): ReleaseInfo => {
-    const { logger, nextRelease: { version } } = context;
+const handlePublishError = (error: unknown, packageJson: PackageJson, context: PublishContext, distributionTag: string, registry: string): ReleaseInfo => {
+    const {
+        logger,
+        nextRelease: { version },
+    } = context;
     const errorMessage = error instanceof Error ? error.message : String(error);
 
     if (error instanceof ExecaError && isAlreadyPublishedError(error)) {

@@ -1,4 +1,5 @@
 /* eslint-disable jsdoc/match-description */
+/* eslint-disable unicorn/name-replacements */
 import { writeFileSync } from "node:fs";
 
 // eslint-disable-next-line e18e/ban-dependencies
@@ -27,8 +28,7 @@ const CHUNK_DIGIT_REGEX = /\d+/u;
  */
 const resolveReleaseTypeFromStrategy = (
     releaseStrategy:
-        | ReleaseStrategy
-        | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
+        ReleaseStrategy | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
     dependencyReleaseType: Omit<ReleaseStrategy, "inherit"> | undefined,
 ): Omit<ReleaseStrategy, "inherit"> | undefined => {
     // If it's a string, use it directly (backward compatible)
@@ -41,8 +41,13 @@ const resolveReleaseTypeFromStrategy = (
     }
 
     // If it's an object mapping, use the mapping based on dependency release type
-    if (dependencyReleaseType && releaseStrategy[dependencyReleaseType as keyof typeof releaseStrategy]) {
-        return releaseStrategy[dependencyReleaseType as keyof typeof releaseStrategy];
+    if (dependencyReleaseType) {
+        const key = dependencyReleaseType as keyof typeof releaseStrategy;
+
+        if (Object.hasOwn(releaseStrategy, key)) {
+            // eslint-disable-next-line unicorn/no-unsafe-property-key
+            return releaseStrategy[key];
+        }
     }
 
     // Fallback: if no mapping for this dependency type, return undefined (no release)
@@ -114,8 +119,7 @@ const getDependentRelease = (
     packageJson: Package,
     bumpStrategy: string,
     releaseStrategy:
-        | ReleaseStrategy
-        | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
+        ReleaseStrategy | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
     ignore: Package[],
     prefix: string,
 ): string | undefined => {
@@ -128,6 +132,7 @@ const getDependentRelease = (
     // Only runtime scopes for triggering releases (excluding devDependencies)
     const releaseScopes: Record<string, string>[] = [dependencies, peerDependencies, optionalDependencies];
 
+    // eslint-disable-next-line unicorn/consistent-boolean-name
     const bumpDependency = (scope: Record<string, string>, name: string, nextVersion: string | undefined): boolean => {
         const currentVersion = scope[name];
 
@@ -206,12 +211,12 @@ const getDependentRelease = (
 
             // Update all dependencies (including devDependencies) but only check runtime deps for triggering releases
             allScopes.forEach((scope) => bumpDependency(scope, p.name, effectiveNextVersion ?? nextVersion));
-            const requireRelease: boolean
-                = releaseScopes.some((scope: Record<string, string>) => {
+            const isRequireRelease: boolean =
+                releaseScopes.some((scope: Record<string, string>) => {
                     const currentVersion = scope[p.name];
                     const versionToCheck = effectiveNextVersion ?? nextVersion;
 
-                    if ((!effectiveNextVersion && !nextVersion) || !currentVersion || !versionToCheck) {
+                    if (!currentVersion || !versionToCheck || (!effectiveNextVersion && !nextVersion)) {
                         return false;
                     }
 
@@ -223,7 +228,8 @@ const getDependentRelease = (
 
             // If we have an effectiveNextType (either directly or from nested dependencies), we should trigger a release
             // even if the dependency version itself didn't change
-            const shouldTriggerRelease = requireRelease || (effectiveNextType && effectiveNextType !== nextType);
+            // eslint-disable-next-line unicorn/consistent-boolean-name
+            const shouldTriggerRelease = isRequireRelease || (effectiveNextType && effectiveNextType !== nextType);
 
             if (!shouldTriggerRelease) {
                 return releaseType;
@@ -297,8 +303,8 @@ const substituteWorkspaceVersion = (currentVersion: string, nextVersion: string)
 const difference = (object: Record<string, unknown>, base: Record<string, unknown>): Record<string, string> => {
     const result = transform(object, (accumulator: Record<string, string>, value: unknown, key: string) => {
         if (!isEqual(value, base[key])) {
-            accumulator[key]
-                = isObject(value) && isObject(base[key])
+            accumulator[key] =
+                isObject(value) && isObject(base[key])
                     ? JSON.stringify(difference(value as Record<string, unknown>, base[key] as Record<string, unknown>))
                     : `${String(base[key])} → ${String(value)}`;
         }
@@ -314,12 +320,13 @@ const difference = (object: Record<string, unknown>, base: Record<string, unknow
  * @returns Whether manifest has changed or not.
  * @internal
  */
+// eslint-disable-next-line unicorn/consistent-boolean-name
 const auditManifestChanges = (actualManifest: Record<string, unknown>, path: string): boolean => {
     const debugPrefix = `[${actualManifest.name as string}]`;
     const oldManifest: Record<string, unknown> = getManifest(path);
-    const depScopes = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"] as const;
+    const dependencyScopes = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"] as const;
     // eslint-disable-next-line unicorn/no-array-reduce
-    const changes: Record<string, Record<string, string | Record<string, string>>> = depScopes.reduce(
+    const changes: Record<string, Record<string, string | Record<string, string>>> = dependencyScopes.reduce(
         (result: Record<string, Record<string, string | Record<string, string>>>, scope: string) => {
             const diff = difference(actualManifest[scope] as Record<string, unknown>, oldManifest[scope] as Record<string, unknown>) as Record<
                 string,
@@ -358,7 +365,7 @@ const auditManifestChanges = (actualManifest: Record<string, unknown>, path: str
 export const getNextVersion = (packageJson: Package): string | null => {
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
 
-    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : lastVersion ?? "1.0.0";
+    return lastVersion && typeof packageJson._nextType === "string" ? semver.inc(lastVersion, packageJson._nextType) : (lastVersion ?? "1.0.0");
 };
 
 /**
@@ -438,20 +445,20 @@ export const resolveReleaseType = (
         const { manifest } = packageJson;
         const { dependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
         // Only check runtime dependencies (exclude devDependencies) for triggering releases
-        const runtimeDeps = { ...dependencies, ...optionalDependencies, ...peerDependencies };
+        const runtimeDependencies = { ...dependencies, ...optionalDependencies, ...peerDependencies };
 
-        const hasLocalDepInManifest = packageJson.localDeps.some((dep: Package) => {
-            if (!dep.name || runtimeDeps[dep.name] === undefined) {
+        const hasLocalDependencyInManifest = packageJson.localDeps.some((dependency: Package) => {
+            if (!dependency.name || runtimeDependencies[dependency.name] === undefined) {
                 return false;
             }
 
-            if (dep._nextType) {
+            if (dependency._nextType) {
                 return true;
             }
 
             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (dep.localDeps && dep.localDeps.length > 0) {
-                const nestedType = getDependentRelease(dep, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
+            if (dependency.localDeps && dependency.localDeps.length > 0) {
+                const nestedType = getDependentRelease(dependency, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
                 return nestedType !== undefined;
             }
@@ -459,7 +466,7 @@ export const resolveReleaseType = (
             return false;
         });
 
-        if (hasLocalDepInManifest) {
+        if (hasLocalDependencyInManifest) {
             // Check if we can get a release type from nested dependencies when using inherit strategy
             if (typeof releaseStrategy === "string" && releaseStrategy === "inherit") {
                 const nestedReleaseType = getDependentRelease(packageJson, bumpStrategy, releaseStrategy, ignore, prefix);
@@ -537,7 +544,8 @@ export const resolveNextVersion = (currentVersion: string, nextVersion: string, 
         const nextChunks: string[] = nextVersion.split(separator);
         const currentChunks: string[] = currentVersion.split(separator);
         const resolvedChunks: string[] = currentChunks.map((chunk: string, index: number) => {
-            if (nextChunks[index]) {
+            if (index < nextChunks.length && nextChunks[index] !== undefined) {
+                // eslint-disable-next-line unicorn/no-unsafe-string-replacement
                 return chunk.replace(CHUNK_DIGIT_REGEX, nextChunks[index]);
             }
 
@@ -555,6 +563,7 @@ export const resolveNextVersion = (currentVersion: string, nextVersion: string, 
  * @param packageJson The package this function is being called on.
  * @internal
  */
+ 
 export const updateManifestDeps = (packageJson: Package): void => {
     const { manifest, path } = packageJson;
     const { indent, trailingWhitespace } = recognizeFormat(manifest.__contents__ as string);

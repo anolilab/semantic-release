@@ -26,9 +26,9 @@ describe(oidcContextEstablished, () => {
         vi.mocked(exchangeToken).mockResolvedValue("token-value");
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
+        const isResult = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
-        expect(result).toBe(true);
+        expect(isResult).toBe(true);
         expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
     });
 
@@ -38,9 +38,9 @@ describe(oidcContextEstablished, () => {
         vi.mocked(exchangeToken).mockResolvedValue(undefined);
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
+        const isResult = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
-        expect(result).toBe(false);
+        expect(isResult).toBe(false);
         expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
     });
 
@@ -48,9 +48,9 @@ describe(oidcContextEstablished, () => {
         expect.assertions(1);
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        const result = await oidcContextEstablished("https://custom.registry.org/", pkg, context);
+        const isResult = await oidcContextEstablished("https://custom.registry.org/", pkg, context);
 
-        expect(result).toBe(false);
+        expect(isResult).toBe(false);
     });
 
     it("should return true when registry URL has different format but same registry", async () => {
@@ -60,9 +60,9 @@ describe(oidcContextEstablished, () => {
 
         // Test with registry URL without trailing slash
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        const result = await oidcContextEstablished("https://registry.npmjs.org", pkg, context);
+        const isResult = await oidcContextEstablished("https://registry.npmjs.org", pkg, context);
 
-        expect(result).toBe(true);
+        expect(isResult).toBe(true);
         expect(exchangeToken).toHaveBeenCalledWith(pkg, context);
     });
 
@@ -74,8 +74,8 @@ describe(oidcContextEstablished, () => {
         vi.mocked(exchangeToken).mockRejectedValue(error);
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-        const result = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
+        const isResult = await oidcContextEstablished("https://registry.npmjs.org/", pkg, context);
 
-        expect(result).toBe(false);
+        expect(isResult).toBe(false);
     });
 });

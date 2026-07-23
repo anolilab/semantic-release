@@ -4,8 +4,6 @@ import { isAccessible, readFile, readJson, writeFile, writeJson } from "@visulim
 import type { PackageJson } from "@visulima/package";
 import { join } from "@visulima/path";
 // eslint-disable-next-line e18e/ban-dependencies
-import { execa } from "execa";
-// eslint-disable-next-line e18e/ban-dependencies
 import { WritableStreamBuffer } from "stream-buffers";
 // eslint-disable-next-line e18e/ban-dependencies
 import { temporaryDirectory } from "tempy";
@@ -80,8 +78,8 @@ describe(prepare, () => {
         const shrinkwrapPath = join(cwd, "npm-shrinkwrap.json");
 
         await writeJson(packagePath, { version: "0.0.0-dev" });
-        // Create a npm-shrinkwrap.json file
-        await execa("npm", ["shrinkwrap"], { cwd });
+        // Create a npm-shrinkwrap.json file manually (npm v11+ removed `npm shrinkwrap`)
+        await writeJson(shrinkwrapPath, { version: "0.0.0-dev" });
 
         await prepare({}, {
             cwd,
@@ -122,7 +120,7 @@ describe(prepare, () => {
         await expect(readFile(packagePath)).resolves.toStrictEqual(expectedContent);
     });
 
-    it("should create the package in the \"tarballDir\" directory", async () => {
+    it('should create the package in the "tarballDir" directory', async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");
@@ -147,7 +145,7 @@ describe(prepare, () => {
         await expect(isAccessible(tarballPath)).resolves.toBe(true);
     });
 
-    it("should only move the created tarball if the \"tarballDir\" directory is not the CWD", async () => {
+    it('should only move the created tarball if the "tarballDir" directory is not the CWD', async () => {
         expect.assertions(3);
 
         const packagePath = join(cwd, "package.json");

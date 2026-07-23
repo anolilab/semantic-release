@@ -21,6 +21,7 @@ const { getIDToken } = await import("@actions/core");
 // Mock fetch globally
 const mockFetch = vi.fn();
 
+// eslint-disable-next-line unicorn/no-global-object-property-assignment
 globalThis.fetch = mockFetch;
 
 describe(exchangeToken, () => {

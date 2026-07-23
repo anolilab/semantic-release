@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/name-replacements */
+
 /**
  * Normalize a repository URL by removing npm-specific prefixes that git doesn't understand.
  * Converts formats like `git+https://...` or `git+ssh://...` to `https://...` or `ssh://...`.
@@ -10,7 +12,7 @@
  */
 const GIT_PROTOCOL_REGEX = /^git:\/\//u;
 
-const normalizeRepositoryUrl = (url: string | undefined): string | undefined => {
+const normalizeRepoUrl = (url: string | undefined): string | undefined => {
     if (!url) {
         return url;
     }
@@ -31,4 +33,4 @@ const normalizeRepositoryUrl = (url: string | undefined): string | undefined => 
     return url;
 };
 
-export default normalizeRepositoryUrl;
+export default normalizeRepoUrl;

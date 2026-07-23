@@ -26,6 +26,7 @@ class RescopedStream extends Writable {
     public override write(message: string): boolean {
         validate(message, "msg: string");
 
+        // eslint-disable-next-line unicorn/no-unsafe-string-replacement
         return this._stream.write(message.replace("[semantic-release]", `[${this._scope}]`));
     }
 }

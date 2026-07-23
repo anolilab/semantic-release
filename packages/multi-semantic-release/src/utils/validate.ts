@@ -62,7 +62,7 @@ const isLower = (v: string): boolean => typeof v === "string" && v === v.toLower
 /**
  * Check if a value is an integer.
  */
-const isInteger = (v: number): boolean => Number.isInteger(v);
+const isInteger = (v: number): boolean => Number.isSafeInteger(v);
 
 /**
  * Validate a value against a type specification.
@@ -84,11 +84,11 @@ const validate = (value: unknown, typeString: string): void => {
 
     // Handle array types (e.g., "string[]")
     if (baseType?.endsWith("[]")) {
-        const elementType = baseType.slice(0, -2);
-
         if (!Array.isArray(value)) {
             throw new TypeError(`${name}: Must be an array`);
         }
+
+        const elementType = baseType.slice(0, -2);
 
         for (const item of value as unknown[]) {
             validate(item, `${name}[item]: ${elementType}`);

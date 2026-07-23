@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/name-replacements */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import type { Package } from "../src/types";

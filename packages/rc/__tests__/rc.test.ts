@@ -70,11 +70,13 @@ describe(rc, () => {
 
         // eslint-disable-next-line no-restricted-syntax
         for (const key in env) {
-            if (key.startsWith("npm_")) {
-                npmEnvironment[key as keyof typeof env] = env[key];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-                delete env[key];
+            if (!key.startsWith("npm_")) {
+                continue;
             }
+
+            npmEnvironment[key as keyof typeof env] = env[key];
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+            delete env[key];
         }
     });
 

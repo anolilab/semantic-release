@@ -69,7 +69,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkg, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
         expect(oidcContextEstablished).toHaveBeenCalledWith(OFFICIAL_REGISTRY, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, OFFICIAL_REGISTRY, context);
     });
@@ -88,7 +88,7 @@ describe(verifyAuth, () => {
 
         await verifyAuth(npmrc, pkg, context);
 
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
         expect(execa).toHaveBeenCalledWith("pnpm", ["whoami", "--registry", customRegistry], {
@@ -123,7 +123,7 @@ describe(verifyAuth, () => {
         await expect(verifyAuth(npmrc, pkg, context)).resolves.toBeUndefined();
         expect(oidcContextEstablished).toHaveBeenCalledWith(customRegistry, pkg, context);
         expect(setNpmrcAuth).toHaveBeenCalledWith(npmrc, customRegistry, context);
-        expect(context.logger.warn).toHaveBeenCalledWith(expect.stringContaining("Could not verify auth via \"pnpm whoami\" on custom registry"));
+        expect(context.logger.warn).toHaveBeenCalledWith(expect.stringContaining('Could not verify auth via "pnpm whoami" on custom registry'));
     });
 
     it("should still throw EINVALIDNPMTOKEN when whoami fails for the official npm registry", async () => {
@@ -152,10 +152,13 @@ describe(verifyAuth, () => {
         vi.mocked(setNpmrcAuth).mockResolvedValue(undefined);
 
         vi.mocked(execa).mockRejectedValue(
-            Object.assign(new Error("ERR_PNPM_REGISTRY_FETCH_ERROR  GET https://gitlab.example.com/api/v4/projects/123/packages/npm/-/whoami: 401 Unauthorized"), {
-                stderr: "401 Unauthorized",
-                stdout: "",
-            }),
+            Object.assign(
+                new Error("ERR_PNPM_REGISTRY_FETCH_ERROR  GET https://gitlab.example.com/api/v4/projects/123/packages/npm/-/whoami: 401 Unauthorized"),
+                {
+                    stderr: "401 Unauthorized",
+                    stdout: "",
+                },
+            ),
         );
 
         await expect(verifyAuth(npmrc, pkg, context)).resolves.toBeUndefined();
@@ -195,7 +198,7 @@ describe(verifyAuth, () => {
         vi.mocked(execa).mockRejectedValue(new Error("Authentication failed"));
 
         await expect(verifyAuth(npmrc, pkgWithoutName, context)).rejects.toThrow("Invalid npm token");
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\" to verify authentication"));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami" to verify authentication'));
     });
 
     it("should bubble through errors from setting up auth", async () => {
@@ -226,7 +229,7 @@ describe(verifyAuth, () => {
         await verifyAuth(npmrc, pkg, context);
 
         expect(execa).toHaveBeenCalledTimes(1);
-        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining("Running \"pnpm whoami\""));
+        expect(context.logger.log).toHaveBeenCalledWith(expect.stringContaining('Running "pnpm whoami"'));
 
         // Second call with same registry/token - should use cache
         vi.clearAllMocks();

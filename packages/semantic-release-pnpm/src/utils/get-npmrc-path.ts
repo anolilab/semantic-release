@@ -16,11 +16,11 @@ import { resolve } from "@visulima/path";
  * @returns Absolute path to the `.npmrc` file that should be used/written.
  */
 const getNpmrcPath = (cwd: string, environment: NodeJS.ProcessEnv): string => {
-    const npmrcPath = resolve(cwd, ".npmrc");
-
     if (environment.NPM_CONFIG_USERCONFIG && isAccessibleSync(environment.NPM_CONFIG_USERCONFIG)) {
         return environment.NPM_CONFIG_USERCONFIG;
     }
+
+    const npmrcPath = resolve(cwd, ".npmrc");
 
     if (isAccessibleSync(npmrcPath)) {
         return npmrcPath;

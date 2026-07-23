@@ -80,10 +80,7 @@ describe(publish, () => {
         // Prototype swap makes instanceof ExecaError true; extra fields harden against future
         // publish.ts checks on shortMessage / exitCode / failed / stderr.
         const alreadyPublishedError: Error = Object.assign(
-            Object.setPrototypeOf(
-                new Error("cannot publish over the previously published versions"),
-                ExecaError.prototype as object,
-            ) as Error,
+            Object.setPrototypeOf(new Error("cannot publish over the previously published versions"), ExecaError.prototype as object) as Error,
             { exitCode: 1, failed: true, shortMessage: "cannot publish over the previously published versions", stderr: "" },
         );
 
@@ -122,9 +119,9 @@ describe(publish, () => {
         expect.assertions(1);
 
         vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.resolve({ stdout: "main" })));
-        vi.mocked(execa).mockReturnValueOnce(
-            mockExecaResult(Promise.reject(new Error("cannot publish over the previously published versions"))),
-        );
+        const alreadyPublishedError = new Error("cannot publish over the previously published versions");
+
+        vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.reject(alreadyPublishedError)));
 
         await expect(publish(pluginConfig, packageJson, context)).rejects.toThrow(AggregateError);
     });
@@ -133,7 +130,9 @@ describe(publish, () => {
         expect.assertions(1);
 
         vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.resolve({ stdout: "main" })));
-        vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.reject(new Error("E403 Forbidden"))));
+        const forbiddenError = new Error("E403 Forbidden");
+
+        vi.mocked(execa).mockReturnValueOnce(mockExecaResult(Promise.reject(forbiddenError)));
 
         await expect(publish(pluginConfig, packageJson, context)).rejects.toThrow(AggregateError);
     });
