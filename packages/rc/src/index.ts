@@ -213,7 +213,7 @@ export const rc = (
         const content = readFileSync(file, { buffer: false });
 
         if (isJson(content)) {
-            configs.push(parseJson(stripJsonComments(content)));
+            configs.push(parseJson(stripJsonComments(content)) as object);
         } else {
             configs.push(parse(content));
         }
