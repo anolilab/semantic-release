@@ -32,44 +32,46 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
 
     // eslint-disable-next-line no-restricted-syntax
     for (const k in environment) {
-        if (k.toLowerCase().startsWith(prefix.toLowerCase())) {
-            const keypath = k.slice(Math.max(0, l)).split("__");
+        if (!k.toLowerCase().startsWith(prefix.toLowerCase())) {
+            continue;
+        }
 
-            // Trim empty strings from keypath array
-            let emptyStringIndex;
+        const keypath = k.slice(Math.max(0, l)).split("__");
 
-            // eslint-disable-next-line no-cond-assign
-            while ((emptyStringIndex = keypath.indexOf("")) > -1) {
-                keypath.splice(emptyStringIndex, 1);
+        // Trim empty strings from keypath array
+        let emptyStringIndex;
+
+        // eslint-disable-next-line no-cond-assign
+        while ((emptyStringIndex = keypath.indexOf("")) > -1) {
+            keypath.splice(emptyStringIndex, 1);
+        }
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let cursor: Record<string, any> = returnValue;
+
+        keypath.forEach((subkey, index) => {
+            // (check for subkey first so we ignore empty strings)
+            // (check for cursor to avoid assignment to primitive objects)
+            if (!subkey || typeof cursor !== "object") {
+                return;
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            let cursor: Record<string, any> = returnValue;
+            // If this is the last key, just stuff the value in there
+            // Assigns actual value from env variable to final key
+            // (unless it's just an empty string- in that case use the last valid key)
+            if (index === keypath.length - 1) {
+                cursor[subkey] = environment[k];
+            }
 
-            keypath.forEach((subkey, index) => {
-                // (check for subkey first so we ignore empty strings)
-                // (check for cursor to avoid assignment to primitive objects)
-                if (!subkey || typeof cursor !== "object") {
-                    return;
-                }
+            // Build sub-object if nothing already exists at the keypath
+            if (cursor[subkey] === undefined) {
+                cursor[subkey] = {};
+            }
 
-                // If this is the last key, just stuff the value in there
-                // Assigns actual value from env variable to final key
-                // (unless it's just an empty string- in that case use the last valid key)
-                if (index === keypath.length - 1) {
-                    cursor[subkey] = environment[k];
-                }
-
-                // Build sub-object if nothing already exists at the keypath
-                if (cursor[subkey] === undefined) {
-                    cursor[subkey] = {};
-                }
-
-                // Increment cursor used to track the object at the current depth
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-                cursor = cursor[subkey];
-            });
-        }
+            // Increment cursor used to track the object at the current depth
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            cursor = cursor[subkey];
+        });
     }
 
     return returnValue;
@@ -119,7 +121,7 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
     }
 
     let start = internalCwd;
-    let endOfLoop = false;
+    let isEndOfLoop = false;
 
     const files = [join(`.${name}`, "config.json"), join(`.${name}`, "config"), join(`.${name}rc.json`), join(`.${name}rc`)];
 
@@ -136,11 +138,11 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
 
         start = dirname(start);
 
-        if (endOfLoop) {
+        if (isEndOfLoop) {
             break;
         }
 
-        endOfLoop = dirname(start) === start;
+        isEndOfLoop = dirname(start) === start;
     } while (stopAt ? start === stopAt : true); // root
 
     // reverse the traversedFiles so its starts with root

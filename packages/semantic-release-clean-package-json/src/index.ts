@@ -18,7 +18,7 @@ import getPackage from "./utils/get-package";
  * @param context Semantic-release publish context.
  * @returns Resolves once the cleaned `package.json` has been written to disk.
  */
-// eslint-disable-next-line sonarjs/cognitive-complexity
+ 
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
@@ -36,26 +36,30 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
 
     const packageJsonCopy = { ...packageJson };
 
+    const removeScriptProperties = () => {
+        if (!packageJsonCopy.scripts) {
+            return false;
+        }
+
+        // eslint-disable-next-line no-restricted-syntax
+        for (const script in packageJsonCopy.scripts) {
+            if (!keepProperties.has(`scripts.${script}`)) {
+                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+                delete packageJsonCopy.scripts[script];
+            }
+        }
+
+        return Object.keys(packageJsonCopy.scripts).length > 0;
+    };
+
     // eslint-disable-next-line no-restricted-syntax
     for (const property in packageJsonCopy) {
         if (keepProperties.has(property)) {
             continue;
         }
 
-        if (property === "scripts") {
-            // eslint-disable-next-line no-restricted-syntax
-            for (const script in packageJsonCopy.scripts) {
-                if (keepProperties.has(`${property}.${script}`)) {
-                    continue;
-                }
-
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-                delete packageJsonCopy.scripts[script];
-            }
-
-            if (packageJsonCopy.scripts && Object.keys(packageJsonCopy.scripts).length > 0) {
-                continue;
-            }
+        if (property === "scripts" && removeScriptProperties()) {
+            continue;
         }
 
         context.logger.log(`Removing property "${property}"`);

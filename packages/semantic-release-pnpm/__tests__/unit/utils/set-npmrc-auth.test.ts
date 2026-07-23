@@ -1,4 +1,4 @@
-/* eslint-disable sonarjs/no-clear-text-protocols, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-argument */
 import { rm } from "node:fs/promises";
 import { env } from "node:process";
 
@@ -8,7 +8,7 @@ import { join } from "@visulima/path";
 import { temporaryDirectory, temporaryFile } from "tempy";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const setNpmrcAuthFilePath = "../../../src/utils/set-npmrc-auth";
+const npmrcAuthFilePath = "../../../src/utils/set-npmrc-auth";
 
 const logSpy = vi.fn();
 const logger = { log: logSpy };
@@ -20,8 +20,8 @@ vi.mock(import("@anolilab/rc"), async () => {
 
     return {
         ...actual,
-        // eslint-disable-next-line unicorn/prevent-abbreviations, @typescript-eslint/no-explicit-any
-        rc: (name: string, opts: any) => actual.rc(name, { home: mockedHomedir(), ...opts }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        rc: (name: string, options: any) => actual.rc(name, { home: mockedHomedir(), ...options }),
     };
 });
 
@@ -39,11 +39,13 @@ describe("set-npmrc-auth", () => {
 
         // eslint-disable-next-line no-restricted-syntax
         for (const key in env) {
-            if (key.startsWith("npm_")) {
-                npmEnvironment[key as keyof typeof env] = env[key];
-                // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-                delete env[key];
+            if (!key.startsWith("npm_")) {
+                continue;
             }
+
+            npmEnvironment[key as keyof typeof env] = env[key];
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+            delete env[key];
         }
     });
 
@@ -59,14 +61,14 @@ describe("set-npmrc-auth", () => {
         await rm(home, { recursive: true });
     });
 
-    it("should set auth with \"NPM_TOKEN\"", async () => {
+    it('should set auth with "NPM_TOKEN"', async () => {
         expect.assertions(2);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
 
         expect(logSpy).toHaveBeenCalledWith(`Wrote NPM_TOKEN to ${npmrc}`);
         // eslint-disable-next-line no-template-curly-in-string
@@ -75,15 +77,16 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should set auth with \"NPM_USERNAME\", \"NPM_PASSWORD\" and \"NPM_EMAIL\"", async () => {
+    it('should set auth with "NPM_USERNAME", "NPM_PASSWORD" and "NPM_EMAIL"', async () => {
         expect.assertions(2);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", {
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", {
             cwd,
+            // eslint-disable-next-line sonarjs/no-hardcoded-passwords
             env: { NPM_EMAIL: "npm_email", NPM_PASSWORD: "npm_password", NPM_USERNAME: "npm_username" },
             logger,
         });
@@ -96,16 +99,16 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve home \".npmrc\"", async () => {
+    it('should preserve home ".npmrc"', async () => {
         expect.assertions(3);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
 
         await writeFile(join(home, ".npmrc"), "home_config = test");
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [join(home, ".npmrc")].join(", ")]);
         expect(logSpy.mock.calls[2]).toStrictEqual([`Wrote NPM_TOKEN to ${npmrc}`]);
@@ -116,7 +119,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve home and local \".npmrc\"", async () => {
+    it('should preserve home and local ".npmrc"', async () => {
         expect.assertions(3);
 
         const npmrc: string = temporaryFile({ name: ".npmrc" });
@@ -124,9 +127,9 @@ describe("set-npmrc-auth", () => {
         await writeFile(join(cwd, ".npmrc"), "cwd_config = test");
         await writeFile(join(home, ".npmrc"), "home_config = test");
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: { NPM_TOKEN: "npm_token" }, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [join(home, ".npmrc"), join(cwd, ".npmrc")].join(", ")]);
         expect(logSpy.mock.calls[2]).toStrictEqual([`Wrote NPM_TOKEN to ${npmrc}`]);
@@ -137,7 +140,7 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve all \".npmrc\" if auth is already configured", async () => {
+    it('should preserve all ".npmrc" if auth is already configured', async () => {
         expect.assertions(2);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -145,9 +148,9 @@ describe("set-npmrc-auth", () => {
         await writeFile(join(cwd, ".npmrc"), `//custom.registry.com/:_authToken = \${NPM_TOKEN}`);
         await writeFile(join(home, ".npmrc"), "home_config = test");
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: {}, logger });
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: {}, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [join(home, ".npmrc"), join(cwd, ".npmrc")].join(", ")]);
         await expect(readFile(npmrc)).resolves.toBe(
@@ -157,27 +160,27 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should preserve \".npmrc\" if auth is already configured for a scoped package", async () => {
+    it('should preserve ".npmrc" if auth is already configured for a scoped package', async () => {
         expect.assertions(2);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
 
-        await writeFile(join(cwd, ".npmrc"), `@scope:registry=http://custom.registry.com\n//custom.registry.com/:_authToken = \${NPM_TOKEN}`);
+        await writeFile(join(cwd, ".npmrc"), `@scope:registry=https://custom.registry.com\n//custom.registry.com/:_authToken = \${NPM_TOKEN}`);
         await writeFile(join(home, ".npmrc"), "home_config = test");
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: {}, logger });
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: {}, logger });
 
         expect(logSpy.mock.calls[1]).toStrictEqual(["Reading npm config from %s", [join(home, ".npmrc"), join(cwd, ".npmrc")].join(", ")]);
         await expect(readFile(npmrc)).resolves.toBe(
-            `registry=https://registry.npmjs.org/\nhome_config=test\n@scope:registry=http://custom.registry.com\n//custom.registry.com/:_authToken=\${NPM_TOKEN}\n`,
+            `registry=https://registry.npmjs.org/\nhome_config=test\n@scope:registry=https://custom.registry.com\n//custom.registry.com/:_authToken=\${NPM_TOKEN}\n`,
         );
 
         await rm(npmrc);
     });
 
-    it("should throw error if \"NPM_TOKEN\" is missing", async () => {
+    it('should throw error if "NPM_TOKEN" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -185,9 +188,9 @@ describe("set-npmrc-auth", () => {
         const errorMessage = "No npm token specified.";
 
         try {
-            const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+            const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-            await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: {}, logger });
+            await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: {}, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             const typeError = error as AggregateError;
@@ -201,7 +204,7 @@ describe("set-npmrc-auth", () => {
         }
     });
 
-    it("should emulate npm config resolution if \"NPM_CONFIG_USERCONFIG\" is set", async () => {
+    it('should emulate npm config resolution if "NPM_CONFIG_USERCONFIG" is set', async () => {
         expect.assertions(2);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -212,9 +215,9 @@ describe("set-npmrc-auth", () => {
 
         const environment = { NPM_CONFIG_USERCONFIG: customNpmrcPath };
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://custom.registry.com", {
+        await setNpmrcAuth(npmrc, "https://custom.registry.com", {
             cwd,
             env: environment,
             logger,
@@ -226,18 +229,19 @@ describe("set-npmrc-auth", () => {
         await rm(npmrc);
     });
 
-    it("should throw error if \"NPM_USERNAME\" is missing", async () => {
+    it('should throw error if "NPM_USERNAME" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
+        // eslint-disable-next-line sonarjs/no-hardcoded-passwords
         const environment = { NPM_EMAIL: "npm_email", NPM_PASSWORD: "npm_password" };
 
         const errorMessage = "No npm token specified.";
 
         try {
-            const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+            const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-            await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: environment, logger });
+            await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: environment, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             const typeError = error as AggregateError;
@@ -251,7 +255,7 @@ describe("set-npmrc-auth", () => {
         }
     });
 
-    it("should throw error if \"NPM_PASSWORD\" is missing", async () => {
+    it('should throw error if "NPM_PASSWORD" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
@@ -260,9 +264,9 @@ describe("set-npmrc-auth", () => {
         const errorMessage = "No npm token specified.";
 
         try {
-            const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+            const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-            await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: environment, logger });
+            await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: environment, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             const typeError = error as AggregateError;
@@ -276,18 +280,19 @@ describe("set-npmrc-auth", () => {
         }
     });
 
-    it("should throw error if \"NPM_EMAIL\" is missing", async () => {
+    it('should throw error if "NPM_EMAIL" is missing', async () => {
         expect.assertions(3);
 
         const npmrc = temporaryFile({ name: ".npmrc" });
+        // eslint-disable-next-line sonarjs/no-hardcoded-passwords
         const environment = { NPM_PASSWORD: "npm_password", NPM_USERNAME: "npm_username" };
 
         const errorMessage = "No npm token specified.";
 
         try {
-            const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+            const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-            await setNpmrcAuth(npmrc, "http://custom.registry.com", { cwd, env: environment, logger });
+            await setNpmrcAuth(npmrc, "https://custom.registry.com", { cwd, env: environment, logger });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             const typeError = error as AggregateError;
@@ -310,9 +315,9 @@ describe("set-npmrc-auth", () => {
 
         await writeFile(join(cwd, ".npmrc"), "//registry.npmjs.org/:_authToken=npmrc_npm_token");
 
-        const setNpmrcAuth = await import(setNpmrcAuthFilePath).then((m) => m.default);
+        const { default: setNpmrcAuth } = await import(npmrcAuthFilePath);
 
-        await setNpmrcAuth(npmrc, "http://registry.npmjs.org", { cwd, env: environment, logger });
+        await setNpmrcAuth(npmrc, "https://registry.npmjs.org", { cwd, env: environment, logger });
 
         // Assert that the token from .npmrc is used
         await expect(readFile(npmrc)).resolves.toBe(`registry=https://registry.npmjs.org/\n//registry.npmjs.org/:_authToken=npmrc_npm_token\n`);

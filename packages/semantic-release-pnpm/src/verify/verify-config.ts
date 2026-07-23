@@ -54,7 +54,7 @@ const verifyConfig = (config: PluginConfig): SemanticReleaseError[] =>
             return errors;
         }
 
-        if (!(option in VALIDATORS)) {
+        if (!Object.hasOwn(VALIDATORS, option)) {
             return errors;
         }
 

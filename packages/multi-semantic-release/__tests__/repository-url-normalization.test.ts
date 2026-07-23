@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/name-replacements */
 import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -5,7 +6,7 @@ import { join } from "node:path";
 import { WritableStreamBuffer } from "stream-buffers";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-// eslint-disable-next-line import/no-namespace
+// eslint-disable-next-line import/no-namespace, unicorn/no-non-function-verb-prefix
 import * as getConfigSemanticModule from "../src/get-config-semantic";
 import multiSemanticRelease from "../src/multi-semantic-release";
 import { gitAdd, gitCommit, gitInit, gitInitOrigin, gitPush } from "./helpers/git";

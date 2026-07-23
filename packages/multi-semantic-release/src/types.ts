@@ -125,10 +125,10 @@ export interface MultiReleaseConfig {
         release?:
             | ReleaseStrategy
             | {
-                major?: Omit<ReleaseStrategy, "inherit">;
-                minor?: Omit<ReleaseStrategy, "inherit">;
-                patch?: Omit<ReleaseStrategy, "inherit">;
-            };
+                  major?: Omit<ReleaseStrategy, "inherit">;
+                  minor?: Omit<ReleaseStrategy, "inherit">;
+                  patch?: Omit<ReleaseStrategy, "inherit">;
+              };
     };
     dryRun?: boolean;
     firstParent?: boolean;
@@ -212,4 +212,5 @@ export type ResolveReleaseTypeFunction = (
     prefix?: string,
 ) => string | undefined;
 
+// eslint-disable-next-line unicorn/name-replacements
 export type UpdateManifestDepsFunction = (package_: Package) => void;

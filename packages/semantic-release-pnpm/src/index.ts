@@ -13,8 +13,8 @@ import verify from "./verify";
 const debug = dbg("semantic-release-pnpm:index");
 const PLUGIN_NAME = "semantic-release-pnpm";
 
-let verified: boolean;
-let prepared: boolean;
+let isVerified: boolean;
+let isPrepared: boolean;
 
 /**
  * Verify that the environment and plugin configuration are ready for a semantic-release run. This
@@ -38,20 +38,21 @@ export const verifyConditions = async (pluginConfig: PluginConfig, context: Veri
         const publishPlugin = (publish.find((config: Record<string, unknown>) => config.path && config.path === PLUGIN_NAME) ?? {}) as Record<string, unknown>;
 
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.npmPublish = pluginConfig.npmPublish ?? (publishPlugin.npmPublish as PluginConfig["npmPublish"]);
+        pluginConfig.npmPublish ??= publishPlugin.npmPublish as PluginConfig["npmPublish"];
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.tarballDir = pluginConfig.tarballDir ?? (publishPlugin.tarballDir as PluginConfig["tarballDir"]);
+        pluginConfig.tarballDir ??= publishPlugin.tarballDir as PluginConfig["tarballDir"];
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.pkgRoot = pluginConfig.pkgRoot ?? (publishPlugin.pkgRoot as PluginConfig["pkgRoot"]);
+        pluginConfig.pkgRoot ??= publishPlugin.pkgRoot as PluginConfig["pkgRoot"];
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.disableScripts = pluginConfig.disableScripts ?? (publishPlugin.disableScripts as PluginConfig["disableScripts"]);
+        pluginConfig.disableScripts ??= publishPlugin.disableScripts as PluginConfig["disableScripts"];
         // eslint-disable-next-line no-param-reassign
-        pluginConfig.branches = pluginConfig.branches ?? (publishPlugin.branches as PluginConfig["branches"]);
+        pluginConfig.branches ??= publishPlugin.branches as PluginConfig["branches"];
     }
 
     await verify(pluginConfig, context);
 
-    verified = true;
+    // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
+    isVerified = true;
 };
 
 /**
@@ -62,7 +63,7 @@ export const verifyConditions = async (pluginConfig: PluginConfig, context: Veri
  * @returns Resolves when preparation steps have completed.
  */
 export const prepare = async (pluginConfig: PluginConfig, context: PrepareContext): Promise<void> => {
-    if (verified) {
+    if (isVerified) {
         debug("Skipping verifyConditions (already verified)");
     } else {
         debug("Verification not cached, running verifyConditions");
@@ -71,7 +72,8 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
 
     await prepareNpm(pluginConfig, context);
 
-    prepared = true;
+    // eslint-disable-next-line unicorn/no-top-level-assignment-in-function
+    isPrepared = true;
 };
 
 /**
@@ -85,14 +87,14 @@ export const prepare = async (pluginConfig: PluginConfig, context: PrepareContex
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<ReleaseInfo | false> => {
     const packageJson = await getPackage(pluginConfig, context);
 
-    if (verified) {
+    if (isVerified) {
         debug("Skipping verifyConditions (already verified)");
     } else {
         debug("Verification not cached, running verifyConditions");
         await verify(pluginConfig, context);
     }
 
-    if (prepared) {
+    if (isPrepared) {
         debug("Skipping prepare (already prepared)");
     } else {
         debug("Preparation not cached, running prepare");
@@ -111,7 +113,7 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
  * done.
  */
 export const addChannel = async (pluginConfig: PluginConfig, context: AddChannelContext): Promise<ReleaseInfo | false> => {
-    if (verified) {
+    if (isVerified) {
         debug("Skipping verifyConditions (already verified)");
     } else {
         debug("Verification not cached, running verifyConditions");

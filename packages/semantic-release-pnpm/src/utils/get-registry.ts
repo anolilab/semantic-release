@@ -53,7 +53,7 @@ const getRegistry = ({ name, publishConfig = {} }: PackageJson, { cwd, env }: Co
     let resolvedRegistry: string;
     let source: string;
 
-    const scope = (name as string).split("/")[0] as string;
+    const scope = (name as string).split("/", 1)[0] as string;
     const publishRegistry = publishConfig[`${scope}:registry`] ?? publishConfig.registry;
 
     if (publishRegistry) {
@@ -72,9 +72,11 @@ const getRegistry = ({ name, publishConfig = {} }: PackageJson, { cwd, env }: Co
 
         resolvedRegistry = getRegistryUrl(scope, npmrc);
 
-        // eslint-disable-next-line unicorn/prefer-ternary
-        if (npmrc && (npmrc[`${scope}:registry`] ?? npmrc.registry)) {
-            source = `.npmrc file (${npmrc[`${scope}:registry`] ? `scoped registry for ${scope}` : "default registry"})`;
+         
+        if (npmrc && Object.hasOwn(npmrc, `${scope}:registry`)) {
+            source = `.npmrc file (scoped registry for ${scope})`;
+        } else if (npmrc && Object.hasOwn(npmrc, "registry")) {
+            source = `.npmrc file (default registry)`;
         } else {
             source = "default registry (OFFICIAL_REGISTRY)";
         }

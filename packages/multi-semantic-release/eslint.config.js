@@ -30,6 +30,7 @@ export default createConfig(
     {
         ignores: ["**/__tests__"],
         rules: {
+            "unicorn/filename-case": "off",
             "unicorn/no-null": "off",
             "unicorn/prefer-module": "off",
             "vitest/require-mock-type-parameters": "off",

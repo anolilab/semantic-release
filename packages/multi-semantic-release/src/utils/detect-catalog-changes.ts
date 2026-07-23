@@ -40,7 +40,7 @@ const parsePnpmCatalog = (cwd: string): Record<string, Record<string, string>> |
     }
 
     try {
-        const parsed = readYamlSync<CatalogFile>(catalogPath);
+        const parsed = readYamlSync(catalogPath) as CatalogFile;
 
         return parsed.catalogs ?? null;
     } catch (error) {
@@ -185,7 +185,7 @@ const getReleaseTypeFromVersionChange = (oldVersion: string, newVersion: string)
  * @param _nextReleaseGitHead The git commit SHA of the next release (defaults to HEAD).
  * @returns Map of catalog changes.
  */
-// eslint-disable-next-line sonarjs/cognitive-complexity
+// eslint-disable-next-line sonarjs/cognitive-complexity, import/exports-last
 export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: string, _nextReleaseGitHead?: string): Promise<CatalogChanges> => {
     // eslint-disable-next-line no-param-reassign
     cwd = cleanPath(cwd);
@@ -214,7 +214,6 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
 
     const changes: CatalogChanges = {};
 
-    // Compare catalogs
     for (const [catalogName, catalogEntries] of Object.entries(currentCatalogs)) {
         const oldCatalogEntries = oldCatalogs[catalogName];
 
@@ -228,6 +227,7 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
 
             if (!oldVersion) {
                 // New package in catalog, skip for now
+                // eslint-disable-next-line unicorn/no-break-in-nested-loop
                 continue;
             }
 
@@ -253,40 +253,68 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
 };
 
 /**
+ * Check if a package uses a specific catalog reference.
+ * @param pkg The package to check.
+ * @param catalogRef The catalog reference string.
+ * @param packageName Optional package name filter.
+ * @returns Whether the package uses the catalog reference.
+ */
+// eslint-disable-next-line unicorn/consistent-boolean-name
+const packageUsesCatalog = (pkg: Package, catalogRef: string, packageName?: string): boolean => {
+    const { manifest } = pkg;
+    const dependencyScopes = [manifest.dependencies, manifest.peerDependencies, manifest.optionalDependencies].filter(Boolean) as Record<string, string>[];
+
+    for (const scope of dependencyScopes) {
+        for (const [dependencyName, dependencyVersion] of Object.entries(scope)) {
+            if (dependencyVersion === catalogRef) {
+                if (packageName && dependencyName !== packageName) {
+                    // eslint-disable-next-line unicorn/no-break-in-nested-loop
+                    continue;
+                }
+
+                return true;
+            }
+        }
+    }
+
+    return false;
+};
+
+/**
  * Find packages that use a specific catalog reference.
  * @param packages Array of packages to check.
  * @param catalogName The catalog name to search for (e.g., "cli", "dev").
  * @param packageName The package name within the catalog (optional, if provided only matches this package).
  * @returns Array of packages that use the catalog reference.
  */
-// eslint-disable-next-line sonarjs/cognitive-complexity
+// eslint-disable-next-line import/exports-last
 export const findPackagesUsingCatalog = (packages: Package[], catalogName: string, packageName?: string): Package[] => {
     const catalogRef = `catalog:${catalogName}`;
-    const matchingPackages: Package[] = [];
 
-    for (const pkg of packages) {
-        const { manifest } = pkg;
-        // Only check runtime dependencies (exclude devDependencies) for triggering version bumps
-        const depScopes = [manifest.dependencies, manifest.peerDependencies, manifest.optionalDependencies].filter(Boolean) as Record<string, string>[];
+    return packages.filter((pkg) => packageUsesCatalog(pkg, catalogRef, packageName));
+};
 
-        for (const scope of depScopes) {
-            for (const [depName, depVersion] of Object.entries(scope)) {
-                // Check if this dependency uses the catalog reference
-                if (depVersion === catalogRef) {
-                    // If packageName is specified, check if it matches
-                    if (packageName && depName !== packageName) {
-                        continue;
-                    }
+/**
+ * Update affected packages map with a new release type.
+ * @param affectedPackages The map to update.
+ * @param packageName The name of the package to update.
+ * @param newReleaseType The release type to apply.
+ */
+// eslint-disable-next-line sonarjs/use-type-alias
+const updateAffectedPackage = (affectedPackages: Map<string, "major" | "minor" | "patch">, packageName: string, newReleaseType: "major" | "minor" | "patch"): void => {
+    const currentReleaseType = affectedPackages.get(packageName);
 
-                    matchingPackages.push(pkg);
+    if (currentReleaseType) {
+        const severityOrder = { major: 3, minor: 2, patch: 1 };
+        const currentSeverity = severityOrder[currentReleaseType];
+        const newSeverity = severityOrder[newReleaseType];
 
-                    break; // Found a match, no need to check other scopes for this package
-                }
-            }
+        if (newSeverity > currentSeverity) {
+            affectedPackages.set(packageName, newReleaseType);
         }
+    } else {
+        affectedPackages.set(packageName, newReleaseType);
     }
-
-    return matchingPackages;
 };
 
 /**
@@ -295,7 +323,7 @@ export const findPackagesUsingCatalog = (packages: Package[], catalogName: strin
  * @param catalogChanges Map of catalog changes.
  * @returns Map of package names to their triggered release types.
  */
-// eslint-disable-next-line sonarjs/cognitive-complexity
+ 
 export const getAffectedPackagesFromCatalogChanges = (packages: Package[], catalogChanges: CatalogChanges): Map<string, "major" | "minor" | "patch"> => {
     const affectedPackages = new Map<string, "major" | "minor" | "patch">();
 
@@ -304,24 +332,8 @@ export const getAffectedPackagesFromCatalogChanges = (packages: Package[], catal
             const packagesUsingCatalog = findPackagesUsingCatalog(packages, catalogName, packageName);
 
             for (const pkg of packagesUsingCatalog) {
-                const currentReleaseType = affectedPackages.get(pkg.name);
-                const newReleaseType = change.releaseType;
-
-                if (!newReleaseType) {
-                    continue;
-                }
-
-                if (currentReleaseType) {
-                    // Use the highest severity release type
-                    const severityOrder = { major: 3, minor: 2, patch: 1 };
-                    const currentSeverity = severityOrder[currentReleaseType];
-                    const newSeverity = severityOrder[newReleaseType];
-
-                    if (newSeverity > currentSeverity) {
-                        affectedPackages.set(pkg.name, newReleaseType);
-                    }
-                } else {
-                    affectedPackages.set(pkg.name, newReleaseType);
+                if (change.releaseType) {
+                    updateAffectedPackage(affectedPackages, pkg.name, change.releaseType);
                 }
             }
         }

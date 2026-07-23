@@ -26,6 +26,7 @@ export default createConfig(
     {
         ignores: ["**/__tests__"],
         rules: {
+            "unicorn/filename-case": "off",
             "unicorn/prefer-module": "off",
         },
     },

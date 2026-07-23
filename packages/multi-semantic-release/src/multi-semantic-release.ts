@@ -19,7 +19,7 @@ import logger from "./logger";
 import RescopedStream from "./rescoped-stream";
 import type { Flags, GlobalOptions, InputOptions, MultiContext, Package } from "./types";
 import cleanPath from "./utils/clean-path";
-import normalizeRepositoryUrl from "./utils/normalize-repository-url";
+import normalizeRepoUrl from "./utils/normalize-repository-url";
 import { validate } from "./utils/validate";
 
 /**
@@ -60,7 +60,7 @@ const getPackage = async (
     const manifest = getManifest(path);
     const { name } = manifest;
 
-    const deps: string[] = Object.keys({
+    const dependencies: string[] = Object.keys({
         ...manifest.dependencies,
         ...manifest.devDependencies,
         ...manifest.peerDependencies,
@@ -75,17 +75,17 @@ const getPackage = async (
     // Note: When using token-based authentication (e.g., GITHUB_TOKEN), semantic-release automatically converts
     // repository URLs to HTTPS format regardless of the repositoryUrl format specified.
     if (!finalOptions.repositoryUrl && manifest.repository) {
-        let repositoryUrl: string | undefined;
+        let repoUrl: string | undefined;
 
         if (typeof manifest.repository === "string") {
-            repositoryUrl = manifest.repository;
+            repoUrl = manifest.repository;
             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, sonarjs/different-types-comparison
         } else if (typeof manifest.repository === "object" && manifest.repository !== null && "url" in manifest.repository) {
-            repositoryUrl = manifest.repository.url as string;
+            repoUrl = manifest.repository.url as string;
         }
 
-        if (repositoryUrl) {
-            finalOptions.repositoryUrl = normalizeRepositoryUrl(repositoryUrl);
+        if (repoUrl) {
+            finalOptions.repositoryUrl = normalizeRepoUrl(repoUrl);
         }
     }
 
@@ -96,7 +96,7 @@ const getPackage = async (
     );
     const { options, plugins } = await getConfigSemantic({ cwd: directory, env: envRecord, stderr, stdout }, finalOptions);
 
-    return { deps, dir: directory, localDeps: [], manifest, name, options, path, plugins };
+    return { deps: dependencies, dir: directory, localDeps: [], manifest, name, options, path, plugins };
 };
 
 /**
@@ -140,7 +140,7 @@ const releasePackage = async (
     // This is necessary because git commands don't understand the git+ prefix used in package.json.
     // Note: When using token-based authentication, semantic-release automatically converts URLs to HTTPS format.
     if (options.repositoryUrl && typeof options.repositoryUrl === "string") {
-        options.repositoryUrl = normalizeRepositoryUrl(options.repositoryUrl);
+        options.repositoryUrl = normalizeRepoUrl(options.repositoryUrl);
     }
 
     // Call semanticRelease() on the directory and save result to pkg.
@@ -240,11 +240,7 @@ const multiSemanticRelease = async (
     if (mergedFlags.debug) {
         logger.config.level = "debug";
 
-        let extraDebug = "";
-
-        if (environment.DEBUG) {
-            extraDebug = `,${environment.DEBUG}`;
-        }
+        const extraDebug = environment.DEBUG ? `,${environment.DEBUG}` : "";
 
         dbg.enable(`msr:*,semantic-release:*${extraDebug}`);
     }
@@ -264,15 +260,15 @@ const multiSemanticRelease = async (
             const { manifest } = entry;
 
             return (
-                (!mergedFlags.ignorePrivate || !manifest.private)
-                && (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
+                (!mergedFlags.ignorePrivate || !manifest.private) &&
+                (paths ? paths.includes(entry.manifestAbsPath) || paths.includes(entry.manifestRelPath) : true)
             );
         }) as (entry: unknown) => boolean,
         workspacesExtra: Array.isArray(mergedFlags.ignorePackages) ? mergedFlags.ignorePackages.map((p: string) => `!${p}`) : [],
     });
 
     // eslint-disable-next-line no-param-reassign
-    paths = paths ?? Object.values(allPackages).map((pkg: { manifestPath: string }) => pkg.manifestPath);
+    paths ??= Object.values(allPackages).map((pkg: { manifestPath: string }) => pkg.manifestPath);
 
     (logger as { complete: (...args: unknown[]) => void }).complete(`Started multirelease! Loading ${String(paths.length)} packages...`);
 
