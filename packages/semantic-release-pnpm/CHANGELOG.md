@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-pnpm [8.1.17](https://github.com/anolilab/semantic-release/compare/%40anolilab%2Fsemantic-release-pnpm%408.1.16...%40anolilab%2Fsemantic-release-pnpm%408.1.17) (2026-07-23)
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.5
+
 ## @anolilab/semantic-release-pnpm [8.1.16](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.15...@anolilab/semantic-release-pnpm@8.1.16) (2026-06-20)
 
 ### Bug Fixes
