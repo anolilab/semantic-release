@@ -33,7 +33,7 @@ catalogs:
     taze: 19.16.0
   dev:
     '@arethetypeswrong/cli': ^0.18.5
-    '@ckeditor/typedoc-plugins': 57.4.0
+    '@ckeditor/typedoc-plugins': 58.0.0
     '@visulima/packem': 2.0.0-alpha.92
     '@visulima/pail': 4.0.0
     conventional-changelog-conventionalcommits: 10.2.1
