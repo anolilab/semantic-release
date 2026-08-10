@@ -48,8 +48,8 @@ catalogs:
       version: 3.0.2
   dev:
     '@ckeditor/typedoc-plugins':
-      specifier: 58.0.0
-      version: 58.0.0
+      specifier: 59.0.0
+      version: 59.0.0
     '@visulima/packem':
       specifier: 2.0.0-alpha.92
       version: 2.0.0-alpha.92
@@ -399,7 +399,7 @@ importers:
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/textlint-config':
         specifier: catalog:lint
-        version: 13.0.5(supports-color@7.2.0)(textlint@15.8.0)
+        version: 13.0.5(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))
       '@babel/core':
         specifier: catalog:prod
         version: 8.0.1
@@ -465,7 +465,7 @@ importers:
         version: 4.0.0
       textlint:
         specifier: catalog:lint
-        version: 15.8.0
+        version: 15.8.0(supports-color@7.2.0)
       typescript:
         specifier: catalog:tsc
         version: 7.0.2
@@ -656,7 +656,7 @@ importers:
         version: 10.0.2(prettier@3.9.6)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
-        version: 58.0.0(typedoc@0.28.20(typescript@7.0.2))
+        version: 59.0.0(typedoc@0.28.20(typescript@7.0.2))
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.4
@@ -689,7 +689,7 @@ importers:
         version: 5.0.5(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.92(19bbb1ae981a3aea6d795fccab53c4cc)
+        version: 2.0.0-alpha.92(69b388e3cfc9e536d363e2af14d55bb8)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.0(express@5.2.1)(hono@4.13.1)
@@ -798,7 +798,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.92(19bbb1ae981a3aea6d795fccab53c4cc)
+        version: 2.0.0-alpha.92(69b388e3cfc9e536d363e2af14d55bb8)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.0(express@5.2.1)(hono@4.13.1)
@@ -931,7 +931,7 @@ importers:
         version: 3.0.8
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.92(19bbb1ae981a3aea6d795fccab53c4cc)
+        version: 2.0.0-alpha.92(69b388e3cfc9e536d363e2af14d55bb8)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.0(express@5.2.1)(hono@4.13.1)
@@ -1358,8 +1358,8 @@ packages:
   '@cacheable/utils@2.4.1':
     resolution: {integrity: sha512-eiFgzCbIneyMlLOmNG4g9xzF7Hv3Mga4LjxjcSC/ues6VYq2+gUbQI8JqNuw/ZM8tJIeIaBGpswAsqV2V7ApgA==}
 
-  '@ckeditor/typedoc-plugins@58.0.0':
-    resolution: {integrity: sha512-puqzL/pBv5jiP2vDYuR6ieVirdJkZjKs4VKgpmbLV90UsbjvOLXQRao+luBsoILGQYLxuQVZjMhCBrD+Jee7cA==}
+  '@ckeditor/typedoc-plugins@59.0.0':
+    resolution: {integrity: sha512-6vmZYfajaPk32+eW3ca/A+PhxL47A4f180LMR8M415QJBpP5emSAWXJI71+z1oTMBOEcBDCavycwtJJeoGSnvA==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
     peerDependencies:
       typedoc: ^0.28.20
@@ -9821,25 +9821,25 @@ snapshots:
     dependencies:
       prettier: 3.9.6
 
-  '@anolilab/textlint-config@13.0.5(supports-color@7.2.0)(textlint@15.8.0)':
+  '@anolilab/textlint-config@13.0.5(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))':
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
       '@textlint-rule/textlint-rule-preset-google': 0.1.2
       '@textlint/ast-node-types': 15.7.1
       '@textlint/types': 15.7.1
-      textlint: 15.8.0
+      textlint: 15.8.0(supports-color@7.2.0)
       textlint-filter-rule-comments: 1.3.0
       textlint-rule-abbr-within-parentheses: 1.0.2
       textlint-rule-alex: 5.0.0(supports-color@7.2.0)
       textlint-rule-apostrophe: 3.0.0
       textlint-rule-common-misspellings: 1.0.1
       textlint-rule-date-weekday-mismatch: 1.1.1(supports-color@7.2.0)
-      textlint-rule-diacritics: 2.1.4(textlint@15.8.0)
+      textlint-rule-diacritics: 2.1.4(textlint@15.8.0(supports-color@7.2.0))
       textlint-rule-en-capitalization: 2.0.3
       textlint-rule-footnote-order: 1.0.3
       textlint-rule-helper: 2.5.0
-      textlint-rule-no-dead-link: 6.2.3(textlint@15.8.0)
+      textlint-rule-no-dead-link: 6.2.3(textlint@15.8.0(supports-color@7.2.0))
       textlint-rule-no-empty-section: 1.1.0
       textlint-rule-no-todo: 2.0.1
       textlint-rule-terminology: 5.2.16
@@ -10056,7 +10056,7 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@ckeditor/typedoc-plugins@58.0.0(typedoc@0.28.20(typescript@7.0.2))':
+  '@ckeditor/typedoc-plugins@59.0.0(typedoc@0.28.20(typescript@7.0.2))':
     dependencies:
       typedoc: 0.28.20(typescript@7.0.2)
       upath: 2.0.1
@@ -11637,7 +11637,7 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 15.8.0
 
-  '@textlint/config-loader@15.8.0':
+  '@textlint/config-loader@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@textlint/kernel': 15.8.0
       '@textlint/module-interop': 15.8.0
@@ -11653,7 +11653,7 @@ snapshots:
 
   '@textlint/feature-flag@15.8.0': {}
 
-  '@textlint/fixer-formatter@15.8.0':
+  '@textlint/fixer-formatter@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@textlint/module-interop': 15.8.0
       '@textlint/resolver': 15.8.0
@@ -11715,7 +11715,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/linter-formatter@15.8.0':
+  '@textlint/linter-formatter@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@azu/format-text': 1.0.2
       '@azu/style-format': 1.0.1
@@ -11737,7 +11737,7 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 12.6.1
       debug: 4.4.3(supports-color@7.2.0)
-      mdast-util-gfm-autolink-literal: 0.1.3
+      mdast-util-gfm-autolink-literal: 0.1.3(supports-color@7.2.0)
       remark-footnotes: 3.0.0
       remark-frontmatter: 3.0.0
       remark-gfm: 1.0.0
@@ -11747,11 +11747,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/markdown-to-ast@15.8.0':
+  '@textlint/markdown-to-ast@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@textlint/ast-node-types': 15.8.0
       debug: 4.4.3(supports-color@7.2.0)
-      mdast-util-gfm-autolink-literal: 0.1.3
+      mdast-util-gfm-autolink-literal: 0.1.3(supports-color@7.2.0)
       neotraverse: 0.6.18
       remark-footnotes: 3.0.0
       remark-frontmatter: 3.0.0
@@ -11807,9 +11807,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/textlint-plugin-markdown@15.8.0':
+  '@textlint/textlint-plugin-markdown@15.8.0(supports-color@7.2.0)':
     dependencies:
-      '@textlint/markdown-to-ast': 15.8.0
+      '@textlint/markdown-to-ast': 15.8.0(supports-color@7.2.0)
       '@textlint/types': 15.8.0
     transitivePeerDependencies:
       - supports-color
@@ -12367,68 +12367,6 @@ snapshots:
       - smol-toml
       - yaml
 
-  '@visulima/packem@2.0.0-alpha.92(19bbb1ae981a3aea6d795fccab53c4cc)':
-    dependencies:
-      '@antfu/install-pkg': 1.1.0
-      '@clack/prompts': 1.5.0
-      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
-      '@visulima/cerebro': 3.0.0-alpha.25(@visulima/find-cache-dir@3.0.0-alpha.9)(@visulima/pail@4.0.0(express@5.2.1)(hono@4.13.1))(github-slugger@2.0.0)
-      '@visulima/packem-rollup': 1.0.0-alpha.74(@ts-macro/tsc@0.3.7(rollup@4.62.2))(esbuild@0.28.1)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rolldown@1.0.3)(rollup@4.62.2)(typescript@7.0.2)(vite@8.0.16(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.48.0)(yaml@2.9.0))(yaml@2.9.0)
-      '@visulima/packem-share': 1.0.0-alpha.50(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.62.2)(yaml@2.9.0)
-      '@visulima/rollup-plugin-css': 1.0.0-alpha.54(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)(@csstools/postcss-slow-plugins@3.0.0(postcss@8.5.15))(@visulima/css-style-inject@1.0.0-alpha.19)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lightningcss@1.32.0)(postcss@8.5.15)(rollup@4.62.2)(yaml@2.9.0)
-      '@visulima/rollup-plugin-dts': 1.0.0-alpha.35(@ts-macro/tsc@0.3.7(rollup@4.62.2))(ini@7.0.0)(json5@2.2.3)(rolldown@1.0.3)(rollup@4.62.2)(typescript@7.0.2)(yaml@2.9.0)
-      '@visulima/tsconfig': 3.0.0-alpha.24(ini@7.0.0)(json5@2.2.3)(yaml@2.9.0)
-      browserslist: 4.28.2
-      cjs-module-lexer: 2.2.0
-      clean-css: 5.3.3
-      defu: 6.1.7
-      estree-walker: 3.0.3
-      fastest-levenshtein: 1.0.16
-      hookable: 6.1.1
-      html-minifier-next: 6.2.7
-      jiti: 2.7.0
-      magic-string: 0.30.21
-      mime: 4.1.0
-      mlly: 1.8.2
-      oxc-parser: 0.133.0
-      oxc-resolver: 11.20.0
-      package-manager-detector: 1.8.0
-      rollup: 4.62.2
-      rollup-plugin-license: 3.7.1(picomatch@4.0.5)(rollup@4.62.2)
-      rs-module-lexer: 2.8.0
-      tinyexec: 1.2.4
-      workerpool: 10.0.2
-    optionalDependencies:
-      '@babel/core': 8.0.1
-      '@ckeditor/typedoc-plugins': 58.0.0(typedoc@0.28.20(typescript@7.0.2))
-      esbuild: 0.28.1
-      lightningcss: 1.32.0
-      postcss: 8.5.15
-      rolldown: 1.0.3
-      typedoc: 0.28.20(typescript@7.0.2)
-      typedoc-plugin-markdown: 4.12.0(typedoc@0.28.20(typescript@7.0.2))
-      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.20(typescript@7.0.2))
-      typescript: 7.0.2
-    transitivePeerDependencies:
-      - '@bomb.sh/tab'
-      - '@csstools/css-parser-algorithms'
-      - '@csstools/css-tokenizer'
-      - '@csstools/postcss-slow-plugins'
-      - '@ts-macro/tsc'
-      - '@typescript/native-preview'
-      - '@visulima/boxen'
-      - '@visulima/css-style-inject'
-      - '@visulima/find-cache-dir'
-      - '@visulima/pail'
-      - github-slugger
-      - ini
-      - json5
-      - jsonc-parser
-      - picomatch
-      - smol-toml
-      - vue-tsc
-      - yaml
-
   '@visulima/packem@2.0.0-alpha.92(3edf55b34dd001ce78b5ef2f8f320de6)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
@@ -12462,6 +12400,68 @@ snapshots:
       workerpool: 10.0.2
     optionalDependencies:
       '@babel/core': 7.29.7
+      esbuild: 0.28.1
+      lightningcss: 1.32.0
+      postcss: 8.5.15
+      rolldown: 1.0.3
+      typedoc: 0.28.20(typescript@7.0.2)
+      typedoc-plugin-markdown: 4.12.0(typedoc@0.28.20(typescript@7.0.2))
+      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.20(typescript@7.0.2))
+      typescript: 7.0.2
+    transitivePeerDependencies:
+      - '@bomb.sh/tab'
+      - '@csstools/css-parser-algorithms'
+      - '@csstools/css-tokenizer'
+      - '@csstools/postcss-slow-plugins'
+      - '@ts-macro/tsc'
+      - '@typescript/native-preview'
+      - '@visulima/boxen'
+      - '@visulima/css-style-inject'
+      - '@visulima/find-cache-dir'
+      - '@visulima/pail'
+      - github-slugger
+      - ini
+      - json5
+      - jsonc-parser
+      - picomatch
+      - smol-toml
+      - vue-tsc
+      - yaml
+
+  '@visulima/packem@2.0.0-alpha.92(69b388e3cfc9e536d363e2af14d55bb8)':
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@clack/prompts': 1.5.0
+      '@rollup/pluginutils': 5.4.0(rollup@4.62.2)
+      '@visulima/cerebro': 3.0.0-alpha.25(@visulima/find-cache-dir@3.0.0-alpha.9)(@visulima/pail@4.0.0(express@5.2.1)(hono@4.13.1))(github-slugger@2.0.0)
+      '@visulima/packem-rollup': 1.0.0-alpha.74(@ts-macro/tsc@0.3.7(rollup@4.62.2))(esbuild@0.28.1)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rolldown@1.0.3)(rollup@4.62.2)(typescript@7.0.2)(vite@8.0.16(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.48.0)(yaml@2.9.0))(yaml@2.9.0)
+      '@visulima/packem-share': 1.0.0-alpha.50(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.62.2)(yaml@2.9.0)
+      '@visulima/rollup-plugin-css': 1.0.0-alpha.54(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)(@csstools/postcss-slow-plugins@3.0.0(postcss@8.5.15))(@visulima/css-style-inject@1.0.0-alpha.19)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lightningcss@1.32.0)(postcss@8.5.15)(rollup@4.62.2)(yaml@2.9.0)
+      '@visulima/rollup-plugin-dts': 1.0.0-alpha.35(@ts-macro/tsc@0.3.7(rollup@4.62.2))(ini@7.0.0)(json5@2.2.3)(rolldown@1.0.3)(rollup@4.62.2)(typescript@7.0.2)(yaml@2.9.0)
+      '@visulima/tsconfig': 3.0.0-alpha.24(ini@7.0.0)(json5@2.2.3)(yaml@2.9.0)
+      browserslist: 4.28.2
+      cjs-module-lexer: 2.2.0
+      clean-css: 5.3.3
+      defu: 6.1.7
+      estree-walker: 3.0.3
+      fastest-levenshtein: 1.0.16
+      hookable: 6.1.1
+      html-minifier-next: 6.2.7
+      jiti: 2.7.0
+      magic-string: 0.30.21
+      mime: 4.1.0
+      mlly: 1.8.2
+      oxc-parser: 0.133.0
+      oxc-resolver: 11.20.0
+      package-manager-detector: 1.8.0
+      rollup: 4.62.2
+      rollup-plugin-license: 3.7.1(picomatch@4.0.5)(rollup@4.62.2)
+      rs-module-lexer: 2.8.0
+      tinyexec: 1.2.4
+      workerpool: 10.0.2
+    optionalDependencies:
+      '@babel/core': 8.0.1
+      '@ckeditor/typedoc-plugins': 59.0.0(typedoc@0.28.20(typescript@7.0.2))
       esbuild: 0.28.1
       lightningcss: 1.32.0
       postcss: 8.5.15
@@ -15811,7 +15811,7 @@ snapshots:
   mdast-util-footnote@0.1.7:
     dependencies:
       mdast-util-to-markdown: 0.6.5
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -15819,7 +15819,7 @@ snapshots:
     dependencies:
       '@types/mdast': 3.0.15
       mdast-util-to-string: 2.0.0
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
       parse-entities: 2.0.0
       unist-util-stringify-position: 2.0.3
     transitivePeerDependencies:
@@ -15880,11 +15880,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-gfm-autolink-literal@0.1.3:
+  mdast-util-gfm-autolink-literal@0.1.3(supports-color@7.2.0):
     dependencies:
       ccount: 1.1.0
       mdast-util-find-and-replace: 1.1.1
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -15980,7 +15980,7 @@ snapshots:
 
   mdast-util-gfm@0.1.2:
     dependencies:
-      mdast-util-gfm-autolink-literal: 0.1.3
+      mdast-util-gfm-autolink-literal: 0.1.3(supports-color@7.2.0)
       mdast-util-gfm-strikethrough: 0.2.3
       mdast-util-gfm-table: 0.1.6
       mdast-util-gfm-task-list-item: 0.1.6
@@ -16210,7 +16210,7 @@ snapshots:
 
   micromark-extension-footnote@0.3.2:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16234,7 +16234,7 @@ snapshots:
 
   micromark-extension-gfm-autolink-literal@0.5.7:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16276,7 +16276,7 @@ snapshots:
 
   micromark-extension-gfm-strikethrough@0.6.5:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16300,7 +16300,7 @@ snapshots:
 
   micromark-extension-gfm-table@0.4.3:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16332,7 +16332,7 @@ snapshots:
 
   micromark-extension-gfm-task-list-item@0.3.3:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16354,7 +16354,7 @@ snapshots:
 
   micromark-extension-gfm@0.3.3:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
       micromark-extension-gfm-autolink-literal: 0.5.7
       micromark-extension-gfm-strikethrough: 0.6.5
       micromark-extension-gfm-table: 0.4.3
@@ -16652,7 +16652,7 @@ snapshots:
 
   micromark-util-types@2.0.2: {}
 
-  micromark@2.11.4:
+  micromark@2.11.4(supports-color@7.2.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       parse-entities: 2.0.0
@@ -18770,11 +18770,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  textlint-rule-diacritics@2.1.4(textlint@15.8.0):
+  textlint-rule-diacritics@2.1.4(textlint@15.8.0(supports-color@7.2.0)):
     dependencies:
       match-casing: 2.0.1
       strip-json-comments: 5.0.3
-      textlint: 15.8.0
+      textlint: 15.8.0(supports-color@7.2.0)
 
   textlint-rule-en-capitalization@2.0.3:
     dependencies:
@@ -18794,14 +18794,14 @@ snapshots:
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
-  textlint-rule-no-dead-link@6.2.3(textlint@15.8.0):
+  textlint-rule-no-dead-link@6.2.3(textlint@15.8.0(supports-color@7.2.0)):
     dependencies:
       minimatch: 10.2.6
       p-memoize: 8.0.0
       p-queue: 8.1.1
       textlint-rule-helper: 2.5.0
     optionalDependencies:
-      textlint: 15.8.0
+      textlint: 15.8.0(supports-color@7.2.0)
 
   textlint-rule-no-empty-section@1.1.0:
     dependencies:
@@ -18841,19 +18841,19 @@ snapshots:
       object-assign: 4.1.1
       structured-source: 3.0.2
 
-  textlint@15.8.0:
+  textlint@15.8.0(supports-color@7.2.0):
     dependencies:
       '@modelcontextprotocol/server': 2.0.0
       '@textlint/ast-node-types': 15.8.0
       '@textlint/ast-traverse': 15.8.0
-      '@textlint/config-loader': 15.8.0
+      '@textlint/config-loader': 15.8.0(supports-color@7.2.0)
       '@textlint/feature-flag': 15.8.0
-      '@textlint/fixer-formatter': 15.8.0
+      '@textlint/fixer-formatter': 15.8.0(supports-color@7.2.0)
       '@textlint/kernel': 15.8.0
-      '@textlint/linter-formatter': 15.8.0
+      '@textlint/linter-formatter': 15.8.0(supports-color@7.2.0)
       '@textlint/module-interop': 15.8.0
       '@textlint/resolver': 15.8.0
-      '@textlint/textlint-plugin-markdown': 15.8.0
+      '@textlint/textlint-plugin-markdown': 15.8.0(supports-color@7.2.0)
       '@textlint/textlint-plugin-text': 15.8.0
       '@textlint/types': 15.8.0
       '@textlint/utils': 15.8.0
