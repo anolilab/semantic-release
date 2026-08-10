@@ -41,8 +41,8 @@ catalogs:
       specifier: ^4.3.2
       version: 4.3.2
     semantic-release:
-      specifier: 25.0.8
-      version: 25.0.8
+      specifier: 25.0.9
+      version: 25.0.9
     semantic-release-yarn:
       specifier: ^3.0.2
       version: 3.0.2
@@ -393,13 +393,13 @@ importers:
         version: 10.1.0(@commitlint/cli@21.2.1(@types/node@26.1.1)(conventional-commits-parser@7.1.0)(typescript@7.0.2))(@types/node@26.1.1)(conventional-commits-parser@7.1.0)(typescript@7.0.2)
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
-        version: 11.1.2(eslint@10.7.0(jiti@2.7.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.1.1)(prettier@3.9.6)(secretlint@13.0.4)(vitest@4.1.10)(yaml@2.9.0)
+        version: 11.1.2(eslint@10.7.0(jiti@2.7.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.1.1)(prettier@3.9.6)(secretlint@13.0.4(supports-color@7.2.0))(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/textlint-config':
         specifier: catalog:lint
-        version: 13.0.5(textlint@15.8.0)
+        version: 13.0.5(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))
       '@babel/core':
         specifier: catalog:prod
         version: 8.0.1
@@ -456,16 +456,16 @@ importers:
         version: 6.1.3
       secretlint:
         specifier: catalog:lint
-        version: 13.0.4
+        version: 13.0.4(supports-color@7.2.0)
       semantic-release:
         specifier: catalog:cli
-        version: 25.0.8(typescript@7.0.2)
+        version: 25.0.9(typescript@7.0.2)
       sort-package-json:
         specifier: catalog:prod
         version: 4.0.0
       textlint:
         specifier: catalog:lint
-        version: 15.8.0
+        version: 15.8.0(supports-color@7.2.0)
       typescript:
         specifier: catalog:tsc
         version: 7.0.2
@@ -526,7 +526,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
+        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
@@ -544,22 +544,22 @@ importers:
         version: 13.0.4
       '@semantic-release/changelog':
         specifier: catalog:cli
-        version: 7.0.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.0.0(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/commit-analyzer':
         specifier: catalog:cli
-        version: 13.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 13.0.1(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/exec':
         specifier: catalog:cli
-        version: 7.1.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.1.0(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/git':
         specifier: catalog:cli
-        version: 11.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 11.0.1(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/github':
         specifier: catalog:cli
-        version: 12.0.9(semantic-release@25.0.8(typescript@7.0.2))
+        version: 12.0.9(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/release-notes-generator':
         specifier: catalog:cli
-        version: 14.1.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 14.1.1(semantic-release@25.0.9(typescript@7.0.2))
       '@types/debug':
         specifier: catalog:types
         version: 4.1.13
@@ -625,10 +625,10 @@ importers:
         version: 6.1.3
       secretlint:
         specifier: catalog:lint
-        version: 13.0.4
+        version: 13.0.4(supports-color@7.2.0)
       semantic-release:
         specifier: catalog:cli
-        version: 25.0.8(typescript@7.0.2)
+        version: 25.0.9(typescript@7.0.2)
       tempy:
         specifier: catalog:dev
         version: 3.2.0
@@ -650,7 +650,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
+        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
@@ -662,22 +662,22 @@ importers:
         version: 13.0.4
       '@semantic-release/changelog':
         specifier: catalog:cli
-        version: 7.0.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.0.0(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/commit-analyzer':
         specifier: catalog:cli
-        version: 13.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 13.0.1(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/exec':
         specifier: catalog:cli
-        version: 7.1.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.1.0(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/git':
         specifier: catalog:cli
-        version: 11.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 11.0.1(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/github':
         specifier: catalog:cli
-        version: 12.0.9(semantic-release@25.0.8(typescript@7.0.2))
+        version: 12.0.9(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/release-notes-generator':
         specifier: catalog:cli
-        version: 14.1.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 14.1.1(semantic-release@25.0.9(typescript@7.0.2))
       '@types/ini':
         specifier: catalog:types
         version: 4.1.1
@@ -722,10 +722,10 @@ importers:
         version: 6.1.3
       secretlint:
         specifier: catalog:lint
-        version: 13.0.4
+        version: 13.0.4(supports-color@7.2.0)
       semantic-release:
         specifier: catalog:cli
-        version: 25.0.8(typescript@7.0.2)
+        version: 25.0.9(typescript@7.0.2)
       tempy:
         specifier: catalog:dev
         version: 3.2.0
@@ -762,7 +762,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
+        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
@@ -774,22 +774,22 @@ importers:
         version: 13.0.4
       '@semantic-release/changelog':
         specifier: catalog:cli
-        version: 7.0.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.0.0(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/commit-analyzer':
         specifier: catalog:cli
-        version: 13.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 13.0.1(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/exec':
         specifier: catalog:cli
-        version: 7.1.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.1.0(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/git':
         specifier: catalog:cli
-        version: 11.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 11.0.1(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/github':
         specifier: catalog:cli
-        version: 12.0.9(semantic-release@25.0.8(typescript@7.0.2))
+        version: 12.0.9(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/release-notes-generator':
         specifier: catalog:cli
-        version: 14.1.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 14.1.1(semantic-release@25.0.9(typescript@7.0.2))
       '@types/node':
         specifier: catalog:types
         version: 26.1.1
@@ -822,10 +822,10 @@ importers:
         version: 6.1.3
       secretlint:
         specifier: catalog:lint
-        version: 13.0.4
+        version: 13.0.4(supports-color@7.2.0)
       semantic-release:
         specifier: catalog:cli
-        version: 25.0.8(typescript@7.0.2)
+        version: 25.0.9(typescript@7.0.2)
       tempy:
         specifier: catalog:dev
         version: 3.2.0
@@ -880,7 +880,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
+        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
@@ -889,22 +889,22 @@ importers:
         version: 13.0.4
       '@semantic-release/changelog':
         specifier: catalog:cli
-        version: 7.0.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.0.0(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/commit-analyzer':
         specifier: catalog:cli
-        version: 13.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 13.0.1(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/exec':
         specifier: catalog:cli
-        version: 7.1.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.1.0(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/git':
         specifier: catalog:cli
-        version: 11.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 11.0.1(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/github':
         specifier: catalog:cli
-        version: 12.0.9(semantic-release@25.0.8(typescript@7.0.2))
+        version: 12.0.9(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/release-notes-generator':
         specifier: catalog:cli
-        version: 14.1.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 14.1.1(semantic-release@25.0.9(typescript@7.0.2))
       '@types/debug':
         specifier: catalog:types
         version: 4.1.13
@@ -949,7 +949,7 @@ importers:
         version: 10.1.0
       dockerode:
         specifier: catalog:dev
-        version: 5.0.1
+        version: 5.0.1(supports-color@7.2.0)
       esbuild:
         specifier: catalog:build
         version: 0.28.1
@@ -973,10 +973,10 @@ importers:
         version: 6.1.3
       secretlint:
         specifier: catalog:lint
-        version: 13.0.4
+        version: 13.0.4(supports-color@7.2.0)
       semantic-release:
         specifier: catalog:cli
-        version: 25.0.8(typescript@7.0.2)
+        version: 25.0.9(typescript@7.0.2)
       stream-buffers:
         specifier: catalog:dev
         version: 3.0.3
@@ -997,35 +997,35 @@ importers:
         version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: catalog:cli
-        version: 7.0.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.0.0(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/commit-analyzer':
         specifier: catalog:cli
-        version: 13.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 13.0.1(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/exec':
         specifier: catalog:cli
-        version: 7.1.0(semantic-release@25.0.8(typescript@7.0.2))
+        version: 7.1.0(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/git':
         specifier: catalog:cli
-        version: 11.0.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 11.0.1(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)
       '@semantic-release/github':
         specifier: catalog:cli
-        version: 12.0.9(semantic-release@25.0.8(typescript@7.0.2))
+        version: 12.0.9(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/npm':
         specifier: catalog:cli
-        version: 13.1.5(semantic-release@25.0.8(typescript@7.0.2))
+        version: 13.1.5(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/release-notes-generator':
         specifier: catalog:cli
-        version: 14.1.1(semantic-release@25.0.8(typescript@7.0.2))
+        version: 14.1.1(semantic-release@25.0.9(typescript@7.0.2))
       conventional-changelog-conventionalcommits:
         specifier: catalog:prod
         version: 10.2.1
       semantic-release-yarn:
         specifier: catalog:cli
-        version: 3.0.2(semantic-release@25.0.8(typescript@7.0.2))(typescript@7.0.2)
+        version: 3.0.2(semantic-release@25.0.9(typescript@7.0.2))(typescript@7.0.2)
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
+        version: 28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
@@ -1049,10 +1049,10 @@ importers:
         version: 6.1.3
       secretlint:
         specifier: catalog:lint
-        version: 13.0.4
+        version: 13.0.4(supports-color@7.2.0)
       semantic-release:
         specifier: catalog:cli
-        version: 25.0.8(typescript@7.0.2)
+        version: 25.0.9(typescript@7.0.2)
       typescript:
         specifier: catalog:tsc
         version: 7.0.2
@@ -8461,8 +8461,8 @@ packages:
     peerDependencies:
       semantic-release: '>=19.0.0'
 
-  semantic-release@25.0.8:
-    resolution: {integrity: sha512-w/iZ0bur36rKffXZYmIUmy068eoBY3Ij1DCCddx2JwWEM5Tg+eU9ld/E9qSInVvPASyyR2Ln/XGfQ9OZrMlhtw==}
+  semantic-release@25.0.9:
+    resolution: {integrity: sha512-bxve7csK0/Txr++CkfrmV+X1r4jqiSOw2WsSad9E2S68R+ZfLBwDn8IceM8WfiOmKQIHgsQc1cNA8Dzg7U75pg==}
     engines: {node: ^22.14.0 || >= 24.10.0}
     hasBin: true
 
@@ -9734,13 +9734,13 @@ snapshots:
       - conventional-commits-parser
       - typescript
 
-  '@anolilab/eslint-config@28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)':
+  '@anolilab/eslint-config@28.1.2(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@7.2.0)(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)(vitest@4.1.10)(yaml@2.9.0)':
     dependencies:
       '@e18e/eslint-plugin': 0.5.1(eslint@10.7.0(jiti@2.7.0))
       '@eslint-community/eslint-plugin-eslint-comments': 4.7.2(eslint@10.7.0(jiti@2.7.0))
       '@eslint/compat': 2.1.0(eslint@10.7.0(jiti@2.7.0))
       '@eslint/js': 10.0.1(eslint@10.7.0(jiti@2.7.0))
-      '@eslint/markdown': 8.0.3
+      '@eslint/markdown': 8.0.3(supports-color@7.2.0)
       '@html-eslint/eslint-plugin': 0.64.0(eslint@10.7.0(jiti@2.7.0))
       '@html-eslint/parser': 0.64.0
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.7.0(jiti@2.7.0))
@@ -9757,15 +9757,15 @@ snapshots:
       eslint-config-prettier: 10.1.8(eslint@10.7.0(jiti@2.7.0))
       eslint-flat-config-utils: 3.2.0
       eslint-import-resolver-node: 0.4.0
-      eslint-import-resolver-typescript: 4.4.5(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0)))(eslint@10.7.0(jiti@2.7.0))
+      eslint-import-resolver-typescript: 4.4.5(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0))(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0)
       eslint-merge-processors: 2.0.0(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-antfu: 3.2.3(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-compat: 7.0.2(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-erasable-syntax-only: 0.4.2(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2)
       eslint-plugin-es-x: 10.0.0(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-html: 8.1.4
-      eslint-plugin-import-x: 4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))
-      eslint-plugin-jsdoc: 63.2.0(eslint@10.7.0(jiti@2.7.0))
+      eslint-plugin-import-x: 4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0)
+      eslint-plugin-jsdoc: 63.2.0(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0)
       eslint-plugin-jsonc: 3.3.0(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-n: 18.2.2(eslint@10.7.0(jiti@2.7.0))(ts-declaration-location@1.0.7(typescript@7.0.2))(typescript@7.0.2)
       eslint-plugin-no-for-of-array: 0.1.0(eslint@10.7.0(jiti@2.7.0))(typescript-eslint@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(typescript@7.0.2)
@@ -9779,7 +9779,7 @@ snapshots:
       eslint-plugin-security: 4.0.1
       eslint-plugin-simple-import-sort: 14.0.0(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-sonarjs: 4.2.0(eslint@10.7.0(jiti@2.7.0))
-      eslint-plugin-toml: 1.4.0(eslint@10.7.0(jiti@2.7.0))
+      eslint-plugin-toml: 1.4.0(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0)
       eslint-plugin-unicorn: 72.0.0(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-unused-imports: 4.4.1(@typescript-eslint/eslint-plugin@8.65.0(@typescript-eslint/parser@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0))
       eslint-plugin-yml: 3.6.0(eslint@10.7.0(jiti@2.7.0))
@@ -9808,7 +9808,7 @@ snapshots:
       - vitest
       - yaml
 
-  '@anolilab/lint-staged-config@11.1.2(eslint@10.7.0(jiti@2.7.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.1.1)(prettier@3.9.6)(secretlint@13.0.4)(vitest@4.1.10)(yaml@2.9.0)':
+  '@anolilab/lint-staged-config@11.1.2(eslint@10.7.0(jiti@2.7.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.1.1)(prettier@3.9.6)(secretlint@13.0.4(supports-color@7.2.0))(vitest@4.1.10)(yaml@2.9.0)':
     dependencies:
       '@visulima/fs': 5.0.5(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       '@visulima/package': 5.0.5(ini@7.0.0)(jsonc-parser@3.3.1)
@@ -9819,7 +9819,7 @@ snapshots:
       eslint: 10.7.0(jiti@2.7.0)
       lint-staged: 17.1.1
       prettier: 3.9.6
-      secretlint: 13.0.4
+      secretlint: 13.0.4(supports-color@7.2.0)
       vitest: 4.1.10(@types/node@26.1.1)(@vitest/coverage-v8@4.1.10)(@vitest/ui@4.1.10)(vite@8.0.16(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.48.0)(yaml@2.9.0))
     transitivePeerDependencies:
       - ini
@@ -9832,25 +9832,25 @@ snapshots:
     dependencies:
       prettier: 3.9.6
 
-  '@anolilab/textlint-config@13.0.5(textlint@15.8.0)':
+  '@anolilab/textlint-config@13.0.5(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))':
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
       '@textlint-rule/textlint-rule-preset-google': 0.1.2
       '@textlint/ast-node-types': 15.7.1
       '@textlint/types': 15.7.1
-      textlint: 15.8.0
+      textlint: 15.8.0(supports-color@7.2.0)
       textlint-filter-rule-comments: 1.3.0
       textlint-rule-abbr-within-parentheses: 1.0.2
-      textlint-rule-alex: 5.0.0
+      textlint-rule-alex: 5.0.0(supports-color@7.2.0)
       textlint-rule-apostrophe: 3.0.0
       textlint-rule-common-misspellings: 1.0.1
-      textlint-rule-date-weekday-mismatch: 1.1.1
-      textlint-rule-diacritics: 2.1.4(textlint@15.8.0)
+      textlint-rule-date-weekday-mismatch: 1.1.1(supports-color@7.2.0)
+      textlint-rule-diacritics: 2.1.4(textlint@15.8.0(supports-color@7.2.0))
       textlint-rule-en-capitalization: 2.0.3
       textlint-rule-footnote-order: 1.0.3
       textlint-rule-helper: 2.5.0
-      textlint-rule-no-dead-link: 6.2.3(textlint@15.8.0)
+      textlint-rule-no-dead-link: 6.2.3(textlint@15.8.0(supports-color@7.2.0))
       textlint-rule-no-empty-section: 1.1.0
       textlint-rule-no-todo: 2.0.1
       textlint-rule-terminology: 5.2.16
@@ -10404,12 +10404,12 @@ snapshots:
     optionalDependencies:
       eslint: 10.7.0(jiti@2.7.0)
 
-  '@eslint/markdown@8.0.3':
+  '@eslint/markdown@8.0.3(supports-color@7.2.0)':
     dependencies:
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.2
       github-slugger: 2.0.0
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-frontmatter: 2.0.1
       mdast-util-gfm: 3.1.0
       mdast-util-math: 3.0.0
@@ -11177,7 +11177,7 @@ snapshots:
     dependencies:
       '@secretlint/types': 13.0.4
 
-  '@secretlint/config-loader@13.0.4':
+  '@secretlint/config-loader@13.0.4(supports-color@7.2.0)':
     dependencies:
       '@secretlint/profiler': 13.0.4
       '@secretlint/resolver': 13.0.4
@@ -11188,7 +11188,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@secretlint/core@13.0.4':
+  '@secretlint/core@13.0.4(supports-color@7.2.0)':
     dependencies:
       '@secretlint/profiler': 13.0.4
       '@secretlint/types': 13.0.4
@@ -11197,11 +11197,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@secretlint/formatter@13.0.4':
+  '@secretlint/formatter@13.0.4(supports-color@7.2.0)':
     dependencies:
       '@secretlint/resolver': 13.0.4
       '@secretlint/types': 13.0.4
-      '@textlint/linter-formatter': 15.7.1
+      '@textlint/linter-formatter': 15.7.1(supports-color@7.2.0)
       '@textlint/module-interop': 15.7.1
       '@textlint/types': 15.7.1
       chalk: 5.6.2
@@ -11213,11 +11213,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@secretlint/node@13.0.4':
+  '@secretlint/node@13.0.4(supports-color@7.2.0)':
     dependencies:
-      '@secretlint/config-loader': 13.0.4
-      '@secretlint/core': 13.0.4
-      '@secretlint/formatter': 13.0.4
+      '@secretlint/config-loader': 13.0.4(supports-color@7.2.0)
+      '@secretlint/core': 13.0.4(supports-color@7.2.0)
+      '@secretlint/formatter': 13.0.4(supports-color@7.2.0)
       '@secretlint/profiler': 13.0.4
       '@secretlint/source-creator': 13.0.4
       '@secretlint/types': 13.0.4
@@ -11244,14 +11244,14 @@ snapshots:
       ignore: 7.0.6
       picomatch: 4.0.5
 
-  '@semantic-release/changelog@7.0.0(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/changelog@7.0.0(semantic-release@25.0.9(typescript@7.0.2))':
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 5.0.0
       lodash-es: 4.18.1
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
 
-  '@semantic-release/commit-analyzer@13.0.1(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/commit-analyzer@13.0.1(semantic-release@25.0.9(typescript@7.0.2))':
     dependencies:
       conventional-changelog-angular: 8.3.1
       conventional-changelog-writer: 8.4.0
@@ -11261,13 +11261,13 @@ snapshots:
       import-from-esm: 2.0.0
       lodash-es: 4.18.1
       micromatch: 4.0.8
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
     transitivePeerDependencies:
       - supports-color
 
   '@semantic-release/error@4.0.0': {}
 
-  '@semantic-release/exec@7.1.0(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/exec@7.1.0(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)':
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 3.1.0
@@ -11275,11 +11275,11 @@ snapshots:
       execa: 9.6.1
       lodash-es: 4.18.1
       parse-json: 8.3.0
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@semantic-release/git@11.0.1(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/git@11.0.1(semantic-release@25.0.9(typescript@7.0.2))(supports-color@7.2.0)':
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 5.0.0
@@ -11289,11 +11289,11 @@ snapshots:
       lodash-es: 4.18.1
       micromatch: 4.0.8
       p-reduce: 3.0.0
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@semantic-release/github@12.0.9(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/github@12.0.9(semantic-release@25.0.9(typescript@7.0.2))':
     dependencies:
       '@octokit/core': 7.0.6
       '@octokit/plugin-paginate-rest': 14.0.0(@octokit/core@7.0.6)
@@ -11309,7 +11309,7 @@ snapshots:
       lodash-es: 4.18.1
       mime: 4.1.0
       p-filter: 4.1.0
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
       tinyglobby: 0.2.17
       undici: 8.5.0
       url-join: 5.0.0
@@ -11317,7 +11317,7 @@ snapshots:
       - kerberos
       - supports-color
 
-  '@semantic-release/npm@13.1.5(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/npm@13.1.5(semantic-release@25.0.9(typescript@7.0.2))':
     dependencies:
       '@actions/core': 3.0.1
       '@semantic-release/error': 4.0.0
@@ -11332,11 +11332,11 @@ snapshots:
       rc: 1.2.8
       read-pkg: 10.1.0
       registry-auth-token: 5.1.1
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
       semver: 7.8.5
       tempy: 3.2.0
 
-  '@semantic-release/release-notes-generator@14.1.1(semantic-release@25.0.8(typescript@7.0.2))':
+  '@semantic-release/release-notes-generator@14.1.1(semantic-release@25.0.9(typescript@7.0.2))':
     dependencies:
       conventional-changelog-angular: 8.3.1
       conventional-changelog-writer: 8.4.0
@@ -11346,7 +11346,7 @@ snapshots:
       import-from-esm: 2.0.0
       lodash-es: 4.18.1
       read-package-up: 11.0.0
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -11553,7 +11553,7 @@ snapshots:
 
   '@textlint/ast-node-types@4.4.3': {}
 
-  '@textlint/ast-tester@12.6.1':
+  '@textlint/ast-tester@12.6.1(supports-color@7.2.0)':
     dependencies:
       '@textlint/ast-node-types': 12.6.1
       debug: 4.4.3(supports-color@7.2.0)
@@ -11575,7 +11575,7 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 15.8.0
 
-  '@textlint/config-loader@15.8.0':
+  '@textlint/config-loader@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@textlint/kernel': 15.8.0
       '@textlint/module-interop': 15.8.0
@@ -11591,7 +11591,7 @@ snapshots:
 
   '@textlint/feature-flag@15.8.0': {}
 
-  '@textlint/fixer-formatter@15.8.0':
+  '@textlint/fixer-formatter@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@textlint/module-interop': 15.8.0
       '@textlint/resolver': 15.8.0
@@ -11604,13 +11604,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/kernel@12.6.1':
+  '@textlint/kernel@12.6.1(supports-color@7.2.0)':
     dependencies:
       '@textlint/ast-node-types': 12.6.1
-      '@textlint/ast-tester': 12.6.1
+      '@textlint/ast-tester': 12.6.1(supports-color@7.2.0)
       '@textlint/ast-traverse': 12.6.1
       '@textlint/feature-flag': 12.6.1
-      '@textlint/source-code-fixer': 12.6.1
+      '@textlint/source-code-fixer': 12.6.1(supports-color@7.2.0)
       '@textlint/types': 12.6.1
       '@textlint/utils': 12.6.1
       debug: 4.4.3(supports-color@7.2.0)
@@ -11634,7 +11634,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/linter-formatter@15.7.1':
+  '@textlint/linter-formatter@15.7.1(supports-color@7.2.0)':
     dependencies:
       '@azu/format-text': 1.0.2
       '@azu/style-format': 1.0.1
@@ -11653,7 +11653,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/linter-formatter@15.8.0':
+  '@textlint/linter-formatter@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@azu/format-text': 1.0.2
       '@azu/style-format': 1.0.1
@@ -11671,11 +11671,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/markdown-to-ast@12.6.1':
+  '@textlint/markdown-to-ast@12.6.1(supports-color@7.2.0)':
     dependencies:
       '@textlint/ast-node-types': 12.6.1
       debug: 4.4.3(supports-color@7.2.0)
-      mdast-util-gfm-autolink-literal: 0.1.3
+      mdast-util-gfm-autolink-literal: 0.1.3(supports-color@7.2.0)
       remark-footnotes: 3.0.0
       remark-frontmatter: 3.0.0
       remark-gfm: 1.0.0
@@ -11685,11 +11685,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/markdown-to-ast@15.8.0':
+  '@textlint/markdown-to-ast@15.8.0(supports-color@7.2.0)':
     dependencies:
       '@textlint/ast-node-types': 15.8.0
       debug: 4.4.3(supports-color@7.2.0)
-      mdast-util-gfm-autolink-literal: 0.1.3
+      mdast-util-gfm-autolink-literal: 0.1.3(supports-color@7.2.0)
       neotraverse: 0.6.18
       remark-footnotes: 3.0.0
       remark-frontmatter: 3.0.0
@@ -11717,7 +11717,7 @@ snapshots:
 
   '@textlint/resolver@15.8.0': {}
 
-  '@textlint/source-code-fixer@12.6.1':
+  '@textlint/source-code-fixer@12.6.1(supports-color@7.2.0)':
     dependencies:
       '@textlint/types': 12.6.1
       debug: 4.4.3(supports-color@7.2.0)
@@ -11739,15 +11739,15 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 15.8.0
 
-  '@textlint/textlint-plugin-markdown@12.6.1':
+  '@textlint/textlint-plugin-markdown@12.6.1(supports-color@7.2.0)':
     dependencies:
-      '@textlint/markdown-to-ast': 12.6.1
+      '@textlint/markdown-to-ast': 12.6.1(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/textlint-plugin-markdown@15.8.0':
+  '@textlint/textlint-plugin-markdown@15.8.0(supports-color@7.2.0)':
     dependencies:
-      '@textlint/markdown-to-ast': 15.8.0
+      '@textlint/markdown-to-ast': 15.8.0(supports-color@7.2.0)
       '@textlint/types': 15.8.0
     transitivePeerDependencies:
       - supports-color
@@ -12693,7 +12693,7 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
-  alex@11.0.1:
+  alex@11.0.1(supports-color@7.2.0):
     dependencies:
       '@types/mdast': 3.0.15
       '@types/nlcst': 1.0.4
@@ -12710,8 +12710,8 @@ snapshots:
       retext-equality: 6.6.0
       retext-profanities: 7.2.2
       unified: 10.1.2
-      unified-diff: 4.0.1
-      unified-engine: 10.1.0
+      unified-diff: 4.0.1(supports-color@7.2.0)
+      unified-engine: 10.1.0(supports-color@7.2.0)
       update-notifier: 6.0.2
       vfile: 5.3.7
       vfile-reporter: 7.0.5
@@ -13534,7 +13534,7 @@ snapshots:
 
   dlv@1.1.3: {}
 
-  docker-modem@5.0.7:
+  docker-modem@5.0.7(supports-color@7.2.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       readable-stream: 3.6.2
@@ -13543,12 +13543,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  dockerode@5.0.1:
+  dockerode@5.0.1(supports-color@7.2.0):
     dependencies:
       '@balena/dockerignore': 1.0.2
       '@grpc/grpc-js': 1.14.4
       '@grpc/proto-loader': 0.7.15
-      docker-modem: 5.0.7
+      docker-modem: 5.0.7(supports-color@7.2.0)
       protobufjs: 7.6.5
       tar-fs: 2.1.4
     transitivePeerDependencies:
@@ -13856,7 +13856,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@4.4.5(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0)))(eslint@10.7.0(jiti@2.7.0)):
+  eslint-import-resolver-typescript@4.4.5(eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0))(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       eslint: 10.7.0(jiti@2.7.0)
@@ -13867,7 +13867,7 @@ snapshots:
       tinyglobby: 0.2.17
       unrs-resolver: 1.12.2
     optionalDependencies:
-      eslint-plugin-import-x: 4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))
+      eslint-plugin-import-x: 4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -13924,7 +13924,7 @@ snapshots:
     dependencies:
       htmlparser2: 10.1.0
 
-  eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0)):
+  eslint-plugin-import-x@4.17.1(@typescript-eslint/utils@8.65.0(eslint@10.7.0(jiti@2.7.0))(typescript@7.0.2))(eslint-import-resolver-node@0.4.0)(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0):
     dependencies:
       '@typescript-eslint/types': 8.65.0
       comment-parser: 1.4.7
@@ -13942,7 +13942,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-jsdoc@63.2.0(eslint@10.7.0(jiti@2.7.0)):
+  eslint-plugin-jsdoc@63.2.0(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0):
     dependencies:
       '@es-joy/jsdoccomment': 0.88.0
       '@es-joy/resolve.exports': 1.2.0
@@ -14072,7 +14072,7 @@ snapshots:
       typescript: 6.0.3
       yaml: 2.9.0
 
-  eslint-plugin-toml@1.4.0(eslint@10.7.0(jiti@2.7.0)):
+  eslint-plugin-toml@1.4.0(eslint@10.7.0(jiti@2.7.0))(supports-color@7.2.0):
     dependencies:
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.2
@@ -14615,9 +14615,9 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  git-diff-tree@1.1.0:
+  git-diff-tree@1.1.0(supports-color@7.2.0):
     dependencies:
-      git-spawned-stream: 1.0.1
+      git-spawned-stream: 1.0.1(supports-color@7.2.0)
       pump-chain: 1.0.0
       split-transform-stream: 0.1.1
       through2: 2.0.0
@@ -14635,7 +14635,7 @@ snapshots:
       through2: 2.0.5
       traverse: 0.6.8
 
-  git-spawned-stream@1.0.1:
+  git-spawned-stream@1.0.1(supports-color@7.2.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       spawn-to-readstream: 0.1.3
@@ -15761,7 +15761,7 @@ snapshots:
   mdast-util-footnote@0.1.7:
     dependencies:
       mdast-util-to-markdown: 0.6.5
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -15769,7 +15769,7 @@ snapshots:
     dependencies:
       '@types/mdast': 3.0.15
       mdast-util-to-string: 2.0.0
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
       parse-entities: 2.0.0
       unist-util-stringify-position: 2.0.3
     transitivePeerDependencies:
@@ -15792,14 +15792,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-from-markdown@2.0.3:
+  mdast-util-from-markdown@2.0.3(supports-color@7.2.0):
     dependencies:
       '@types/mdast': 4.0.4
       '@types/unist': 3.0.3
       decode-named-character-reference: 1.3.0
       devlop: 1.1.0
       mdast-util-to-string: 4.0.0
-      micromark: 4.0.2
+      micromark: 4.0.2(supports-color@7.2.0)
       micromark-util-decode-numeric-character-reference: 2.0.2
       micromark-util-decode-string: 2.0.1
       micromark-util-normalize-identifier: 2.0.1
@@ -15824,17 +15824,17 @@ snapshots:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
       escape-string-regexp: 5.0.0
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-to-markdown: 2.1.2
       micromark-extension-frontmatter: 2.0.0
     transitivePeerDependencies:
       - supports-color
 
-  mdast-util-gfm-autolink-literal@0.1.3:
+  mdast-util-gfm-autolink-literal@0.1.3(supports-color@7.2.0):
     dependencies:
       ccount: 1.1.0
       mdast-util-find-and-replace: 1.1.1
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -15863,7 +15863,7 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-to-markdown: 2.1.2
       micromark-util-normalize-identifier: 2.0.1
     transitivePeerDependencies:
@@ -15881,7 +15881,7 @@ snapshots:
   mdast-util-gfm-strikethrough@2.0.0:
     dependencies:
       '@types/mdast': 4.0.4
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-to-markdown: 2.1.2
     transitivePeerDependencies:
       - supports-color
@@ -15905,7 +15905,7 @@ snapshots:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
       markdown-table: 3.0.4
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-to-markdown: 2.1.2
     transitivePeerDependencies:
       - supports-color
@@ -15923,14 +15923,14 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-to-markdown: 2.1.2
     transitivePeerDependencies:
       - supports-color
 
   mdast-util-gfm@0.1.2:
     dependencies:
-      mdast-util-gfm-autolink-literal: 0.1.3
+      mdast-util-gfm-autolink-literal: 0.1.3(supports-color@7.2.0)
       mdast-util-gfm-strikethrough: 0.2.3
       mdast-util-gfm-table: 0.1.6
       mdast-util-gfm-task-list-item: 0.1.6
@@ -15952,7 +15952,7 @@ snapshots:
 
   mdast-util-gfm@3.1.0:
     dependencies:
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-gfm-autolink-literal: 2.0.1
       mdast-util-gfm-footnote: 2.1.0
       mdast-util-gfm-strikethrough: 2.0.0
@@ -15968,7 +15968,7 @@ snapshots:
       '@types/mdast': 4.0.4
       devlop: 1.1.0
       longest-streak: 3.1.0
-      mdast-util-from-markdown: 2.0.3
+      mdast-util-from-markdown: 2.0.3(supports-color@7.2.0)
       mdast-util-to-markdown: 2.1.2
       unist-util-remove-position: 5.0.0
     transitivePeerDependencies:
@@ -16160,7 +16160,7 @@ snapshots:
 
   micromark-extension-footnote@0.3.2:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16184,7 +16184,7 @@ snapshots:
 
   micromark-extension-gfm-autolink-literal@0.5.7:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16226,7 +16226,7 @@ snapshots:
 
   micromark-extension-gfm-strikethrough@0.6.5:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16250,7 +16250,7 @@ snapshots:
 
   micromark-extension-gfm-table@0.4.3:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16282,7 +16282,7 @@ snapshots:
 
   micromark-extension-gfm-task-list-item@0.3.3:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -16304,7 +16304,7 @@ snapshots:
 
   micromark-extension-gfm@0.3.3:
     dependencies:
-      micromark: 2.11.4
+      micromark: 2.11.4(supports-color@7.2.0)
       micromark-extension-gfm-autolink-literal: 0.5.7
       micromark-extension-gfm-strikethrough: 0.6.5
       micromark-extension-gfm-table: 0.4.3
@@ -16602,7 +16602,7 @@ snapshots:
 
   micromark-util-types@2.0.2: {}
 
-  micromark@2.11.4:
+  micromark@2.11.4(supports-color@7.2.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
       parse-entities: 2.0.0
@@ -16631,7 +16631,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  micromark@4.0.2:
+  micromark@4.0.2(supports-color@7.2.0):
     dependencies:
       '@types/debug': 4.1.13
       debug: 4.4.3(supports-color@7.2.0)
@@ -18125,11 +18125,11 @@ snapshots:
       refa: 0.12.1
       regexp-ast-analysis: 0.7.1
 
-  secretlint@13.0.4:
+  secretlint@13.0.4(supports-color@7.2.0):
     dependencies:
       '@secretlint/config-creator': 13.0.4
-      '@secretlint/formatter': 13.0.4
-      '@secretlint/node': 13.0.4
+      '@secretlint/formatter': 13.0.4(supports-color@7.2.0)
+      '@secretlint/node': 13.0.4(supports-color@7.2.0)
       '@secretlint/profiler': 13.0.4
       '@secretlint/resolver': 13.0.4
       '@secretlint/walker': 13.0.4
@@ -18143,7 +18143,7 @@ snapshots:
       map-like: 1.1.3
       txt-ast-traverse: 1.2.1
 
-  semantic-release-yarn@3.0.2(semantic-release@25.0.8(typescript@7.0.2))(typescript@7.0.2):
+  semantic-release-yarn@3.0.2(semantic-release@25.0.9(typescript@7.0.2))(typescript@7.0.2):
     dependencies:
       '@semantic-release/error': 4.0.0
       aggregate-error: 5.0.0
@@ -18154,18 +18154,18 @@ snapshots:
       lodash: 4.18.1
       nerf-dart: 1.0.0
       read-pkg: 8.1.0
-      semantic-release: 25.0.8(typescript@7.0.2)
+      semantic-release: 25.0.9(typescript@7.0.2)
       semver: 7.8.5
     transitivePeerDependencies:
       - typescript
 
-  semantic-release@25.0.8(typescript@7.0.2):
+  semantic-release@25.0.9(typescript@7.0.2):
     dependencies:
-      '@semantic-release/commit-analyzer': 13.0.1(semantic-release@25.0.8(typescript@7.0.2))
+      '@semantic-release/commit-analyzer': 13.0.1(semantic-release@25.0.9(typescript@7.0.2))
       '@semantic-release/error': 4.0.0
-      '@semantic-release/github': 12.0.9(semantic-release@25.0.8(typescript@7.0.2))
-      '@semantic-release/npm': 13.1.5(semantic-release@25.0.8(typescript@7.0.2))
-      '@semantic-release/release-notes-generator': 14.1.1(semantic-release@25.0.8(typescript@7.0.2))
+      '@semantic-release/github': 12.0.9(semantic-release@25.0.9(typescript@7.0.2))
+      '@semantic-release/npm': 13.1.5(semantic-release@25.0.9(typescript@7.0.2))
+      '@semantic-release/release-notes-generator': 14.1.1(semantic-release@25.0.9(typescript@7.0.2))
       aggregate-error: 5.0.0
       cosmiconfig: 9.0.2(typescript@7.0.2)
       debug: 4.4.3(supports-color@7.2.0)
@@ -18671,9 +18671,9 @@ snapshots:
     dependencies:
       match-index: 1.0.3
 
-  textlint-rule-alex@5.0.0:
+  textlint-rule-alex@5.0.0(supports-color@7.2.0):
     dependencies:
-      alex: 11.0.1
+      alex: 11.0.1(supports-color@7.2.0)
       textlint-rule-helper: 2.5.0
     transitivePeerDependencies:
       - supports-color
@@ -18685,19 +18685,19 @@ snapshots:
       misspellings: 1.1.0
       textlint-rule-helper: 1.2.0
 
-  textlint-rule-date-weekday-mismatch@1.1.1:
+  textlint-rule-date-weekday-mismatch@1.1.1(supports-color@7.2.0):
     dependencies:
       chrono-node: 2.10.1
       moment: 2.30.1
-      textlint-tester: 12.6.1
+      textlint-tester: 12.6.1(supports-color@7.2.0)
     transitivePeerDependencies:
       - supports-color
 
-  textlint-rule-diacritics@2.1.4(textlint@15.8.0):
+  textlint-rule-diacritics@2.1.4(textlint@15.8.0(supports-color@7.2.0)):
     dependencies:
       match-casing: 2.0.1
       strip-json-comments: 5.0.3
-      textlint: 15.8.0
+      textlint: 15.8.0(supports-color@7.2.0)
 
   textlint-rule-en-capitalization@2.0.3:
     dependencies:
@@ -18717,14 +18717,14 @@ snapshots:
       structured-source: 4.0.0
       unist-util-visit: 2.0.3
 
-  textlint-rule-no-dead-link@6.2.3(textlint@15.8.0):
+  textlint-rule-no-dead-link@6.2.3(textlint@15.8.0(supports-color@7.2.0)):
     dependencies:
       minimatch: 10.2.6
       p-memoize: 8.0.0
       p-queue: 8.1.1
       textlint-rule-helper: 2.5.0
     optionalDependencies:
-      textlint: 15.8.0
+      textlint: 15.8.0(supports-color@7.2.0)
 
   textlint-rule-no-empty-section@1.1.0:
     dependencies:
@@ -18750,11 +18750,11 @@ snapshots:
       textlint-rule-helper: 2.5.0
       write-good: 1.0.8
 
-  textlint-tester@12.6.1:
+  textlint-tester@12.6.1(supports-color@7.2.0):
     dependencies:
       '@textlint/feature-flag': 12.6.1
-      '@textlint/kernel': 12.6.1
-      '@textlint/textlint-plugin-markdown': 12.6.1
+      '@textlint/kernel': 12.6.1(supports-color@7.2.0)
+      '@textlint/textlint-plugin-markdown': 12.6.1(supports-color@7.2.0)
       '@textlint/textlint-plugin-text': 12.6.1
     transitivePeerDependencies:
       - supports-color
@@ -18764,19 +18764,19 @@ snapshots:
       object-assign: 4.1.1
       structured-source: 3.0.2
 
-  textlint@15.8.0:
+  textlint@15.8.0(supports-color@7.2.0):
     dependencies:
       '@modelcontextprotocol/server': 2.0.0
       '@textlint/ast-node-types': 15.8.0
       '@textlint/ast-traverse': 15.8.0
-      '@textlint/config-loader': 15.8.0
+      '@textlint/config-loader': 15.8.0(supports-color@7.2.0)
       '@textlint/feature-flag': 15.8.0
-      '@textlint/fixer-formatter': 15.8.0
+      '@textlint/fixer-formatter': 15.8.0(supports-color@7.2.0)
       '@textlint/kernel': 15.8.0
-      '@textlint/linter-formatter': 15.8.0
+      '@textlint/linter-formatter': 15.8.0(supports-color@7.2.0)
       '@textlint/module-interop': 15.8.0
       '@textlint/resolver': 15.8.0
-      '@textlint/textlint-plugin-markdown': 15.8.0
+      '@textlint/textlint-plugin-markdown': 15.8.0(supports-color@7.2.0)
       '@textlint/textlint-plugin-text': 15.8.0
       '@textlint/types': 15.8.0
       '@textlint/utils': 15.8.0
@@ -19086,14 +19086,14 @@ snapshots:
 
   unicorn-magic@0.4.0: {}
 
-  unified-diff@4.0.1:
+  unified-diff@4.0.1(supports-color@7.2.0):
     dependencies:
-      git-diff-tree: 1.1.0
+      git-diff-tree: 1.1.0(supports-color@7.2.0)
       vfile-find-up: 6.1.0
     transitivePeerDependencies:
       - supports-color
 
-  unified-engine@10.1.0:
+  unified-engine@10.1.0(supports-color@7.2.0):
     dependencies:
       '@types/concat-stream': 2.0.3
       '@types/debug': 4.1.13
