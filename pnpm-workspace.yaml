@@ -88,10 +88,8 @@ catalogs:
     '@anolilab/rc': 4.0.5
     '@babel/core': 8.0.1
     '@semrel-extra/topo': ^1.14.1
-    '@visulima/fs': ^5.0.11
-    '@visulima/package': ^5.0.11
-    '@visulima/yaml': 1.0.0
-    smol-toml: ^1.7.0
+    '@visulima/fs': ^5.1.0
+    '@visulima/package': 5.0.11
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 10.2.1
@@ -198,6 +196,8 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
+  '@visulima/fs': '^5.1.0'
+  '@visulima/package': '5.0.11'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.4'
   '@hono/node-server': '>=2.1.0'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'

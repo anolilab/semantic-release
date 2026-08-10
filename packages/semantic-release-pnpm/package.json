@@ -82,15 +82,13 @@
         "@visulima/fs": "catalog:prod",
         "@visulima/package": "catalog:prod",
         "@visulima/path": "catalog:node",
-        "@visulima/yaml": "catalog:prod",
         "debug": "catalog:prod",
         "env-ci": "catalog:prod",
         "execa": "catalog:node",
         "ini": "catalog:prod",
         "normalize-url": "catalog:prod",
         "registry-auth-token": "catalog:prod",
-        "semver": "catalog:utils",
-        "smol-toml": "catalog:prod"
+        "semver": "catalog:utils"
     },
     "devDependencies": {
         "@anolilab/eslint-config": "catalog:lint",
