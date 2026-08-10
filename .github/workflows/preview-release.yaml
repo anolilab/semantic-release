@@ -26,7 +26,7 @@ jobs:
 
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920" # v2.20.0
+              uses: "step-security/harden-runner@b09bb98e06d4d774595224525879c09bc6e98c40" # v2.20.1
               with:
                   egress-policy: "audit"
 
@@ -47,7 +47,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
+              uses: "anolilab/workflows/step/setup@2bd348c5c236a10db670232e5b08619ccbaf55b3" # v21.0.5 # main
               with:
                   node-version: "22.x"
                   cache-prefix: "preview-release"
