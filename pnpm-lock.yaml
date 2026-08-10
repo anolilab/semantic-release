@@ -365,7 +365,7 @@ overrides:
   protobufjs@>=7.5.0 <=7.6.4: ^7.6.5
   qs@<6.14.1: '>=6.15.3'
   qs@>=6.7.0 <=6.14.1: '>=6.15.3'
-  rollup@>=4.0.0 <4.59.0: '>=4.62.0'
+  rollup@>=4.0.0 <4.59.0: '>=4.62.4'
   shell-quote@<=1.8.4: ^1.8.5
   shell-quote@>=1.1.0 <=1.8.3: ^1.8.4
   svgo@>=4.0.0 <4.0.2: ^4.0.2
@@ -2547,7 +2547,7 @@ packages:
     resolution: {integrity: sha512-tPCzJOtS7uuVZd+xPhoy5W4vThe6KWXNmsFCNktaAh5RTqcLiSfT4huPQIXkgJ6YCOjJHvecOAzQxLFhPxKr+g==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2556,7 +2556,7 @@ packages:
     resolution: {integrity: sha512-ZaOxZceP7SOUW7Lqw5IRVweSQYWaeIPnXIGLiB690EBA3FGJTO40EEr2L5yZplJWsgTCogILRSpcAe7+U0Otdg==}
     engines: {node: '>=16.0.0 || 14 >= 14.17'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2565,7 +2565,7 @@ packages:
     resolution: {integrity: sha512-Mymi24fd9hlRifdZV/jYIFj1dn99F34imiYu3KzlAcgBcRi3i9SucgW/VRo5SQ9K4NuQ7dCep6pFWgNyhRdFHQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2574,7 +2574,7 @@ packages:
     resolution: {integrity: sha512-2+DEJbNBoPROPkgTDNe8/1YXWcqxbN5DTjASVIOx8HS+pITXushyNiBV56RB08zuptzz8gT3YfkqriTBVycepg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2583,7 +2583,7 @@ packages:
     resolution: {integrity: sha512-EGI2te5ENk1coGeADSIwZ7G2Q8CJS2sF120T7jLw4xFw9n7wIOXHo+kIYRAoVpJAN+kmqZSoO3Fp4JtoNF4ReA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2592,7 +2592,7 @@ packages:
     resolution: {integrity: sha512-J4RZarRvQAm5IF0/LwUUg+obsm+xZhYnbMXmXROyoSE1ATJe3oXSb9L5MMppdxP2ylNSjv6zFBwKYjcKMucVfA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2601,7 +2601,7 @@ packages:
     resolution: {integrity: sha512-gpC4R1G9Ni92ZIRTexqbhX7U+9estZrbhP+9SRb0DW9xpB9g7j34r+J2hqrcW/lRI7dJaU84MxZM0Rt82tqYPQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -2610,7 +2610,7 @@ packages:
     resolution: {integrity: sha512-MfPp06CjRLfXQ3wY0R8vJDYBy/MvVcc9OulEfR0B8Iv9ko+GCNaRZ+EpJYFl27LhKsZK0o420sYCRHCjfCgeUg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -8340,7 +8340,7 @@ packages:
     resolution: {integrity: sha512-dWOKrdYba2BXDJh82kkuM4pAR3M6r7WFp6vbVxAgvLfug2WniMFAg2uZ5sNQ/8CoQWo5l2N5EXDG8+QClKk1YQ==}
     engines: {node: '>=20.20.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
       vite: '>=8.2.0'
     peerDependenciesMeta:
       rollup:
@@ -8352,17 +8352,17 @@ packages:
     resolution: {integrity: sha512-FcGXUbAmPvRSLxjVdjp/r/MUtKBlttVQd+ApUyvKfREnsoAfAZA6Ic2fE1Tz4RL0f9XqEQU9UIRNUMdtQtliDw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
 
   rollup-plugin-polyfill-node@0.13.0:
     resolution: {integrity: sha512-FYEvpCaD5jGtyBuBFcQImEGmTxDTPbiHjJdrYIp+mFIwgXiXabxvKUK7ZT9P31ozu2Tqm9llYQMRWsfvTMTAOw==}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
 
   rollup-plugin-pure@0.4.0:
     resolution: {integrity: sha512-m5hnihG13c4JJ+OlBkbkxmQdmDfXyqsf3LuYa3O7YhtZ3/8OdRfTuxySSJ+wJ9qFUWJ0T6ApqEwTgYNQKVBcFg==}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
 
   rollup-plugin-visualizer@7.0.1:
     resolution: {integrity: sha512-UJUT4+1Ho4OcWmPYU3sYXgUqI8B8Ayfe06MX7y0qCJ1K8aGoKtR/NDd/2nZqM7ADkrzny+I99Ul7GgyoiVNAgg==}
@@ -8370,7 +8370,7 @@ packages:
     hasBin: true
     peerDependencies:
       rolldown: 1.x || ^1.0.0-beta || ^1.0.0-rc
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rolldown:
         optional: true
@@ -8381,7 +8381,7 @@ packages:
     resolution: {integrity: sha512-Naai1vGKHGTrvrSuWOX1rSJSKodmJ8aZ3mtF0hHFP64NOtsKvnOGbxD4162fWGePdCWxAckEBNHQ/QX7S81H4g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.62.0'
+      rollup: '>=4.62.4'
     peerDependenciesMeta:
       rollup:
         optional: true
