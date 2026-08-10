@@ -32,7 +32,7 @@ jobs:
             codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920" # v2.20.0
+              uses: "step-security/harden-runner@b09bb98e06d4d774595224525879c09bc6e98c40" # v2.20.1
               with:
                   egress-policy: "audit"
 
@@ -44,7 +44,7 @@ jobs:
                   EMAIL: "github-actions[bot]@users.noreply.github.com"
 
             - name: "Check for file changes"
-              uses: "dorny/paths-filter@7b450fff21473bca461d4b92ce414b9d0420d706" # v4.0.2
+              uses: "dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d" # v4.0.3
               id: "changes"
               with:
                   token: "${{ github.token }}"
@@ -67,7 +67,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920" # v2.20.0
+              uses: "step-security/harden-runner@b09bb98e06d4d774595224525879c09bc6e98c40" # v2.20.1
               with:
                   egress-policy: "audit"
 
@@ -88,7 +88,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
+              uses: "anolilab/workflows/step/setup@2bd348c5c236a10db670232e5b08619ccbaf55b3" # v21.0.5 # main
               with:
                   node-version: "${{ matrix.node_version }}"
                   enable-nx-cache: false
@@ -124,7 +124,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920" # v2.20.0
+              uses: "step-security/harden-runner@b09bb98e06d4d774595224525879c09bc6e98c40" # v2.20.1
               with:
                   egress-policy: "audit"
 
@@ -145,7 +145,7 @@ jobs:
 
             - name: "Setup resources and environment"
               id: "setup"
-              uses: "anolilab/workflows/step/setup@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
+              uses: "anolilab/workflows/step/setup@2bd348c5c236a10db670232e5b08619ccbaf55b3" # v21.0.5 # main
               with:
                   node-version: "${{ matrix.node_version }}"
                   npm-version: "${{ matrix.node_version == '25' && '11' || 'latest' }}"
@@ -185,7 +185,7 @@ jobs:
               # Coverage upload is informational and depends on the flaky codecov.io network path;
               # do not fail the required "Check Test Run" gate when the upload itself errors.
               continue-on-error: true
-              uses: "anolilab/workflows/step/codecov@ffe1f9c618304dee645c2821890ec3f0a91f67b3" # v21.0.0 # main
+              uses: "anolilab/workflows/step/codecov@2bd348c5c236a10db670232e5b08619ccbaf55b3" # v21.0.5 # main
               with:
                   run-lint: "needs.files-changed.outputs.codecov == 'true'"
                   codecov-token: "${{ secrets.CODECOV_TOKEN }}"
@@ -206,7 +206,7 @@ jobs:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@bf7454d06d71f1098171f2acdf0cd4708d7b5920" # v2.20.0
+              uses: "step-security/harden-runner@b09bb98e06d4d774595224525879c09bc6e98c40" # v2.20.1
               with:
                   egress-policy: "audit"
 
