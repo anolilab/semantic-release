@@ -113,7 +113,7 @@ catalogs:
     '@vitest/ui': 4.1.10
     vitest: 4.1.10
   tsc:
-    typescript: 6.0.3
+    typescript: 7.0.2
   types:
     '@types/debug': 4.1.13
     '@types/dockerode': 4.0.1
