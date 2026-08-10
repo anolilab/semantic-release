@@ -33,7 +33,7 @@ catalogs:
     taze: 19.16.0
   dev:
     '@arethetypeswrong/cli': ^0.18.5
-    '@ckeditor/typedoc-plugins': 58.0.0
+    '@ckeditor/typedoc-plugins': 59.0.0
     '@visulima/packem': 2.0.0-alpha.92
     '@visulima/pail': 4.0.0
     conventional-changelog-conventionalcommits: 10.2.1
@@ -49,7 +49,7 @@ catalogs:
     typedoc: 0.28.20
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
-    cosmiconfig: 9.0.2
+    cosmiconfig: 10.0.0
   lint:
     '@anolilab/commitlint-config': 10.1.0
     '@anolilab/eslint-config': 28.1.2
