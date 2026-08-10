@@ -90,6 +90,8 @@ catalogs:
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^5.0.11
     '@visulima/package': ^5.0.11
+    '@visulima/yaml': 1.0.0
+    smol-toml: ^1.7.0
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 10.2.1
@@ -113,7 +115,7 @@ catalogs:
     '@vitest/ui': 4.1.10
     vitest: 4.1.10
   tsc:
-    typescript: 7.0.2
+    typescript: 6.0.3
   types:
     '@types/debug': 4.1.13
     '@types/dockerode': 4.0.1
@@ -235,7 +237,7 @@ overrides:
   hono@>=4.11.8 <4.12.27: ^4.13.1
   hono@>=4.3.3 <4.12.27: ^4.13.1
   js-yaml@<=4.1.1: '>=5.2.3'
-  js-yaml@>=4.0.0 <4.3.0: ^5.2.3
+  js-yaml@>=4.0.0 <4.3.0: ^4.3.1
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.18.1'
