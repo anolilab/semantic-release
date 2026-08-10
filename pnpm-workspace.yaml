@@ -49,7 +49,7 @@ catalogs:
     typedoc: 0.28.20
     typedoc-plugin-rename-defaults: 0.7.3
   icons:
-    cosmiconfig: 9.0.2
+    cosmiconfig: 10.0.0
   lint:
     '@anolilab/commitlint-config': 10.1.0
     '@anolilab/eslint-config': 28.1.2
