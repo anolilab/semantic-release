@@ -36,7 +36,7 @@ catalogs:
     '@ckeditor/typedoc-plugins': 59.0.0
     '@visulima/packem': 2.0.0-alpha.99
     '@visulima/pail': 4.0.2
-    conventional-changelog-conventionalcommits: 10.2.1
+    conventional-changelog-conventionalcommits: 10.3.0
     dockerode: 5.0.1
     file-url: ^4.0.0
     get-stream: 9.0.1
@@ -92,7 +92,7 @@ catalogs:
     '@visulima/package': 5.0.11
     audit-ci: ^7.1.0
     blork: ^9.3.0
-    conventional-changelog-conventionalcommits: 10.2.1
+    conventional-changelog-conventionalcommits: 10.3.0
     debug: ^4.4.3
     detect-indent: ^7.0.2
     detect-newline: ^4.0.1
