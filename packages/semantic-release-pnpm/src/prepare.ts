@@ -1,5 +1,7 @@
 /* eslint-disable jsdoc/informative-docs */
-import { isAccessible, move, readJson, writeJson } from "@visulima/fs";
+import { isAccessible, move, readFile, readJson, writeFile, writeJson } from "@visulima/fs";
+import { CRLF, detect as detectEol, format as formatEol } from "@visulima/fs/eol";
+import type { PackageJson } from "@visulima/package";
 import { getPackageManagerVersion } from "@visulima/package";
 import { resolve } from "@visulima/path";
 // eslint-disable-next-line e18e/ban-dependencies
@@ -16,8 +18,9 @@ const debug = dbg("semantic-release-pnpm:prepare");
 /**
  * Prepare the package for publishing by
  * 1. writing the upcoming semantic-release version to the `package.json` — via `pnpm version`
- * (without creating a git tag) on pnpm &lt; 10, or via `pnpm pkg set` on pnpm v10+ where the
- * `version` command does not reliably accept `--no-git-tag-version` — and
+ * (without creating a git tag) on pnpm &lt; 10, or by writing the manifest directly on pnpm v10+.
+ * The direct write does not run the `preversion`/`version`/`postversion` lifecycle scripts,
+ * which `pnpm version` does on pnpm &lt; 10 — and
  * 2. optionally creating a tarball via `pnpm pack` which is moved to the configured `tarballDir`.
  *
  * The function mirrors the behaviour of the official semantic-release `@semantic-release/npm` plugin
@@ -51,29 +54,30 @@ const prepare = async (
 
     debug("Detected pnpm major version: %d", pnpmMajor);
 
-    // pnpm v10 tightened CLI option parsing and some releases reject
-    // `--no-git-tag-version` on `pnpm version`. Fall back to `npm pkg set` on
-    // v10+ (pnpm itself recommends this — `pnpm pkg` is not implemented and
-    // exits with ERR_PNPM_NOT_IMPLEMENTED). Keep `pnpm version` for older
-    // versions so its side-effects (e.g. npm-shrinkwrap.json sync, version
-    // lifecycle scripts) continue to work as before.
-    const versionBin = pnpmMajor >= 10 ? "npm" : "pnpm";
-    const versionArguments = pnpmMajor >= 10 ? ["pkg", "set", `version=${version}`] : ["version", version, "--no-git-tag-version", "--allow-same-version"];
-
-    const versionResult = execa(versionBin, versionArguments, {
-        cwd: basePath,
-        env,
-        preferLocal: true,
-    });
-
-    versionResult.stdout.pipe(stdout, { end: false });
-    versionResult.stderr.pipe(stderr, { end: false });
-
-    await versionResult;
-
-    // `pnpm pkg set` does not update npm-shrinkwrap.json like `pnpm version`
-    // does, so mirror the version bump manually on pnpm v10+.
+    // pnpm v10 rejects `--no-git-tag-version` on `pnpm version`, and `pnpm pkg`
+    // is not implemented (ERR_PNPM_NOT_IMPLEMENTED). Shelling out to
+    // `npm pkg set` instead is no option either: npm refuses to run any command
+    // (EBADDEVENGINES) in a project that enforces `devEngines.packageManager:
+    // pnpm` — exactly this plugin's audience. So write the manifest ourselves.
+    // https://github.com/anolilab/semantic-release/issues/375
     if (pnpmMajor >= 10) {
+        const packagePath = resolve(basePath, "package.json");
+        // `readJson` (unlike `JSON.parse`) strips a BOM and names the file on
+        // malformed input; the raw content is only read for its layout.
+        const packageContent = await readFile(packagePath);
+        const packageJson = await readJson<PackageJson>(packagePath);
+
+        packageJson.version = version;
+
+        await writeJson(packagePath, packageJson, { detectIndent: true });
+
+        // `writeJson` always emits LF, restore CRLF when the manifest used it.
+        if (detectEol(packageContent) === CRLF) {
+            await writeFile(packagePath, formatEol(await readFile(packagePath), CRLF));
+        }
+
+        // Writing package.json does not update npm-shrinkwrap.json like
+        // `pnpm version` does, so mirror the version bump manually.
         const shrinkwrapPath = resolve(basePath, "npm-shrinkwrap.json");
 
         if (await isAccessible(shrinkwrapPath)) {
@@ -85,6 +89,19 @@ const prepare = async (
 
             await writeJson(shrinkwrapPath, shrinkwrap, { indent: 2 });
         }
+    } else {
+        // Keep `pnpm version` on pnpm < 10 for its side-effects: the
+        // npm-shrinkwrap.json sync and the version lifecycle scripts.
+        const versionResult = execa("pnpm", ["version", version, "--no-git-tag-version", "--allow-same-version"], {
+            cwd: basePath,
+            env,
+            preferLocal: true,
+        });
+
+        versionResult.stdout.pipe(stdout, { end: false });
+        versionResult.stderr.pipe(stderr, { end: false });
+
+        await versionResult;
     }
 
     if (tarballDir) {
