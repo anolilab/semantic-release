@@ -855,6 +855,9 @@ importers:
       debug:
         specifier: catalog:prod
         version: 4.4.3(supports-color@10.2.2)
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       env-ci:
         specifier: catalog:prod
         version: 11.2.0

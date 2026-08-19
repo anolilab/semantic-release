@@ -1,11 +1,12 @@
 /* eslint-disable jsdoc/informative-docs */
 import { isAccessible, move, readFile, readJson, writeFile, writeJson } from "@visulima/fs";
-import { CRLF, detect as detectEol, format as formatEol } from "@visulima/fs/eol";
+import { detect as detectEol, format as formatEol, LF } from "@visulima/fs/eol";
 import type { PackageJson } from "@visulima/package";
 import { getPackageManagerVersion } from "@visulima/package";
 import { resolve } from "@visulima/path";
 // eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
+import detectIndent from "detect-indent";
 // eslint-disable-next-line e18e/ban-dependencies
 import { execa } from "execa";
 import { major } from "semver";
@@ -69,12 +70,12 @@ const prepare = async (
 
         packageJson.version = version;
 
-        await writeJson(packagePath, packageJson, { detectIndent: true });
+        // Serialize in the layout the manifest came in — indentation, line
+        // endings and trailing newline — and write it exactly once.
+        const eol = detectEol(packageContent) ?? LF;
+        const serialized = JSON.stringify(packageJson, undefined, detectIndent(packageContent).indent);
 
-        // `writeJson` always emits LF, restore CRLF when the manifest used it.
-        if (detectEol(packageContent) === CRLF) {
-            await writeFile(packagePath, formatEol(await readFile(packagePath), CRLF));
-        }
+        await writeFile(packagePath, formatEol(serialized, eol) + (packageContent.endsWith("\n") ? eol : ""));
 
         // Writing package.json does not update npm-shrinkwrap.json like
         // `pnpm version` does, so mirror the version bump manually.
