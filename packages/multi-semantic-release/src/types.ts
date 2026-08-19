@@ -161,12 +161,6 @@ export interface Flags extends MultiReleaseConfig {
     logLevel?: string;
 }
 
-// File format information
-export interface FileFormat {
-    indent: string | number;
-    trailingWhitespace: string;
-}
-
 // Error class for validation errors
 export class ValueError extends Error {
     public constructor(message: string) {
@@ -195,8 +189,6 @@ export type GetCommitsFilteredFunction = (
 export type GetManifestFunction = (path: string) => PackageManifest;
 
 export type CleanPathFunction = (path: string, cwd?: string) => string;
-
-export type RecognizeFormatFunction = (contents: string) => FileFormat;
 
 export type StreamToArrayFunction = (stream: NodeJS.ReadableStream) => Promise<unknown[]>;
 

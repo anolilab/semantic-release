@@ -3,7 +3,7 @@ import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-import { readJson, writeJson } from "@visulima/fs";
+import { readFile, readJson, writeFile, writeJson } from "@visulima/fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { publish, success } from "../src";
@@ -123,6 +123,21 @@ describe("semantic-release-clean-package-json", () => {
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith("Created a backup of the package.json file.");
         expect((context as PublishContext).logger.log).toHaveBeenCalledWith(
             "Keeping the following properties: name, version, private, publishConfig, scripts.preinstall, scripts.install, scripts.postinstall, scripts.dependencies, files, bin, browser, main, man, jsdelivr, unpkg, dependencies, peerDependencies, peerDependenciesMeta, bundledDependencies, optionalDependencies, engines, os, cpu, description, keywords, author, contributors, license, homepage, repository, bugs, funding, type, exports, imports, sponsor, publisher, displayName, categories, galleryBanner, preview, contributes, activationEvents, badges, markdown, qna, extensionPack, extensionDependencies, extensionKind, icon, fesm2020, fesm2015, esm2020, es2020, types, typings, typesVersions, module, sideEffects, eslintConfig, devDependencies",
+        );
+    });
+
+    it("should keep the line endings and indentation of the package.json", async () => {
+        expect.assertions(2);
+
+        const packageJsonPath = `${temporaryDirectoryPath}/package.json`;
+
+        await writeFile(packageJsonPath, `{\r\n\t"name": "test-package",\r\n\t"version": "1.0.0"\r\n}\r\n`);
+
+        await publish({}, { cwd: temporaryDirectoryPath, ...context } as PublishContext);
+
+        await expect(readFile(packageJsonPath)).resolves.toBe(`{\r\n\t"name": "test-package",\r\n\t"version": "1.0.0"\r\n}\r\n`);
+        await expect(readFile(`${temporaryDirectoryPath}/package.json.back`)).resolves.toBe(
+            `{\r\n\t"name": "test-package",\r\n\t"version": "1.0.0"\r\n}\r\n`,
         );
     });
 
