@@ -1,3 +1,16 @@
+## @anolilab/multi-semantic-release [4.4.8](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.7...@anolilab/multi-semantic-release@4.4.8) (2026-08-19)
+
+### Bug Fixes
+
+* **deps:** pin conventionalcommits preset below v10 ([365c7b2](https://github.com/anolilab/semantic-release/commit/365c7b212866a1e8e2fc48b6642ad120035534b6))
+* **semantic-release-preset:** emit real newlines in release commits ([59de04c](https://github.com/anolilab/semantic-release/commit/59de04cd07c3ca019393363fd1d9f1fc52fcb69c))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.17
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.19
+
 ## @anolilab/multi-semantic-release [4.4.7](https://github.com/anolilab/semantic-release/compare/%40anolilab%2Fmulti-semantic-release%404.4.6...%40anolilab%2Fmulti-semantic-release%404.4.7) (2026-08-10)
 
 
