@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [5.5.17](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.16...@anolilab/semantic-release-clean-package-json@5.5.17) (2026-08-19)
+
+### Bug Fixes
+
+* **semantic-release-preset:** emit real newlines in release commits ([59de04c](https://github.com/anolilab/semantic-release/commit/59de04cd07c3ca019393363fd1d9f1fc52fcb69c))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.19
+
 ## @anolilab/semantic-release-clean-package-json [5.5.16](https://github.com/anolilab/semantic-release/compare/%40anolilab%2Fsemantic-release-clean-package-json%405.5.15...%40anolilab%2Fsemantic-release-clean-package-json%405.5.16) (2026-08-10)
 
 
