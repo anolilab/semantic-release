@@ -38,11 +38,8 @@ const context: Partial<PublishContext> = {
         version: "1.0.0",
     },
     logger: {
-        // eslint-disable-next-line vitest/require-mock-type-parameters
         error: vi.fn(),
-        // eslint-disable-next-line vitest/require-mock-type-parameters
         log: vi.fn(),
-        // eslint-disable-next-line vitest/require-mock-type-parameters
         success: vi.fn(),
     },
     nextRelease: {

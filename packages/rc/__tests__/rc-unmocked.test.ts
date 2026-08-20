@@ -11,7 +11,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { rc } from "../src";
 
 const mocks = vi.hoisted(() => {
-    // eslint-disable-next-line vitest/require-mock-type-parameters
     return { mockedCwd: vi.fn(), mockedFindUpSync: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 

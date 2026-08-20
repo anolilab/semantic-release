@@ -24,7 +24,6 @@ const addExtensions = (sources: string[][]) =>
     }, []);
 
 const mocks = vi.hoisted(() => {
-    // eslint-disable-next-line vitest/require-mock-type-parameters
     return { mockedCwd: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 
