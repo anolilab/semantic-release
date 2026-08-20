@@ -11,6 +11,14 @@ on: # yamllint disable-line rule:truthy
             - "next-major"
             - "alpha"
             - "beta"
+    workflow_dispatch: # yamllint disable-line rule:empty-values
+
+# A release run must never be cancelled mid-flight: multi-semantic-release pushes a tag and a
+# per-tag channel note for every package, and a run cancelled between those two pushes leaves a
+# tag whose note is missing. Queue release runs instead of replacing them.
+concurrency:
+    group: "${{ github.workflow }}-${{ github.ref }}"
+    cancel-in-progress: false
 
 permissions:
     contents: "read" # for checkout
@@ -90,3 +98,27 @@ jobs:
                   GIT_COMMITTER_NAME: "github-actions-shell"
                   GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
               run: "node packages/multi-semantic-release/dist/bin/cli.js"
+
+            # multi-semantic-release pushes per-package `chore(release)` commits that bump each
+            # package.json (and any cross-package dependency ranges), but @semantic-release/git only
+            # stages per-package assets — pnpm-lock.yaml lives at the root and drifts. Until the
+            # scheduled lock file maintenance run catches up, every frozen-lockfile install on main
+            # and on every open pull request fails with ERR_PNPM_OUTDATED_LOCKFILE. Refresh here.
+            - name: "Refresh pnpm-lock.yaml against released manifests"
+              if: "success()"
+              shell: "bash"
+              # --no-frozen-lockfile is intentional: this step exists to regenerate the lockfile
+              # after the release bumped versions. --ignore-scripts keeps any postinstall from
+              # running with the release token in env — --lockfile-only installs nothing anyway,
+              # but belt-and-suspenders.
+              run: "pnpm install --lockfile-only --no-frozen-lockfile --ignore-scripts"
+
+            - name: "Commit refreshed lockfile"
+              if: "success()"
+              uses: "stefanzweifel/git-auto-commit-action@4a55954c782fc1ea30b9056cd3e7a2b40ca8887d" # v7.2.0
+              with:
+                  file_pattern: "pnpm-lock.yaml"
+                  commit_message: "chore(deps): sync pnpm-lock.yaml with released manifests [skip ci]"
+                  commit_user_name: "github-actions-shell"
+                  commit_user_email: "github-actions[bot]@users.noreply.github.com"
+                  commit_author: "github-actions-shell <github-actions[bot]@users.noreply.github.com>"
