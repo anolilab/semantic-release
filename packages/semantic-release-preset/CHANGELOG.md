@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-preset [13.4.20](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.19...@anolilab/semantic-release-preset@13.4.20) (2026-08-19)
+
+### Bug Fixes
+
+* **semantic-release-preset:** emit real newlines in release commits ([59de04c](https://github.com/anolilab/semantic-release/commit/59de04cd07c3ca019393363fd1d9f1fc52fcb69c))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.17
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.19
+
 ## @anolilab/semantic-release-preset [13.4.19](https://github.com/anolilab/semantic-release/compare/%40anolilab%2Fsemantic-release-preset%4013.4.18...%40anolilab%2Fsemantic-release-preset%4013.4.19) (2026-08-10)
 
 
