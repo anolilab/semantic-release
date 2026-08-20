@@ -1,3 +1,16 @@
+## @anolilab/multi-semantic-release [4.4.9](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.8...@anolilab/multi-semantic-release@4.4.9) (2026-08-20)
+
+### Bug Fixes
+
+* **ci:** unbreak eslint on main ([b60faae](https://github.com/anolilab/semantic-release/commit/b60faaecf512768c5c420eab2167fca92b9faa8d))
+* **multi-semantic-release:** make the git fixtures ignore the developer's git setup ([32eac4d](https://github.com/anolilab/semantic-release/commit/32eac4d6957a7bae71f161c7da8d17775d5e1917))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.18
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.20
+
 ## @anolilab/multi-semantic-release [4.4.8](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.7...@anolilab/multi-semantic-release@4.4.8) (2026-08-19)
 
 ### Bug Fixes
