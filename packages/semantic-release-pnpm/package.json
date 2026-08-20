@@ -83,6 +83,7 @@
         "@visulima/package": "catalog:prod",
         "@visulima/path": "catalog:node",
         "debug": "catalog:prod",
+        "detect-indent": "catalog:prod",
         "env-ci": "catalog:prod",
         "execa": "catalog:node",
         "ini": "catalog:prod",

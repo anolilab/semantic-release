@@ -198,9 +198,6 @@ catalogs:
     detect-indent:
       specifier: ^7.0.2
       version: 7.0.2
-    detect-newline:
-      specifier: ^4.0.1
-      version: 4.0.1
     env-ci:
       specifier: ^11.2.0
       version: 11.2.0
@@ -411,6 +408,9 @@ importers:
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.4
+      '@visulima/fs':
+        specifier: ^5.1.0
+        version: 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       audit-ci:
         specifier: catalog:prod
         version: 7.1.0
@@ -423,6 +423,9 @@ importers:
       cross-env:
         specifier: catalog:node
         version: 10.1.0
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       husky:
         specifier: catalog:lint
         version: 9.1.7
@@ -489,9 +492,6 @@ importers:
       detect-indent:
         specifier: catalog:prod
         version: 7.0.2
-      detect-newline:
-        specifier: catalog:prod
-        version: 4.0.1
       execa:
         specifier: catalog:node
         version: 10.0.1
@@ -752,6 +752,9 @@ importers:
       '@visulima/path':
         specifier: catalog:node
         version: 3.1.0
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       type-fest:
         specifier: catalog:dev
         version: 5.8.0
@@ -855,6 +858,9 @@ importers:
       debug:
         specifier: catalog:prod
         version: 4.4.3(supports-color@10.2.2)
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       env-ci:
         specifier: catalog:prod
         version: 11.2.0

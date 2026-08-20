@@ -111,6 +111,18 @@ describe(prepare, () => {
         await expect(readFile(packagePath)).resolves.toStrictEqual(expectedContent);
     });
 
+    it("should keep a manifest without indentation or trailing newline as it is", async () => {
+        expect.assertions(1);
+
+        const packagePath = join(cwd, "package.json");
+
+        await writeFile(packagePath, `{"name":"package-name","version":"0.0.0-dev"}`);
+
+        await runPrepare("1.0.0");
+
+        await expect(readFile(packagePath)).resolves.toBe(`{"name":"package-name","version":"1.0.0"}`);
+    });
+
     it("should update a package.json written with a BOM", async () => {
         expect.assertions(1);
 

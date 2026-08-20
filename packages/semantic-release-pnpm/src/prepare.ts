@@ -1,6 +1,5 @@
 /* eslint-disable jsdoc/informative-docs */
 import { isAccessible, move, readFile, readJson, writeFile, writeJson } from "@visulima/fs";
-import { CRLF, detect as detectEol, format as formatEol } from "@visulima/fs/eol";
 import type { PackageJson } from "@visulima/package";
 import { getPackageManagerVersion } from "@visulima/package";
 import { resolve } from "@visulima/path";
@@ -10,6 +9,7 @@ import dbg from "debug";
 import { execa } from "execa";
 import { major } from "semver";
 
+import serializeManifest from "../../../shared/serialize-manifest";
 import type { PrepareContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
 
@@ -69,12 +69,7 @@ const prepare = async (
 
         packageJson.version = version;
 
-        await writeJson(packagePath, packageJson, { detectIndent: true });
-
-        // `writeJson` always emits LF, restore CRLF when the manifest used it.
-        if (detectEol(packageContent) === CRLF) {
-            await writeFile(packagePath, formatEol(await readFile(packagePath), CRLF));
-        }
+        await writeFile(packagePath, serializeManifest(packageJson, packageContent));
 
         // Writing package.json does not update npm-shrinkwrap.json like
         // `pnpm version` does, so mirror the version bump manually.
