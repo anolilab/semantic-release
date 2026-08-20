@@ -7,11 +7,11 @@ import { isEqual, isObject, transform } from "lodash-es";
 import type { ReleaseType } from "semver";
 import semver from "semver";
 
+import serializeManifest from "../../../shared/serialize-manifest";
 import getManifest from "./get-manifest";
 import logger from "./logger";
 import type { Package, ReleaseStrategy } from "./types";
 import { getHighestVersion, getLatestVersion } from "./utils/get-version";
-import recognizeFormat from "./utils/recognize-format";
 
 const { debug } = logger.withScope("msr:updateDeps");
 
@@ -566,7 +566,6 @@ export const resolveNextVersion = (currentVersion: string, nextVersion: string, 
  
 export const updateManifestDeps = (packageJson: Package): void => {
     const { manifest, path } = packageJson;
-    const { indent, trailingWhitespace } = recognizeFormat(manifest.__contents__ as string);
 
     manifest.version = packageJson._nextRelease?.version ?? manifest.version;
 
@@ -582,7 +581,7 @@ export const updateManifestDeps = (packageJson: Package): void => {
         return;
     }
 
-    writeFileSync(path, JSON.stringify(manifest, null, indent) + trailingWhitespace);
+    writeFileSync(path, serializeManifest(manifest, manifest.__contents__ as string));
 };
 
 export { resolveReleaseTypeFromStrategy };

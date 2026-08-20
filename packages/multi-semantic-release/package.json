@@ -83,7 +83,6 @@
         "cosmiconfig": "catalog:icons",
         "debug": "catalog:prod",
         "detect-indent": "catalog:prod",
-        "detect-newline": "catalog:prod",
         "execa": "catalog:node",
         "git-log-parser": "catalog:prod",
         "lodash-es": "catalog:utils",

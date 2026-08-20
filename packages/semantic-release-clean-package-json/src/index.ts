@@ -1,8 +1,9 @@
 import { rm } from "node:fs/promises";
 
-import { isAccessible, readJson, writeJson } from "@visulima/fs";
+import { isAccessible, readFile, readJson, writeFile } from "@visulima/fs";
 import { join, resolve } from "@visulima/path";
 
+import serializeManifest from "../../../shared/serialize-manifest";
 import defaultKeepProperties from "./default-keep-properties";
 import type { CommonContext, PublishContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
@@ -22,10 +23,12 @@ import getPackage from "./utils/get-package";
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;
+    const packagePath = join(cwd, "package.json");
+    // Keep the layout of the manifest we are about to rewrite, so that the backup restored in
+    // `success` is byte-identical to what the user committed.
+    const packageContent = (await isAccessible(packagePath)) ? await readFile(packagePath) : undefined;
 
-    await writeJson(join(cwd, "package.json.back"), packageJson, {
-        detectIndent: true,
-    });
+    await writeFile(join(cwd, "package.json.back"), serializeManifest(packageJson, packageContent));
 
     context.logger.log("Created a backup of the package.json file.");
 
@@ -67,9 +70,7 @@ export const publish = async (pluginConfig: PluginConfig, context: PublishContex
         delete packageJsonCopy[property];
     }
 
-    await writeJson(join(cwd, "package.json"), packageJsonCopy, {
-        detectIndent: true,
-    });
+    await writeFile(packagePath, serializeManifest(packageJsonCopy, packageContent));
 };
 
 /**
@@ -88,15 +89,13 @@ export const success = async (pluginConfig: PluginConfig, context: CommonContext
     if (await isAccessible(backupPackageJson)) {
         const packageJson = await getPackage(pluginConfig, context);
 
+        const backupContent = await readFile(backupPackageJson);
         const backupPackageJsonContent = (await readJson(backupPackageJson)) as Record<string, unknown>;
 
         // Overwrite the version from the backup package.json
         backupPackageJsonContent.version = packageJson.version;
 
-        await writeJson(join(cwd, "package.json"), backupPackageJsonContent, {
-            detectIndent: true,
-            overwrite: true,
-        });
+        await writeFile(join(cwd, "package.json"), serializeManifest(backupPackageJsonContent, backupContent));
 
         await rm(backupPackageJson);
 
