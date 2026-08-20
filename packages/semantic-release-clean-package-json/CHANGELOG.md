@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-clean-package-json [5.5.18](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.17...@anolilab/semantic-release-clean-package-json@5.5.18) (2026-08-20)
+
+### Bug Fixes
+
+* **ci:** unbreak eslint on main ([b60faae](https://github.com/anolilab/semantic-release/commit/b60faaecf512768c5c420eab2167fca92b9faa8d))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.20
+
 ## @anolilab/semantic-release-clean-package-json [5.5.17](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.16...@anolilab/semantic-release-clean-package-json@5.5.17) (2026-08-19)
 
 ### Bug Fixes
