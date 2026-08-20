@@ -1,3 +1,9 @@
+## @anolilab/rc [4.0.7](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.6...@anolilab/rc@4.0.7) (2026-08-20)
+
+### Bug Fixes
+
+* **ci:** unbreak eslint on main ([b60faae](https://github.com/anolilab/semantic-release/commit/b60faaecf512768c5c420eab2167fca92b9faa8d))
+
 ## @anolilab/rc [4.0.6](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.5...@anolilab/rc@4.0.6) (2026-08-19)
 
 ### Bug Fixes
