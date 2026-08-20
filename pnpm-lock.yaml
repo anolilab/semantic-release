@@ -57,8 +57,8 @@ catalogs:
       specifier: 4.0.2
       version: 4.0.2
     conventional-changelog-conventionalcommits:
-      specifier: 10.2.1
-      version: 10.2.1
+      specifier: 9.3.1
+      version: 9.3.1
     dockerode:
       specifier: 5.0.1
       version: 5.0.1
@@ -190,17 +190,14 @@ catalogs:
       specifier: ^7.1.0
       version: 7.1.0
     conventional-changelog-conventionalcommits:
-      specifier: 10.2.1
-      version: 10.2.1
+      specifier: 9.3.1
+      version: 9.3.1
     debug:
       specifier: ^4.4.3
       version: 4.4.3
     detect-indent:
       specifier: ^7.0.2
       version: 7.0.2
-    detect-newline:
-      specifier: ^4.0.1
-      version: 4.0.1
     env-ci:
       specifier: ^11.2.0
       version: 11.2.0
@@ -411,6 +408,9 @@ importers:
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.4
+      '@visulima/fs':
+        specifier: ^5.1.0
+        version: 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       audit-ci:
         specifier: catalog:prod
         version: 7.1.0
@@ -423,6 +423,9 @@ importers:
       cross-env:
         specifier: catalog:node
         version: 10.1.0
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       husky:
         specifier: catalog:lint
         version: 9.1.7
@@ -489,9 +492,6 @@ importers:
       detect-indent:
         specifier: catalog:prod
         version: 7.0.2
-      detect-newline:
-        specifier: catalog:prod
-        version: 4.0.1
       execa:
         specifier: catalog:node
         version: 10.0.1
@@ -527,10 +527,10 @@ importers:
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.5.16
+        specifier: 5.5.17
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.18
+        specifier: 8.1.19
         version: link:../semantic-release-pnpm
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
@@ -594,7 +594,7 @@ importers:
         version: 4.1.10(vitest@4.1.10)
       conventional-changelog-conventionalcommits:
         specifier: catalog:dev
-        version: 10.2.1
+        version: 9.3.1
       cross-env:
         specifier: catalog:node
         version: 10.1.0
@@ -700,7 +700,7 @@ importers:
         version: 4.1.10(vitest@4.1.10)
       conventional-changelog-conventionalcommits:
         specifier: catalog:dev
-        version: 10.2.1
+        version: 9.3.1
       cross-env:
         specifier: catalog:node
         version: 10.1.0
@@ -752,6 +752,9 @@ importers:
       '@visulima/path':
         specifier: catalog:node
         version: 3.1.0
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       type-fest:
         specifier: catalog:dev
         version: 5.8.0
@@ -763,7 +766,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.18
+        specifier: 8.1.19
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -838,7 +841,7 @@ importers:
         specifier: catalog:prod
         version: 3.0.1
       '@anolilab/rc':
-        specifier: 4.0.5
+        specifier: 4.0.6
         version: link:../rc
       '@semantic-release/error':
         specifier: catalog:cli
@@ -855,6 +858,9 @@ importers:
       debug:
         specifier: catalog:prod
         version: 4.4.3(supports-color@10.2.2)
+      detect-indent:
+        specifier: catalog:prod
+        version: 7.0.2
       env-ci:
         specifier: catalog:prod
         version: 11.2.0
@@ -939,7 +945,7 @@ importers:
         version: 4.1.10(vitest@4.1.10)
       conventional-changelog-conventionalcommits:
         specifier: catalog:dev
-        version: 10.2.1
+        version: 9.3.1
       cross-env:
         specifier: catalog:node
         version: 10.1.0
@@ -989,7 +995,7 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.5.16
+        specifier: 5.5.17
         version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: catalog:cli
@@ -1014,7 +1020,7 @@ importers:
         version: 14.1.1(semantic-release@25.0.9(supports-color@10.2.2)(typescript@6.0.3))(supports-color@10.2.2)
       conventional-changelog-conventionalcommits:
         specifier: catalog:prod
-        version: 10.2.1
+        version: 9.3.1
       semantic-release-yarn:
         specifier: catalog:cli
         version: 3.0.2(semantic-release@25.0.9(supports-color@10.2.2)(typescript@6.0.3))(typescript@6.0.3)
@@ -1026,7 +1032,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.18
+        specifier: 8.1.19
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -4650,6 +4656,10 @@ packages:
   conventional-changelog-conventionalcommits@10.2.1:
     resolution: {integrity: sha512-n4Kr1HFMTf3iMbES0TMxKIcYtUUv4rKqyQQp2JwfOEfFCOfGT3Tq4mCyJ8S9/YPyWhydjfKrrvnyl+gCjA+mJQ==}
     engines: {node: '>=22'}
+
+  conventional-changelog-conventionalcommits@9.3.1:
+    resolution: {integrity: sha512-dTYtpIacRpcZgrvBYvBfArMmK2xvIpv2TaxM0/ZI5CBtNUzvF2x0t15HsbRABWprS6UPmvj+PzHVjSx4qAVKyw==}
+    engines: {node: '>=18'}
 
   conventional-changelog-writer@8.4.0:
     resolution: {integrity: sha512-HHBFkk1EECxxmCi4CTu091iuDpQv5/OavuCUAuZmrkWpmYfyD816nom1CvtfXJ/uYfAAjavgHvXHX291tSLK8g==}
@@ -13154,6 +13164,10 @@ snapshots:
   conventional-changelog-conventionalcommits@10.2.1:
     dependencies:
       '@conventional-changelog/template': 1.2.1
+
+  conventional-changelog-conventionalcommits@9.3.1:
+    dependencies:
+      compare-func: 2.0.0
 
   conventional-changelog-writer@8.4.0:
     dependencies:

@@ -1,3 +1,15 @@
+## @anolilab/rc [4.0.7](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.6...@anolilab/rc@4.0.7) (2026-08-20)
+
+### Bug Fixes
+
+* **ci:** unbreak eslint on main ([b60faae](https://github.com/anolilab/semantic-release/commit/b60faaecf512768c5c420eab2167fca92b9faa8d))
+
+## @anolilab/rc [4.0.6](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.5...@anolilab/rc@4.0.6) (2026-08-19)
+
+### Bug Fixes
+
+* **semantic-release-preset:** emit real newlines in release commits ([59de04c](https://github.com/anolilab/semantic-release/commit/59de04cd07c3ca019393363fd1d9f1fc52fcb69c))
+
 ## @anolilab/rc [4.0.5](https://github.com/anolilab/semantic-release/compare/%40anolilab%2Frc%404.0.4...%40anolilab%2Frc%404.0.5) (2026-07-23)
 
 ## @anolilab/rc [4.0.4](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.3...@anolilab/rc@4.0.4) (2026-06-20)
