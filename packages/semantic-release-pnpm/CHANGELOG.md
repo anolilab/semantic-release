@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [8.1.21](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.20...@anolilab/semantic-release-pnpm@8.1.21) (2026-08-20)
+
+### Bug Fixes
+
+* **semantic-release-pnpm:** bump the version without invoking npm ([e0cb740](https://github.com/anolilab/semantic-release/commit/e0cb740385a380c3b7c165070c4bc4da5d5d1dbb)), closes [#375](https://github.com/anolilab/semantic-release/issues/375)
+
+### Code Refactoring
+
+* **semantic-release-pnpm:** write the bumped manifest in a single pass ([106794a](https://github.com/anolilab/semantic-release/commit/106794a45d9974ccfb6327f647352e964a3e16ea))
+* serialize manifests through one shared helper ([18c6e0a](https://github.com/anolilab/semantic-release/commit/18c6e0a8e5658c34d12d444c9b1ed4563cb5b393))
+
 ## @anolilab/semantic-release-pnpm [8.1.20](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.19...@anolilab/semantic-release-pnpm@8.1.20) (2026-08-20)
 
 
