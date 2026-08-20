@@ -13,7 +13,12 @@ if (!env.CHANGED_FILES) {
     exit(0);
 }
 
-const json = execSync(`pnpm exec nx show projects --affected --exclude=*-bench,docs,storybook --files=${process.env.CHANGED_FILES} --json`).toString("utf8");
+// `--silent` keeps pnpm's own output off stdout. The build step ahead of this script rewrites the
+// `typesVersions` field of the built package.json files, after which every pnpm invocation prints
+// "[WARN] Your node_modules are out of sync with your lockfile" in front of the JSON below.
+const json = execSync(`pnpm --silent exec nx show projects --affected --exclude=*-bench,docs,storybook --files=${process.env.CHANGED_FILES} --json`).toString(
+    "utf8",
+);
 
 /** @type {Array<{ path: string, private: boolean, peerDependencies?: Record<string, string> }>} */
 const affectedRepoPackages = JSON.parse(json);
