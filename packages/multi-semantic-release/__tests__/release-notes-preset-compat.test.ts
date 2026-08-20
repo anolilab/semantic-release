@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 
 /**
  * conventional-changelog-conventionalcommits v10 renders through the function templates of
- * conventional-changelog-writer v9. @semantic-release/release-notes-generator still bundles
+ * conventional-changelog-writer v9. `@semantic-release/release-notes-generator` still bundles
  * writer v8, which silently drops every commit group and emits a heading-only changelog.
  * This guards the pairing: a preset bump that outruns the writer fails here instead of
  * shipping empty release notes.
