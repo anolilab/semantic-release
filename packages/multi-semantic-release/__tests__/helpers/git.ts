@@ -11,6 +11,15 @@ import { temporaryDirectory } from "tempy";
 
 import { validate } from "../../src/utils/validate";
 
+// Git exports these to its hooks, pointing at the repository the hook runs for, and they take
+// precedence over the `cwd` of every git call below — and of the semantic-release runs the tests
+// spawn. Run the suite from a hook (the `lint-staged` `vitest related`, say) without dropping them
+// and the fixtures operate on the repository being committed to, rewriting its index.
+for (const variable of ["GIT_DIR", "GIT_INDEX_FILE", "GIT_OBJECT_DIRECTORY", "GIT_WORK_TREE"]) {
+    // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+    delete process.env[variable];
+}
+
 /**
  * Add a Git config setting.
  * @param cwd The CWD of the Git repository.
@@ -56,8 +65,11 @@ export const gitInit = (branch: string = "master"): string => {
     execaSync("git", ["init"], { cwd });
     execaSync("git", ["checkout", "-b", branch], { cwd });
 
-    // Disable GPG signing for commits.
+    // Disable GPG signing for commits and tags. A signed tag needs a message, which the plain
+    // `git tag <name> <sha>` semantic-release runs does not pass, so `tag.gpgsign = true` in the
+    // developer's global config would fail every release in these fixtures.
     gitConfig(cwd, "commit.gpgsign", false);
+    gitConfig(cwd, "tag.gpgsign", false);
     gitUser(cwd);
 
     // Return directory.
@@ -72,7 +84,10 @@ export const gitInitRemote = (): string => {
     // Init bare Git repository in a temp directory.
     const cwd = temporaryDirectory();
 
-    execaSync("git", ["init", "--bare"], { cwd });
+    // The branch has to match the one `gitInit` creates: semantic-release fetches the remote HEAD,
+    // which fails on a remote whose HEAD points at a branch that was never pushed — as it does for
+    // everyone whose `init.defaultBranch` is not `master`.
+    execaSync("git", ["init", "--bare", "--initial-branch=master"], { cwd });
 
     // Turn remote path into a file URL.
     // Return URL for remote.

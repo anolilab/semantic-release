@@ -16,3 +16,7 @@ declare module "semantic-release/lib/get-config.js" {
         options: Options,
     ): Promise<{ options: Record<string, unknown>; plugins: Record<string, unknown> }>;
 }
+
+declare module "@semantic-release/release-notes-generator" {
+    export function generateNotes(pluginConfig: Record<string, unknown>, context: Record<string, unknown>): Promise<string>;
+}

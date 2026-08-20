@@ -10,7 +10,6 @@ import { describe, expect, it } from "vitest";
 import { copyDirectory } from "../helpers/file";
 import { gitCommitAll, gitInit, gitInitOrigin, gitPush } from "../helpers/git";
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const fixturesPath = resolve(__dirname, "../../__fixtures__");
 const msrBin = resolve(__dirname, "../../dist/bin/cli.js");
