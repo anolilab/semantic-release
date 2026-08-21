@@ -531,7 +531,7 @@ importers:
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.20
-        version: link:../semantic-release-pnpm
+        version: 8.1.20(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@10.2.2)(yaml@2.9.0)
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
         version: 4.0.2
@@ -767,7 +767,7 @@ importers:
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.20
-        version: link:../semantic-release-pnpm
+        version: 8.1.20(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@10.2.2)(yaml@2.9.0)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.4
@@ -1032,7 +1032,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.20
+        specifier: 8.1.21
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -1206,6 +1206,14 @@ packages:
     hasBin: true
     peerDependencies:
       prettier: 3.9.5
+
+  '@anolilab/rc@4.0.7':
+    resolution: {integrity: sha512-ek/9gVQagmbj+09/qlfu9bz7DBb03JUcgw7O7A+qEmXw6H2LfBUVlSJwFsKYSnIcH6MukHo9VlaMX/nWkVWFFw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-pnpm@8.1.20':
+    resolution: {integrity: sha512-mjSTUAKlEk77cZX8i5MnfMPVpd/Fe1hEwP5NcryxbTWIOP0YqslAGSz5oRoqeXZJ81pXcq78S80nIPWpaRvmaw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
 
   '@anolilab/textlint-config@13.0.5':
     resolution: {integrity: sha512-bbL3WAu30K6dGGcdnNNQs66QDB5ntfryL833YSyhwfxa0yCSahDYmiz8FKVj94AMCIbKHG9Q8GJjMz+kyr82Yg==}
@@ -9697,6 +9705,33 @@ snapshots:
   '@anolilab/prettier-config@10.0.2(prettier@3.9.6)':
     dependencies:
       prettier: 3.9.6
+
+  '@anolilab/rc@4.0.7':
+    dependencies:
+      ini: 7.0.0
+      ts-deepmerge: 8.0.0
+
+  '@anolilab/semantic-release-pnpm@8.1.20(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@10.2.2)(yaml@2.9.0)':
+    dependencies:
+      '@actions/core': 3.0.1
+      '@anolilab/rc': 4.0.7
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
+      '@visulima/package': 5.0.11(ini@7.0.0)(jsonc-parser@3.3.1)
+      '@visulima/path': 3.1.0
+      debug: 4.4.3(supports-color@10.2.2)
+      env-ci: 11.2.0
+      execa: 10.0.1
+      ini: 7.0.0
+      normalize-url: 9.0.1
+      registry-auth-token: 5.1.1
+      semver: 7.8.5
+    transitivePeerDependencies:
+      - json5
+      - jsonc-parser
+      - smol-toml
+      - supports-color
+      - yaml
 
   '@anolilab/textlint-config@13.0.5(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))':
     dependencies:
