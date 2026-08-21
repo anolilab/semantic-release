@@ -33,7 +33,7 @@ catalogs:
     taze: 19.17.2
   dev:
     '@arethetypeswrong/cli': ^0.18.5
-    '@ckeditor/typedoc-plugins': 59.0.0
+    '@ckeditor/typedoc-plugins': 59.1.0
     '@visulima/packem': 2.0.0-alpha.99
     '@visulima/pail': 4.0.2
     conventional-changelog-conventionalcommits: 9.3.1
@@ -236,7 +236,7 @@ overrides:
   hono@>=4.0.0 <4.12.27: ^4.13.1
   hono@>=4.11.8 <4.12.27: ^4.13.1
   hono@>=4.3.3 <4.12.27: ^4.13.1
-  js-yaml@<=4.1.1: '>=5.2.3'
+  js-yaml@<=4.1.1: '>=5.3.0'
   js-yaml@>=4.0.0 <4.3.0: ^4.3.1
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
