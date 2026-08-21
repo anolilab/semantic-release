@@ -56,8 +56,8 @@ catalogs:
     '@anolilab/lint-staged-config': 11.1.2
     '@anolilab/prettier-config': 10.0.2
     '@anolilab/textlint-config': 13.0.5
-    '@commitlint/cli': 21.2.1
-    '@commitlint/config-conventional': 21.2.0
+    '@commitlint/cli': 21.2.2
+    '@commitlint/config-conventional': 21.2.2
     '@secretlint/secretlint-rule-preset-recommend': 13.0.4
     eslint: 10.7.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
