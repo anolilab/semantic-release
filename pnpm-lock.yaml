@@ -48,8 +48,8 @@ catalogs:
       version: 3.0.2
   dev:
     '@ckeditor/typedoc-plugins':
-      specifier: 59.0.0
-      version: 59.0.0
+      specifier: 59.1.0
+      version: 59.1.0
     '@visulima/packem':
       specifier: 2.0.0-alpha.99
       version: 2.0.0-alpha.99
@@ -128,8 +128,8 @@ catalogs:
       specifier: ^9.1.7
       version: 9.1.7
     lint-staged:
-      specifier: 17.3.0
-      version: 17.3.0
+      specifier: 17.4.1
+      version: 17.4.1
     prettier:
       specifier: 3.9.6
       version: 3.9.6
@@ -144,8 +144,8 @@ catalogs:
       version: 15.8.0
   markdown:
     typedoc-plugin-markdown:
-      specifier: 4.12.0
-      version: 4.12.0
+      specifier: 4.13.0
+      version: 4.13.0
   monorepo:
     '@nx/workspace':
       specifier: 23.1.1
@@ -306,15 +306,15 @@ overrides:
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.30.0'
   ajv@<6.14.0: '>=6.15.0'
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.20.0'
-  axios@<1.15.0: '>=1.19.0'
-  axios@>=1.0.0 <1.15.0: '>=1.19.0'
-  axios@>=1.0.0 <1.18.0: ^1.19.0
-  axios@>=1.0.0 <=1.13.4: '>=1.19.0'
-  axios@>=1.13.0 <1.18.0: ^1.19.0
-  axios@>=1.15.0 <1.18.0: ^1.19.0
-  axios@>=1.15.1 <1.18.0: ^1.19.0
-  axios@>=1.15.2 <1.18.0: ^1.19.0
-  axios@>=1.7.0 <1.18.0: ^1.19.0
+  axios@<1.15.0: '>=1.20.0'
+  axios@>=1.0.0 <1.15.0: '>=1.20.0'
+  axios@>=1.0.0 <1.18.0: ^1.20.0
+  axios@>=1.0.0 <=1.13.4: '>=1.20.0'
+  axios@>=1.13.0 <1.18.0: ^1.20.0
+  axios@>=1.15.0 <1.18.0: ^1.20.0
+  axios@>=1.15.1 <1.18.0: ^1.20.0
+  axios@>=1.15.2 <1.18.0: ^1.20.0
+  axios@>=1.7.0 <1.18.0: ^1.20.0
   body-parser@>=2.2.0 <2.2.1: '>=2.3.0'
   brace-expansion@<1.1.13: '>=5.0.9'
   brace-expansion@>=2.0.0 <2.0.3: '>=5.0.9'
@@ -337,7 +337,7 @@ overrides:
   hono@>=4.0.0 <4.12.27: ^4.13.1
   hono@>=4.11.8 <4.12.27: ^4.13.1
   hono@>=4.3.3 <4.12.27: ^4.13.1
-  js-yaml@<=4.1.1: '>=5.2.3'
+  js-yaml@<=4.1.1: '>=5.4.1'
   js-yaml@>=4.0.0 <4.3.0: ^4.3.1
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
@@ -356,12 +356,12 @@ overrides:
   picomatch@<2.3.2: '>=2.3.2'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.5'
   protobufjs@>=7.5.0 <=7.6.4: ^7.6.5
-  qs@<6.14.1: '>=6.15.3'
-  qs@>=6.7.0 <=6.14.1: '>=6.15.3'
+  qs@<6.14.1: '>=6.16.0'
+  qs@>=6.7.0 <=6.14.1: '>=6.16.0'
   rollup@>=4.0.0 <4.59.0: '>=4.62.4'
   shell-quote@<=1.8.4: ^1.10.0
   shell-quote@>=1.1.0 <=1.8.3: ^1.10.0
-  svgo@>=4.0.0 <4.0.2: ^4.0.2
+  svgo@>=4.0.0 <4.0.2: ^4.1.0
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.3'
   tmp@<0.2.7: '>=0.2.7'
   undici@<6.23.0: '>=8.10.0'
@@ -386,7 +386,7 @@ importers:
         version: 10.1.0(@commitlint/cli@21.2.1(@types/node@26.2.0)(conventional-commits-parser@7.1.2)(typescript@6.0.3))(@types/node@26.2.0)(conventional-commits-parser@7.1.2)(typescript@6.0.3)
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
-        version: 11.1.2(eslint@10.7.0(jiti@2.7.0)(supports-color@7.2.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.3.0)(prettier@3.9.6)(secretlint@13.0.4(supports-color@7.2.0))(vitest@4.1.10)(yaml@2.9.0)
+        version: 11.1.2(eslint@10.7.0(jiti@2.7.0)(supports-color@7.2.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.4.1)(prettier@3.9.6)(secretlint@13.0.4(supports-color@7.2.0))(vitest@4.1.10)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
@@ -434,7 +434,7 @@ importers:
         version: 4.1.0
       lint-staged:
         specifier: catalog:lint
-        version: 17.3.0
+        version: 17.4.1
       nx:
         specifier: catalog:monorepo
         version: 23.1.1
@@ -582,7 +582,7 @@ importers:
         version: 17.0.35
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.99(a3a10021f8f5cda872bc51fddc9a26d3)
+        version: 2.0.0-alpha.99(921af08c50c2d01dee43489b3f9d8049)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.2
@@ -652,7 +652,7 @@ importers:
         version: 10.0.2(prettier@3.9.6)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
-        version: 59.0.0(typedoc@0.28.20(typescript@6.0.3))
+        version: 59.1.0(typedoc@0.28.20(typescript@6.0.3))
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.4
@@ -685,7 +685,7 @@ importers:
         version: 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.99(a3a10021f8f5cda872bc51fddc9a26d3)
+        version: 2.0.0-alpha.99(5b39420ca980a1a3fbff4d9b1adc2092)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.2
@@ -730,7 +730,7 @@ importers:
         version: 0.28.20(typescript@6.0.3)
       typedoc-plugin-markdown:
         specifier: catalog:markdown
-        version: 4.12.0(typedoc@0.28.20(typescript@6.0.3))
+        version: 4.13.0(typedoc@0.28.20(typescript@6.0.3))
       typedoc-plugin-rename-defaults:
         specifier: catalog:dev
         version: 0.7.3(typedoc@0.28.20(typescript@6.0.3))
@@ -797,7 +797,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.99(a3a10021f8f5cda872bc51fddc9a26d3)
+        version: 2.0.0-alpha.99(5b39420ca980a1a3fbff4d9b1adc2092)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.2
@@ -933,7 +933,7 @@ importers:
         version: 3.0.8
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0-alpha.99(a3a10021f8f5cda872bc51fddc9a26d3)
+        version: 2.0.0-alpha.99(5b39420ca980a1a3fbff4d9b1adc2092)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.2
@@ -1322,8 +1322,8 @@ packages:
   '@cacheable/utils@2.5.0':
     resolution: {integrity: sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA==}
 
-  '@ckeditor/typedoc-plugins@59.0.0':
-    resolution: {integrity: sha512-6vmZYfajaPk32+eW3ca/A+PhxL47A4f180LMR8M415QJBpP5emSAWXJI71+z1oTMBOEcBDCavycwtJJeoGSnvA==}
+  '@ckeditor/typedoc-plugins@59.1.0':
+    resolution: {integrity: sha512-5xJsEW+gcszlCYjvxNtsvD2tRqpk6X7Qyx6x1HrWA0Z2iQPziSCYdgOk/Bv4mO91WV1tNlivXscYuxDkgXU+mg==}
     engines: {node: '>=24.11.0', npm: '>=5.7.1'}
     peerDependencies:
       typedoc: ^0.28.20
@@ -4755,8 +4755,8 @@ packages:
     resolution: {integrity: sha512-x8dy3RnvYdlUcPOjkEHqozhiwzKNSq7GcPuXFbnyMOCHxX8V3OgIg/pYuabl2sbUPfIJaeAQB7PMOK8DFIdoRA==}
     engines: {node: '>=12'}
 
-  css-select@5.2.2:
-    resolution: {integrity: sha512-TizTzUddG/xYLA3NXodFM0fSbNizXjOKhqiQQwvhlspadZokn1KDy0NZFS0wuEubIYAV5/c1/lAr0TaaFXEXzw==}
+  css-select@6.0.0:
+    resolution: {integrity: sha512-rZZVSLle8v0+EY8QAkDWrKhpgt6SA5OtHsgBnsj6ZaLb5dmDVOWUDtQitd9ydxxvEjhewNudS6eTVU7uOyzvXw==}
 
   css-tree@2.2.1:
     resolution: {integrity: sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA==}
@@ -4766,8 +4766,8 @@ packages:
     resolution: {integrity: sha512-X7sjQzceUhu1u7Y/ylrRZFU2FS6LRiFVp6rKLPg23y3x3c3DOKAwuXGDp+PAGjh6CSnCjYeAul8pcT8bAl+lSA==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
-  css-what@6.2.2:
-    resolution: {integrity: sha512-u/O3vwbptzhMs3L1fQE82ZSLHQQfto5gyZzwteVIEyeaY5Fc7R4dapF/BvRoSYFeqfBk4m0V1Vafq5Pjv25wvA==}
+  css-what@7.0.0:
+    resolution: {integrity: sha512-wD5oz5xibMOPHzy13CyGmogB3phdvcDaB5t0W/Nr5Z2O/agcB8YwOz6e2Lsp10pNDzBoDO9nVa3RGs/2BttpHQ==}
     engines: {node: '>= 6'}
 
   csso@5.0.5:
@@ -6667,8 +6667,8 @@ packages:
   linkify-it@5.0.2:
     resolution: {integrity: sha512-ONTm2jCMAVZjgQa/Fy1kScXsuOoF5NPTsoFBdE1KVIZ2vAh/r9+Bqo+0jINCBYnavTPQZz38QzFTme79ENoN3Q==}
 
-  lint-staged@17.3.0:
-    resolution: {integrity: sha512-woZS3vNe3UKqBaLPvbLOtKRY4tLANpWQhom12MGWqC8Mh1lCOO+WgSwmX2amjJAqTY9BkXYW87fCUH5H9Ph6xw==}
+  lint-staged@17.4.1:
+    resolution: {integrity: sha512-FmJeudcalbSfg1du+JCfvi5vS6Qt08KgbfLWiHinbef+2JJwUZwAWVoaO1AcJVUTWPfk0t30PMQNwPAeCzYQ+Q==}
     engines: {node: '>=22.22.1'}
     hasBin: true
 
@@ -7870,6 +7870,10 @@ packages:
     resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
 
+  picomatch@4.0.7:
+    resolution: {integrity: sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA==}
+    engines: {node: '>=12'}
+
   pify@3.0.0:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==}
     engines: {node: '>=4'}
@@ -8710,8 +8714,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svgo@4.0.2:
-    resolution: {integrity: sha512-ekx94z1rRc5LDi6oSUaeRnYhd0UOJxdtQCL2rF8xpWxD3TPAsISWOrxezqGovqS38GRZOdpDfvQe3ts6F7nsng==}
+  svgo@4.1.0:
+    resolution: {integrity: sha512-bkxnTg1kSU0guhIBmibA6UUhrQmPVA1XsQLN+ylCd+UWzbnLkySOcXpyk1mrl05f+pcaCx2eHb+sp6BgMZWX+Q==}
     engines: {node: '>=16'}
     hasBin: true
 
@@ -9021,8 +9025,8 @@ packages:
   typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  typedoc-plugin-markdown@4.12.0:
-    resolution: {integrity: sha512-eJDEMAfxCmede22c/Jw7d0FA13ggAQv+KkwQYKYCdqI02cin6Rc9QRwbG/7XvvHWinuFejySnZVUWDtvGk3Vbg==}
+  typedoc-plugin-markdown@4.13.0:
+    resolution: {integrity: sha512-OHaOLoMTS0wL2ud73WXvxv486mrUEtgXxW4iKiTOGJVipT/VBWY76rlVRMQGes7aVonoIf5roWRe1UvHbufLlQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       typedoc: 0.28.x
@@ -9682,7 +9686,7 @@ snapshots:
       - vitest
       - yaml
 
-  '@anolilab/lint-staged-config@11.1.2(eslint@10.7.0(jiti@2.7.0)(supports-color@7.2.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.3.0)(prettier@3.9.6)(secretlint@13.0.4(supports-color@7.2.0))(vitest@4.1.10)(yaml@2.9.0)':
+  '@anolilab/lint-staged-config@11.1.2(eslint@10.7.0(jiti@2.7.0)(supports-color@7.2.0))(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.4.1)(prettier@3.9.6)(secretlint@13.0.4(supports-color@7.2.0))(vitest@4.1.10)(yaml@2.9.0)':
     dependencies:
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       '@visulima/package': 5.0.11(ini@7.0.0)(jsonc-parser@3.3.1)
@@ -9691,7 +9695,7 @@ snapshots:
       type-fest: 5.8.0
     optionalDependencies:
       eslint: 10.7.0(jiti@2.7.0)(supports-color@7.2.0)
-      lint-staged: 17.3.0
+      lint-staged: 17.4.1
       prettier: 3.9.6
       secretlint: 13.0.4(supports-color@7.2.0)
       vitest: 4.1.10(@types/node@26.2.0)(@vitest/coverage-v8@4.1.10)(@vitest/ui@4.1.10)(vite@8.2.1(@types/node@26.2.0)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.2)(yaml@2.9.0))
@@ -9887,7 +9891,7 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@ckeditor/typedoc-plugins@59.0.0(typedoc@0.28.20(typescript@6.0.3))':
+  '@ckeditor/typedoc-plugins@59.1.0(typedoc@0.28.20(typescript@6.0.3))':
     dependencies:
       typedoc: 0.28.20(typescript@6.0.3)
       upath: 2.0.1
@@ -12249,7 +12253,78 @@ snapshots:
       - smol-toml
       - yaml
 
-  '@visulima/packem@2.0.0-alpha.99(a3a10021f8f5cda872bc51fddc9a26d3)':
+  '@visulima/packem@2.0.0-alpha.99(5b39420ca980a1a3fbff4d9b1adc2092)':
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@clack/prompts': 1.7.0
+      '@rollup/pluginutils': 5.4.0(rollup@4.62.4)
+      '@visulima/cerebro': 3.0.0(@visulima/find-cache-dir@3.0.0)(@visulima/pail@4.0.0)(github-slugger@2.0.0)
+      '@visulima/packem-rollup': 1.0.0-alpha.81(@ts-macro/tsc@0.3.7(rollup@4.62.4)(typescript@6.0.3))(esbuild@0.28.1)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rolldown@1.2.3)(rollup@4.62.4)(typescript@6.0.3)(vite@8.2.1(@types/node@26.1.1)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.49.2)(yaml@2.9.0))(yaml@2.9.0)
+      '@visulima/packem-share': 1.0.0-alpha.56(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.62.4)(yaml@2.9.0)
+      '@visulima/pail': 4.0.0
+      '@visulima/rollup-plugin-css': 1.0.0-alpha.60(@csstools/css-parser-algorithms@4.0.0(@csstools/css-tokenizer@4.0.0))(@csstools/css-tokenizer@4.0.0)(@csstools/postcss-slow-plugins@3.0.0(postcss@8.5.26))(@visulima/css-style-inject@1.0.0-alpha.19)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lightningcss@1.33.0)(postcss@8.5.26)(rollup@4.62.4)(yaml@2.9.0)
+      '@visulima/rollup-plugin-dts': 1.0.0-alpha.41(@ts-macro/tsc@0.3.7(rollup@4.62.4)(typescript@6.0.3))(ini@7.0.0)(json5@2.2.3)(rolldown@1.2.3)(rollup@4.62.4)(typescript@6.0.3)(yaml@2.9.0)
+      '@visulima/tsconfig': 3.2.0(ini@7.0.0)(json5@2.2.3)(yaml@2.9.0)
+      browserslist: 4.28.6
+      cjs-module-lexer: 2.2.0
+      clean-css: 5.3.3
+      defu: 6.1.7
+      estree-walker: 3.0.3
+      fastest-levenshtein: 1.0.16
+      hookable: 6.1.1
+      html-minifier-next: 7.2.0
+      jiti: 2.7.0
+      magic-string: 0.30.21
+      mime: 4.1.0
+      mlly: 1.8.2
+      oxc-parser: 0.140.0
+      oxc-resolver: 11.24.2
+      package-manager-detector: 1.8.0
+      rollup: 4.62.4
+      rollup-plugin-license: 3.7.1(picomatch@4.0.7)(rollup@4.62.4)
+      rs-module-lexer: 2.8.0
+      tinyexec: 1.2.4
+      workerpool: 10.0.3
+    optionalDependencies:
+      '@babel/core': 8.0.1
+      '@ckeditor/typedoc-plugins': 59.1.0(typedoc@0.28.20(typescript@6.0.3))
+      esbuild: 0.28.1
+      lightningcss: 1.33.0
+      postcss: 8.5.26
+      rolldown: 1.2.3
+      typedoc: 0.28.20(typescript@6.0.3)
+      typedoc-plugin-markdown: 4.13.0(typedoc@0.28.20(typescript@6.0.3))
+      typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.20(typescript@6.0.3))
+      typescript: 6.0.3
+    transitivePeerDependencies:
+      - '@bomb.sh/tab'
+      - '@csstools/css-parser-algorithms'
+      - '@csstools/css-tokenizer'
+      - '@csstools/postcss-slow-plugins'
+      - '@opentelemetry/api'
+      - '@sveltejs/kit'
+      - '@ts-macro/tsc'
+      - '@typescript/native-preview'
+      - '@visulima/boxen'
+      - '@visulima/css-style-inject'
+      - '@visulima/find-cache-dir'
+      - '@visulima/redact'
+      - elysia
+      - express
+      - fastify
+      - github-slugger
+      - hono
+      - ini
+      - json5
+      - jsonc-parser
+      - next
+      - picomatch
+      - rotating-file-stream
+      - smol-toml
+      - vue-tsc
+      - yaml
+
+  '@visulima/packem@2.0.0-alpha.99(921af08c50c2d01dee43489b3f9d8049)':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 1.7.0
@@ -12283,13 +12358,13 @@ snapshots:
       workerpool: 10.0.3
     optionalDependencies:
       '@babel/core': 8.0.1
-      '@ckeditor/typedoc-plugins': 59.0.0(typedoc@0.28.20(typescript@6.0.3))
+      '@ckeditor/typedoc-plugins': 59.1.0(typedoc@0.28.20(typescript@6.0.3))
       esbuild: 0.28.1
       lightningcss: 1.33.0
       postcss: 8.5.26
       rolldown: 1.2.3
       typedoc: 0.28.20(typescript@6.0.3)
-      typedoc-plugin-markdown: 4.12.0(typedoc@0.28.20(typescript@6.0.3))
+      typedoc-plugin-markdown: 4.13.0(typedoc@0.28.20(typescript@6.0.3))
       typedoc-plugin-rename-defaults: 0.7.3(typedoc@0.28.20(typescript@6.0.3))
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -13289,10 +13364,10 @@ snapshots:
     dependencies:
       type-fest: 1.4.0
 
-  css-select@5.2.2:
+  css-select@6.0.0:
     dependencies:
       boolbase: 1.0.0
-      css-what: 6.2.2
+      css-what: 7.0.0
       domhandler: 5.0.3
       domutils: 3.2.2
       nth-check: 2.1.1
@@ -13307,7 +13382,7 @@ snapshots:
       mdn-data: 2.27.1
       source-map-js: 1.2.1
 
-  css-what@6.2.2: {}
+  css-what@7.0.0: {}
 
   csso@5.0.5:
     dependencies:
@@ -14314,6 +14389,10 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.5
 
+  fdir@6.5.0(picomatch@4.0.7):
+    optionalDependencies:
+      picomatch: 4.0.7
+
   fflate@0.8.3: {}
 
   figures@2.0.0:
@@ -14818,7 +14897,7 @@ snapshots:
       commander: 15.0.0
       entities: 8.0.0
       lightningcss: 1.33.0
-      svgo: 4.0.2
+      svgo: 4.1.0
       terser: 5.49.2
 
   html-standard@0.0.13:
@@ -15478,9 +15557,9 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
-  lint-staged@17.3.0:
+  lint-staged@17.4.1:
     dependencies:
-      picomatch: 4.0.5
+      picomatch: 4.0.7
       string-argv: 0.3.2
       tinyexec: 1.3.0
     optionalDependencies:
@@ -17337,6 +17416,8 @@ snapshots:
 
   picomatch@4.0.5: {}
 
+  picomatch@4.0.7: {}
+
   pify@3.0.0: {}
 
   pkg-conf@2.1.0:
@@ -17840,6 +17921,20 @@ snapshots:
     dependencies:
       commenting: 1.1.0
       fdir: 6.5.0(picomatch@4.0.5)
+      lodash: 4.18.1
+      magic-string: 0.30.21
+      moment: 2.30.1
+      package-name-regex: 2.0.6
+      rollup: 4.62.4
+      spdx-expression-validate: 2.0.0
+      spdx-satisfies: 5.0.1
+    transitivePeerDependencies:
+      - picomatch
+
+  rollup-plugin-license@3.7.1(picomatch@4.0.7)(rollup@4.62.4):
+    dependencies:
+      commenting: 1.1.0
+      fdir: 6.5.0(picomatch@4.0.7)
       lodash: 4.18.1
       magic-string: 0.30.21
       moment: 2.30.1
@@ -18476,12 +18571,12 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  svgo@4.0.2:
+  svgo@4.1.0:
     dependencies:
       commander: 11.1.0
-      css-select: 5.2.2
+      css-select: 6.0.0
       css-tree: 3.2.1
-      css-what: 6.2.2
+      css-what: 7.0.0
       csso: 5.0.5
       picocolors: 1.1.1
       sax: 1.6.1
@@ -18859,7 +18954,7 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-markdown@4.12.0(typedoc@0.28.20(typescript@6.0.3)):
+  typedoc-plugin-markdown@4.13.0(typedoc@0.28.20(typescript@6.0.3)):
     dependencies:
       typedoc: 0.28.20(typescript@6.0.3)
 
