@@ -72,7 +72,7 @@ const getPackage = async (
 
         return packageJson;
     } catch (error: unknown) {
-        if (error instanceof Error && "code" in error && (error as NodeJS.ErrnoException).code === "ENOENT") {
+        if (error instanceof Error && "code" in error && error.code === "ENOENT") {
             const semanticError = getError("ENOPKG");
 
             throw new AggregateError([semanticError], semanticError.message, { cause: error });
