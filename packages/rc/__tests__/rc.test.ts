@@ -27,6 +27,12 @@ const mocks = vi.hoisted(() => {
     return { mockedCwd: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
 });
 
+// The precedence rules under test span `/etc/bemrc`, `/.bemrc` and `$HOME`, and a
+// test process cannot create files at those paths. Faking the three modules that
+// reach the filesystem is the only way to exercise that ordering; the cases that
+// live entirely under a temp directory are covered without mocks in
+// rc-unmocked.test.ts.
+// eslint-disable-next-line no-restricted-syntax
 vi.mock(import("@visulima/fs"), async () => {
     const actual = await vi.importActual("@visulima/fs");
 
@@ -37,6 +43,7 @@ vi.mock(import("@visulima/fs"), async () => {
     };
 });
 
+// eslint-disable-next-line no-restricted-syntax -- see the note on the @visulima/fs mock above
 vi.mock(import("node:os"), async () => {
     const actual = await vi.importActual("node:os");
 
@@ -46,6 +53,7 @@ vi.mock(import("node:os"), async () => {
     };
 });
 
+// eslint-disable-next-line no-restricted-syntax -- see the note on the @visulima/fs mock above
 vi.mock(import("node:process"), async () => {
     const actual = await vi.importActual("node:process");
 

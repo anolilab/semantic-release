@@ -1,49 +1,32 @@
-import { mkdtempSync } from "node:fs";
+import { mkdtempSync, realpathSync } from "node:fs";
 import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join as pathJoin } from "node:path";
-import { env } from "node:process";
+import { chdir, cwd, env } from "node:process";
 
 import { writeJsonSync } from "@visulima/fs";
 import { join } from "@visulima/path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import { rc } from "../src";
-
-const mocks = vi.hoisted(() => {
-    return { mockedCwd: vi.fn(), mockedFindUpSync: vi.fn(), mockedHomeDir: vi.fn(), mockedIsAccessibleSync: vi.fn(), mockedReadFileSync: vi.fn() };
-});
-
-vi.mock(import("node:os"), async () => {
-    const actual = await vi.importActual("node:os");
-
-    return {
-        ...actual,
-        homedir: mocks.mockedHomeDir,
-    };
-});
-
-vi.mock(import("node:process"), async () => {
-    const actual = await vi.importActual("node:process");
-
-    return {
-        ...actual,
-        cwd: mocks.mockedCwd,
-    };
-});
 
 describe("rc-unmocked", () => {
     let cwdPath: string;
     let homePath: string;
+    let originalCwd: string;
 
     const npmEnvironment: Record<keyof typeof env, string | undefined> = {};
 
     beforeEach(() => {
-        cwdPath = mkdtempSync(pathJoin(tmpdir(), "rc-unmocked-"));
-        homePath = mkdtempSync(pathJoin(tmpdir(), "rc-unmocked-home-"));
+        originalCwd = cwd();
 
-        mocks.mockedCwd.mockReturnValue(cwdPath);
-        mocks.mockedHomeDir.mockReturnValue(homePath);
+        // realpathSync because the temp dir is reached through a symlink on macOS,
+        // and chdir reports the resolved path — the expected file lists are built
+        // from these values, so both sides have to agree.
+        const temporaryDirectory = tmpdir();
+
+        cwdPath = realpathSync(mkdtempSync(pathJoin(temporaryDirectory, "rc-unmocked-")));
+        homePath = realpathSync(mkdtempSync(pathJoin(temporaryDirectory, "rc-unmocked-home-")));
 
         // eslint-disable-next-line no-restricted-syntax
         for (const key in env) {
@@ -58,6 +41,8 @@ describe("rc-unmocked", () => {
     });
 
     afterEach(async () => {
+        chdir(originalCwd);
+
         // eslint-disable-next-line no-restricted-syntax,guard-for-in
         for (const key in npmEnvironment) {
             env[key] = npmEnvironment[key];
@@ -76,9 +61,11 @@ describe("rc-unmocked", () => {
             writeJsonSync(join(cwdPath, file), { test: index });
         });
 
-        mocks.mockedCwd.mockReturnValue(join(cwdPath, "grandparent", "parent", "cwd"));
+        // The default working directory is what is under test here, so move into it
+        // for real rather than replacing process.cwd with a stub.
+        chdir(join(cwdPath, "grandparent", "parent", "cwd"));
 
-        expect(rc("bem")).toStrictEqual({
+        expect(rc("bem", { home: homePath })).toStrictEqual({
             config: {
                 test: 0,
             },
@@ -98,6 +85,7 @@ describe("rc-unmocked", () => {
         expect(
             rc("bem", {
                 cwd: join(cwdPath, "grandparent", "parent", "cwd"),
+                home: homePath,
             }),
         ).toStrictEqual({
             config: {

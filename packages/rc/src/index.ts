@@ -16,6 +16,23 @@ import { merge } from "ts-deepmerge";
 import isJson from "./utils/is-json";
 
 /**
+ * A single value in a configuration tree — whatever JSON, an ini file or an
+ * environment variable can express.
+ */
+type ConfigValue = boolean | null | number | ReadonlyArray<ConfigValue> | string | undefined | { [key: string]: ConfigValue };
+
+/** A configuration object keyed by name, nested to any depth. */
+type ConfigObject = { [key: string]: ConfigValue };
+
+/**
+ * Narrows a parsed value to an object we can merge. Written as a predicate rather
+ * than an assertion so the check that runs is the check the type rests on.
+ * @param value
+ * @returns
+ */
+const isConfigObject = (value: unknown): value is ConfigObject => typeof value === "object" && value !== null && !Array.isArray(value);
+
+/**
  * Modified copy of the env function from https://github.com/dominictarr/rc/blob/a97f6adcc37ee1cad06ab7dc9b0bd842bbc5c664/lib/utils.js#L42.
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.APACHE2
  * @license https://github.com/dominictarr/rc/blob/master/LICENSE.BSD
@@ -24,10 +41,8 @@ import isJson from "./utils/is-json";
  * @param environment
  * @returns
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getEnvironment = (prefix: string, environment: Record<string, string | undefined> = env): Record<string, any> => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const returnValue: Record<string, any> = {};
+const getEnvironment = (prefix: string, environment: Record<string, string | undefined> = env): ConfigObject => {
+    const returnValue: ConfigObject = {};
     const l = prefix.length;
 
     // eslint-disable-next-line no-restricted-syntax
@@ -46,13 +61,13 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
             keypath.splice(emptyStringIndex, 1);
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let cursor: Record<string, any> = returnValue;
+        // Goes undefined once the walk reaches a key already holding a primitive:
+        // there is nothing left to descend into, so the rest of the keypath is dropped.
+        let cursor: ConfigObject | undefined = returnValue;
 
         keypath.forEach((subkey, index) => {
             // (check for subkey first so we ignore empty strings)
-            // (check for cursor to avoid assignment to primitive objects)
-            if (!subkey || typeof cursor !== "object") {
+            if (!subkey || cursor === undefined) {
                 return;
             }
 
@@ -69,8 +84,9 @@ const getEnvironment = (prefix: string, environment: Record<string, string | und
             }
 
             // Increment cursor used to track the object at the current depth
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            cursor = cursor[subkey];
+            const next = cursor[subkey];
+
+            cursor = isConfigObject(next) ? next : undefined;
         });
     }
 
@@ -182,38 +198,39 @@ const getConfigFiles = (name: string, home: string, internalCwd: string, stopAt?
  * @returns
  * An object containing the final merged `config` and the ordered list of `files` that were considered.
  */
-// eslint-disable-next-line import/prefer-default-export
 export const rc = (
     name: string,
     options: {
         config?: string;
         cwd?: string;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        defaults?: Record<string, any>;
+        defaults?: ConfigObject;
         home?: string;
         stopAt?: string;
     } = {},
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-): { config: Record<string, any>; files: string[] } => {
-    // eslint-disable-next-line no-param-reassign
-    options = {
-        cwd: cwd(),
-        home: homedir(),
-        ...options,
-    };
+): { config: ConfigObject; files: string[] } => {
+    const home = options.home ?? homedir();
+    const internalCwd = options.cwd ?? cwd();
 
     // eslint-disable-next-line @typescript-eslint/naming-convention, sonarjs/no-unused-vars
     const { config: _, ...environment } = getEnvironment(`${name}_`);
 
-    const configFiles = getConfigFiles(name, options.home as string, options.cwd as string, options.stopAt, env[`${name}_config`], options.config);
+    const configFiles = getConfigFiles(name, home, internalCwd, options.stopAt, env[`${name}_config`], options.config);
 
-    const configs: object[] = [];
+    const configs: ConfigObject[] = [];
 
     for (const file of configFiles) {
         const content = readFileSync(file, { buffer: false });
 
         if (isJson(content)) {
-            configs.push(parseJson(stripJsonComments(content)) as object);
+            const parsed = parseJson(stripJsonComments(content));
+
+            // A config file has to be an object at the top level; a bare string,
+            // number or array in one is a mistake worth naming rather than merging.
+            if (!isConfigObject(parsed)) {
+                throw new TypeError(`Expected ${file} to hold a JSON object, found ${parsed === null ? "null" : typeof parsed}.`);
+            }
+
+            configs.push(parsed);
         } else {
             configs.push(parse(content));
         }
@@ -223,3 +240,5 @@ export const rc = (
 
     return { config: merge(options.defaults ?? {}, ...configs), files: configFiles };
 };
+
+export type { ConfigObject, ConfigValue };
