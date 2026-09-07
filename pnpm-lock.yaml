@@ -338,8 +338,8 @@ overrides:
   hono@>=4.0.0 <4.12.27: ^4.13.1
   hono@>=4.11.8 <4.12.27: ^4.13.1
   hono@>=4.3.3 <4.12.27: ^4.13.1
-  js-yaml@<=4.1.1: '>=5.4.1'
-  js-yaml@>=4.0.0 <4.3.0: ^5.4.1
+  js-yaml@<=4.1.1: '>=4.3.0 <5'
+  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <5'
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.18.1'
@@ -6494,10 +6494,6 @@ packages:
     resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
     hasBin: true
 
-  js-yaml@5.4.1:
-    resolution: {integrity: sha512-28R/k+NAjeuf7+CKlTxWZVExJGwVVLwY06DgEnOMz2gEpfNkDcD7QvyiVPT0xy0XXhU8vHsd4Ot42OOPdJG7dQ==}
-    hasBin: true
-
   jsdoc-type-pratt-parser@7.3.0:
     resolution: {integrity: sha512-DoyJXo7x/n48M3NsGOs9QnEws0ft0tV3YsSgvWMNxz2hZtz+Q6fpqUD96lVYX4a+jcEkzHeFNDJOn68TzXfbdA==}
     engines: {node: '>=20.0.0'}
@@ -11385,7 +11381,7 @@ snapshots:
   '@semrel-extra/topo@1.14.1':
     dependencies:
       fast-glob: 3.3.3
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
       toposource: 1.2.0
 
   '@shikijs/engine-oniguruma@3.23.0':
@@ -13307,12 +13303,12 @@ snapshots:
   cosmiconfig@10.0.0:
     dependencies:
       env-paths: 2.2.1
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
 
   cosmiconfig@8.3.6(typescript@6.0.3):
     dependencies:
       import-fresh: 3.3.1
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
@@ -13322,7 +13318,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 6.0.3
@@ -15386,10 +15382,6 @@ snapshots:
   js-tokens@4.0.0: {}
 
   js-yaml@4.3.2:
-    dependencies:
-      argparse: 2.0.1
-
-  js-yaml@5.4.1:
     dependencies:
       argparse: 2.0.1
 
@@ -17533,7 +17525,7 @@ snapshots:
   rc-config-loader@4.1.4(supports-color@10.2.2):
     dependencies:
       debug: 4.4.3(supports-color@10.2.2)
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
       json5: 2.2.3
       require-from-string: 2.0.2
     transitivePeerDependencies:
@@ -17542,7 +17534,7 @@ snapshots:
   rc-config-loader@4.1.4(supports-color@7.2.0):
     dependencies:
       debug: 4.4.3(supports-color@7.2.0)
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
       json5: 2.2.3
       require-from-string: 2.0.2
     transitivePeerDependencies:
@@ -18092,7 +18084,7 @@ snapshots:
       cosmiconfig: 8.3.6(typescript@6.0.3)
       execa: 8.0.1
       fs-extra: 11.4.0
-      js-yaml: 5.4.1
+      js-yaml: 4.3.2
       lodash: 4.18.1
       nerf-dart: 1.0.0
       read-pkg: 8.1.0
