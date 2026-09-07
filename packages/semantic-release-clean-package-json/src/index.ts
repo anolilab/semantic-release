@@ -9,6 +9,12 @@ import type { CommonContext, PublishContext } from "./definitions/context";
 import type { PluginConfig } from "./definitions/plugin-config";
 import getPackage from "./utils/get-package";
 
+/** A value as it can appear inside a `package.json`. */
+type ManifestValue = boolean | null | number | ReadonlyArray<ManifestValue> | string | { [key: string]: ManifestValue };
+
+/** A parsed `package.json`, keyed by field name. */
+type ManifestObject = { [key: string]: ManifestValue };
+
 /**
  * Clean the `package.json` that will be published by removing properties that are not relevant for the
  * published artifact. All properties defined in `defaultKeepProperties` plus any properties provided
@@ -90,10 +96,15 @@ export const success = async (pluginConfig: PluginConfig, context: CommonContext
         const packageJson = await getPackage(pluginConfig, context);
 
         const backupContent = await readFile(backupPackageJson);
-        const backupPackageJsonContent = (await readJson(backupPackageJson)) as Record<string, unknown>;
+        const backupPackageJsonContent = await readJson<ManifestObject>(backupPackageJson);
 
-        // Overwrite the version from the backup package.json
-        backupPackageJsonContent.version = packageJson.version;
+        // Overwrite the version from the backup package.json. A manifest without one
+        // loses the field entirely, which is what serializing `undefined` did before.
+        if (packageJson.version === undefined) {
+            delete backupPackageJsonContent.version;
+        } else {
+            backupPackageJsonContent.version = packageJson.version;
+        }
 
         await writeFile(join(cwd, "package.json"), serializeManifest(backupPackageJsonContent, backupContent));
 
