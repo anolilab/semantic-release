@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-preset [13.4.23](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.22...@anolilab/semantic-release-preset@13.4.23) (2026-09-08)
+
+### Miscellaneous Chores
+
+* point every Discord link at the anolilab server ([8cee2ca](https://github.com/anolilab/semantic-release/commit/8cee2ca80ba2b7bac1af7a1ead62441492afa001))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.19
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.22
+
 ## @anolilab/semantic-release-preset [13.4.22](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.21...@anolilab/semantic-release-preset@13.4.22) (2026-08-20)
 
 
