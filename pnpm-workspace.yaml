@@ -109,7 +109,7 @@ catalogs:
     yaml: 2.9.0
     yargs: 18.1.0
   test:
-    '@vitest/coverage-v8': 4.1.11
+    '@vitest/coverage-v8': 5.0.0
     '@vitest/ui': 4.1.10
     vitest: 4.1.10
   tsc:
