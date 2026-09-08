@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-preset [13.4.24](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.23...@anolilab/semantic-release-preset@13.4.24) (2026-09-08)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.23
+
 ## @anolilab/semantic-release-preset [13.4.23](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.22...@anolilab/semantic-release-preset@13.4.23) (2026-09-08)
 
 ### Miscellaneous Chores
