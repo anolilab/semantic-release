@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [8.1.23](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.22...@anolilab/semantic-release-pnpm@8.1.23) (2026-09-08)
+
+### Bug Fixes
+
+* **lint:** revert eslint-config to v28 and relax unsafe-type rules ([#435](https://github.com/anolilab/semantic-release/issues/435)) ([33999ea](https://github.com/anolilab/semantic-release/commit/33999ea2786e544f0eca6fd751db12473719576f))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.9
+
 ## @anolilab/semantic-release-pnpm [8.1.22](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.21...@anolilab/semantic-release-pnpm@8.1.22) (2026-09-08)
 
 ### Miscellaneous Chores
