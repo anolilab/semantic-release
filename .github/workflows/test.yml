@@ -178,6 +178,10 @@ jobs:
 
             - name: "Prepare nx cache"
               shell: "bash"
+              # Only compress the nx cache when affected tasks actually ran and
+              # created it; a no-op file list (e.g. lockfile-only changes, which
+              # the nx affected ignore list filters out) leaves no .nx/cache.
+              if: "hashFiles('.nx/cache/**') != ''"
               run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
 
             - name: "Upload code coverage to codecov"
