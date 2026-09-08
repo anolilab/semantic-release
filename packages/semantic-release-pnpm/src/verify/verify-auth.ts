@@ -62,7 +62,7 @@ const getCacheKey = (registry: string, context: CommonContext): string => {
             cwd: context.cwd,
             defaults: { registry: OFFICIAL_REGISTRY },
         });
-        const token = getAuthToken(registry, { npmrc: config });
+        const token = getAuthToken(registry, { npmrc: config as Record<string, string | undefined> });
 
         if (token) {
             const tokenValue = token.token;

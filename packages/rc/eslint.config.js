@@ -25,6 +25,9 @@ export default createConfig(
     },
     {
         ignores: ["**/__tests__"],
+        linterOptions: {
+            reportUnusedDisableDirectives: "off",
+        },
         rules: {
             "unicorn/filename-case": "off",
             "unicorn/prefer-module": "off",
