@@ -1,3 +1,22 @@
+## @anolilab/multi-semantic-release [4.4.10](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.9...@anolilab/multi-semantic-release@4.4.10) (2026-09-08)
+
+### Bug Fixes
+
+* **lint:** revert eslint-config to v28 and relax unsafe-type rules ([#435](https://github.com/anolilab/semantic-release/issues/435)) ([33999ea](https://github.com/anolilab/semantic-release/commit/33999ea2786e544f0eca6fd751db12473719576f))
+
+### Miscellaneous Chores
+
+* point every Discord link at the anolilab server ([8cee2ca](https://github.com/anolilab/semantic-release/commit/8cee2ca80ba2b7bac1af7a1ead62441492afa001))
+
+### Code Refactoring
+
+* serialize manifests through one shared helper ([18c6e0a](https://github.com/anolilab/semantic-release/commit/18c6e0a8e5658c34d12d444c9b1ed4563cb5b393))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.23
+
 ## @anolilab/multi-semantic-release [4.4.9](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.8...@anolilab/multi-semantic-release@4.4.9) (2026-08-20)
 
 ### Bug Fixes
