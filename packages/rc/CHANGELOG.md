@@ -1,3 +1,13 @@
+## @anolilab/rc [4.0.8](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.7...@anolilab/rc@4.0.8) (2026-09-08)
+
+### Bug Fixes
+
+* **lint:** type rc and clean-package-json instead of asserting past the checks ([#425](https://github.com/anolilab/semantic-release/issues/425)) ([5dd68e2](https://github.com/anolilab/semantic-release/commit/5dd68e252cd84f6994854f596960e8be551e0f92))
+
+### Miscellaneous Chores
+
+* point every Discord link at the anolilab server ([8cee2ca](https://github.com/anolilab/semantic-release/commit/8cee2ca80ba2b7bac1af7a1ead62441492afa001))
+
 ## @anolilab/rc [4.0.7](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.6...@anolilab/rc@4.0.7) (2026-08-20)
 
 ### Bug Fixes
