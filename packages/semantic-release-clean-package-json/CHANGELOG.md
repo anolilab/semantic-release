@@ -1,3 +1,22 @@
+## @anolilab/semantic-release-clean-package-json [5.5.19](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.18...@anolilab/semantic-release-clean-package-json@5.5.19) (2026-09-08)
+
+### Bug Fixes
+
+* **lint:** type rc and clean-package-json instead of asserting past the checks ([#425](https://github.com/anolilab/semantic-release/issues/425)) ([5dd68e2](https://github.com/anolilab/semantic-release/commit/5dd68e252cd84f6994854f596960e8be551e0f92))
+
+### Miscellaneous Chores
+
+* point every Discord link at the anolilab server ([8cee2ca](https://github.com/anolilab/semantic-release/commit/8cee2ca80ba2b7bac1af7a1ead62441492afa001))
+
+### Code Refactoring
+
+* serialize manifests through one shared helper ([18c6e0a](https://github.com/anolilab/semantic-release/commit/18c6e0a8e5658c34d12d444c9b1ed4563cb5b393))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.22
+
 ## @anolilab/semantic-release-clean-package-json [5.5.18](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-clean-package-json@5.5.17...@anolilab/semantic-release-clean-package-json@5.5.18) (2026-08-20)
 
 ### Bug Fixes
