@@ -1,3 +1,14 @@
+## @anolilab/semantic-release-pnpm [8.1.22](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.21...@anolilab/semantic-release-pnpm@8.1.22) (2026-09-08)
+
+### Miscellaneous Chores
+
+* point every Discord link at the anolilab server ([8cee2ca](https://github.com/anolilab/semantic-release/commit/8cee2ca80ba2b7bac1af7a1ead62441492afa001))
+
+
+### Dependencies
+
+* **@anolilab/rc:** upgraded to 4.0.8
+
 ## @anolilab/semantic-release-pnpm [8.1.21](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.20...@anolilab/semantic-release-pnpm@8.1.21) (2026-08-20)
 
 ### Bug Fixes
