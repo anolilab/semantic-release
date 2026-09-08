@@ -78,6 +78,7 @@ jobs:
 
             - name: "Prepare nx cache"
               shell: "bash"
+              if: "hashFiles('.nx/cache/**') != ''"
               run: "tar -cf - .nx/cache | lz4 > /tmp/nx_cache.tar.lz4" # compress nx cache
 
             - name: "Upload code coverage to codecov"
