@@ -110,8 +110,8 @@ catalogs:
     yargs: 18.1.0
   test:
     '@vitest/coverage-v8': 4.1.11
-    '@vitest/ui': 4.1.10
-    vitest: 4.1.10
+    '@vitest/ui': 4.1.11
+    vitest: 4.1.11
   tsc:
     typescript: 6.0.3
   types:
