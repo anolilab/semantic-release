@@ -197,6 +197,7 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
+  browserslist@<=4.28.6: '>=4.28.7'
   '@typescript-eslint/utils@<8.67.0': '8.66.0'
   '@visulima/fs': '^5.1.0'
   '@visulima/package': '5.0.11'
