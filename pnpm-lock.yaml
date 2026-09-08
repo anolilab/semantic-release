@@ -529,7 +529,7 @@ importers:
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-clean-package-json':
         specifier: 5.5.18
-        version: link:../semantic-release-clean-package-json
+        version: 5.5.18(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.20
         version: 8.1.20(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@10.2.2)(yaml@2.9.0)
@@ -767,8 +767,8 @@ importers:
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.20
-        version: 8.1.20(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@10.2.2)(yaml@2.9.0)
+        specifier: 8.1.22
+        version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.5
@@ -842,7 +842,7 @@ importers:
         specifier: catalog:prod
         version: 3.0.1
       '@anolilab/rc':
-        specifier: 4.0.7
+        specifier: 4.0.8
         version: link:../rc
       '@semantic-release/error':
         specifier: catalog:cli
@@ -996,7 +996,7 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.5.18
+        specifier: 5.5.19
         version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: catalog:cli
@@ -1033,7 +1033,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.2(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.21
+        specifier: 8.1.22
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -1210,6 +1210,10 @@ packages:
 
   '@anolilab/rc@4.0.7':
     resolution: {integrity: sha512-ek/9gVQagmbj+09/qlfu9bz7DBb03JUcgw7O7A+qEmXw6H2LfBUVlSJwFsKYSnIcH6MukHo9VlaMX/nWkVWFFw==}
+    engines: {node: ^22.14.0 || >=24.10.0}
+
+  '@anolilab/semantic-release-clean-package-json@5.5.18':
+    resolution: {integrity: sha512-O9Q297EtKavVOxo2dk1o6RUujcBvos8mcVXjfNo4U/a6rIHme+eQ5Hb7UJaALDlvCq1Kpwow9AATJFECmDvGqw==}
     engines: {node: ^22.14.0 || >=24.10.0}
 
   '@anolilab/semantic-release-pnpm@8.1.20':
@@ -9748,6 +9752,19 @@ snapshots:
       ini: 7.0.0
       ts-deepmerge: 8.0.0
 
+  '@anolilab/semantic-release-clean-package-json@5.5.18(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)':
+    dependencies:
+      '@semantic-release/error': 4.0.0
+      '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(yaml@2.9.0)
+      '@visulima/path': 3.1.0
+      type-fest: 5.8.0
+    transitivePeerDependencies:
+      - ini
+      - json5
+      - jsonc-parser
+      - smol-toml
+      - yaml
+
   '@anolilab/semantic-release-pnpm@8.1.20(json5@2.2.3)(jsonc-parser@3.3.1)(supports-color@10.2.2)(yaml@2.9.0)':
     dependencies:
       '@actions/core': 3.0.1
@@ -12012,8 +12029,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.66.0(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.66.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.66.0
+      '@typescript-eslint/tsconfig-utils': 8.69.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.69.0
       debug: 4.4.3(supports-color@10.2.2)
       typescript: 6.0.3
     transitivePeerDependencies:
