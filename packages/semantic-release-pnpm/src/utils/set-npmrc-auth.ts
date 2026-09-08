@@ -57,7 +57,7 @@ const setNpmrcAuth = async (
         logger.log("Reading npm config from %s", files.join(", "));
     }
 
-    const existingToken = getAuthToken(registry, { npmrc: config });
+    const existingToken = getAuthToken(registry, { npmrc: config as Record<string, string | undefined> });
 
     if (existingToken) {
         debug(`Using existing authentication token from npmrc files for registry "${registry}"`);
