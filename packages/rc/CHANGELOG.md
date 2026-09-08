@@ -1,3 +1,9 @@
+## @anolilab/rc [4.0.9](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.8...@anolilab/rc@4.0.9) (2026-09-08)
+
+### Bug Fixes
+
+* **lint:** revert eslint-config to v28 and relax unsafe-type rules ([#435](https://github.com/anolilab/semantic-release/issues/435)) ([33999ea](https://github.com/anolilab/semantic-release/commit/33999ea2786e544f0eca6fd751db12473719576f))
+
 ## @anolilab/rc [4.0.8](https://github.com/anolilab/semantic-release/compare/@anolilab/rc@4.0.7...@anolilab/rc@4.0.8) (2026-09-08)
 
 ### Bug Fixes
