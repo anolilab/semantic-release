@@ -47,13 +47,16 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
             context.options ??= {};
 
-            // save some of the original context
+            // Before any step runs, semantic-release replaces options.repositoryUrl with the
+            // authenticated push URL it resolved (getGitAuthUrl) and keeps the raw one as
+            // options.originalRepositoryURL. npmPackage.options still holds the raw manifest URL,
+            // so re-applying it below would hand the nested plugins a URL with no credentials and
+            // break push-back on hosts that require them (see #241).
             const { repositoryUrl } = context.options;
 
             Object.assign(context.options, npmPackage.options);
             Object.assign(context.options, context.options._pkgOptions ?? {});
 
-            // restore some of the original context
             if (repositoryUrl) {
                 context.options.repositoryUrl = repositoryUrl;
             }
