@@ -43,6 +43,25 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
         const { dir, name, plugins } = npmPackage;
         const debugPrefix = `[${name}]`;
 
+        const applyPackageOptions = (context: SemanticReleaseContext): void => {
+            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+            context.options ??= {};
+
+            // Before any step runs, semantic-release replaces options.repositoryUrl with the
+            // authenticated push URL it resolved (getGitAuthUrl) and keeps the raw one as
+            // options.originalRepositoryURL. npmPackage.options still holds the raw manifest URL,
+            // so re-applying it below would hand the nested plugins a URL with no credentials and
+            // break push-back on hosts that require them (see #241).
+            const { repositoryUrl } = context.options;
+
+            Object.assign(context.options, npmPackage.options);
+            Object.assign(context.options, context.options._pkgOptions ?? {});
+
+            if (repositoryUrl) {
+                context.options.repositoryUrl = repositoryUrl;
+            }
+        };
+
         /**
          * @param _pluginOptions Options to configure this plugin.
          * @param context The semantic-release context.
@@ -50,13 +69,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @internal
          */
         const verifyConditions = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!context.options) {
-                context.options = {};
-            }
-
-            Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions ?? {});
+            applyPackageOptions(context);
 
             context.cwd = dir;
 
@@ -89,13 +102,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 throw new Error("context.branch is required");
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!context.options) {
-                context.options = {};
-            }
-
-            Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions ?? {});
+            applyPackageOptions(context);
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._preRelease = context.branch.prerelease ?? null;
@@ -223,13 +230,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @internal
          */
         const generateNotes = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<string> => {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!context.options) {
-                context.options = {};
-            }
-
-            Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions ?? {});
+            applyPackageOptions(context);
 
             context.cwd = dir;
 
@@ -305,13 +306,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
         };
 
         const prepare = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!context.options) {
-                context.options = {};
-            }
-
-            Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions ?? {});
+            applyPackageOptions(context);
 
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping prepare in dry-run mode");
@@ -350,13 +345,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
         };
 
         const publish = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<unknown> => {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!context.options) {
-                context.options = {};
-            }
-
-            Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions ?? {});
+            applyPackageOptions(context);
 
             if (flags.dryRun) {
                 debug(debugPrefix, "skipping publish in dry-run mode");
@@ -395,13 +384,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @internal
          */
         const verifyRelease = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<void> => {
-            // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-            if (!context.options) {
-                context.options = {};
-            }
-
-            Object.assign(context.options, npmPackage.options);
-            Object.assign(context.options, context.options._pkgOptions ?? {});
+            applyPackageOptions(context);
             context.cwd = dir;
 
             await plugins.verifyRelease?.(context);
