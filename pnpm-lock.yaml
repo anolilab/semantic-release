@@ -98,8 +98,8 @@ catalogs:
       specifier: 10.1.0
       version: 10.1.0
     '@anolilab/eslint-config':
-      specifier: 28.1.5
-      version: 28.1.5
+      specifier: 29.0.1
+      version: 29.0.1
     '@anolilab/lint-staged-config':
       specifier: 12.0.1
       version: 12.0.1
@@ -525,7 +525,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.5(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
+        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
@@ -649,7 +649,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.5(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
+        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
@@ -764,7 +764,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.5(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
+        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
@@ -885,7 +885,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.5(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
+        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
@@ -1030,7 +1030,7 @@ importers:
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 28.1.5(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
+        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
@@ -1083,8 +1083,8 @@ packages:
     peerDependencies:
       '@commitlint/cli': ^17.6.5 || ^18.x || ^19.x || ^20.0.0 || ^21.0.0
 
-  '@anolilab/eslint-config@28.1.5':
-    resolution: {integrity: sha512-jYq1GEn8aPDEPkK27jyeCCIty82Sw1UdqZAT178UjjceiQQ1B4kXmm+N6eh0OyRS3Shq/7shCX7fr/yMg4PLhA==}
+  '@anolilab/eslint-config@29.0.1':
+    resolution: {integrity: sha512-QG1VX8DfQCY1q56IiHaorOqFC+32fAEvOZX80bKBoZWg/kgGsaBVPvzLirvyQzRk+jfvS8JqLCMXdjZoUXfBQA==}
     engines: {node: '>=22.12.0 <=25.*'}
     peerDependencies:
       '@eslint-react/eslint-plugin': 5.18.3
@@ -9627,7 +9627,7 @@ snapshots:
       - conventional-commits-parser
       - typescript
 
-  '@anolilab/eslint-config@28.1.5(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)':
+  '@anolilab/eslint-config@29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)':
     dependencies:
       '@e18e/eslint-plugin': 0.8.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))
       '@eslint-community/eslint-plugin-eslint-comments': 4.7.2(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))
