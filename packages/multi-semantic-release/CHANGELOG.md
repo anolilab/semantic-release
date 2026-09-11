@@ -1,3 +1,13 @@
+## @anolilab/multi-semantic-release [4.4.13](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.12...@anolilab/multi-semantic-release@4.4.13) (2026-09-11)
+
+### Bug Fixes
+
+* keep the repository url when forking ([400495f](https://github.com/anolilab/semantic-release/commit/400495f88f94d6e1ebce8a8dc9b44b0e04159b45))
+
+### Tests
+
+* **msr:** fix lint errors and cover the prepare step in the repo URL tests ([9866e16](https://github.com/anolilab/semantic-release/commit/9866e16f824eabaa4a1165b6c97ad890157b77aa))
+
 ## @anolilab/multi-semantic-release [4.4.12](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.11...@anolilab/multi-semantic-release@4.4.12) (2026-09-11)
 
 ## @anolilab/multi-semantic-release [4.4.11](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.10...@anolilab/multi-semantic-release@4.4.11) (2026-09-08)
