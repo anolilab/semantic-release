@@ -1,3 +1,5 @@
+## @anolilab/multi-semantic-release [4.4.12](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.11...@anolilab/multi-semantic-release@4.4.12) (2026-09-11)
+
 ## @anolilab/multi-semantic-release [4.4.11](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.10...@anolilab/multi-semantic-release@4.4.11) (2026-09-08)
 
 ## @anolilab/multi-semantic-release [4.4.10](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.9...@anolilab/multi-semantic-release@4.4.10) (2026-09-08)
