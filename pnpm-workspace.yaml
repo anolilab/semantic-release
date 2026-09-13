@@ -34,7 +34,7 @@ catalogs:
   dev:
     '@arethetypeswrong/cli': ^0.18.5
     '@ckeditor/typedoc-plugins': 61.2.0
-    '@visulima/packem': 2.0.0-alpha.99
+    '@visulima/packem': 2.0.0
     '@visulima/pail': 4.0.2
     conventional-changelog-conventionalcommits: 9.3.1
     dockerode: 5.0.1
@@ -75,7 +75,7 @@ catalogs:
   network:
     browserslist-config-anolilab: 9.0.1
   node:
-    '@visulima/path': ^3.0.0
+    '@visulima/path': ^3.1.0
     cross-env: ^10.1.0
     execa: ^10.0.1
     pkg-pr-new: 0.0.88
@@ -89,7 +89,7 @@ catalogs:
     '@babel/core': 8.0.1
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^5.1.0
-    '@visulima/package': 5.0.11
+    '@visulima/package': 5.0.21
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 9.3.1
@@ -203,7 +203,7 @@ overrides:
   browserslist@<=4.28.6: '>=4.28.7'
   '@typescript-eslint/utils@<8.67.0': '8.66.0'
   '@visulima/fs': '^5.1.0'
-  '@visulima/package': '5.0.11'
+  '@visulima/package': '5.0.21'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.4'
   '@hono/node-server': '>=2.1.0'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
