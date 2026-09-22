@@ -181,8 +181,8 @@ catalogs:
       specifier: 3.0.1
       version: 3.0.1
     '@babel/core':
-      specifier: 8.0.1
-      version: 8.0.1
+      specifier: 8.0.6
+      version: 8.0.6
     '@semrel-extra/topo':
       specifier: ^1.14.1
       version: 1.14.1
@@ -398,7 +398,7 @@ importers:
         version: 13.0.6(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))
       '@babel/core':
         specifier: catalog:prod
-        version: 8.0.1
+        version: 8.0.6
       '@commitlint/cli':
         specifier: catalog:lint
         version: 21.2.2(@types/node@26.6.2)(conventional-commits-parser@7.1.2)(typescript@6.0.3)
@@ -1243,6 +1243,10 @@ packages:
 
   '@babel/core@8.0.1':
     resolution: {integrity: sha512-5FgxM4dLQpMJHSiVATk8foW263dVHQHBVpXYiimNECVWG01f4nFyEbQixeT6Mwvg7TayREJ2gpKl3o2RoMdnqw==}
+    engines: {node: ^22.18.0 || >=24.11.0}
+
+  '@babel/core@8.0.6':
+    resolution: {integrity: sha512-5zwYt1V4ji3mXKKRIAkohSJ29WepxNwxQi+7y7P5AcVPh1dcxnZBU2cfxHnPwS+u9+lZnXPsv30TQaF2xg+Tfg==}
     engines: {node: ^22.18.0 || >=24.11.0}
 
   '@babel/generator@8.0.6':
@@ -9861,6 +9865,25 @@ snapshots:
       json5: 2.2.3
       obug: 2.2.1
       semver: 7.8.5
+
+  '@babel/core@8.0.6':
+    dependencies:
+      '@babel/code-frame': 8.0.6
+      '@babel/generator': 8.0.6
+      '@babel/helper-compilation-targets': 8.0.6
+      '@babel/helpers': 8.0.5
+      '@babel/parser': 8.0.6
+      '@babel/template': 8.0.0
+      '@babel/traverse': 8.0.6
+      '@babel/types': 8.0.6
+      '@types/gensync': 1.0.5
+      convert-source-map: 2.0.0
+      empathic: 2.1.0
+      gensync: 1.0.0-beta.2
+      import-meta-resolve: 4.2.0
+      json5: 2.2.3
+      obug: 2.2.1
+      verkit: 0.3.2
 
   '@babel/generator@8.0.6':
     dependencies:

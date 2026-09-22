@@ -86,7 +86,7 @@ catalogs:
   prod:
     '@actions/core': 3.0.1
     '@anolilab/rc': 4.0.9
-    '@babel/core': 8.0.1
+    '@babel/core': 8.0.6
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^5.1.0
     '@visulima/package': 5.0.21
