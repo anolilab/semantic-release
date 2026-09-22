@@ -530,10 +530,10 @@ importers:
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.5.22
+        specifier: 5.5.23
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.26
+        specifier: 8.1.27
         version: link:../semantic-release-pnpm
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
@@ -769,7 +769,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.26
+        specifier: 8.1.27
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -998,7 +998,7 @@ importers:
   packages/semantic-release-preset:
     dependencies:
       '@anolilab/semantic-release-clean-package-json':
-        specifier: 5.5.22
+        specifier: 5.5.23
         version: link:../semantic-release-clean-package-json
       '@semantic-release/changelog':
         specifier: catalog:cli
@@ -1035,7 +1035,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.6)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.26
+        specifier: 8.1.27
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -12012,7 +12012,7 @@ snapshots:
   '@typescript-eslint/project-service@8.66.0(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/tsconfig-utils': 8.66.0(typescript@6.0.3)
-      '@typescript-eslint/types': 8.66.0
+      '@typescript-eslint/types': 8.70.0
       debug: 4.4.3(supports-color@10.2.2)
       typescript: 6.0.3
     transitivePeerDependencies:
