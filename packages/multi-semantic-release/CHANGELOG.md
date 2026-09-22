@@ -1,3 +1,11 @@
+## @anolilab/multi-semantic-release [4.4.18](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.17...@anolilab/multi-semantic-release@4.4.18) (2026-09-22)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.24
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.28
+
 ## @anolilab/multi-semantic-release [4.4.17](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.16...@anolilab/multi-semantic-release@4.4.17) (2026-09-22)
 
 
