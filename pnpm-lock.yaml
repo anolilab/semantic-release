@@ -300,7 +300,7 @@ overrides:
   browserslist@<=4.28.6: '>=4.28.9'
   '@typescript-eslint/utils@<8.67.0': 8.66.0
   '@visulima/fs': ^5.1.0
-  '@visulima/package': 5.0.21
+  '@visulima/package': 5.0.24
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.4'
   '@hono/node-server': '>=2.1.1'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
@@ -853,8 +853,8 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.0)
       '@visulima/package':
-        specifier: 5.0.21
-        version: 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+        specifier: 5.0.24
+        version: 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/path':
         specifier: catalog:node
         version: 3.1.0
@@ -3503,8 +3503,8 @@ packages:
     resolution: {integrity: sha512-JVmH9Xa4+w4gYboFPY1pYvXFIncy2HaN6VzZM9mNHDe92g8lB20l+B1pz7qhT9NPAF/6wpEoWxQT4MwQG4Kkng==}
     engines: {node: ^22.14.0 || >=24.10.0}
 
-  '@visulima/package@5.0.21':
-    resolution: {integrity: sha512-YX//NFvxxhSNZDKPVenbbcvWvEp+O9TKPp0MQNsU5IFhy4gIYJRKaYJa3P/OOEYYvd3MB12hbRwFO6Xbb5oOhQ==}
+  '@visulima/package@5.0.24':
+    resolution: {integrity: sha512-RXnCHnz9aVdigN7Y+6DALLf/2lzmyQiHVeuO5/gFBBhAO5eUS3sGZleRrXgv2n22RMcrEXhzUZhZKK0RR5IVPQ==}
     engines: {node: ^22.14.0 || >=24.10.0}
     os: [darwin, linux, win32]
 
@@ -9634,7 +9634,7 @@ snapshots:
       '@typescript-eslint/parser': 8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       '@typescript-eslint/types': 8.66.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.0)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/tsconfig': 3.2.15(ini@7.0.0)(json5@2.2.3)(smol-toml@1.8.0)(yaml@2.9.0)
       '@vitest/eslint-plugin': 1.6.26(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)
       confusing-browser-globals: 1.0.11
@@ -9708,7 +9708,7 @@ snapshots:
       '@typescript-eslint/parser': 8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       '@typescript-eslint/types': 8.66.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.1)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/tsconfig': 3.2.15(ini@7.0.0)(json5@2.2.3)(smol-toml@1.8.0)(yaml@2.9.1)
       '@vitest/eslint-plugin': 1.6.26(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)
       confusing-browser-globals: 1.0.11
@@ -9771,7 +9771,7 @@ snapshots:
   '@anolilab/lint-staged-config@12.0.1(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.5.1)(prettier@3.9.6)(secretlint@13.0.5(supports-color@7.2.0))(smol-toml@1.8.0)(vitest@4.1.11)(yaml@2.9.1)':
     dependencies:
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.1)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       husky: 9.1.7
       shell-quote: 1.10.0
       type-fest: 5.8.0
@@ -12222,7 +12222,7 @@ snapshots:
 
   '@visulima/is-ansi-color-supported@3.0.1': {}
 
-  '@visulima/package@5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)':
+  '@visulima/package@5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)':
     dependencies:
       '@antfu/install-pkg': 2.1.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.0)
@@ -12249,7 +12249,7 @@ snapshots:
       '@swc/types': 0.1.27
       '@visulima/find-cache-dir': 3.0.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.0)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/packem-share': 1.0.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.63.4)(smol-toml@1.8.0)(yaml@2.9.0)
       '@visulima/path': 3.0.0
       '@visulima/rollup-plugin-dts': 1.0.0(@ts-macro/tsc@0.3.7(rollup@4.63.4)(typescript@6.0.3))(ini@7.0.0)(json5@2.2.3)(rolldown@1.2.9)(rollup@4.63.4)(smol-toml@1.8.0)(typescript@6.0.3)(yaml@2.9.0)
@@ -12293,7 +12293,7 @@ snapshots:
       '@swc/types': 0.1.27
       '@visulima/find-cache-dir': 3.0.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.1)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/packem-share': 1.0.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.63.4)(smol-toml@1.8.0)(yaml@2.9.1)
       '@visulima/path': 3.0.0
       '@visulima/rollup-plugin-dts': 1.0.0(@ts-macro/tsc@0.3.7(rollup@4.63.4)(typescript@6.0.3))(ini@7.0.0)(json5@2.2.3)(rolldown@1.2.9)(rollup@4.63.4)(smol-toml@1.8.0)(typescript@6.0.3)(yaml@2.9.1)
@@ -12327,7 +12327,7 @@ snapshots:
     dependencies:
       '@visulima/colorize': 2.0.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.0)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/path': 3.0.0
       rollup: 4.63.4
       safe-stable-stringify: 2.5.0
@@ -12342,7 +12342,7 @@ snapshots:
     dependencies:
       '@visulima/colorize': 2.0.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.1)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/path': 3.0.0
       rollup: 4.63.4
       safe-stable-stringify: 2.5.0
@@ -12521,7 +12521,7 @@ snapshots:
       '@rollup/pluginutils': 5.4.0(rollup@4.63.4)
       '@visulima/css-style-inject': 1.0.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.0)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/packem-share': 1.0.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.63.4)(smol-toml@1.8.0)(yaml@2.9.0)
       '@visulima/path': 3.0.0
       mlly: 1.8.2
@@ -12547,7 +12547,7 @@ snapshots:
       '@rollup/pluginutils': 5.4.0(rollup@4.63.4)
       '@visulima/css-style-inject': 1.0.0
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.8.0)(yaml@2.9.1)
-      '@visulima/package': 5.0.21(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
+      '@visulima/package': 5.0.24(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.8.0)
       '@visulima/packem-share': 1.0.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(rollup@4.63.4)(smol-toml@1.8.0)(yaml@2.9.1)
       '@visulima/path': 3.0.0
       mlly: 1.8.2
