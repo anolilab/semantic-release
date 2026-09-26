@@ -89,7 +89,7 @@ catalogs:
     '@babel/core': 8.0.6
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^5.1.0
-    '@visulima/package': 5.0.21
+    '@visulima/package': 5.0.24
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 9.3.1
@@ -203,7 +203,7 @@ overrides:
   browserslist@<=4.28.6: '>=4.28.9'
   '@typescript-eslint/utils@<8.67.0': '8.66.0'
   '@visulima/fs': '^5.1.0'
-  '@visulima/package': '5.0.21'
+  '@visulima/package': '5.0.24'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.4'
   '@hono/node-server': '>=2.1.1'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
