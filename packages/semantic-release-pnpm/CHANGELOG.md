@@ -1,3 +1,5 @@
+## @anolilab/semantic-release-pnpm [8.1.31](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.30...@anolilab/semantic-release-pnpm@8.1.31) (2026-09-26)
+
 ## @anolilab/semantic-release-pnpm [8.1.30](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.29...@anolilab/semantic-release-pnpm@8.1.30) (2026-09-26)
 
 ## @anolilab/semantic-release-pnpm [8.1.29](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.28...@anolilab/semantic-release-pnpm@8.1.29) (2026-09-22)
