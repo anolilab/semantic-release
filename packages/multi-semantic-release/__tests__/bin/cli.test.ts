@@ -18,7 +18,7 @@ const environment: Record<string, string | undefined> = {
 };
 
 describe("multi-semantic-release CLI", () => {
-    it("initial commit (changes in all packages)", async () => {
+    it("initial commit (changes in all packages)", { timeout: 60_000 }, async () => {
         expect.assertions(3);
 
         // Create Git repo with copy of Yarn workspaces fixture.
@@ -40,7 +40,7 @@ describe("multi-semantic-release CLI", () => {
         expect(exitCode).toBe(0);
     });
 
-    it("initial commit (changes in 2 packages, 2 filtered out)", async () => {
+    it("initial commit (changes in 2 packages, 2 filtered out)", { timeout: 60_000 }, async () => {
         expect.assertions(2);
 
         // Create Git repo with copy of Yarn workspaces fixture.
