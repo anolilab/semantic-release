@@ -131,8 +131,8 @@ catalogs:
       specifier: 17.6.0
       version: 17.6.0
     prettier:
-      specifier: 3.9.6
-      version: 3.9.6
+      specifier: 3.9.9
+      version: 3.9.9
     publint:
       specifier: 0.3.24
       version: 0.3.24
@@ -229,8 +229,8 @@ catalogs:
       specifier: ^3.0.3
       version: 3.0.3
     yaml:
-      specifier: 2.9.0
-      version: 2.9.0
+      specifier: 2.9.1
+      version: 2.9.1
     yargs:
       specifier: 18.2.0
       version: 18.2.0
@@ -389,10 +389,10 @@ importers:
         version: 10.1.3(@commitlint/cli@21.2.2(@types/node@26.6.2)(conventional-commits-parser@7.1.2)(typescript@6.0.3))(@types/node@26.6.3)(conventional-commits-parser@7.1.2)(typescript@6.0.3)
       '@anolilab/lint-staged-config':
         specifier: catalog:lint
-        version: 12.0.1(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.6.0)(prettier@3.9.6)(secretlint@13.0.5(supports-color@7.2.0))(smol-toml@1.9.0)(vitest@4.1.11)(yaml@2.9.1)
+        version: 12.0.1(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.6.0)(prettier@3.9.9)(secretlint@13.0.5(supports-color@7.2.0))(smol-toml@1.9.0)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.6)
+        version: 10.0.3(prettier@3.9.9)
       '@anolilab/textlint-config':
         specifier: catalog:lint
         version: 13.0.6(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))
@@ -449,7 +449,7 @@ importers:
         version: 4.0.5(@types/node@26.6.2)
       prettier:
         specifier: catalog:lint
-        version: 3.9.6
+        version: 3.9.9
       publint:
         specifier: catalog:lint
         version: 0.3.24
@@ -482,7 +482,7 @@ importers:
         version: 1.14.1
       '@visulima/fs':
         specifier: ^5.1.0
-        version: 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(yaml@2.9.0)
+        version: 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(yaml@2.9.1)
       '@visulima/path':
         specifier: catalog:node
         version: 3.1.0
@@ -518,17 +518,17 @@ importers:
         version: 3.0.3
       yaml:
         specifier: catalog:prod
-        version: 2.9.0
+        version: 2.9.1
       yargs:
         specifier: catalog:prod
         version: 18.2.0
     devDependencies:
       '@anolilab/eslint-config':
         specifier: catalog:lint
-        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
+        version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.6)
+        version: 10.0.3(prettier@3.9.9)
       '@anolilab/semantic-release-clean-package-json':
         specifier: 5.5.27
         version: link:../semantic-release-clean-package-json
@@ -585,7 +585,7 @@ importers:
         version: 17.0.35
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.0.0(33cf2e1d802b78e6bd24715597fc014c)
+        version: 2.0.0(094e3bf18d9505ebd3c0855f26c621e4)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.0.2
@@ -615,7 +615,7 @@ importers:
         version: 4.0.0
       prettier:
         specifier: catalog:lint
-        version: 3.9.6
+        version: 3.9.9
       publint:
         specifier: catalog:lint
         version: 0.3.24
@@ -636,7 +636,7 @@ importers:
         version: 6.0.3
       vitest:
         specifier: catalog:test
-        version: 4.1.11(@types/node@26.6.3)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.0))
+        version: 4.1.11(@types/node@26.6.3)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
 
   packages/rc:
     dependencies:
@@ -652,7 +652,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.6)
+        version: 10.0.3(prettier@3.9.9)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
         version: 62.1.0(typedoc@0.28.20(typescript@6.0.3))
@@ -715,7 +715,7 @@ importers:
         version: 10.11.0(jiti@2.7.0)(supports-color@10.2.2)
       prettier:
         specifier: catalog:lint
-        version: 3.9.6
+        version: 3.9.9
       rimraf:
         specifier: catalog:node
         version: 6.1.3
@@ -767,7 +767,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.6)
+        version: 10.0.3(prettier@3.9.9)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.31
         version: link:../semantic-release-pnpm
@@ -818,7 +818,7 @@ importers:
         version: 10.11.0(jiti@2.7.0)(supports-color@10.2.2)
       prettier:
         specifier: catalog:lint
-        version: 3.9.6
+        version: 3.9.9
       rimraf:
         specifier: catalog:node
         version: 6.1.3
@@ -888,7 +888,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.0)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.6)
+        version: 10.0.3(prettier@3.9.9)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.5
@@ -972,7 +972,7 @@ importers:
         version: 8.0.1
       prettier:
         specifier: catalog:lint
-        version: 3.9.6
+        version: 3.9.9
       rimraf:
         specifier: catalog:node
         version: 6.1.3
@@ -1033,7 +1033,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.6)
+        version: 10.0.3(prettier@3.9.9)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.31
         version: link:../semantic-release-pnpm
@@ -1048,7 +1048,7 @@ importers:
         version: 10.11.0(jiti@2.7.0)(supports-color@10.2.2)
       prettier:
         specifier: catalog:lint
-        version: 3.9.6
+        version: 3.9.9
       rimraf:
         specifier: catalog:node
         version: 6.1.3
@@ -7973,8 +7973,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier@3.9.6:
-    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
+  prettier@3.9.9:
+    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -9830,7 +9830,7 @@ snapshots:
       - vitest
       - yaml
 
-  '@anolilab/lint-staged-config@12.0.1(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.6.0)(prettier@3.9.6)(secretlint@13.0.5(supports-color@7.2.0))(smol-toml@1.9.0)(vitest@4.1.11)(yaml@2.9.1)':
+  '@anolilab/lint-staged-config@12.0.1(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.6.0)(prettier@3.9.9)(secretlint@13.0.5(supports-color@7.2.0))(smol-toml@1.9.0)(vitest@4.1.11)(yaml@2.9.1)':
     dependencies:
       '@visulima/fs': 5.1.0(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)(yaml@2.9.1)
       '@visulima/package': 5.0.31(ini@7.0.0)(jsonc-parser@3.3.1)(smol-toml@1.9.0)
@@ -9839,7 +9839,7 @@ snapshots:
       type-fest: 5.8.0
     optionalDependencies:
       lint-staged: 17.6.0
-      prettier: 3.9.6
+      prettier: 3.9.9
       secretlint: 13.0.5(supports-color@7.2.0)
       vitest: 4.1.11(@types/node@26.6.2)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
     transitivePeerDependencies:
@@ -9849,9 +9849,9 @@ snapshots:
       - smol-toml
       - yaml
 
-  '@anolilab/prettier-config@10.0.3(prettier@3.9.6)':
+  '@anolilab/prettier-config@10.0.3(prettier@3.9.9)':
     dependencies:
-      prettier: 3.9.6
+      prettier: 3.9.9
 
   '@anolilab/textlint-config@13.0.6(supports-color@7.2.0)(textlint@15.8.0(supports-color@7.2.0))':
     dependencies:
@@ -12807,7 +12807,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)
       typescript: 6.0.3
-      vitest: 4.1.11(@types/node@26.6.3)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.0))
+      vitest: 4.1.11(@types/node@26.6.3)(@vitest/coverage-v8@4.1.11)(@vitest/ui@4.1.11)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.51.2)(yaml@2.9.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -17740,7 +17740,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier@3.9.6: {}
+  prettier@3.9.9: {}
 
   pretty-ms@9.3.1:
     dependencies:
