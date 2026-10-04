@@ -4,7 +4,7 @@ import { resolve } from "@visulima/path";
 import semver from "semver";
 
 import logger from "../logger";
-import type { Package } from "../types";
+import type { Package, PackageCatalogChange } from "../types";
 import cleanPath from "./clean-path";
 
 const { debug } = logger.withScope("msr:catalogChanges");
@@ -341,3 +341,25 @@ export const getAffectedPackagesFromCatalogChanges = (packages: Package[], catal
 
     return affectedPackages;
 };
+
+/**
+ * Get the catalog changes that affect a single package.
+ * @param pkg The package to check.
+ * @param catalogChanges Map of catalog changes, detected since this package's own last release.
+ * @returns The changed catalog entries the package depends on (dependencies, peerDependencies, optionalDependencies).
+ */
+export const getPackageCatalogChanges = (pkg: Package, catalogChanges: CatalogChanges): PackageCatalogChange[] => {
+    const changes: PackageCatalogChange[] = [];
+
+    for (const [catalogName, catalogChangesForCatalog] of Object.entries(catalogChanges)) {
+        for (const [dependencyName, change] of Object.entries(catalogChangesForCatalog)) {
+            if (change.releaseType && packageUsesCatalog(pkg, `catalog:${catalogName}`, dependencyName)) {
+                changes.push({ catalogName, dependencyName, newVersion: change.newVersion, oldVersion: change.oldVersion, releaseType: change.releaseType });
+            }
+        }
+    }
+
+    return changes;
+};
+
+export type { CatalogChanges };

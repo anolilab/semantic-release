@@ -1804,6 +1804,68 @@ catalogs:
             expect(packageD?.result).toBe(false);
         });
 
+        it("should detect catalog changes since each package's own last release", async () => {
+            expect.assertions(6);
+
+            const cwd = gitInit();
+
+            copyDirectory(`${fixturesPath}/pnpmWorkspaceCatalogs/`, cwd);
+
+            const initialSha = gitCommitAll(cwd, "feat: Initial release with catalogs");
+
+            gitInitOrigin(cwd);
+            gitPush(cwd);
+
+            // Only msr-test-a was last released before the catalog change.
+            gitTag(cwd, "msr-test-a@1.0.0", initialSha);
+
+            writeFileSync(
+                resolve(cwd, "pnpm-workspace.yaml"),
+                `packages:
+    - "packages/*"
+
+catalogs:
+    cli:
+        semantic-release: ^24.0.0
+        "@semantic-release/changelog": ^6.0.0
+    dev:
+        typescript: ^5.0.0
+        eslint: ^8.0.0
+    prod:
+        lodash-es: ^4.17.1
+`,
+            );
+
+            const catalogSha = gitCommitAll(cwd, "chore: update catalog versions");
+
+            // msr-test-b and msr-test-c were already released after the catalog change.
+            gitTag(cwd, "msr-test-b@1.0.0", catalogSha);
+            gitTag(cwd, "msr-test-c@1.0.0", catalogSha);
+            gitPush(cwd);
+
+            const stdout = new WritableStreamBuffer();
+            const stderr = new WritableStreamBuffer();
+
+            // msr-test-a is analyzed first, so its older baseline must not leak to b and c.
+            const result = await multiSemanticRelease(
+                [`packages/a/package.json`, `packages/b/package.json`, `packages/c/package.json`],
+                {},
+                { cwd, env: environment, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream },
+                { deps: { bump: "override", release: "patch" } },
+            );
+
+            const packageA = result.find((p) => p.name === "msr-test-a");
+            const packageB = result.find((p) => p.name === "msr-test-b");
+            const packageC = result.find((p) => p.name === "msr-test-c");
+
+            expect(result.indexOf(packageA as (typeof result)[number])).toBe(0);
+            expect(packageB?.result).toBe(false);
+            expect(packageC?.result).toBe(false);
+            expect(packageA?.result).not.toBe(false);
+            expect((packageA?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect((packageA?.result as ReleaseResultType).nextRelease?.notes).toContain("* **lodash-es:** ^4.17.0 → ^4.17.1");
+        });
+
         it("should combine catalog changes with commit-based releases", async () => {
             expect.assertions(4);
 
