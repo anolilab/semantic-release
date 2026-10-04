@@ -316,13 +316,16 @@ overrides:
   axios@>=1.15.0 <1.18.0: ^1.20.0
   axios@>=1.15.1 <1.18.0: ^1.20.0
   axios@>=1.15.2 <1.18.0: ^1.20.0
+  axios@>=1.17.0 <1.20.0: '>=1.20.0'
   axios@>=1.7.0 <1.18.0: ^1.20.0
   body-parser@>=2.2.0 <2.2.1: '>=2.3.0'
   brace-expansion@<1.1.13: '>=5.0.12'
-  brace-expansion@>=2.0.0 <2.0.3: '>=5.0.9'
-  brace-expansion@>=3.0.0 <5.0.7: ^5.0.9
-  brace-expansion@>=4.0.0 <5.0.9: '>=5.0.9'
+  brace-expansion@>=2.0.0 <2.0.3: '>=5.0.12'
+  brace-expansion@>=3.0.0 <5.0.7: '>=5.0.11'
+  brace-expansion@>=4.0.0 <5.0.9: '>=5.0.11'
+  brace-expansion@>=4.0.0 <5.0.11: '>=5.0.11'
   brace-expansion@>=5.0.0 <5.0.6: '>=5.0.12'
+  http-cache-semantics@<=4.2.0: '>=4.3.0'
   chrono-node@<2.2.4: '>=2.10.1'
   defu@<=6.1.4: '>=6.1.7'
   diff@>=5.0.0 <5.2.2: '>=9.0.0'
@@ -4282,8 +4285,8 @@ packages:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
 
-  axios@1.18.1:
-    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
+  axios@1.20.0:
+    resolution: {integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==}
 
   bail@1.0.5:
     resolution: {integrity: sha512-xFbRxM1tahm08yHBP16MMjVUAvDaBMD38zsM9EMAUN61omwLmKlOpB/Zku5QkjZ8TZ4vn53pj+t518cH0S03RQ==}
@@ -4334,10 +4337,6 @@ packages:
 
   brace-expansion@5.0.12:
     resolution: {integrity: sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==}
-    engines: {node: 20 || >=22}
-
-  brace-expansion@5.0.9:
-    resolution: {integrity: sha512-ScQ4IuvIEF1TMlP7Zt+vjJ//9zlPb2SDcxWxM3bk8s6t6GGdJ7KO1dCcTidOPJKePW30LE/2cT7wCyPho9/Wxg==}
     engines: {node: 20 || >=22}
 
   braces@3.0.3:
@@ -5981,8 +5980,8 @@ packages:
   htmlparser2@10.1.0:
     resolution: {integrity: sha512-VTZkM9GWRAtEpveh7MSF6SjjrpNVNNVJfFup7xTY3UpFtm67foy9HDVXneLtFVt4pMz5kZtgNcvCniNFb1hlEQ==}
 
-  http-cache-semantics@4.2.0:
-    resolution: {integrity: sha512-dTxcvPXqPvXBQpq5dUr6mEMJX4oIEFv6bwom3FDwKRDsuIjjJGANqhBuoAn9c1RQJIdAKav33ED65E2ys+87QQ==}
+  http-cache-semantics@4.3.0:
+    resolution: {integrity: sha512-M5t5LlJpS1UHMjvwRQVdFHvPISGeLAxNcrWuJkeGh0KxsqCHZ1O3NXZU/8x7cD0BDcGW8kapxMKTvwlqrNkHkA==}
 
   http-proxy-agent@9.1.0:
     resolution: {integrity: sha512-2NxoveTT58mjYT4n3RPTEfCZGLMbidoO8XEieXfpSYxu+PQJ1qpx4ypwH6N+uF9twBPIvRRgvkvW5HUTYWENig==}
@@ -13098,7 +13097,7 @@ snapshots:
     dependencies:
       possible-typed-array-names: 1.1.0
 
-  axios@1.18.1(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
+  axios@1.20.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@7.2.0))
       form-data: 4.0.6
@@ -13157,10 +13156,6 @@ snapshots:
     dependencies:
       balanced-match: 4.0.3
 
-  brace-expansion@5.0.9:
-    dependencies:
-      balanced-match: 4.0.3
-
   braces@3.0.3:
     dependencies:
       fill-range: 7.1.1
@@ -13210,7 +13205,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       get-stream: 6.0.1
-      http-cache-semantics: 4.2.0
+      http-cache-semantics: 4.3.0
       keyv: 4.5.4
       mimic-response: 4.0.0
       normalize-url: 8.1.1
@@ -13220,7 +13215,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       get-stream: 9.0.1
-      http-cache-semantics: 4.2.0
+      http-cache-semantics: 4.3.0
       keyv: 5.6.0
       mimic-response: 4.0.0
       normalize-url: 8.1.1
@@ -15076,7 +15071,7 @@ snapshots:
       domutils: 3.2.2
       entities: 7.0.1
 
-  http-cache-semantics@4.2.0: {}
+  http-cache-semantics@4.3.0: {}
 
   http-proxy-agent@9.1.0(supports-color@10.2.2):
     dependencies:
@@ -17057,11 +17052,11 @@ snapshots:
       ansi-styles: 4.3.0
       argparse: 2.0.1
       asynckit: 0.4.0
-      axios: 1.18.1(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
+      axios: 1.20.0(debug@4.4.3(supports-color@7.2.0))(supports-color@7.2.0)
       balanced-match: 4.0.3
       base64-js: 1.5.1
       bl: 4.1.0
-      brace-expansion: 5.0.9
+      brace-expansion: 5.0.12
       buffer: 5.7.1
       bundle-name: 4.1.0
       call-bind-apply-helpers: 1.0.2
