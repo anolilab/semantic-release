@@ -34,8 +34,8 @@ catalogs:
   dev:
     '@arethetypeswrong/cli': ^0.18.5
     '@ckeditor/typedoc-plugins': 62.1.0
-    '@visulima/packem': 2.1.0
-    '@visulima/pail': 4.1.1
+    '@visulima/packem': 2.0.0
+    '@visulima/pail': 4.0.2
     conventional-changelog-conventionalcommits: 9.3.1
     dockerode: 5.0.1
     file-url: ^4.0.0
@@ -89,7 +89,7 @@ catalogs:
     '@babel/core': 8.0.6
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^5.1.0
-    '@visulima/package': 5.0.32
+    '@visulima/package': 5.0.31
     audit-ci: ^7.1.0
     blork: ^9.3.0
     conventional-changelog-conventionalcommits: 9.3.1
@@ -204,7 +204,7 @@ overrides:
   browserslist@<=4.28.6: '>=4.28.9'
   '@typescript-eslint/utils@<8.67.0': '8.71.0'
   '@visulima/fs': '^5.1.0'
-  '@visulima/package': '5.0.32'
+  '@visulima/package': '5.0.31'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.4'
   '@hono/node-server': '>=2.1.1'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
@@ -224,8 +224,8 @@ overrides:
   body-parser@>=2.2.0 <2.2.1: '>=2.3.0'
   brace-expansion@<1.1.13: '>=5.0.9'
   brace-expansion@>=2.0.0 <2.0.3: '>=5.0.9'
-  brace-expansion@>=3.0.0 <5.0.7: ^5.0.9
-  brace-expansion@>=4.0.0 <5.0.9: '>=5.0.12'
+  brace-expansion@>=3.0.0 <5.0.7: ^5.0.12
+  brace-expansion@>=4.0.0 <5.0.9: '>=5.0.9'
   brace-expansion@>=5.0.0 <5.0.6: '>=5.0.12'
   chrono-node@<2.2.4: '>=2.10.1'
   defu@<=6.1.4: '>=6.1.7'
@@ -264,7 +264,7 @@ overrides:
   protobufjs@>=7.5.0 <=7.6.4: ^7.6.6
   qs@<6.14.1: '>=6.16.0'
   qs@>=6.7.0 <=6.14.1: '>=6.16.0'
-  rollup@>=4.0.0 <4.59.0: '>=4.63.5'
+  rollup@>=4.0.0 <4.59.0: '>=4.63.4'
   shell-quote@<=1.8.4: ^1.11.0
   shell-quote@>=1.1.0 <=1.8.3: ^1.11.0
   smol-toml@<=1.7.0: '>=1.9.0'
@@ -278,10 +278,10 @@ overrides:
   undici@>=7.0.0 <7.24.0: '>=8.11.2'
   undici@>=7.17.0 <7.24.0: '>=8.11.2'
   uuid@<14.0.0: '>=14.0.2'
-  vite@>=7.0.0 <=7.3.1: '>=8.3.1'
-  vite@>=7.1.0 <=7.1.10: '>=8.3.1'
-  vite@>=7.1.0 <=7.3.1: '>=8.3.1'
-  vite@>=8.0.0 <8.0.16: '>=8.3.1'
+  vite@>=7.0.0 <=7.3.1: '>=8.2.2'
+  vite@>=7.1.0 <=7.1.10: '>=8.2.2'
+  vite@>=7.1.0 <=7.3.1: '>=8.2.2'
+  vite@>=8.0.0 <8.0.16: '>=8.2.2'
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
 
 preferWorkspacePackages: true
