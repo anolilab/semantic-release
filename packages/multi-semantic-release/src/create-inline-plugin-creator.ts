@@ -9,7 +9,8 @@ import logger from "./logger";
 import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
 import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps as updateManifestDependencies } from "./update-deps";
 import cleanPath from "./utils/clean-path";
-import { detectCatalogChanges, getAffectedPackagesFromCatalogChanges } from "./utils/detect-catalog-changes";
+import type { CatalogChanges } from "./utils/detect-catalog-changes";
+import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";
 
 const { debug } = logger.withScope("msr:inlinePlugin");
 
@@ -35,9 +36,29 @@ interface InlinePluginFunctions {
  */
 const createInlinePluginCreator = (_packages: Package[], multiContext: MultiContext, flags: Flags): ((npmPackage: Package) => InlinePluginFunctions) => {
     const { cwd } = multiContext;
-    // Cache catalog changes detection - only run once per multirelease
-    let catalogChangesCache: Map<string, "major" | "minor" | "patch"> | null = null;
-    let isCatalogChangesDetected = false;
+    // Catalog changes are detected per package, since that package's own last release.
+    // Packages sharing a last-release commit share the (cached) detection.
+    const catalogChangesByGitHead = new Map<string, Promise<CatalogChanges>>();
+
+    const getCatalogChangesSince = async (gitHead: string, debugPrefix: string): Promise<CatalogChanges> => {
+        let changes = catalogChangesByGitHead.get(gitHead);
+
+        if (!changes) {
+            changes = (async (): Promise<CatalogChanges> => {
+                try {
+                    return await detectCatalogChanges(cwd, gitHead);
+                } catch (error) {
+                    debug(debugPrefix, "Failed to detect catalog changes:", error);
+
+                    return {};
+                }
+            })();
+
+            catalogChangesByGitHead.set(gitHead, changes);
+        }
+
+        return await changes;
+    };
 
     const createInlinePlugin = (npmPackage: Package): InlinePluginFunctions => {
         const { dir, name, plugins } = npmPackage;
@@ -130,30 +151,23 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             // eslint-disable-next-line no-param-reassign
             npmPackage._lastRelease = context.lastRelease;
 
-            // Detect catalog changes (only once per multirelease)
-            if (!isCatalogChangesDetected && context.lastRelease?.gitHead) {
-                try {
-                    const catalogChanges = await detectCatalogChanges(cwd, context.lastRelease.gitHead, context.nextRelease?.gitHead);
-
-                    if (Object.keys(catalogChanges).length > 0) {
-                        catalogChangesCache = getAffectedPackagesFromCatalogChanges(_packages, catalogChanges);
-                        isCatalogChangesDetected = true;
-
-                        debug(debugPrefix, `Detected catalog changes affecting ${String(catalogChangesCache.size)} packages`);
-                    } else {
-                        isCatalogChangesDetected = true; // Mark as checked even if no changes
-                    }
-                } catch (error) {
-                    debug(debugPrefix, "Failed to detect catalog changes:", error);
-                    isCatalogChangesDetected = true; // Mark as checked to avoid repeated failures
-                }
-            }
-
-            // Check if this package is affected by catalog changes
+            // Detect catalog changes since this package's last release
             let catalogTriggeredReleaseType: string | undefined;
 
-            if (catalogChangesCache?.has(npmPackage.name)) {
-                const rawCatalogReleaseType = catalogChangesCache.get(npmPackage.name);
+            // eslint-disable-next-line no-param-reassign
+            npmPackage._catalogChanges = context.lastRelease?.gitHead
+                ? getPackageCatalogChanges(npmPackage, await getCatalogChangesSince(context.lastRelease.gitHead, debugPrefix))
+                : [];
+
+            if (npmPackage._catalogChanges.length > 0) {
+                const severityOrder = { major: 3, minor: 2, patch: 1 };
+                let rawCatalogReleaseType: "major" | "minor" | "patch" = "patch";
+
+                for (const { releaseType } of npmPackage._catalogChanges) {
+                    if (severityOrder[releaseType] > severityOrder[rawCatalogReleaseType]) {
+                        rawCatalogReleaseType = releaseType;
+                    }
+                }
 
                 // Apply deps.release strategy to catalog-triggered release types,
                 // just like workspace dependency bumps go through resolveReleaseTypeFromStrategy.
@@ -164,7 +178,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                     ? (resolveReleaseTypeFromStrategy(flags.deps.release, rawCatalogReleaseType) as string | undefined)
                     : rawCatalogReleaseType;
 
-                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release (raw: ${rawCatalogReleaseType ?? ""})`);
+                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release (raw: ${rawCatalogReleaseType})`);
             }
 
             let nextType: string | undefined;
@@ -281,8 +295,9 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             const upgrades = npmPackage.localDeps.filter((d: Package) => d._nextRelease);
+            const catalogChanges = npmPackage._catalogChanges ?? [];
 
-            if (upgrades.length > 0) {
+            if (upgrades.length > 0 || catalogChanges.length > 0) {
                 notes.push(`### Dependencies`);
 
                 const bullets = upgrades
@@ -296,6 +311,10 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                         return `* **${d.name}:** upgraded to ${nextRelease.version}`;
                     })
                     .filter(Boolean);
+
+                for (const change of catalogChanges) {
+                    bullets.push(`* **${change.dependencyName}:** ${change.oldVersion} → ${change.newVersion}`);
+                }
 
                 notes.push(bullets.join("\n"));
             }

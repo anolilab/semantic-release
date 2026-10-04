@@ -26,10 +26,20 @@ export interface Commit {
     subject: string;
 }
 
+// A changed catalog entry that a package depends on
+export interface PackageCatalogChange {
+    catalogName: string;
+    dependencyName: string;
+    newVersion: string;
+    oldVersion: string;
+    releaseType: "major" | "minor" | "patch";
+}
+
 // Package object representing a package in the monorepo
 export interface Package {
     _analyzed?: boolean;
     _branch?: string;
+    _catalogChanges?: PackageCatalogChange[];
     _depsUpdated?: boolean;
     _lastRelease?: Release;
     _nextRelease?: Release;
