@@ -1,3 +1,15 @@
+## @anolilab/multi-semantic-release [4.4.22](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.21...@anolilab/multi-semantic-release@4.4.22) (2026-10-04)
+
+### Bug Fixes
+
+* **multi-semantic-release:** keep CLI integration tests within vitest's timeout ([05e2a9f](https://github.com/anolilab/semantic-release/commit/05e2a9fd7116d27d8ae84965a418553bd0521b82))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.28
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.32
+
 ## @anolilab/multi-semantic-release [4.4.21](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.20...@anolilab/multi-semantic-release@4.4.21) (2026-09-26)
 
 
