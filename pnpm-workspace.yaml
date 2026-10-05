@@ -25,7 +25,7 @@ catalogs:
     '@semantic-release/exec': ^7.1.0
     '@semantic-release/git': ^11.0.1
     '@semantic-release/github': 12.0.10
-    '@semantic-release/npm': 13.1.5
+    '@semantic-release/npm': 13.2.0
     '@semantic-release/release-notes-generator': 14.1.1
     commitizen: ^4.3.2
     semantic-release: 25.0.9
