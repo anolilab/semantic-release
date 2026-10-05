@@ -1,3 +1,9 @@
+## @anolilab/semantic-release-pnpm [8.1.32](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.31...@anolilab/semantic-release-pnpm@8.1.32) (2026-10-04)
+
+### Bug Fixes
+
+* **multi-semantic-release:** keep CLI integration tests within vitest's timeout ([05e2a9f](https://github.com/anolilab/semantic-release/commit/05e2a9fd7116d27d8ae84965a418553bd0521b82))
+
 ## @anolilab/semantic-release-pnpm [8.1.31](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.30...@anolilab/semantic-release-pnpm@8.1.31) (2026-09-26)
 
 ## @anolilab/semantic-release-pnpm [8.1.30](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.29...@anolilab/semantic-release-pnpm@8.1.30) (2026-09-26)
