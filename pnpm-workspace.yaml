@@ -33,7 +33,7 @@ catalogs:
     taze: 19.17.2
   dev:
     '@arethetypeswrong/cli': ^0.18.5
-    '@ckeditor/typedoc-plugins': 62.1.0
+    '@ckeditor/typedoc-plugins': 62.3.0
     '@visulima/packem': 2.0.0
     '@visulima/pail': 4.0.2
     conventional-changelog-conventionalcommits: 9.3.1
@@ -203,7 +203,7 @@ onlyBuiltDependencies:
   - unrs-resolver
 
 overrides:
-  browserslist@<=4.28.6: '>=4.28.9'
+  browserslist@<=4.28.6: '>=4.29.3'
   '@typescript-eslint/utils@<8.67.0': '8.71.0'
   '@visulima/fs': '^5.1.0'
   '@visulima/package': '5.0.31'
@@ -270,8 +270,8 @@ overrides:
   qs@<6.14.1: '>=6.16.0'
   qs@>=6.7.0 <=6.14.1: '>=6.16.0'
   rollup@>=4.0.0 <4.59.0: '>=4.63.4'
-  shell-quote@<=1.8.4: ^1.11.0
-  shell-quote@>=1.1.0 <=1.8.3: ^1.11.0
+  shell-quote@<=1.8.4: ^1.12.0
+  shell-quote@>=1.1.0 <=1.8.3: ^1.12.0
   smol-toml@<=1.7.0: '>=1.9.0'
   svgo@>=4.0.0 <4.0.2: ^4.1.0
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.3'
