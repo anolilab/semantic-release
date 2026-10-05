@@ -16,3 +16,10 @@ rules:
         ignore:
             - "cache-clear.yml"
             - "stale-issues.yml"
+
+    ref-version-mismatch:
+        # The zizmor gate is deliberately pinned to an untagged commit on
+        # anolilab/workflows main, so the "# main" comment cannot name a
+        # released version. Repin once that commit is covered by a release.
+        ignore:
+            - "zizmor.yml"
