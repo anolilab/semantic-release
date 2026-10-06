@@ -249,7 +249,11 @@ overrides:
   hono@>=4.11.8 <4.12.27: ^4.13.12
   hono@>=4.3.3 <4.12.27: ^4.13.12
   js-yaml@<=4.1.1: '>=4.3.0 <5'
-  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <6'
+  # js-yaml 5.x is ESM-only with no default export and breaks multi-semantic-release's
+  # `import yaml from "js-yaml"`; 4.3.x carries the GHSA-52cp-r559-cp3m fix.
+  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <5'
+  # cosmiconfig@10 pulls js-yaml 5, which is ESM-only; keep every consumer on 4.x.
+  js-yaml@>=4.0.0 <6: '>=4.3.0 <5'
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.18.1'
