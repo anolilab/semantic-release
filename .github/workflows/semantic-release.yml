@@ -66,6 +66,7 @@ jobs:
               id: "setup"
               uses: "anolilab/workflows/step/setup@2bd348c5c236a10db670232e5b08619ccbaf55b3" # v21.0.5 # main
               with:
+                  run-signatures-audit: "false"
                   node-version: "22.x"
                   cache-prefix: "semantic-release"
 
