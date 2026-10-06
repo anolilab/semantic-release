@@ -272,6 +272,9 @@ overrides:
   rollup@>=4.0.0 <4.59.0: '>=4.63.4'
   shell-quote@<=1.8.4: ^1.12.0
   shell-quote@>=1.1.0 <=1.8.3: ^1.12.0
+  # GHSA-68fv-2mgg-jv7q (event-loop DoS via indexed source-map section offsets),
+  # fixed in 1.2.2. Every consumer depends on ^1.0.x, so this stays in range.
+  source-map-js@<1.2.2: '>=1.2.2'
   smol-toml@<=1.7.0: '>=1.9.0'
   svgo@>=4.0.0 <4.0.2: ^4.1.0
   tar-fs@>=2.0.0 <2.1.4: '>=3.1.3'
