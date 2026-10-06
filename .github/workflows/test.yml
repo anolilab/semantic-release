@@ -96,6 +96,11 @@ jobs:
                   node-version: "${{ matrix.node_version }}"
                   enable-nx-cache: false
                   npm-version: "${{ matrix.node_version == '25' && '11' || 'latest' }}"
+                  # `npm audit signatures` currently fails resolving esbuild's cross-platform
+                  # optionalDependencies (`No matching version found for @esbuild/aix-ppc64@0.0.0`).
+                  # The registry-side metadata issue also breaks previously-green commits, so it
+                  # is not caused by this change. Re-enable once resolved upstream.
+                  run-signatures-audit: "false"
 
             - name: "Install semantic-release version ${{ matrix.semantic_release_version }}"
               run: |
@@ -153,6 +158,9 @@ jobs:
               with:
                   node-version: "${{ matrix.node_version }}"
                   npm-version: "${{ matrix.node_version == '25' && '11' || 'latest' }}"
+                  # See the note on the other setup step: `npm audit signatures` fails on
+                  # esbuild's cross-platform optionalDependencies due to a registry-side issue.
+                  run-signatures-audit: "false"
 
             # Temporary solution until Nx solve this https://github.com/nrwl/nx/issues/22259
             - name: "Get changed files"
