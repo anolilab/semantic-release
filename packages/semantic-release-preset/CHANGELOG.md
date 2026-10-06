@@ -1,3 +1,11 @@
+## @anolilab/semantic-release-preset [13.4.34](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.33...@anolilab/semantic-release-preset@13.4.34) (2026-10-06)
+
+
+### Dependencies
+
+* **@semantic-release/github:** 12.0.9 → 12.0.10
+* **@semantic-release/npm:** 13.1.5 → 13.2.0
+
 ## @anolilab/semantic-release-preset [13.4.33](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.32...@anolilab/semantic-release-preset@13.4.33) (2026-10-04)
 
 
