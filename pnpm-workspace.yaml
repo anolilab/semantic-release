@@ -251,7 +251,7 @@ overrides:
   js-yaml@<=4.1.1: '>=4.3.0 <5'
   # js-yaml 5.x is ESM-only with no default export and breaks multi-semantic-release's
   # `import yaml from "js-yaml"`; 4.3.x carries the GHSA-52cp-r559-cp3m fix.
-  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <5'
+  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <6'
   # cosmiconfig@10 pulls js-yaml 5, which is ESM-only; keep every consumer on 4.x.
   js-yaml@>=4.0.0 <6: '>=4.3.0 <5'
   # GHSA-pqg4-j6r4-53mv (critical), fixed in 1.11.0.
