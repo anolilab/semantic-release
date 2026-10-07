@@ -253,7 +253,7 @@ overrides:
   # `import yaml from "js-yaml"`; 4.3.x carries the GHSA-52cp-r559-cp3m fix.
   js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <5'
   # cosmiconfig@10 pulls js-yaml 5, which is ESM-only; keep every consumer on 4.x.
-  js-yaml@>=4.0.0 <6: '>=4.3.0 <5'
+  js-yaml@>=4.0.0 <6: '>=4.3.0 <6'
   # GHSA-pqg4-j6r4-53mv (critical), fixed in 1.11.0.
   shell-quote@>=1.8.4 <1.11.0: '>=1.11.0'
   linkify-it@<=5.0.1: ^6.1.0
