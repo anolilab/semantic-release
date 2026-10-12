@@ -165,8 +165,8 @@ catalogs:
       specifier: ^10.1.0
       version: 10.1.0
     execa:
-      specifier: ^10.0.1
-      version: 10.0.1
+      specifier: ^10.1.0
+      version: 10.1.0
     pkg-pr-new:
       specifier: 0.0.88
       version: 0.0.88
@@ -345,7 +345,7 @@ overrides:
   js-yaml@<=4.1.1: '>=4.3.0 <5'
   js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <5'
   js-yaml@>=4.0.0 <6: '>=4.3.0 <5'
-  shell-quote@>=1.8.4 <1.11.0: '>=1.11.0'
+  shell-quote@>=1.8.4 <1.11.0: '>=1.12.0'
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.18.1'
@@ -503,7 +503,7 @@ importers:
         version: 7.0.2
       execa:
         specifier: catalog:node
-        version: 10.0.1
+        version: 10.1.0
       git-log-parser:
         specifier: catalog:prod
         version: 1.2.1
@@ -875,7 +875,7 @@ importers:
         version: 11.2.0
       execa:
         specifier: catalog:node
-        version: 10.0.1
+        version: 10.1.0
       ini:
         specifier: catalog:prod
         version: 7.0.0
@@ -5459,8 +5459,8 @@ packages:
   eventemitter3@5.0.4:
     resolution: {integrity: sha512-mlsTRyGaPBjPedk6Bvw+aqbsXDtoAyAzm5MO7JgU+yVRyMQ5O8bD4Kcci7BS85f93veegeCPkL8R4GLClnjLFw==}
 
-  execa@10.0.1:
-    resolution: {integrity: sha512-ge98qjkRK4IB7tL7Ju/6qmm5LHoH1eEMt5FNZrz3f4UIYhF28lggX20z3FaX1sgc67msLEn0N0BscOs29iuwyw==}
+  execa@10.1.0:
+    resolution: {integrity: sha512-5HT/600HqXEtmkb9mK/PkTWw+bQSCzPnWiZ4/87wD3Hi0wFzCapOuNT9p4M08PDd+KLHdHvFhKjOWmNx/npRNQ==}
     engines: {node: '>=22'}
 
   execa@8.0.1:
@@ -11301,7 +11301,7 @@ snapshots:
       aggregate-error: 5.0.0
       debug: 4.4.3(supports-color@10.2.2)
       dir-glob: 3.0.1
-      execa: 10.0.1
+      execa: 10.1.0
       lodash-es: 4.18.1
       micromatch: 4.0.8
       p-reduce: 3.0.0
@@ -14448,7 +14448,7 @@ snapshots:
 
   eventemitter3@5.0.4: {}
 
-  execa@10.0.1:
+  execa@10.1.0:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       figures: 6.1.0
