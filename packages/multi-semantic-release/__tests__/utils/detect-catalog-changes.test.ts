@@ -268,6 +268,31 @@ catalogs:
             expect(changes).toStrictEqual({});
         });
 
+        it("should detect no changes when the default catalog is the same", async () => {
+            expect.assertions(1);
+
+            const cwd = gitInit();
+
+            writeFileSync(
+                resolve(cwd, "pnpm-workspace.yaml"),
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.17.0
+`,
+            );
+
+            const initialSha = gitCommitAll(cwd, "feat: initial default catalog");
+
+            writeFileSync(resolve(cwd, "README.md"), "# Test\n");
+            gitCommitAll(cwd, "docs: add readme");
+
+            const changes = await detectCatalogChanges(cwd, initialSha);
+
+            expect(changes).toStrictEqual({});
+        });
+
         it('should detect changes in the default catalog as catalog "default"', async () => {
             expect.assertions(1);
 
@@ -439,6 +464,25 @@ catalogs:
                 createMockPackage("package-a", { "lodash-es": "catalog:" }),
                 createMockPackage("package-b", { "lodash-es": "catalog:default" }),
                 createMockPackage("package-c", { "lodash-es": "catalog:prod" }),
+            ];
+
+            const result = findPackagesUsingCatalog(packages, "default", "lodash-es");
+
+            expect(result.map((pkg) => pkg.name)).toStrictEqual(["package-a", "package-b"]);
+        });
+
+        it("should find packages using the default catalog in peerDependencies and optionalDependencies", () => {
+            expect.assertions(1);
+
+            const packages: Package[] = [
+                {
+                    manifest: { name: "package-a", optionalDependencies: { "lodash-es": "catalog:default" }, peerDependencies: {} },
+                    name: "package-a",
+                } as unknown as Package,
+                {
+                    manifest: { name: "package-b", optionalDependencies: {}, peerDependencies: { "lodash-es": "catalog:" } },
+                    name: "package-b",
+                } as unknown as Package,
             ];
 
             const result = findPackagesUsingCatalog(packages, "default", "lodash-es");
