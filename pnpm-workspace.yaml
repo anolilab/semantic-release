@@ -255,7 +255,7 @@ overrides:
   # cosmiconfig@10 pulls js-yaml 5, which is ESM-only; keep every consumer on 4.x.
   js-yaml@>=4.0.0 <6: '>=4.3.0 <5'
   # GHSA-pqg4-j6r4-53mv (critical), fixed in 1.11.0.
-  shell-quote@>=1.8.4 <1.11.0: '>=1.11.0'
+  shell-quote@>=1.8.4 <1.11.0: '>=1.12.0'
   linkify-it@<=5.0.1: ^6.1.0
   lodash@<=4.17.23: '>=4.18.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.18.1'
