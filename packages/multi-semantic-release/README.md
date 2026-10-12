@@ -146,6 +146,8 @@ catalogs:
         lodash-es: ^4.17.1
 ```
 
+The default catalog (top-level `catalog` key) is detected as well, under the name `default`; packages may reference it as `catalog:` or `catalog:default`.
+
 When you update a catalog version (e.g., `lodash-es: ^4.17.0` → `^4.17.1`), any package using `catalog:prod` for `lodash-es` will automatically get a patch release. The release type is determined by the version change:
 
 - **Major change** (e.g., `^1.0.0` → `^2.0.0`) triggers a major release

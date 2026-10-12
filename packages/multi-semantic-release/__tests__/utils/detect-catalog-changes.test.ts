@@ -267,6 +267,93 @@ catalogs:
             // Should return empty since we can't compare (no old catalog)
             expect(changes).toStrictEqual({});
         });
+
+        it('should detect changes in the default catalog as catalog "default"', async () => {
+            expect.assertions(1);
+
+            const cwd = gitInit();
+            const catalogPath = resolve(cwd, "pnpm-workspace.yaml");
+
+            writeFileSync(
+                catalogPath,
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.17.0
+`,
+            );
+
+            const initialSha = gitCommitAll(cwd, "feat: initial default catalog");
+
+            writeFileSync(
+                catalogPath,
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.18.0
+`,
+            );
+
+            gitCommitAll(cwd, "chore: update default catalog");
+
+            const changes = await detectCatalogChanges(cwd, initialSha);
+
+            expect(changes).toStrictEqual({
+                default: {
+                    "lodash-es": {
+                        newVersion: "^4.18.0",
+                        oldVersion: "^4.17.0",
+                        releaseType: "minor",
+                    },
+                },
+            });
+        });
+
+        it("should detect changes in the default catalog next to named catalogs", async () => {
+            expect.assertions(2);
+
+            const cwd = gitInit();
+            const catalogPath = resolve(cwd, "pnpm-workspace.yaml");
+
+            writeFileSync(
+                catalogPath,
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.17.0
+
+catalogs:
+    cli:
+        semantic-release: ^24.0.0
+`,
+            );
+
+            const initialSha = gitCommitAll(cwd, "feat: initial catalogs");
+
+            writeFileSync(
+                catalogPath,
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.17.1
+
+catalogs:
+    cli:
+        semantic-release: ^25.0.0
+`,
+            );
+
+            gitCommitAll(cwd, "chore: update catalogs");
+
+            const changes = await detectCatalogChanges(cwd, initialSha);
+
+            expect(changes.default?.["lodash-es"]?.releaseType).toBe("patch");
+            expect(changes.cli?.["semantic-release"]?.releaseType).toBe("major");
+        });
     });
 
     describe("findPackagesUsingCatalog()", () => {
@@ -343,6 +430,20 @@ catalogs:
             const result = findPackagesUsingCatalog(packages, "cli");
 
             expect(result).toHaveLength(0);
+        });
+
+        it("should find packages using the default catalog as catalog: or catalog:default", () => {
+            expect.assertions(1);
+
+            const packages: Package[] = [
+                createMockPackage("package-a", { "lodash-es": "catalog:" }),
+                createMockPackage("package-b", { "lodash-es": "catalog:default" }),
+                createMockPackage("package-c", { "lodash-es": "catalog:prod" }),
+            ];
+
+            const result = findPackagesUsingCatalog(packages, "default", "lodash-es");
+
+            expect(result.map((pkg) => pkg.name)).toStrictEqual(["package-a", "package-b"]);
         });
     });
 
