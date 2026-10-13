@@ -6,6 +6,8 @@ rules:
         # These workflows use pull_request_target for write perms but do not
         # check out PR-controlled refs, so fork-takeover doesn't apply.
         ignore:
+            - "pr-size.yml"
+            - "pr-vouch.yml"
             - "allo-allo.yaml"
             - "labeler.yml"
             - "semantic-pull-request.yml"

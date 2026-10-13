@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-pnpm [8.1.33](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.32...@anolilab/semantic-release-pnpm@8.1.33) (2026-10-12)
+
+
+### Dependencies
+
+* **execa:** ^10.0.1 → ^10.1.0
+
 ## @anolilab/semantic-release-pnpm [8.1.32](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.31...@anolilab/semantic-release-pnpm@8.1.32) (2026-10-04)
 
 ### Bug Fixes
