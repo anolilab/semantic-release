@@ -40,13 +40,22 @@ interface ResolvedDependency {
     version: string;
 }
 
+interface DependencyEdge {
+    /** The real package name of the target, or the dependency name of a workspace link. */
+    packageName: string;
+    /** The importer path or snapshot key the edge starts from. */
+    source: string;
+}
+
 interface DependencyGraph {
     /** Direct registry dependencies of the importer and of the workspace packages it links, by name; the importer's own win. */
     direct: Map<string, ResolvedDependency>;
-    /** Workspace links followed from the importer, as `importer > name > target`. */
-    links: Set<string>;
+    /** Production dependency edges of importers and snapshots, as `source > name > target`. */
+    edges: Map<string, DependencyEdge>;
     /** Every resolved registry package reachable from the importer, with its resolution. */
     nodes: Map<string, string>;
+    /** The importer paths and snapshot keys in the graph. */
+    sources: Set<string>;
 }
 
 /**
@@ -200,9 +209,10 @@ const getResolution = (lockfile: PnpmLockfile, snapshotKey: string): string => J
  * Collect every snapshot reachable from the given ones through dependencies and optionalDependencies.
  * @param lockfile The parsed lock file.
  * @param roots The snapshot keys to start from.
+ * @param edges The dependency edges, extended in place by those between snapshots.
  * @returns The reachable snapshot keys with their resolution.
  */
-const collectReachableSnapshots = (lockfile: PnpmLockfile, roots: string[]): Map<string, string> => {
+const collectReachableSnapshots = (lockfile: PnpmLockfile, roots: string[], edges: Map<string, DependencyEdge>): Map<string, string> => {
     const nodes = new Map<string, string>();
     const pending = [...roots];
 
@@ -213,12 +223,16 @@ const collectReachableSnapshots = (lockfile: PnpmLockfile, roots: string[]): Map
             nodes.set(key, getResolution(lockfile, key));
 
             const snapshot = lockfile.snapshots?.[key];
-            const entries = Object.entries({ ...snapshot?.dependencies, ...snapshot?.optionalDependencies });
+            const entries = Object.entries({ ...snapshot?.dependencies, ...snapshot?.optionalDependencies }).filter(
+                ([, version]) => !version.startsWith(LINK_PREFIX),
+            );
 
             for (const [name, version] of entries) {
-                if (!version.startsWith(LINK_PREFIX)) {
-                    pending.push(getSnapshotKey(lockfile, name, version));
-                }
+                const target = getSnapshotKey(lockfile, name, version);
+
+                // A dependency resolved to another snapshot is a change even if both snapshots stay in the graph.
+                edges.set(`${key} > ${name} > ${target}`, { packageName: getPackageName(target), source: key });
+                pending.push(target);
             }
         }
     }
@@ -228,7 +242,7 @@ const collectReachableSnapshots = (lockfile: PnpmLockfile, roots: string[]): Map
 
 interface ImporterWalk {
     direct: Map<string, ResolvedDependency>;
-    links: Set<string>;
+    edges: Map<string, DependencyEdge>;
     pendingImporters: string[];
     roots: string[];
 }
@@ -249,13 +263,14 @@ const visitImporter = (lockfile: PnpmLockfile, path: string, walk: ImporterWalk)
         if (version.startsWith(LINK_PREFIX)) {
             const target = join(path, version.slice(LINK_PREFIX.length)) || ROOT_IMPORTER;
 
-            walk.links.add(`${path} > ${name} > ${target}`);
+            walk.edges.set(`${path} > ${name} > ${target}`, { packageName: name, source: path });
             walk.pendingImporters.push(target);
         } else {
             const dependency = resolveDependency(lockfile, name, version);
 
             // A linked package may resolve a dependency the importer has too: both stay in the graph,
             // the importer's own resolution is reported.
+            walk.edges.set(`${path} > ${name} > ${dependency.key}`, { packageName: dependency.packageName, source: path });
             walk.roots.push(dependency.key);
 
             if (!walk.direct.has(name)) {
@@ -278,7 +293,7 @@ const collectDependencyGraph = (lockfile: PnpmLockfile, importerPath: string): D
     }
 
     // Breadth-first, so the importer's own dependencies are recorded before those of linked packages.
-    const walk: ImporterWalk = { direct: new Map(), links: new Set(), pendingImporters: [importerPath], roots: [] };
+    const walk: ImporterWalk = { direct: new Map(), edges: new Map(), pendingImporters: [importerPath], roots: [] };
     const visitedImporters = new Set<string>();
 
     while (walk.pendingImporters.length > 0) {
@@ -290,7 +305,9 @@ const collectDependencyGraph = (lockfile: PnpmLockfile, importerPath: string): D
         }
     }
 
-    return { direct: walk.direct, links: walk.links, nodes: collectReachableSnapshots(lockfile, walk.roots) };
+    const nodes = collectReachableSnapshots(lockfile, walk.roots, walk.edges);
+
+    return { direct: walk.direct, edges: walk.edges, nodes, sources: new Set([...visitedImporters, ...nodes.keys()]) };
 };
 
 /**
@@ -336,6 +353,18 @@ const getDirectChanges = (
     return { dependencies, releaseType };
 };
 
+/**
+ * List the targets of edges that were added or removed between two importers or snapshots present in both graphs.
+ * An edge whose source was added or removed is already covered by that change.
+ * @param oldGraph The dependency graph at the last release.
+ * @param newGraph The current dependency graph.
+ * @returns The package names of the changed edges' targets.
+ */
+const getChangedEdgeNames = (oldGraph: DependencyGraph, newGraph: DependencyGraph): string[] =>
+    [...new Map([...oldGraph.edges, ...newGraph.edges])]
+        .filter(([key, { source }]) => oldGraph.sources.has(source) && newGraph.sources.has(source) && !(oldGraph.edges.has(key) && newGraph.edges.has(key)))
+        .map(([, { packageName }]) => packageName);
+
 const isSupportedLockfile = (lockfile: PnpmLockfile): boolean => String(lockfile.lockfileVersion).startsWith(SUPPORTED_LOCKFILE_VERSION);
 
 /**
@@ -364,16 +393,16 @@ const compareDependencyGraphs = (oldLockfile: PnpmLockfile | null, newLockfile: 
     const changedNodes = [...new Set([...oldGraph.nodes.keys(), ...newGraph.nodes.keys()])].filter(
         (key) => oldGraph.nodes.get(key) !== newGraph.nodes.get(key),
     );
-    const changedLinks = [...new Set([...oldGraph.links, ...newGraph.links])].filter((link) => !oldGraph.links.has(link) || !newGraph.links.has(link));
+    const changedEdgeNames = getChangedEdgeNames(oldGraph, newGraph);
     const { dependencies, releaseType } = getDirectChanges(oldGraph.direct, newGraph.direct);
 
-    if (changedNodes.length === 0 && changedLinks.length === 0 && dependencies.length === 0) {
+    if (changedNodes.length === 0 && changedEdgeNames.length === 0 && dependencies.length === 0) {
         return null;
     }
 
     // Packages reported as direct changes, by their real name (npm aliases), don't count as further updates.
     const reported = new Set(dependencies.flatMap(({ name }) => [name, oldGraph.direct.get(name)?.packageName, newGraph.direct.get(name)?.packageName]));
-    const furtherNames = new Set([...changedNodes.map((key) => getPackageName(key)), ...changedLinks]);
+    const furtherNames = new Set([...changedNodes.map((key) => getPackageName(key)), ...changedEdgeNames]);
 
     return {
         dependencies,

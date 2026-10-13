@@ -183,6 +183,39 @@ describe("detect-root-file-changes", () => {
             expect(changes).toMatchObject({ dependencies: [{ name: "dep", newVersion: "1.1.0", oldVersion: "1.0.0" }], releaseType: "minor" });
         });
 
+        it("should report a snapshot dependency resolved to another snapshot that stays in the graph", async () => {
+            expect.assertions(1);
+
+            // dep and libdep both depend on sub, one on 3.0.0 and the other on 3.0.1
+            const withBothSubs = (subOfDependency: string, subOfLibdep: string): string =>
+                buildLockfile()
+                    .replace("  sub@3.0.0:\n    resolution:", "  sub@3.0.1:\n    resolution: {integrity: sha512-sub301}\n\n  sub@3.0.0:\n    resolution:")
+                    .replace("      sub: 3.0.0\n", () => `      sub: ${subOfDependency}\n`)
+                    .replace("  libdep@2.0.0: {}\n", () => `  libdep@2.0.0:\n    dependencies:\n      sub: ${subOfLibdep}\n`)
+                    .replace("  sub@3.0.0: {}\n", "  sub@3.0.0: {}\n\n  sub@3.0.1: {}\n");
+            const changes = compareDependencyGraphs(await parse(withBothSubs("3.0.0", "3.0.1")), await parse(withBothSubs("3.0.1", "3.0.0")), "packages/a");
+
+            expect(changes).toStrictEqual({ dependencies: [], files: [], releaseType: "patch", transitiveCount: 1 });
+        });
+
+        it("should report a linked package's dependency resolved to another snapshot that stays in the graph", async () => {
+            expect.assertions(1);
+
+            // lib depends on dep as well, and libdep keeps dep@9.0.0 in the graph
+            const withLibraryDependency = (version: string): string =>
+                buildLockfile()
+                    .replace(
+                        "      libdep:\n        specifier: ^2.0.0",
+                        () => `      dep:\n        specifier: '*'\n        version: ${version}\n      libdep:\n        specifier: ^2.0.0`,
+                    )
+                    .replace("packages:\n\n", "packages:\n\n  dep@9.0.0:\n    resolution: {integrity: sha512-dep9}\n\n")
+                    .replace("  libdep@2.0.0: {}\n", "  libdep@2.0.0:\n    dependencies:\n      dep: 9.0.0\n")
+                    .replace("snapshots:\n\n", "snapshots:\n\n  dep@9.0.0: {}\n\n");
+            const changes = compareDependencyGraphs(await parse(withLibraryDependency("9.0.0")), await parse(withLibraryDependency("1.0.0")), "packages/a");
+
+            expect(changes).toStrictEqual({ dependencies: [], files: [], releaseType: "patch", transitiveCount: 1 });
+        });
+
         it("should resolve npm aliases to the real package and version", async () => {
             expect.assertions(1);
 
