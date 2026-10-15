@@ -63,15 +63,15 @@ catalogs:
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 17.6.0
-    prettier: 3.9.9
+    prettier: 3.9.10
     publint: 0.3.25
     secretlint: 13.0.7
     textlint: 15.8.0
   markdown:
     typedoc-plugin-markdown: 4.13.1
   monorepo:
-    '@nx/workspace': 23.2.1
-    nx: 23.2.1
+    '@nx/workspace': 23.3.0
+    nx: 23.3.0
   network:
     browserslist-config-anolilab: 9.0.1
   node:
@@ -86,7 +86,7 @@ catalogs:
   prod:
     '@actions/core': 3.0.1
     '@anolilab/rc': 4.0.9
-    '@babel/core': 8.0.6
+    '@babel/core': 8.0.7
     '@semrel-extra/topo': ^1.14.1
     '@visulima/fs': ^5.1.0
     '@visulima/package': 5.0.31
@@ -291,12 +291,14 @@ overrides:
   undici@>=7.0.0 <7.18.2: '>=8.11.2'
   undici@>=7.0.0 <7.24.0: '>=8.11.2'
   undici@>=7.17.0 <7.24.0: '>=8.11.2'
-  uuid@<14.0.0: '>=14.0.2'
+  uuid@<14.0.0: '>=14.0.3'
   vite@>=7.0.0 <=7.3.1: '>=8.2.2'
   vite@>=7.1.0 <=7.1.10: '>=8.2.2'
   vite@>=7.1.0 <=7.3.1: '>=8.2.2'
   vite@>=8.0.0 <8.0.16: '>=8.2.2'
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
+  katex@>=0.11.0 <0.18.2: ^0.18.2
+  undici@>=7.0.0 <7.29.1: ^7.29.1
 
 preferWorkspacePackages: true
 
