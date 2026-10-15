@@ -30,7 +30,7 @@ catalogs:
     commitizen: ^4.3.2
     semantic-release: 25.0.9
     semantic-release-yarn: ^3.0.2
-    taze: 19.17.2
+    taze: 20.0.2
   dev:
     '@arethetypeswrong/cli': ^0.18.5
     '@ckeditor/typedoc-plugins': 62.3.0
