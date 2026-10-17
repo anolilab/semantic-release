@@ -541,7 +541,7 @@ importers:
         specifier: 5.5.28
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.33
+        specifier: 8.1.34
         version: link:../semantic-release-pnpm
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
@@ -1043,7 +1043,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.10)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.33
+        specifier: 8.1.34
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -5432,10 +5432,6 @@ packages:
   eventemitter3@5.0.4:
     resolution: {integrity: sha512-mlsTRyGaPBjPedk6Bvw+aqbsXDtoAyAzm5MO7JgU+yVRyMQ5O8bD4Kcci7BS85f93veegeCPkL8R4GLClnjLFw==}
 
-  execa@10.1.0:
-    resolution: {integrity: sha512-5HT/600HqXEtmkb9mK/PkTWw+bQSCzPnWiZ4/87wD3Hi0wFzCapOuNT9p4M08PDd+KLHdHvFhKjOWmNx/npRNQ==}
-    engines: {node: '>=22'}
-
   execa@10.1.1:
     resolution: {integrity: sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==}
     engines: {node: '>=22'}
@@ -9780,7 +9776,7 @@ snapshots:
       debug: 4.4.3(supports-color@10.2.2)
       detect-indent: 7.0.2
       env-ci: 11.2.0
-      execa: 10.1.0
+      execa: 10.1.1
       ini: 7.0.0
       normalize-url: 9.0.1
       registry-auth-token: 5.1.1
@@ -14255,21 +14251,6 @@ snapshots:
       through: 2.3.8
 
   eventemitter3@5.0.4: {}
-
-  execa@10.1.0:
-    dependencies:
-      '@sindresorhus/merge-streams': 4.0.0
-      figures: 6.1.0
-      get-stream: 9.0.1
-      human-signals: 8.0.1
-      is-plain-obj: 4.1.0
-      is-stream: 4.0.1
-      npm-run-path: 6.0.0
-      pretty-ms: 9.3.1
-      signal-exit: 4.1.0
-      strip-final-newline: 4.0.0
-      which-command: 0.1.0
-      yoctocolors: 2.2.0
 
   execa@10.1.1:
     dependencies:
