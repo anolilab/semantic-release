@@ -1929,5 +1929,57 @@ catalogs:
             expect((packageA?.result as ReleaseResultType).nextRelease?.version).toBe("1.1.0");
             expect((packageA?.result as ReleaseResultType).nextRelease?.type).toBe("minor");
         });
+
+        it("should trigger release when the default catalog changes", async () => {
+            expect.assertions(4);
+
+            const cwd = gitInit();
+
+            copyDirectory(`${fixturesPath}/pnpmWorkspaceDefaultCatalog/`, cwd);
+
+            const initialSha = gitCommitAll(cwd, "feat: Initial release with default catalog");
+
+            gitInitOrigin(cwd);
+            gitPush(cwd);
+
+            gitTag(cwd, "msr-test-a@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-b@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-c@1.0.0", initialSha);
+            gitPush(cwd);
+
+            writeFileSync(
+                resolve(cwd, "pnpm-workspace.yaml"),
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.17.1
+    typescript: ^5.1.0
+`,
+            );
+
+            gitCommitAll(cwd, "chore: update default catalog");
+
+            const stdout = new WritableStreamBuffer();
+            const stderr = new WritableStreamBuffer();
+
+            const result = await multiSemanticRelease(
+                [`packages/a/package.json`, `packages/b/package.json`, `packages/c/package.json`],
+                {},
+                { cwd, env: environment, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream },
+                { deps: { bump: "override", release: "patch" } },
+            );
+
+            // a references the default catalog as `catalog:`, b as `catalog:default`
+            const packageA = result.find((p) => p.name === "msr-test-a");
+            const packageB = result.find((p) => p.name === "msr-test-b");
+            // c uses the default catalog in devDependencies only
+            const packageC = result.find((p) => p.name === "msr-test-c");
+
+            expect((packageA?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect((packageA?.result as ReleaseResultType).nextRelease?.notes).toContain("* **lodash-es:** ^4.17.0 → ^4.17.1");
+            expect((packageB?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect(packageC?.result).toBe(false);
+        });
     });
 });
