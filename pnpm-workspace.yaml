@@ -204,7 +204,7 @@ onlyBuiltDependencies:
 
 overrides:
   browserslist@<=4.28.6: '>=4.29.3'
-  '@typescript-eslint/utils@<8.67.0': '8.71.0'
+  '@typescript-eslint/utils@<8.67.0': '8.71.2'
   '@visulima/fs': '^5.1.0'
   '@visulima/package': '5.0.31'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.6'
