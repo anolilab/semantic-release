@@ -11,6 +11,8 @@ import multiSemanticRelease from "../src/multi-semantic-release";
 import type { Package, ReleaseResult as ReleaseResultType } from "../src/types";
 import { copyDirectory, createNewTestingFiles } from "./helpers/file";
 import { gitAdd, gitCommit, gitCommitAll, gitGetLog, gitInit, gitInitOrigin, gitPush, gitTag } from "./helpers/git";
+import type { LockfileVersions } from "./helpers/pnpm-lockfile";
+import { buildPnpmLockfile } from "./helpers/pnpm-lockfile";
 
 type PackageResult = Package;
 
@@ -1928,6 +1930,107 @@ catalogs:
             // Should use minor from commit (higher than patch from catalog)
             expect((packageA?.result as ReleaseResultType).nextRelease?.version).toBe("1.1.0");
             expect((packageA?.result as ReleaseResultType).nextRelease?.type).toBe("minor");
+        });
+    });
+
+    describe("root file change detection", () => {
+        const lockfilePackages = [`packages/a/package.json`, `packages/b/package.json`, `packages/lib/package.json`];
+
+        /**
+         * Release a, b and lib at 1.0.0, then commit only a lock file change.
+         * @param versions The lock file versions after the release.
+         * @param flags The multi-semantic-release flags.
+         * @returns The released packages by name.
+         */
+        const releaseAfterLockfileChange = async (versions: LockfileVersions, flags: Record<string, unknown>): Promise<Record<string, Package>> => {
+            const cwd = gitInit();
+
+            copyDirectory(`${fixturesPath}/pnpmWorkspaceLockfile/`, cwd);
+            writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile());
+
+            const initialSha = gitCommitAll(cwd, "feat: Initial release");
+
+            gitInitOrigin(cwd);
+            gitPush(cwd);
+            gitTag(cwd, "msr-test-a@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-b@1.0.0", initialSha);
+            gitTag(cwd, "msr-test-lib@1.0.0", initialSha);
+            gitPush(cwd);
+
+            writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile(versions));
+            gitCommitAll(cwd, "chore: update lock file");
+
+            const stdout = new WritableStreamBuffer();
+            const stderr = new WritableStreamBuffer();
+            const result = await multiSemanticRelease(
+                lockfilePackages,
+                {},
+                { cwd, env: environment, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream },
+                { deps: { bump: "override", release: "patch" }, ...flags },
+            );
+
+            return Object.fromEntries(result.map((pkg) => [pkg.name, pkg]));
+        };
+
+        it("should not release on lock file changes by default", async () => {
+            expect.assertions(3);
+
+            const packages = await releaseAfterLockfileChange({ dep: "1.0.1" }, {});
+
+            expect(packages["msr-test-a"]?.result).toBe(false);
+            expect(packages["msr-test-b"]?.result).toBe(false);
+            expect(packages["msr-test-lib"]?.result).toBe(false);
+        });
+
+        it('should release only packages whose production dependencies changed with scope "affected"', async () => {
+            expect.assertions(4);
+
+            const packages = await releaseAfterLockfileChange(
+                { dep: "1.0.1", tool: "1.1.0" },
+                { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+            );
+            const resultA = packages["msr-test-a"]?.result as ReleaseResultType;
+
+            expect(resultA.nextRelease?.version).toBe("1.0.1");
+            expect(resultA.nextRelease?.notes).toContain("* **dep:** 1.0.0 → 1.0.1");
+            expect(packages["msr-test-b"]?.result).toBe(false);
+            expect(packages["msr-test-lib"]?.result).toBe(false);
+        });
+
+        it("should limit root file releases to rootFilesPackages", async () => {
+            expect.assertions(3);
+
+            // libdep is a production dependency of lib, and of a through its workspace link
+            const packages = await releaseAfterLockfileChange(
+                { libdep: "2.0.1" },
+                { rootFilesPackages: ["msr-test-a"], rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+            );
+
+            expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect(packages["msr-test-b"]?.result).toBe(false);
+            expect(packages["msr-test-lib"]?.result).toBe(false);
+        });
+
+        it('should release every package with scope "all"', async () => {
+            expect.assertions(4);
+
+            const packages = await releaseAfterLockfileChange({ tool: "1.1.0" }, { triggerRootFiles: ["pnpm-lock.yaml"] });
+
+            expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.notes).toContain("* **pnpm-lock.yaml** changed");
+            expect((packages["msr-test-b"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect((packages["msr-test-lib"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+        });
+
+        it('should use the highest direct dependency change with rootFilesReleaseType "inherit"', async () => {
+            expect.assertions(1);
+
+            const packages = await releaseAfterLockfileChange(
+                { dep: "1.1.0" },
+                { rootFilesPackages: ["msr-test-a"], rootFilesReleaseType: "inherit", rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+            );
+
+            expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.1.0");
         });
     });
 });

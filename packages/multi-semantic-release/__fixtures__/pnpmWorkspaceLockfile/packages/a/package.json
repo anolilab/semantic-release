@@ -1,0 +1,11 @@
+{
+    "name": "msr-test-a",
+    "version": "0.0.0",
+    "dependencies": {
+        "dep": "^1.0.0",
+        "msr-test-lib": "workspace:^"
+    },
+    "devDependencies": {
+        "tool": "^1.0.0"
+    }
+}

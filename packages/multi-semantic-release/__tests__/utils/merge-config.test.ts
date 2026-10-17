@@ -69,4 +69,14 @@ describe(mergeConfig, () => {
 
         expect(result).toStrictEqual({ deps: {}, ignorePackages: ["lodash", "react"] });
     });
+
+    it("should merge triggerRootFiles and rootFilesPackages arrays when set", () => {
+        expect.assertions(1);
+
+        const a = { rootFilesPackages: ["web"], triggerRootFiles: ["pnpm-lock.yaml"] };
+        const b = { triggerRootFiles: [".npmrc", "pnpm-lock.yaml"] };
+        const result = mergeConfig(a, b);
+
+        expect(result).toStrictEqual({ deps: {}, ignorePackages: [], rootFilesPackages: ["web"], triggerRootFiles: ["pnpm-lock.yaml", ".npmrc"] });
+    });
 });

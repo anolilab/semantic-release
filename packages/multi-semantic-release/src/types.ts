@@ -35,6 +35,26 @@ export interface PackageCatalogChange {
     releaseType: "major" | "minor" | "patch";
 }
 
+// A direct dependency that was added, removed or resolved to another version in the lock file
+export interface DependencyVersionChange {
+    name: string;
+    // Undefined if the dependency was removed
+    newVersion?: string;
+    // Undefined if the dependency was added
+    oldVersion?: string;
+}
+
+// Root file changes that trigger a release of a package
+export interface RootFileChanges {
+    // Direct dependencies whose resolved version changed (scope "affected", pnpm lock file)
+    dependencies: DependencyVersionChange[];
+    // Changed root files that trigger the release as a whole
+    files: string[];
+    releaseType: "major" | "minor" | "patch";
+    // Number of other packages in the dependency graph whose resolution changed (transitive or peer context)
+    transitiveCount: number;
+}
+
 // Package object representing a package in the monorepo
 export interface Package {
     _analyzed?: boolean;
@@ -50,6 +70,7 @@ export interface Package {
 
     // Runtime state properties (set during execution)
     _ready?: boolean;
+    _rootFileChanges?: RootFileChanges;
     deps: string[];
     dir: string;
     localDeps: Package[];
@@ -144,10 +165,18 @@ export interface MultiReleaseConfig {
     firstParent?: boolean;
     ignorePackages?: string[];
     ignorePrivate?: boolean;
+    // Names of the packages root file changes apply to; empty applies them to all packages
+    rootFilesPackages?: string[];
+    rootFilesReleaseType?: ReleaseStrategy;
+    // "all" releases every package when a root file changes, "affected" only packages whose
+    // production dependencies changed in pnpm-lock.yaml (other root files behave as with "all")
+    rootFilesScope?: "all" | "affected";
     sequentialInit?: boolean;
     sequentialPrepare?: boolean;
     silent?: boolean;
     tagFormat?: string;
+    // Root files (relative to the workspace root) whose changes trigger releases
+    triggerRootFiles?: string[];
 }
 
 // Global options (from root package.json)
