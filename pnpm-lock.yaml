@@ -380,10 +380,10 @@ overrides:
   undici@>=7.0.0 <7.24.0: '>=8.11.2'
   undici@>=7.17.0 <7.24.0: '>=8.11.2'
   uuid@<14.0.0: '>=14.0.3'
-  vite@>=7.0.0 <=7.3.1: '>=8.2.2'
-  vite@>=7.1.0 <=7.1.10: '>=8.2.2'
-  vite@>=7.1.0 <=7.3.1: '>=8.2.2'
-  vite@>=8.0.0 <8.0.16: '>=8.2.2'
+  vite@>=7.0.0 <=7.3.1: '>=8.2.4'
+  vite@>=7.1.0 <=7.1.10: '>=8.2.4'
+  vite@>=7.1.0 <=7.3.1: '>=8.2.4'
+  vite@>=8.0.0 <8.0.16: '>=8.2.4'
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
   katex@>=0.11.0 <0.18.2: ^0.19.0
   undici@>=7.0.0 <7.29.1: ^7.30.0
@@ -541,7 +541,7 @@ importers:
         specifier: 5.5.28
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.33
+        specifier: 8.1.34
         version: link:../semantic-release-pnpm
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
@@ -1043,7 +1043,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.10)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.33
+        specifier: 8.1.34
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
@@ -3849,7 +3849,7 @@ packages:
     resolution: {integrity: sha512-2XJVD55d1o5AZous5CCGKS74g/riOj9odEt2bQpCVZeblHyHdnMeFl4jl0XjU21stf4mbjUkew2eXQZt65g5CQ==}
     peerDependencies:
       msw: ^2.4.9
-      vite: '>=8.2.2'
+      vite: '>=8.2.4'
     peerDependenciesMeta:
       msw:
         optional: true
@@ -8195,7 +8195,7 @@ packages:
     engines: {node: '>=20.20.0'}
     peerDependencies:
       rollup: '>=4.63.4'
-      vite: '>=8.2.2'
+      vite: '>=8.2.4'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -9326,7 +9326,7 @@ packages:
       '@vitest/ui': 4.1.11
       happy-dom: '*'
       jsdom: '*'
-      vite: '>=8.2.2'
+      vite: '>=8.2.4'
     peerDependenciesMeta:
       '@edge-runtime/vm':
         optional: true
