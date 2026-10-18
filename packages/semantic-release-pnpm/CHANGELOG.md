@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-pnpm [8.1.35](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.34...@anolilab/semantic-release-pnpm@8.1.35) (2026-10-18)
+
+
+### Dependencies
+
+* **@visulima/package:** 5.0.31 → 5.0.43
+
 ## @anolilab/semantic-release-pnpm [8.1.34](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.33...@anolilab/semantic-release-pnpm@8.1.34) (2026-10-16)
 
 
