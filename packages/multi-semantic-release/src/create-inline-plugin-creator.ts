@@ -9,9 +9,9 @@ import logger from "./logger";
 import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
 import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps as updateManifestDependencies } from "./update-deps";
 import cleanPath from "./utils/clean-path";
-import createRootFileChangeDetector, { formatRootFileChanges } from "./utils/create-root-file-change-detector";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
 import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";
+import { createRootFileChangeDetector, formatRootFileChanges } from "./utils/detect-root-file-changes";
 import memoize from "./utils/memoize";
 import { maxReleaseType } from "./utils/release-type";
 
