@@ -1,3 +1,10 @@
+## @anolilab/semantic-release-preset [13.4.37](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.36...@anolilab/semantic-release-preset@13.4.37) (2026-10-18)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.35
+
 ## @anolilab/semantic-release-preset [13.4.36](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-preset@13.4.35...@anolilab/semantic-release-preset@13.4.36) (2026-10-16)
 
 
