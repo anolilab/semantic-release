@@ -114,7 +114,7 @@ describe("createRootFileChangeDetector()", () => {
         expect(() => createRootFileChangeDetector("/repo", { rootFiles: { scope: "some" as "all" } })).toThrow("rootFiles.scope");
     });
 
-    it("should compare every package against HEAD as of the first detection", async () => {
+    it("should keep comparing against the pinned HEAD across detections", async () => {
         expect.assertions(2);
 
         const { cwd, initialSha } = setUpWorkspace();
