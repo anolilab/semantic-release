@@ -12,6 +12,7 @@ import cleanPath from "./utils/clean-path";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
 import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";
 import { createRootFileChangeDetector, formatRootFileChanges } from "./utils/detect-root-file-changes";
+import { isCommitAvailable } from "./utils/git";
 import memoize from "./utils/memoize";
 import { maxReleaseType } from "./utils/release-type";
 
@@ -51,13 +52,32 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
     // Packages sharing a last-release commit share the (cached) detection.
     const catalogChangesByGitHead = new Map<string, Promise<CatalogChanges>>();
     const getRootFileChangesSince = createRootFileChangeDetector(cwd, flags);
+    const commitChecksByGitHead = new Map<string, Promise<void>>();
+
+    /**
+     * Fail when a package's last release commit isn't available locally. Without it, commit analysis
+     * and catalog and root file detection can't see what changed, so releases would be missed silently.
+     * @param gitHead The commit of the package's last release.
+     * @param gitTag The tag of the package's last release.
+     * @throws If the commit is not available, e.g. in a shallow clone.
+     */
+    const assertLastReleaseAvailable = async (gitHead: string, gitTag: string | undefined): Promise<void> => {
+        await memoize(commitChecksByGitHead, gitHead, async () => {
+            if (!(await isCommitAvailable(cwd, gitHead))) {
+                throw new Error(
+                    `The last release commit ${gitHead}${gitTag ? ` (${gitTag})` : ""} is not available in this clone, so changes since it can't be detected. ` +
+                        "Fetch the full history, e.g. `fetch-depth: 0` with actions/checkout.",
+                );
+            }
+        });
+    };
 
     const getCatalogChangesSince = async (gitHead: string, debugPrefix: string): Promise<CatalogChanges> =>
         await memoize(catalogChangesByGitHead, gitHead, async () => {
             try {
                 return await detectCatalogChanges(cwd, gitHead);
             } catch (error) {
-                // Catalog changes never failed a release, so keep skipping them, but visibly (e.g. in a shallow clone).
+                // An unavailable last release commit already failed analyzeCommits; skip other failures (e.g. unparsable files), but visibly.
                 scopedLogger.warn(debugPrefix, "Failed to detect catalog changes, skipping them:", error);
 
                 return {};
@@ -190,6 +210,10 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             context.cwd = dir;
 
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
+
+            if (context.lastRelease?.gitHead) {
+                await assertLastReleaseAvailable(context.lastRelease.gitHead, context.lastRelease.gitTag);
+            }
 
             context.commits = await getCommitsFiltered(
                 cwd,

@@ -43,6 +43,19 @@ const getChangedFiles = async (cwd: string, files: string[], fromGitHead: string
 };
 
 /**
+ * Check that a commit is available locally, e.g. not cut off by a shallow clone.
+ * @param cwd The working directory.
+ * @param gitHead The commit to check.
+ * @returns Whether git has the commit.
+ */
+const isCommitAvailable = async (cwd: string, gitHead: string): Promise<boolean> => {
+    // `<rev>^{commit}` makes git check that the revision is a commit that exists locally
+    const result = await execa("git", ["cat-file", "-e", gitHead + COMMIT_PEEL], { cwd, reject: false });
+
+    return result.exitCode === 0;
+};
+
+/**
  * Read a file as it was at a commit.
  * @param cwd The working directory.
  * @param gitHead The commit to read from.
@@ -57,14 +70,11 @@ const readFileAtCommit = async (cwd: string, gitHead: string, path: string): Pro
         return result.stdout;
     }
 
-    // `<rev>^{commit}` makes git check that the revision is a commit that exists locally
-    const commit = await execa("git", ["cat-file", "-e", gitHead + COMMIT_PEEL], { cwd, reject: false });
-
-    if (commit.exitCode !== 0) {
+    if (!(await isCommitAvailable(cwd, gitHead))) {
         throw new Error(`Cannot read ${path} at ${gitHead}: the commit is not available (shallow clone?)`);
     }
 
     return undefined;
 };
 
-export { getChangedFiles, getHeadCommit, getHeadCommitSync, readFileAtCommit };
+export { getChangedFiles, getHeadCommit, getHeadCommitSync, isCommitAvailable, readFileAtCommit };

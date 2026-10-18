@@ -177,7 +177,7 @@ Commits are assigned to packages by path, so a change to a root file such as `pn
 - `packages` limits root file releases to the named packages, e.g. applications that bundle their dependencies, while libraries are left to their consumers' lock files.
 - `release` sets the release type, `patch` by default; `inherit` uses the highest semver change among the changed direct dependencies. Versions that aren't semver (git, tarball or `file:` dependencies) count as a patch. `inherit` is not capped by `deps.release`, which only applies to catalog changes and workspace dependencies: a major catalog bump that `deps.release` maps to a patch still releases a major if `pnpm-lock.yaml` is a trigger root file with `inherit`. Invalid values fail the run.
 
-The release notes list the updated, added and removed direct dependencies and the number of other updated packages under "Dependencies". A dependency that is also listed as a catalog change is listed once. All packages are compared with the commit `HEAD` points to when the run starts, so release commits created during the run don't count. The last release's commit must be available: in a shallow clone, the release fails instead of silently skipping it.
+The release notes list the updated, added and removed direct dependencies and the number of other updated packages under "Dependencies". A dependency that is also listed as a catalog change is listed once. All packages are compared with the commit `HEAD` points to when the run starts, so release commits created during the run don't count.
 
 ### bolt
 
@@ -204,6 +204,10 @@ For example, let's say your project has 4 packages (i.e. a, b, c and d) and you 
     }
 }
 ```
+
+### Git History
+
+Changes are detected since each package's last release, so its commit must be in the clone. If it isn't, e.g. in a shallow clone, the run fails instead of silently skipping releases: fetch the full history, e.g. with `fetch-depth: 0` for `actions/checkout`.
 
 ## Configuring Multi-Semantic-Release
 
