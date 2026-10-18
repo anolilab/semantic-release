@@ -69,11 +69,15 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
             ignorePackages: [],
             ignorePrivate: true,
             logLevel: "info",
+            rootFilesPackages: [],
+            rootFilesReleaseType: "patch" as const,
+            rootFilesScope: "all" as const,
             sequentialInit: false,
             sequentialPrepare: true,
             silent: false,
             // eslint-disable-next-line no-template-curly-in-string
             tagFormat: "${name}@${version}",
+            triggerRootFiles: [],
         },
         options,
     );

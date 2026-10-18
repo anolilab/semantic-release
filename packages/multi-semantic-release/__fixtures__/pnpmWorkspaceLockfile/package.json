@@ -1,0 +1,17 @@
+{
+    "name": "msr-test-pnpm-lockfile",
+    "version": "0.0.0-semantically-released",
+    "private": true,
+    "license": "0BSD",
+    "author": "Dave Houlbrooke <dave@shax.com>",
+    "release": {
+        "noCi": true,
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@semantic-release/release-notes-generator"
+        ]
+    },
+    "engines": {
+        "node": ">=8.3"
+    }
+}

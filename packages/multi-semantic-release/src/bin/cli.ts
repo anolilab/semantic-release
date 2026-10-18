@@ -74,6 +74,23 @@ const cli = yargs(hideBin(process.argv))
         describe: "Exclude private packages. Enabled by default, pass 'no-ignore-private' to disable.",
         type: "boolean",
     })
+    .option("trigger-root-files", {
+        ...stringList,
+        describe: "Root files (relative to the workspace root) whose changes trigger releases, e.g. pnpm-lock.yaml",
+    })
+    .option("root-files-release-type", {
+        describe: "Release type when a root file triggers a release. Supported values: patch, minor, major, inherit.",
+        type: "string",
+    })
+    .option("root-files-scope", {
+        choices: ["all", "affected"],
+        describe: "Release all packages on a root file change, or only those whose production dependencies changed in pnpm-lock.yaml.",
+        type: "string",
+    })
+    .option("root-files-packages", {
+        ...stringList,
+        describe: "Names of the packages root file changes apply to. Default: all packages",
+    })
     .option("tag-format", {
         describe:
             // eslint-disable-next-line no-template-curly-in-string

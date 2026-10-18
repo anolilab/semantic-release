@@ -11,6 +11,10 @@ const { debug } = logger.withScope("msr:catalogChanges");
 
 const VERSION_PREFIX_REGEX = /^[\^~]/;
 
+const DEFAULT_CATALOG_NAME = "default";
+
+const DEFAULT_CATALOG_REFERENCE = "catalog:";
+
 interface CatalogChanges {
     [catalogName: string]: {
         [packageName: string]: {
@@ -22,10 +26,28 @@ interface CatalogChanges {
 }
 
 interface CatalogFile {
+    catalog?: Record<string, string>;
     catalogs?: Record<string, Record<string, string>>;
     dependencies?: Record<string, string>;
     devDependencies?: Record<string, string>;
 }
+
+/**
+ * Collect the catalogs of a parsed pnpm-workspace.yaml.
+ * pnpm treats the top-level `catalog` as the catalog named "default", referenced as `catalog:` or `catalog:default`.
+ * @param parsed The parsed pnpm-workspace.yaml.
+ * @returns Catalog definitions or null if the file has no catalogs.
+ */
+const getPnpmCatalogs = (parsed: CatalogFile): Record<string, Record<string, string>> | null => {
+    if (!parsed.catalog) {
+        return parsed.catalogs ?? null;
+    }
+
+    return {
+        ...parsed.catalogs,
+        [DEFAULT_CATALOG_NAME]: { ...parsed.catalogs?.[DEFAULT_CATALOG_NAME], ...parsed.catalog },
+    };
+};
 
 /**
  * Parse pnpm-workspace.yaml file to extract catalog definitions.
@@ -42,7 +64,7 @@ const parsePnpmCatalog = (cwd: string): Record<string, Record<string, string>> |
     try {
         const parsed = readYamlSync(catalogPath) as CatalogFile;
 
-        return parsed.catalogs ?? null;
+        return getPnpmCatalogs(parsed);
     } catch (error) {
         debug("Failed to parse pnpm-workspace.yaml:", error);
 
@@ -109,10 +131,10 @@ const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Prom
             if (result.exitCode === 0 && result.stdout) {
                 // Parse YAML from string content
                 const { parse: parseYaml } = await import("yaml");
-                const parsed = parseYaml(result.stdout) as CatalogFile;
+                const catalogs = getPnpmCatalogs(parseYaml(result.stdout) as CatalogFile);
 
-                if (parsed.catalogs) {
-                    return parsed.catalogs;
+                if (catalogs) {
+                    return catalogs;
                 }
             }
         } catch {
@@ -253,6 +275,14 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
 };
 
 /**
+ * Spell the default catalog reference `catalog:` as `catalog:default`, the form catalog names are matched against.
+ * @param dependencyVersion The dependency specifier from a manifest.
+ * @returns The specifier, with the default catalog named explicitly.
+ */
+const normalizeCatalogReference = (dependencyVersion: string): string =>
+    dependencyVersion === DEFAULT_CATALOG_REFERENCE ? `${DEFAULT_CATALOG_REFERENCE}${DEFAULT_CATALOG_NAME}` : dependencyVersion;
+
+/**
  * Check if a package uses a specific catalog reference.
  * @param pkg The package to check.
  * @param catalogRef The catalog reference string.
@@ -266,7 +296,7 @@ const packageUsesCatalog = (pkg: Package, catalogRef: string, packageName?: stri
 
     for (const scope of dependencyScopes) {
         for (const [dependencyName, dependencyVersion] of Object.entries(scope)) {
-            if (dependencyVersion === catalogRef) {
+            if (normalizeCatalogReference(dependencyVersion) === catalogRef) {
                 if (packageName && dependencyName !== packageName) {
                     // eslint-disable-next-line unicorn/no-break-in-nested-loop
                     continue;
