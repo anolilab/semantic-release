@@ -12,7 +12,6 @@ import {
 } from "../src/update-deps";
 
 type StrategyArgument = Parameters<typeof resolveReleaseTypeFromStrategy>[0];
-type DependencyReleaseType = Parameters<typeof resolveReleaseTypeFromStrategy>[1];
 
 describe("update-deps", () => {
     describe("resolveNextVersion()", () => {
@@ -355,7 +354,7 @@ describe("update-deps", () => {
         ])("strategy %j with dependency type %s gives %s", (strategy, dependencyType, expected) => {
             expect.assertions(1);
 
-            expect(resolveReleaseTypeFromStrategy(strategy as StrategyArgument, dependencyType as DependencyReleaseType)).toBe(expected);
+            expect(resolveReleaseTypeFromStrategy(strategy as StrategyArgument, dependencyType)).toBe(expected);
         });
     });
 });
