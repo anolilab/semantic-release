@@ -2056,6 +2056,19 @@ catalog:
             expect(packages["msr-test-lib"]?.result).toBe(false);
         });
 
+        it("should still accept the deprecated flat root file options", async () => {
+            expect.assertions(3);
+
+            const packages = await releaseAfterLockfileChange(
+                { libdep: "2.0.1" },
+                { rootFilesPackages: ["msr-test-a"], rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+            );
+
+            expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect(packages["msr-test-b"]?.result).toBe(false);
+            expect(packages["msr-test-lib"]?.result).toBe(false);
+        });
+
         it("should limit root file releases to rootFiles.packages", async () => {
             expect.assertions(3);
 

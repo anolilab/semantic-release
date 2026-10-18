@@ -64,7 +64,10 @@ describe("multi-semantic-release CLI", () => {
         expect(out.stdout).toMatch("Released 2 of 2 packages");
     });
 
-    it("root file change (comma-separated --root-files lists)", { timeout: 60_000 }, async () => {
+    it.each([
+        ["--root-files.files=pnpm-lock.yaml,.npmrc", "--root-files.packages=msr-test-a,msr-test-b"],
+        ["--trigger-root-files=pnpm-lock.yaml,.npmrc", "--root-files-packages=msr-test-a,msr-test-b"],
+    ])("root file change (comma-separated lists: %s %s)", { timeout: 60_000 }, async (filesFlag, packagesFlag) => {
         expect.assertions(3);
 
         const cwd = gitInit();
@@ -81,8 +84,8 @@ describe("multi-semantic-release CLI", () => {
         gitCommitAll(cwd, "chore: add .npmrc");
         gitPush(cwd);
 
-        // yargs doesn't split dotted options itself: both lists must still be split on commas
-        const { stdout } = await execa("node", [msrBin, "--root-files.files=pnpm-lock.yaml,.npmrc", "--root-files.packages=msr-test-a,msr-test-b"], {
+        // yargs doesn't split dotted options itself, and the flat ones are deprecated aliases: both lists must still be split on commas
+        const { stdout } = await execa("node", [msrBin, filesFlag, packagesFlag], {
             cwd,
             env: environment,
             extendEnv: false,

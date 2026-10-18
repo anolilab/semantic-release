@@ -183,10 +183,18 @@ export interface MultiReleaseConfig {
     ignorePackages?: string[];
     ignorePrivate?: boolean;
     rootFiles?: RootFilesConfig;
+    /** @deprecated Use `rootFiles.packages`. */
+    rootFilesPackages?: string[];
+    /** @deprecated Use `rootFiles.release`. */
+    rootFilesReleaseType?: ReleaseStrategy;
+    /** @deprecated Use `rootFiles.scope`. */
+    rootFilesScope?: "all" | "affected";
     sequentialInit?: boolean;
     sequentialPrepare?: boolean;
     silent?: boolean;
     tagFormat?: string;
+    /** @deprecated Use `rootFiles.files`. */
+    triggerRootFiles?: string[];
 }
 
 // Global options (from root package.json)

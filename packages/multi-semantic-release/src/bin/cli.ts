@@ -107,6 +107,10 @@ const cli = yargs(hideBin(process.argv))
         ...stringList,
         describe: "Names of the packages root file changes apply to. Default: all packages",
     })
+    .option("trigger-root-files", { ...stringList, deprecated: "use --root-files.files", hidden: true })
+    .option("root-files-scope", { deprecated: "use --root-files.scope", hidden: true, type: "string" })
+    .option("root-files-packages", { ...stringList, deprecated: "use --root-files.packages", hidden: true })
+    .option("root-files-release-type", { deprecated: "use --root-files.release", hidden: true, type: "string" })
     .option("tag-format", {
         describe:
             // eslint-disable-next-line no-template-curly-in-string
