@@ -30,12 +30,21 @@ describe("release-type", () => {
             expect(getVersionChangeLevel("1.2.3", "1.2.3")).toBeUndefined();
         });
 
+        it("should classify range changes by their lowest version", () => {
+            expect.assertions(3);
+
+            expect(getVersionChangeLevel("^5", "^6")).toBe("major");
+            expect(getVersionChangeLevel(">=4.17.0", ">=4.18.0")).toBe("minor");
+            expect(getVersionChangeLevel("4.x", "4.x")).toBeUndefined();
+        });
+
         it("should not classify versions that aren't valid semver", () => {
-            expect.assertions(2);
+            expect.assertions(3);
 
             // semver.coerce would read these git tarball URLs as 4.0.0 and 9.0.0, a "major" change
             expect(getVersionChangeLevel("https://codeload.github.com/a/b/tar.gz/4f2a9c", "https://codeload.github.com/a/b/tar.gz/9e1b")).toBeUndefined();
             expect(getVersionChangeLevel("latest", "1.0.0")).toBeUndefined();
+            expect(getVersionChangeLevel("workspace:*", "workspace:^")).toBeUndefined();
         });
     });
 
