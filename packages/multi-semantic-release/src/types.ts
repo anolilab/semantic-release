@@ -4,6 +4,8 @@ import type { Writable } from "node:stream";
 
 import type { ReleaseType } from "semver";
 
+import type { ReleaseLevel } from "./utils/release-type";
+
 // Package manifest interface (package.json contents)
 export interface PackageManifest {
     [key: string]: unknown;
@@ -32,7 +34,7 @@ export interface PackageCatalogChange {
     dependencyName: string;
     newVersion: string;
     oldVersion: string;
-    releaseType: "major" | "minor" | "patch";
+    releaseType: ReleaseLevel;
 }
 
 // A direct dependency that was added, removed or resolved to another version in the lock file
@@ -50,7 +52,7 @@ export interface RootFileChanges {
     dependencies: DependencyVersionChange[];
     // Changed root files that trigger the release as a whole
     files: string[];
-    releaseType: "major" | "minor" | "patch";
+    releaseType: ReleaseLevel;
     // Number of other packages in the dependency graph whose resolution changed (transitive or peer context)
     transitiveCount: number;
 }
@@ -156,9 +158,9 @@ export interface MultiReleaseConfig {
         release?:
             | ReleaseStrategy
             | {
-                  major?: Omit<ReleaseStrategy, "inherit">;
-                  minor?: Omit<ReleaseStrategy, "inherit">;
-                  patch?: Omit<ReleaseStrategy, "inherit">;
+                  major?: Exclude<ReleaseStrategy, "inherit">;
+                  minor?: Exclude<ReleaseStrategy, "inherit">;
+                  patch?: Exclude<ReleaseStrategy, "inherit">;
               };
     };
     dryRun?: boolean;

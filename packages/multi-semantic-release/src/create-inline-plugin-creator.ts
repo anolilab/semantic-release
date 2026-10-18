@@ -12,21 +12,12 @@ import cleanPath from "./utils/clean-path";
 import createRootFileChangeDetector, { formatRootFileChanges } from "./utils/create-root-file-change-detector";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
 import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";
+import memoize from "./utils/memoize";
+import { maxReleaseType } from "./utils/release-type";
 
-const { debug } = logger.withScope("msr:inlinePlugin");
+const { debug, warn } = logger.withScope("msr:inlinePlugin");
 
 const HEADING_VERSION_REGEX = /^(#+) (\[?\d+\.\d+\.\d+\]?)/u;
-
-const RELEASE_SEVERITY: Record<string, number> = { major: 3, minor: 2, patch: 1 };
-
-/**
- * Pick the more severe of two release types.
- * @param current The release type so far.
- * @param candidate Another release type.
- * @returns The candidate if it is more severe, otherwise the current release type.
- */
-const getHigherReleaseType = (current: string | undefined, candidate: string | undefined): string | undefined =>
-    (RELEASE_SEVERITY[candidate ?? ""] ?? 0) > (RELEASE_SEVERITY[current ?? ""] ?? 0) ? candidate : current;
 
 interface InlinePluginFunctions {
     analyzeCommits?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string | null>;
@@ -53,25 +44,17 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
     const catalogChangesByGitHead = new Map<string, Promise<CatalogChanges>>();
     const getRootFileChangesSince = createRootFileChangeDetector(cwd, flags);
 
-    const getCatalogChangesSince = async (gitHead: string, debugPrefix: string): Promise<CatalogChanges> => {
-        let changes = catalogChangesByGitHead.get(gitHead);
+    const getCatalogChangesSince = async (gitHead: string, debugPrefix: string): Promise<CatalogChanges> =>
+        await memoize(catalogChangesByGitHead, gitHead, async () => {
+            try {
+                return await detectCatalogChanges(cwd, gitHead);
+            } catch (error) {
+                // Catalog changes never failed a release, so keep skipping them, but visibly (e.g. in a shallow clone).
+                warn(debugPrefix, "Failed to detect catalog changes, skipping them:", error);
 
-        if (!changes) {
-            changes = (async (): Promise<CatalogChanges> => {
-                try {
-                    return await detectCatalogChanges(cwd, gitHead);
-                } catch (error) {
-                    debug(debugPrefix, "Failed to detect catalog changes:", error);
-
-                    return {};
-                }
-            })();
-
-            catalogChangesByGitHead.set(gitHead, changes);
-        }
-
-        return await changes;
-    };
+                return {};
+            }
+        });
 
     const createInlinePlugin = (npmPackage: Package): InlinePluginFunctions => {
         const { dir, name, plugins } = npmPackage;
@@ -173,23 +156,14 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 : [];
 
             if (npmPackage._catalogChanges.length > 0) {
-                const severityOrder = { major: 3, minor: 2, patch: 1 };
-                let rawCatalogReleaseType: "major" | "minor" | "patch" = "patch";
-
-                for (const { releaseType } of npmPackage._catalogChanges) {
-                    if (severityOrder[releaseType] > severityOrder[rawCatalogReleaseType]) {
-                        rawCatalogReleaseType = releaseType;
-                    }
-                }
+                const rawCatalogReleaseType = maxReleaseType(...npmPackage._catalogChanges.map(({ releaseType }) => releaseType)) ?? "patch";
 
                 // Apply deps.release strategy to catalog-triggered release types,
                 // just like workspace dependency bumps go through resolveReleaseTypeFromStrategy.
                 // Without this, a major catalog dependency bump (e.g. @actions/core 2→3)
                 // would directly cause a major release in consuming packages, ignoring the
                 // configured strategy (default: "patch").
-                catalogTriggeredReleaseType = flags.deps?.release
-                    ? (resolveReleaseTypeFromStrategy(flags.deps.release, rawCatalogReleaseType) as string | undefined)
-                    : rawCatalogReleaseType;
+                catalogTriggeredReleaseType = flags.deps?.release ? resolveReleaseTypeFromStrategy(flags.deps.release, rawCatalogReleaseType) : rawCatalogReleaseType;
 
                 debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release (raw: ${rawCatalogReleaseType})`);
             }
@@ -199,8 +173,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             const rootFileChanges = context.lastRelease?.gitHead ? await getRootFileChangesSince(npmPackage, context.lastRelease.gitHead) : undefined;
 
             if (rootFileChanges) {
-                rootFilesTriggeredReleaseType = resolveReleaseTypeFromStrategy(flags.rootFilesReleaseType ?? "patch", rootFileChanges.releaseType) as
-                    string | undefined;
+                rootFilesTriggeredReleaseType = resolveReleaseTypeFromStrategy(flags.rootFilesReleaseType ?? "patch", rootFileChanges.releaseType);
 
                 debug(debugPrefix, `Root file changes trigger ${rootFilesTriggeredReleaseType ?? "no"} release (raw: ${rootFileChanges.releaseType})`);
             }
@@ -215,7 +188,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             // If catalog or root file changes triggered a release as well, use the highest severity
-            nextType = getHigherReleaseType(getHigherReleaseType(nextType, catalogTriggeredReleaseType), rootFilesTriggeredReleaseType);
+            nextType = maxReleaseType(nextType, catalogTriggeredReleaseType, rootFilesTriggeredReleaseType);
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._nextType = nextType as ReleaseType | null | undefined;

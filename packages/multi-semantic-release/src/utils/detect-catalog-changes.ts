@@ -1,15 +1,16 @@
 import { isAccessibleSync, readJson } from "@visulima/fs";
 import { readYamlSync } from "@visulima/fs/yaml";
 import { resolve } from "@visulima/path";
-import semver from "semver";
+import { parse as parseYaml } from "yaml";
 
 import logger from "../logger";
 import type { Package, PackageCatalogChange } from "../types";
 import cleanPath from "./clean-path";
+import { readFileAtCommit } from "./git";
+import type { ReleaseLevel } from "./release-type";
+import { getVersionChangeLevel, maxReleaseType } from "./release-type";
 
 const { debug } = logger.withScope("msr:catalogChanges");
-
-const VERSION_PREFIX_REGEX = /^[\^~]/;
 
 const DEFAULT_CATALOG_NAME = "default";
 
@@ -20,7 +21,7 @@ interface CatalogChanges {
         [packageName: string]: {
             newVersion: string;
             oldVersion: string;
-            releaseType: "major" | "minor" | "patch" | null;
+            releaseType: ReleaseLevel | null;
         };
     };
 }
@@ -118,86 +119,37 @@ const getCatalogDefinitions = async (cwd: string): Promise<Record<string, Record
  * @param cwd The workspace root directory.
  * @param gitHead The git commit SHA to check.
  * @returns Catalog definitions or null if no catalogs found.
+ * @throws If the commit is not available (e.g. in a shallow clone).
  */
 const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Promise<Record<string, Record<string, string>> | null> => {
-    // eslint-disable-next-line e18e/ban-dependencies
-    const { execa } = await import("execa");
+    const workspaceFile = await readFileAtCommit(cwd, gitHead, "pnpm-workspace.yaml");
+
+    if (workspaceFile) {
+        try {
+            const catalogs = getPnpmCatalogs(parseYaml(workspaceFile) as CatalogFile);
+
+            if (catalogs) {
+                return catalogs;
+            }
+        } catch (error) {
+            debug(`Failed to parse pnpm-workspace.yaml at commit ${gitHead}:`, error);
+        }
+    }
+
+    // Fall back to package.json (yarn catalog)
+    const manifest = await readFileAtCommit(cwd, gitHead, "package.json");
+
+    if (!manifest) {
+        return null;
+    }
 
     try {
-        // Try pnpm-workspace.yaml first
-        try {
-            const result = await execa("git", ["show", `${gitHead}:pnpm-workspace.yaml`], { cwd, reject: false });
-
-            if (result.exitCode === 0 && result.stdout) {
-                // Parse YAML from string content
-                const { parse: parseYaml } = await import("yaml");
-                const catalogs = getPnpmCatalogs(parseYaml(result.stdout) as CatalogFile);
-
-                if (catalogs) {
-                    return catalogs;
-                }
-            }
-        } catch {
-            // File might not exist at this commit, continue to try package.json
-        }
-
-        // Fall back to package.json (yarn catalog)
-        try {
-            const result = await execa("git", ["show", `${gitHead}:package.json`], { cwd, reject: false });
-
-            if (result.exitCode === 0 && result.stdout) {
-                const parsed = JSON.parse(result.stdout) as CatalogFile;
-
-                return parsed.catalogs ?? null;
-            }
-        } catch {
-            // File might not exist at this commit
-        }
+        return (JSON.parse(manifest) as CatalogFile).catalogs ?? null;
     } catch (error) {
-        debug(`Failed to get catalog definitions at commit ${gitHead}:`, error);
-    }
+        debug(`Failed to parse package.json at commit ${gitHead}:`, error);
 
-    return null;
-};
-
-/**
- * Determine release type based on version change.
- * @param oldVersion Old version string.
- * @param newVersion New version string.
- * @returns Release type or null if versions are invalid or same.
- */
-const getReleaseTypeFromVersionChange = (oldVersion: string, newVersion: string): "major" | "minor" | "patch" | null => {
-    // Extract version from range (e.g., "^1.2.3" -> "1.2.3")
-    const extractVersion = (version: string): string => {
-        const cleaned = version.replace(VERSION_PREFIX_REGEX, "").trim();
-
-        return cleaned;
-    };
-
-    const oldVersionClean = extractVersion(oldVersion);
-    const newVersionClean = extractVersion(newVersion);
-
-    if (!semver.valid(oldVersionClean) || !semver.valid(newVersionClean)) {
         return null;
     }
-
-    if (semver.eq(oldVersionClean, newVersionClean)) {
-        return null;
-    }
-
-    if (semver.major(oldVersionClean) !== semver.major(newVersionClean)) {
-        return "major";
-    }
-
-    if (semver.minor(oldVersionClean) !== semver.minor(newVersionClean)) {
-        return "minor";
-    }
-
-    if (semver.patch(oldVersionClean) !== semver.patch(newVersionClean)) {
-        return "patch";
-    }
-
-    return null;
 };
 
 /**
@@ -254,7 +206,7 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
             }
 
             if (oldVersion !== newVersion) {
-                const releaseType = getReleaseTypeFromVersionChange(oldVersion, newVersion);
+                const releaseType = getVersionChangeLevel(oldVersion, newVersion);
 
                 if (releaseType) {
                     changes[catalogName] ??= {};
@@ -275,12 +227,19 @@ export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: str
 };
 
 /**
+ * Build the manifest specifier that references a named catalog, e.g. `catalog:cli`.
+ * @param catalogName The catalog name, e.g. `default` for the top-level `catalog`.
+ * @returns The specifier a manifest uses to depend on an entry of that catalog.
+ */
+const getCatalogReference = (catalogName: string): string => `${DEFAULT_CATALOG_REFERENCE}${catalogName}`;
+
+/**
  * Spell the default catalog reference `catalog:` as `catalog:default`, the form catalog names are matched against.
  * @param dependencyVersion The dependency specifier from a manifest.
  * @returns The specifier, with the default catalog named explicitly.
  */
 const normalizeCatalogReference = (dependencyVersion: string): string =>
-    dependencyVersion === DEFAULT_CATALOG_REFERENCE ? `${DEFAULT_CATALOG_REFERENCE}${DEFAULT_CATALOG_NAME}` : dependencyVersion;
+    dependencyVersion === DEFAULT_CATALOG_REFERENCE ? getCatalogReference(DEFAULT_CATALOG_NAME) : dependencyVersion;
 
 /**
  * Check if a package uses a specific catalog reference.
@@ -319,7 +278,7 @@ const packageUsesCatalog = (pkg: Package, catalogRef: string, packageName?: stri
  */
 // eslint-disable-next-line import/exports-last
 export const findPackagesUsingCatalog = (packages: Package[], catalogName: string, packageName?: string): Package[] => {
-    const catalogRef = `catalog:${catalogName}`;
+    const catalogRef = getCatalogReference(catalogName);
 
     return packages.filter((pkg) => packageUsesCatalog(pkg, catalogRef, packageName));
 };
@@ -330,21 +289,8 @@ export const findPackagesUsingCatalog = (packages: Package[], catalogName: strin
  * @param packageName The name of the package to update.
  * @param newReleaseType The release type to apply.
  */
-// eslint-disable-next-line sonarjs/use-type-alias
-const updateAffectedPackage = (affectedPackages: Map<string, "major" | "minor" | "patch">, packageName: string, newReleaseType: "major" | "minor" | "patch"): void => {
-    const currentReleaseType = affectedPackages.get(packageName);
-
-    if (currentReleaseType) {
-        const severityOrder = { major: 3, minor: 2, patch: 1 };
-        const currentSeverity = severityOrder[currentReleaseType];
-        const newSeverity = severityOrder[newReleaseType];
-
-        if (newSeverity > currentSeverity) {
-            affectedPackages.set(packageName, newReleaseType);
-        }
-    } else {
-        affectedPackages.set(packageName, newReleaseType);
-    }
+const updateAffectedPackage = (affectedPackages: Map<string, ReleaseLevel>, packageName: string, newReleaseType: ReleaseLevel): void => {
+    affectedPackages.set(packageName, maxReleaseType(affectedPackages.get(packageName), newReleaseType) ?? newReleaseType);
 };
 
 /**
@@ -353,9 +299,8 @@ const updateAffectedPackage = (affectedPackages: Map<string, "major" | "minor" |
  * @param catalogChanges Map of catalog changes.
  * @returns Map of package names to their triggered release types.
  */
- 
-export const getAffectedPackagesFromCatalogChanges = (packages: Package[], catalogChanges: CatalogChanges): Map<string, "major" | "minor" | "patch"> => {
-    const affectedPackages = new Map<string, "major" | "minor" | "patch">();
+export const getAffectedPackagesFromCatalogChanges = (packages: Package[], catalogChanges: CatalogChanges): Map<string, ReleaseLevel> => {
+    const affectedPackages = new Map<string, ReleaseLevel>();
 
     for (const [catalogName, catalogChangesForCatalog] of Object.entries(catalogChanges)) {
         for (const [packageName, change] of Object.entries(catalogChangesForCatalog)) {
@@ -383,7 +328,7 @@ export const getPackageCatalogChanges = (pkg: Package, catalogChanges: CatalogCh
 
     for (const [catalogName, catalogChangesForCatalog] of Object.entries(catalogChanges)) {
         for (const [dependencyName, change] of Object.entries(catalogChangesForCatalog)) {
-            if (change.releaseType && packageUsesCatalog(pkg, `catalog:${catalogName}`, dependencyName)) {
+            if (change.releaseType && packageUsesCatalog(pkg, getCatalogReference(catalogName), dependencyName)) {
                 changes.push({ catalogName, dependencyName, newVersion: change.newVersion, oldVersion: change.oldVersion, releaseType: change.releaseType });
             }
         }
