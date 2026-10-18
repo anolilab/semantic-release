@@ -156,15 +156,15 @@ const getCatalogDefinitionsAtCommit = async (cwd: string, gitHead: string): Prom
  * Detect catalog changes between two commits.
  * @param cwd The workspace root directory.
  * @param lastReleaseGitHead The git commit SHA of the last release.
- * @param _nextReleaseGitHead The git commit SHA of the next release (defaults to HEAD).
+ * @param currentGitHead The git commit SHA to compare with; the working tree if omitted.
  * @returns Map of catalog changes.
  */
 // eslint-disable-next-line sonarjs/cognitive-complexity, import/exports-last
-export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: string, _nextReleaseGitHead?: string): Promise<CatalogChanges> => {
+export const detectCatalogChanges = async (cwd: string, lastReleaseGitHead?: string, currentGitHead?: string): Promise<CatalogChanges> => {
     // eslint-disable-next-line no-param-reassign
     cwd = cleanPath(cwd);
 
-    const currentCatalogs = await getCatalogDefinitions(cwd);
+    const currentCatalogs = currentGitHead ? await getCatalogDefinitionsAtCommit(cwd, currentGitHead) : await getCatalogDefinitions(cwd);
 
     if (!currentCatalogs) {
         debug("No catalog definitions found");

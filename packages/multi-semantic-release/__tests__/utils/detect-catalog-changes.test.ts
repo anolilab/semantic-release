@@ -38,6 +38,33 @@ catalogs:
             expect(changes).toStrictEqual({});
         });
 
+        it("should compare with the given commit instead of the working tree", async () => {
+            expect.assertions(1);
+
+            const cwd = gitInit();
+            const catalogPath = resolve(cwd, "pnpm-workspace.yaml");
+            const writeCatalog = (version: string): void => {
+                writeFileSync(catalogPath, `packages:\n    - "packages/*"\n\ncatalogs:\n    cli:\n        semantic-release: ${version}\n`);
+            };
+
+            writeCatalog("^24.0.0");
+
+            const initialSha = gitCommitAll(cwd, "feat: initial commit with catalogs");
+
+            writeCatalog("^24.1.0");
+
+            const currentSha = gitCommitAll(cwd, "chore: update catalog");
+
+            // Neither a later commit nor an uncommitted change counts
+            writeCatalog("^25.0.0");
+            gitCommitAll(cwd, "chore(release): update catalog during the run");
+            writeCatalog("^26.0.0");
+
+            await expect(detectCatalogChanges(cwd, initialSha, currentSha)).resolves.toStrictEqual({
+                cli: { "semantic-release": { newVersion: "^24.1.0", oldVersion: "^24.0.0", releaseType: "minor" } },
+            });
+        });
+
         it("should detect major version change in catalog", async () => {
             expect.assertions(3);
 

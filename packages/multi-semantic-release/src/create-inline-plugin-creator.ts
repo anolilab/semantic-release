@@ -12,7 +12,7 @@ import cleanPath from "./utils/clean-path";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
 import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";
 import { createRootFileChangeDetector, formatRootFileChanges } from "./utils/detect-root-file-changes";
-import { isCommitAvailable } from "./utils/git";
+import { getHeadCommit, isCommitAvailable } from "./utils/git";
 import memoize from "./utils/memoize";
 import { maxReleaseType } from "./utils/release-type";
 
@@ -53,6 +53,18 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
     const catalogChangesByGitHead = new Map<string, Promise<CatalogChanges>>();
     const getRootFileChangesSince = createRootFileChangeDetector(cwd, flags);
     const commitChecksByGitHead = new Map<string, Promise<void>>();
+    let runHead: Promise<string> | undefined;
+
+    /**
+     * Resolve HEAD once, on the first analyzeCommits of the run, i.e. before any package is released, so commits
+     * created by releases in the same run (or uncommitted changes) don't count as catalog changes.
+     * @returns The commit SHA of HEAD when the run started analyzing.
+     */
+    const getRunHead = async (): Promise<string> => {
+        runHead ??= getHeadCommit(cwd);
+
+        return await runHead;
+    };
 
     /**
      * Fail when a package's last release commit isn't available locally. Without it, commit analysis
@@ -75,7 +87,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
     const getCatalogChangesSince = async (gitHead: string, debugPrefix: string): Promise<CatalogChanges> =>
         await memoize(catalogChangesByGitHead, gitHead, async () => {
             try {
-                return await detectCatalogChanges(cwd, gitHead);
+                return await detectCatalogChanges(cwd, gitHead, await getRunHead());
             } catch (error) {
                 // An unavailable last release commit already failed analyzeCommits; skip other failures (e.g. unparsable files), but visibly.
                 scopedLogger.warn(debugPrefix, "Failed to detect catalog changes, skipping them:", error);
@@ -208,6 +220,9 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             context.cwd = dir;
+
+            // Pin HEAD before this package (or any later one) can be released
+            await getRunHead();
 
             const firstParentBranch = flags.firstParent ? context.branch.name : undefined;
 
