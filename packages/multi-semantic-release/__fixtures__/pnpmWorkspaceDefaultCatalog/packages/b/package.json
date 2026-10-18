@@ -1,0 +1,7 @@
+{
+    "name": "msr-test-b",
+    "version": "0.0.0",
+    "dependencies": {
+        "lodash-es": "catalog:default"
+    }
+}

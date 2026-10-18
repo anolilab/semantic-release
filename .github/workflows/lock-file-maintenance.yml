@@ -13,7 +13,7 @@ permissions:
 
 jobs:
     lock-file:
-        uses: "anolilab/workflows/.github/workflows/pnpm-lock-file-maintenance.yml@2bd348c5c236a10db670232e5b08619ccbaf55b3" # v21.0.5 # main
+        uses: "anolilab/workflows/.github/workflows/pnpm-lock-file-maintenance.yml@986f549679af57daf7997679e2a6ffce5dbb4d6b" # v25.0.1 # main
         with:
             target-repo: "anolilab/semantic-release"
             node-version: "22.x"
