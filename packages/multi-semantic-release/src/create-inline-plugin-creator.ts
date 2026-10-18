@@ -6,7 +6,7 @@ import type { ReleaseType } from "semver";
 
 import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
-import type { Flags, MultiContext, Package, SemanticReleaseContext } from "./types";
+import type { Flags, MultiContext, Package, PackageCatalogChange, RootFileChanges, SemanticReleaseContext } from "./types";
 import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps as updateManifestDependencies } from "./update-deps";
 import cleanPath from "./utils/clean-path";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
@@ -20,6 +20,12 @@ const scopedLogger = logger.withScope("msr:inlinePlugin");
 const { debug } = scopedLogger;
 
 const HEADING_VERSION_REGEX = /^(#+) (\[?\d+\.\d+\.\d+\]?)/u;
+
+/** Changes besides commits that trigger a release of a package, and the release type they trigger. */
+interface ReleaseTrigger<T> {
+    changes: T;
+    releaseType?: string;
+}
 
 interface InlinePluginFunctions {
     analyzeCommits?: (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext) => Promise<string | null>;
@@ -57,6 +63,54 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 return {};
             }
         });
+
+    /**
+     * Get the catalog changes a package depends on since its last release, and the release type they trigger.
+     * @param npmPackage The package being analyzed.
+     * @param gitHead The commit of the package's last release.
+     * @param debugPrefix The prefix for debug messages.
+     * @returns The package's catalog changes, with the release type mapped through `deps.release`.
+     */
+    const getCatalogTrigger = async (npmPackage: Package, gitHead: string, debugPrefix: string): Promise<ReleaseTrigger<PackageCatalogChange[]>> => {
+        const changes = getPackageCatalogChanges(npmPackage, await getCatalogChangesSince(gitHead, debugPrefix));
+
+        if (changes.length === 0) {
+            return { changes };
+        }
+
+        const rawReleaseType = maxReleaseType(...changes.map(({ releaseType }) => releaseType)) ?? "patch";
+        // Apply deps.release strategy to catalog-triggered release types,
+        // just like workspace dependency bumps go through resolveReleaseTypeFromStrategy.
+        // Without this, a major catalog dependency bump (e.g. @actions/core 2→3)
+        // would directly cause a major release in consuming packages, ignoring the
+        // configured strategy (default: "patch").
+        const releaseType = flags.deps?.release ? resolveReleaseTypeFromStrategy(flags.deps.release, rawReleaseType) : rawReleaseType;
+
+        debug(debugPrefix, `Catalog change triggers ${releaseType ?? ""} release (raw: ${rawReleaseType})`);
+
+        return { changes, releaseType };
+    };
+
+    /**
+     * Get the root file changes since a package's last release, and the release type they trigger.
+     * @param npmPackage The package being analyzed.
+     * @param gitHead The commit of the package's last release.
+     * @param debugPrefix The prefix for debug messages.
+     * @returns The root file changes, with the release type mapped through `rootFilesReleaseType`; no changes if they trigger nothing.
+     */
+    const getRootFileTrigger = async (npmPackage: Package, gitHead: string, debugPrefix: string): Promise<ReleaseTrigger<RootFileChanges | undefined>> => {
+        const changes = await getRootFileChangesSince(npmPackage, gitHead);
+
+        if (!changes) {
+            return { changes };
+        }
+
+        const releaseType = resolveReleaseTypeFromStrategy(flags.rootFilesReleaseType ?? "patch", changes.releaseType);
+
+        debug(debugPrefix, `Root file changes trigger ${releaseType ?? "no"} release (raw: ${changes.releaseType})`);
+
+        return releaseType ? { changes, releaseType } : { changes: undefined };
+    };
 
     const createInlinePlugin = (npmPackage: Package): InlinePluginFunctions => {
         const { dir, name, plugins } = npmPackage;
@@ -115,7 +169,6 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
          * @returns Promise that resolves when done.
          * @internal
          */
-        // eslint-disable-next-line sonarjs/cognitive-complexity
         const analyzeCommits = async (_pluginOptions: Record<string, unknown> | undefined, context: SemanticReleaseContext): Promise<string | null> => {
             if (!context.branch) {
                 throw new Error("context.branch is required");
@@ -149,39 +202,19 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             // eslint-disable-next-line no-param-reassign
             npmPackage._lastRelease = context.lastRelease;
 
-            // Detect catalog changes since this package's last release
-            let catalogTriggeredReleaseType: string | undefined;
+            // Catalog and root file (e.g. pnpm-lock.yaml) changes since this package's last release can trigger a release too
+            const lastReleaseGitHead = context.lastRelease?.gitHead;
+            const catalogTrigger: ReleaseTrigger<PackageCatalogChange[]> = lastReleaseGitHead
+                ? await getCatalogTrigger(npmPackage, lastReleaseGitHead, debugPrefix)
+                : { changes: [] };
+            const rootFileTrigger: ReleaseTrigger<RootFileChanges | undefined> = lastReleaseGitHead
+                ? await getRootFileTrigger(npmPackage, lastReleaseGitHead, debugPrefix)
+                : { changes: undefined };
 
             // eslint-disable-next-line no-param-reassign
-            npmPackage._catalogChanges = context.lastRelease?.gitHead
-                ? getPackageCatalogChanges(npmPackage, await getCatalogChangesSince(context.lastRelease.gitHead, debugPrefix))
-                : [];
-
-            if (npmPackage._catalogChanges.length > 0) {
-                const rawCatalogReleaseType = maxReleaseType(...npmPackage._catalogChanges.map(({ releaseType }) => releaseType)) ?? "patch";
-
-                // Apply deps.release strategy to catalog-triggered release types,
-                // just like workspace dependency bumps go through resolveReleaseTypeFromStrategy.
-                // Without this, a major catalog dependency bump (e.g. @actions/core 2→3)
-                // would directly cause a major release in consuming packages, ignoring the
-                // configured strategy (default: "patch").
-                catalogTriggeredReleaseType = flags.deps?.release ? resolveReleaseTypeFromStrategy(flags.deps.release, rawCatalogReleaseType) : rawCatalogReleaseType;
-
-                debug(debugPrefix, `Catalog change triggers ${catalogTriggeredReleaseType ?? ""} release (raw: ${rawCatalogReleaseType})`);
-            }
-
-            // Detect root file changes (e.g. pnpm-lock.yaml) since this package's last release
-            let rootFilesTriggeredReleaseType: string | undefined;
-            const rootFileChanges = context.lastRelease?.gitHead ? await getRootFileChangesSince(npmPackage, context.lastRelease.gitHead) : undefined;
-
-            if (rootFileChanges) {
-                rootFilesTriggeredReleaseType = resolveReleaseTypeFromStrategy(flags.rootFilesReleaseType ?? "patch", rootFileChanges.releaseType);
-
-                debug(debugPrefix, `Root file changes trigger ${rootFilesTriggeredReleaseType ?? "no"} release (raw: ${rootFileChanges.releaseType})`);
-            }
-
+            npmPackage._catalogChanges = catalogTrigger.changes;
             // eslint-disable-next-line no-param-reassign
-            npmPackage._rootFileChanges = rootFilesTriggeredReleaseType ? rootFileChanges : undefined;
+            npmPackage._rootFileChanges = rootFileTrigger.changes;
 
             let nextType: string | undefined;
 
@@ -190,7 +223,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             }
 
             // If catalog or root file changes triggered a release as well, use the highest severity
-            nextType = maxReleaseType(nextType, catalogTriggeredReleaseType, rootFilesTriggeredReleaseType);
+            nextType = maxReleaseType(nextType, catalogTrigger.releaseType, rootFileTrigger.releaseType);
 
             // eslint-disable-next-line no-param-reassign
             npmPackage._nextType = nextType as ReleaseType | null | undefined;
