@@ -1,3 +1,22 @@
+## @anolilab/multi-semantic-release [4.5.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.25...@anolilab/multi-semantic-release@4.5.0) (2026-10-18)
+
+### Features
+
+* **multi-semantic-release:** release packages on root file changes ([#510](https://github.com/anolilab/semantic-release/issues/510)) ([e2abe97](https://github.com/anolilab/semantic-release/commit/e2abe97adfb1b3b411e61485def8ee4f2e65eb8c))
+
+### Bug Fixes
+
+* **multi-semantic-release:** detect changes in the pnpm default catalog ([cb6df72](https://github.com/anolilab/semantic-release/commit/cb6df72c9f00384368191d831fa942f1fd4d1179))
+
+### Tests
+
+* **multi-semantic-release:** cover unchanged default catalogs and peer/optional references ([26eeb1e](https://github.com/anolilab/semantic-release/commit/26eeb1ef38e54831d37aa41f71bbea1dd80b4502))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.35
+
 ## @anolilab/multi-semantic-release [4.4.25](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.24...@anolilab/multi-semantic-release@4.4.25) (2026-10-16)
 
 
