@@ -8,6 +8,7 @@ import resolveFrom from "resolve-from";
 
 import type { Flags, MultiReleaseConfig } from "./types";
 import mergeConfig from "./utils/merge-config";
+import normalizeRootFilesOptions from "./utils/normalize-root-files-options";
 
 const CONFIG_NAME = "multi-release";
 const CONFIG_FILES = [
@@ -36,7 +37,7 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
     const config = (searchResult?.config ?? {}) as Record<string, unknown>;
     const { extends: extendPaths, ...rest } = config;
 
-    let options: MultiReleaseConfig = rest;
+    let options: MultiReleaseConfig = normalizeRootFilesOptions(rest);
 
     if (extendPaths) {
         const require = createRequire(import.meta.url);
@@ -46,7 +47,7 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
                 // eslint-disable-next-line import/no-dynamic-require
                 const extendsOptions: MultiReleaseConfig = require(resolveFrom(cwd, extendPath)) as MultiReleaseConfig;
 
-                return mergeConfig(result, extendsOptions);
+                return mergeConfig(result, normalizeRootFilesOptions(extendsOptions));
             },
             {},
         );
@@ -69,20 +70,22 @@ const getConfigMultiSemrel = async (cwd: string, cliOptions: Flags): Promise<Mul
             ignorePackages: [],
             ignorePrivate: true,
             logLevel: "info",
-            rootFilesPackages: [],
-            rootFilesReleaseType: "patch" as const,
-            rootFilesScope: "all" as const,
+            rootFiles: {
+                files: [],
+                packages: [],
+                release: "patch" as const,
+                scope: "all" as const,
+            },
             sequentialInit: false,
             sequentialPrepare: true,
             silent: false,
             // eslint-disable-next-line no-template-curly-in-string
             tagFormat: "${name}@${version}",
-            triggerRootFiles: [],
         },
         options,
     );
 
-    return mergeConfig(options, cliOptions);
+    return mergeConfig(options, normalizeRootFilesOptions(cliOptions));
 };
 
 export default getConfigMultiSemrel;

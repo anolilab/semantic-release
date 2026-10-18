@@ -160,22 +160,24 @@ Catalog changes are combined with commit-based releases - if both trigger a rele
 
 #### Root File Change Detection
 
-Commits are assigned to packages by path, so a change to a root file such as `pnpm-lock.yaml` releases nothing on its own. List such files in `triggerRootFiles` to release packages when they change between a package's last release and `HEAD`:
+Commits are assigned to packages by path, so a change to a root file such as `pnpm-lock.yaml` releases nothing on its own. List such files in `rootFiles.files` to release packages when they change between a package's last release and `HEAD`:
 
 ```json
 {
-    "triggerRootFiles": ["pnpm-lock.yaml"],
-    "rootFilesScope": "affected",
-    "rootFilesPackages": ["web-app"]
+    "rootFiles": {
+        "files": ["pnpm-lock.yaml"],
+        "scope": "affected",
+        "packages": ["web-app"]
+    }
 }
 ```
 
-- `rootFilesScope: "all"` (default) releases every package when one of the files changed.
-- `rootFilesScope: "affected"` compares `pnpm-lock.yaml` instead: a package is released only if its resolved production dependency graph changed, i.e. its `dependencies` and `optionalDependencies`, transitively, including those of linked workspace packages, with their integrity and peer context. A transitive update or an override that changes nothing else is enough; a `devDependencies` change is not. Other root files still release every package. Without a lock file at the package's last release, the lock file triggers nothing. The comparison needs lock file version 9 (pnpm 9 and later); any other version is treated as a changed root file.
-- `rootFilesPackages` limits root file releases to the named packages, e.g. applications that bundle their dependencies, while libraries are left to their consumers' lock files.
-- `rootFilesReleaseType` sets the release type, `patch` by default; `inherit` uses the highest semver change among the changed direct dependencies.
+- `scope: "all"` (default) releases every package when one of the files changed.
+- `scope: "affected"` compares `pnpm-lock.yaml` instead: a package is released only if its resolved production dependency graph changed, i.e. its `dependencies` and `optionalDependencies`, transitively, including those of linked workspace packages, with their integrity and peer context. A transitive update or an override that changes nothing else is enough; a `devDependencies` change is not. Other root files still release every package. Without a lock file at the package's last release, the lock file triggers nothing. The comparison needs lock file version 9 (pnpm 9 and later); any other version is treated as a changed root file, with a warning. Only `pnpm-lock.yaml` is analyzed: other lock files, e.g. `yarn.lock`, behave as with `all`.
+- `packages` limits root file releases to the named packages, e.g. applications that bundle their dependencies, while libraries are left to their consumers' lock files.
+- `release` sets the release type, `patch` by default; `inherit` uses the highest semver change among the changed direct dependencies. Versions that aren't semver (git, tarball or `file:` dependencies) count as a patch. A dependency that changed through a catalog is left to catalog detection, so `deps.release` applies to it, also with `inherit`; the packages its update changes in the lock file still count as further updates. Invalid values fail the run.
 
-The release notes list the updated, added and removed direct dependencies and the number of other updated packages under "Dependencies". All packages are compared with the commit `HEAD` points to when the first package is analyzed, so release commits created during the run don't count. The last release's commit must be available: in a shallow clone, the release fails instead of silently skipping it.
+The release notes list the updated, added and removed direct dependencies and the number of other updated packages under "Dependencies". All packages are compared with the commit `HEAD` points to when the run starts, so release commits created during the run don't count.
 
 ### bolt
 
@@ -202,6 +204,10 @@ For example, let's say your project has 4 packages (i.e. a, b, c and d) and you 
     }
 }
 ```
+
+### Git History
+
+Changes are detected since each package's last release, so its commit must be in the clone. If it isn't, e.g. in a shallow clone, the run fails instead of silently skipping releases: fetch the full history, e.g. with `fetch-depth: 0` for `actions/checkout`.
 
 ## Configuring Multi-Semantic-Release
 
@@ -299,24 +305,32 @@ The first configuration file found will be used, and the search stops there.
 
 ### Options
 
-| Option               | Type                                 | CLI Flag                    | Description                                                                                                                                                                                                                                             |
-| -------------------- | ------------------------------------ | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| dryRun               | `boolean`                            | `--dry-run`                 | Dry run mode.                                                                                                                                                                                                                                           |
-| logLevel             | `String`                             | `--log-level`               | Sets the internal logger verbosity level: `error, warn, info, debug, trace`. Defaults to `info`.                                                                                                                                                        |
-| debug                | `boolean`                            | `--debug`                   | Output debugging information. Shortcut for `--logLevel=debug`.                                                                                                                                                                                          |
-| silent               | `boolean`                            | `--silent`                  | Turns off any log outputs.                                                                                                                                                                                                                              |
-| extends              | `String \| Array`                    | N/A                         | List of modules or file paths containing a shareable configuration. If multiple shareable configurations are set, they will be imported in the order defined with each configuration option taking precedence over the options defined in the previous. |
-| sequentialInit       | `boolean`                            | `--sequential-init`         | Avoid hypothetical concurrent initialization collisions.                                                                                                                                                                                                |
-| sequentialPrepare    | `boolean`                            | `--sequential-prepare`      | Avoid hypothetical concurrent preparation collisions. **True by default.**                                                                                                                                                                              |
-| firstParent          | `boolean`                            | `--first-parent`            | Apply commit filtering to current branch only.                                                                                                                                                                                                          |
-| ignorePrivate        | `boolean`                            | `--ignore-private`          | Exclude private packages. **True by default.**                                                                                                                                                                                                          |
-| ignorePackages       | `String \| Array`                    | `--ignore-packages`         | Packages list to be ignored on bumping process (appended to the ones that already exist at package.json workspaces). If using the CLI flag, supply a comma seperated list of strings.                                                                   |
-| tagFormat            | `String`                             | `--tag-format`              | Format to use when creating tag names. Should include "name" and "version" vars. Default: `"${name}@${version}"` which generates "package-name@1.0.0"                                                                                                   |
-| deps                 | `Object`                             | N/A                         | Dependency handling, see below for possible values.                                                                                                                                                                                                     |
-| triggerRootFiles     | `Array`                              | `--trigger-root-files`      | Root files whose changes trigger releases, see [Root File Change Detection](#root-file-change-detection). Default: `[]`.                                                                                                                                |
-| rootFilesScope       | `all \| affected`                    | `--root-files-scope`        | Release every package on a root file change, or only those whose production dependencies changed in `pnpm-lock.yaml`. Default: `all`.                                                                                                                   |
-| rootFilesPackages    | `Array`                              | `--root-files-packages`     | Names of the packages root file changes apply to. Default: `[]` (all packages).                                                                                                                                                                         |
-| rootFilesReleaseType | `patch \| minor \| major \| inherit` | `--root-files-release-type` | Release type when a root file triggers a release. Default: `patch`.                                                                                                                                                                                     |
+| Option            | Type              | CLI Flag               | Description                                                                                                                                                                                                                                             |
+| ----------------- | ----------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| dryRun            | `boolean`         | `--dry-run`            | Dry run mode.                                                                                                                                                                                                                                           |
+| logLevel          | `String`          | `--log-level`          | Sets the internal logger verbosity level: `error, warn, info, debug, trace`. Defaults to `info`.                                                                                                                                                        |
+| debug             | `boolean`         | `--debug`              | Output debugging information. Shortcut for `--logLevel=debug`.                                                                                                                                                                                          |
+| silent            | `boolean`         | `--silent`             | Turns off any log outputs.                                                                                                                                                                                                                              |
+| extends           | `String \| Array` | N/A                    | List of modules or file paths containing a shareable configuration. If multiple shareable configurations are set, they will be imported in the order defined with each configuration option taking precedence over the options defined in the previous. |
+| sequentialInit    | `boolean`         | `--sequential-init`    | Avoid hypothetical concurrent initialization collisions.                                                                                                                                                                                                |
+| sequentialPrepare | `boolean`         | `--sequential-prepare` | Avoid hypothetical concurrent preparation collisions. **True by default.**                                                                                                                                                                              |
+| firstParent       | `boolean`         | `--first-parent`       | Apply commit filtering to current branch only.                                                                                                                                                                                                          |
+| ignorePrivate     | `boolean`         | `--ignore-private`     | Exclude private packages. **True by default.**                                                                                                                                                                                                          |
+| ignorePackages    | `String \| Array` | `--ignore-packages`    | Packages list to be ignored on bumping process (appended to the ones that already exist at package.json workspaces). If using the CLI flag, supply a comma seperated list of strings.                                                                   |
+| tagFormat         | `String`          | `--tag-format`         | Format to use when creating tag names. Should include "name" and "version" vars. Default: `"${name}@${version}"` which generates "package-name@1.0.0"                                                                                                   |
+| deps              | `Object`          | N/A                    | Dependency handling, see below for possible values.                                                                                                                                                                                                     |
+| rootFiles         | `Object`          | `--root-files.*`       | Root files whose changes trigger releases, see [Root File Change Detection](#root-file-change-detection) and [`rootFiles` Options](#rootfiles-options).                                                                                                 |
+
+### `rootFiles` Options
+
+| Option   | Type                                 | CLI Flag                | Description                                                                                                                           |
+| -------- | ------------------------------------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| files    | `Array`                              | `--root-files.files`    | Root files (relative to the workspace root) whose changes trigger releases, e.g. `pnpm-lock.yaml`. Default: `[]`.                     |
+| scope    | `all \| affected`                    | `--root-files.scope`    | Release every package on a root file change, or only those whose production dependencies changed in `pnpm-lock.yaml`. Default: `all`. |
+| packages | `Array`                              | `--root-files.packages` | Names of the packages root file changes apply to. Default: `[]` (all packages).                                                       |
+| release  | `patch \| minor \| major \| inherit` | `--root-files.release`  | Release type when a root file triggers a release. Default: `patch`.                                                                   |
+
+The flat options of 4.5.0 still work but are deprecated and log a warning: `triggerRootFiles` → `rootFiles.files`, `rootFilesScope` → `rootFiles.scope`, `rootFilesPackages` → `rootFiles.packages`, `rootFilesReleaseType` → `rootFiles.release` (likewise `--trigger-root-files` → `--root-files.files` and so on). If both are set, `rootFiles` wins.
 
 ### `deps` Options
 

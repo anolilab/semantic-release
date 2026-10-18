@@ -5,13 +5,28 @@ const isNil = (value: unknown): boolean => value === undefined || value === null
 
 const mergeArrays = (a: unknown, b: unknown): unknown[] => [...new Set([...castArray(a ?? []), ...castArray(b ?? [])])];
 
-// Optional array options, merged like ignorePackages but only present when set
-const OPTIONAL_ARRAY_OPTIONS = ["rootFilesPackages", "triggerRootFiles"] as const;
+// Array options of rootFiles, merged like ignorePackages
+const ROOT_FILES_ARRAY_OPTIONS = ["files", "packages"] as const;
+
+/**
+ * Merge two rootFiles options like the top-level options: unset values are skipped, arrays are merged.
+ * @param a The rootFiles options so far.
+ * @param b The rootFiles options to merge in.
+ * @returns The merged rootFiles options.
+ */
+const mergeRootFiles = (a: Record<string, unknown> = {}, b: Record<string, unknown> = {}): Record<string, unknown> => {
+    return {
+        ...a,
+        ...pickBy(b, (option: unknown) => !isNil(option)),
+        ...Object.fromEntries(ROOT_FILES_ARRAY_OPTIONS.filter((key) => !isNil(a[key]) || !isNil(b[key])).map((key) => [key, mergeArrays(a[key], b[key])])),
+    };
+};
 
 const mergeConfig = (a: Record<string, unknown> = {}, b: Record<string, unknown> = {}): Record<string, unknown> => {
-    const optionalArrays = Object.fromEntries(
-        OPTIONAL_ARRAY_OPTIONS.filter((key) => !isNil(a[key]) || !isNil(b[key])).map((key) => [key, mergeArrays(a[key], b[key])]),
-    );
+    const rootFiles =
+        isNil(a.rootFiles) && isNil(b.rootFiles)
+            ? {}
+            : { rootFiles: mergeRootFiles(a.rootFiles as Record<string, unknown> | undefined, b.rootFiles as Record<string, unknown> | undefined) };
 
     return {
         ...a,
@@ -24,7 +39,7 @@ const mergeConfig = (a: Record<string, unknown> = {}, b: Record<string, unknown>
         },
         // Treat arrays differently by merging them
         ignorePackages: mergeArrays(a.ignorePackages, b.ignorePackages),
-        ...optionalArrays,
+        ...rootFiles,
     };
 };
 

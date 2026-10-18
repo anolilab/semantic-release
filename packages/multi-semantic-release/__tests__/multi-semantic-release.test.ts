@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -1992,13 +1992,19 @@ catalog:
          * Release a, b and lib at 1.0.0, then commit only a lock file change.
          * @param versions The lock file versions after the release.
          * @param flags The multi-semantic-release flags.
+         * @param edit Changes more files before the initial and the lock file commit.
          * @returns The released packages by name.
          */
-        const releaseAfterLockfileChange = async (versions: LockfileVersions, flags: Record<string, unknown>): Promise<Record<string, Package>> => {
+        const releaseAfterLockfileChange = async (
+            versions: LockfileVersions,
+            flags: Record<string, unknown>,
+            edit?: (cwd: string, commit: "initial" | "update") => void,
+        ): Promise<Record<string, Package>> => {
             const cwd = gitInit();
 
             copyDirectory(`${fixturesPath}/pnpmWorkspaceLockfile/`, cwd);
             writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile());
+            edit?.(cwd, "initial");
 
             const initialSha = gitCommitAll(cwd, "feat: Initial release");
 
@@ -2010,6 +2016,7 @@ catalog:
             gitPush(cwd);
 
             writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile(versions));
+            edit?.(cwd, "update");
             gitCommitAll(cwd, "chore: update lock file");
 
             const stdout = new WritableStreamBuffer();
@@ -2039,7 +2046,7 @@ catalog:
 
             const packages = await releaseAfterLockfileChange(
                 { dep: "1.0.1", tool: "1.1.0" },
-                { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+                { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } },
             );
             const resultA = packages["msr-test-a"]?.result as ReleaseResultType;
 
@@ -2049,10 +2056,9 @@ catalog:
             expect(packages["msr-test-lib"]?.result).toBe(false);
         });
 
-        it("should limit root file releases to rootFilesPackages", async () => {
+        it("should still accept the deprecated flat root file options", async () => {
             expect.assertions(3);
 
-            // libdep is a production dependency of lib, and of a through its workspace link
             const packages = await releaseAfterLockfileChange(
                 { libdep: "2.0.1" },
                 { rootFilesPackages: ["msr-test-a"], rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
@@ -2063,10 +2069,24 @@ catalog:
             expect(packages["msr-test-lib"]?.result).toBe(false);
         });
 
+        it("should limit root file releases to rootFiles.packages", async () => {
+            expect.assertions(3);
+
+            // libdep is a production dependency of lib, and of a through its workspace link
+            const packages = await releaseAfterLockfileChange(
+                { libdep: "2.0.1" },
+                { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["msr-test-a"], scope: "affected" } },
+            );
+
+            expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+            expect(packages["msr-test-b"]?.result).toBe(false);
+            expect(packages["msr-test-lib"]?.result).toBe(false);
+        });
+
         it('should release every package with scope "all"', async () => {
             expect.assertions(4);
 
-            const packages = await releaseAfterLockfileChange({ tool: "1.1.0" }, { triggerRootFiles: ["pnpm-lock.yaml"] });
+            const packages = await releaseAfterLockfileChange({ tool: "1.1.0" }, { rootFiles: { files: ["pnpm-lock.yaml"] } });
 
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.notes).toContain("* **pnpm-lock.yaml** changed");
@@ -2074,15 +2094,40 @@ catalog:
             expect((packages["msr-test-lib"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
         });
 
-        it('should use the highest direct dependency change with rootFilesReleaseType "inherit"', async () => {
+        it('should use the highest direct dependency change with rootFiles.release "inherit"', async () => {
             expect.assertions(1);
 
             const packages = await releaseAfterLockfileChange(
                 { dep: "1.1.0" },
-                { rootFilesPackages: ["msr-test-a"], rootFilesReleaseType: "inherit", rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+                { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["msr-test-a"], release: "inherit", scope: "affected" } },
             );
 
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.1.0");
+        });
+
+        it('should cap a catalog dependency\'s change with deps.release, even with rootFiles.release "inherit"', async () => {
+            expect.assertions(2);
+
+            // "dep" comes from the default catalog, bumped 1 -> 2 together with the lock file
+            const useCatalog = (cwd: string, commit: "initial" | "update"): void => {
+                const manifestPath = resolve(cwd, "packages/a/package.json");
+                const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as { dependencies: Record<string, string> };
+
+                manifest.dependencies.dep = "catalog:";
+                writeFileSync(manifestPath, `${JSON.stringify(manifest, undefined, 4)}\n`);
+                writeFileSync(resolve(cwd, "pnpm-workspace.yaml"), `packages:\n    - "packages/*"\n\ncatalog:\n    dep: ^${commit === "initial" ? "1" : "2"}.0.0\n`);
+            };
+
+            const packages = await releaseAfterLockfileChange(
+                { dep: "2.0.0" },
+                { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["msr-test-a"], release: "inherit", scope: "affected" } },
+                useCatalog,
+            );
+            const result = packages["msr-test-a"]?.result as ReleaseResultType;
+
+            // deps.release "patch" applies to the catalog change instead of the lock file's major
+            expect(result.nextRelease?.version).toBe("1.0.1");
+            expect(result.nextRelease?.notes).toContain("* **dep:** ^1.0.0 → ^2.0.0");
         });
     });
 });

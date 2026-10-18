@@ -4,6 +4,8 @@ import type { Writable } from "node:stream";
 
 import type { ReleaseType } from "semver";
 
+import type { ReleaseLevel } from "./utils/release-type";
+
 // Package manifest interface (package.json contents)
 export interface PackageManifest {
     [key: string]: unknown;
@@ -32,7 +34,7 @@ export interface PackageCatalogChange {
     dependencyName: string;
     newVersion: string;
     oldVersion: string;
-    releaseType: "major" | "minor" | "patch";
+    releaseType: ReleaseLevel;
 }
 
 // A direct dependency that was added, removed or resolved to another version in the lock file
@@ -42,6 +44,8 @@ export interface DependencyVersionChange {
     newVersion?: string;
     // Undefined if the dependency was added
     oldVersion?: string;
+    // The semver change; "patch" for added, removed or non-semver dependencies
+    releaseType: ReleaseLevel;
 }
 
 // Root file changes that trigger a release of a package
@@ -50,7 +54,7 @@ export interface RootFileChanges {
     dependencies: DependencyVersionChange[];
     // Changed root files that trigger the release as a whole
     files: string[];
-    releaseType: "major" | "minor" | "patch";
+    releaseType: ReleaseLevel;
     // Number of other packages in the dependency graph whose resolution changed (transitive or peer context)
     transitiveCount: number;
 }
@@ -144,6 +148,19 @@ export interface MultiContext {
 }
 
 export type ReleaseStrategy = "patch" | "minor" | "major" | "inherit";
+
+// Root files whose changes trigger releases, e.g. pnpm-lock.yaml
+export interface RootFilesConfig {
+    // Root files (relative to the workspace root) whose changes trigger releases
+    files?: string[];
+    // Names of the packages root file changes apply to; empty applies them to all packages
+    packages?: string[];
+    // Release type when a root file triggers a release
+    release?: ReleaseStrategy;
+    // "all" releases every package when a root file changes, "affected" only packages whose
+    // production dependencies changed in pnpm-lock.yaml (other root files behave as with "all")
+    scope?: "all" | "affected";
+}
 // Configuration interfaces
 export interface MultiReleaseConfig {
     [key: string]: unknown;
@@ -156,26 +173,27 @@ export interface MultiReleaseConfig {
         release?:
             | ReleaseStrategy
             | {
-                  major?: Omit<ReleaseStrategy, "inherit">;
-                  minor?: Omit<ReleaseStrategy, "inherit">;
-                  patch?: Omit<ReleaseStrategy, "inherit">;
+                  major?: Exclude<ReleaseStrategy, "inherit">;
+                  minor?: Exclude<ReleaseStrategy, "inherit">;
+                  patch?: Exclude<ReleaseStrategy, "inherit">;
               };
     };
     dryRun?: boolean;
     firstParent?: boolean;
     ignorePackages?: string[];
     ignorePrivate?: boolean;
-    // Names of the packages root file changes apply to; empty applies them to all packages
+    rootFiles?: RootFilesConfig;
+    /** @deprecated Use `rootFiles.packages`. */
     rootFilesPackages?: string[];
+    /** @deprecated Use `rootFiles.release`. */
     rootFilesReleaseType?: ReleaseStrategy;
-    // "all" releases every package when a root file changes, "affected" only packages whose
-    // production dependencies changed in pnpm-lock.yaml (other root files behave as with "all")
+    /** @deprecated Use `rootFiles.scope`. */
     rootFilesScope?: "all" | "affected";
     sequentialInit?: boolean;
     sequentialPrepare?: boolean;
     silent?: boolean;
     tagFormat?: string;
-    // Root files (relative to the workspace root) whose changes trigger releases
+    /** @deprecated Use `rootFiles.files`. */
     triggerRootFiles?: string[];
 }
 

@@ -1,3 +1,4 @@
+import { writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -61,5 +62,37 @@ describe("multi-semantic-release CLI", () => {
 
         expect(out.stdout).toMatch("Started multirelease! Loading 2 packages...");
         expect(out.stdout).toMatch("Released 2 of 2 packages");
+    });
+
+    it.each([
+        ["--root-files.files=pnpm-lock.yaml,.npmrc", "--root-files.packages=msr-test-a,msr-test-b"],
+        ["--trigger-root-files=pnpm-lock.yaml,.npmrc", "--root-files-packages=msr-test-a,msr-test-b"],
+    ])("root file change (comma-separated lists: %s %s)", { timeout: 60_000 }, async (filesFlag, packagesFlag) => {
+        expect.assertions(3);
+
+        const cwd = gitInit();
+
+        copyDirectory(`${fixturesPath}/yarnWorkspaces/`, cwd);
+
+        gitCommitAll(cwd, "feat: Initial release");
+        gitInitOrigin(cwd);
+        gitPush(cwd);
+
+        await execa("node", [msrBin], { cwd, env: environment, extendEnv: false });
+
+        writeFileSync(resolve(cwd, ".npmrc"), "save-exact=true\n");
+        gitCommitAll(cwd, "chore: add .npmrc");
+        gitPush(cwd);
+
+        // yargs doesn't split dotted options itself, and the flat ones are deprecated aliases: both lists must still be split on commas
+        const { stdout } = await execa("node", [msrBin, filesFlag, packagesFlag], {
+            cwd,
+            env: environment,
+            extendEnv: false,
+        });
+
+        expect(stdout).toMatch("Created tag msr-test-a@1.0.1");
+        expect(stdout).toMatch("Created tag msr-test-b@1.0.1");
+        expect(stdout).not.toMatch("Created tag msr-test-c@");
     });
 });

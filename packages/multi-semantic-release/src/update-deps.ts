@@ -12,6 +12,7 @@ import getManifest from "./get-manifest";
 import logger from "./logger";
 import type { Package, ReleaseStrategy } from "./types";
 import { getHighestVersion, getLatestVersion } from "./utils/get-version";
+import { maxReleaseType } from "./utils/release-type";
 
 const { debug } = logger.withScope("msr:updateDeps");
 
@@ -28,9 +29,9 @@ const CHUNK_DIGIT_REGEX = /\d+/u;
  */
 const resolveReleaseTypeFromStrategy = (
     releaseStrategy:
-        ReleaseStrategy | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
-    dependencyReleaseType: Omit<ReleaseStrategy, "inherit"> | undefined,
-): Omit<ReleaseStrategy, "inherit"> | undefined => {
+        ReleaseStrategy | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> },
+    dependencyReleaseType: string | undefined,
+): string | undefined => {
     // If it's a string, use it directly (backward compatible)
     if (typeof releaseStrategy === "string") {
         if (releaseStrategy === "inherit") {
@@ -119,11 +120,10 @@ const getDependentRelease = (
     packageJson: Package,
     bumpStrategy: string,
     releaseStrategy:
-        ReleaseStrategy | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> },
+        ReleaseStrategy | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> },
     ignore: Package[],
     prefix: string,
 ): string | undefined => {
-    const severityOrder = ["patch", "minor", "major"] as const;
     const { localDeps, manifest } = packageJson;
     const lastVersion: string | undefined = packageJson._lastRelease?.version;
     const { dependencies = {}, devDependencies = {}, optionalDependencies = {}, peerDependencies = {} } = manifest;
@@ -180,12 +180,7 @@ const getDependentRelease = (
                 const nestedReleaseType = getDependentRelease(p, bumpStrategy, releaseStrategy, [...ignore, packageJson], prefix);
 
                 if (nestedReleaseType) {
-                    const nestedIndex = severityOrder.indexOf(nestedReleaseType as (typeof severityOrder)[number]);
-                    const currentIndex = highestNestedReleaseType ? severityOrder.indexOf(highestNestedReleaseType as (typeof severityOrder)[number]) : -1;
-
-                    if (nestedIndex > currentIndex) {
-                        highestNestedReleaseType = nestedReleaseType;
-                    }
+                    highestNestedReleaseType = maxReleaseType(highestNestedReleaseType, nestedReleaseType);
 
                     // Use nested release type as the effective next type if no direct nextType
                     effectiveNextType = nestedReleaseType;
@@ -249,21 +244,14 @@ const getDependentRelease = (
                 return releaseType;
             }
 
-            if (!releaseType) {
-                return mappedReleaseType as string | undefined;
-            }
-
-            const mappedIndex = severityOrder.indexOf(mappedReleaseType as (typeof severityOrder)[number]);
-            const releaseIndex = severityOrder.indexOf(releaseType as (typeof severityOrder)[number]);
-
-            return (mappedIndex > releaseIndex ? mappedReleaseType : releaseType) as string | undefined;
+            return maxReleaseType(releaseType, mappedReleaseType);
         }, undefined);
 
     if (!result && highestNestedReleaseType) {
         // Apply release strategy mapping to nested release type
         const mappedNestedReleaseType = resolveReleaseTypeFromStrategy(releaseStrategy, highestNestedReleaseType);
 
-        return (mappedNestedReleaseType ?? highestNestedReleaseType) as string | undefined;
+        return mappedNestedReleaseType ?? highestNestedReleaseType;
     }
 
     return result;
@@ -429,7 +417,7 @@ export const resolveReleaseType = (
     bumpStrategy: string = "override",
     releaseStrategy:
         | ReleaseStrategy
-        | { major?: Omit<ReleaseStrategy, "inherit">; minor?: Omit<ReleaseStrategy, "inherit">; patch?: Omit<ReleaseStrategy, "inherit"> } = "patch",
+        | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> } = "patch",
     ignore: Package[] = [],
     prefix: string = "",
 ): string | undefined => {
