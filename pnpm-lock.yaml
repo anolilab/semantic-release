@@ -541,7 +541,7 @@ importers:
         specifier: 5.5.28
         version: link:../semantic-release-clean-package-json
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.34
+        specifier: 8.1.35
         version: link:../semantic-release-pnpm
       '@sebbo2002/semantic-release-jsr':
         specifier: catalog:cli
@@ -1043,7 +1043,7 @@ importers:
         specifier: catalog:lint
         version: 10.0.3(prettier@3.9.10)
       '@anolilab/semantic-release-pnpm':
-        specifier: 8.1.34
+        specifier: 8.1.35
         version: link:../semantic-release-pnpm
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
