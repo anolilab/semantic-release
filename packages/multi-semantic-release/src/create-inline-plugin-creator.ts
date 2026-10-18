@@ -11,7 +11,7 @@ import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps 
 import cleanPath from "./utils/clean-path";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
 import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";
-import { createRootFileChangeDetector, formatRootFileChanges } from "./utils/detect-root-file-changes";
+import { createRootFileChangeDetector, formatRootFileChanges, omitDependencyChanges } from "./utils/detect-root-file-changes";
 import { getHeadCommit, isCommitAvailable } from "./utils/git";
 import memoize from "./utils/memoize";
 import { maxReleaseType } from "./utils/release-type";
@@ -125,13 +125,24 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
     /**
      * Get the root file changes since a package's last release, and the release type they trigger.
+     * Dependencies that are catalog changes too are left to the catalog trigger, so `deps.release` caps them and
+     * the release notes list them once.
      * @param npmPackage The package being analyzed.
      * @param gitHead The commit of the package's last release.
      * @param debugPrefix The prefix for debug messages.
+     * @param catalogChanges The package's catalog changes since its last release.
      * @returns The root file changes, with the release type mapped through `rootFiles.release`; no changes if they trigger nothing.
      */
-    const getRootFileTrigger = async (npmPackage: Package, gitHead: string, debugPrefix: string): Promise<ReleaseTrigger<RootFileChanges | undefined>> => {
-        const changes = await getRootFileChangesSince(npmPackage, gitHead);
+    const getRootFileTrigger = async (
+        npmPackage: Package,
+        gitHead: string,
+        debugPrefix: string,
+        catalogChanges: PackageCatalogChange[],
+    ): Promise<ReleaseTrigger<RootFileChanges | undefined>> => {
+        const changes = omitDependencyChanges(
+            await getRootFileChangesSince(npmPackage, gitHead),
+            new Set(catalogChanges.map(({ dependencyName }) => dependencyName)),
+        );
 
         if (!changes) {
             return { changes };
@@ -247,7 +258,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 ? await getCatalogTrigger(npmPackage, lastReleaseGitHead, debugPrefix)
                 : { changes: [] };
             const rootFileTrigger: ReleaseTrigger<RootFileChanges | undefined> = lastReleaseGitHead
-                ? await getRootFileTrigger(npmPackage, lastReleaseGitHead, debugPrefix)
+                ? await getRootFileTrigger(npmPackage, lastReleaseGitHead, debugPrefix, catalogTrigger.changes)
                 : { changes: undefined };
 
             // eslint-disable-next-line no-param-reassign
@@ -359,8 +370,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
             const upgrades = npmPackage.localDeps.filter((d: Package) => d._nextRelease);
             const catalogChanges = npmPackage._catalogChanges ?? [];
-            // A catalog bump also changes the lock file: list it once, as the catalog change.
-            const rootFileNotes = formatRootFileChanges(npmPackage._rootFileChanges, new Set(catalogChanges.map(({ dependencyName }) => dependencyName)));
+            const rootFileNotes = formatRootFileChanges(npmPackage._rootFileChanges);
 
             if (upgrades.length > 0 || catalogChanges.length > 0 || rootFileNotes.length > 0) {
                 notes.push(`### Dependencies`);

@@ -3,8 +3,8 @@ import { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import type { Package } from "../../src/types";
-import { createRootFileChangeDetector, formatRootFileChanges } from "../../src/utils/detect-root-file-changes";
+import type { Package, RootFileChanges } from "../../src/types";
+import { createRootFileChangeDetector, formatRootFileChanges, omitDependencyChanges } from "../../src/utils/detect-root-file-changes";
 import { gitCommitAll, gitInit } from "../helpers/git";
 import { buildPnpmLockfile } from "../helpers/pnpm-lockfile";
 
@@ -134,34 +134,55 @@ describe("createRootFileChangeDetector()", () => {
     });
 });
 
-describe("formatRootFileChanges()", () => {
-    it("should leave out dependencies the notes already list", () => {
+describe("omitDependencyChanges()", () => {
+    const changes: RootFileChanges = {
+        dependencies: [
+            { name: "lodash-es", newVersion: "5.0.0", oldVersion: "4.17.0", releaseType: "major" },
+            { name: "other", newVersion: "1.0.1", oldVersion: "1.0.0", releaseType: "patch" },
+        ],
+        files: [],
+        releaseType: "major",
+        transitiveCount: 0,
+    };
+
+    it("should leave out the dependencies and their release type", () => {
         expect.assertions(1);
 
-        const notes = formatRootFileChanges(
-            {
-                dependencies: [
-                    { name: "lodash-es", newVersion: "4.17.1", oldVersion: "4.17.0" },
-                    { name: "other", newVersion: "1.0.1", oldVersion: "1.0.0" },
-                ],
-                files: [],
-                releaseType: "patch",
-                transitiveCount: 0,
-            },
-            new Set(["lodash-es"]),
-        );
-
-        expect(notes).toStrictEqual(["* **other:** 1.0.0 → 1.0.1"]);
+        expect(omitDependencyChanges(changes, new Set(["lodash-es"]))).toStrictEqual({
+            dependencies: [{ name: "other", newVersion: "1.0.1", oldVersion: "1.0.0", releaseType: "patch" }],
+            files: [],
+            releaseType: "patch",
+            transitiveCount: 0,
+        });
     });
 
+    it("should report nothing when only left-out dependencies changed", () => {
+        expect.assertions(2);
+
+        expect(omitDependencyChanges(changes, new Set(["lodash-es", "other"]))).toBeUndefined();
+        // Further updated packages still trigger a release
+        expect(omitDependencyChanges({ ...changes, transitiveCount: 1 }, new Set(["lodash-es", "other"]))).toMatchObject({
+            releaseType: "patch",
+            transitiveCount: 1,
+        });
+    });
+
+    it("should keep the changes as they are when no dependency is left out", () => {
+        expect.assertions(1);
+
+        expect(omitDependencyChanges(changes, new Set(["unrelated"]))).toBe(changes);
+    });
+});
+
+describe("formatRootFileChanges()", () => {
     it("should format updated, added and removed dependencies, further updates and files", () => {
         expect.assertions(1);
 
         const notes = formatRootFileChanges({
             dependencies: [
-                { name: "a", newVersion: "1.1.0", oldVersion: "1.0.0" },
-                { name: "b", newVersion: "2.0.0", oldVersion: undefined },
-                { name: "c", newVersion: undefined, oldVersion: "3.0.0" },
+                { name: "a", newVersion: "1.1.0", oldVersion: "1.0.0", releaseType: "minor" },
+                { name: "b", newVersion: "2.0.0", oldVersion: undefined, releaseType: "patch" },
+                { name: "c", newVersion: undefined, oldVersion: "3.0.0", releaseType: "patch" },
             ],
             files: [".npmrc"],
             releaseType: "minor",

@@ -44,6 +44,8 @@ export interface DependencyVersionChange {
     newVersion?: string;
     // Undefined if the dependency was added
     oldVersion?: string;
+    // The semver change; "patch" for added, removed or non-semver dependencies
+    releaseType: ReleaseLevel;
 }
 
 // Root file changes that trigger a release of a package

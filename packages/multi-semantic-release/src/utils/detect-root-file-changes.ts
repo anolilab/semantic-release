@@ -6,7 +6,8 @@ import { getChangedFiles, getHeadCommitSync, readFileAtCommit } from "./git";
 import memoize from "./memoize";
 import type { PnpmLockfile } from "./pnpm-lockfile";
 import { compareDependencyGraphs, isSupportedLockfile, parsePnpmLockfile, PNPM_LOCKFILE, ROOT_IMPORTER } from "./pnpm-lockfile";
-import { isReleaseLevel } from "./release-type";
+import type { ReleaseLevel } from "./release-type";
+import { isReleaseLevel, maxReleaseType } from "./release-type";
 
 // Keep the scoped logger: its level methods read `this`, so they can't be destructured like `debug`
 const scopedLogger = logger.withScope("msr:rootFileChanges");
@@ -67,17 +68,41 @@ const formatDependencyChange = ({ name, newVersion, oldVersion }: DependencyVers
 };
 
 /**
+ * Leave out direct dependency changes that are handled elsewhere, e.g. catalog changes, which `deps.release` applies to.
+ * Their release type no longer counts, and the changes trigger nothing if nothing else changed.
+ * @param changes The root file changes.
+ * @param dependencyNames The names of the dependencies to leave out.
+ * @returns The remaining root file changes, or undefined if none remain.
+ */
+const omitDependencyChanges = (changes: RootFileChanges | undefined, dependencyNames: ReadonlySet<string>): RootFileChanges | undefined => {
+    if (!changes) {
+        return undefined;
+    }
+
+    const dependencies = changes.dependencies.filter(({ name }) => !dependencyNames.has(name));
+
+    if (dependencies.length === changes.dependencies.length) {
+        return changes;
+    }
+
+    if (dependencies.length === 0 && changes.transitiveCount === 0 && changes.files.length === 0) {
+        return undefined;
+    }
+
+    return { ...changes, dependencies, releaseType: maxReleaseType<ReleaseLevel>("patch", ...dependencies.map(({ releaseType }) => releaseType)) ?? "patch" };
+};
+
+/**
  * Format root file changes as release note bullets for the "Dependencies" section.
  * @param changes The root file changes that triggered the release.
- * @param listedDependencies Names of dependencies the notes already list (e.g. as catalog changes), which are left out.
  * @returns One bullet per changed direct dependency and file, plus a count of further updated packages.
  */
-const formatRootFileChanges = (changes: RootFileChanges | undefined, listedDependencies: ReadonlySet<string> = new Set()): string[] => {
+const formatRootFileChanges = (changes: RootFileChanges | undefined): string[] => {
     if (!changes) {
         return [];
     }
 
-    const bullets = changes.dependencies.filter(({ name }) => !listedDependencies.has(name)).map((dependency) => formatDependencyChange(dependency));
+    const bullets = changes.dependencies.map((dependency) => formatDependencyChange(dependency));
 
     if (changes.transitiveCount > 0) {
         bullets.push(
@@ -192,4 +217,4 @@ const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: 
     };
 };
 
-export { createRootFileChangeDetector, formatRootFileChanges };
+export { createRootFileChangeDetector, formatRootFileChanges, omitDependencyChanges };

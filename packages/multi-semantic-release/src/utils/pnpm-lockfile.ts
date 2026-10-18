@@ -302,10 +302,14 @@ const getDirectChanges = (
         const oldDependency = oldDirect.get(name);
         const newDependency = newDirect.get(name);
 
-        return { name, newVersion: describeResolution(name, newDependency, oldDependency), oldVersion: describeResolution(name, oldDependency, newDependency) };
+        return {
+            name,
+            newVersion: describeResolution(name, newDependency, oldDependency),
+            oldVersion: describeResolution(name, oldDependency, newDependency),
+            releaseType: getReleaseLevel(oldDependency, newDependency),
+        };
     });
-    const levels = changedNames.map((name) => getReleaseLevel(oldDirect.get(name), newDirect.get(name)));
-    const releaseType = maxReleaseType<ReleaseLevel>("patch", ...levels) ?? "patch";
+    const releaseType = maxReleaseType<ReleaseLevel>("patch", ...dependencies.map((dependency) => dependency.releaseType)) ?? "patch";
 
     return { dependencies, releaseType };
 };

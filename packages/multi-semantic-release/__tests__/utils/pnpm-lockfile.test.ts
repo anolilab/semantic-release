@@ -22,7 +22,7 @@ describe("pnpm-lockfile", () => {
             const changes = compareDependencyGraphs(parse(buildLockfile()), parse(buildLockfile({ dep: "1.1.0" })), "packages/a");
 
             expect(changes).toStrictEqual({
-                dependencies: [{ name: "dep", newVersion: "1.1.0", oldVersion: "1.0.0" }],
+                dependencies: [{ name: "dep", newVersion: "1.1.0", oldVersion: "1.0.0", releaseType: "minor" }],
                 releaseType: "minor",
                 transitiveCount: 0,
             });
@@ -49,7 +49,7 @@ describe("pnpm-lockfile", () => {
 
             const changes = compareDependencyGraphs(parse(buildLockfile()), parse(buildLockfile({ libdep: "2.0.1" })), "packages/a");
 
-            expect(changes?.dependencies).toStrictEqual([{ name: "libdep", newVersion: "2.0.1", oldVersion: "2.0.0" }]);
+            expect(changes?.dependencies).toStrictEqual([{ name: "libdep", newVersion: "2.0.1", oldVersion: "2.0.0", releaseType: "patch" }]);
         });
 
         it("should ignore devDependencies", () => {
@@ -105,10 +105,10 @@ describe("pnpm-lockfile", () => {
             );
 
             expect(compareDependencyGraphs(withoutOther, withOther, "packages/a")?.dependencies).toStrictEqual([
-                { name: "other", newVersion: "1.0.0", oldVersion: undefined },
+                { name: "other", newVersion: "1.0.0", oldVersion: undefined, releaseType: "patch" },
             ]);
             expect(compareDependencyGraphs(withOther, withoutOther, "packages/a")?.dependencies).toStrictEqual([
-                { name: "other", newVersion: undefined, oldVersion: "1.0.0" },
+                { name: "other", newVersion: undefined, oldVersion: "1.0.0", releaseType: "patch" },
             ]);
         });
 
@@ -204,7 +204,7 @@ describe("pnpm-lockfile", () => {
             const changes = compareDependencyGraphs(parse(withAlias("1.0.0")), parse(withAlias("2.0.0")), "packages/a");
 
             expect(changes).toStrictEqual({
-                dependencies: [{ name: "compat", newVersion: "2.0.0", oldVersion: "1.0.0" }],
+                dependencies: [{ name: "compat", newVersion: "2.0.0", oldVersion: "1.0.0", releaseType: "major" }],
                 releaseType: "major",
                 transitiveCount: 0,
             });
@@ -240,7 +240,7 @@ describe("pnpm-lockfile", () => {
             const changes = compareDependencyGraphs(parse(withAlias("lib2")), parse(withAlias("lib3")), "packages/a");
 
             expect(changes).toStrictEqual({
-                dependencies: [{ name: "compat", newVersion: "npm:lib3@1.0.0", oldVersion: "npm:lib2@1.0.0" }],
+                dependencies: [{ name: "compat", newVersion: "npm:lib3@1.0.0", oldVersion: "npm:lib2@1.0.0", releaseType: "patch" }],
                 releaseType: "patch",
                 transitiveCount: 0,
             });
