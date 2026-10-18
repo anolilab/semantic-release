@@ -1,3 +1,11 @@
+## @anolilab/multi-semantic-release [4.4.25](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.24...@anolilab/multi-semantic-release@4.4.25) (2026-10-16)
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.34
+* **execa:** ^10.1.0 → ^10.1.1
+
 ## @anolilab/multi-semantic-release [4.4.24](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.23...@anolilab/multi-semantic-release@4.4.24) (2026-10-12)
 
 

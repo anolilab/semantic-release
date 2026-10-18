@@ -1,0 +1,6 @@
+packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^4.17.0
+    typescript: ^5.0.0
