@@ -1,7 +1,7 @@
 import { relative } from "@visulima/path";
 
 import logger from "../logger";
-import type { DependencyVersionChange, Flags, Package, RootFileChanges } from "../types";
+import type { DependencyVersionChange, Flags, Package, RootFileChanges, RootFilesConfig } from "../types";
 import { getChangedFiles, getHeadCommitSync, readFileAtCommit } from "./git";
 import memoize from "./memoize";
 import type { PnpmLockfile } from "./pnpm-lockfile";
@@ -16,18 +16,18 @@ const ROOT_FILES_SCOPES = ["all", "affected"] as const;
 
 /**
  * Fail early on root file options a release would otherwise silently ignore.
- * @param flags The multi-semantic-release options.
- * @throws If rootFilesReleaseType or rootFilesScope has an unsupported value.
+ * @param options The rootFiles options.
+ * @throws If rootFiles.release or rootFiles.scope has an unsupported value.
  */
-const validateRootFileOptions = (flags: Flags): void => {
-    const { rootFilesReleaseType, rootFilesScope } = flags;
+const validateRootFileOptions = (options: RootFilesConfig): void => {
+    const { release, scope } = options;
 
-    if (rootFilesReleaseType !== undefined && rootFilesReleaseType !== "inherit" && !isReleaseLevel(rootFilesReleaseType)) {
-        throw new TypeError(`rootFilesReleaseType: must be one of patch, minor, major, inherit (got ${String(rootFilesReleaseType)})`);
+    if (release !== undefined && release !== "inherit" && !isReleaseLevel(release)) {
+        throw new TypeError(`rootFiles.release: must be one of patch, minor, major, inherit (got ${String(release)})`);
     }
 
-    if (rootFilesScope !== undefined && !(ROOT_FILES_SCOPES as ReadonlyArray<string>).includes(rootFilesScope)) {
-        throw new TypeError(`rootFilesScope: must be one of ${ROOT_FILES_SCOPES.join(", ")} (got ${rootFilesScope})`);
+    if (scope !== undefined && !(ROOT_FILES_SCOPES as ReadonlyArray<string>).includes(scope)) {
+        throw new TypeError(`rootFiles.scope: must be one of ${ROOT_FILES_SCOPES.join(", ")} (got ${scope})`);
     }
 };
 
@@ -97,7 +97,7 @@ const formatRootFileChanges = (changes: RootFileChanges | undefined, listedDepen
  */
 const resolveRootFileChanges = async (
     changedFiles: string[],
-    scope: Flags["rootFilesScope"],
+    scope: RootFilesConfig["scope"],
     getLockfileChanges: () => Promise<RootFileChanges | undefined>,
 ): Promise<RootFileChanges | undefined> => {
     if (changedFiles.length === 0) {
@@ -129,10 +129,12 @@ const resolveRootFileChanges = async (
  * @throws If the root file options are invalid.
  */
 const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: Package, gitHead: string) => Promise<RootFileChanges | undefined>) => {
-    validateRootFileOptions(flags);
+    const options = flags.rootFiles ?? {};
 
-    const triggerRootFiles = flags.triggerRootFiles ?? [];
-    const rootFilesPackages = flags.rootFilesPackages ?? [];
+    validateRootFileOptions(options);
+
+    const triggerRootFiles = options.files ?? [];
+    const rootFilesPackages = options.packages ?? [];
     const changedFilesByGitHead = new Map<string, Promise<string[]>>();
     const lockfilesByGitHead = new Map<string, Promise<PnpmLockfile | undefined>>();
     const lockfileChangesByKey = new Map<string, Promise<RootFileChanges | undefined>>();
@@ -161,7 +163,7 @@ const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: 
             if (!hasWarnedUnsupported) {
                 hasWarnedUnsupported = true;
                 scopedLogger.warn(
-                    `rootFilesScope "affected" needs lock file version 9 (pnpm 9+); treating ${PNPM_LOCKFILE} as a changed root file for every package`,
+                    `rootFiles.scope "affected" needs lock file version 9 (pnpm 9+); treating ${PNPM_LOCKFILE} as a changed root file for every package`,
                 );
             }
 
@@ -186,7 +188,7 @@ const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: 
 
         const changedFiles = await memoize(changedFilesByGitHead, gitHead, async () => await getChangedFiles(cwd, triggerRootFiles, gitHead, head));
 
-        return await resolveRootFileChanges(changedFiles, flags.rootFilesScope, async () => await getLockfileChanges(npmPackage, gitHead));
+        return await resolveRootFileChanges(changedFiles, options.scope, async () => await getLockfileChanges(npmPackage, gitHead));
     };
 };
 

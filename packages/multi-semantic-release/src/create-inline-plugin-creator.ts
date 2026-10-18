@@ -96,7 +96,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
      * @param npmPackage The package being analyzed.
      * @param gitHead The commit of the package's last release.
      * @param debugPrefix The prefix for debug messages.
-     * @returns The root file changes, with the release type mapped through `rootFilesReleaseType`; no changes if they trigger nothing.
+     * @returns The root file changes, with the release type mapped through `rootFiles.release`; no changes if they trigger nothing.
      */
     const getRootFileTrigger = async (npmPackage: Package, gitHead: string, debugPrefix: string): Promise<ReleaseTrigger<RootFileChanges | undefined>> => {
         const changes = await getRootFileChangesSince(npmPackage, gitHead);
@@ -105,7 +105,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
             return { changes };
         }
 
-        const releaseType = resolveReleaseTypeFromStrategy(flags.rootFilesReleaseType ?? "patch", changes.releaseType);
+        const releaseType = resolveReleaseTypeFromStrategy(flags.rootFiles?.release ?? "patch", changes.releaseType);
 
         debug(debugPrefix, `Root file changes trigger ${releaseType ?? "no"} release (raw: ${changes.releaseType})`);
 

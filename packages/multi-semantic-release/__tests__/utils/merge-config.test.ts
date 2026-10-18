@@ -70,13 +70,17 @@ describe(mergeConfig, () => {
         expect(result).toStrictEqual({ deps: {}, ignorePackages: ["lodash", "react"] });
     });
 
-    it("should merge triggerRootFiles and rootFilesPackages arrays when set", () => {
+    it("should merge rootFiles options, merging their arrays when set", () => {
         expect.assertions(1);
 
-        const a = { rootFilesPackages: ["web"], triggerRootFiles: ["pnpm-lock.yaml"] };
-        const b = { triggerRootFiles: [".npmrc", "pnpm-lock.yaml"] };
+        const a = { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["web"], scope: "all" } };
+        const b = { rootFiles: { files: [".npmrc", "pnpm-lock.yaml"], release: undefined, scope: "affected" } };
         const result = mergeConfig(a, b);
 
-        expect(result).toStrictEqual({ deps: {}, ignorePackages: [], rootFilesPackages: ["web"], triggerRootFiles: ["pnpm-lock.yaml", ".npmrc"] });
+        expect(result).toStrictEqual({
+            deps: {},
+            ignorePackages: [],
+            rootFiles: { files: ["pnpm-lock.yaml", ".npmrc"], packages: ["web"], scope: "affected" },
+        });
     });
 });

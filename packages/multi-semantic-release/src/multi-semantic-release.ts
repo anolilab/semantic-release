@@ -4,7 +4,7 @@ import { topo } from "@semrel-extra/topo";
 // eslint-disable-next-line e18e/ban-dependencies
 import dbg from "debug";
 // eslint-disable-next-line you-dont-need-lodash-underscore/cast-array, e18e/ban-dependencies
-import { castArray, sortBy, template } from "lodash-es";
+import { castArray, pickBy, sortBy, template } from "lodash-es";
 import type { Options } from "semantic-release";
 import semanticRelease from "semantic-release";
 import semrelPkgJson from "semantic-release/package.json" with { type: "json" };
@@ -228,6 +228,8 @@ const multiSemanticRelease = async (
         deps: {},
         ...configMultiSemrel,
         ...flags,
+        // CLI flags such as --root-files.scope replace single rootFiles options, not all of them
+        rootFiles: { ...configMultiSemrel.rootFiles, ...pickBy(flags.rootFiles, (option: unknown) => option !== undefined) },
     };
 
     logger.config.stdio = [stderr, stdout];

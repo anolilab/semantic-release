@@ -8,22 +8,37 @@ import { hideBin } from "yargs/helpers";
 import logger from "../logger";
 import multiSemanticRelease from "../multi-semantic-release";
 
+const splitList = (values: string[]): string[] => {
+    if (values.length === 1 && values[0]?.trim() === "false") {
+        return [];
+    }
+
+    const result: string[] = [];
+
+    for (const value of values) {
+        result.push(...value.split(",").map((x: string) => x.trim()));
+    }
+
+    return result;
+};
+
 const stringList = {
     array: true,
-    coerce: (values: string[]): string[] => {
-        if (values.length === 1 && values[0]?.trim() === "false") {
-            return [];
-        }
-
-        const result: string[] = [];
-
-        for (const value of values) {
-            result.push(...value.split(",").map((x: string) => x.trim()));
-        }
-
-        return result;
-    },
+    coerce: splitList,
     type: "array" as const,
+};
+
+/**
+ * Split the comma-separated lists of the rootFiles options; yargs doesn't coerce dotted options.
+ * @param rootFiles The parsed rootFiles options.
+ * @returns The options with their lists split.
+ */
+const splitRootFilesLists = (rootFiles: Record<string, unknown>): Record<string, unknown> => {
+    const lists = Object.entries(rootFiles)
+        .filter(([key, value]) => (key === "files" || key === "packages") && Array.isArray(value))
+        .map(([key, value]) => [key, splitList((value as unknown[]).map(String))]);
+
+    return { ...rootFiles, ...Object.fromEntries(lists) };
 };
 
 const cli = yargs(hideBin(process.argv))
@@ -74,21 +89,21 @@ const cli = yargs(hideBin(process.argv))
         describe: "Exclude private packages. Enabled by default, pass 'no-ignore-private' to disable.",
         type: "boolean",
     })
-    .option("trigger-root-files", {
+    .option("root-files.files", {
         ...stringList,
         describe: "Root files (relative to the workspace root) whose changes trigger releases, e.g. pnpm-lock.yaml",
     })
-    .option("root-files-release-type", {
+    .option("root-files.release", {
         choices: ["patch", "minor", "major", "inherit"],
         describe: "Release type when a root file triggers a release. Supported values: patch, minor, major, inherit.",
         type: "string",
     })
-    .option("root-files-scope", {
+    .option("root-files.scope", {
         choices: ["all", "affected"],
         describe: "Release all packages on a root file change, or only those whose production dependencies changed in pnpm-lock.yaml.",
         type: "string",
     })
-    .option("root-files-packages", {
+    .option("root-files.packages", {
         ...stringList,
         describe: "Names of the packages root file changes apply to. Default: all packages",
     })
@@ -104,6 +119,13 @@ const cli = yargs(hideBin(process.argv))
 try {
     const parsed = cli.parse(process.argv.slice(2)) as Record<string, unknown> & { help?: boolean; version?: boolean };
     const { help, version, ...options } = parsed;
+
+    // yargs sets dotted options under both spellings; keep the camelCase one
+    delete options["root-files"];
+
+    if (options.rootFiles) {
+        options.rootFiles = splitRootFilesLists(options.rootFiles as Record<string, unknown>);
+    }
 
     if (Boolean(help) || Boolean(version)) {
         exit(0);

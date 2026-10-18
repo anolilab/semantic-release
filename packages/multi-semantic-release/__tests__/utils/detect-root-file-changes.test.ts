@@ -24,7 +24,7 @@ const setUpWorkspace = (): { cwd: string; initialSha: string } => {
 };
 
 describe("createRootFileChangeDetector()", () => {
-    it("should skip packages not listed in rootFilesPackages", async () => {
+    it("should skip packages not listed in rootFiles.packages", async () => {
         expect.assertions(1);
 
         const { cwd, initialSha } = setUpWorkspace();
@@ -32,7 +32,7 @@ describe("createRootFileChangeDetector()", () => {
         writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile({ dep: "1.0.1" }));
         gitCommitAll(cwd, "chore: update lock file");
 
-        const detect = createRootFileChangeDetector(cwd, { rootFilesPackages: ["b"], rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] });
+        const detect = createRootFileChangeDetector(cwd, { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["b"], scope: "affected" } });
 
         await expect(detect(createPackage(cwd, "a", "packages/a"), initialSha)).resolves.toBeUndefined();
     });
@@ -45,7 +45,7 @@ describe("createRootFileChangeDetector()", () => {
         writeFileSync(resolve(cwd, ".npmrc"), "a=2\n");
         gitCommitAll(cwd, "chore: update npmrc");
 
-        const detect = createRootFileChangeDetector(cwd, { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml", ".npmrc"] });
+        const detect = createRootFileChangeDetector(cwd, { rootFiles: { files: ["pnpm-lock.yaml", ".npmrc"], scope: "affected" } });
 
         await expect(detect(createPackage(cwd, "b", "packages/b"), initialSha)).resolves.toStrictEqual({
             dependencies: [],
@@ -67,7 +67,7 @@ describe("createRootFileChangeDetector()", () => {
         writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile());
         gitCommitAll(cwd, "chore: upgrade lock file");
 
-        const detect = createRootFileChangeDetector(cwd, { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] });
+        const detect = createRootFileChangeDetector(cwd, { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } });
 
         await expect(detect(createPackage(cwd, "b", "packages/b"), initialSha)).resolves.toStrictEqual({
             dependencies: [],
@@ -89,7 +89,7 @@ describe("createRootFileChangeDetector()", () => {
         writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile());
         gitCommitAll(cwd, "chore: add lock file");
 
-        const detect = createRootFileChangeDetector(cwd, { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] });
+        const detect = createRootFileChangeDetector(cwd, { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } });
 
         await expect(detect(createPackage(cwd, "a", "packages/a"), initialSha)).resolves.toBeUndefined();
     });
@@ -98,7 +98,7 @@ describe("createRootFileChangeDetector()", () => {
         expect.assertions(1);
 
         const { cwd, initialSha } = setUpWorkspace();
-        const detect = createRootFileChangeDetector(cwd, { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] });
+        const detect = createRootFileChangeDetector(cwd, { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } });
 
         // E.g. an earlier package's release, or a filtered-out package analyzed first, committing a lock file update
         writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile({ dep: "1.0.1" }));
@@ -110,8 +110,8 @@ describe("createRootFileChangeDetector()", () => {
     it("should reject unsupported root file options", () => {
         expect.assertions(2);
 
-        expect(() => createRootFileChangeDetector("/repo", { rootFilesReleaseType: "minr" as "minor" })).toThrow("rootFilesReleaseType");
-        expect(() => createRootFileChangeDetector("/repo", { rootFilesScope: "some" as "all" })).toThrow("rootFilesScope");
+        expect(() => createRootFileChangeDetector("/repo", { rootFiles: { release: "minr" as "minor" } })).toThrow("rootFiles.release");
+        expect(() => createRootFileChangeDetector("/repo", { rootFiles: { scope: "some" as "all" } })).toThrow("rootFiles.scope");
     });
 
     it("should compare every package against HEAD as of the first detection", async () => {
@@ -122,7 +122,7 @@ describe("createRootFileChangeDetector()", () => {
         writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile({ dep: "1.0.1" }));
         gitCommitAll(cwd, "chore: update lock file");
 
-        const detect = createRootFileChangeDetector(cwd, { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] });
+        const detect = createRootFileChangeDetector(cwd, { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } });
 
         await expect(detect(createPackage(cwd, "a", "packages/a"), initialSha)).resolves.toMatchObject({ dependencies: [{ name: "dep" }] });
 

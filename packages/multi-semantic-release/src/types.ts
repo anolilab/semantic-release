@@ -146,6 +146,19 @@ export interface MultiContext {
 }
 
 export type ReleaseStrategy = "patch" | "minor" | "major" | "inherit";
+
+// Root files whose changes trigger releases, e.g. pnpm-lock.yaml
+export interface RootFilesConfig {
+    // Root files (relative to the workspace root) whose changes trigger releases
+    files?: string[];
+    // Names of the packages root file changes apply to; empty applies them to all packages
+    packages?: string[];
+    // Release type when a root file triggers a release
+    release?: ReleaseStrategy;
+    // "all" releases every package when a root file changes, "affected" only packages whose
+    // production dependencies changed in pnpm-lock.yaml (other root files behave as with "all")
+    scope?: "all" | "affected";
+}
 // Configuration interfaces
 export interface MultiReleaseConfig {
     [key: string]: unknown;
@@ -167,18 +180,11 @@ export interface MultiReleaseConfig {
     firstParent?: boolean;
     ignorePackages?: string[];
     ignorePrivate?: boolean;
-    // Names of the packages root file changes apply to; empty applies them to all packages
-    rootFilesPackages?: string[];
-    rootFilesReleaseType?: ReleaseStrategy;
-    // "all" releases every package when a root file changes, "affected" only packages whose
-    // production dependencies changed in pnpm-lock.yaml (other root files behave as with "all")
-    rootFilesScope?: "all" | "affected";
+    rootFiles?: RootFilesConfig;
     sequentialInit?: boolean;
     sequentialPrepare?: boolean;
     silent?: boolean;
     tagFormat?: string;
-    // Root files (relative to the workspace root) whose changes trigger releases
-    triggerRootFiles?: string[];
 }
 
 // Global options (from root package.json)

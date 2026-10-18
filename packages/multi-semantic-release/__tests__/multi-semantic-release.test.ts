@@ -2039,7 +2039,7 @@ catalog:
 
             const packages = await releaseAfterLockfileChange(
                 { dep: "1.0.1", tool: "1.1.0" },
-                { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+                { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } },
             );
             const resultA = packages["msr-test-a"]?.result as ReleaseResultType;
 
@@ -2049,13 +2049,13 @@ catalog:
             expect(packages["msr-test-lib"]?.result).toBe(false);
         });
 
-        it("should limit root file releases to rootFilesPackages", async () => {
+        it("should limit root file releases to rootFiles.packages", async () => {
             expect.assertions(3);
 
             // libdep is a production dependency of lib, and of a through its workspace link
             const packages = await releaseAfterLockfileChange(
                 { libdep: "2.0.1" },
-                { rootFilesPackages: ["msr-test-a"], rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+                { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["msr-test-a"], scope: "affected" } },
             );
 
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
@@ -2066,7 +2066,7 @@ catalog:
         it('should release every package with scope "all"', async () => {
             expect.assertions(4);
 
-            const packages = await releaseAfterLockfileChange({ tool: "1.1.0" }, { triggerRootFiles: ["pnpm-lock.yaml"] });
+            const packages = await releaseAfterLockfileChange({ tool: "1.1.0" }, { rootFiles: { files: ["pnpm-lock.yaml"] } });
 
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.notes).toContain("* **pnpm-lock.yaml** changed");
@@ -2074,12 +2074,12 @@ catalog:
             expect((packages["msr-test-lib"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
         });
 
-        it('should use the highest direct dependency change with rootFilesReleaseType "inherit"', async () => {
+        it('should use the highest direct dependency change with rootFiles.release "inherit"', async () => {
             expect.assertions(1);
 
             const packages = await releaseAfterLockfileChange(
                 { dep: "1.1.0" },
-                { rootFilesPackages: ["msr-test-a"], rootFilesReleaseType: "inherit", rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] },
+                { rootFiles: { files: ["pnpm-lock.yaml"], packages: ["msr-test-a"], release: "inherit", scope: "affected" } },
             );
 
             expect((packages["msr-test-a"]?.result as ReleaseResultType).nextRelease?.version).toBe("1.1.0");
