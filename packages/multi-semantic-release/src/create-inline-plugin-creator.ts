@@ -15,7 +15,9 @@ import { createRootFileChangeDetector, formatRootFileChanges } from "./utils/det
 import memoize from "./utils/memoize";
 import { maxReleaseType } from "./utils/release-type";
 
-const { debug, warn } = logger.withScope("msr:inlinePlugin");
+// Keep the scoped logger: its level methods read `this`, so they can't be destructured like `debug`
+const scopedLogger = logger.withScope("msr:inlinePlugin");
+const { debug } = scopedLogger;
 
 const HEADING_VERSION_REGEX = /^(#+) (\[?\d+\.\d+\.\d+\]?)/u;
 
@@ -50,7 +52,7 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
                 return await detectCatalogChanges(cwd, gitHead);
             } catch (error) {
                 // Catalog changes never failed a release, so keep skipping them, but visibly (e.g. in a shallow clone).
-                warn(debugPrefix, "Failed to detect catalog changes, skipping them:", error);
+                scopedLogger.warn(debugPrefix, "Failed to detect catalog changes, skipping them:", error);
 
                 return {};
             }
@@ -285,7 +287,8 @@ const createInlinePluginCreator = (_packages: Package[], multiContext: MultiCont
 
             const upgrades = npmPackage.localDeps.filter((d: Package) => d._nextRelease);
             const catalogChanges = npmPackage._catalogChanges ?? [];
-            const rootFileNotes = formatRootFileChanges(npmPackage._rootFileChanges);
+            // A catalog bump also changes the lock file: list it once, as the catalog change.
+            const rootFileNotes = formatRootFileChanges(npmPackage._rootFileChanges, new Set(catalogChanges.map(({ dependencyName }) => dependencyName)));
 
             if (upgrades.length > 0 || catalogChanges.length > 0 || rootFileNotes.length > 0) {
                 notes.push(`### Dependencies`);

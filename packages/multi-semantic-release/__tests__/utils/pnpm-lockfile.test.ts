@@ -209,6 +209,42 @@ describe("pnpm-lockfile", () => {
                 transitiveCount: 0,
             });
         });
+
+        it("should count a changed version that isn't semver as a patch", () => {
+            expect.assertions(1);
+
+            // semver.coerce would read these tarball URLs as 4.0.0 and 9.0.0, a "major" change
+            const oldLockfile = buildLockfile({ dep: "https://codeload.github.com/a/dep/tar.gz/4f2a9c" });
+            const newLockfile = buildLockfile({ dep: "https://codeload.github.com/a/dep/tar.gz/9e1b" });
+
+            expect(compareDependencyGraphs(parse(oldLockfile), parse(newLockfile), "packages/a")).toMatchObject({
+                dependencies: [
+                    { name: "dep", newVersion: "https://codeload.github.com/a/dep/tar.gz/9e1b", oldVersion: "https://codeload.github.com/a/dep/tar.gz/4f2a9c" },
+                ],
+                releaseType: "patch",
+            });
+        });
+
+        it("should report an npm alias pointing to another package of the same version", () => {
+            expect.assertions(1);
+
+            const withAlias = (target: string): string =>
+                buildLockfile()
+                    .replace(
+                        "      lib:\n        specifier: workspace:^",
+                        () =>
+                            `      compat:\n        specifier: npm:${target}@^1.0.0\n        version: ${target}@1.0.0\n      lib:\n        specifier: workspace:^`,
+                    )
+                    .replace("packages:\n\n", () => `packages:\n\n  ${target}@1.0.0:\n    resolution: {integrity: sha512-${target}}\n\n`)
+                    .replace("snapshots:\n\n", () => `snapshots:\n\n  ${target}@1.0.0: {}\n\n`);
+            const changes = compareDependencyGraphs(parse(withAlias("lib2")), parse(withAlias("lib3")), "packages/a");
+
+            expect(changes).toStrictEqual({
+                dependencies: [{ name: "compat", newVersion: "npm:lib3@1.0.0", oldVersion: "npm:lib2@1.0.0" }],
+                releaseType: "patch",
+                transitiveCount: 0,
+            });
+        });
     });
 
     describe("parsePnpmLockfile()", () => {

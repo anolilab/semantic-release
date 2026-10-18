@@ -79,6 +79,7 @@ const cli = yargs(hideBin(process.argv))
         describe: "Root files (relative to the workspace root) whose changes trigger releases, e.g. pnpm-lock.yaml",
     })
     .option("root-files-release-type", {
+        choices: ["patch", "minor", "major", "inherit"],
         describe: "Release type when a root file triggers a release. Supported values: patch, minor, major, inherit.",
         type: "string",
     })

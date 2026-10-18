@@ -2,12 +2,34 @@ import { relative } from "@visulima/path";
 
 import logger from "../logger";
 import type { DependencyVersionChange, Flags, Package, RootFileChanges } from "../types";
-import { getChangedFiles, getHeadCommit, readFileAtCommit } from "./git";
+import { getChangedFiles, getHeadCommitSync, readFileAtCommit } from "./git";
 import memoize from "./memoize";
 import type { PnpmLockfile } from "./pnpm-lockfile";
 import { compareDependencyGraphs, isSupportedLockfile, parsePnpmLockfile, PNPM_LOCKFILE, ROOT_IMPORTER } from "./pnpm-lockfile";
+import { isReleaseLevel } from "./release-type";
 
-const { debug } = logger.withScope("msr:rootFileChanges");
+// Keep the scoped logger: its level methods read `this`, so they can't be destructured like `debug`
+const scopedLogger = logger.withScope("msr:rootFileChanges");
+const { debug } = scopedLogger;
+
+const ROOT_FILES_SCOPES = ["all", "affected"] as const;
+
+/**
+ * Fail early on root file options a release would otherwise silently ignore.
+ * @param flags The multi-semantic-release options.
+ * @throws If rootFilesReleaseType or rootFilesScope has an unsupported value.
+ */
+const validateRootFileOptions = (flags: Flags): void => {
+    const { rootFilesReleaseType, rootFilesScope } = flags;
+
+    if (rootFilesReleaseType !== undefined && rootFilesReleaseType !== "inherit" && !isReleaseLevel(rootFilesReleaseType)) {
+        throw new TypeError(`rootFilesReleaseType: must be one of patch, minor, major, inherit (got ${String(rootFilesReleaseType)})`);
+    }
+
+    if (rootFilesScope !== undefined && !(ROOT_FILES_SCOPES as ReadonlyArray<string>).includes(rootFilesScope)) {
+        throw new TypeError(`rootFilesScope: must be one of ${ROOT_FILES_SCOPES.join(", ")} (got ${rootFilesScope})`);
+    }
+};
 
 /**
  * Describe root files that trigger a release as a whole, without analyzing their content.
@@ -47,14 +69,15 @@ const formatDependencyChange = ({ name, newVersion, oldVersion }: DependencyVers
 /**
  * Format root file changes as release note bullets for the "Dependencies" section.
  * @param changes The root file changes that triggered the release.
+ * @param listedDependencies Names of dependencies the notes already list (e.g. as catalog changes), which are left out.
  * @returns One bullet per changed direct dependency and file, plus a count of further updated packages.
  */
-const formatRootFileChanges = (changes: RootFileChanges | undefined): string[] => {
+const formatRootFileChanges = (changes: RootFileChanges | undefined, listedDependencies: ReadonlySet<string> = new Set()): string[] => {
     if (!changes) {
         return [];
     }
 
-    const bullets = changes.dependencies.map((dependency) => formatDependencyChange(dependency));
+    const bullets = changes.dependencies.filter(({ name }) => !listedDependencies.has(name)).map((dependency) => formatDependencyChange(dependency));
 
     if (changes.transitiveCount > 0) {
         bullets.push(
@@ -97,30 +120,30 @@ const resolveRootFileChanges = async (
 
 /**
  * Create a detector for the root file changes that trigger a package's release.
- * All packages are compared against the commit HEAD pointed to on first use, so commits created by earlier
- * releases in the same run don't change the result. Git diffs and lock files are read once per last-release commit.
+ * All packages are compared against the commit HEAD points to when the detector is created, i.e. before any
+ * package is released, so commits created by releases in the same run don't change the result.
+ * Git diffs and lock files are read once per last-release commit, lock file comparisons once per package and commit.
  * @param cwd The workspace root directory.
  * @param flags The multi-semantic-release options.
  * @returns A function returning a package's root file changes since its last release, or undefined if there are none.
+ * @throws If the root file options are invalid.
  */
 const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: Package, gitHead: string) => Promise<RootFileChanges | undefined>) => {
+    validateRootFileOptions(flags);
+
     const triggerRootFiles = flags.triggerRootFiles ?? [];
     const rootFilesPackages = flags.rootFilesPackages ?? [];
     const changedFilesByGitHead = new Map<string, Promise<string[]>>();
     const lockfilesByGitHead = new Map<string, Promise<PnpmLockfile | undefined>>();
-    let headCommit: Promise<string> | undefined;
-
-    const getHead = async (): Promise<string> => {
-        headCommit ??= getHeadCommit(cwd);
-
-        return await headCommit;
-    };
+    const lockfileChangesByKey = new Map<string, Promise<RootFileChanges | undefined>>();
+    const head = triggerRootFiles.length > 0 ? getHeadCommitSync(cwd) : "HEAD";
+    let hasWarnedUnsupported = false;
 
     const readLockfile = async (gitHead: string): Promise<PnpmLockfile | undefined> =>
         await memoize(lockfilesByGitHead, gitHead, async () => await readPnpmLockfile(cwd, gitHead));
 
-    const getLockfileChanges = async (npmPackage: Package, gitHead: string): Promise<RootFileChanges | undefined> => {
-        const newLockfile = await readLockfile(await getHead());
+    const compareLockfiles = async (importerPath: string, gitHead: string): Promise<RootFileChanges | undefined> => {
+        const newLockfile = await readLockfile(head);
 
         if (!newLockfile) {
             // The lock file was removed: treat it like any other changed root file.
@@ -135,14 +158,25 @@ const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: 
         }
 
         if (!isSupportedLockfile(oldLockfile) || !isSupportedLockfile(newLockfile)) {
-            debug(`Unsupported ${PNPM_LOCKFILE} version, treating it as a changed root file`);
+            if (!hasWarnedUnsupported) {
+                hasWarnedUnsupported = true;
+                scopedLogger.warn(
+                    `rootFilesScope "affected" needs lock file version 9 (pnpm 9+); treating ${PNPM_LOCKFILE} as a changed root file for every package`,
+                );
+            }
 
             return getFileChanges([PNPM_LOCKFILE]);
         }
 
-        const changes = compareDependencyGraphs(oldLockfile, newLockfile, relative(cwd, npmPackage.dir) || ROOT_IMPORTER);
+        const changes = compareDependencyGraphs(oldLockfile, newLockfile, importerPath);
 
         return changes ? { ...changes, files: [] } : undefined;
+    };
+
+    const getLockfileChanges = async (npmPackage: Package, gitHead: string): Promise<RootFileChanges | undefined> => {
+        const importerPath = relative(cwd, npmPackage.dir) || ROOT_IMPORTER;
+
+        return await memoize(lockfileChangesByKey, `${gitHead}\0${importerPath}`, async () => await compareLockfiles(importerPath, gitHead));
     };
 
     return async (npmPackage: Package, gitHead: string): Promise<RootFileChanges | undefined> => {
@@ -150,7 +184,6 @@ const createRootFileChangeDetector = (cwd: string, flags: Flags): ((npmPackage: 
             return undefined;
         }
 
-        const head = await getHead();
         const changedFiles = await memoize(changedFilesByGitHead, gitHead, async () => await getChangedFiles(cwd, triggerRootFiles, gitHead, head));
 
         return await resolveRootFileChanges(changedFiles, flags.rootFilesScope, async () => await getLockfileChanges(npmPackage, gitHead));

@@ -94,6 +94,26 @@ describe("createRootFileChangeDetector()", () => {
         await expect(detect(createPackage(cwd, "a", "packages/a"), initialSha)).resolves.toBeUndefined();
     });
 
+    it("should compare against HEAD as of the detector's creation, even before the first detection", async () => {
+        expect.assertions(1);
+
+        const { cwd, initialSha } = setUpWorkspace();
+        const detect = createRootFileChangeDetector(cwd, { rootFilesScope: "affected", triggerRootFiles: ["pnpm-lock.yaml"] });
+
+        // E.g. an earlier package's release, or a filtered-out package analyzed first, committing a lock file update
+        writeFileSync(resolve(cwd, "pnpm-lock.yaml"), buildPnpmLockfile({ dep: "1.0.1" }));
+        gitCommitAll(cwd, "chore(release): update lock file");
+
+        await expect(detect(createPackage(cwd, "a", "packages/a"), initialSha)).resolves.toBeUndefined();
+    });
+
+    it("should reject unsupported root file options", () => {
+        expect.assertions(2);
+
+        expect(() => createRootFileChangeDetector("/repo", { rootFilesReleaseType: "minr" as "minor" })).toThrow("rootFilesReleaseType");
+        expect(() => createRootFileChangeDetector("/repo", { rootFilesScope: "some" as "all" })).toThrow("rootFilesScope");
+    });
+
     it("should compare every package against HEAD as of the first detection", async () => {
         expect.assertions(2);
 
@@ -115,6 +135,25 @@ describe("createRootFileChangeDetector()", () => {
 });
 
 describe("formatRootFileChanges()", () => {
+    it("should leave out dependencies the notes already list", () => {
+        expect.assertions(1);
+
+        const notes = formatRootFileChanges(
+            {
+                dependencies: [
+                    { name: "lodash-es", newVersion: "4.17.1", oldVersion: "4.17.0" },
+                    { name: "other", newVersion: "1.0.1", oldVersion: "1.0.0" },
+                ],
+                files: [],
+                releaseType: "patch",
+                transitiveCount: 0,
+            },
+            new Set(["lodash-es"]),
+        );
+
+        expect(notes).toStrictEqual(["* **other:** 1.0.0 → 1.0.1"]);
+    });
+
     it("should format updated, added and removed dependencies, further updates and files", () => {
         expect.assertions(1);
 

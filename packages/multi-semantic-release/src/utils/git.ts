@@ -1,5 +1,5 @@
 // eslint-disable-next-line e18e/ban-dependencies
-import { execa } from "execa";
+import { execa, execaSync } from "execa";
 
 const HEAD = "HEAD";
 
@@ -15,6 +15,13 @@ const getHeadCommit = async (cwd: string): Promise<string> => {
 
     return result.stdout.trim();
 };
+
+/**
+ * Resolve HEAD to a commit synchronously, to pin it before anything else can create commits.
+ * @param cwd The working directory.
+ * @returns The commit SHA of HEAD.
+ */
+const getHeadCommitSync = (cwd: string): string => execaSync("git", ["rev-parse", HEAD], { cwd }).stdout.trim();
 
 /**
  * List the given files that changed between two commits, relative to `cwd`.
@@ -60,4 +67,4 @@ const readFileAtCommit = async (cwd: string, gitHead: string, path: string): Pro
     return undefined;
 };
 
-export { getChangedFiles, getHeadCommit, readFileAtCommit };
+export { getChangedFiles, getHeadCommit, getHeadCommitSync, readFileAtCommit };

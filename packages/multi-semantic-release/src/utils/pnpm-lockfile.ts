@@ -1,10 +1,9 @@
 import { join } from "@visulima/path";
-import semver from "semver";
 import { parseAllDocuments } from "yaml";
 
 import type { DependencyVersionChange, RootFileChanges } from "../types";
 import type { ReleaseLevel } from "./release-type";
-import { maxReleaseType } from "./release-type";
+import { getVersionChangeLevel, maxReleaseType } from "./release-type";
 
 const PNPM_LOCKFILE = "pnpm-lock.yaml";
 
@@ -252,25 +251,39 @@ const collectDependencyGraph = (lockfile: PnpmLockfile, importerPath: string): D
     return { direct: walk.direct, edges: walk.edges, nodes, sources: new Set([...visitedImporters, ...nodes.keys()]) };
 };
 
-/**
- * Determine the release level of a version change.
- * @param oldVersion The previously resolved version.
- * @param newVersion The newly resolved version.
- * @returns The release level, patch when the versions can't be compared.
- */
-const getReleaseLevel = (oldVersion: string, newVersion: string): ReleaseLevel => {
-    const oldClean = semver.coerce(oldVersion);
-    const newClean = semver.coerce(newVersion);
+const isSameResolution = (a: ResolvedDependency | undefined, b: ResolvedDependency | undefined): boolean =>
+    a?.packageName === b?.packageName && a?.version === b?.version;
 
-    if (!oldClean || !newClean) {
+/**
+ * Describe a direct dependency's resolution for the release notes.
+ * @param name The name the manifest declares the dependency under.
+ * @param dependency The resolved dependency.
+ * @param other The resolution it is compared with.
+ * @returns The version, or `npm:package@version` for an npm alias whose target package differs from the other resolution's.
+ */
+const describeResolution = (name: string, dependency: ResolvedDependency | undefined, other: ResolvedDependency | undefined): string | undefined => {
+    if (!dependency) {
+        return undefined;
+    }
+
+    return dependency.packageName === name || dependency.packageName === other?.packageName
+        ? dependency.version
+        : `npm:${dependency.packageName}@${dependency.version}`;
+};
+
+/**
+ * Determine the release level of an updated direct dependency.
+ * Versions that aren't semver (git, tarball or `file:` dependencies) and alias target changes count as a patch.
+ * @param oldDependency The dependency as resolved at the last release, undefined if it was added.
+ * @param newDependency The dependency as resolved now, undefined if it was removed.
+ * @returns The semver change between both versions, "patch" if they can't be compared.
+ */
+const getReleaseLevel = (oldDependency: ResolvedDependency | undefined, newDependency: ResolvedDependency | undefined): ReleaseLevel => {
+    if (!oldDependency || oldDependency.packageName !== newDependency?.packageName) {
         return "patch";
     }
 
-    if (oldClean.major !== newClean.major) {
-        return "major";
-    }
-
-    return oldClean.minor === newClean.minor ? "patch" : "minor";
+    return getVersionChangeLevel(oldDependency.version, newDependency.version) ?? "patch";
 };
 
 /**
@@ -284,12 +297,14 @@ const getDirectChanges = (
     newDirect: Map<string, ResolvedDependency>,
 ): { dependencies: DependencyVersionChange[]; releaseType: ReleaseLevel } => {
     const names = [...new Set([...oldDirect.keys(), ...newDirect.keys()])].toSorted((a, b) => a.localeCompare(b));
-    const dependencies: DependencyVersionChange[] = names
-        .map((name) => {
-            return { name, newVersion: newDirect.get(name)?.version, oldVersion: oldDirect.get(name)?.version };
-        })
-        .filter(({ newVersion, oldVersion }) => oldVersion !== newVersion);
-    const levels = dependencies.map(({ newVersion, oldVersion }) => (oldVersion && newVersion ? getReleaseLevel(oldVersion, newVersion) : "patch"));
+    const changedNames = names.filter((name) => !isSameResolution(oldDirect.get(name), newDirect.get(name)));
+    const dependencies: DependencyVersionChange[] = changedNames.map((name) => {
+        const oldDependency = oldDirect.get(name);
+        const newDependency = newDirect.get(name);
+
+        return { name, newVersion: describeResolution(name, newDependency, oldDependency), oldVersion: describeResolution(name, oldDependency, newDependency) };
+    });
+    const levels = changedNames.map((name) => getReleaseLevel(oldDirect.get(name), newDirect.get(name)));
     const releaseType = maxReleaseType<ReleaseLevel>("patch", ...levels) ?? "patch";
 
     return { dependencies, releaseType };
