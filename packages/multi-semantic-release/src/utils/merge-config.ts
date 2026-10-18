@@ -3,7 +3,16 @@ import { castArray, pickBy } from "lodash-es";
 
 const isNil = (value: unknown): boolean => value === undefined || value === null;
 
+const mergeArrays = (a: unknown, b: unknown): unknown[] => [...new Set([...castArray(a ?? []), ...castArray(b ?? [])])];
+
+// Optional array options, merged like ignorePackages but only present when set
+const OPTIONAL_ARRAY_OPTIONS = ["rootFilesPackages", "triggerRootFiles"] as const;
+
 const mergeConfig = (a: Record<string, unknown> = {}, b: Record<string, unknown> = {}): Record<string, unknown> => {
+    const optionalArrays = Object.fromEntries(
+        OPTIONAL_ARRAY_OPTIONS.filter((key) => !isNil(a[key]) || !isNil(b[key])).map((key) => [key, mergeArrays(a[key], b[key])]),
+    );
+
     return {
         ...a,
         // Remove `null` and `undefined` options so they can be replaced with default ones
@@ -14,7 +23,8 @@ const mergeConfig = (a: Record<string, unknown> = {}, b: Record<string, unknown>
             ...pickBy(b.deps as Record<string, unknown>, (option: unknown) => !isNil(option)),
         },
         // Treat arrays differently by merging them
-        ignorePackages: [...new Set([...castArray(a.ignorePackages ?? []), ...castArray(b.ignorePackages ?? [])])],
+        ignorePackages: mergeArrays(a.ignorePackages, b.ignorePackages),
+        ...optionalArrays,
     };
 };
 
