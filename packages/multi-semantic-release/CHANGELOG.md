@@ -1,3 +1,29 @@
+## @anolilab/multi-semantic-release [4.6.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.5.0...@anolilab/multi-semantic-release@4.6.0) (2026-10-18)
+
+### Features
+
+* **multi-semantic-release:** keep the 4.5.0 root file options as deprecated aliases ([8f2280b](https://github.com/anolilab/semantic-release/commit/8f2280b47f35a70092cab5abb710301fd0126436))
+
+### Bug Fixes
+
+* **multi-semantic-release:** classify catalog range changes such as ^5 to ^6 ([d50477a](https://github.com/anolilab/semantic-release/commit/d50477a79a671862e3bd8aee6c7abf2ab251fd95))
+* **multi-semantic-release:** compare catalogs with HEAD as of the run's start ([228cc0e](https://github.com/anolilab/semantic-release/commit/228cc0e094c58da1f62cba2d04c51bce18607e7c))
+* **multi-semantic-release:** fail when the last release commit is not available ([c03dd9d](https://github.com/anolilab/semantic-release/commit/c03dd9dd54b11f49978d05e544bc11a5cf99f6a6))
+* **multi-semantic-release:** harden root file change detection ([cdf9249](https://github.com/anolilab/semantic-release/commit/cdf9249133324c10d57c27b5aa214a87128cdf03))
+* **multi-semantic-release:** let deps.release cap catalog changes seen in the lock file ([72da992](https://github.com/anolilab/semantic-release/commit/72da9928556e3d18710160149cff3d71044d4df2))
+
+### Code Refactoring
+
+* **multi-semantic-release:** group root file options under rootFiles ([7cc5425](https://github.com/anolilab/semantic-release/commit/7cc54252131c7764949415f15e1d9c77102a666a)), closes [#510](https://github.com/anolilab/semantic-release/issues/510)
+* **multi-semantic-release:** share release type, git and memoize helpers ([fae4a58](https://github.com/anolilab/semantic-release/commit/fae4a588d152b8a79b71d29329bb1a22091d23cf))
+* **multi-semantic-release:** split pure lock file logic from root file detection ([9289249](https://github.com/anolilab/semantic-release/commit/9289249fc8a074b16209cd594aca84fe9a715d45))
+* **multi-semantic-release:** treat catalog and root file changes as release triggers ([97666ae](https://github.com/anolilab/semantic-release/commit/97666ae37726f2b7050c8fccd1af465212b8ed4e))
+
+### Tests
+
+* **multi-semantic-release:** cover comma-separated --root-files lists end to end ([8802b9d](https://github.com/anolilab/semantic-release/commit/8802b9dff737965191444c08fbbd735866556682))
+* **multi-semantic-release:** drop a type assertion made redundant by the widened strategy resolver ([2453e74](https://github.com/anolilab/semantic-release/commit/2453e74f48e5141650d0f11477f4312ed1c46ce9))
+
 ## @anolilab/multi-semantic-release [4.5.0](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.4.25...@anolilab/multi-semantic-release@4.5.0) (2026-10-18)
 
 ### Features
