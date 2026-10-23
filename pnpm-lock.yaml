@@ -104,8 +104,8 @@ catalogs:
       specifier: 12.0.4
       version: 12.0.4
     '@anolilab/prettier-config':
-      specifier: 10.0.3
-      version: 10.0.3
+      specifier: 10.0.4
+      version: 10.0.4
     '@anolilab/textlint-config':
       specifier: 13.0.6
       version: 13.0.6
@@ -297,7 +297,7 @@ catalogs:
       version: 8.0.0
 
 overrides:
-  browserslist@<=4.28.6: '>=4.29.3'
+  browserslist@<=4.28.6: '>=4.29.4'
   '@typescript-eslint/utils@<8.67.0': 8.71.0
   '@visulima/fs': ^5.1.0
   '@visulima/package': 5.0.43
@@ -329,8 +329,8 @@ overrides:
   chrono-node@<2.2.4: '>=2.10.3'
   defu@<=6.1.4: '>=6.1.7'
   diff@>=5.0.0 <5.2.2: '>=9.0.0'
-  fast-uri@>=3.0.0 <3.1.3: ^4.2.2
-  fast-uri@>=3.0.0 <=3.1.3: ^4.2.2
+  fast-uri@>=3.0.0 <3.1.3: ^4.2.3
+  fast-uri@>=3.0.0 <=3.1.3: ^4.2.3
   flatted@<3.4.0: '>=3.4.4'
   flatted@<=3.4.1: '>=3.4.4'
   follow-redirects@<=1.15.11: '>=1.16.1'
@@ -350,7 +350,7 @@ overrides:
   lodash@<=4.17.23: '>=4.18.0'
   lodash@>=4.0.0 <=4.17.22: '>=4.18.1'
   lodash@>=4.0.0 <=4.17.23: '>=4.18.0'
-  markdown-it@>=13.0.0 <14.1.1: '>=15.0.2'
+  markdown-it@>=13.0.0 <14.1.1: '>=15.0.3'
   minimatch@<3.1.3: '>=10.2.6'
   minimatch@<3.1.4: '>=10.2.6'
   minimatch@>=10.0.0 <10.2.1: '>=10.2.6'
@@ -363,8 +363,8 @@ overrides:
   picomatch@<2.3.2: '>=4.0.7'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.7'
   protobufjs@>=7.5.0 <=7.6.4: ^8.8.1
-  qs@<6.14.1: '>=6.16.0'
-  qs@>=6.7.0 <=6.14.1: '>=6.16.0'
+  qs@<6.14.1: '>=6.16.1'
+  qs@>=6.7.0 <=6.14.1: '>=6.16.1'
   rollup@>=4.0.0 <4.59.0: '>=4.63.4'
   shell-quote@<=1.8.4: ^1.12.0
   shell-quote@>=1.1.0 <=1.8.3: ^1.12.0
@@ -386,7 +386,7 @@ overrides:
   vite@>=8.0.0 <8.0.16: '>=8.2.2'
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
   katex@>=0.11.0 <0.18.2: ^0.19.0
-  undici@>=7.0.0 <7.29.1: ^7.30.0
+  undici@>=7.0.0 <7.29.1: ^7.30.1
 
 importers:
 
@@ -400,7 +400,7 @@ importers:
         version: 12.0.4(husky@9.1.7)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lint-staged@17.6.0)(prettier@3.9.10)(secretlint@13.0.7(supports-color@10.2.2))(smol-toml@1.9.1)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.10)
+        version: 10.0.4(prettier@3.9.10)
       '@anolilab/textlint-config':
         specifier: catalog:lint
         version: 13.0.6(supports-color@10.2.2)(textlint@15.8.0(supports-color@10.2.2))
@@ -536,7 +536,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.1)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.10)
+        version: 10.0.4(prettier@3.9.10)
       '@anolilab/semantic-release-clean-package-json':
         specifier: 5.5.28
         version: link:../semantic-release-clean-package-json
@@ -660,7 +660,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.1)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.10)
+        version: 10.0.4(prettier@3.9.10)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
         version: 62.5.0(typedoc@0.28.20(typescript@6.0.3))
@@ -775,7 +775,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.1)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.10)
+        version: 10.0.4(prettier@3.9.10)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.32
         version: 8.1.32(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.1)(supports-color@10.2.2)(yaml@2.9.1)
@@ -896,7 +896,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.1)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.10)
+        version: 10.0.4(prettier@3.9.10)
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.0.7
@@ -1041,7 +1041,7 @@ importers:
         version: 29.0.1(@typescript-eslint/eslint-plugin@8.66.0(@typescript-eslint/parser@8.66.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(@typescript-eslint/utils@8.71.0(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3))(eslint-plugin-you-dont-need-lodash-underscore@6.14.0)(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.1)(supports-color@10.2.2)(typescript@6.0.3)(vitest@4.1.11)(yaml@2.9.1)
       '@anolilab/prettier-config':
         specifier: catalog:lint
-        version: 10.0.3(prettier@3.9.10)
+        version: 10.0.4(prettier@3.9.10)
       '@anolilab/semantic-release-pnpm':
         specifier: 8.1.35
         version: link:../semantic-release-pnpm
@@ -1211,12 +1211,12 @@ packages:
       vitest:
         optional: true
 
-  '@anolilab/prettier-config@10.0.3':
-    resolution: {integrity: sha512-zb+gDmmdW8M4yn4ZbzMkzj1xmnEhMA74vws8FWBew7wEcbhtpTSrvfMx0WJe4hnvLw5Ko5BCC6kFrvBjIcZybQ==}
+  '@anolilab/prettier-config@10.0.4':
+    resolution: {integrity: sha512-N4NI74CNxoJcl+9TyPMuOFF27JO88vgKqF0AiBdQP3wJKmLNVbgAwv+GE6aWzAR2zPNqDbUQ9mVCBaCfKC1AWw==}
     engines: {node: '>=22.12.0 <=25.*'}
     hasBin: true
     peerDependencies:
-      prettier: 3.9.6
+      prettier: 3.9.10
 
   '@anolilab/rc@4.0.9':
     resolution: {integrity: sha512-e3KBrm9Fr2xCmSyKc17cWyL6jOwHJWciiSb6FbRveAmykn0vwYQT1Bf4BJNkuEhCUXNsJL1aN70czA5atzlGzw==}
@@ -4296,6 +4296,11 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  baseline-browser-mapping@2.11.30:
+    resolution: {integrity: sha512-YJs6Pz17RMNv8HoyKREtCY38E3BV1nPkWVmIb+XN1uHC1Vqt3KZCH/uJH9ZKRoiKb/icZ6tvehyee6RZNbFfRA==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
   bcrypt-pbkdf@1.0.2:
     resolution: {integrity: sha512-qeFIXtP4MSoi6NLqO12WfqARWWuCKi2Rn/9hJLEmtB5yTNr9DqFWkJRCf2qShWzPeAMRnOgCrq0sg/KLv5ES9w==}
 
@@ -4339,6 +4344,11 @@ packages:
 
   browserslist@4.29.3:
     resolution: {integrity: sha512-1R4kiYKXGViqEN0CnoDrXc1StD9niAwu+j2dukWzrD4bJgsD4lDmEp0CRbc6E/vYJIfTHwPmwyaKtVSudICdPA==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
+  browserslist@4.29.4:
+    resolution: {integrity: sha512-2TcbbiwXEq+N0kD36tykpCfyyQigUXmuwNQbnPp4Xk4PX9JOqVIKjJlIDjpH7uY6tmRGoAd+apeT1p60T8wsdA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -4437,6 +4447,9 @@ packages:
 
   caniuse-lite@1.0.30001815:
     resolution: {integrity: sha512-uDybUEyfgbyJJ93J1vikTylBX31AkdVYeVPeffMQpf8XN7hSfr0oZOn4VFOIMNvtU5+rHvC5Udg2TgtJKHm23Q==}
+
+  caniuse-lite@1.0.30001819:
+    resolution: {integrity: sha512-LFUqIIAwpzsIuevnKnsR9qnStBcgzPShTX61lBwN9uFkkf8o8zLiebEjbW8AYtZiF+1YKDWfdt/pWDtMuG8Xwg==}
 
   ccount@1.1.0:
     resolution: {integrity: sha512-vlNK021QdI7PNeiUh/lKkC/mNHHfV0m/Ad5JoI0TYtlBnJAslM/JIkm/tGC88bkLIwO6OQ5uV6ztS6kVAtCDlg==}
@@ -5000,6 +5013,9 @@ packages:
   electron-to-chromium@1.5.452:
     resolution: {integrity: sha512-cVvk1YBSj6571VmV6hdJTqj94Y79xSu8cj6Y9t6ae4Y4431z8/7EJFvu3rVp90xhfuv9BpPKUmaLfTo4+FOGBg==}
 
+  electron-to-chromium@1.5.463:
+    resolution: {integrity: sha512-nVWNU6ltFjopvOdD44J4zoBkgO0M+WZiFKKFV7EjebOH9z0KNphk6bCEjplXtJofL21ARIuuwWOCsFkBVklm6w==}
+
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
 
@@ -5489,8 +5505,8 @@ packages:
   fast-string-width@3.0.2:
     resolution: {integrity: sha512-gX8LrtNEI5hq8DVUfRQMbr5lpaS4nMIWV+7XEbXk2b8kiQIizgnlr12B4dA3ZEx3308ze0O4Q1R+cHts8kyUJg==}
 
-  fast-uri@4.2.2:
-    resolution: {integrity: sha512-EwVpUMzLVNOmcWW0zi5G3JJwkopB6XXjnVvNBGfqrMMsVew2hkQWl5e/pe/CfYUeS6jt4cIO2MnamEW7v/7wPw==}
+  fast-uri@4.2.3:
+    resolution: {integrity: sha512-I1PXwP5eAhlNlcdpjt9CgB59op2ZvZfxw+BkqGFVIUOgNpCVTcTqp3HhTX7brxj5vsip+nSY4nTvff+eIA76hg==}
 
   fast-wrap-ansi@0.2.0:
     resolution: {integrity: sha512-rLV8JHxTyhVmFYhBJuMujcrHqOT2cnO5Zxj37qROj23CP39GXubJRBUFF0z8KFK77Uc0SukZUf7JZhsVEQ6n8w==}
@@ -7365,6 +7381,10 @@ packages:
     resolution: {integrity: sha512-BdiKAgbfRlvfMq/XzO/AF9NPmaA8a+YpLAyAFTVFBj3gARrAIfWvNq7Q7NE4se3KgFu0KkrvQMxTS0XVnsGzHg==}
     engines: {node: '>=18'}
 
+  node-releases@2.0.60:
+    resolution: {integrity: sha512-OmO8+GM1JUZqXET720VrJCwkjUCXmCMQm0Z3UDDRbfNLHS4NEAvY60j5jiFv0tkKw2PNNlqOLhahVmwJIOLDIQ==}
+    engines: {node: '>=18'}
+
   node-stream-zip@1.16.0:
     resolution: {integrity: sha512-ObaRrRoR8T68wF6suxHd7R4XQNamij6ZQHrwG7Dx1D2zeHcDNLsIOBcWrIwtDm7AsCXBguaPHgXhcjxDa2szrg==}
     engines: {node: '>=0.12.0'}
@@ -9048,8 +9068,8 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@7.30.0:
-    resolution: {integrity: sha512-dkrQXeHSaoamnItlYbmzG0wFYrM0ZwDxCIg0A7aKjTyyhh9svRzCNFEzV+Vm05/yehjCzjDZ31KXfGEjYSztDQ==}
+  undici@7.30.1:
+    resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
     engines: {node: '>=20.18.1'}
 
   undici@8.11.2:
@@ -9200,7 +9220,7 @@ packages:
     resolution: {integrity: sha512-t8wonIOdQyOjtPd2VktlBu6QjTVTks6v8bSi7kd0r2Vll8TK1JYDZtRRdbmCHOAMphkZgrzK+L+vXK4pyZ8t4A==}
     hasBin: true
     peerDependencies:
-      browserslist: '>=4.29.3'
+      browserslist: '>=4.29.4'
 
   update-notifier@6.0.2:
     resolution: {integrity: sha512-EDxhTEVPZZRLWYcJ4ZXjGFN0oP7qYvbXWzEgRm/Yql4dHX5wDbvh89YHP6PK1lzZJYrMtXUuZZz8XGK+U6U1og==}
@@ -9686,7 +9706,7 @@ snapshots:
       - smol-toml
       - yaml
 
-  '@anolilab/prettier-config@10.0.3(prettier@3.9.10)':
+  '@anolilab/prettier-config@10.0.4(prettier@3.9.10)':
     dependencies:
       prettier: 3.9.10
 
@@ -9825,7 +9845,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 8.0.5
       '@babel/helper-validator-option': 8.0.0
-      browserslist: 4.29.3
+      browserslist: 4.29.4
       flru: 1.0.2
       verkit: 0.5.0
 
@@ -11156,7 +11176,7 @@ snapshots:
       p-filter: 4.1.0
       semantic-release: 25.0.9(supports-color@10.2.2)(typescript@6.0.3)
       tinyglobby: 0.2.17
-      undici: 7.30.0
+      undici: 7.30.1
       url-join: 5.0.0
     transitivePeerDependencies:
       - kerberos
@@ -12105,7 +12125,7 @@ snapshots:
       '@visulima/rollup-plugin-css': 1.0.0(@csstools/css-parser-algorithms@4.0.2(@csstools/css-tokenizer@4.0.2))(@csstools/css-tokenizer@4.0.2)(@csstools/postcss-slow-plugins@3.0.0(postcss@8.5.29))(@visulima/css-style-inject@1.0.0)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(lightningcss@1.33.0)(postcss@8.5.29)(rollup@4.64.5)(smol-toml@1.9.1)(yaml@2.9.1)
       '@visulima/rollup-plugin-dts': 1.0.0(@ts-macro/tsc@0.3.7(rollup@4.64.5)(typescript@6.0.3))(ini@7.0.0)(json5@2.2.3)(rolldown@1.2.13)(rollup@4.64.5)(smol-toml@1.9.1)(typescript@6.0.3)(yaml@2.9.1)
       '@visulima/tsconfig': 3.2.0(ini@7.0.0)(json5@2.2.3)(smol-toml@1.9.1)(yaml@2.9.1)
-      browserslist: 4.29.3
+      browserslist: 4.29.4
       cjs-module-lexer: 2.2.0
       clean-css: 5.3.3
       defu: 6.1.7
@@ -12488,7 +12508,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 4.2.2
+      fast-uri: 4.2.3
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -12642,6 +12662,8 @@ snapshots:
 
   baseline-browser-mapping@2.11.28: {}
 
+  baseline-browser-mapping@2.11.30: {}
+
   bcrypt-pbkdf@1.0.2:
     dependencies:
       tweetnacl: 0.14.5
@@ -12694,6 +12716,14 @@ snapshots:
       electron-to-chromium: 1.5.452
       node-releases: 2.0.58
       update-browserslist-db: 1.3.4(browserslist@4.29.3)
+
+  browserslist@4.29.4:
+    dependencies:
+      baseline-browser-mapping: 2.11.30
+      caniuse-lite: 1.0.30001819
+      electron-to-chromium: 1.5.463
+      node-releases: 2.0.60
+      update-browserslist-db: 1.3.4(browserslist@4.29.4)
 
   bubble-stream-error@0.0.1: {}
 
@@ -12793,6 +12823,8 @@ snapshots:
   camelcase@8.0.0: {}
 
   caniuse-lite@1.0.30001815: {}
+
+  caniuse-lite@1.0.30001819: {}
 
   ccount@1.1.0: {}
 
@@ -13348,6 +13380,8 @@ snapshots:
 
   electron-to-chromium@1.5.452: {}
 
+  electron-to-chromium@1.5.463: {}
+
   emoji-regex@10.6.0: {}
 
   emoji-regex@8.0.0: {}
@@ -13611,7 +13645,7 @@ snapshots:
     dependencies:
       '@mdn/browser-compat-data': 6.1.5
       ast-metadata-inferer: 0.8.1
-      browserslist: 4.29.3
+      browserslist: 4.29.4
       eslint: 10.11.0(jiti@2.7.0)(supports-color@10.2.2)
       find-up: 5.0.0
       globals: 15.15.0
@@ -13808,7 +13842,7 @@ snapshots:
     dependencies:
       '@eslint-community/eslint-utils': 4.10.1(eslint@10.11.0(jiti@2.7.0)(supports-color@10.2.2))
       '@eslint/css-tree': 4.1.1
-      browserslist: 4.29.3
+      browserslist: 4.29.4
       change-case: 5.4.4
       ci-info: 4.4.0
       core-js-compat: 3.50.0
@@ -14044,7 +14078,7 @@ snapshots:
     dependencies:
       fast-string-truncated-width: 3.0.3
 
-  fast-uri@4.2.2: {}
+  fast-uri@4.2.3: {}
 
   fast-wrap-ansi@0.2.0:
     dependencies:
@@ -16435,6 +16469,8 @@ snapshots:
 
   node-releases@2.0.58: {}
 
+  node-releases@2.0.60: {}
+
   node-stream-zip@1.16.0: {}
 
   nopt@7.2.1:
@@ -16587,7 +16623,7 @@ snapshots:
       tmp: 0.2.7
       tsconfig-paths: 4.2.0
       tslib: 2.8.1
-      undici: 7.30.0
+      undici: 7.30.1
       util-deprecate: 1.0.2
       wcwidth: 1.0.1
       which: 3.0.1
@@ -18536,7 +18572,7 @@ snapshots:
 
   undici-types@8.9.0: {}
 
-  undici@7.30.0: {}
+  undici@7.30.1: {}
 
   undici@8.11.2: {}
 
@@ -18778,6 +18814,12 @@ snapshots:
   update-browserslist-db@1.3.4(browserslist@4.29.3):
     dependencies:
       browserslist: 4.29.3
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.3.4(browserslist@4.29.4):
+    dependencies:
+      browserslist: 4.29.4
       escalade: 3.2.0
       picocolors: 1.1.1
 
