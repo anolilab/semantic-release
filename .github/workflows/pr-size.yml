@@ -24,6 +24,6 @@ jobs:
             contents: "read"
             issues: "write" # to create the labels
             pull-requests: "write" # to read the files and apply the label
-        uses: "anolilab/workflows/.github/workflows/pr-size.yml@fb7a881926480723026a1deaa587ceaaaee7bf12" # v24.2.0
+        uses: "anolilab/workflows/.github/workflows/pr-size.yml@c69dbdcdfb274e317a1ca7a17b3457b19cbae527" # v24.2.2
         with:
             target-repo: "anolilab/semantic-release"
