@@ -165,7 +165,7 @@ catalogs:
       specifier: ^10.1.0
       version: 10.1.0
     execa:
-      specifier: ^10.2.0
+      specifier: ^10.2.1
       version: 10.2.1
     pkg-pr-new:
       specifier: 0.0.91
@@ -388,7 +388,7 @@ overrides:
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
   katex@>=0.11.0 <0.18.2: ^0.19.0
   undici@>=7.0.0 <7.29.1: ^7.30.1
-  zod@<4.6.6: 4.6.6
+  zod@<4.6.6: 4.6.7
 
 importers:
 
@@ -1108,6 +1108,7 @@ packages:
       eslint-plugin-astro: 3.1.0
       eslint-plugin-format: '>=2.0.1'
       eslint-plugin-jsx-a11y: ^6.10.2
+      eslint-plugin-n: '*'
       eslint-plugin-oxlint: 1.77.0
       eslint-plugin-playwright: ^0.16.0 || ^0.18.0 || ^2.0.0
       eslint-plugin-react: ^7.37.5
@@ -1145,6 +1146,8 @@ packages:
       eslint-plugin-format:
         optional: true
       eslint-plugin-jsx-a11y:
+        optional: true
+      eslint-plugin-n:
         optional: true
       eslint-plugin-oxlint:
         optional: true
@@ -3552,6 +3555,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@arethetypeswrong/core': '>=0.18.3'
+      '@babel/core': '*'
       '@ckeditor/typedoc-plugins': '*'
       '@swc/core': '>=1.15.40'
       '@tailwindcss/node': 4.3.2
@@ -3585,6 +3589,8 @@ packages:
       which-pm-runs: '*'
     peerDependenciesMeta:
       '@arethetypeswrong/core':
+        optional: true
+      '@babel/core':
         optional: true
       '@ckeditor/typedoc-plugins':
         optional: true
@@ -9564,8 +9570,8 @@ packages:
   yuku-parser@0.6.12:
     resolution: {integrity: sha512-A1+KVTvdm1pQmrl/cS5JlqFvUclKpM8I5MvAOoQnYSGmmJBVDKN24HNXiZmxE8Ndsl4g3qBliZBAxq8/J4pKxA==}
 
-  zod@4.6.6:
-    resolution: {integrity: sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA==}
+  zod@4.6.7:
+    resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
   zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
@@ -10436,12 +10442,12 @@ snapshots:
 
   '@modelcontextprotocol/core@2.4.0':
     dependencies:
-      zod: 4.6.6
+      zod: 4.6.7
 
   '@modelcontextprotocol/server@2.4.0':
     dependencies:
       '@modelcontextprotocol/core': 2.4.0
-      zod: 4.6.6
+      zod: 4.6.7
 
   '@napi-rs/lzma-linux-x64-gnu@1.5.1':
     optional: true
@@ -18297,7 +18303,7 @@ snapshots:
       rc-config-loader: 4.1.4(supports-color@10.2.2)
       read-package-up: 11.0.0
       structured-source: 4.0.0
-      zod: 4.6.6
+      zod: 4.6.7
     transitivePeerDependencies:
       - supports-color
 
@@ -19202,7 +19208,7 @@ snapshots:
       '@yuku-parser/binding-win32-arm64': 0.6.12
       '@yuku-parser/binding-win32-x64': 0.6.12
 
-  zod@4.6.6: {}
+  zod@4.6.7: {}
 
   zwitch@1.0.5: {}
 
