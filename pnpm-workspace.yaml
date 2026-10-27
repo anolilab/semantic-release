@@ -59,7 +59,7 @@ catalogs:
     '@commitlint/cli': 21.2.4
     '@commitlint/config-conventional': 21.2.4
     '@secretlint/secretlint-rule-preset-recommend': 13.0.7
-    eslint: 10.11.0
+    eslint: 10.13.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 17.6.0
@@ -204,7 +204,7 @@ onlyBuiltDependencies:
 
 overrides:
   browserslist@<=4.28.6: '>=4.29.4'
-  '@typescript-eslint/utils@<8.67.0': '8.71.2'
+  '@typescript-eslint/utils@<8.67.0': '8.72.0'
   '@visulima/fs': '^5.1.0'
   '@visulima/package': '5.0.43'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.6'
