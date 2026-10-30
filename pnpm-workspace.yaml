@@ -34,8 +34,8 @@ catalogs:
   dev:
     '@arethetypeswrong/cli': ^0.18.5
     '@ckeditor/typedoc-plugins': 62.5.0
-    '@visulima/packem': 2.0.0
-    '@visulima/pail': 4.0.2
+    '@visulima/packem': 2.1.0
+    '@visulima/pail': 4.1.1
     conventional-changelog-conventionalcommits: 9.3.1
     dockerode: 5.0.1
     file-url: ^4.0.0
@@ -59,7 +59,7 @@ catalogs:
     '@commitlint/cli': 21.2.4
     '@commitlint/config-conventional': 21.2.4
     '@secretlint/secretlint-rule-preset-recommend': 13.0.7
-    eslint: 10.11.0
+    eslint: 10.13.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 17.6.0
@@ -204,7 +204,7 @@ onlyBuiltDependencies:
 
 overrides:
   browserslist@<=4.28.6: '>=4.29.4'
-  '@typescript-eslint/utils@<8.67.0': '8.71.2'
+  '@typescript-eslint/utils@<8.67.0': '8.72.0'
   '@visulima/fs': '^5.1.0'
   '@visulima/package': '5.0.43'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.6'
@@ -251,9 +251,9 @@ overrides:
   js-yaml@<=4.1.1: '>=4.3.0 <5'
   # js-yaml 5.x is ESM-only with no default export and breaks multi-semantic-release's
   # `import yaml from "js-yaml"`; 4.3.x carries the GHSA-52cp-r559-cp3m fix.
-  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <6'
+  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0 <5'
   # cosmiconfig@10 pulls js-yaml 5, which is ESM-only; keep every consumer on 4.x.
-  js-yaml@>=4.0.0 <6: '>=4.3.0 <6'
+  js-yaml@>=4.0.0 <6: '>=4.3.0 <5'
   # GHSA-pqg4-j6r4-53mv (critical), fixed in 1.11.0.
   shell-quote@>=1.8.4 <1.11.0: '>=1.12.0'
   linkify-it@<=5.0.1: ^6.1.0
@@ -295,10 +295,10 @@ overrides:
   undici@>=7.0.0 <7.24.0: '>=8.12.3'
   undici@>=7.17.0 <7.24.0: '>=8.12.3'
   uuid@<14.0.0: '>=14.0.3'
-  vite@>=7.0.0 <=7.3.1: '>=8.2.4'
-  vite@>=7.1.0 <=7.1.10: '>=8.2.4'
-  vite@>=7.1.0 <=7.3.1: '>=8.2.4'
-  vite@>=8.0.0 <8.0.16: '>=8.2.4'
+  vite@>=7.0.0 <=7.3.1: '>=8.3.5'
+  vite@>=7.1.0 <=7.1.10: '>=8.3.5'
+  vite@>=7.1.0 <=7.3.1: '>=8.3.5'
+  vite@>=8.0.0 <8.0.16: '>=8.3.5'
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
   katex@>=0.11.0 <0.18.2: ^0.19.0
   undici@>=7.0.0 <7.29.1: ^7.30.1
