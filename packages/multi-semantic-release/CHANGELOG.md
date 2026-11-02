@@ -1,3 +1,21 @@
+## @anolilab/multi-semantic-release [4.6.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.6.1...@anolilab/multi-semantic-release@4.6.2) (2026-11-02)
+
+### Miscellaneous Chores
+
+* **deps:** combine open Renovate updates ([3a97318](https://github.com/anolilab/semantic-release/commit/3a97318ab100b0bdd11abd5c078b1a17869b9927))
+
+### Tests
+
+* **multi-semantic-release:** allow more time for the JSR dry-run test ([50e5b31](https://github.com/anolilab/semantic-release/commit/50e5b31a154e7594cb2293f5c9fa7b1f3399a342))
+
+
+### Dependencies
+
+* **@anolilab/semantic-release-clean-package-json:** upgraded to 5.5.29
+* **@anolilab/semantic-release-pnpm:** upgraded to 8.1.37
+* **execa:** ^10.2.0 → ^10.2.1
+* **@visulima/fs:** ^5.1.0 → ^7.0.0
+
 ## @anolilab/multi-semantic-release [4.6.1](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.6.0...@anolilab/multi-semantic-release@4.6.1) (2026-10-24)
 
 
