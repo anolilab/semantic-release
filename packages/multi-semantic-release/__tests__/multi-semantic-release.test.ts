@@ -1983,6 +1983,50 @@ catalog:
             expect((packageB?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
             expect(packageC?.result).toBe(false);
         });
+
+        it("should keep deps.release from the config file when deps flags are passed", async () => {
+            expect.assertions(1);
+
+            const cwd = gitInit();
+
+            copyDirectory(`${fixturesPath}/pnpmWorkspaceDefaultCatalog/`, cwd);
+            writeFileSync(resolve(cwd, ".multi-releaserc.json"), JSON.stringify({ deps: { release: "patch" } }));
+
+            const initialSha = gitCommitAll(cwd, "feat: Initial release with default catalog");
+
+            gitInitOrigin(cwd);
+            gitPush(cwd);
+
+            gitTag(cwd, "msr-test-a@1.0.0", initialSha);
+            gitPush(cwd);
+
+            writeFileSync(
+                resolve(cwd, "pnpm-workspace.yaml"),
+                `packages:
+    - "packages/*"
+
+catalog:
+    lodash-es: ^5.0.0
+    typescript: ^5.0.0
+`,
+            );
+
+            gitCommitAll(cwd, "chore: update default catalog");
+
+            const stdout = new WritableStreamBuffer();
+            const stderr = new WritableStreamBuffer();
+
+            // As from `--deps.bump=override --deps.prefix=^`: the CLI passes only the deps options it was given
+            const result = await multiSemanticRelease(
+                [`packages/a/package.json`],
+                {},
+                { cwd, env: environment, stderr: stderr as unknown as NodeJS.WriteStream, stdout: stdout as unknown as NodeJS.WriteStream },
+                { deps: { bump: "override", prefix: "^" } },
+            );
+
+            // The major catalog change is capped by deps.release from the config file
+            expect((result[0]?.result as ReleaseResultType).nextRelease?.version).toBe("1.0.1");
+        });
     });
 
     describe("root file change detection", () => {
