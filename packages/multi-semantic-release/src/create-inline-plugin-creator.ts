@@ -7,7 +7,7 @@ import type { ReleaseType } from "semver";
 import getCommitsFiltered from "./get-commits-filtered";
 import logger from "./logger";
 import type { Flags, MultiContext, Package, PackageCatalogChange, RootFileChanges, SemanticReleaseContext } from "./types";
-import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps as updateManifestDependencies } from "./update-deps";
+import { resolveReleaseType, resolveReleaseTypeFromStrategy, updateManifestDeps as updateManifestDependencies } from "./update-dependencies";
 import cleanPath from "./utils/clean-path";
 import type { CatalogChanges } from "./utils/detect-catalog-changes";
 import { detectCatalogChanges, getPackageCatalogChanges } from "./utils/detect-catalog-changes";

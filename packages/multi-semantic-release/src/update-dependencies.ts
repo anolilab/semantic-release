@@ -29,7 +29,8 @@ const CHUNK_DIGIT_REGEX = /\d+/u;
  */
 const resolveReleaseTypeFromStrategy = (
     releaseStrategy:
-        ReleaseStrategy | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> },
+        | ReleaseStrategy
+        | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> },
     dependencyReleaseType: string | undefined,
 ): string | undefined => {
     // If it's a string, use it directly (backward compatible)
@@ -120,7 +121,8 @@ const getDependentRelease = (
     packageJson: Package,
     bumpStrategy: string,
     releaseStrategy:
-        ReleaseStrategy | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> },
+        | ReleaseStrategy
+        | { major?: Exclude<ReleaseStrategy, "inherit">; minor?: Exclude<ReleaseStrategy, "inherit">; patch?: Exclude<ReleaseStrategy, "inherit"> },
     ignore: Package[],
     prefix: string,
 ): string | undefined => {
@@ -551,7 +553,7 @@ export const resolveNextVersion = (currentVersion: string, nextVersion: string, 
  * @param packageJson The package this function is being called on.
  * @internal
  */
- 
+
 export const updateManifestDeps = (packageJson: Package): void => {
     const { manifest, path } = packageJson;
 

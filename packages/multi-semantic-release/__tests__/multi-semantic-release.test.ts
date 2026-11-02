@@ -1717,7 +1717,9 @@ describe("multiSemanticRelease()", () => {
 
         // Verify no actual publishing occurred (dry-run was used)
         expect(output).toMatch(RE_DRY_RUN);
-    }, 30_000);
+        // The first JSR run downloads the Deno binary from dl.deno.land. On CI runners that download
+        // can take longer than 30s, so give this test more time than the default.
+    }, 120_000);
 
     describe("catalog change detection", () => {
         it("should trigger release when catalog version changes", async () => {
@@ -2044,10 +2046,7 @@ catalog:
         it('should release only packages whose production dependencies changed with scope "affected"', async () => {
             expect.assertions(4);
 
-            const packages = await releaseAfterLockfileChange(
-                { dep: "1.0.1", tool: "1.1.0" },
-                { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } },
-            );
+            const packages = await releaseAfterLockfileChange({ dep: "1.0.1", tool: "1.1.0" }, { rootFiles: { files: ["pnpm-lock.yaml"], scope: "affected" } });
             const resultA = packages["msr-test-a"]?.result as ReleaseResultType;
 
             expect(resultA.nextRelease?.version).toBe("1.0.1");
@@ -2115,7 +2114,10 @@ catalog:
 
                 manifest.dependencies.dep = "catalog:";
                 writeFileSync(manifestPath, `${JSON.stringify(manifest, undefined, 4)}\n`);
-                writeFileSync(resolve(cwd, "pnpm-workspace.yaml"), `packages:\n    - "packages/*"\n\ncatalog:\n    dep: ^${commit === "initial" ? "1" : "2"}.0.0\n`);
+                writeFileSync(
+                    resolve(cwd, "pnpm-workspace.yaml"),
+                    `packages:\n    - "packages/*"\n\ncatalog:\n    dep: ^${commit === "initial" ? "1" : "2"}.0.0\n`,
+                );
             };
 
             const packages = await releaseAfterLockfileChange(
