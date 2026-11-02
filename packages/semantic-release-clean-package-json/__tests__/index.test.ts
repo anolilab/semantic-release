@@ -152,9 +152,7 @@ describe("semantic-release-clean-package-json", () => {
         await publish({}, createContext(temporaryDirectoryPath));
 
         await expect(readFile(packageJsonPath)).resolves.toBe(`{\r\n\t"name": "test-package",\r\n\t"version": "1.0.0"\r\n}\r\n`);
-        await expect(readFile(`${temporaryDirectoryPath}/package.json.back`)).resolves.toBe(
-            `{\r\n\t"name": "test-package",\r\n\t"version": "1.0.0"\r\n}\r\n`,
-        );
+        await expect(readFile(`${temporaryDirectoryPath}/package.json.back`)).resolves.toBe(`{\r\n\t"name": "test-package",\r\n\t"version": "1.0.0"\r\n}\r\n`);
     });
 
     describe(success, () => {
