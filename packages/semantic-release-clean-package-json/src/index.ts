@@ -25,7 +25,7 @@ type ManifestObject = { [key: string]: ManifestValue };
  * @param context Semantic-release publish context.
  * @returns Resolves once the cleaned `package.json` has been written to disk.
  */
- 
+
 export const publish = async (pluginConfig: PluginConfig, context: PublishContext): Promise<void> => {
     const packageJson = await getPackage(pluginConfig, context);
     const cwd = pluginConfig.pkgRoot ? resolve(context.cwd, pluginConfig.pkgRoot) : context.cwd;

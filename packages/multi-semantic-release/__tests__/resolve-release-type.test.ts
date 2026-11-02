@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import type { Package } from "../src/types";
-import { resolveReleaseType } from "../src/update-deps";
+import { resolveReleaseType } from "../src/update-dependencies";
 
 describe("resolveReleaseType()", () => {
     it("works correctly with no deps", () => {

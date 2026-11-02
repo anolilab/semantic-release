@@ -9,7 +9,7 @@ import {
     resolveNextVersion,
     resolveReleaseType,
     resolveReleaseTypeFromStrategy,
-} from "../src/update-deps";
+} from "../src/update-dependencies";
 
 type StrategyArgument = Parameters<typeof resolveReleaseTypeFromStrategy>[0];
 
@@ -248,8 +248,6 @@ describe("update-deps", () => {
 
         it.each([
             [undefined, "patch", "rc", "1.0.0-rc.1"],
-            [undefined, "patch", "rc", "1.0.0-rc.1"],
-            [null, "patch", "rc", "1.0.0-rc.1"],
             [null, "patch", "rc", "1.0.0-rc.1"],
             ["1.0.0-rc.0", "minor", "dev", "1.0.0-dev.1"],
             ["1.0.0-dev.0", "major", "dev", "1.0.0-dev.1"],
@@ -286,7 +284,6 @@ describe("update-deps", () => {
         it.each([
             // prerelease channels just bump up the pre-release
             ["1.0.0-rc.0", "minor", "rc", "1.0.0-rc.1"],
-            ["1.0.0-dev.0", "major", "dev", "1.0.0-dev.1"],
             ["1.0.0-dev.0", "major", "dev", "1.0.0-dev.1"],
             ["1.0.1-dev.0", "major", "dev", "1.0.1-dev.1"],
             // main channels obey the release type

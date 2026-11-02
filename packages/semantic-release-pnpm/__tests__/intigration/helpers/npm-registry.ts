@@ -19,7 +19,6 @@ const NPM_EMAIL = "integration@test.com";
 
 const docker = new Docker();
 
- 
 let container: Docker.Container;
 
 /**
