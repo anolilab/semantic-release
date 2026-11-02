@@ -1,3 +1,15 @@
+## @anolilab/semantic-release-pnpm [8.1.37](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.36...@anolilab/semantic-release-pnpm@8.1.37) (2026-11-02)
+
+### Miscellaneous Chores
+
+* **deps:** combine open Renovate updates ([3a97318](https://github.com/anolilab/semantic-release/commit/3a97318ab100b0bdd11abd5c078b1a17869b9927))
+
+
+### Dependencies
+
+* **execa:** ^10.2.0 → ^10.2.1
+* **@visulima/fs:** ^5.1.0 → ^7.0.0
+
 ## @anolilab/semantic-release-pnpm [8.1.36](https://github.com/anolilab/semantic-release/compare/@anolilab/semantic-release-pnpm@8.1.35...@anolilab/semantic-release-pnpm@8.1.36) (2026-10-24)
 
 
