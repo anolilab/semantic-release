@@ -72,7 +72,6 @@ const getRegistry = ({ name, publishConfig = {} }: PackageJson, { cwd, env }: Co
 
         resolvedRegistry = getRegistryUrl(scope, npmrc);
 
-         
         if (npmrc && Object.hasOwn(npmrc, `${scope}:registry`)) {
             source = `.npmrc file (scoped registry for ${scope})`;
         } else if (npmrc && Object.hasOwn(npmrc, "registry")) {
