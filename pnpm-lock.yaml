@@ -69,8 +69,8 @@ catalogs:
       specifier: 9.0.1
       version: 9.0.1
     got:
-      specifier: 16.1.0
-      version: 16.1.0
+      specifier: 16.2.0
+      version: 16.2.0
     p-retry:
       specifier: 8.0.1
       version: 8.0.1
@@ -308,16 +308,16 @@ overrides:
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.32.2'
   ajv@<6.14.0: '>=6.15.0 <7'
   ajv@>=7.0.0-alpha.0 <8.18.0: '>=8.20.0'
-  axios@<1.15.0: '>=1.20.0'
-  axios@>=1.0.0 <1.15.0: '>=1.20.0'
-  axios@>=1.0.0 <1.18.0: ^1.20.0
-  axios@>=1.0.0 <=1.13.4: '>=1.20.0'
-  axios@>=1.13.0 <1.18.0: ^1.20.0
-  axios@>=1.15.0 <1.18.0: ^1.20.0
-  axios@>=1.15.1 <1.18.0: ^1.20.0
-  axios@>=1.15.2 <1.18.0: ^1.20.0
-  axios@>=1.17.0 <1.20.0: '>=1.20.0'
-  axios@>=1.7.0 <1.18.0: ^1.20.0
+  axios@<1.15.0: '>=1.21.0'
+  axios@>=1.0.0 <1.15.0: '>=1.21.0'
+  axios@>=1.0.0 <1.18.0: ^1.21.0
+  axios@>=1.0.0 <=1.13.4: '>=1.21.0'
+  axios@>=1.13.0 <1.18.0: ^1.21.0
+  axios@>=1.15.0 <1.18.0: ^1.21.0
+  axios@>=1.15.1 <1.18.0: ^1.21.0
+  axios@>=1.15.2 <1.18.0: ^1.21.0
+  axios@>=1.17.0 <1.20.0: '>=1.21.0'
+  axios@>=1.7.0 <1.18.0: ^1.21.0
   body-parser@>=2.2.0 <2.2.1: '>=2.4.0'
   brace-expansion@<1.1.13: '>=5.0.12'
   brace-expansion@>=2.0.0 <2.0.3: '>=5.0.12'
@@ -365,8 +365,8 @@ overrides:
   picomatch@<2.3.2: '>=4.0.7'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.7'
   protobufjs@>=7.5.0 <=7.6.4: ^8.8.1
-  qs@<6.14.1: '>=6.16.2'
-  qs@>=6.7.0 <=6.14.1: '>=6.16.2'
+  qs@<6.14.1: '>=6.17.1'
+  qs@>=6.7.0 <=6.14.1: '>=6.17.1'
   rollup@>=4.0.0 <4.59.0: '>=4.66.0'
   shell-quote@<=1.8.4: ^1.12.0
   shell-quote@>=1.1.0 <=1.8.3: ^1.12.0
@@ -977,7 +977,7 @@ importers:
         version: 9.0.1
       got:
         specifier: catalog:dev
-        version: 16.1.0
+        version: 16.2.0
       p-retry:
         specifier: catalog:dev
         version: 8.0.1
@@ -5765,8 +5765,8 @@ packages:
     resolution: {integrity: sha512-mThBblvlAF1d4O5oqyvN+ZxLAYwIJK7bpMxgYqPD9okW0C3qm5FFn7k811QrcuEBwaogR3ngOFoCfs6mRv7teQ==}
     engines: {node: '>=14.16'}
 
-  got@16.1.0:
-    resolution: {integrity: sha512-LOvohAoc/3O8+Gi3E5RRvamkyXmJq9ewj/cimmqQYn+Me5OKCVHKQI9ygF0O882l573lrpLbKZpsydYRttpDEg==}
+  got@16.2.0:
+    resolution: {integrity: sha512-aOgWdlVL/pipu3Cqr9okwOdRZPsWwntgTup+eTn2fE1k4vky6oybjVUZxCSdAfOJkSxoyGKcGlgxf2+LcPdgVg==}
     engines: {node: '>=22'}
 
   graceful-fs@4.2.10:
@@ -14347,7 +14347,7 @@ snapshots:
       p-cancelable: 3.0.0
       responselike: 3.0.0
 
-  got@16.1.0:
+  got@16.2.0:
     dependencies:
       '@sindresorhus/is': 8.1.0
       byte-counter: 0.1.0
