@@ -225,10 +225,10 @@ const multiSemanticRelease = async (
     const configMultiSemrel = await getConfigMultiSemrel(cwd, flags);
 
     const mergedFlags: Flags = {
-        deps: {},
         ...configMultiSemrel,
         ...flags,
-        // CLI flags such as --root-files.scope replace single rootFiles options, not all of them
+        // CLI flags such as --deps.bump and --root-files.scope replace single options, not the whole object
+        deps: { ...configMultiSemrel.deps, ...pickBy(flags.deps, (option: unknown) => option !== undefined) },
         rootFiles: { ...configMultiSemrel.rootFiles, ...pickBy(flags.rootFiles, (option: unknown) => option !== undefined) },
     };
 
