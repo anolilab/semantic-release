@@ -9,5 +9,12 @@
             matchPackageNames: ["conventional-changelog-conventionalcommits"],
             allowedVersions: "<10",
         },
+        {
+            // js-yaml 5 is ESM-only without a default export; @semrel-extra/topo and
+            // multi-semantic-release import it as `import yaml from "js-yaml"`. The
+            // overrides in pnpm-workspace.yaml pin every consumer to 4.x for that reason.
+            matchPackageNames: ["js-yaml"],
+            allowedVersions: "<5",
+        },
     ],
 }
