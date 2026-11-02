@@ -1717,7 +1717,9 @@ describe("multiSemanticRelease()", () => {
 
         // Verify no actual publishing occurred (dry-run was used)
         expect(output).toMatch(RE_DRY_RUN);
-    }, 30_000);
+        // The first JSR run downloads the Deno binary from dl.deno.land. On CI runners that download
+        // can take longer than 30s, so give this test more time than the default.
+    }, 120_000);
 
     describe("catalog change detection", () => {
         it("should trigger release when catalog version changes", async () => {
