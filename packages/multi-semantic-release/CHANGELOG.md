@@ -1,3 +1,9 @@
+## @anolilab/multi-semantic-release [4.6.3](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.6.2...@anolilab/multi-semantic-release@4.6.3) (2026-11-03)
+
+### Bug Fixes
+
+* **multi-semantic-release:** keep config deps options when deps flags are passed ([e4eae3d](https://github.com/anolilab/semantic-release/commit/e4eae3d968c60f2876dd91ed62929fcf64145198))
+
 ## @anolilab/multi-semantic-release [4.6.2](https://github.com/anolilab/semantic-release/compare/@anolilab/multi-semantic-release@4.6.1...@anolilab/multi-semantic-release@4.6.2) (2026-11-02)
 
 ### Miscellaneous Chores
