@@ -210,7 +210,7 @@ overrides:
   '@visulima/fs': '^7.0.0'
   '@visulima/package': '5.0.43'
   '@grpc/grpc-js@>=1.12.0 <1.12.7': '>=1.14.7'
-  '@hono/node-server': '>=2.1.5'
+  '@hono/node-server': '>=2.1.6'
   '@isaacs/brace-expansion@<=5.0.0': '>=5.0.1'
   '@modelcontextprotocol/sdk@<1.25.2': '>=1.32.2'
   '@modelcontextprotocol/sdk@>=1.10.0 <=1.25.3': '>=1.32.2'
@@ -248,10 +248,10 @@ overrides:
   handlebars@>=4.0.0 <4.7.9: '>=4.7.10'
   handlebars@>=4.0.0 <=4.7.8: '>=4.7.10'
   handlebars@>=4.6.0 <=4.7.8: '>=4.7.10'
-  hono@<4.12.25: '>=4.13.14'
-  hono@>=4.0.0 <4.12.27: ^4.13.14
-  hono@>=4.11.8 <4.12.27: ^4.13.14
-  hono@>=4.3.3 <4.12.27: ^4.13.14
+  hono@<4.12.25: '>=4.13.16'
+  hono@>=4.0.0 <4.12.27: ^4.13.16
+  hono@>=4.11.8 <4.12.27: ^4.13.16
+  hono@>=4.3.3 <4.12.27: ^4.13.16
   js-yaml@<=4.1.1: '>=4.3.0 <5'
   # js-yaml 5.x is ESM-only with no default export and breaks multi-semantic-release's
   # `import yaml from "js-yaml"`; 4.3.x carries the GHSA-52cp-r559-cp3m fix.
@@ -268,14 +268,14 @@ overrides:
   # GHSA-gfr2-rv44-r23c (high) and GHSA-vfgh-jcmw-g37q (low), fixed in 14.3.3.
   # typedoc declares markdown-it ^14.3.0, so this stays on the 14.x line.
   markdown-it@>=14.1.0 <14.3.3: '>=14.3.3 <15'
-  minimatch@<3.1.3: '>=11.0.3'
-  minimatch@<3.1.4: '>=11.0.3'
-  minimatch@>=10.0.0 <10.2.1: '>=11.0.3'
+  minimatch@<3.1.3: '>=11.0.4'
+  minimatch@<3.1.4: '>=11.0.4'
+  minimatch@>=10.0.0 <10.2.1: '>=11.0.4'
   minimatch@>=10.0.0 <10.2.3: '>=10.2.6'
-  minimatch@>=5.0.0 <5.1.7: '>=11.0.3'
-  minimatch@>=5.0.0 <5.1.8: '>=11.0.3'
-  minimatch@>=9.0.0 <9.0.6: '>=11.0.3'
-  minimatch@>=9.0.0 <9.0.7: '>=11.0.3'
+  minimatch@>=5.0.0 <5.1.7: '>=11.0.4'
+  minimatch@>=5.0.0 <5.1.8: '>=11.0.4'
+  minimatch@>=9.0.0 <9.0.6: '>=11.0.4'
+  minimatch@>=9.0.0 <9.0.7: '>=11.0.4'
   path-to-regexp@>=8.0.0 <8.4.0: '>=8.4.2'
   picomatch@<2.3.2: '>=4.0.7'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.7'
