@@ -73,7 +73,7 @@ catalogs:
     '@nx/workspace': 23.3.1
     nx: 23.3.1
   network:
-    browserslist-config-anolilab: 9.0.1
+    browserslist-config-anolilab: 10.0.0
   node:
     '@visulima/path': ^3.1.0
     cross-env: ^10.1.0

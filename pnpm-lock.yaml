@@ -155,8 +155,8 @@ catalogs:
       version: 23.3.1
   network:
     browserslist-config-anolilab:
-      specifier: 9.0.1
-      version: 9.0.1
+      specifier: 10.0.0
+      version: 10.0.0
   node:
     '@visulima/path':
       specifier: ^3.1.0
@@ -430,7 +430,7 @@ importers:
         version: 7.1.0
       browserslist-config-anolilab:
         specifier: catalog:network
-        version: 9.0.1
+        version: 10.0.0
       commitizen:
         specifier: catalog:cli
         version: 4.3.2(@types/node@26.6.6)(typescript@6.0.3)
@@ -4314,8 +4314,8 @@ packages:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
     engines: {node: '>=8'}
 
-  browserslist-config-anolilab@9.0.1:
-    resolution: {integrity: sha512-lZlaLLl4UwVgpw2pcdg9Aze5lC+njyK2UtW2YpoWcUkcyZC3ZGpB1Yq1eLCQBzoPwW1ZBWFIvZrP4s4C3uHTBw==}
+  browserslist-config-anolilab@10.0.0:
+    resolution: {integrity: sha512-qyl+2ybc4d3ufDrBG990zHntDxqXFcfR/UbS5FhgTN0mgrJMWgzmA9nmfsHZMZYERglZrJDRTv0swAKm5OueRQ==}
     engines: {node: '>=22.12.0 <=25.*'}
 
   browserslist@4.28.8:
@@ -12645,7 +12645,7 @@ snapshots:
     dependencies:
       fill-range: 7.1.1
 
-  browserslist-config-anolilab@9.0.1: {}
+  browserslist-config-anolilab@10.0.0: {}
 
   browserslist@4.28.8:
     dependencies:
