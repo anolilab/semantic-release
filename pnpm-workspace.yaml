@@ -59,7 +59,7 @@ catalogs:
     '@commitlint/cli': 21.2.4
     '@commitlint/config-conventional': 21.2.4
     '@secretlint/secretlint-rule-preset-recommend': 13.1.0
-    eslint: 10.13.0
+    eslint: 10.14.0
     eslint-plugin-you-dont-need-lodash-underscore: 6.14.0
     husky: ^9.1.7
     lint-staged: 17.6.0
