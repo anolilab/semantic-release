@@ -32,7 +32,7 @@ jobs:
             codecov: "${{ steps.changes.outputs.codecov }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43" # v2.22.3
+              uses: "step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a" # v2.22.4
               with:
                   egress-policy: "audit"
 
@@ -69,7 +69,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43" # v2.22.3
+              uses: "step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a" # v2.22.4
               with:
                   egress-policy: "audit"
 
@@ -132,7 +132,7 @@ jobs:
             NODE: "${{ matrix.node_version }}"
         steps:
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43" # v2.22.3
+              uses: "step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a" # v2.22.4
               with:
                   egress-policy: "audit"
 
@@ -222,7 +222,7 @@ jobs:
             # If any jobs we depend on fail, we will fail since this is a required check
             # NOTE: A timeout is considered a failure
             - name: "Harden Runner"
-              uses: "step-security/harden-runner@46b06cea07f9e64621fdf066ba77ac6915163d43" # v2.22.3
+              uses: "step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a" # v2.22.4
               with:
                   egress-policy: "audit"
 
