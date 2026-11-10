@@ -211,8 +211,8 @@ catalogs:
       specifier: ^4.1.0
       version: 4.1.0
     normalize-url:
-      specifier: 9.0.1
-      version: 9.0.1
+      specifier: 10.0.0
+      version: 10.0.0
     plop:
       specifier: 4.0.5
       version: 4.0.5
@@ -886,7 +886,7 @@ importers:
         version: 7.0.0
       normalize-url:
         specifier: catalog:prod
-        version: 9.0.1
+        version: 10.0.0
       registry-auth-token:
         specifier: catalog:prod
         version: 5.1.1
@@ -7385,6 +7385,10 @@ packages:
   normalize-package-data@9.0.0:
     resolution: {integrity: sha512-la34cHOCAT6itNOYCvPi40XP8r0y6OHuNkooOfnfFUHdgy5MBw665qq5xsuS02AEC7WPQvhwvb7E9PI1gipplw==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
+
+  normalize-url@10.0.0:
+    resolution: {integrity: sha512-aZEiiOP3lVdNrCCdPELWvJHbjJjoPfbWRLPAZLSsGA6l4ckvPmZSB+uX6JB4QQu33SeXCsd6v75jKivr43n/EQ==}
+    engines: {node: '>=22'}
 
   normalize-url@8.1.1:
     resolution: {integrity: sha512-JYc0DPlpGWB40kH5g07gGTrYuMqV653k3uBKY6uITPWds3M0ov3GaWGp9lbE3Bzngx8+XkfzgvASb9vk9JDFXQ==}
@@ -16496,6 +16500,8 @@ snapshots:
       hosted-git-info: 10.1.1
       semver: 7.8.5
       validate-npm-package-license: 3.0.4
+
+  normalize-url@10.0.0: {}
 
   normalize-url@8.1.1: {}
 
