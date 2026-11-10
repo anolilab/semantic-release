@@ -388,7 +388,7 @@ overrides:
   vite@>=8.0.0 <8.0.16: '>=8.3.5'
   yaml@>=2.0.0 <2.8.3: '>=2.9.1'
   katex@>=0.11.0 <0.18.2: ^0.19.1
-  undici@>=7.0.0 <7.29.1: ^7.30.1
+  undici@>=7.0.0 <7.29.1: ^8.12.4
   zod@<4.6.6: 4.6.7
 
 importers:
@@ -9028,12 +9028,12 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@7.30.1:
-    resolution: {integrity: sha512-03KrMbjIFDWQR5RNPrSw3bd1r12JpyFQl9/yxjUbJtqkjmllqC5lFjZh6ujeuJCKr8EOQvRW872Oy/az+nLYxg==}
-    engines: {node: '>=20.18.1'}
-
   undici@8.12.3:
     resolution: {integrity: sha512-+fdndUTwBP86cVjihTp21hZHo7d6oj1c/47XPA3lL8mM0XHs+C4EkcjmgRsFnFk2f/UONGDy9ItBItmXsLOQHw==}
+    engines: {node: '>=22.19.0'}
+
+  undici@8.12.4:
+    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
     engines: {node: '>=22.19.0'}
 
   unherit@3.0.1:
@@ -11126,7 +11126,7 @@ snapshots:
       p-filter: 4.1.0
       semantic-release: 25.0.9(supports-color@10.2.2)(typescript@6.0.3)
       tinyglobby: 0.2.17
-      undici: 7.30.1
+      undici: 8.12.4
       url-join: 5.2.0
     transitivePeerDependencies:
       - kerberos
@@ -16611,7 +16611,7 @@ snapshots:
       tmp: 0.2.7
       tsconfig-paths: 4.2.0
       tslib: 2.8.1
-      undici: 7.30.1
+      undici: 8.12.4
       util-deprecate: 1.0.2
       wcwidth: 1.0.1
       which: 3.0.1
@@ -18546,9 +18546,9 @@ snapshots:
 
   undici-types@8.9.0: {}
 
-  undici@7.30.1: {}
-
   undici@8.12.3: {}
+
+  undici@8.12.4: {}
 
   unherit@3.0.1: {}
 
