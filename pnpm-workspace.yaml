@@ -100,7 +100,7 @@ catalogs:
     git-log-parser: ^1.2.1
     ini: ^7.0.0
     is-ci: ^4.1.0
-    normalize-url: 9.0.1
+    normalize-url: 10.0.0
     plop: 4.0.5
     registry-auth-token: 5.1.1
     signale: ^1.4.0
