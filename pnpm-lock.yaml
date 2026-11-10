@@ -72,8 +72,8 @@ catalogs:
       specifier: 16.2.0
       version: 16.2.0
     p-retry:
-      specifier: 8.0.1
-      version: 8.0.1
+      specifier: 9.0.0
+      version: 9.0.0
     stream-buffers:
       specifier: ^3.0.3
       version: 3.0.3
@@ -980,7 +980,7 @@ importers:
         version: 16.2.0
       p-retry:
         specifier: catalog:dev
-        version: 8.0.1
+        version: 9.0.0
       prettier:
         specifier: catalog:lint
         version: 3.9.10
@@ -7651,8 +7651,8 @@ packages:
     resolution: {integrity: sha512-xsrIUgI0Kn6iyDYm9StOpOeK29XM1aboGji26+QEortiFST1hGZaUQOLhtEbqHErPpGW/aSz6allwK2qcptp0Q==}
     engines: {node: '>=12'}
 
-  p-retry@8.0.1:
-    resolution: {integrity: sha512-NAigyu8hfvJe7MsS18mnc4is0MZtau3QMdBklaJKK23oBQb6occO3UPM3vHmTckW8KhfyjMZaUOqdTFEYliHgg==}
+  p-retry@9.0.0:
+    resolution: {integrity: sha512-HuEats8gYn/UUYa5uyveyQGv75mQmwdFtuMgnZlS12dj/7bdnJSO6keaTjgcZUhvkANTj5EO3lACUmV3xmgj0Q==}
     engines: {node: '>=22'}
 
   p-timeout@6.1.4:
@@ -16862,7 +16862,7 @@ snapshots:
 
   p-reduce@3.0.0: {}
 
-  p-retry@8.0.1:
+  p-retry@9.0.0:
     dependencies:
       is-network-error: 1.3.2
 
