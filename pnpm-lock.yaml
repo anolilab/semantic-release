@@ -48,8 +48,8 @@ catalogs:
       version: 3.0.2
   dev:
     '@ckeditor/typedoc-plugins':
-      specifier: 62.5.0
-      version: 62.5.0
+      specifier: 63.1.3
+      version: 63.1.3
     '@visulima/packem':
       specifier: 2.1.0
       version: 2.1.0
@@ -596,7 +596,7 @@ importers:
         version: 17.0.35
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.1.0(675ab46386076ef3e235d62390781cdf)
+        version: 2.1.0(54bd721dd0abb85d2f903bb4ef66acd3)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.1.1
@@ -666,7 +666,7 @@ importers:
         version: 11.0.0(prettier@3.9.10)
       '@ckeditor/typedoc-plugins':
         specifier: catalog:dev
-        version: 62.5.0(typedoc@0.28.20(typescript@6.0.3))
+        version: 63.1.3(typedoc@0.28.20(typescript@6.0.3))
       '@secretlint/secretlint-rule-preset-recommend':
         specifier: catalog:lint
         version: 13.1.0
@@ -699,7 +699,7 @@ importers:
         version: 7.0.0(@visulima/yaml@1.0.0)(ini@7.0.0)(json5@2.2.3)(jsonc-parser@3.3.1)(smol-toml@1.9.0)
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.1.0(675ab46386076ef3e235d62390781cdf)
+        version: 2.1.0(54bd721dd0abb85d2f903bb4ef66acd3)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.1.1
@@ -811,7 +811,7 @@ importers:
         version: 3.0.3
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.1.0(675ab46386076ef3e235d62390781cdf)
+        version: 2.1.0(54bd721dd0abb85d2f903bb4ef66acd3)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.1.1
@@ -947,7 +947,7 @@ importers:
         version: 3.0.8
       '@visulima/packem':
         specifier: catalog:dev
-        version: 2.1.0(675ab46386076ef3e235d62390781cdf)
+        version: 2.1.0(54bd721dd0abb85d2f903bb4ef66acd3)
       '@visulima/pail':
         specifier: catalog:dev
         version: 4.1.1
@@ -1359,9 +1359,9 @@ packages:
   '@cacheable/utils@2.5.0':
     resolution: {integrity: sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA==}
 
-  '@ckeditor/typedoc-plugins@62.5.0':
-    resolution: {integrity: sha512-x2MICEyIp+LEYWJzWnYklvwzYvPQM8UHCrdaCvTY38W4KifvnADOcgopy/yb/eNhwVYmarsBK3AD2GvFIGgw1Q==}
-    engines: {node: '>=24.11.0', npm: '>=5.7.1'}
+  '@ckeditor/typedoc-plugins@63.1.3':
+    resolution: {integrity: sha512-EsXvNdL0Q7S0SXdbWXK2PEK6OYsLfWItgcRa9UPL5htodZw0gupSmymMWeP7KEZ4EeKghqLDIkp0AnaTDGDzAQ==}
+    engines: {node: '>=26.10.0', npm: '>=5.7.1'}
     peerDependencies:
       typedoc: ^0.28.20
 
@@ -9893,7 +9893,7 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@ckeditor/typedoc-plugins@62.5.0(typedoc@0.28.20(typescript@6.0.3))':
+  '@ckeditor/typedoc-plugins@63.1.3(typedoc@0.28.20(typescript@6.0.3))':
     dependencies:
       typedoc: 0.28.20(typescript@6.0.3)
       upath: 2.0.1
@@ -12058,7 +12058,7 @@ snapshots:
       - jsonc-parser
       - smol-toml
 
-  '@visulima/packem@2.1.0(675ab46386076ef3e235d62390781cdf)':
+  '@visulima/packem@2.1.0(54bd721dd0abb85d2f903bb4ef66acd3)':
     dependencies:
       '@antfu/install-pkg': 2.0.1
       '@babel/core': 8.0.1
@@ -12093,7 +12093,7 @@ snapshots:
       tinyexec: 1.3.0
       workerpool: 10.0.3
     optionalDependencies:
-      '@ckeditor/typedoc-plugins': 62.5.0(typedoc@0.28.20(typescript@6.0.3))
+      '@ckeditor/typedoc-plugins': 63.1.3(typedoc@0.28.20(typescript@6.0.3))
       esbuild: 0.28.2
       lightningcss: 1.33.0
       postcss: 8.5.31
