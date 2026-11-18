@@ -361,7 +361,7 @@ overrides:
   minimatch@>=5.0.0 <5.1.8: '>=11.0.4'
   minimatch@>=9.0.0 <9.0.6: '>=11.0.4'
   minimatch@>=9.0.0 <9.0.7: '>=11.0.4'
-  path-to-regexp@>=8.0.0 <8.4.0: '>=8.4.2'
+  path-to-regexp@>=8.0.0 <8.4.0: '>=9.0.0'
   picomatch@<2.3.2: '>=4.0.7'
   picomatch@>=4.0.0 <4.0.4: '>=4.0.7'
   protobufjs@>=7.5.0 <=7.6.4: ^8.8.1
@@ -2770,6 +2770,7 @@ packages:
   '@secretlint/secretlint-rule-preset-recommend@13.1.0':
     resolution: {integrity: sha512-dPnplMyjJYpVCJDNTjpUA8c/AfoHbWANJJJWKroK50DGGhAB4Oumzk+XinBMyMMAwgOsjU9CB9lUHXDvObMVCg==}
     engines: {node: '>=22.0.0'}
+    deprecated: Built into secretlint v14 and later. Remove this package; the rule id still works. https://github.com/secretlint/secretlint/blob/HEAD/docs/rules/preset-recommend.md
 
   '@secretlint/source-creator@13.1.0':
     resolution: {integrity: sha512-XTix5etCEZmF88YPQdmGP9n9Z2h/ESvVJ/Ueel7XcCQrjPXtZVXKaiHpcSUClK0Qdth1UQg7Bd2oZfXZJjozgA==}
