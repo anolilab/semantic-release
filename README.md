@@ -58,6 +58,11 @@ Credits
 - [Daniel Bannert](https://github.com/prisis)
 - [All Contributors](https://github.com/anolilab/semantic-release/graphs/contributors)
 
+Need help with your releases?
+-------------
+
+This project is maintained by [Daniel Bannert](https://github.com/prisis). If you want automated releases set up for your monorepo, or a release pipeline that keeps breaking fixed, he takes on contract work through Anolilab: [release process optimization](https://anolilab.com/services/release-process-optimization?utm_source=github&utm_medium=readme&utm_campaign=semantic-release).
+
 License
 -------------
 
