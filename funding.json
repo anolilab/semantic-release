@@ -1,0 +1,61 @@
+{
+    "$schema": "https://fundingjson.org/schema/v1.1.0.json",
+    "version": "v1.1.0",
+    "entity": {
+        "type": "individual",
+        "role": "maintainer",
+        "name": "Daniel Bannert",
+        "email": "d.bannert@anolilab.de",
+        "description": "I'm an independent software developer from Germany. I maintain the visulima monorepo of Node.js and TypeScript libraries, the packem bundler and the anolilab semantic-release tooling for monorepos. Funding pays for the maintenance work these projects need and that nobody else pays for: security fixes, dependency and Node.js updates, issue triage, releases and documentation.",
+        "webpageUrl": {
+            "url": "https://github.com/prisis"
+        }
+    },
+    "projects": [
+        {
+            "guid": "anolilab-semantic-release",
+            "name": "anolilab semantic-release",
+            "description": "Release tooling for JavaScript and TypeScript monorepos, built on semantic-release and MIT-licensed. @anolilab/multi-semantic-release releases every package of a monorepo with its own version and changelog and updates the dependencies between them. The repository also contains semantic-release-pnpm (publishing with pnpm), semantic-release-clean-package-json, a semantic-release preset and the rc configuration loader. Release tooling sits in the software supply chain of every package it publishes, so it has to stay secure and up to date.",
+            "webpageUrl": {
+                "url": "https://github.com/anolilab/semantic-release"
+            },
+            "repositoryUrl": {
+                "url": "https://github.com/anolilab/semantic-release"
+            },
+            "licenses": [
+                "spdx:MIT"
+            ],
+            "tags": [
+                "developer-tools",
+                "devops",
+                "software-engineering",
+                "security",
+                "programming"
+            ]
+        }
+    ],
+    "funding": {
+        "channels": [
+            {
+                "guid": "github-sponsors",
+                "type": "payment-provider",
+                "address": "https://github.com/sponsors/prisis",
+                "description": "GitHub Sponsors, one-time or recurring."
+            }
+        ],
+        "plans": [
+            {
+                "guid": "maintenance-yearly",
+                "status": "active",
+                "name": "Yearly maintenance",
+                "description": "Pays for ongoing maintenance: security fixes, dependency and Node.js updates, issue and pull request triage, releases and documentation.",
+                "amount": 25000,
+                "currency": "USD",
+                "frequency": "yearly",
+                "channels": [
+                    "github-sponsors"
+                ]
+            }
+        ]
+    }
+}
