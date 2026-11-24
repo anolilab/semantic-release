@@ -211,8 +211,8 @@ catalogs:
       specifier: ^4.1.0
       version: 4.1.0
     normalize-url:
-      specifier: 9.0.1
-      version: 9.0.1
+      specifier: 10.0.0
+      version: 10.0.0
     plop:
       specifier: 4.0.5
       version: 4.0.5
@@ -886,7 +886,7 @@ importers:
         version: 7.0.0
       normalize-url:
         specifier: catalog:prod
-        version: 9.0.1
+        version: 10.0.0
       registry-auth-token:
         specifier: catalog:prod
         version: 5.1.1
@@ -2770,6 +2770,7 @@ packages:
   '@secretlint/secretlint-rule-preset-recommend@13.1.0':
     resolution: {integrity: sha512-dPnplMyjJYpVCJDNTjpUA8c/AfoHbWANJJJWKroK50DGGhAB4Oumzk+XinBMyMMAwgOsjU9CB9lUHXDvObMVCg==}
     engines: {node: '>=22.0.0'}
+    deprecated: Built into secretlint v14 and later. Remove this package; the rule id still works. https://github.com/secretlint/secretlint/blob/HEAD/docs/rules/preset-recommend.md
 
   '@secretlint/source-creator@13.1.0':
     resolution: {integrity: sha512-XTix5etCEZmF88YPQdmGP9n9Z2h/ESvVJ/Ueel7XcCQrjPXtZVXKaiHpcSUClK0Qdth1UQg7Bd2oZfXZJjozgA==}
@@ -7386,6 +7387,10 @@ packages:
     resolution: {integrity: sha512-la34cHOCAT6itNOYCvPi40XP8r0y6OHuNkooOfnfFUHdgy5MBw665qq5xsuS02AEC7WPQvhwvb7E9PI1gipplw==}
     engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
 
+  normalize-url@10.0.0:
+    resolution: {integrity: sha512-aZEiiOP3lVdNrCCdPELWvJHbjJjoPfbWRLPAZLSsGA6l4ckvPmZSB+uX6JB4QQu33SeXCsd6v75jKivr43n/EQ==}
+    engines: {node: '>=22'}
+
   normalize-url@8.1.1:
     resolution: {integrity: sha512-JYc0DPlpGWB40kH5g07gGTrYuMqV653k3uBKY6uITPWds3M0ov3GaWGp9lbE3Bzngx8+XkfzgvASb9vk9JDFXQ==}
     engines: {node: '>=14.16'}
@@ -9536,12 +9541,15 @@ packages:
 
   yuku-ast@0.9.5:
     resolution: {integrity: sha512-Q8qW8WwQnN5Cm0ZZivdRIfv0sRLTjUq0YumXJkw8CYN1aCdICH9rk4C47/4n6kA5EqDtlj+F608twoTSV2MwdQ==}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
   yuku-codegen@0.9.5:
     resolution: {integrity: sha512-zGUVyDpSK4b6c9B0yyxi2P0wujn1XZTbG9dCb7d6gyAoP63EMgyLzUwPUvwxPG5jgYqhlI7w+S3oCyapqGr4PA==}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
   yuku-parser@0.9.5:
     resolution: {integrity: sha512-IBnAdNVMswWbJcM7woPluOudectJzFjJ1N8jVRxP9Uq4CIv5hZdBIcdmtRbFDYF/Ph2j2gVup4YJ4N9mh0jYFA==}
+    deprecated: 'Yuku is now one package with one core. Use "yuku" instead: https://yuku.fyi/javascript/. Existing installs keep working but get no more fixes.'
 
   zod@4.6.7:
     resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
@@ -16496,6 +16504,8 @@ snapshots:
       hosted-git-info: 10.1.1
       semver: 7.8.5
       validate-npm-package-license: 3.0.4
+
+  normalize-url@10.0.0: {}
 
   normalize-url@8.1.1: {}
 
